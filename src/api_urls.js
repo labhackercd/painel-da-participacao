@@ -1,0 +1,8 @@
+module.exports = Object.freeze({
+
+    //NAME CONSTANTS
+    APPLICATION_NAME: "Dashboard",
+
+    //APPLICATION URL'S
+        APPLICATION_FRONT_BASE_URL:  process.env.REACT_APP_APPLICATION_FRONT_BASE_URL, //APPLICATION FRONT BASE URL
+  });
