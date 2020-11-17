@@ -2,8 +2,8 @@ language: node_js
 node_js:
   - "stable"
 cache:
-  directories:
-  - node_modules
+  npm: false
+
 services:
 - docker
 
@@ -14,28 +14,28 @@ env:
     - CC_TEST_REPORTER_ID=c3ca0dd0e4c774240733998770afc82b1d66e61999bbbd971fe64923ab2418aa
     - DOCKER_COMPOSE_VERSION=1.25.5
 
-
 before_install:
 - sudo rm /usr/local/bin/docker-compose
 - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
 - chmod +x docker-compose
 - sudo mv docker-compose /usr/local/bin
+- npm install --legacy-peer-deps --silent
 
-before_script:
-  - bash codeclimate.sh
-  - ./cc-test-reporter before-build
+install:
+- npm install --legacy-peer-deps --silent
 
 script:
   - docker-compose up --build -d dev
   - docker-compose start dev
   - docker-compose exec dev /bin/bash -c "bash codeclimate.sh"
+  - docker-compose exec dev /bin/bash -c "./cc-test-reporter before-build"
   - docker-compose exec dev /bin/bash -c "npm run test -- --coverage --watchAll=false"
   - docker-compose exec dev /bin/bash -c "cat coverage/lcov.info" 
   - docker ps -a
 
    
 after_success:
-  - npm install
+  - npm install --legacy-peer-deps --silent
   - npm run test -- --coverage --watchAll=false
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
   - docker-compose exec dev /bin/bash -c "./cc-test-reporter after-build -r c3ca0dd0e4c774240733998770afc82b1d66e61999bbbd971fe64923ab2418aa --exit-code $TRAVIS_TEST_RESULT" 
