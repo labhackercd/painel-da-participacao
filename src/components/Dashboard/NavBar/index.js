@@ -5,26 +5,6 @@ import {AppBar, Tabs, Tab, Typography, Box, Grid, IconButton} from '@material-ui
 import { ReactComponent as Logo }from './../../../assets/logo.svg';
 import { ReactComponent as LogoutIcon } from './../../../assets/user_logout_icon.svg';
 
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box p={3}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
-}
-
 const CustomTab = withStyles({
   root: {
     textTransform: 'capitalize',
@@ -77,9 +57,9 @@ export default function NavBar() {
                 onChange={handleChange}
                 TabIndicatorProps={{style: {background: '#00C354'}}}
                 className={classes.tab}>
-              <CustomTab label="Dashboard" {...a11yProps(0)} />
-              <CustomTab label="Configurações" {...a11yProps(1)} />
-              <CustomTab label="Documentação" {...a11yProps(2)} />
+              <CustomTab id="tabs-1" label="Dashboard" {...a11yProps(0)} />
+              <CustomTab id="tabs-2" label="Configurações" {...a11yProps(1)} />
+              <CustomTab id="tabs-3" label="Documentação" {...a11yProps(2)} />
             </Tabs>
           </Grid>
           <Grid item md={1}>
