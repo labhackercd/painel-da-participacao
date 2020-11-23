@@ -2,6 +2,7 @@ import React from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Box from '@material-ui/core/Box';
 import { withRouter } from "react-router";
+import NavBar from './../../components/Dashboard/NavBar';
 
 class Dashboard extends React.Component {
   constructor(props){
@@ -21,10 +22,11 @@ class Dashboard extends React.Component {
   }
 
   render(){
-    
+
 
     return (
       <div>
+      <NavBar></NavBar>
           Dashboard
       </div>
 		)

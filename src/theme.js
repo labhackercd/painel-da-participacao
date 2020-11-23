@@ -67,7 +67,7 @@ const openSansSemiBold = {
     },
     palette: {
       primary: {
-        main: '#007E5A',
+        main: '#121212',
       },
       cinza1: {
         main: '#F2F2F2',

@@ -20,13 +20,13 @@ axiosInstance.interceptors.response.use(
         //console.log(error)
         // Prevent infinite loops
         if (error.response.status === 401 && originalRequest.url === APPLICATION_SERVER_API_BASE_URL+TOKEN_REFRESH_URL) {
-            window.location.href = '/';
+            //window.location.href = '/';
             return Promise.reject(error);
         }
 
         if (error.response.data.code === "token_not_valid" &&
-            error.response.status === 401 && 
-            error.response.statusText === "Unauthorized") 
+            error.response.status === 401 &&
+            error.response.statusText === "Unauthorized")
             {
                 const refreshToken = localStorage.getItem('refresh_token');
 
@@ -41,13 +41,13 @@ axiosInstance.interceptors.response.use(
                         return axiosInstance
                         .post(TOKEN_REFRESH_URL, {refresh: refreshToken})
                         .then((response) => {
-            
+
                             localStorage.setItem('access_token', response.data.access);
                             localStorage.setItem('refresh_token', response.data.refresh);
-            
+
                             axiosInstance.defaults.headers['Authorization'] = "JWT " + response.data.access;
                             originalRequest.headers['Authorization'] = "JWT " + response.data.access;
-                            window.location.reload(false);
+                            //window.location.reload(false);
                             return axiosInstance(originalRequest);
                         })
                         .catch(err => {
@@ -55,14 +55,14 @@ axiosInstance.interceptors.response.use(
                         });
                     }else{
                         console.log("Refresh token is expired", tokenParts.exp, now);
-                        window.location.href = '/';
+                        //window.location.href = '/';
                     }
                 }else{
                     console.log("Refresh token not available.")
-                    window.location.href = '/';
+                    //window.location.href = '/';
                 }
         }
-      
+
       // specific error handling done elsewhere
       return Promise.reject(error);
   }
