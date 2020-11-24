@@ -1,37 +1,39 @@
 import React from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Box from '@material-ui/core/Box';
 import { withRouter } from "react-router";
-import NavBar from '../../components/NavBar/index'
+import { Box, Container, Typography } from '@material-ui/core';
+import NavBar from './../../components/NavBar';
+import Footer from './../../components/Footer';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 
-const useStyles = theme => ({
+const useStyles = makeStyles((theme) => ({
   body: {
-    border: 0,
     width: '100%',
+    height: '100vh',
+    backgroundColor: theme.palette.background.main,
+    display: 'flex',
+    flexDirection: 'column',
   },
-});
+  main: {
+    marginTop: theme.spacing(8),
+    marginBottom: theme.spacing(2),
+  },
+  footer: {
+    marginTop: 'auto',
+    backgroundColor: theme.palette.background.main,
+  }
+}));
 
-class Dashboard extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      dataLoaded: false,
-    };
-  }
-  componentDidMount(){
-      this._isMounted = true;
-      if(this._isMounted){
-          //console.log("Loaded")
-      }
-  }
-  render(){
-    const classes = useStyles();
+export default function Dashboard() {
+  const classes = useStyles();
     return (
       <div className={classes.body}>
         <NavBar></NavBar>
+        <Container component="main" className={classes.main}>
+        </Container>
+        <footer className={classes.footer}>
+          <Footer></Footer>
+        </footer>
       </div>
-		)
-  }
+    )
 }
-//export default withRouter(withStyles(useStyles2)(Dashboard));
-export default withRouter(Dashboard);

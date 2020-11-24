@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import {AppBar, Tabs, Toolbar, Tab, Typography, Box, Grid, IconButton} from '@material-ui/core';
-import { ReactComponent as Logo }from '../../assets/logo.svg';
+import { ReactComponent as Logo }from './../../assets/logo.svg';
 import { ReactComponent as LogoutIcon } from './../../assets/user_logout_icon.svg';
 
 const CustomTab = withStyles({
@@ -14,7 +14,7 @@ const CustomTab = withStyles({
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: theme.palette.background.main,
   },
   tab: {
     height: '92%',
