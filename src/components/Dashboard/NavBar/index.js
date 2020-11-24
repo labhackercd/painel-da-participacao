@@ -19,10 +19,9 @@ const useStyles = makeStyles((theme) => ({
   tab: {
     height: '90%',
     textTransform: 'capitalize',
-    margin: '0.5rem 0 0 0',
+    margin: '0.5rem 0 0 6rem',
   },
   logo: {
-    marginLeft: theme.spacing(2),
   },
   logout: {
   }
