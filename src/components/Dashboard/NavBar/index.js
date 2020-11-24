@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
   },
   tab: {
-    height: '90%',
+    height: '92%',
     textTransform: 'capitalize',
     margin: '0.5rem 0 0 6rem',
   },
