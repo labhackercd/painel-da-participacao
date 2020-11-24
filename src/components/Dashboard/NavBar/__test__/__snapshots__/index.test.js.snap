@@ -7,65 +7,69 @@ exports[`snapshot should not have changes 1`] = `
   <WithStyles(ForwardRef(AppBar))
     position="static"
   >
-    <WithStyles(ForwardRef(Grid))
-      container={true}
-    >
+    <WithStyles(ForwardRef(Toolbar))>
       <WithStyles(ForwardRef(Grid))
-        item={true}
-        md={2}
+        container={true}
       >
-        <div
-          className="makeStyles-logo-3"
+        <WithStyles(ForwardRef(Grid))
+          item={true}
+          md={2}
         >
-          <WithStyles(ForwardRef(IconButton))>
-            <ForwardRef(SvgLogo) />
-          </WithStyles(ForwardRef(IconButton))>
-        </div>
-      </WithStyles(ForwardRef(Grid))>
-      <WithStyles(ForwardRef(Grid))
-        item={true}
-        md={9}
-      >
-        <WithStyles(ForwardRef(Tabs))
-          TabIndicatorProps={
-            Object {
-              "style": Object {
-                "background": "#00C354",
-              },
+          <div
+            className="makeStyles-logo-3"
+          >
+            <WithStyles(ForwardRef(IconButton))>
+              <ForwardRef(SvgLogo) />
+            </WithStyles(ForwardRef(IconButton))>
+          </div>
+        </WithStyles(ForwardRef(Grid))>
+        <WithStyles(ForwardRef(Grid))
+          item={true}
+          md={9}
+        >
+          <WithStyles(ForwardRef(Tabs))
+            TabIndicatorProps={
+              Object {
+                "style": Object {
+                  "background": "#00C354",
+                },
+              }
             }
-          }
-          className="makeStyles-tab-2"
-          onChange={[Function]}
-          value={0}
+            className="makeStyles-tab-2"
+            onChange={[Function]}
+            value={0}
+          >
+            <WithStyles(WithStyles(ForwardRef(Tab)))
+              aria-controls="simple-tabpanel-0"
+              id="simple-tab-0"
+              label="Dashboard"
+            />
+            <WithStyles(WithStyles(ForwardRef(Tab)))
+              aria-controls="simple-tabpanel-1"
+              id="simple-tab-1"
+              label="Configurações"
+            />
+            <WithStyles(WithStyles(ForwardRef(Tab)))
+              aria-controls="simple-tabpanel-2"
+              id="simple-tab-2"
+              label="Documentação"
+            />
+          </WithStyles(ForwardRef(Tabs))>
+        </WithStyles(ForwardRef(Grid))>
+        <WithStyles(ForwardRef(Grid))
+          item={true}
+          md={1}
         >
-          <WithStyles(WithStyles(ForwardRef(Tab)))
-            aria-controls="simple-tabpanel-0"
-            id="simple-tab-0"
-            label="Dashboard"
-          />
-          <WithStyles(WithStyles(ForwardRef(Tab)))
-            aria-controls="simple-tabpanel-1"
-            id="simple-tab-1"
-            label="Configurações"
-          />
-          <WithStyles(WithStyles(ForwardRef(Tab)))
-            aria-controls="simple-tabpanel-2"
-            id="simple-tab-2"
-            label="Documentação"
-          />
-        </WithStyles(ForwardRef(Tabs))>
+          <div
+            className="makeStyles-logout-4"
+          >
+            <WithStyles(ForwardRef(IconButton))>
+              <ForwardRef(SvgUserLogoutIcon) />
+            </WithStyles(ForwardRef(IconButton))>
+          </div>
+        </WithStyles(ForwardRef(Grid))>
       </WithStyles(ForwardRef(Grid))>
-      <WithStyles(ForwardRef(Grid))
-        item={true}
-        md={1}
-      >
-        <div>
-          <WithStyles(ForwardRef(IconButton))>
-            <ForwardRef(SvgUserLogoutIcon) />
-          </WithStyles(ForwardRef(IconButton))>
-        </div>
-      </WithStyles(ForwardRef(Grid))>
-    </WithStyles(ForwardRef(Grid))>
+    </WithStyles(ForwardRef(Toolbar))>
   </WithStyles(ForwardRef(AppBar))>
 </div>
 `;

@@ -51,7 +51,8 @@
       "!src/index.js",
       "!src/serviceWorker.js",
       "!src/auth/axiosApi.js",
-      "!src/router.js"
+      "!src/router.js",
+      "!src/components/mockTheme.js"
     ]
   },
   "devDependencies": {
