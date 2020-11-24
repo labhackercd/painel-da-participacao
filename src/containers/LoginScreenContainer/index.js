@@ -102,7 +102,7 @@ class LoginScreen extends React.Component {
   }*/
 
   async loginMethod(event){
-    event.preventDefault();
+    //event.preventDefault();
     //const history = useHistory();
   /*
     try{
@@ -145,10 +145,6 @@ class LoginScreen extends React.Component {
     this.setState({showPassword: !this.state.showPassword})
   };
 
-  handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  }
-
   render(){
     const { classes } = this.props;
 
@@ -174,7 +170,7 @@ class LoginScreen extends React.Component {
                                InputProps={{
                                   endAdornment: (
                                     <InputAdornment position="end">
-                                      <IconButton aria-label="toggle password visibility" onClick={this.handleClickShowPassword} onMouseDown={this.handleMouseDownPassword} edge="end">
+                                      <IconButton aria-label="toggle password visibility" onClick={this.handleClickShowPassword} edge="end">
                                         {this.state.showPassword ? <Visibility /> : <VisibilityOff />}
                                       </IconButton>
                                     </InputAdornment>
