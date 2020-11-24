@@ -1,20 +1,8 @@
-import { createMuiTheme } from '@material-ui/core/styles';
-import OpenSansSemiBold from './fonts/OpenSans-SemiBold.ttf';
-
-
-const openSansSemiBold = {
-    fontFamily: 'OpenSans',
-    fontStyle: 'normal',
-    fontDisplay: 'swap',
-    src: `
-      local('OpenSans'),
-      local('OpenSans-SemiBold'),
-      url(${OpenSansSemiBold}) format('ttf')
-    `,
-  };
-
-  export const customTheme = createMuiTheme(
-    {
+import React from 'react';
+import { ThemeProvider } from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core';
+export default function MockTheme({ children }: any) {
+  const theme = createMuiTheme({
     typography: {
       fontFamily: "OpenSans",
       body:{
@@ -42,7 +30,7 @@ const openSansSemiBold = {
         fontStyle: 'semibold',
       },
       h6:{
-        fontSize:13,
+        fontSize:16,
         fontStyle: 'semibold',
       },
       h7:{
@@ -58,16 +46,9 @@ const openSansSemiBold = {
         fontStyle: 'semibold',
       }
     },
-    overrides: {
-      MuiCssBaseline: {
-        '@global': {
-          '@font-face': [openSansSemiBold],
-        },
-      },
-    },
     palette: {
       primary: {
-        main: '#121212',
+        main: '#007E5A',
       },
       cinza1: {
         main: '#F2F2F2',
@@ -87,6 +68,6 @@ const openSansSemiBold = {
       white: {
         main: '#FFF',
       }
-    },
-
-  });
+    }});
+    return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
+}
