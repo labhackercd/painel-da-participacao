@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.main,
     width: '100%',
     height: '60px',
+    flexGrow: 1,
   },
 }));
 
@@ -39,7 +40,9 @@ export default function Footer() {
               <Typography> Coordenação de Participação Popular da Câmara dos Deputados </Typography>
            </Grid>
            <Grid item md={4}></Grid>
-           <Grid item md={1}> 2020 - Dashboard da Participação </Grid>
+           <Grid item md={2}>
+              <Typography>2020 - Dashboard da Participação </Typography>
+            </Grid>
            </Grid>
         </Toolbar>
        </AppBar>

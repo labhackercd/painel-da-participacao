@@ -21,10 +21,6 @@ const useStyles = makeStyles((theme) => ({
     textTransform: 'capitalize',
     margin: '0.5rem 0 0 6rem',
   },
-  logo: {
-  },
-  logout: {
-  }
 }));
 
 function a11yProps(index) {
