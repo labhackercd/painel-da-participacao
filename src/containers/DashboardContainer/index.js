@@ -5,6 +5,7 @@ import { Grid,Box, Container, Typography } from '@material-ui/core';
 import NavBar from './../../components/NavBar';
 import Footer from './../../components/Footer';
 import HomeMenu from './../../components/HomeMenu';
+import Header from './../../components/Header';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -23,19 +24,21 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 150,
   },
   container: {
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4),
+    overflow: 'auto',
+    width: '100%',
+    flexGrow: 1,
+    display: 'flex',
+    flexDirection: 'column',
   },
   footer: {
     marginTop: 'auto',
     backgroundColor: theme.palette.background.main,
   },
-  menuGrid: {
-  },
   content: {
-    backgroundColor: 'red',
-    height: '100vh',
+    height: '80vh',
     overflow: 'auto',
+    flexGrow: 1,
+    padding: '2.5rem 0 0 0',
   },
   appBarSpacer: theme.mixins.toolbar,
 }));
@@ -48,13 +51,8 @@ export default function Dashboard() {
         <Grid container className={classes.root}>
           <HomeMenu></HomeMenu>
           <main className={classes.content}>
-            <div className={classes.appBarSpacer} />
-            <Container maxWidth="lg" className={classes.container}>
-              <Grid container spacing={3}>
-                <Grid item xs={12} md={8} lg={9}>
-                  <Typography> teste </Typography>
-                </Grid>
-              </Grid>
+            <Container className={classes.container}>
+              <Header></Header>
             </Container>
           </main>
         </Grid>
