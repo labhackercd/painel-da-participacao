@@ -4,6 +4,26 @@ import { makeStyles, withStyles } from '@material-ui/core/styles';
 import {AppBar, Tabs, Toolbar, Tab, Typography, Box, Grid, IconButton} from '@material-ui/core';
 import { ReactComponent as Logo }from './../../assets/logo.svg';
 import { ReactComponent as LogoutIcon } from './../../assets/user_logout_icon.svg';
+import DashboardInitial from './../DashboardInitial'
+
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+          <>{children}</>
+      )}
+    </div>
+  );
+}
+
 
 const CustomTab = withStyles({
   root: {
@@ -13,8 +33,8 @@ const CustomTab = withStyles({
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.main,
+    backgroundColor: theme.palette.black.main,
+    height: '5vh',
   },
   tab: {
     height: '92%',
@@ -39,9 +59,9 @@ export default function NavBar() {
  };
 
   return (
-     <div className={classes.root}>
+    <>
        <AppBar position="static">
-        <Toolbar>
+        <Toolbar className={classes.root}>
            <Grid container>
               <Grid item md={2}>
                 <div className={classes.logo}>
@@ -71,6 +91,15 @@ export default function NavBar() {
            </Grid>
         </Toolbar>
        </AppBar>
-     </div>
+         <TabPanel value={value} index={0}>
+            <DashboardInitial></DashboardInitial>
+          </TabPanel>
+          <TabPanel value={value} index={1}>
+            Item Two
+          </TabPanel>
+          <TabPanel value={value} index={2}>
+            Item Three
+          </TabPanel>
+        </>
    );
 }

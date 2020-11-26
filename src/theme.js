@@ -79,7 +79,7 @@ const openSansSemiBold = {
         main: '#FFF',
       },
       background: {
-        main: '#252525'
+        main: '#121212'
       },
       lightGrey: {
         main: '#979797',

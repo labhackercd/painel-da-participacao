@@ -8,9 +8,9 @@ import { ReactComponent as LogoutIcon } from './../../assets/user_logout_icon.sv
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: theme.palette.background.main,
+    backgroundColor: theme.palette.black.main,
     width: '100%',
-    height: '60px',
+    height: '5vh',
   },
 }));
 
@@ -30,9 +30,8 @@ export default function Footer() {
  };
 
   return (
-     <div className={classes.root}>
        <AppBar position="static">
-        <Toolbar>
+        <Toolbar className={classes.root}>
            <Grid container>
             <Grid item md={2}></Grid>
             <Grid item md={4}>
@@ -45,6 +44,5 @@ export default function Footer() {
            </Grid>
         </Toolbar>
        </AppBar>
-     </div>
    );
 }
