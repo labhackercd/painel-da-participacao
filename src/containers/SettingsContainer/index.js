@@ -4,7 +4,6 @@ import NavBar from './../../components/NavBar';
 import SettingsSideBar from '../../components/SettingsPage/SideBar/index'
 import SettingsContent from '../../components/SettingsPage/Content/index'
 import {makeStyles } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box'
 import AppBar from '@material-ui/core/AppBar';
 
 const useStyles = makeStyles((theme) => ({

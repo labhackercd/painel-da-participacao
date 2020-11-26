@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot should not have changes 1`] = `
+<WithStyles(ForwardRef(Container))
+  className="makeStyles-content-3"
+>
+  <WithStyles(ForwardRef(Grid))
+    className="makeStyles-homeMenuContainer-1"
+    container={true}
+    spacing={3}
+  >
+    <HeaderSection />
+    <WithStyles(ForwardRef(Grid))
+      item={true}
+      xs={12}
+    >
+      <WithStyles(ForwardRef(Grid))
+        container={true}
+      >
+        <WithStyles(ForwardRef(Grid))
+          item={true}
+          xs={12}
+        >
+          <WithStyles(ForwardRef(Typography))
+            color="textPrimary"
+            gutterBottom={true}
+          >
+            Gerais
+          </WithStyles(ForwardRef(Typography))>
+        </WithStyles(ForwardRef(Grid))>
+        <WithStyles(ForwardRef(Grid))
+          item={true}
+          xs={12}
+        >
+          <WithStyles(ForwardRef(Paper))
+            className="makeStyles-paper-2"
+            style={
+              Object {
+                "minHeight": "20rem",
+              }
+            }
+          >
+            <GeneralListItem />
+          </WithStyles(ForwardRef(Paper))>
+        </WithStyles(ForwardRef(Grid))>
+      </WithStyles(ForwardRef(Grid))>
+    </WithStyles(ForwardRef(Grid))>
+    <ToolsSection />
+    <AboutSection />
+  </WithStyles(ForwardRef(Grid))>
+</WithStyles(ForwardRef(Container))>
+`;
