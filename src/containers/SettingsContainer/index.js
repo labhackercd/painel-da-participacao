@@ -51,7 +51,10 @@ export default function SettingsPage() {
             <Grid item xs={3}>
                 <SettingsSideBar></SettingsSideBar>
             </Grid>
-            <Grid item xs={9}>
+            <Grid item xs={6}>
+
+            </Grid>
+            <Grid item xs={3}>
 
             </Grid>
         </Grid>

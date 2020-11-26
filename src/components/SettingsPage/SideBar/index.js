@@ -31,7 +31,7 @@ export default function SettingsSideBar() {
         var textColor = props.isActive ? 'secondary' : 'textPrimary';
 
         return(
-            <ListItem button onClick={() => handleChange(props.id)}>
+            <ListItem button onClick={() => handleChange(props.itemId)}>
                 <ListItemIcon><ItemIcon style={{ color: iconColor}}/></ListItemIcon>
                 <ListItemText classes={{ root: props.classes.root }} primary={<Typography color={textColor}>{props.title}</Typography>} />
             </ListItem>
@@ -48,9 +48,9 @@ export default function SettingsSideBar() {
         <Grid container className={classes.homeMenuContainer}>
             <Drawer variant="permanent" classes={{paper: clsx(classes.drawerPaper),}} PaperProps={{style: {backgroundColor: 'transparent',boxShadow: 'none',},}}>
                 <List>
-                    <ListItemSideBar id={0} icon={SettingsIcon} classes={classes} isActive={active[0]} title="Configurações Gerais"></ListItemSideBar>
-                    <ListItemSideBar id={1} icon={SettingsIcon} classes={classes} isActive={active[1]} title="Ferramentas"></ListItemSideBar>
-                    <ListItemSideBar id={2} icon={InfoIcon} classes={classes} isActive={active[2]} title="Sobre o Dashboard"></ListItemSideBar>
+                    <ListItemSideBar id="generalSettings" itemId={0} icon={SettingsIcon} classes={classes} isActive={active[0]} title="Configurações Gerais"></ListItemSideBar>
+                    <ListItemSideBar id="tools" itemId={1} icon={SettingsIcon} classes={classes} isActive={active[1]} title="Ferramentas"></ListItemSideBar>
+                    <ListItemSideBar id="about" itemId={2} icon={InfoIcon} classes={classes} isActive={active[2]} title="Sobre o Dashboard"></ListItemSideBar>
                 </List>
             </Drawer>
         </Grid>
