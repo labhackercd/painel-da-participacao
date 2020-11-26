@@ -33,15 +33,20 @@ const useStyles = makeStyles((theme) => ({
   margin: {
     margin: theme.spacing(1)
   },
+  filter: {
+    color: '#B9B9B9',
+    display: 'flex',
+    alignSelf: 'center',
+  }
 }));
 
 const typography = {color: '#FFF', textTransform: 'capitalize'}
 
 export default function Header() {
   const classes = useStyles()
-  const [year, setYear] = useState(1);
-  const [semester, setSemester] = useState(1);
-  const [month, setMonth] = useState(1);
+  const [year, setYear] = useState(0);
+  const [semester, setSemester] = useState(0);
+  const [month, setMonth] = useState(0);
   const handleChangeYear = (event) => {
     setYear(event.target.value);
   };
@@ -66,10 +71,11 @@ export default function Header() {
               Dados totais
             </Typography>
           </Button>
-          <Typography variant="h5" style={{color: '#B9B9B9'}}>
-            Filtros
-          </Typography>
-
+          <div className={classes.filter}>
+            <Typography variant="h5">
+              Filtros
+            </Typography>
+          </div>
           {/* year select */}
           <FormControl>
            <InputLabel id="demo-customized-select-label">Year</InputLabel>
@@ -80,46 +86,45 @@ export default function Header() {
              onChange={handleChangeYear}
              input={<BootstrapInput />}
            >
-             <MenuItem value="">
-               <em>None</em>
+             <MenuItem value={0}>
+               Ano
              </MenuItem>
-             <MenuItem value={0}>Ten</MenuItem>
-             <MenuItem value={1}>Twenty</MenuItem>
-             <MenuItem value={2}>Thirty</MenuItem>
+             <MenuItem value={1}>Ten</MenuItem>
+             <MenuItem value={2}>Twenty</MenuItem>
+             <MenuItem value={3}>Thirty</MenuItem>
            </Select>
          </FormControl>
          {/* Semester select */}
          <FormControl>
           <InputLabel id="demo-customized-select-label">Semester</InputLabel>
           <Select
-            labelId="demo-customized-select-label"
-            id="demo-customized-select"
+            id="select-semester"
             value={semester}
             onChange={handleChangeSemester}
             input={<BootstrapInput />}
           >
-            <MenuItem value="">
+            <MenuItem value={0}>
+              Semestre
             </MenuItem>
-            <MenuItem value={0}>Ten</MenuItem>
-            <MenuItem value={1}>Twenty</MenuItem>
-            <MenuItem value={2}>Thirty</MenuItem>
+            <MenuItem value={1}>Ten</MenuItem>
+            <MenuItem value={2}>Twenty</MenuItem>
+            <MenuItem value={3}>Thirty</MenuItem>
           </Select>
         </FormControl>
         <FormControl>
          <InputLabel id="demo-customized-select-label">Year</InputLabel>
          <Select
-           labelId="demo-customized-select-label"
-           id="demo-customized-select"
+           id="select-month"
            value={month}
            onChange={handleChangeMonth}
            input={<BootstrapInput />}
          >
-           <MenuItem value="">
-             <em>None</em>
+           <MenuItem value={0}>
+             Mês
            </MenuItem>
-           <MenuItem value={0}>Ten</MenuItem>
-           <MenuItem value={1}>Twenty</MenuItem>
-           <MenuItem value={2}>Thirty</MenuItem>
+           <MenuItem value={1}>Ten</MenuItem>
+           <MenuItem value={2}>Twenty</MenuItem>
+           <MenuItem value={3}>Thirty</MenuItem>
          </Select>
        </FormControl>
         </Grid>
