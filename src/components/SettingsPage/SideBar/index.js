@@ -13,7 +13,6 @@ const useStyles = makeStyles((theme) => ({
     whiteSpace: 'nowrap',
     width: drawerWidth,
   },
-
   homeMenuContainer: {
     margin: '2rem 0 0 2rem',
     width: 'auto',
