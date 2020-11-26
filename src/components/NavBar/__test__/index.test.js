@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MockTheme from './../../../mockTheme';
+import MockTheme from '../../mockTheme';
 import {shallow, render, mount} from "enzyme";
 import NavBar from './../index';
 

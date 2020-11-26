@@ -1,16 +1,17 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom";
+import axiosInstance from './auth/axiosApi';
+import {TOKEN_VERIFY_URL, INITIAL_PAGE_URL, DASHBOARD_PAGE_URL, SETTINGS_PAGE_URL} from './api_urls'
+
 import LoginScreen from "./containers/LoginScreenContainer";
 import Dashboard from "./containers/DashboardContainer";
-import axiosInstance from './auth/axiosApi';
-import {TOKEN_VERIFY_URL, INITIAL_PAGE_URL, DASHBOARD_PAGE_URL} from './api_urls'
-
+import SettingsPage from "./containers/SettingsContainer";
 
 class PrivateRouteAuth extends Component{
     constructor(props){
         super(props);
         this.state = {
-          isAuthenticaded: false,
+          isAuthenticaded: true,
           isLoadingPage:"true"
         };
         this.checkIfUserIsAuthenticated = this.checkIfUserIsAuthenticated.bind(this);
@@ -73,6 +74,7 @@ const AppRouter = (props) => (
             {/*Authenticated routes */}
             <PrivateRouteAuth>
                 <Route exact path={DASHBOARD_PAGE_URL} children={<Dashboard />} theme={props.theme} />
+                <Route exact path={SETTINGS_PAGE_URL} children={<SettingsPage />} theme={props.theme} />
             </PrivateRouteAuth>
         </Switch>
     </Router>
