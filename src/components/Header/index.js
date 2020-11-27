@@ -93,20 +93,19 @@ export default function Header() {
            </Select>
          </FormControl>
          {/* Semester select */}
-         <FormControl>
+         <FormControl id="form-control-semester">
           <InputLabel id="semester-label">Semestre</InputLabel>
           <Select
             id="select-semester"
             value={semester}
+            native={true}
             onChange={handleChangeSemester}
             input={<BootstrapInput />}
           >
-            <MenuItem value={0}>
-              Semestre
-            </MenuItem>
-            <MenuItem value={1}>1/2020</MenuItem>
-            <MenuItem value={2}>2/2019</MenuItem>
-            <MenuItem value={3}>1/2019</MenuItem>
+          <option value="0">Semestre</option>
+          <option value="1">1/2020</option>
+          <option value="2">1/2019</option>
+          <option value="3">2/2019</option>
           </Select>
         </FormControl>
         <FormControl>
@@ -114,15 +113,14 @@ export default function Header() {
          <Select
            id="select-month"
            value={month}
+           native={true}
            onChange={handleChangeMonth}
            input={<BootstrapInput />}
          >
-           <MenuItem value={0}>
-             Mês
-           </MenuItem>
-           <MenuItem value={1}>Janeiro</MenuItem>
-           <MenuItem value={2}>Fevereiro</MenuItem>
-           <MenuItem value={3}>Março</MenuItem>
+         <option value="0">Mês</option>
+         <option value="1">Janeiro</option>
+         <option value="2">Fevereiro</option>
+         <option value="3">Março</option>
          </Select>
        </FormControl>
         </Grid>

@@ -26,3 +26,19 @@ test('test onchange of year select input field', () => {
   sessionType.simulate("change");
   expect(wrapper.find("select").at(0).prop('value')).toEqual("3");
 });
+
+test('test onchange of semester select input field', () => {
+  const  wrapper = mount(<MockTheme><Header></Header></MockTheme>);
+  const sessionType = wrapper.find("select").at(1);
+  sessionType.instance().value = "3";
+  sessionType.simulate("change");
+  expect(wrapper.find("select").at(1).prop('value')).toEqual("3");
+});
+
+test('test onchange of month select input field', () => {
+  const  wrapper = mount(<MockTheme><Header></Header></MockTheme>);
+  const sessionType = wrapper.find("select").at(2);
+  sessionType.instance().value = "3";
+  sessionType.simulate("change");
+  expect(wrapper.find("select").at(2).prop('value')).toEqual("3");
+});
