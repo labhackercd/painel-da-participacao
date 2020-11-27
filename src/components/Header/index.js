@@ -77,26 +77,24 @@ export default function Header() {
             </Typography>
           </div>
           {/* year select */}
-          <FormControl>
-           <InputLabel id="demo-customized-select-label">Year</InputLabel>
+          <FormControl id="form-control-year">
+           <InputLabel id="year-label">Ano</InputLabel>
            <Select
-             labelId="demo-customized-select-label"
-             id="demo-customized-select"
+             id="select-year"
              value={year}
+             native={true}
              onChange={handleChangeYear}
              input={<BootstrapInput />}
            >
-             <MenuItem value={0}>
-               Ano
-             </MenuItem>
-             <MenuItem value={1}>Ten</MenuItem>
-             <MenuItem value={2}>Twenty</MenuItem>
-             <MenuItem value={3}>Thirty</MenuItem>
+           <option value="0">Ano</option>
+           <option value="1">2020</option>
+           <option value="2">2019</option>
+           <option value="3">2018</option>
            </Select>
          </FormControl>
          {/* Semester select */}
          <FormControl>
-          <InputLabel id="demo-customized-select-label">Semester</InputLabel>
+          <InputLabel id="semester-label">Semestre</InputLabel>
           <Select
             id="select-semester"
             value={semester}
@@ -106,13 +104,13 @@ export default function Header() {
             <MenuItem value={0}>
               Semestre
             </MenuItem>
-            <MenuItem value={1}>Ten</MenuItem>
-            <MenuItem value={2}>Twenty</MenuItem>
-            <MenuItem value={3}>Thirty</MenuItem>
+            <MenuItem value={1}>1/2020</MenuItem>
+            <MenuItem value={2}>2/2019</MenuItem>
+            <MenuItem value={3}>1/2019</MenuItem>
           </Select>
         </FormControl>
         <FormControl>
-         <InputLabel id="demo-customized-select-label">Year</InputLabel>
+         <InputLabel id="month-label">Mês</InputLabel>
          <Select
            id="select-month"
            value={month}
@@ -122,9 +120,9 @@ export default function Header() {
            <MenuItem value={0}>
              Mês
            </MenuItem>
-           <MenuItem value={1}>Ten</MenuItem>
-           <MenuItem value={2}>Twenty</MenuItem>
-           <MenuItem value={3}>Thirty</MenuItem>
+           <MenuItem value={1}>Janeiro</MenuItem>
+           <MenuItem value={2}>Fevereiro</MenuItem>
+           <MenuItem value={3}>Março</MenuItem>
          </Select>
        </FormControl>
         </Grid>
