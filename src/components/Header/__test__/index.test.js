@@ -18,25 +18,11 @@ test('Test if Header renders without crash', () => {
     ReactDOM.unmountComponentAtNode(div)
 });
 
-it('selects the correct option', () => {
-  const mockCallback = jest.fn();
-  const { getByTestId } = render(
-    <div>
-      <Select
-        native={true}
-        onChange={mockCallback}
-        data-testid="my-wrapper"
-        defaultValue="1"
-      >
-        <option value="1">Option 1</option>
-        <option value="2">Option 2</option>
-        <option value="3">Option 3</option>
-      </Select>
-    </div>
-  );
-  const wrapperNode = getByTestId("my-wrapper")
-  const selectNode = wrapperNode.childNodes[0].childNodes[0];
-  console.log(wrapperNode.debug())
-  fireEvent.change(selectNode, { target: { value: "3" } });
-  expect(mockCallback.mock.calls).toHaveLength(1);
+test('test onchange of year select input field', () => {
+  const  wrapper = mount(<MockTheme><Header></Header></MockTheme>);
+  const sessionType = wrapper.find("select").at(0);
+  //console.log(sessionType.debug())
+  sessionType.instance().value = "3";
+  sessionType.simulate("change");
+  expect(wrapper.find("select").at(0).prop('value')).toEqual("3");
 });
