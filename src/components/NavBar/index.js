@@ -1,7 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
-import {AppBar, Tabs, Toolbar, Tab, Typography, Box, Grid, IconButton} from '@material-ui/core';
+import {AppBar, Tabs, Toolbar, Tab, Grid, IconButton} from '@material-ui/core';
 import { ReactComponent as Logo }from './../../assets/logo.svg';
 import { ReactComponent as LogoutIcon } from './../../assets/user_logout_icon.svg';
 import DashboardInitial from './../DashboardInitial'

@@ -17,7 +17,7 @@ test('Test if NavBar renders without crash', () => {
 });
 
 test('Test if clicking on tab button doesnt break page', () => {
-    const wrapper = mount(<MockTheme><NavBar /></MockTheme>);
+    const wrapper = mount(<MockTheme><NavBar/></MockTheme>);
     const tabButton = wrapper.find("#simple-tab-0").last();
     tabButton.simulate('click');
 });

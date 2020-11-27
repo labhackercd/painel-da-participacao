@@ -1,13 +1,7 @@
 import React from 'react';
 import {List, Link, ListItem, ListItemIcon, ListItemText} from '@material-ui/core';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import DashboardIcon from '@material-ui/icons/Dashboard';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import PeopleIcon from '@material-ui/icons/People';
-import BarChartIcon from '@material-ui/icons/BarChart';
-import LayersIcon from '@material-ui/icons/Layers';
 import HomeIcon from '@material-ui/icons/Home';
-import AssignmentIcon from '@material-ui/icons/Assignment';
 import { Typography } from '@material-ui/core';
 import { ReactComponent as DisqueCamaraIcon }from './../../assets/0800_icon.svg';
 import { ReactComponent as EnquetesIcon} from './../../assets/enquetes_icon.svg';
@@ -15,7 +9,7 @@ import { ReactComponent as FaleConoscoIcon} from './../../assets/fale_conosco_ic
 import { ReactComponent as NoticiasIcon} from './../../assets/noticias_icon.svg';
 import { ReactComponent as PautaIcon} from './../../assets/pauta_icon.svg';
 import { ReactComponent as WikilegisIcon} from './../../assets/wikilegis_icon.svg';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,11 +19,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function MenuItens() {
   const classes = useStyles()
-
-  const handleClick = () => {
-
-  }
-
+  
   return (
     <List>
       <ListItem button id="general-view" component={Link} to="/dashboard">

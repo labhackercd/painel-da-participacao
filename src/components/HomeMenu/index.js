@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { Drawer, Divider, Grid, List, Typography, IconButton }  from '@material-ui/core';
+import { Drawer, Divider, Grid, Typography, IconButton }  from '@material-ui/core';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import MenuItens from './menuItens';
 import clsx from 'clsx';
 const drawerWidth = 240;
@@ -57,9 +57,7 @@ export default function HomeMenu(props) {
         variant="permanent"
         classes={{
           paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-          root: {
-            margin: '10rem',
-          },
+          root: "margin: '10rem'",
         }}
         PaperProps={{
           style: {

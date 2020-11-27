@@ -1,11 +1,9 @@
 import React from 'react';
-import { Grid,Box, Container, Typography } from '@material-ui/core';
-import NavBar from './../NavBar';
-import Footer from './../Footer';
+import { Grid, Container} from '@material-ui/core';
 import HomeMenu from './../HomeMenu';
 import Header from './../Header';
 import ContentBox from './../ContentBox';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {

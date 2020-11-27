@@ -1,10 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
-import { AppBar, Toolbar, Typography, Box, Grid} from '@material-ui/core';
-import { ReactComponent as Logo }from './../../assets/logo.svg';
-import { ReactComponent as LogoutIcon } from './../../assets/user_logout_icon.svg';
-
+import { makeStyles } from '@material-ui/core/styles';
+import { AppBar, Toolbar, Typography, Grid} from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {

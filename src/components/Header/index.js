@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Grid, Typography, Button,
-         FormControl, InputBase, InputLabel, MenuItem, Select } from '@material-ui/core';
+         FormControl, InputBase, InputLabel, Select } from '@material-ui/core';
 
 const BootstrapInput = withStyles((theme) => ({
   input: {
