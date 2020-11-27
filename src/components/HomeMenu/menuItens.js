@@ -1,5 +1,5 @@
 import React from 'react';
-import {List, ListItem, ListItemIcon, ListItemText} from '@material-ui/core';
+import {List, Link, ListItem, ListItemIcon, ListItemText} from '@material-ui/core';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
@@ -25,9 +25,14 @@ const useStyles = makeStyles((theme) => ({
 
 export default function MenuItens() {
   const classes = useStyles()
+
+  const handleClick = () => {
+
+  }
+
   return (
     <List>
-      <ListItem button>
+      <ListItem button id="general-view" component={Link} to="/dashboard">
         <ListItemIcon>
           <HomeIcon style={{ color: 'white' }} />
         </ListItemIcon>

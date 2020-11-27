@@ -54,7 +54,7 @@ export default function Header() {
     setSemester(event.target.value);
   }
   const handleChangeMonth = (event) => {
-    setMonth(event.target.month);
+    setMonth(event.target.value);
   }
   return (
     <>

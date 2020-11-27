@@ -42,9 +42,9 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function HomeMenu() {
+export default function HomeMenu(props) {
   const classes = useStyles()
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(props.open);
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -79,12 +79,12 @@ export default function HomeMenu() {
               <Typography style={{color: classes.toolbarIcon.color}}>ocultar</Typography>
             </Grid>
             <Grid item md={2}>
-            <IconButton onClick={handleDrawerClose}>
+            <IconButton onClick={handleDrawerClose} id="drawer-close">
               <ChevronLeftIcon style={{color: '#979797'}} />
             </IconButton>
             </Grid>
             </>  :
-            <IconButton onClick={handleDrawerOpen}>
+            <IconButton onClick={handleDrawerOpen} id="drawer-open">
               <ChevronRightIcon style={{color: '#979797'}} />
             </IconButton>
           }

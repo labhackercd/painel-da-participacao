@@ -9,26 +9,12 @@ import { ReactComponent as LogoutIcon } from './../../assets/user_logout_icon.sv
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.black.main,
-    width: '100%',
     height: '5vh',
   },
 }));
 
-function a11yProps(index) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
-  };
-}
-
 export default function Footer() {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
-
-  const handleChange = (event, newValue) => {
-   setValue(newValue);
- };
-
   return (
        <AppBar position="static">
         <Toolbar className={classes.root}>

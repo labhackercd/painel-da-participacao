@@ -39,7 +39,7 @@ export default function DashboardInitial() {
 
   return (
     <Grid container className={classes.root}>
-      <HomeMenu></HomeMenu>
+      <HomeMenu open={true}></HomeMenu>
       <main className={classes.content}>
         <Container className={classes.container}>
           <Header></Header>

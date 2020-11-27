@@ -1,8 +1,22 @@
 import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { createMuiTheme } from '@material-ui/core';
+import OpenSansSemiBold from './../fonts/OpenSans-SemiBold.ttf';
+
+const openSansSemiBold = {
+    fontFamily: 'OpenSans',
+    fontStyle: 'normal',
+    fontDisplay: 'swap',
+    src: `
+      local('OpenSans'),
+      local('OpenSans-SemiBold'),
+      url(${OpenSansSemiBold}) format('ttf')
+    `,
+  };
+
 export default function MockTheme({ children }: any) {
-  const theme = createMuiTheme({
+  const theme = createMuiTheme(
+    {
     typography: {
       fontFamily: "OpenSans",
       body:{
@@ -18,7 +32,7 @@ export default function MockTheme({ children }: any) {
         fontStyle: 'semibold',
       },
       h3:{
-        fontSize:24,
+        fontSize:26,
         fontStyle: 'semibold',
       },
       h4:{
@@ -30,7 +44,7 @@ export default function MockTheme({ children }: any) {
         fontStyle: 'semibold',
       },
       h6:{
-        fontSize:16,
+        fontSize:13,
         fontStyle: 'semibold',
       },
       h7:{
@@ -46,28 +60,36 @@ export default function MockTheme({ children }: any) {
         fontStyle: 'semibold',
       }
     },
+    overrides: {
+      MuiCssBaseline: {
+        '@global': {
+          '@font-face': [openSansSemiBold],
+        },
+      },
+    },
     palette: {
       primary: {
-        main: '#007E5A',
+        main: '#121212',
       },
-      cinza1: {
-        main: '#F2F2F2',
+      secondary: {
+        main: '#00C354',
       },
-      cinza2: {
-        main: '#C4C4C4',
-      },
-      grey: {
-        main: '#666666',
-      },
-      amareloCamara: {
-        main: '#FAC915',
-      },
-      verdeCamaraLight: {
-        main: '#00AF82',
+      black: {
+        main: '#000',
       },
       white: {
         main: '#FFF',
-      }
-    }});
+      },
+      background: {
+        main: '#121212'
+      },
+      lightGrey: {
+        main: '#979797',
+      },
+      mediumGrey: {
+        main: '#252525',
+      },
+    },
+  });
     return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 }

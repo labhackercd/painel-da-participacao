@@ -326,6 +326,6 @@ exports[`snapshot should not have changes 1`] = `
     }
   }
 >
-  <NavBar />
+  <Header />
 </ThemeProvider>
 `;
