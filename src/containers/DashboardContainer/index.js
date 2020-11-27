@@ -2,7 +2,7 @@ import React from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Box from '@material-ui/core/Box';
 import { withRouter } from "react-router";
-import NavBar from './../../components/Dashboard/NavBar';
+import NavBar from '../../components/NavBar/index'
 
 const useStyles = theme => ({
   body: {

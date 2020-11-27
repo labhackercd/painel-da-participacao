@@ -69,23 +69,26 @@ const openSansSemiBold = {
       primary: {
         main: '#121212',
       },
-      cinza1: {
-        main: '#F2F2F2',
+      secondary: {
+        main: '#00C354',
       },
-      cinza2: {
-        main: '#C4C4C4',
-      },
-      grey: {
-        main: '#666666',
-      },
-      amareloCamara: {
-        main: '#FAC915',
-      },
-      verdeCamaraLight: {
-        main: '#00AF82',
+      black: {
+        main: '#000',
       },
       white: {
         main: '#FFF',
+      },
+      background: {
+        main: '#252525'
+      },
+      lightGrey: {
+        main: '#979797',
+      },
+      mediumGrey: {
+        main: '#252525',
+      },
+      text: {
+        primary: "#FFFFFF"
       }
     },
 

@@ -12,6 +12,7 @@ module.exports = Object.freeze({
         INITIAL_PAGE_URL: process.env.REACT_APP_INITIAL_PAGE_URL, //Application Login and Initial page
         DASHBOARD_PAGE_URL: process.env.REACT_APP_DASHBOARD_PAGE_URL,
         DASHBOARD_BASE_URL: process.env.REACT_APP_DASHBOARD_BASE_URL,
+        SETTINGS_PAGE_URL: process.env.REACT_APP_SETTINGS_PAGE_URL,
 
     //API'S BACKEND
         //AUTH URL'S
