@@ -5,14 +5,9 @@ import { Route, MemoryRouter } from 'react-router-dom'
 import ShallowRenderer from 'react-test-renderer/shallow';
 import { mount } from 'enzyme';
 import { BrowserRouter as Router } from 'react-router-dom';
-
 import {shallow} from "enzyme/build";
-
-
+import MockTheme from './../../../components/mockTheme';
 
 test("It renders Dashboard Page", async () => {
-    
-    
-    const  wrapper = mount(<Router><Dashboard/></Router>);
-
+    const  wrapper = mount(<MockTheme><Router><Dashboard/></Router></MockTheme>);
 });

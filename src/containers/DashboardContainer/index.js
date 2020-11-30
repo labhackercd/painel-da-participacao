@@ -1,37 +1,25 @@
 import React from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Box from '@material-ui/core/Box';
 import { withRouter } from "react-router";
-import NavBar from '../../components/NavBar/index'
+import { Grid,Box, Container, Typography } from '@material-ui/core';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
+import NavBar from './../../components/NavBar';
+import Footer from './../../components/Footer';
 
-const useStyles = theme => ({
+const useStyles = makeStyles((theme) => ({
   body: {
-    border: 0,
-    width: '100%',
-  },
-});
+    backgroundColor: theme.palette.primary.main,
+    display: 'flex',
+    flexDirection: 'column',
+  }
+}));
 
-class Dashboard extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      dataLoaded: false,
-    };
-  }
-  componentDidMount(){
-      this._isMounted = true;
-      if(this._isMounted){
-          //console.log("Loaded")
-      }
-  }
-  render(){
-    const classes = useStyles();
+export default function Dashboard() {
+  const classes = useStyles();
     return (
       <div className={classes.body}>
         <NavBar></NavBar>
+        <Footer></Footer>
       </div>
-		)
-  }
+    )
 }
-//export default withRouter(withStyles(useStyles2)(Dashboard));
-export default withRouter(Dashboard);

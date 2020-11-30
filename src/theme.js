@@ -30,7 +30,7 @@ const openSansSemiBold = {
         fontStyle: 'semibold',
       },
       h3:{
-        fontSize:24,
+        fontSize:26,
         fontStyle: 'semibold',
       },
       h4:{
@@ -79,7 +79,7 @@ const openSansSemiBold = {
         main: '#FFF',
       },
       background: {
-        main: '#252525'
+        main: '#121212'
       },
       lightGrey: {
         main: '#979797',
@@ -91,5 +91,4 @@ const openSansSemiBold = {
         primary: "#FFFFFF"
       }
     },
-
   });

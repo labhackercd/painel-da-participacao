@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`snapshot should not have changes 1`] = `
-<ContextProvider
-  value={
+<ThemeProvider
+  theme={
     Object {
       "breakpoints": Object {
         "between": [Function],
@@ -141,7 +141,7 @@ exports[`snapshot should not have changes 1`] = `
         "text": Object {
           "disabled": "rgba(0, 0, 0, 0.38)",
           "hint": "rgba(0, 0, 0, 0.38)",
-          "primary": "#FFFFFF",
+          "primary": "rgba(0, 0, 0, 0.87)",
           "secondary": "rgba(0, 0, 0, 0.54)",
         },
         "tonalOffset": 0.2,
@@ -323,10 +323,9 @@ exports[`snapshot should not have changes 1`] = `
         "speedDial": 1050,
         "tooltip": 1500,
       },
-      Symbol(mui.nested): false,
     }
   }
 >
-  <SettingsPage />
-</ContextProvider>
+  <Header />
+</ThemeProvider>
 `;
