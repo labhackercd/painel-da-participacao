@@ -73,7 +73,7 @@ exports[`snapshot should not have changes 1`] = `
         "augmentColor": [Function],
         "background": Object {
           "default": "#fafafa",
-          "main": "#252525",
+          "main": "#121212",
           "paper": "#fff",
         },
         "black": Object {
@@ -261,7 +261,7 @@ exports[`snapshot should not have changes 1`] = `
         },
         "h3": Object {
           "fontFamily": "OpenSans",
-          "fontSize": 24,
+          "fontSize": 26,
           "fontStyle": "semibold",
           "fontWeight": 400,
           "lineHeight": 1.167,
