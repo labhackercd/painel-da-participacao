@@ -4,6 +4,7 @@ import {AppBar, Tabs, Toolbar, Tab, Grid, IconButton} from '@material-ui/core';
 import { ReactComponent as Logo }from './../../assets/logo.svg';
 import { ReactComponent as LogoutIcon } from './../../assets/user_logout_icon.svg';
 import DashboardInitial from './../DashboardInitial'
+import LogoutMenu from '../LogoutMenu/index'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -22,8 +23,6 @@ function TabPanel(props) {
     </div>
   );
 }
-
-
 const CustomTab = withStyles({
   root: {
     textTransform: 'capitalize',
@@ -40,6 +39,15 @@ const useStyles = makeStyles((theme) => ({
     textTransform: 'capitalize',
     margin: '0.5rem 0 0 6rem',
   },
+  menu:{
+    "& .MuiPaper-root-16": {
+      backgroundColor: theme.palette.mediumGrey.main,
+    },
+    '& div': {
+      width: "14%"
+    }
+  },
+
 }));
 
 function a11yProps(index) {
@@ -49,9 +57,20 @@ function a11yProps(index) {
   };
 }
 
+
 export default function NavBar() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const [logoutMenuOpen, setLogoutMenuOpen] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState()
+
+  const recordButtonPosition = (event) => {
+    setAnchorEl(event.currentTarget);
+    setLogoutMenuOpen(true);
+  }
+  const handleLogoutMenuClose = () => {
+    setLogoutMenuOpen(false);
+  };
 
   const handleChange = (event, newValue) => {
    setValue(newValue);
@@ -64,17 +83,11 @@ export default function NavBar() {
            <Grid container>
               <Grid item md={2}>
                 <div className={classes.logo}>
-                  <IconButton>
-                    <Logo />
-                  </IconButton>
+                  <IconButton><Logo/></IconButton>
                 </div>
               </Grid>
               <Grid item md={9}>
-                <Tabs
-                    value={value}
-                    onChange={handleChange}
-                    TabIndicatorProps={{style: {background: '#00C354'}}}
-                    className={classes.tab}>
+                <Tabs value={value} onChange={handleChange} TabIndicatorProps={{style: {background: '#00C354'}}} className={classes.tab}>
                   <CustomTab id="tabs-1" label="Dashboard" {...a11yProps(0)} />
                   <CustomTab id="tabs-2" label="Configurações" {...a11yProps(1)} />
                   <CustomTab id="tabs-3" label="Documentação" {...a11yProps(2)} />
@@ -82,9 +95,8 @@ export default function NavBar() {
               </Grid>
               <Grid item md={1}>
                 <div className={classes.logout}>
-                  <IconButton >
-                    <LogoutIcon />
-                  </IconButton>
+                  <IconButton id="logoutMenu" onClick={(e) => { recordButtonPosition(e) }} aria-haspopup="true"><LogoutIcon /></IconButton>
+                  <LogoutMenu open={logoutMenuOpen} handleClose={handleLogoutMenuClose} classes={classes} anchorEl={anchorEl}></LogoutMenu>
                 </div>
               </Grid>
            </Grid>
