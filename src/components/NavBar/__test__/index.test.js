@@ -21,3 +21,13 @@ test('Test if clicking on tab button doesnt break page', () => {
     const tabButton = wrapper.find("#simple-tab-0").last();
     tabButton.simulate('click');
 });
+
+
+test('Test if clicking on logout menu doesnt break page', () => {
+    const wrapper = mount(<MockTheme><NavBar/></MockTheme>);
+    const menuButton = wrapper.find("#logoutMenu").last();
+    menuButton.simulate('click');
+    wrapper.update();
+    const logoutButton = wrapper.find("#logoutButtonItem").last();
+    logoutButton.simulate('click');
+});
