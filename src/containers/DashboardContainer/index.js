@@ -1,11 +1,9 @@
 import React from 'react';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import { withRouter } from "react-router";
-import { Grid,Box, Container, Typography } from '@material-ui/core';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import NavBar from './../../components/NavBar';
 import Footer from './../../components/Footer';
 import ToolContent from '../../components/ToolContent';
+import SettingsPage from '../../containers/SettingsContainer'
 
 const useStyles = makeStyles((theme) => ({
   body: {
@@ -46,10 +44,10 @@ export default function Dashboard(props) {
     <div className={classes.body}>
       <NavBar value={value} handleTabPanelChange={handleTabPanelChange}></NavBar>
       <TabPanel value={value} index={0}>
-        <ToolContent page={props.page}></ToolContent>
+        <ToolContent page={props.page}>{props.children}</ToolContent>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Two
+        <SettingsPage></SettingsPage>
       </TabPanel>
       <TabPanel value={value} index={2}>
         Item Three

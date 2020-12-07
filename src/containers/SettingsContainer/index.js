@@ -1,10 +1,8 @@
 import React from 'react';
 import { Grid} from '@material-ui/core';
-import NavBar from './../../components/NavBar';
 import SettingsSideBar from '../../components/SettingsPage/SideBar/index'
 import SettingsContent from '../../components/SettingsPage/Content/index'
 import {makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
 
 const useStyles = makeStyles((theme) => ({
   body: {
@@ -30,9 +28,6 @@ export default function SettingsPage() {
   const classes = useStyles();
     return (
       <div className={classes.body}>
-        <AppBar position="static">
-            <NavBar></NavBar>
-        </AppBar>
         <Grid container className={classes.root}>
             <Grid item xs={3}>
                 <SettingsSideBar></SettingsSideBar>

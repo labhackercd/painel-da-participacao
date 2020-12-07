@@ -1,9 +1,9 @@
-import React from 'react';
-import { Grid, Container, Typography} from '@material-ui/core';
-import HomeMenu from './../HomeMenu';
-import Header from './../Header';
+import React, {useState,useEffect} from 'react';
+import { Grid, Typography} from '@material-ui/core';
 import ChartDataFrame from './../ChartDataFrame';
 import { makeStyles } from '@material-ui/core/styles';
+import fetchDataFromAPI from './../DataFetcher';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function StyledTotalNumber(props) {
-  const classes = useStyles();
+
   return (
       <Typography variant="h2" style={{color: '#FFF', alignSelf: 'center'}}>{props.number}</Typography>
   )
@@ -42,7 +42,20 @@ function StyledTotalNumber(props) {
 
 export default function Audiencias(props) {
   const classes = useStyles();
-  const data = props.data;
+  const [data, setData] = useState({});
+  const [audienciasData, setAudienciasData] = useState({})
+
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  async function loadData() {
+    const response = await fetchDataFromAPI({year:  '', semester: '', month: ''});
+    const audienciasData = response.general_analysis.audiencias.data;
+    setData(response)
+    setAudienciasData(audienciasData)
+  }
 
   return (
         <Grid container>
@@ -90,12 +103,7 @@ export default function Audiencias(props) {
                       export_data={data.treemap_chart_data}
                       download={true}>
             <div className={classes.contentBox}>
-           {/*   {data.treemap_chart_data ?
-                <Plot
-                    data={data.treemap_chart_data}
-                    layout={{width: 320, height: 240, title: 'A Fancy Plot'}}
-                /> :  ''
-               }*/}
+                {/*Plot* */}
             </div>
           </ChartDataFrame>
         </Grid>

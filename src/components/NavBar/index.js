@@ -3,7 +3,6 @@ import { makeStyles, withStyles } from '@material-ui/core/styles';
 import {AppBar, Tabs, Toolbar, Tab, Grid, IconButton} from '@material-ui/core';
 import { ReactComponent as Logo }from './../../assets/logo.svg';
 import { ReactComponent as LogoutIcon } from './../../assets/user_logout_icon.svg';
-import DashboardInitial from './../DashboardInitial'
 import LogoutMenu from '../LogoutMenu/index'
 
 
@@ -70,7 +69,7 @@ export default function NavBar(props) {
                 </div>
               </Grid>
               <Grid item md={9}>
-              {props.value != undefined &&
+              {props.value !== undefined &&
                 <Tabs value={props.value} onChange={props.handleTabPanelChange} TabIndicatorProps={{style: {background: '#00C354'}}} className={classes.tab}>
                   <CustomTab  label="Dashboard" {...a11yProps(0)} />
                   <CustomTab  label="Configurações" {...a11yProps(1)} />
