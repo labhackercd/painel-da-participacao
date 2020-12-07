@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom";
 import axiosInstance from './auth/axiosApi';
-import {TOKEN_VERIFY_URL, INITIAL_PAGE_URL, DASHBOARD_PAGE_URL, SETTINGS_PAGE_URL} from './api_urls'
+import {TOKEN_VERIFY_URL, INITIAL_PAGE_URL, AUDIENCIAS_PAGE_URL, DASHBOARD_PAGE_URL, SETTINGS_PAGE_URL} from './api_urls'
 
 import LoginScreen from "./containers/LoginScreenContainer";
 import Dashboard from "./containers/DashboardContainer";
@@ -73,8 +73,13 @@ const AppRouter = (props) => (
             </Route>
             {/*Authenticated routes */}
             <PrivateRouteAuth>
-                <Route exact path={DASHBOARD_PAGE_URL} children={<Dashboard />} theme={props.theme} />
-                <Route exact path={SETTINGS_PAGE_URL} children={<SettingsPage />} theme={props.theme} />
+            <Route exact path={DASHBOARD_PAGE_URL} theme={props.theme}>
+              <Dashboard page="dashboard" theme={props.theme}></Dashboard>
+            </Route>
+            <Route exact path={AUDIENCIAS_PAGE_URL}>
+              <Dashboard page="audiencias" theme={props.theme}></Dashboard>
+            </Route>
+            <Route exact path={SETTINGS_PAGE_URL} children={<SettingsPage />} theme={props.theme} />
             </PrivateRouteAuth>
         </Switch>
     </Router>

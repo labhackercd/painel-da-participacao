@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid, Container} from '@material-ui/core';
 import HomeMenu from './../HomeMenu';
 import Header from './../Header';
-import ContentBox from './../ContentBox';
+import ChartDataFrame from '../ChartDataFrame';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -42,28 +42,28 @@ export default function DashboardInitial() {
         <Container className={classes.container}>
           <Header></Header>
           <Grid item md={12} className={classes.spacing}>
-            <ContentBox height="30vh"
+            <ChartDataFrame height="30vh"
                         listView={true}
-                        download={true}></ContentBox>
+                        download={true}></ChartDataFrame>
           </Grid>
           <Grid item md={12} className={classes.spacing}>
-            <ContentBox height="20vh" listView={true} download={true}></ContentBox>
+            <ChartDataFrame height="20vh" listView={true} download={true}></ChartDataFrame>
           </Grid>
           <Grid item md={12} className={classes.spacing}>
-            <ContentBox height="60vh" listView={true} download={true}></ContentBox>
+            <ChartDataFrame height="60vh" listView={true} download={true}></ChartDataFrame>
           </Grid>
           <Grid container>
             <Grid item md={6} className={classes.spacing}>
-              <ContentBox height="30vh"
+              <ChartDataFrame height="30vh"
                           paddingRight="0.5rem"
                           listView={true}
-                          download={true}></ContentBox>
+                          download={true}></ChartDataFrame>
             </Grid>
             <Grid item md={6} className={classes.spacing}>
-              <ContentBox height="30vh"
+              <ChartDataFrame height="30vh"
                           paddingLeft="0.5rem"
                           listView={true}
-                          download={true}></ContentBox>
+                          download={true}></ChartDataFrame>
             </Grid>
           </Grid>
         </Container>
