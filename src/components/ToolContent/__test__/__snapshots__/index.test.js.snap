@@ -326,8 +326,8 @@ exports[`snapshot should not have changes 1`] = `
     }
   }
 >
-  <ToolContent
-    page="testPage"
-  />
+  <ToolContent>
+    <Audiencias />
+  </ToolContent>
 </ThemeProvider>
 `;

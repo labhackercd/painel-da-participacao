@@ -52,14 +52,14 @@ export default function ChartDataFrame(props) {
     const classes = useStyles()
     const { height, paddingRight, paddingLeft, listView, download, export_data } =  props
 
-		function handleDownload() {
+		/*function handleDownload() {
 			console.log("handleDownload")
 			console.log(props.export_data[0]);
 		}
 
 		function formatData() {
 			return JSON.stringify(export_data)
-		}
+		}*/
 
     return (
       <Grid container className={classes.root} style={{paddingRight: paddingRight, paddingLeft: paddingLeft}}>
@@ -73,7 +73,7 @@ export default function ChartDataFrame(props) {
 						<Grid item md={2}>
 							<Grid container className={classes.iconContainer}>
 								<Grid item md={1}>{props.download ?
-									<IconButton style={{ color:"#FFF"}} className={classes.downloadIcon} onClick={handleDownload}>
+									<IconButton style={{ color:"#FFF"}} className={classes.downloadIcon}>
 									<CloudDownloadIcon /></IconButton>
 									: ''}</Grid>
 							</Grid>

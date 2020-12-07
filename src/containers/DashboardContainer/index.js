@@ -43,13 +43,13 @@ export default function Dashboard(props) {
   return (
     <div className={classes.body}>
       <NavBar value={value} handleTabPanelChange={handleTabPanelChange}></NavBar>
-      <TabPanel value={value} index={0}>
+      <TabPanel id="tabTools" value={value} index={0}>
         <ToolContent page={props.page}>{props.children}</ToolContent>
       </TabPanel>
-      <TabPanel value={value} index={1}>
+      <TabPanel id="tabSettings" value={value} index={1}>
         <SettingsPage></SettingsPage>
       </TabPanel>
-      <TabPanel value={value} index={2}>
+      <TabPanel id="tabDocuments" value={value} index={2}>
         Item Three
       </TabPanel>
       <Footer></Footer>

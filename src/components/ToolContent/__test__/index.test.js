@@ -2,21 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import MockTheme from './../../mockTheme';
 import {shallow, render, mount} from "enzyme";
-import DashboardInitial from './../index';
+import Audiencias from '../../Audiencias/index'
 import { act } from 'react-dom/test-utils';
 import Header from './../../Header';
+import ToolContent from '../index'
 
 it("snapshot should not have changes", () => {
   let component;
   act(() => {
-    component = shallow(<MockTheme><DashboardInitial page={"testPage"}></DashboardInitial></MockTheme>);
+    component = shallow(<MockTheme><ToolContent><Audiencias></Audiencias></ToolContent></MockTheme>);
   })
   expect(component.exists()).toEqual(true);
   expect(component).toMatchSnapshot();
 });
 
 it('tests clicking in header doesnt break page', () => {
-  const wrapper = mount(<MockTheme><DashboardInitial page={"testPage"}/></MockTheme>)
+  const wrapper = mount(<MockTheme><ToolContent><Audiencias></Audiencias></ToolContent></MockTheme>)
   const header = wrapper.findWhere(node => node.is(Header)).last()
   const sessionType = header.find('select').at(0)
   sessionType.instance().value = "Ano";
@@ -24,7 +25,7 @@ it('tests clicking in header doesnt break page', () => {
 })
 
 it('tests clicking in header doesnt break page', () => {
-  const wrapper = mount(<MockTheme><DashboardInitial page={"testPage"}/></MockTheme>)
+  const wrapper = mount(<MockTheme><ToolContent><Audiencias></Audiencias></ToolContent></MockTheme>)
   const header = wrapper.findWhere(node => node.is(Header)).last()
   const sessionType = header.find('select').at(1)
   sessionType.instance().value = "Semestre";
@@ -32,7 +33,7 @@ it('tests clicking in header doesnt break page', () => {
 })
 
 it('tests clicking in header doesnt break page', () => {
-  const wrapper = mount(<MockTheme><DashboardInitial page={"testPage"}/></MockTheme>)
+  const wrapper = mount(<MockTheme><ToolContent><Audiencias></Audiencias></ToolContent></MockTheme>)
   const header = wrapper.findWhere(node => node.is(Header)).last()
   const sessionType = header.find('select').at(2)
   sessionType.instance().value = "Mês";
