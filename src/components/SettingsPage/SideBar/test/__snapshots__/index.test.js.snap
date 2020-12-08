@@ -33,8 +33,6 @@ exports[`snapshot should not have changes 1`] = `
           Object {
             "$$typeof": Symbol(react.memo),
             "compare": null,
-            "displayName": "SettingsIcon",
-            "muiName": "SvgIcon",
             "type": Object {
               "$$typeof": Symbol(react.forward_ref),
               "render": [Function],
@@ -57,8 +55,6 @@ exports[`snapshot should not have changes 1`] = `
           Object {
             "$$typeof": Symbol(react.memo),
             "compare": null,
-            "displayName": "SettingsIcon",
-            "muiName": "SvgIcon",
             "type": Object {
               "$$typeof": Symbol(react.forward_ref),
               "render": [Function],
@@ -81,8 +77,6 @@ exports[`snapshot should not have changes 1`] = `
           Object {
             "$$typeof": Symbol(react.memo),
             "compare": null,
-            "displayName": "InfoIcon",
-            "muiName": "SvgIcon",
             "type": Object {
               "$$typeof": Symbol(react.forward_ref),
               "render": [Function],

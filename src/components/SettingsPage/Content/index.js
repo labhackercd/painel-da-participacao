@@ -103,8 +103,8 @@ export default function SettingsContent() {
                                 <Typography>Donec vitae nunc mauris. Nam nec volutpat augue. Donec posuere nisi dolor, et elementum ligula bibendum consectetur. Aenean sagittis sapien augue, at tempus magna rhoncus eu. Nulla a hendrerit tortor, eget imperdiet augue. Nullam erat felis, dapibus in interdum volutpat, varius vel tortor. Aenean egestas purus et dui scelerisque porta. Mauris consectetur, velit sed hendrerit tristique, massa quam laoreet orci, gravida iaculis tellus neque non neque. Aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut dictum faucibus lorem et vehicula. Sed id justo lectus. Aenean congue rutrum velit ac pulvinar. In tristique, dui id tempus pretium, eros sapien auctor ligula, vel pharetra elit justo id purus.</Typography>
                             </Box>
                             <Box display="flex" flexDirection="row-reverse" paddingX={3} paddingBottom={3} >
-                                <Box marginX={3}><img src={CamaraLogo}></img></Box>
-                                <Box><img src={LabLogo}></img></Box>
+                                <Box marginX={3}><img src={CamaraLogo} alt="Logo Camara"></img></Box>
+                                <Box><img src={LabLogo} alt="Logo LABHacker"></img></Box>
                             </Box>
                         </Paper>
                     </Grid>

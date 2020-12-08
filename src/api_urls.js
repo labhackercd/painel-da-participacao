@@ -13,7 +13,7 @@ module.exports = Object.freeze({
         DASHBOARD_PAGE_URL: process.env.REACT_APP_DASHBOARD_PAGE_URL,
         DASHBOARD_BASE_URL: process.env.REACT_APP_DASHBOARD_BASE_URL,
         SETTINGS_PAGE_URL: process.env.REACT_APP_SETTINGS_PAGE_URL,
-
+        AUDIENCIAS_PAGE_URL: process.env.REACT_APP_AUDIENCIAS_APP_PAGE_URL,
     //API'S BACKEND
         //AUTH URL'S
         TOKEN_REFRESH_URL: process.env.REACT_APP_TOKEN_REFRESH_URL, //Application Api Token REFRESH PATH

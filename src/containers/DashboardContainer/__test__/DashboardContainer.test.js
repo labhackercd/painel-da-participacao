@@ -11,3 +11,12 @@ import MockTheme from './../../../components/mockTheme';
 test("It renders Dashboard Page", async () => {
     const  wrapper = mount(<MockTheme><Router><Dashboard/></Router></MockTheme>);
 });
+
+
+test("It renders Dashboard Page", async () => {
+    const  wrapper = mount(<MockTheme><Dashboard/></MockTheme>);
+    //console.log(wrapper.debug())
+    const tabButton = wrapper.find("#simple-tab-0").last();
+    //console.log(tabButton.debug())
+    tabButton.simulate('click');
+});
