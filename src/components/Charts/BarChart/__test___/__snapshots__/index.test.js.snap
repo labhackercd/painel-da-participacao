@@ -1,0 +1,247 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot should not have changes 1`] = `
+<TreeMapChart
+  data={
+    Array [
+      Array [
+        "City",
+        "2010 Population",
+        "2000 Population",
+      ],
+      Array [
+        "New York City, NY",
+        8175000,
+        8008000,
+      ],
+      Array [
+        "Los Angeles, CA",
+        3792000,
+        3694000,
+      ],
+      Array [
+        "Chicago, IL",
+        2695000,
+        2896000,
+      ],
+      Array [
+        "Houston, TX",
+        2099000,
+        1953000,
+      ],
+      Array [
+        "Philadelphia, PA",
+        1526000,
+        1517000,
+      ],
+    ]
+  }
+  options={
+    Object {
+      "chartArea": Object {
+        "width": "50%",
+      },
+      "hAxis": Object {
+        "minValue": 0,
+        "title": "Total Population",
+      },
+      "title": "Population of Largest U.S. Cities",
+      "vAxis": Object {
+        "title": "City",
+      },
+    }
+  }
+>
+  <Chart
+    chartActions={null}
+    chartEvents={null}
+    chartType="BarChart"
+    chartWrapperParams={Object {}}
+    className=""
+    columns={null}
+    controls={null}
+    data={
+      Array [
+        Array [
+          "City",
+          "2010 Population",
+          "2000 Population",
+        ],
+        Array [
+          "New York City, NY",
+          8175000,
+          8008000,
+        ],
+        Array [
+          "Los Angeles, CA",
+          3792000,
+          3694000,
+        ],
+        Array [
+          "Chicago, IL",
+          2695000,
+          2896000,
+        ],
+        Array [
+          "Houston, TX",
+          2099000,
+          1953000,
+        ],
+        Array [
+          "Philadelphia, PA",
+          1526000,
+          1517000,
+        ],
+      ]
+    }
+    diffdata={null}
+    formatters={null}
+    getChartEditor={null}
+    getChartWrapper={[Function]}
+    graphID={null}
+    graph_id={null}
+    height="300px"
+    legendToggle={false}
+    legend_toggle={false}
+    loader={
+      <div>
+        Loading Chart
+      </div>
+    }
+    options={
+      Object {
+        "chartArea": Object {
+          "width": "50%",
+        },
+        "hAxis": Object {
+          "minValue": 0,
+          "title": "Total Population",
+        },
+        "title": "Population of Largest U.S. Cities",
+        "vAxis": Object {
+          "title": "City",
+        },
+      }
+    }
+    render={null}
+    rootProps={
+      Object {
+        "data-testid": "tree-map",
+      }
+    }
+    rows={null}
+    spreadSheetQueryParameters={
+      Object {
+        "gid": 1,
+        "headers": 1,
+      }
+    }
+    spreadSheetUrl={null}
+    style={Object {}}
+    toolbarID={null}
+    toolbarItems={null}
+    width="500px"
+  >
+    <ContextProvider
+      value={
+        Object {
+          "chartActions": null,
+          "chartEvents": null,
+          "chartType": "BarChart",
+          "chartWrapperParams": Object {},
+          "className": "",
+          "columns": null,
+          "controls": null,
+          "data": Array [
+            Array [
+              "City",
+              "2010 Population",
+              "2000 Population",
+            ],
+            Array [
+              "New York City, NY",
+              8175000,
+              8008000,
+            ],
+            Array [
+              "Los Angeles, CA",
+              3792000,
+              3694000,
+            ],
+            Array [
+              "Chicago, IL",
+              2695000,
+              2896000,
+            ],
+            Array [
+              "Houston, TX",
+              2099000,
+              1953000,
+            ],
+            Array [
+              "Philadelphia, PA",
+              1526000,
+              1517000,
+            ],
+          ],
+          "diffdata": null,
+          "formatters": null,
+          "getChartEditor": null,
+          "getChartWrapper": [Function],
+          "graphID": null,
+          "graph_id": null,
+          "height": "300px",
+          "legendToggle": false,
+          "legend_toggle": false,
+          "loader": <div>
+            Loading Chart
+          </div>,
+          "options": Object {
+            "chartArea": Object {
+              "width": "50%",
+            },
+            "hAxis": Object {
+              "minValue": 0,
+              "title": "Total Population",
+            },
+            "title": "Population of Largest U.S. Cities",
+            "vAxis": Object {
+              "title": "City",
+            },
+          },
+          "render": null,
+          "rootProps": Object {
+            "data-testid": "tree-map",
+          },
+          "rows": null,
+          "spreadSheetQueryParameters": Object {
+            "gid": 1,
+            "headers": 1,
+          },
+          "spreadSheetUrl": null,
+          "style": Object {},
+          "toolbarID": null,
+          "toolbarItems": null,
+          "width": "500px",
+        }
+      }
+    >
+      <div>
+        Loading Chart
+      </div>
+      <GoogleChartLoader
+        onError={[Function]}
+        onLoad={[Function]}
+      >
+        <Script
+          attributes={Object {}}
+          onCreate={[Function]}
+          onError={[Function]}
+          onLoad={[Function]}
+          url="https://www.gstatic.com/charts/loader.js"
+        />
+      </GoogleChartLoader>
+    </ContextProvider>
+  </Chart>
+</TreeMapChart>
+`;
