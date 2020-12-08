@@ -1,0 +1,205 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot should not have changes 1`] = `
+<PieChart
+  data={
+    Array [
+      Array [
+        "Dispositivo",
+        "Acessos",
+      ],
+      Array [
+        "Mobile",
+        15,
+      ],
+      Array [
+        "Desktop",
+        15,
+      ],
+      Array [
+        "Tablet",
+        70,
+      ],
+    ]
+  }
+  options={
+    Object {
+      "backgroundColor": "#000000",
+      "colors": Array [
+        "#855CF8",
+        "#503795",
+        "#E289F2",
+      ],
+      "legend": Object {
+        "textStyle": Object {
+          "color": "white",
+        },
+      },
+    }
+  }
+>
+  <Chart
+    chartActions={null}
+    chartEvents={null}
+    chartType="PieChart"
+    chartWrapperParams={Object {}}
+    className=""
+    columns={null}
+    controls={null}
+    data={
+      Array [
+        Array [
+          "Dispositivo",
+          "Acessos",
+        ],
+        Array [
+          "Mobile",
+          15,
+        ],
+        Array [
+          "Desktop",
+          15,
+        ],
+        Array [
+          "Tablet",
+          70,
+        ],
+      ]
+    }
+    diffdata={null}
+    formatters={null}
+    getChartEditor={null}
+    getChartWrapper={[Function]}
+    graphID={null}
+    graph_id={null}
+    height="300px"
+    legendToggle={false}
+    legend_toggle={false}
+    loader={
+      <div>
+        Carregando Gráfico
+      </div>
+    }
+    options={
+      Object {
+        "backgroundColor": "#000000",
+        "colors": Array [
+          "#855CF8",
+          "#503795",
+          "#E289F2",
+        ],
+        "legend": Object {
+          "textStyle": Object {
+            "color": "white",
+          },
+        },
+      }
+    }
+    render={null}
+    rootProps={
+      Object {
+        "data-testid": "1",
+      }
+    }
+    rows={null}
+    spreadSheetQueryParameters={
+      Object {
+        "gid": 1,
+        "headers": 1,
+      }
+    }
+    spreadSheetUrl={null}
+    style={Object {}}
+    toolbarID={null}
+    toolbarItems={null}
+    width="500px"
+  >
+    <ContextProvider
+      value={
+        Object {
+          "chartActions": null,
+          "chartEvents": null,
+          "chartType": "PieChart",
+          "chartWrapperParams": Object {},
+          "className": "",
+          "columns": null,
+          "controls": null,
+          "data": Array [
+            Array [
+              "Dispositivo",
+              "Acessos",
+            ],
+            Array [
+              "Mobile",
+              15,
+            ],
+            Array [
+              "Desktop",
+              15,
+            ],
+            Array [
+              "Tablet",
+              70,
+            ],
+          ],
+          "diffdata": null,
+          "formatters": null,
+          "getChartEditor": null,
+          "getChartWrapper": [Function],
+          "graphID": null,
+          "graph_id": null,
+          "height": "300px",
+          "legendToggle": false,
+          "legend_toggle": false,
+          "loader": <div>
+            Carregando Gráfico
+          </div>,
+          "options": Object {
+            "backgroundColor": "#000000",
+            "colors": Array [
+              "#855CF8",
+              "#503795",
+              "#E289F2",
+            ],
+            "legend": Object {
+              "textStyle": Object {
+                "color": "white",
+              },
+            },
+          },
+          "render": null,
+          "rootProps": Object {
+            "data-testid": "1",
+          },
+          "rows": null,
+          "spreadSheetQueryParameters": Object {
+            "gid": 1,
+            "headers": 1,
+          },
+          "spreadSheetUrl": null,
+          "style": Object {},
+          "toolbarID": null,
+          "toolbarItems": null,
+          "width": "500px",
+        }
+      }
+    >
+      <div>
+        Carregando Gráfico
+      </div>
+      <GoogleChartLoader
+        onError={[Function]}
+        onLoad={[Function]}
+      >
+        <Script
+          attributes={Object {}}
+          onCreate={[Function]}
+          onError={[Function]}
+          onLoad={[Function]}
+          url="https://www.gstatic.com/charts/loader.js"
+        />
+      </GoogleChartLoader>
+    </ContextProvider>
+  </Chart>
+</PieChart>
+`;

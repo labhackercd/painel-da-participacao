@@ -1,9 +1,8 @@
 import React, {useState,useEffect} from 'react';
-import { Grid, Typography} from '@material-ui/core';
+import { Grid, Typography,Box} from '@material-ui/core';
 import ChartDataFrame from './../ChartDataFrame';
 import { makeStyles } from '@material-ui/core/styles';
 import fetchDataFromAPI from './../DataFetcher';
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,7 +43,6 @@ export default function Audiencias(props) {
   const classes = useStyles();
   const [data, setData] = useState({});
   const [audienciasData, setAudienciasData] = useState({})
-
 
   useEffect(() => {
     loadData();
@@ -109,16 +107,16 @@ export default function Audiencias(props) {
         </Grid>
         <Grid container>
           <Grid item md={6} className={classes.spacing}>
-            <ChartDataFrame height="35vh"
-                        paddingRight="0.5rem"
-                        listView={true}
-                        download={true}></ChartDataFrame>
+            <ChartDataFrame height="35vh" paddingRight="0.5rem" listView={true} download={true}>
+            </ChartDataFrame>
           </Grid>
           <Grid item md={6} className={classes.spacing}>
             <ChartDataFrame height="35vh"
                         paddingLeft="0.5rem"
                         listView={true}
-                        download={true}></ChartDataFrame>
+                        download={true}>
+
+                        </ChartDataFrame>
           </Grid>
         </Grid>
         <Grid container>
