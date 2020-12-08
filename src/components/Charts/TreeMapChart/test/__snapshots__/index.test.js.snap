@@ -1,0 +1,646 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot should not have changes 1`] = `
+<TreeMapChart
+  data={
+    Array [
+      Array [
+        "Location",
+        "Parent",
+        "Market trade volume (size)",
+        "Market increase/decrease (color)",
+      ],
+      Array [
+        "Global",
+        null,
+        0,
+        0,
+      ],
+      Array [
+        "America",
+        "Global",
+        0,
+        0,
+      ],
+      Array [
+        "Europe",
+        "Global",
+        0,
+        0,
+      ],
+      Array [
+        "Asia",
+        "Global",
+        0,
+        0,
+      ],
+      Array [
+        "Australia",
+        "Global",
+        0,
+        0,
+      ],
+      Array [
+        "Africa",
+        "Global",
+        0,
+        0,
+      ],
+      Array [
+        "Brazil",
+        "America",
+        11,
+        10,
+      ],
+      Array [
+        "USA",
+        "America",
+        52,
+        31,
+      ],
+      Array [
+        "Mexico",
+        "America",
+        24,
+        12,
+      ],
+      Array [
+        "Canada",
+        "America",
+        16,
+        -23,
+      ],
+      Array [
+        "France",
+        "Europe",
+        42,
+        -11,
+      ],
+      Array [
+        "Germany",
+        "Europe",
+        31,
+        -2,
+      ],
+      Array [
+        "Sweden",
+        "Europe",
+        22,
+        -13,
+      ],
+      Array [
+        "Italy",
+        "Europe",
+        17,
+        4,
+      ],
+      Array [
+        "UK",
+        "Europe",
+        21,
+        -5,
+      ],
+      Array [
+        "China",
+        "Asia",
+        36,
+        4,
+      ],
+      Array [
+        "Japan",
+        "Asia",
+        20,
+        -12,
+      ],
+      Array [
+        "India",
+        "Asia",
+        40,
+        63,
+      ],
+      Array [
+        "Laos",
+        "Asia",
+        4,
+        34,
+      ],
+      Array [
+        "Mongolia",
+        "Asia",
+        1,
+        -5,
+      ],
+      Array [
+        "Iran",
+        "Asia",
+        18,
+        13,
+      ],
+      Array [
+        "Pakistan",
+        "Asia",
+        11,
+        -52,
+      ],
+      Array [
+        "Egypt",
+        "Africa",
+        21,
+        0,
+      ],
+      Array [
+        "S. Africa",
+        "Africa",
+        30,
+        43,
+      ],
+      Array [
+        "Sudan",
+        "Africa",
+        12,
+        2,
+      ],
+      Array [
+        "Congo",
+        "Africa",
+        10,
+        12,
+      ],
+      Array [
+        "Zaire",
+        "Africa",
+        8,
+        10,
+      ],
+    ]
+  }
+  options={
+    Object {
+      "fontColor": "black",
+      "headerHeight": 15,
+      "maxColor": "#0d0",
+      "midColor": "#ddd",
+      "minColor": "#f00",
+      "showScale": true,
+    }
+  }
+>
+  <Chart
+    chartActions={null}
+    chartEvents={null}
+    chartType="TreeMap"
+    chartWrapperParams={Object {}}
+    className=""
+    columns={null}
+    controls={null}
+    data={
+      Array [
+        Array [
+          "Location",
+          "Parent",
+          "Market trade volume (size)",
+          "Market increase/decrease (color)",
+        ],
+        Array [
+          "Global",
+          null,
+          0,
+          0,
+        ],
+        Array [
+          "America",
+          "Global",
+          0,
+          0,
+        ],
+        Array [
+          "Europe",
+          "Global",
+          0,
+          0,
+        ],
+        Array [
+          "Asia",
+          "Global",
+          0,
+          0,
+        ],
+        Array [
+          "Australia",
+          "Global",
+          0,
+          0,
+        ],
+        Array [
+          "Africa",
+          "Global",
+          0,
+          0,
+        ],
+        Array [
+          "Brazil",
+          "America",
+          11,
+          10,
+        ],
+        Array [
+          "USA",
+          "America",
+          52,
+          31,
+        ],
+        Array [
+          "Mexico",
+          "America",
+          24,
+          12,
+        ],
+        Array [
+          "Canada",
+          "America",
+          16,
+          -23,
+        ],
+        Array [
+          "France",
+          "Europe",
+          42,
+          -11,
+        ],
+        Array [
+          "Germany",
+          "Europe",
+          31,
+          -2,
+        ],
+        Array [
+          "Sweden",
+          "Europe",
+          22,
+          -13,
+        ],
+        Array [
+          "Italy",
+          "Europe",
+          17,
+          4,
+        ],
+        Array [
+          "UK",
+          "Europe",
+          21,
+          -5,
+        ],
+        Array [
+          "China",
+          "Asia",
+          36,
+          4,
+        ],
+        Array [
+          "Japan",
+          "Asia",
+          20,
+          -12,
+        ],
+        Array [
+          "India",
+          "Asia",
+          40,
+          63,
+        ],
+        Array [
+          "Laos",
+          "Asia",
+          4,
+          34,
+        ],
+        Array [
+          "Mongolia",
+          "Asia",
+          1,
+          -5,
+        ],
+        Array [
+          "Iran",
+          "Asia",
+          18,
+          13,
+        ],
+        Array [
+          "Pakistan",
+          "Asia",
+          11,
+          -52,
+        ],
+        Array [
+          "Egypt",
+          "Africa",
+          21,
+          0,
+        ],
+        Array [
+          "S. Africa",
+          "Africa",
+          30,
+          43,
+        ],
+        Array [
+          "Sudan",
+          "Africa",
+          12,
+          2,
+        ],
+        Array [
+          "Congo",
+          "Africa",
+          10,
+          12,
+        ],
+        Array [
+          "Zaire",
+          "Africa",
+          8,
+          10,
+        ],
+      ]
+    }
+    diffdata={null}
+    formatters={null}
+    getChartEditor={null}
+    getChartWrapper={[Function]}
+    graphID={null}
+    graph_id={null}
+    height="300px"
+    legendToggle={false}
+    legend_toggle={false}
+    loader={
+      <div>
+        Loading Chart
+      </div>
+    }
+    options={
+      Object {
+        "fontColor": "black",
+        "headerHeight": 15,
+        "maxColor": "#0d0",
+        "midColor": "#ddd",
+        "minColor": "#f00",
+        "showScale": true,
+      }
+    }
+    render={null}
+    rootProps={
+      Object {
+        "data-testid": "tree-map",
+      }
+    }
+    rows={null}
+    spreadSheetQueryParameters={
+      Object {
+        "gid": 1,
+        "headers": 1,
+      }
+    }
+    spreadSheetUrl={null}
+    style={Object {}}
+    toolbarID={null}
+    toolbarItems={null}
+    width="500px"
+  >
+    <ContextProvider
+      value={
+        Object {
+          "chartActions": null,
+          "chartEvents": null,
+          "chartType": "TreeMap",
+          "chartWrapperParams": Object {},
+          "className": "",
+          "columns": null,
+          "controls": null,
+          "data": Array [
+            Array [
+              "Location",
+              "Parent",
+              "Market trade volume (size)",
+              "Market increase/decrease (color)",
+            ],
+            Array [
+              "Global",
+              null,
+              0,
+              0,
+            ],
+            Array [
+              "America",
+              "Global",
+              0,
+              0,
+            ],
+            Array [
+              "Europe",
+              "Global",
+              0,
+              0,
+            ],
+            Array [
+              "Asia",
+              "Global",
+              0,
+              0,
+            ],
+            Array [
+              "Australia",
+              "Global",
+              0,
+              0,
+            ],
+            Array [
+              "Africa",
+              "Global",
+              0,
+              0,
+            ],
+            Array [
+              "Brazil",
+              "America",
+              11,
+              10,
+            ],
+            Array [
+              "USA",
+              "America",
+              52,
+              31,
+            ],
+            Array [
+              "Mexico",
+              "America",
+              24,
+              12,
+            ],
+            Array [
+              "Canada",
+              "America",
+              16,
+              -23,
+            ],
+            Array [
+              "France",
+              "Europe",
+              42,
+              -11,
+            ],
+            Array [
+              "Germany",
+              "Europe",
+              31,
+              -2,
+            ],
+            Array [
+              "Sweden",
+              "Europe",
+              22,
+              -13,
+            ],
+            Array [
+              "Italy",
+              "Europe",
+              17,
+              4,
+            ],
+            Array [
+              "UK",
+              "Europe",
+              21,
+              -5,
+            ],
+            Array [
+              "China",
+              "Asia",
+              36,
+              4,
+            ],
+            Array [
+              "Japan",
+              "Asia",
+              20,
+              -12,
+            ],
+            Array [
+              "India",
+              "Asia",
+              40,
+              63,
+            ],
+            Array [
+              "Laos",
+              "Asia",
+              4,
+              34,
+            ],
+            Array [
+              "Mongolia",
+              "Asia",
+              1,
+              -5,
+            ],
+            Array [
+              "Iran",
+              "Asia",
+              18,
+              13,
+            ],
+            Array [
+              "Pakistan",
+              "Asia",
+              11,
+              -52,
+            ],
+            Array [
+              "Egypt",
+              "Africa",
+              21,
+              0,
+            ],
+            Array [
+              "S. Africa",
+              "Africa",
+              30,
+              43,
+            ],
+            Array [
+              "Sudan",
+              "Africa",
+              12,
+              2,
+            ],
+            Array [
+              "Congo",
+              "Africa",
+              10,
+              12,
+            ],
+            Array [
+              "Zaire",
+              "Africa",
+              8,
+              10,
+            ],
+          ],
+          "diffdata": null,
+          "formatters": null,
+          "getChartEditor": null,
+          "getChartWrapper": [Function],
+          "graphID": null,
+          "graph_id": null,
+          "height": "300px",
+          "legendToggle": false,
+          "legend_toggle": false,
+          "loader": <div>
+            Loading Chart
+          </div>,
+          "options": Object {
+            "fontColor": "black",
+            "headerHeight": 15,
+            "maxColor": "#0d0",
+            "midColor": "#ddd",
+            "minColor": "#f00",
+            "showScale": true,
+          },
+          "render": null,
+          "rootProps": Object {
+            "data-testid": "tree-map",
+          },
+          "rows": null,
+          "spreadSheetQueryParameters": Object {
+            "gid": 1,
+            "headers": 1,
+          },
+          "spreadSheetUrl": null,
+          "style": Object {},
+          "toolbarID": null,
+          "toolbarItems": null,
+          "width": "500px",
+        }
+      }
+    >
+      <div>
+        Loading Chart
+      </div>
+      <GoogleChartLoader
+        onError={[Function]}
+        onLoad={[Function]}
+      >
+        <Script
+          attributes={Object {}}
+          onCreate={[Function]}
+          onError={[Function]}
+          onLoad={[Function]}
+          url="https://www.gstatic.com/charts/loader.js"
+        />
+      </GoogleChartLoader>
+    </ContextProvider>
+  </Chart>
+</TreeMapChart>
+`;
