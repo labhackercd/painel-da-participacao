@@ -4,7 +4,6 @@ import ChartDataFrame from './../ChartDataFrame';
 import { makeStyles } from '@material-ui/core/styles';
 import fetchDataFromAPI from './../DataFetcher';
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -44,7 +43,6 @@ export default function Audiencias(props) {
   const classes = useStyles();
   const [data, setData] = useState({});
   const [audienciasData, setAudienciasData] = useState({})
-  const pieChartdata = {values:[15, 15, 70],  labels: ['Mobile', 'Desktop', 'Tablet']};
 
   useEffect(() => {
     loadData();
