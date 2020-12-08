@@ -101,7 +101,6 @@ export default function Audiencias(props) {
                       export_data={data.treemap_chart_data}
                       download={true}>
             <div className={classes.contentBox}>
-                {/*Plot* */}
             </div>
           </ChartDataFrame>
         </Grid>
