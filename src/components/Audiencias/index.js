@@ -3,6 +3,7 @@ import { Grid, Typography,Box} from '@material-ui/core';
 import ChartDataFrame from './../ChartDataFrame';
 import { makeStyles } from '@material-ui/core/styles';
 import fetchDataFromAPI from './../DataFetcher';
+import StackedBarChart from '../Charts/StackedBarChart/index'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -101,7 +102,7 @@ export default function Audiencias(props) {
                       export_data={data.treemap_chart_data}
                       download={true}>
             <div className={classes.contentBox}>
-                {/*Plot* */}
+                <StackedBarChart></StackedBarChart>
             </div>
           </ChartDataFrame>
         </Grid>
