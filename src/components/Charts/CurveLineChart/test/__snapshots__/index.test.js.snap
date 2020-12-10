@@ -1,0 +1,250 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot should not have changes 1`] = `
+<CurveLineChart
+  data={
+    Array [
+      Array [
+        "ano",
+        "Usuários",
+      ],
+      Array [
+        "2016",
+        134,
+      ],
+      Array [
+        "2017",
+        523,
+      ],
+      Array [
+        "2018",
+        400,
+      ],
+      Array [
+        "2019",
+        843,
+      ],
+      Array [
+        "2020",
+        1432,
+      ],
+    ]
+  }
+  options={
+    Object {
+      "backgroundColor": "#000000",
+      "curveType": "function",
+      "hAxis": Object {
+        "textStyle": Object {
+          "color": "#FFFFFF",
+        },
+      },
+      "legend": Object {
+        "textStyle": Object {
+          "color": "white",
+        },
+      },
+      "vAxis": Object {
+        "gridlines": Object {
+          "color": "transparent",
+        },
+        "textPosition": "none",
+      },
+    }
+  }
+>
+  <Chart
+    chartActions={null}
+    chartEvents={null}
+    chartType="LineChart"
+    chartWrapperParams={Object {}}
+    className=""
+    columns={null}
+    controls={null}
+    data={
+      Array [
+        Array [
+          "ano",
+          "Usuários",
+        ],
+        Array [
+          "2016",
+          134,
+        ],
+        Array [
+          "2017",
+          523,
+        ],
+        Array [
+          "2018",
+          400,
+        ],
+        Array [
+          "2019",
+          843,
+        ],
+        Array [
+          "2020",
+          1432,
+        ],
+      ]
+    }
+    diffdata={null}
+    formatters={null}
+    getChartEditor={null}
+    getChartWrapper={[Function]}
+    graphID={null}
+    graph_id={null}
+    height="300px"
+    legendToggle={false}
+    legend_toggle={false}
+    loader={
+      <div>
+        Carregando Gráfico
+      </div>
+    }
+    options={
+      Object {
+        "backgroundColor": "#000000",
+        "curveType": "function",
+        "hAxis": Object {
+          "textStyle": Object {
+            "color": "#FFFFFF",
+          },
+        },
+        "legend": Object {
+          "textStyle": Object {
+            "color": "white",
+          },
+        },
+        "vAxis": Object {
+          "gridlines": Object {
+            "color": "transparent",
+          },
+          "textPosition": "none",
+        },
+      }
+    }
+    render={null}
+    rootProps={
+      Object {
+        "data-testid": "2",
+      }
+    }
+    rows={null}
+    spreadSheetQueryParameters={
+      Object {
+        "gid": 1,
+        "headers": 1,
+      }
+    }
+    spreadSheetUrl={null}
+    style={Object {}}
+    toolbarID={null}
+    toolbarItems={null}
+    width="500px"
+  >
+    <ContextProvider
+      value={
+        Object {
+          "chartActions": null,
+          "chartEvents": null,
+          "chartType": "LineChart",
+          "chartWrapperParams": Object {},
+          "className": "",
+          "columns": null,
+          "controls": null,
+          "data": Array [
+            Array [
+              "ano",
+              "Usuários",
+            ],
+            Array [
+              "2016",
+              134,
+            ],
+            Array [
+              "2017",
+              523,
+            ],
+            Array [
+              "2018",
+              400,
+            ],
+            Array [
+              "2019",
+              843,
+            ],
+            Array [
+              "2020",
+              1432,
+            ],
+          ],
+          "diffdata": null,
+          "formatters": null,
+          "getChartEditor": null,
+          "getChartWrapper": [Function],
+          "graphID": null,
+          "graph_id": null,
+          "height": "300px",
+          "legendToggle": false,
+          "legend_toggle": false,
+          "loader": <div>
+            Carregando Gráfico
+          </div>,
+          "options": Object {
+            "backgroundColor": "#000000",
+            "curveType": "function",
+            "hAxis": Object {
+              "textStyle": Object {
+                "color": "#FFFFFF",
+              },
+            },
+            "legend": Object {
+              "textStyle": Object {
+                "color": "white",
+              },
+            },
+            "vAxis": Object {
+              "gridlines": Object {
+                "color": "transparent",
+              },
+              "textPosition": "none",
+            },
+          },
+          "render": null,
+          "rootProps": Object {
+            "data-testid": "2",
+          },
+          "rows": null,
+          "spreadSheetQueryParameters": Object {
+            "gid": 1,
+            "headers": 1,
+          },
+          "spreadSheetUrl": null,
+          "style": Object {},
+          "toolbarID": null,
+          "toolbarItems": null,
+          "width": "500px",
+        }
+      }
+    >
+      <div>
+        Carregando Gráfico
+      </div>
+      <GoogleChartLoader
+        onError={[Function]}
+        onLoad={[Function]}
+      >
+        <Script
+          attributes={Object {}}
+          onCreate={[Function]}
+          onError={[Function]}
+          onLoad={[Function]}
+          url="https://www.gstatic.com/charts/loader.js"
+        />
+      </GoogleChartLoader>
+    </ContextProvider>
+  </Chart>
+</CurveLineChart>
+`;
