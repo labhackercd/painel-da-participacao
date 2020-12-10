@@ -1,0 +1,313 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot should not have changes 1`] = `
+<CalendarHeatChart
+  data={
+    Array [
+      Array [
+        Object {
+          "id": "Date",
+          "type": "date",
+        },
+        Object {
+          "id": "Won/Loss",
+          "type": "number",
+        },
+      ],
+      Array [
+        2012-04-13T03:00:00.000Z,
+        37032,
+      ],
+      Array [
+        2012-04-14T03:00:00.000Z,
+        38024,
+      ],
+      Array [
+        2012-04-15T03:00:00.000Z,
+        38024,
+      ],
+      Array [
+        2012-04-16T03:00:00.000Z,
+        38108,
+      ],
+      Array [
+        2012-04-17T03:00:00.000Z,
+        38229,
+      ],
+      Array [
+        2013-02-04T02:00:00.000Z,
+        38177,
+      ],
+      Array [
+        2013-02-05T02:00:00.000Z,
+        38705,
+      ],
+      Array [
+        2013-02-12T02:00:00.000Z,
+        38210,
+      ],
+      Array [
+        2013-02-13T02:00:00.000Z,
+        38029,
+      ],
+      Array [
+        2013-02-19T03:00:00.000Z,
+        38823,
+      ],
+      Array [
+        2013-02-23T03:00:00.000Z,
+        38345,
+      ],
+      Array [
+        2013-02-24T03:00:00.000Z,
+        38436,
+      ],
+      Array [
+        2013-03-10T03:00:00.000Z,
+        38447,
+      ],
+    ]
+  }
+  options={
+    Object {
+      "title": "Red Sox Attendance",
+    }
+  }
+>
+  <Chart
+    chartActions={null}
+    chartEvents={null}
+    chartType="Calendar"
+    chartWrapperParams={Object {}}
+    className=""
+    columns={null}
+    controls={null}
+    data={
+      Array [
+        Array [
+          Object {
+            "id": "Date",
+            "type": "date",
+          },
+          Object {
+            "id": "Won/Loss",
+            "type": "number",
+          },
+        ],
+        Array [
+          2012-04-13T03:00:00.000Z,
+          37032,
+        ],
+        Array [
+          2012-04-14T03:00:00.000Z,
+          38024,
+        ],
+        Array [
+          2012-04-15T03:00:00.000Z,
+          38024,
+        ],
+        Array [
+          2012-04-16T03:00:00.000Z,
+          38108,
+        ],
+        Array [
+          2012-04-17T03:00:00.000Z,
+          38229,
+        ],
+        Array [
+          2013-02-04T02:00:00.000Z,
+          38177,
+        ],
+        Array [
+          2013-02-05T02:00:00.000Z,
+          38705,
+        ],
+        Array [
+          2013-02-12T02:00:00.000Z,
+          38210,
+        ],
+        Array [
+          2013-02-13T02:00:00.000Z,
+          38029,
+        ],
+        Array [
+          2013-02-19T03:00:00.000Z,
+          38823,
+        ],
+        Array [
+          2013-02-23T03:00:00.000Z,
+          38345,
+        ],
+        Array [
+          2013-02-24T03:00:00.000Z,
+          38436,
+        ],
+        Array [
+          2013-03-10T03:00:00.000Z,
+          38447,
+        ],
+      ]
+    }
+    diffdata={null}
+    formatters={null}
+    getChartEditor={null}
+    getChartWrapper={[Function]}
+    graphID={null}
+    graph_id={null}
+    height="350px"
+    legendToggle={false}
+    legend_toggle={false}
+    loader={
+      <div>
+        Carregando Gráfico
+      </div>
+    }
+    options={
+      Object {
+        "title": "Red Sox Attendance",
+      }
+    }
+    render={null}
+    rootProps={
+      Object {
+        "data-testid": "1",
+      }
+    }
+    rows={null}
+    spreadSheetQueryParameters={
+      Object {
+        "gid": 1,
+        "headers": 1,
+      }
+    }
+    spreadSheetUrl={null}
+    style={Object {}}
+    toolbarID={null}
+    toolbarItems={null}
+    width="1000px"
+  >
+    <ContextProvider
+      value={
+        Object {
+          "chartActions": null,
+          "chartEvents": null,
+          "chartType": "Calendar",
+          "chartWrapperParams": Object {},
+          "className": "",
+          "columns": null,
+          "controls": null,
+          "data": Array [
+            Array [
+              Object {
+                "id": "Date",
+                "type": "date",
+              },
+              Object {
+                "id": "Won/Loss",
+                "type": "number",
+              },
+            ],
+            Array [
+              2012-04-13T03:00:00.000Z,
+              37032,
+            ],
+            Array [
+              2012-04-14T03:00:00.000Z,
+              38024,
+            ],
+            Array [
+              2012-04-15T03:00:00.000Z,
+              38024,
+            ],
+            Array [
+              2012-04-16T03:00:00.000Z,
+              38108,
+            ],
+            Array [
+              2012-04-17T03:00:00.000Z,
+              38229,
+            ],
+            Array [
+              2013-02-04T02:00:00.000Z,
+              38177,
+            ],
+            Array [
+              2013-02-05T02:00:00.000Z,
+              38705,
+            ],
+            Array [
+              2013-02-12T02:00:00.000Z,
+              38210,
+            ],
+            Array [
+              2013-02-13T02:00:00.000Z,
+              38029,
+            ],
+            Array [
+              2013-02-19T03:00:00.000Z,
+              38823,
+            ],
+            Array [
+              2013-02-23T03:00:00.000Z,
+              38345,
+            ],
+            Array [
+              2013-02-24T03:00:00.000Z,
+              38436,
+            ],
+            Array [
+              2013-03-10T03:00:00.000Z,
+              38447,
+            ],
+          ],
+          "diffdata": null,
+          "formatters": null,
+          "getChartEditor": null,
+          "getChartWrapper": [Function],
+          "graphID": null,
+          "graph_id": null,
+          "height": "350px",
+          "legendToggle": false,
+          "legend_toggle": false,
+          "loader": <div>
+            Carregando Gráfico
+          </div>,
+          "options": Object {
+            "title": "Red Sox Attendance",
+          },
+          "render": null,
+          "rootProps": Object {
+            "data-testid": "1",
+          },
+          "rows": null,
+          "spreadSheetQueryParameters": Object {
+            "gid": 1,
+            "headers": 1,
+          },
+          "spreadSheetUrl": null,
+          "style": Object {},
+          "toolbarID": null,
+          "toolbarItems": null,
+          "width": "1000px",
+        }
+      }
+    >
+      <div>
+        Carregando Gráfico
+      </div>
+      <GoogleChartLoader
+        onError={[Function]}
+        onLoad={[Function]}
+      >
+        <Script
+          attributes={Object {}}
+          onCreate={[Function]}
+          onError={[Function]}
+          onLoad={[Function]}
+          url="https://www.gstatic.com/charts/loader.js"
+        />
+      </GoogleChartLoader>
+    </ContextProvider>
+  </Chart>
+</CalendarHeatChart>
+`;
