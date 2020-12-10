@@ -1,7 +1,7 @@
 import React from 'react';
 import Chart from "react-google-charts";
 
-export default function TreeMapChart(props) {
+export default function BarChart(props) {
   return (
     <Chart
       width={'500px'}
@@ -10,7 +10,7 @@ export default function TreeMapChart(props) {
       loader={<div>Loading Chart</div>}
       data={props.data}
       options={props.options}
-      rootProps={{ 'data-testid': 'tree-map' }}
+      rootProps={{ 'data-testid': 'bar-chart' }}
     />
    );
 }

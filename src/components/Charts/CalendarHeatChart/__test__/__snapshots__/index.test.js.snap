@@ -70,6 +70,13 @@ exports[`Snapshot should not have changes 1`] = `
   }
   options={
     Object {
+      "calendar": Object {
+        "cellColor": Object {
+          "stroke": "#76a7fa",
+          "strokeOpacity": 0.5,
+          "strokeWidth": 1,
+        },
+      },
       "title": "Red Sox Attendance",
     }
   }
@@ -164,6 +171,13 @@ exports[`Snapshot should not have changes 1`] = `
     }
     options={
       Object {
+        "calendar": Object {
+          "cellColor": Object {
+            "stroke": "#76a7fa",
+            "strokeOpacity": 0.5,
+            "strokeWidth": 1,
+          },
+        },
         "title": "Red Sox Attendance",
       }
     }
@@ -273,6 +287,13 @@ exports[`Snapshot should not have changes 1`] = `
             Carregando Gráfico
           </div>,
           "options": Object {
+            "calendar": Object {
+              "cellColor": Object {
+                "stroke": "#76a7fa",
+                "strokeOpacity": 0.5,
+                "strokeWidth": 1,
+              },
+            },
             "title": "Red Sox Attendance",
           },
           "render": null,
