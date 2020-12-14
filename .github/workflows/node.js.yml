@@ -1,0 +1,45 @@
+name: build
+on:
+  push:
+    branches:
+      - '*'
+    tags:
+      - '!*' # Do not execute on tags
+    paths:
+      - src/*
+      - test/*
+      - '*.json'
+      - yarn.lock
+  pull_request:
+    paths:
+      - '!*.MD'
+jobs:
+  test:
+    strategy:
+      matrix:
+        platform: [ ubuntu-latest]
+        node: [ '12', '10' ]
+    name: test/node ${{ matrix.node }}/${{ matrix.platform }}
+    runs-on: ${{ matrix.platform }}
+    steps:
+    - run: npm install -g yarn
+    - run: yarn install
+    - run: yarn test
+    - run: yarn build
+  coverage:
+    needs: [ test ]
+    name: coverage
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: actions/setup-node@master
+      with:
+        node-version: '12'
+    - run: npm install -g yarn
+    - run: yarn install
+    - run: yarn test -- --coverage --watchAll=false
+    - uses: paambaati/codeclimate-action@v2.2.4
+      env:
+        CC_TEST_REPORTER_ID: 642de6b1139d9d31e87d48a5e8917fbc3aea28ae51d4760bb3c9490983fe62cd
+      with:
+        coverageCommand: yarn test -- --coverage --watchAll=false
