@@ -1,61 +1,58 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Snapshot should not have changes 1`] = `
-<BarChart
+<CalendarHeatChart
   data={
     Array [
       Array [
-        "City",
-        "2010 Population",
-        "2000 Population",
+        Object {
+          "id": "Date",
+          "type": "date",
+        },
+        Object {
+          "id": "Won/Loss",
+          "type": "number",
+        },
       ],
       Array [
-        "New York City, NY",
-        8175000,
-        8008000,
+        2013-02-04T10:40:00.000Z,
+        37032,
       ],
       Array [
-        "Los Angeles, CA",
-        3792000,
-        3694000,
+        2013-02-04T10:40:00.000Z,
+        37032,
       ],
       Array [
-        "Chicago, IL",
-        2695000,
-        2896000,
+        2013-02-04T10:40:00.000Z,
+        37032,
       ],
       Array [
-        "Houston, TX",
-        2099000,
-        1953000,
+        2013-02-04T10:40:00.000Z,
+        37032,
       ],
       Array [
-        "Philadelphia, PA",
-        1526000,
-        1517000,
+        2013-02-04T10:40:00.000Z,
+        37032,
       ],
     ]
   }
   options={
     Object {
-      "chartArea": Object {
-        "width": "50%",
+      "calendar": Object {
+        "cellColor": Object {
+          "stroke": "#76a7fa",
+          "strokeOpacity": 0.5,
+          "strokeWidth": 1,
+        },
       },
-      "hAxis": Object {
-        "minValue": 0,
-        "title": "Total Population",
-      },
-      "title": "Population of Largest U.S. Cities",
-      "vAxis": Object {
-        "title": "City",
-      },
+      "title": "Red Sox Attendance",
     }
   }
 >
   <Chart
     chartActions={null}
     chartEvents={null}
-    chartType="BarChart"
+    chartType="Calendar"
     chartWrapperParams={Object {}}
     className=""
     columns={null}
@@ -63,34 +60,34 @@ exports[`Snapshot should not have changes 1`] = `
     data={
       Array [
         Array [
-          "City",
-          "2010 Population",
-          "2000 Population",
+          Object {
+            "id": "Date",
+            "type": "date",
+          },
+          Object {
+            "id": "Won/Loss",
+            "type": "number",
+          },
         ],
         Array [
-          "New York City, NY",
-          8175000,
-          8008000,
+          2013-02-04T10:40:00.000Z,
+          37032,
         ],
         Array [
-          "Los Angeles, CA",
-          3792000,
-          3694000,
+          2013-02-04T10:40:00.000Z,
+          37032,
         ],
         Array [
-          "Chicago, IL",
-          2695000,
-          2896000,
+          2013-02-04T10:40:00.000Z,
+          37032,
         ],
         Array [
-          "Houston, TX",
-          2099000,
-          1953000,
+          2013-02-04T10:40:00.000Z,
+          37032,
         ],
         Array [
-          "Philadelphia, PA",
-          1526000,
-          1517000,
+          2013-02-04T10:40:00.000Z,
+          37032,
         ],
       ]
     }
@@ -100,33 +97,30 @@ exports[`Snapshot should not have changes 1`] = `
     getChartWrapper={[Function]}
     graphID={null}
     graph_id={null}
-    height="300px"
+    height="350px"
     legendToggle={false}
     legend_toggle={false}
     loader={
       <div>
-        Loading Chart
+        Carregando Gráfico
       </div>
     }
     options={
       Object {
-        "chartArea": Object {
-          "width": "50%",
+        "calendar": Object {
+          "cellColor": Object {
+            "stroke": "#76a7fa",
+            "strokeOpacity": 0.5,
+            "strokeWidth": 1,
+          },
         },
-        "hAxis": Object {
-          "minValue": 0,
-          "title": "Total Population",
-        },
-        "title": "Population of Largest U.S. Cities",
-        "vAxis": Object {
-          "title": "City",
-        },
+        "title": "Red Sox Attendance",
       }
     }
     render={null}
     rootProps={
       Object {
-        "data-testid": "bar-chart",
+        "data-testid": "1",
       }
     }
     rows={null}
@@ -140,48 +134,48 @@ exports[`Snapshot should not have changes 1`] = `
     style={Object {}}
     toolbarID={null}
     toolbarItems={null}
-    width="500px"
+    width="1000px"
   >
     <ContextProvider
       value={
         Object {
           "chartActions": null,
           "chartEvents": null,
-          "chartType": "BarChart",
+          "chartType": "Calendar",
           "chartWrapperParams": Object {},
           "className": "",
           "columns": null,
           "controls": null,
           "data": Array [
             Array [
-              "City",
-              "2010 Population",
-              "2000 Population",
+              Object {
+                "id": "Date",
+                "type": "date",
+              },
+              Object {
+                "id": "Won/Loss",
+                "type": "number",
+              },
             ],
             Array [
-              "New York City, NY",
-              8175000,
-              8008000,
+              2013-02-04T10:40:00.000Z,
+              37032,
             ],
             Array [
-              "Los Angeles, CA",
-              3792000,
-              3694000,
+              2013-02-04T10:40:00.000Z,
+              37032,
             ],
             Array [
-              "Chicago, IL",
-              2695000,
-              2896000,
+              2013-02-04T10:40:00.000Z,
+              37032,
             ],
             Array [
-              "Houston, TX",
-              2099000,
-              1953000,
+              2013-02-04T10:40:00.000Z,
+              37032,
             ],
             Array [
-              "Philadelphia, PA",
-              1526000,
-              1517000,
+              2013-02-04T10:40:00.000Z,
+              37032,
             ],
           ],
           "diffdata": null,
@@ -190,28 +184,25 @@ exports[`Snapshot should not have changes 1`] = `
           "getChartWrapper": [Function],
           "graphID": null,
           "graph_id": null,
-          "height": "300px",
+          "height": "350px",
           "legendToggle": false,
           "legend_toggle": false,
           "loader": <div>
-            Loading Chart
+            Carregando Gráfico
           </div>,
           "options": Object {
-            "chartArea": Object {
-              "width": "50%",
+            "calendar": Object {
+              "cellColor": Object {
+                "stroke": "#76a7fa",
+                "strokeOpacity": 0.5,
+                "strokeWidth": 1,
+              },
             },
-            "hAxis": Object {
-              "minValue": 0,
-              "title": "Total Population",
-            },
-            "title": "Population of Largest U.S. Cities",
-            "vAxis": Object {
-              "title": "City",
-            },
+            "title": "Red Sox Attendance",
           },
           "render": null,
           "rootProps": Object {
-            "data-testid": "bar-chart",
+            "data-testid": "1",
           },
           "rows": null,
           "spreadSheetQueryParameters": Object {
@@ -222,12 +213,12 @@ exports[`Snapshot should not have changes 1`] = `
           "style": Object {},
           "toolbarID": null,
           "toolbarItems": null,
-          "width": "500px",
+          "width": "1000px",
         }
       }
     >
       <div>
-        Loading Chart
+        Carregando Gráfico
       </div>
       <GoogleChartLoader
         onError={[Function]}
@@ -243,5 +234,5 @@ exports[`Snapshot should not have changes 1`] = `
       </GoogleChartLoader>
     </ContextProvider>
   </Chart>
-</BarChart>
+</CalendarHeatChart>
 `;

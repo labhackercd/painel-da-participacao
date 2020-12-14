@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {shallow, render, mount} from "enzyme";
-import TreeMapChart from './../index';
+import BarChart from './../index';
 
-const treeMapChartdata = {
+const barChartdata = {
     values: [
     ['City', '2010 Population', '2000 Population'],
     ['New York City, NY', 8175000, 8008000],
@@ -26,12 +26,12 @@ const treeMapChartdata = {
 };
 
 test("Snapshot should not have changes", () => {
-    const component = mount(<TreeMapChart data={treeMapChartdata.values} options={treeMapChartdata.options}></TreeMapChart>);
+    const component = mount(<BarChart data={barChartdata.values} options={barChartdata.options}></BarChart>);
     expect(component.exists()).toEqual(true);
     expect(component).toMatchSnapshot();
 });
 
 it("Mounts the chart with the data", () => {
     const div = document.createElement("div")
-    ReactDOM.render(<TreeMapChart data={treeMapChartdata.values} options={treeMapChartdata.options}></TreeMapChart>, div)
+    ReactDOM.render(<BarChart data={barChartdata.values} options={barChartdata.options}></BarChart>, div)
 });
