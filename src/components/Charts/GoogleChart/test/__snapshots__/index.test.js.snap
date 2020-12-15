@@ -1,0 +1,1828 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test Bar Chart Snapshot of GoogleChart should not have changes 1`] = `
+<GoogleChart
+  chartType="BarChart"
+  data={
+    Array [
+      Array [
+        "City",
+        "2010 Population",
+        "2000 Population",
+      ],
+      Array [
+        "New York City, NY",
+        8175000,
+        8008000,
+      ],
+      Array [
+        "Los Angeles, CA",
+        3792000,
+        3694000,
+      ],
+      Array [
+        "Chicago, IL",
+        2695000,
+        2896000,
+      ],
+      Array [
+        "Houston, TX",
+        2099000,
+        1953000,
+      ],
+      Array [
+        "Philadelphia, PA",
+        1526000,
+        1517000,
+      ],
+    ]
+  }
+  options={
+    Object {
+      "chartArea": Object {
+        "width": "50%",
+      },
+      "hAxis": Object {
+        "minValue": 0,
+        "title": "Total Population",
+      },
+      "title": "Population of Largest U.S. Cities",
+      "vAxis": Object {
+        "title": "City",
+      },
+    }
+  }
+>
+  <Chart
+    chartActions={null}
+    chartEvents={null}
+    chartType="BarChart"
+    chartWrapperParams={Object {}}
+    className=""
+    columns={null}
+    controls={null}
+    data={
+      Array [
+        Array [
+          "City",
+          "2010 Population",
+          "2000 Population",
+        ],
+        Array [
+          "New York City, NY",
+          8175000,
+          8008000,
+        ],
+        Array [
+          "Los Angeles, CA",
+          3792000,
+          3694000,
+        ],
+        Array [
+          "Chicago, IL",
+          2695000,
+          2896000,
+        ],
+        Array [
+          "Houston, TX",
+          2099000,
+          1953000,
+        ],
+        Array [
+          "Philadelphia, PA",
+          1526000,
+          1517000,
+        ],
+      ]
+    }
+    diffdata={null}
+    formatters={null}
+    getChartEditor={null}
+    getChartWrapper={[Function]}
+    graphID={null}
+    graph_id={null}
+    height="300px"
+    legendToggle={false}
+    legend_toggle={false}
+    loader={
+      <div>
+        Carregando Gráfico
+      </div>
+    }
+    options={
+      Object {
+        "chartArea": Object {
+          "width": "50%",
+        },
+        "hAxis": Object {
+          "minValue": 0,
+          "title": "Total Population",
+        },
+        "title": "Population of Largest U.S. Cities",
+        "vAxis": Object {
+          "title": "City",
+        },
+      }
+    }
+    render={null}
+    rootProps={
+      Object {
+        "data-testid": "2",
+      }
+    }
+    rows={null}
+    spreadSheetQueryParameters={
+      Object {
+        "gid": 1,
+        "headers": 1,
+      }
+    }
+    spreadSheetUrl={null}
+    style={Object {}}
+    toolbarID={null}
+    toolbarItems={null}
+    width="500px"
+  >
+    <ContextProvider
+      value={
+        Object {
+          "chartActions": null,
+          "chartEvents": null,
+          "chartType": "BarChart",
+          "chartWrapperParams": Object {},
+          "className": "",
+          "columns": null,
+          "controls": null,
+          "data": Array [
+            Array [
+              "City",
+              "2010 Population",
+              "2000 Population",
+            ],
+            Array [
+              "New York City, NY",
+              8175000,
+              8008000,
+            ],
+            Array [
+              "Los Angeles, CA",
+              3792000,
+              3694000,
+            ],
+            Array [
+              "Chicago, IL",
+              2695000,
+              2896000,
+            ],
+            Array [
+              "Houston, TX",
+              2099000,
+              1953000,
+            ],
+            Array [
+              "Philadelphia, PA",
+              1526000,
+              1517000,
+            ],
+          ],
+          "diffdata": null,
+          "formatters": null,
+          "getChartEditor": null,
+          "getChartWrapper": [Function],
+          "graphID": null,
+          "graph_id": null,
+          "height": "300px",
+          "legendToggle": false,
+          "legend_toggle": false,
+          "loader": <div>
+            Carregando Gráfico
+          </div>,
+          "options": Object {
+            "chartArea": Object {
+              "width": "50%",
+            },
+            "hAxis": Object {
+              "minValue": 0,
+              "title": "Total Population",
+            },
+            "title": "Population of Largest U.S. Cities",
+            "vAxis": Object {
+              "title": "City",
+            },
+          },
+          "render": null,
+          "rootProps": Object {
+            "data-testid": "2",
+          },
+          "rows": null,
+          "spreadSheetQueryParameters": Object {
+            "gid": 1,
+            "headers": 1,
+          },
+          "spreadSheetUrl": null,
+          "style": Object {},
+          "toolbarID": null,
+          "toolbarItems": null,
+          "width": "500px",
+        }
+      }
+    >
+      <div>
+        Carregando Gráfico
+      </div>
+      <GoogleChartLoader
+        onError={[Function]}
+        onLoad={[Function]}
+      >
+        <Script
+          attributes={Object {}}
+          onCreate={[Function]}
+          onError={[Function]}
+          onLoad={[Function]}
+          url="https://www.gstatic.com/charts/loader.js"
+        />
+      </GoogleChartLoader>
+    </ContextProvider>
+  </Chart>
+</GoogleChart>
+`;
+
+exports[`Test Calendar Heat Chart Snapshot of Calendar Heat Chart should not have changes 1`] = `
+<GoogleChart
+  chartType="Calendar"
+  data={
+    Array [
+      Array [
+        Object {
+          "id": "Date",
+          "type": "date",
+        },
+        Object {
+          "id": "Won/Loss",
+          "type": "number",
+        },
+      ],
+      Array [
+        2013-02-04T10:40:00.000Z,
+        37032,
+      ],
+      Array [
+        2013-02-04T10:40:00.000Z,
+        37032,
+      ],
+      Array [
+        2013-02-04T10:40:00.000Z,
+        37032,
+      ],
+      Array [
+        2013-02-04T10:40:00.000Z,
+        37032,
+      ],
+      Array [
+        2013-02-04T10:40:00.000Z,
+        37032,
+      ],
+    ]
+  }
+  options={
+    Object {
+      "calendar": Object {
+        "cellColor": Object {
+          "stroke": "#76a7fa",
+          "strokeOpacity": 0.5,
+          "strokeWidth": 1,
+        },
+      },
+      "title": "Red Sox Attendance",
+    }
+  }
+>
+  <Chart
+    chartActions={null}
+    chartEvents={null}
+    chartType="Calendar"
+    chartWrapperParams={Object {}}
+    className=""
+    columns={null}
+    controls={null}
+    data={
+      Array [
+        Array [
+          Object {
+            "id": "Date",
+            "type": "date",
+          },
+          Object {
+            "id": "Won/Loss",
+            "type": "number",
+          },
+        ],
+        Array [
+          2013-02-04T10:40:00.000Z,
+          37032,
+        ],
+        Array [
+          2013-02-04T10:40:00.000Z,
+          37032,
+        ],
+        Array [
+          2013-02-04T10:40:00.000Z,
+          37032,
+        ],
+        Array [
+          2013-02-04T10:40:00.000Z,
+          37032,
+        ],
+        Array [
+          2013-02-04T10:40:00.000Z,
+          37032,
+        ],
+      ]
+    }
+    diffdata={null}
+    formatters={null}
+    getChartEditor={null}
+    getChartWrapper={[Function]}
+    graphID={null}
+    graph_id={null}
+    height="300px"
+    legendToggle={false}
+    legend_toggle={false}
+    loader={
+      <div>
+        Carregando Gráfico
+      </div>
+    }
+    options={
+      Object {
+        "calendar": Object {
+          "cellColor": Object {
+            "stroke": "#76a7fa",
+            "strokeOpacity": 0.5,
+            "strokeWidth": 1,
+          },
+        },
+        "title": "Red Sox Attendance",
+      }
+    }
+    render={null}
+    rootProps={
+      Object {
+        "data-testid": "2",
+      }
+    }
+    rows={null}
+    spreadSheetQueryParameters={
+      Object {
+        "gid": 1,
+        "headers": 1,
+      }
+    }
+    spreadSheetUrl={null}
+    style={Object {}}
+    toolbarID={null}
+    toolbarItems={null}
+    width="500px"
+  >
+    <ContextProvider
+      value={
+        Object {
+          "chartActions": null,
+          "chartEvents": null,
+          "chartType": "Calendar",
+          "chartWrapperParams": Object {},
+          "className": "",
+          "columns": null,
+          "controls": null,
+          "data": Array [
+            Array [
+              Object {
+                "id": "Date",
+                "type": "date",
+              },
+              Object {
+                "id": "Won/Loss",
+                "type": "number",
+              },
+            ],
+            Array [
+              2013-02-04T10:40:00.000Z,
+              37032,
+            ],
+            Array [
+              2013-02-04T10:40:00.000Z,
+              37032,
+            ],
+            Array [
+              2013-02-04T10:40:00.000Z,
+              37032,
+            ],
+            Array [
+              2013-02-04T10:40:00.000Z,
+              37032,
+            ],
+            Array [
+              2013-02-04T10:40:00.000Z,
+              37032,
+            ],
+          ],
+          "diffdata": null,
+          "formatters": null,
+          "getChartEditor": null,
+          "getChartWrapper": [Function],
+          "graphID": null,
+          "graph_id": null,
+          "height": "300px",
+          "legendToggle": false,
+          "legend_toggle": false,
+          "loader": <div>
+            Carregando Gráfico
+          </div>,
+          "options": Object {
+            "calendar": Object {
+              "cellColor": Object {
+                "stroke": "#76a7fa",
+                "strokeOpacity": 0.5,
+                "strokeWidth": 1,
+              },
+            },
+            "title": "Red Sox Attendance",
+          },
+          "render": null,
+          "rootProps": Object {
+            "data-testid": "2",
+          },
+          "rows": null,
+          "spreadSheetQueryParameters": Object {
+            "gid": 1,
+            "headers": 1,
+          },
+          "spreadSheetUrl": null,
+          "style": Object {},
+          "toolbarID": null,
+          "toolbarItems": null,
+          "width": "500px",
+        }
+      }
+    >
+      <div>
+        Carregando Gráfico
+      </div>
+      <GoogleChartLoader
+        onError={[Function]}
+        onLoad={[Function]}
+      >
+        <Script
+          attributes={Object {}}
+          onCreate={[Function]}
+          onError={[Function]}
+          onLoad={[Function]}
+          url="https://www.gstatic.com/charts/loader.js"
+        />
+      </GoogleChartLoader>
+    </ContextProvider>
+  </Chart>
+</GoogleChart>
+`;
+
+exports[`Test Curve Line Chart Snapshot of Line Chart should not have changes 1`] = `
+<GoogleChart
+  chartType="LineChart"
+  data={
+    Array [
+      Array [
+        "ano",
+        "Usuários",
+      ],
+      Array [
+        "2016",
+        134,
+      ],
+      Array [
+        "2017",
+        523,
+      ],
+      Array [
+        "2018",
+        400,
+      ],
+      Array [
+        "2019",
+        843,
+      ],
+      Array [
+        "2020",
+        1432,
+      ],
+    ]
+  }
+  options={
+    Object {
+      "backgroundColor": "#000000",
+      "curveType": "function",
+      "hAxis": Object {
+        "textStyle": Object {
+          "color": "#FFFFFF",
+        },
+      },
+      "legend": Object {
+        "textStyle": Object {
+          "color": "white",
+        },
+      },
+      "vAxis": Object {
+        "gridlines": Object {
+          "color": "transparent",
+        },
+        "textPosition": "none",
+      },
+    }
+  }
+>
+  <Chart
+    chartActions={null}
+    chartEvents={null}
+    chartType="LineChart"
+    chartWrapperParams={Object {}}
+    className=""
+    columns={null}
+    controls={null}
+    data={
+      Array [
+        Array [
+          "ano",
+          "Usuários",
+        ],
+        Array [
+          "2016",
+          134,
+        ],
+        Array [
+          "2017",
+          523,
+        ],
+        Array [
+          "2018",
+          400,
+        ],
+        Array [
+          "2019",
+          843,
+        ],
+        Array [
+          "2020",
+          1432,
+        ],
+      ]
+    }
+    diffdata={null}
+    formatters={null}
+    getChartEditor={null}
+    getChartWrapper={[Function]}
+    graphID={null}
+    graph_id={null}
+    height="300px"
+    legendToggle={false}
+    legend_toggle={false}
+    loader={
+      <div>
+        Carregando Gráfico
+      </div>
+    }
+    options={
+      Object {
+        "backgroundColor": "#000000",
+        "curveType": "function",
+        "hAxis": Object {
+          "textStyle": Object {
+            "color": "#FFFFFF",
+          },
+        },
+        "legend": Object {
+          "textStyle": Object {
+            "color": "white",
+          },
+        },
+        "vAxis": Object {
+          "gridlines": Object {
+            "color": "transparent",
+          },
+          "textPosition": "none",
+        },
+      }
+    }
+    render={null}
+    rootProps={
+      Object {
+        "data-testid": "2",
+      }
+    }
+    rows={null}
+    spreadSheetQueryParameters={
+      Object {
+        "gid": 1,
+        "headers": 1,
+      }
+    }
+    spreadSheetUrl={null}
+    style={Object {}}
+    toolbarID={null}
+    toolbarItems={null}
+    width="500px"
+  >
+    <ContextProvider
+      value={
+        Object {
+          "chartActions": null,
+          "chartEvents": null,
+          "chartType": "LineChart",
+          "chartWrapperParams": Object {},
+          "className": "",
+          "columns": null,
+          "controls": null,
+          "data": Array [
+            Array [
+              "ano",
+              "Usuários",
+            ],
+            Array [
+              "2016",
+              134,
+            ],
+            Array [
+              "2017",
+              523,
+            ],
+            Array [
+              "2018",
+              400,
+            ],
+            Array [
+              "2019",
+              843,
+            ],
+            Array [
+              "2020",
+              1432,
+            ],
+          ],
+          "diffdata": null,
+          "formatters": null,
+          "getChartEditor": null,
+          "getChartWrapper": [Function],
+          "graphID": null,
+          "graph_id": null,
+          "height": "300px",
+          "legendToggle": false,
+          "legend_toggle": false,
+          "loader": <div>
+            Carregando Gráfico
+          </div>,
+          "options": Object {
+            "backgroundColor": "#000000",
+            "curveType": "function",
+            "hAxis": Object {
+              "textStyle": Object {
+                "color": "#FFFFFF",
+              },
+            },
+            "legend": Object {
+              "textStyle": Object {
+                "color": "white",
+              },
+            },
+            "vAxis": Object {
+              "gridlines": Object {
+                "color": "transparent",
+              },
+              "textPosition": "none",
+            },
+          },
+          "render": null,
+          "rootProps": Object {
+            "data-testid": "2",
+          },
+          "rows": null,
+          "spreadSheetQueryParameters": Object {
+            "gid": 1,
+            "headers": 1,
+          },
+          "spreadSheetUrl": null,
+          "style": Object {},
+          "toolbarID": null,
+          "toolbarItems": null,
+          "width": "500px",
+        }
+      }
+    >
+      <div>
+        Carregando Gráfico
+      </div>
+      <GoogleChartLoader
+        onError={[Function]}
+        onLoad={[Function]}
+      >
+        <Script
+          attributes={Object {}}
+          onCreate={[Function]}
+          onError={[Function]}
+          onLoad={[Function]}
+          url="https://www.gstatic.com/charts/loader.js"
+        />
+      </GoogleChartLoader>
+    </ContextProvider>
+  </Chart>
+</GoogleChart>
+`;
+
+exports[`Test Pie Chart Snapshot of Pie Chart should not have changes 1`] = `
+<GoogleChart
+  chartType="PieChart"
+  data={
+    Array [
+      Array [
+        "Dispositivo",
+        "Acessos",
+      ],
+      Array [
+        "Mobile",
+        15,
+      ],
+      Array [
+        "Desktop",
+        15,
+      ],
+      Array [
+        "Tablet",
+        70,
+      ],
+    ]
+  }
+  options={
+    Object {
+      "backgroundColor": "#000000",
+      "colors": Array [
+        "#855CF8",
+        "#503795",
+        "#E289F2",
+      ],
+      "legend": Object {
+        "textStyle": Object {
+          "color": "white",
+        },
+      },
+    }
+  }
+>
+  <Chart
+    chartActions={null}
+    chartEvents={null}
+    chartType="PieChart"
+    chartWrapperParams={Object {}}
+    className=""
+    columns={null}
+    controls={null}
+    data={
+      Array [
+        Array [
+          "Dispositivo",
+          "Acessos",
+        ],
+        Array [
+          "Mobile",
+          15,
+        ],
+        Array [
+          "Desktop",
+          15,
+        ],
+        Array [
+          "Tablet",
+          70,
+        ],
+      ]
+    }
+    diffdata={null}
+    formatters={null}
+    getChartEditor={null}
+    getChartWrapper={[Function]}
+    graphID={null}
+    graph_id={null}
+    height="300px"
+    legendToggle={false}
+    legend_toggle={false}
+    loader={
+      <div>
+        Carregando Gráfico
+      </div>
+    }
+    options={
+      Object {
+        "backgroundColor": "#000000",
+        "colors": Array [
+          "#855CF8",
+          "#503795",
+          "#E289F2",
+        ],
+        "legend": Object {
+          "textStyle": Object {
+            "color": "white",
+          },
+        },
+      }
+    }
+    render={null}
+    rootProps={
+      Object {
+        "data-testid": "2",
+      }
+    }
+    rows={null}
+    spreadSheetQueryParameters={
+      Object {
+        "gid": 1,
+        "headers": 1,
+      }
+    }
+    spreadSheetUrl={null}
+    style={Object {}}
+    toolbarID={null}
+    toolbarItems={null}
+    width="500px"
+  >
+    <ContextProvider
+      value={
+        Object {
+          "chartActions": null,
+          "chartEvents": null,
+          "chartType": "PieChart",
+          "chartWrapperParams": Object {},
+          "className": "",
+          "columns": null,
+          "controls": null,
+          "data": Array [
+            Array [
+              "Dispositivo",
+              "Acessos",
+            ],
+            Array [
+              "Mobile",
+              15,
+            ],
+            Array [
+              "Desktop",
+              15,
+            ],
+            Array [
+              "Tablet",
+              70,
+            ],
+          ],
+          "diffdata": null,
+          "formatters": null,
+          "getChartEditor": null,
+          "getChartWrapper": [Function],
+          "graphID": null,
+          "graph_id": null,
+          "height": "300px",
+          "legendToggle": false,
+          "legend_toggle": false,
+          "loader": <div>
+            Carregando Gráfico
+          </div>,
+          "options": Object {
+            "backgroundColor": "#000000",
+            "colors": Array [
+              "#855CF8",
+              "#503795",
+              "#E289F2",
+            ],
+            "legend": Object {
+              "textStyle": Object {
+                "color": "white",
+              },
+            },
+          },
+          "render": null,
+          "rootProps": Object {
+            "data-testid": "2",
+          },
+          "rows": null,
+          "spreadSheetQueryParameters": Object {
+            "gid": 1,
+            "headers": 1,
+          },
+          "spreadSheetUrl": null,
+          "style": Object {},
+          "toolbarID": null,
+          "toolbarItems": null,
+          "width": "500px",
+        }
+      }
+    >
+      <div>
+        Carregando Gráfico
+      </div>
+      <GoogleChartLoader
+        onError={[Function]}
+        onLoad={[Function]}
+      >
+        <Script
+          attributes={Object {}}
+          onCreate={[Function]}
+          onError={[Function]}
+          onLoad={[Function]}
+          url="https://www.gstatic.com/charts/loader.js"
+        />
+      </GoogleChartLoader>
+    </ContextProvider>
+  </Chart>
+</GoogleChart>
+`;
+
+exports[`Test Stacked Bar Chart Snapshot of Stacked Bar Chart should not have changes 1`] = `
+<GoogleChart
+  chartType="BarChart"
+  data={
+    Array [
+      Array [
+        "Ferramenta",
+        "Audiências Interativas",
+        "Wikilegis",
+        "Enquetes",
+        "Pauta Participativa",
+      ],
+      Array [
+        "",
+        300,
+        800,
+        231,
+        545,
+      ],
+    ]
+  }
+  options={
+    Object {
+      "backgroundColor": "#000000",
+      "bar": Object {
+        "groupWidth": "30%",
+      },
+      "colors": Array [
+        "#FFC107",
+        "#76D275",
+        "#6EC6FF",
+        "#FF6F60",
+      ],
+      "hAxis": Object {
+        "gridlines": Object {
+          "color": "transparent",
+        },
+        "minValue": 0,
+        "textPosition": "none",
+      },
+      "isStacked": "relative",
+      "legend": Object {
+        "maxLines": 3,
+        "position": "top",
+        "textStyle": Object {
+          "color": "white",
+        },
+      },
+    }
+  }
+>
+  <Chart
+    chartActions={null}
+    chartEvents={null}
+    chartType="BarChart"
+    chartWrapperParams={Object {}}
+    className=""
+    columns={null}
+    controls={null}
+    data={
+      Array [
+        Array [
+          "Ferramenta",
+          "Audiências Interativas",
+          "Wikilegis",
+          "Enquetes",
+          "Pauta Participativa",
+        ],
+        Array [
+          "",
+          300,
+          800,
+          231,
+          545,
+        ],
+      ]
+    }
+    diffdata={null}
+    formatters={null}
+    getChartEditor={null}
+    getChartWrapper={[Function]}
+    graphID={null}
+    graph_id={null}
+    height="300px"
+    legendToggle={false}
+    legend_toggle={false}
+    loader={
+      <div>
+        Carregando Gráfico
+      </div>
+    }
+    options={
+      Object {
+        "backgroundColor": "#000000",
+        "bar": Object {
+          "groupWidth": "30%",
+        },
+        "colors": Array [
+          "#FFC107",
+          "#76D275",
+          "#6EC6FF",
+          "#FF6F60",
+        ],
+        "hAxis": Object {
+          "gridlines": Object {
+            "color": "transparent",
+          },
+          "minValue": 0,
+          "textPosition": "none",
+        },
+        "isStacked": "relative",
+        "legend": Object {
+          "maxLines": 3,
+          "position": "top",
+          "textStyle": Object {
+            "color": "white",
+          },
+        },
+      }
+    }
+    render={null}
+    rootProps={
+      Object {
+        "data-testid": "2",
+      }
+    }
+    rows={null}
+    spreadSheetQueryParameters={
+      Object {
+        "gid": 1,
+        "headers": 1,
+      }
+    }
+    spreadSheetUrl={null}
+    style={Object {}}
+    toolbarID={null}
+    toolbarItems={null}
+    width="500px"
+  >
+    <ContextProvider
+      value={
+        Object {
+          "chartActions": null,
+          "chartEvents": null,
+          "chartType": "BarChart",
+          "chartWrapperParams": Object {},
+          "className": "",
+          "columns": null,
+          "controls": null,
+          "data": Array [
+            Array [
+              "Ferramenta",
+              "Audiências Interativas",
+              "Wikilegis",
+              "Enquetes",
+              "Pauta Participativa",
+            ],
+            Array [
+              "",
+              300,
+              800,
+              231,
+              545,
+            ],
+          ],
+          "diffdata": null,
+          "formatters": null,
+          "getChartEditor": null,
+          "getChartWrapper": [Function],
+          "graphID": null,
+          "graph_id": null,
+          "height": "300px",
+          "legendToggle": false,
+          "legend_toggle": false,
+          "loader": <div>
+            Carregando Gráfico
+          </div>,
+          "options": Object {
+            "backgroundColor": "#000000",
+            "bar": Object {
+              "groupWidth": "30%",
+            },
+            "colors": Array [
+              "#FFC107",
+              "#76D275",
+              "#6EC6FF",
+              "#FF6F60",
+            ],
+            "hAxis": Object {
+              "gridlines": Object {
+                "color": "transparent",
+              },
+              "minValue": 0,
+              "textPosition": "none",
+            },
+            "isStacked": "relative",
+            "legend": Object {
+              "maxLines": 3,
+              "position": "top",
+              "textStyle": Object {
+                "color": "white",
+              },
+            },
+          },
+          "render": null,
+          "rootProps": Object {
+            "data-testid": "2",
+          },
+          "rows": null,
+          "spreadSheetQueryParameters": Object {
+            "gid": 1,
+            "headers": 1,
+          },
+          "spreadSheetUrl": null,
+          "style": Object {},
+          "toolbarID": null,
+          "toolbarItems": null,
+          "width": "500px",
+        }
+      }
+    >
+      <div>
+        Carregando Gráfico
+      </div>
+      <GoogleChartLoader
+        onError={[Function]}
+        onLoad={[Function]}
+      >
+        <Script
+          attributes={Object {}}
+          onCreate={[Function]}
+          onError={[Function]}
+          onLoad={[Function]}
+          url="https://www.gstatic.com/charts/loader.js"
+        />
+      </GoogleChartLoader>
+    </ContextProvider>
+  </Chart>
+</GoogleChart>
+`;
+
+exports[`Test TreeMap Chart Snapshot of TreeMap Chart should not have changes 1`] = `
+<GoogleChart
+  chartType="TreeMap"
+  data={
+    Array [
+      Array [
+        "Location",
+        "Parent",
+        "Market trade volume (size)",
+        "Market increase/decrease (color)",
+      ],
+      Array [
+        "Global",
+        null,
+        0,
+        0,
+      ],
+      Array [
+        "America",
+        "Global",
+        0,
+        0,
+      ],
+      Array [
+        "Europe",
+        "Global",
+        0,
+        0,
+      ],
+      Array [
+        "Asia",
+        "Global",
+        0,
+        0,
+      ],
+      Array [
+        "Australia",
+        "Global",
+        0,
+        0,
+      ],
+      Array [
+        "Africa",
+        "Global",
+        0,
+        0,
+      ],
+      Array [
+        "Brazil",
+        "America",
+        11,
+        10,
+      ],
+      Array [
+        "USA",
+        "America",
+        52,
+        31,
+      ],
+      Array [
+        "Mexico",
+        "America",
+        24,
+        12,
+      ],
+      Array [
+        "Canada",
+        "America",
+        16,
+        -23,
+      ],
+      Array [
+        "France",
+        "Europe",
+        42,
+        -11,
+      ],
+      Array [
+        "Germany",
+        "Europe",
+        31,
+        -2,
+      ],
+      Array [
+        "Sweden",
+        "Europe",
+        22,
+        -13,
+      ],
+      Array [
+        "Italy",
+        "Europe",
+        17,
+        4,
+      ],
+      Array [
+        "UK",
+        "Europe",
+        21,
+        -5,
+      ],
+      Array [
+        "China",
+        "Asia",
+        36,
+        4,
+      ],
+      Array [
+        "Japan",
+        "Asia",
+        20,
+        -12,
+      ],
+      Array [
+        "India",
+        "Asia",
+        40,
+        63,
+      ],
+      Array [
+        "Laos",
+        "Asia",
+        4,
+        34,
+      ],
+      Array [
+        "Mongolia",
+        "Asia",
+        1,
+        -5,
+      ],
+      Array [
+        "Iran",
+        "Asia",
+        18,
+        13,
+      ],
+      Array [
+        "Pakistan",
+        "Asia",
+        11,
+        -52,
+      ],
+      Array [
+        "Egypt",
+        "Africa",
+        21,
+        0,
+      ],
+      Array [
+        "S. Africa",
+        "Africa",
+        30,
+        43,
+      ],
+      Array [
+        "Sudan",
+        "Africa",
+        12,
+        2,
+      ],
+      Array [
+        "Congo",
+        "Africa",
+        10,
+        12,
+      ],
+      Array [
+        "Zaire",
+        "Africa",
+        8,
+        10,
+      ],
+    ]
+  }
+  options={
+    Object {
+      "fontColor": "black",
+      "headerHeight": 15,
+      "maxColor": "#0d0",
+      "midColor": "#ddd",
+      "minColor": "#f00",
+      "showScale": true,
+    }
+  }
+>
+  <Chart
+    chartActions={null}
+    chartEvents={null}
+    chartType="TreeMap"
+    chartWrapperParams={Object {}}
+    className=""
+    columns={null}
+    controls={null}
+    data={
+      Array [
+        Array [
+          "Location",
+          "Parent",
+          "Market trade volume (size)",
+          "Market increase/decrease (color)",
+        ],
+        Array [
+          "Global",
+          null,
+          0,
+          0,
+        ],
+        Array [
+          "America",
+          "Global",
+          0,
+          0,
+        ],
+        Array [
+          "Europe",
+          "Global",
+          0,
+          0,
+        ],
+        Array [
+          "Asia",
+          "Global",
+          0,
+          0,
+        ],
+        Array [
+          "Australia",
+          "Global",
+          0,
+          0,
+        ],
+        Array [
+          "Africa",
+          "Global",
+          0,
+          0,
+        ],
+        Array [
+          "Brazil",
+          "America",
+          11,
+          10,
+        ],
+        Array [
+          "USA",
+          "America",
+          52,
+          31,
+        ],
+        Array [
+          "Mexico",
+          "America",
+          24,
+          12,
+        ],
+        Array [
+          "Canada",
+          "America",
+          16,
+          -23,
+        ],
+        Array [
+          "France",
+          "Europe",
+          42,
+          -11,
+        ],
+        Array [
+          "Germany",
+          "Europe",
+          31,
+          -2,
+        ],
+        Array [
+          "Sweden",
+          "Europe",
+          22,
+          -13,
+        ],
+        Array [
+          "Italy",
+          "Europe",
+          17,
+          4,
+        ],
+        Array [
+          "UK",
+          "Europe",
+          21,
+          -5,
+        ],
+        Array [
+          "China",
+          "Asia",
+          36,
+          4,
+        ],
+        Array [
+          "Japan",
+          "Asia",
+          20,
+          -12,
+        ],
+        Array [
+          "India",
+          "Asia",
+          40,
+          63,
+        ],
+        Array [
+          "Laos",
+          "Asia",
+          4,
+          34,
+        ],
+        Array [
+          "Mongolia",
+          "Asia",
+          1,
+          -5,
+        ],
+        Array [
+          "Iran",
+          "Asia",
+          18,
+          13,
+        ],
+        Array [
+          "Pakistan",
+          "Asia",
+          11,
+          -52,
+        ],
+        Array [
+          "Egypt",
+          "Africa",
+          21,
+          0,
+        ],
+        Array [
+          "S. Africa",
+          "Africa",
+          30,
+          43,
+        ],
+        Array [
+          "Sudan",
+          "Africa",
+          12,
+          2,
+        ],
+        Array [
+          "Congo",
+          "Africa",
+          10,
+          12,
+        ],
+        Array [
+          "Zaire",
+          "Africa",
+          8,
+          10,
+        ],
+      ]
+    }
+    diffdata={null}
+    formatters={null}
+    getChartEditor={null}
+    getChartWrapper={[Function]}
+    graphID={null}
+    graph_id={null}
+    height="300px"
+    legendToggle={false}
+    legend_toggle={false}
+    loader={
+      <div>
+        Carregando Gráfico
+      </div>
+    }
+    options={
+      Object {
+        "fontColor": "black",
+        "headerHeight": 15,
+        "maxColor": "#0d0",
+        "midColor": "#ddd",
+        "minColor": "#f00",
+        "showScale": true,
+      }
+    }
+    render={null}
+    rootProps={
+      Object {
+        "data-testid": "2",
+      }
+    }
+    rows={null}
+    spreadSheetQueryParameters={
+      Object {
+        "gid": 1,
+        "headers": 1,
+      }
+    }
+    spreadSheetUrl={null}
+    style={Object {}}
+    toolbarID={null}
+    toolbarItems={null}
+    width="500px"
+  >
+    <ContextProvider
+      value={
+        Object {
+          "chartActions": null,
+          "chartEvents": null,
+          "chartType": "TreeMap",
+          "chartWrapperParams": Object {},
+          "className": "",
+          "columns": null,
+          "controls": null,
+          "data": Array [
+            Array [
+              "Location",
+              "Parent",
+              "Market trade volume (size)",
+              "Market increase/decrease (color)",
+            ],
+            Array [
+              "Global",
+              null,
+              0,
+              0,
+            ],
+            Array [
+              "America",
+              "Global",
+              0,
+              0,
+            ],
+            Array [
+              "Europe",
+              "Global",
+              0,
+              0,
+            ],
+            Array [
+              "Asia",
+              "Global",
+              0,
+              0,
+            ],
+            Array [
+              "Australia",
+              "Global",
+              0,
+              0,
+            ],
+            Array [
+              "Africa",
+              "Global",
+              0,
+              0,
+            ],
+            Array [
+              "Brazil",
+              "America",
+              11,
+              10,
+            ],
+            Array [
+              "USA",
+              "America",
+              52,
+              31,
+            ],
+            Array [
+              "Mexico",
+              "America",
+              24,
+              12,
+            ],
+            Array [
+              "Canada",
+              "America",
+              16,
+              -23,
+            ],
+            Array [
+              "France",
+              "Europe",
+              42,
+              -11,
+            ],
+            Array [
+              "Germany",
+              "Europe",
+              31,
+              -2,
+            ],
+            Array [
+              "Sweden",
+              "Europe",
+              22,
+              -13,
+            ],
+            Array [
+              "Italy",
+              "Europe",
+              17,
+              4,
+            ],
+            Array [
+              "UK",
+              "Europe",
+              21,
+              -5,
+            ],
+            Array [
+              "China",
+              "Asia",
+              36,
+              4,
+            ],
+            Array [
+              "Japan",
+              "Asia",
+              20,
+              -12,
+            ],
+            Array [
+              "India",
+              "Asia",
+              40,
+              63,
+            ],
+            Array [
+              "Laos",
+              "Asia",
+              4,
+              34,
+            ],
+            Array [
+              "Mongolia",
+              "Asia",
+              1,
+              -5,
+            ],
+            Array [
+              "Iran",
+              "Asia",
+              18,
+              13,
+            ],
+            Array [
+              "Pakistan",
+              "Asia",
+              11,
+              -52,
+            ],
+            Array [
+              "Egypt",
+              "Africa",
+              21,
+              0,
+            ],
+            Array [
+              "S. Africa",
+              "Africa",
+              30,
+              43,
+            ],
+            Array [
+              "Sudan",
+              "Africa",
+              12,
+              2,
+            ],
+            Array [
+              "Congo",
+              "Africa",
+              10,
+              12,
+            ],
+            Array [
+              "Zaire",
+              "Africa",
+              8,
+              10,
+            ],
+          ],
+          "diffdata": null,
+          "formatters": null,
+          "getChartEditor": null,
+          "getChartWrapper": [Function],
+          "graphID": null,
+          "graph_id": null,
+          "height": "300px",
+          "legendToggle": false,
+          "legend_toggle": false,
+          "loader": <div>
+            Carregando Gráfico
+          </div>,
+          "options": Object {
+            "fontColor": "black",
+            "headerHeight": 15,
+            "maxColor": "#0d0",
+            "midColor": "#ddd",
+            "minColor": "#f00",
+            "showScale": true,
+          },
+          "render": null,
+          "rootProps": Object {
+            "data-testid": "2",
+          },
+          "rows": null,
+          "spreadSheetQueryParameters": Object {
+            "gid": 1,
+            "headers": 1,
+          },
+          "spreadSheetUrl": null,
+          "style": Object {},
+          "toolbarID": null,
+          "toolbarItems": null,
+          "width": "500px",
+        }
+      }
+    >
+      <div>
+        Carregando Gráfico
+      </div>
+      <GoogleChartLoader
+        onError={[Function]}
+        onLoad={[Function]}
+      >
+        <Script
+          attributes={Object {}}
+          onCreate={[Function]}
+          onError={[Function]}
+          onLoad={[Function]}
+          url="https://www.gstatic.com/charts/loader.js"
+        />
+      </GoogleChartLoader>
+    </ContextProvider>
+  </Chart>
+</GoogleChart>
+`;
