@@ -3,8 +3,7 @@ import { Grid, Typography} from '@material-ui/core';
 import ChartDataFrame from './../ChartDataFrame';
 import { makeStyles } from '@material-ui/core/styles';
 import fetchDataFromAPI from './../DataFetcher';
-import TreeMapChart from './../Charts/TreeMapChart';
-import BarChart from './../Charts/BarChart';
+import GoogleChart from './../Charts/GoogleChart';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -111,6 +110,7 @@ export default function Audiencias(props) {
         showScale: true,
       }
   };
+
   useEffect(() => {
     loadData();
   }, []);
@@ -125,83 +125,50 @@ export default function Audiencias(props) {
   return (
         <Grid container>
           <Grid item md={3} className={classes.spacing}>
-            <ChartDataFrame height="15vh"
-                        paddingRight="0.5rem"
-                        listView={false}
-                        download={false}
-                        title="Total usuários"
-                        className={classes.positionStats}>
-                        {data ? <StyledTotalNumber number={data.users_total}/> : ''}
+            <ChartDataFrame height="15vh" paddingRight="0.5rem" listView={false} download={false} title="Total usuários"  className={classes.positionStats}>
+              {data ? <StyledTotalNumber number={data.users_total}/> : ''}
             </ChartDataFrame>
           </Grid>
           <Grid item md={3} className={classes.spacing}>
-            <ChartDataFrame height="15vh"
-                        paddingLeft="0.5rem"
-                        listView={false}
-                        download={false}
-                        title="Total Audiências">
-                        {data ? <StyledTotalNumber number={data.audiencias_total}/> : ''}
+            <ChartDataFrame height="15vh" paddingLeft="0.5rem" listView={false} download={false} title="Total Audiências">
+              {data ? <StyledTotalNumber number={data.audiencias_total}/> : ''}
             </ChartDataFrame>
           </Grid>
           <Grid item md={3} className={classes.spacing}>
-            <ChartDataFrame height="15vh"
-                        paddingLeft="0.5rem"
-                        listView={false}
-                        download={false}
-                        title="Total mensagens">
-                        {data ? <StyledTotalNumber number={data.messages_total}/> : ''}
-                        </ChartDataFrame>
+            <ChartDataFrame height="15vh"  paddingLeft="0.5rem" listView={false} download={false} title="Total mensagens">
+              {data ? <StyledTotalNumber number={data.messages_total}/> : ''}
+            </ChartDataFrame>
           </Grid>
           <Grid item md={3} className={classes.spacing}>
-            <ChartDataFrame height="15vh"
-                        paddingLeft="0.5rem"
-                        title="Total perguntas"
-                        listView={false}
-                        download={false}>
-                        {data ? <StyledTotalNumber number={data.questions_total}/> : ''}
-                        </ChartDataFrame>
+            <ChartDataFrame height="15vh" paddingLeft="0.5rem" title="Total perguntas" listView={false} download={false}>
+              {data ? <StyledTotalNumber number={data.questions_total}/> : ''}
+            </ChartDataFrame>
           </Grid>
         <Grid item md={12} className={classes.spacing}>
-          <ChartDataFrame height="60vh"
-                      title="Temas de audiências mais participativas"
-                      listView={true}
-                      export_data={data.treemap_chart_data}
-                      download={true}>
+          <ChartDataFrame height="60vh" title="Temas de audiências mais participativas" listView={true} export_data={data.treemap_chart_data} download={true}>
             <div className={classes.contentBox}>
-              <TreeMapChart data={treeMapChartdata.values} options={treeMapChartdata.options}></TreeMapChart>
-             </div>
+              <GoogleChart chartType={"TreeMap"} data={treeMapChartdata.values} options={treeMapChartdata.options}></GoogleChart>
+            </div>
           </ChartDataFrame>
         </Grid>
         <Grid container>
           <Grid item md={6} className={classes.spacing}>
-            <ChartDataFrame height="35vh"
-                        paddingRight="0.5rem"
-                        listView={true}
-                        download={true}>
-            <BarChart data={barChartdata.values} options={barChartdata.options}></BarChart>
+            <ChartDataFrame height="35vh" paddingRight="0.5rem" listView={true} download={true}>
+              <GoogleChart chartType={"BarChart"} data={barChartdata.values} options={barChartdata.options}></GoogleChart>
             </ChartDataFrame>
           </Grid>
           <Grid item md={6} className={classes.spacing}>
-            <ChartDataFrame height="35vh"
-                        paddingLeft="0.5rem"
-                        listView={true}
-                        download={true}></ChartDataFrame>
+            <ChartDataFrame height="35vh" paddingLeft="0.5rem" listView={true} download={true}></ChartDataFrame>
           </Grid>
         </Grid>
         <Grid container>
           <Grid item md={6} className={classes.spacing}>
-            <ChartDataFrame height="35vh"
-                        paddingRight="0.5rem"
-                        listView={true}
-                        download={true}></ChartDataFrame>
+            <ChartDataFrame height="35vh" paddingRight="0.5rem" listView={true} download={true}></ChartDataFrame>
           </Grid>
           <Grid item md={6} className={classes.spacing}>
-            <ChartDataFrame height="35vh"
-                        paddingLeft="0.5rem"
-                        listView={true}
-                        download={true}></ChartDataFrame>
+            <ChartDataFrame height="35vh"  paddingLeft="0.5rem" listView={true}download={true}></ChartDataFrame>
           </Grid>
         </Grid>
-        </Grid>
+      </Grid>
   )
 }
