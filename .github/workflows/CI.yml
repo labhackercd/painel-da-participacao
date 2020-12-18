@@ -1,0 +1,25 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  CI:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Up docker containers
+        run: docker-compose up -d dev
+      - name: List containers is running
+        run: docker-compose ps
+      - name: Run tests with Jest and Converage
+        run: docker-compose exec dev sh -c "npm run test -- --coverage --watchAll=false"
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          file: coverage/clover.xml
+          name: codecov-umbrella
+          fail_ci_if_error: true
+          verbose: true
