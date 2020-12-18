@@ -14,8 +14,10 @@ jobs:
         run: docker-compose up -d dev
       - name: List containers is running
         run: docker-compose ps
+      - name: List images is running
+        run: docker images -a
       - name: Run tests with Jest and Converage
-        run: docker-compose exec dev sh -c "npm run test -- --coverage --watchAll=false"
+        run: docker run -e CI=true cpp-participacao-frontend_dev npm run test
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
         with:
