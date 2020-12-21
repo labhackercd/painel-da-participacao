@@ -3,7 +3,38 @@ name: CI
 on: [push, pull_request]
 
 jobs:
-  CI:
+  DEV:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run the tests with coverage
+      run: npm run test -- --coverage --watchAll=false
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1
+      with:
+        file: coverage/clover.xml
+        name: codecov-umbrella
+        fail_ci_if_error: true
+        verbose: true
+
+  PROD:
     runs-on: ubuntu-latest
 
     steps:
@@ -11,17 +42,8 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Up docker containers
-        run: docker-compose up -d dev
+        run: docker-compose up -d prod
       - name: List containers is running
         run: docker-compose ps
       - name: List images is running
         run: docker images -a
-      - name: Run tests with Jest and Converage
-        run: docker run -e CI=true cpp-participacao-frontend_dev npm run test
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
-        with:
-          file: coverage/clover.xml
-          name: codecov-umbrella
-          fail_ci_if_error: true
-          verbose: true
