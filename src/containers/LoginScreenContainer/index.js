@@ -87,7 +87,7 @@ class LoginScreen extends React.Component {
       },
 
     };
-    this.loginMethod = this.loginMethod.bind(this);
+    //this.loginMethod = this.loginMethod.bind(this);
   }
  /*
   async verifyIfUserIsAlreadyLogged(){
@@ -100,11 +100,11 @@ class LoginScreen extends React.Component {
       this.setState({succesfullLogin:false})
     }
   }*/
-
+/*
   async loginMethod(event){
     //event.preventDefault();
     //const history = useHistory();
-  /*
+  
     try{
       const result = await sendLoginRequest(this.state.email,this.state.password );
       if(result.status===200){
@@ -120,15 +120,15 @@ class LoginScreen extends React.Component {
       }else if(e.name === "Error"){
         this.setState({error:{status:true, message:" Email ou senha incorretos. Tente novamente."}})
       }
-    }*/
-  }
+    }
+  }*/
 
   componentDidMount(){
     this._isMounted = true;
-
+    /*
     if(this._isMounted){
         //this.verifyIfUserIsAlreadyLogged();
-    }
+    }*/
 }
 
   handleEmailFormChange = (e) =>
@@ -153,9 +153,6 @@ class LoginScreen extends React.Component {
       }*/
       return (
         <div>
-          {this.state.succesfullLogin ?
-            <div>oi</div>
-            :
             <Grid container className={classes.body}>
               <div className={classes.loginArea}>
                 <Box className={classes.loginBox}>
@@ -195,7 +192,7 @@ class LoginScreen extends React.Component {
                 </Box>
               </div>
             </Grid>
-        }
+        
         </div>
       )
   }

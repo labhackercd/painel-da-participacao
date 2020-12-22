@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import MockTheme from '../../../mockTheme'
+import SettingsIcon from '@material-ui/icons/Settings';
 
 import {shallow, render, mount} from "enzyme";
 import SettingsSideBar from './../index';
@@ -19,6 +20,13 @@ test('Test if NavBar renders without crash', () => {
 
 test('Test if clicking on item of sidebar ', () => {
     const wrapper = mount(<SettingsSideBar />);
+    const itemButton = wrapper.find("#tools").last();
+    itemButton.simulate('click');
+});
+
+
+test('Test if clicking on item of sidebar ', () => {
+    const wrapper = mount(<SettingsSideBar icon={SettingsIcon} isActive={true}  />);
     const itemButton = wrapper.find("#tools").last();
     itemButton.simulate('click');
 });
