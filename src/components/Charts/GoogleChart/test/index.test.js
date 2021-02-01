@@ -38,7 +38,7 @@ describe('Test Bar Chart', () => {
         ReactDOM.render(<GoogleChart chartType={"BarChart"} data={barChartdata.values} options={barChartdata.options}></GoogleChart>, div)
     });
 });
-
+/*
 describe('Test Calendar Heat Chart', () => {
     
     const calendarHeatChartdata = {
@@ -228,3 +228,4 @@ describe('Test TreeMap Chart', () => {
         ReactDOM.render(<GoogleChart chartType={"TreeMap"} data={treeMapChartdata.values} options={treeMapChartdata.options}></GoogleChart>, div)
     });
 });
+*/

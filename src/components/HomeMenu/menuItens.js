@@ -29,13 +29,7 @@ export default function MenuItens() {
         <ListItemText classes={{ root: classes.root }}
                       primary={<Typography>Visão Geral</Typography>} />
       </ListItem>
-      <ListItem button>
-        <ListItemIcon>
-          <DisqueCamaraIcon />
-        </ListItemIcon>
-        <ListItemText classes={{ root: classes.root }}
-                      primary={<Typography>0800 Câmara</Typography>} />
-        </ListItem>
+
       <ListItem button>
         <ListItemIcon>
           <PeopleIcon />
@@ -43,6 +37,14 @@ export default function MenuItens() {
         <ListItemText classes={{ root: classes.root }}
                       primary={<Typography>Audiências Interativas</Typography>} />
       </ListItem>
+      {/*
+      <ListItem button>
+        <ListItemIcon>
+          <DisqueCamaraIcon />
+        </ListItemIcon>
+        <ListItemText classes={{ root: classes.root }}
+                      primary={<Typography>0800 Câmara</Typography>} />
+        </ListItem>
       <ListItem button>
         <ListItemIcon>
           <EnquetesIcon />
@@ -78,6 +80,7 @@ export default function MenuItens() {
         <ListItemText classes={{ root: classes.root }}
                       primary={<Typography>Wikilegis 2.0</Typography>} />
       </ListItem>
+      */}
     </List>
   )
 }

@@ -5,7 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!your-module-name)/\"",
+    "eject": "react-scripts eject",
+    "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls"
   },
   "dependencies": {
     "@material-ui/core": "^4.9.14",
@@ -16,6 +19,7 @@
     "axios": "^0.21.1",
     "babel-plugin-styled-components": "^1.12.0",
     "next": "10.0.6",
+    "next-images": "^1.7.0",
     "plotly.js": "^1.58.1",
     "react": "17.0.1",
     "react-csv": "^2.0.3",
@@ -27,17 +31,32 @@
     "react-window": "^1.8.5"
   },
   "devDependencies": {
+    "@babel/core": "^7.12.10",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.1.2",
+    "@types/jest": "^26.0.20",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.4.1",
     "axios-mock-adapter": "^1.18.2",
+    "babel-jest": "^24.9.0",
     "coveralls": "^3.1.0",
     "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.4",
-    "eslint": "^7.19.0",
+    "enzyme-adapter-react-16": "^1.15.6",
+    "eslint": "^6.6.0",
+    "jest": "^24.9.0",
     "jest-enzyme": "^7.1.2",
     "moxios": "^0.4.0",
     "react-test-render": "^1.1.2",
     "react-test-renderer": "^16.13.1"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!src/index.js",
+      "!src/serviceWorker.js",
+      "!src/auth/axiosApi.js",
+      "!src/router.js",
+      "!src/components/mockTheme.js"
+    ]
   }
 }
