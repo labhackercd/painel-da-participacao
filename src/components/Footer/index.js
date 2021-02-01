@@ -17,7 +17,7 @@ export default function Footer() {
            <Grid container>
             <Grid item md={2}></Grid>
             <Grid item md={4}>
-              <Typography> Coordenação de Participação Popular da Câmara dos Deputados </Typography>
+              <Typography id="title"> Coordenação de Participação Popular da Câmara dos Deputados </Typography>
            </Grid>
            <Grid item md={4}></Grid>
            <Grid item md={2}>
