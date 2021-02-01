@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import {AppBar, Tabs, Toolbar, Tab, Grid, IconButton} from '@material-ui/core';
-import { ReactComponent as Logo }from './../../assets/logo.svg';
-import { ReactComponent as LogoutIcon } from './../../assets/user_logout_icon.svg';
+import Logo from './../../assets/logo.svg';
+import LogoutIcon from './../../assets/user_logout_icon.svg';
 import LogoutMenu from '../LogoutMenu/index'
 
 

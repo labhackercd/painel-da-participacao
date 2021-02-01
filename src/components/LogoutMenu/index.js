@@ -3,7 +3,7 @@ import {Icon, Box, Typography, Divider} from '@material-ui/core';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import { ReactComponent as LogoutIcon } from '../../assets/user_logout_icon.svg'
+import LogoutIcon  from '../../assets/user_logout_icon.svg';
 
 export default function LogoutMenu(props) {
   

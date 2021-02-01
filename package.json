@@ -1,70 +1,43 @@
 {
-  "name": "app",
+  "name": "cpp-participacao-frontend-next",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
   "dependencies": {
     "@material-ui/core": "^4.9.14",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.56",
     "@material-ui/pickers": "^3.2.10",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/user-event": "^7.1.2",
-    "axios": "^0.19.2",
-    "axios-mock-adapter": "^1.18.2",
+    "@svgr/webpack": "^5.5.0",
+    "axios": "^0.21.1",
+    "babel-plugin-styled-components": "^1.12.0",
+    "next": "10.0.6",
     "plotly.js": "^1.58.1",
-    "react": "^16.13.1",
+    "react": "17.0.1",
     "react-csv": "^2.0.3",
-    "react-dom": "^16.13.1",
+    "react-dom": "17.0.1",
     "react-google-charts": "^3.0.15",
     "react-plotly": "^1.0.0",
     "react-plotly.js": "^2.5.1",
-    "react-router": "^5.2.0",
-    "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.3",
-    "react-test-render": "^1.1.2",
-    "react-test-renderer": "^16.13.1",
-    "react-window": "^1.8.5",
-    "typescript": "^3.9.7"
-  },
-  "proxy": "http://localhost:8000",
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!your-module-name)/\"",
-    "eject": "react-scripts eject",
-    "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx}",
-      "!src/index.js",
-      "!src/serviceWorker.js",
-      "!src/auth/axiosApi.js",
-      "!src/router.js",
-      "!src/components/mockTheme.js"
-    ]
+    "react-window": "^1.8.5"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.1.2",
+    "axios-mock-adapter": "^1.18.2",
     "coveralls": "^3.1.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.4",
+    "eslint": "^7.19.0",
     "jest-enzyme": "^7.1.2",
-    "moxios": "^0.4.0"
+    "moxios": "^0.4.0",
+    "react-test-render": "^1.1.2",
+    "react-test-renderer": "^16.13.1"
   }
 }
