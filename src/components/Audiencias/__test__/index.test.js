@@ -1,15 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import MockTheme from './../../mockTheme';
-import { shallow, configure } from 'enzyme';
-import Audiencias from './../index';
+import { shallow } from 'enzyme';
 import { act } from 'react-dom/test-utils';
+import MockTheme from '../../mockTheme';
+import Audiencias from '../index';
 
-test("snapshot should not have changes", () => {
+test('snapshot should not have changes', () => {
   let component;
   act(() => {
-    component = shallow(<MockTheme><Audiencias data="mockdata"></Audiencias></MockTheme>);
-  })
+    component = shallow(<MockTheme><Audiencias data="mockdata" /></MockTheme>);
+  });
   expect(component.exists()).toEqual(true);
   expect(component).toMatchSnapshot();
 });

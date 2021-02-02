@@ -1,6 +1,5 @@
 import React from 'react';
-import Chart from "react-google-charts";
-
+import Chart from 'react-google-charts';
 
 /*
 Type Charts
@@ -13,16 +12,16 @@ Type Charts
  - TreeMap
 */
 
-export default function GoogleChart(props) {
+export default function GoogleChart(chartType, data, options) {
   return (
     <Chart
-      width={'500px'}
-      height={'300px'}
-      chartType={props.chartType}
+      width="500px"
+      height="300px"
+      chartType={chartType}
       loader={<div>Carregando Gráfico</div>}
-      data={props.data}
-      options={props.options}
+      data={data}
+      options={options}
       rootProps={{ 'data-testid': '2' }}
     />
-   );
+  );
 }

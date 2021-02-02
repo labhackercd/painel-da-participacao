@@ -1,41 +1,47 @@
 import React from 'react';
-import {List, Link, ListItem, ListItemIcon, ListItemText} from '@material-ui/core';
+import {
+  List, Link, ListItem, ListItemIcon, ListItemText, Typography,
+} from '@material-ui/core';
 import PeopleIcon from '@material-ui/icons/People';
 import HomeIcon from '@material-ui/icons/Home';
-import { Typography } from '@material-ui/core';
-import  DisqueCamaraIcon from '../../assets/0800_icon.svg';
-import EnquetesIcon from '../../assets/enquetes_icon.svg';
-import  FaleConoscoIcon from '../../assets/fale_conosco_icon.svg';
-import  NoticiasIcon from '../../assets/noticias_icon.svg';
-import  PautaIcon from '../../assets/pauta_icon.svg';
-import  WikilegisIcon from '../../assets/wikilegis_icon.svg';
+
 import { makeStyles } from '@material-ui/core/styles';
+import DisqueCamaraIcon from '../../assets/0800_icon.svg';
+import EnquetesIcon from '../../assets/enquetes_icon.svg';
+import FaleConoscoIcon from '../../assets/fale_conosco_icon.svg';
+import NoticiasIcon from '../../assets/noticias_icon.svg';
+import PautaIcon from '../../assets/pauta_icon.svg';
+import WikilegisIcon from '../../assets/wikilegis_icon.svg';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    color: '#FFF'
+    color: '#FFF',
   },
 }));
 
 export default function MenuItens() {
-  const classes = useStyles()
-  
+  const classes = useStyles();
+
   return (
     <List>
       <ListItem button id="general-view" component={Link} to="/dashboard">
         <ListItemIcon>
           <HomeIcon style={{ color: 'white' }} />
         </ListItemIcon>
-        <ListItemText classes={{ root: classes.root }}
-                      primary={<Typography>Visão Geral</Typography>} />
+        <ListItemText
+          classes={{ root: classes.root }}
+          primary={<Typography>Visão Geral</Typography>}
+        />
       </ListItem>
 
       <ListItem button>
         <ListItemIcon>
           <PeopleIcon />
         </ListItemIcon>
-        <ListItemText classes={{ root: classes.root }}
-                      primary={<Typography>Audiências Interativas</Typography>} />
+        <ListItemText
+          classes={{ root: classes.root }}
+          primary={<Typography>Audiências Interativas</Typography>}
+        />
       </ListItem>
       {/*
       <ListItem button>
@@ -82,5 +88,5 @@ export default function MenuItens() {
       </ListItem>
       */}
     </List>
-  )
+  );
 }

@@ -1,48 +1,48 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 
 const theme = createMuiTheme(
-    {
+  {
     typography: {
-      body:{
-        fontSize:12,
+      body: {
+        fontSize: 12,
         fontStyle: 'semibold',
       },
-      h1:{
-        fontSize:54,
+      h1: {
+        fontSize: 54,
         fontStyle: 'semibold',
       },
-      h2:{
-        fontSize:36,
+      h2: {
+        fontSize: 36,
         fontStyle: 'semibold',
       },
-      h3:{
-        fontSize:26,
+      h3: {
+        fontSize: 26,
         fontStyle: 'semibold',
       },
-      h4:{
-        fontSize:16,
+      h4: {
+        fontSize: 16,
         fontStyle: 'semibold',
       },
-      h5:{
-        fontSize:14,
+      h5: {
+        fontSize: 14,
         fontStyle: 'semibold',
       },
-      h6:{
-        fontSize:13,
+      h6: {
+        fontSize: 13,
         fontStyle: 'semibold',
       },
-      h7:{
-        fontSize:9,
+      h7: {
+        fontSize: 9,
         fontStyle: 'regular',
       },
-      body1:{
-        fontSize:12,
-        fontStyle: 'regular'
+      body1: {
+        fontSize: 12,
+        fontStyle: 'regular',
       },
-      body2:{
-        fontSize:9,
+      body2: {
+        fontSize: 9,
         fontStyle: 'semibold',
-      }
+      },
     },
     palette: {
       primary: {
@@ -58,7 +58,7 @@ const theme = createMuiTheme(
         main: '#FFF',
       },
       background: {
-        main: '#121212'
+        main: '#121212',
       },
       lightGrey: {
         main: '#979797',
@@ -67,10 +67,10 @@ const theme = createMuiTheme(
         main: '#252525',
       },
       text: {
-        primary: "#FFFFFF"
-      }
+        primary: '#FFFFFF',
+      },
     },
-  });
-
+  },
+);
 
 export default theme;

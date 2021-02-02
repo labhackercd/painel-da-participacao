@@ -1,20 +1,22 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import NavBar from '../src/components/NavBar';
 import Footer from '../src/components/Footer';
 import ToolContent from '../src/components/ToolContent';
-
 
 const useStyles = makeStyles((theme) => ({
   body: {
     backgroundColor: theme.palette.primary.main,
     display: 'flex',
     flexDirection: 'column',
-  }
+  },
 }));
 
 function TabPanel(props) {
-  const { children, value, index, ...other } = props;
+  const {
+    children, value, index, ...other
+  } = props;
 
   return (
     <div
@@ -25,31 +27,43 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-          <>{children}</>
+      <>{children}</>
       )}
     </div>
   );
 }
-
 
 export default function Dashboard(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
   const handleTabPanelChange = (event, newValue) => {
-   setValue(newValue);
- };
+    setValue(newValue);
+  };
 
   return (
     <div className={classes.body}>
-      <NavBar value={value} handleTabPanelChange={handleTabPanelChange}></NavBar>
+      <NavBar value={value} handleTabPanelChange={handleTabPanelChange} />
       <TabPanel id="tabTools" value={value} index={0}>
-        <ToolContent page={props.page}>{props.children}</ToolContent>
+        <ToolContent page={props.page}>{props.children }</ToolContent>
       </TabPanel>
       <TabPanel id="tabDocuments" value={value} index={2}>
         Item Three
       </TabPanel>
-      <Footer></Footer>
+      <Footer />
     </div>
-  )
+  );
 }
+/*
+TabPanel.defaultProps = {
+  children: React.createElement('div'),
+  value: 0,
+  index: 0,
+};
+
+TabPanel.propTypes = {
+  children: PropTypes.elementType,
+  value: PropTypes.number,
+  index: PropTypes.number,
+};
+*/

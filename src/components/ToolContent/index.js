@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
-import { Grid, Container} from '@material-ui/core';
+import React, { useState } from 'react';
+import { Grid, Container } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import HomeMenu from '../HomeMenu';
 import Header from '../Header';
-import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,21 +24,20 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ToolContent(props) {
   const classes = useStyles();
-  //const page = props.page;
-  const [datePeriodSelectData, setDatePeriodSelectData] = useState({year:  '', semester: '', month: ''})
-  //const [data, setData] = useState({});
-  //const [audienciasData, setAudienciasData] = useState({})
-
+  // const page = props.page;
+  const [datePeriodSelectData, setDatePeriodSelectData] = useState({ year: '', semester: '', month: '' });
+  // const [data, setData] = useState({});
+  // const [audienciasData, setAudienciasData] = useState({})
 
   return (
     <Grid container className={classes.root}>
-    <HomeMenu open={true}></HomeMenu>
-    <Container className={classes.container}>
-      <main className={classes.content}>
-        <Header setDatePeriodSelectData={setDatePeriodSelectData} title="Audiências Interativas" />
-        {props.children}
-      </main>
-    </Container>
+      <HomeMenu open />
+      <Container className={classes.container}>
+        <main className={classes.content}>
+          <Header setDatePeriodSelectData={setDatePeriodSelectData} title="Audiências Interativas" />
+          {props.children}
+        </main>
+      </Container>
     </Grid>
-  )
+  );
 }
