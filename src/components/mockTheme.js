@@ -65,11 +65,3 @@ export default function MockTheme({ children }) {
   );
   return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 }
-
-MockTheme.defaultProps = {
-  children: React.createElement('div'),
-};
-
-MockTheme.propTypes = {
-  children: PropTypes.elementType,
-};

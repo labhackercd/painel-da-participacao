@@ -23,13 +23,8 @@ test('Test if clicking close drawer button doesnt break page', () => {
   closeDrawerButton.simulate('click');
 });
 
-test('Test if clicking open drawer button doesnt break page', () => {
-  const wrapper = mount(<MockTheme><HomeMenu open={false} /></MockTheme>);
-  const openDrawerButton = wrapper.find('#drawer-open').last();
-  openDrawerButton.simulate('click');
-});
 test('Test if clicking on list item button doesnt break page', () => {
-  const wrapper = mount(<MockTheme><HomeMenu /></MockTheme>);
+  const wrapper = mount(<MockTheme><HomeMenu open /></MockTheme>);
   const menuItens = wrapper.findWhere((node) => node.is(MenuItens));
   const listItemButton = menuItens.find('#general-view').last();
   listItemButton.simulate('click');

@@ -30,15 +30,16 @@ export default function ToolContent(props) {
   /* const [datePeriodSelectData, setDatePeriodSelectData]
       = useState({ year: '', semester: '', month: '' });*
   */
+ console.log(props)
   const {
-    children,
+    children, open,
   } = props;
   // const [data, setData] = useState({});
   // const [audienciasData, setAudienciasData] = useState({})
-
+ 
   return (
     <Grid container className={classes.root}>
-      <HomeMenu open />
+      <HomeMenu open={open} />
       <Container className={classes.container}>
         <main className={classes.content}>
           {
@@ -58,8 +59,10 @@ export default function ToolContent(props) {
 
 ToolContent.defaultProps = {
   children: React.createElement('div'),
+  open: true,
 };
 
 ToolContent.propTypes = {
-  children: PropTypes.elementType,
+  children: PropTypes.node,
+  open: PropTypes.bool,
 };
