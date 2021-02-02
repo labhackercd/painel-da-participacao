@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
-import { Drawer, Divider, Grid, Typography, IconButton }  from '@material-ui/core';
+import React, { useState } from 'react';
+import {
+  Drawer, Divider, Grid, Typography, IconButton,
+} from '@material-ui/core';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { makeStyles } from '@material-ui/core/styles';
-import MenuItens from './menuItens';
 import clsx from 'clsx';
+import MenuItens from './menuItens';
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -39,24 +42,25 @@ const useStyles = makeStyles((theme) => ({
   homeMenuContainer: {
     margin: '2rem 0 0 2rem',
     width: 'auto',
-  }
+  },
 }));
 
-export default function HomeMenu(props) {
-  const classes = useStyles()
-  const [open, setOpen] = useState(props.open);
+export default function HomeMenu(open) {
+  const classes = useStyles();
+  const [openMenu, setOpenMenu] = useState(open);
+
   const handleDrawerOpen = () => {
-    setOpen(true);
+    setOpenMenu(true);
   };
   const handleDrawerClose = () => {
-    setOpen(false);
+    setOpenMenu(false);
   };
   return (
     <Grid container className={classes.homeMenuContainer}>
       <Drawer
         variant="permanent"
         classes={{
-          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+          paper: clsx(classes.drawerPaper, !openMenu && classes.drawerPaperClose),
           root: "margin: '10rem'",
         }}
         PaperProps={{
@@ -65,29 +69,31 @@ export default function HomeMenu(props) {
             boxShadow: 'none',
           },
         }}
-        open={open}
+        open={openMenu}
       >
-      <MenuItens></MenuItens>
-      <Grid container className={classes.toolbarIcon}>
-      <Divider light />
-        { open ?
-            <>
-            <Grid item md={7}></Grid>
-            <Grid item md={3}>
-              <Typography style={{color: classes.toolbarIcon.color}}>ocultar</Typography>
-            </Grid>
-            <Grid item md={2}>
-            <IconButton onClick={handleDrawerClose} id="drawer-close">
-              <ChevronLeftIcon style={{color: '#979797'}} />
-            </IconButton>
-            </Grid>
-            </>  :
-            <IconButton onClick={handleDrawerOpen} id="drawer-open">
-              <ChevronRightIcon style={{color: '#979797'}} />
-            </IconButton>
-          }
-      </Grid>
+        <MenuItens />
+        <Grid container className={classes.toolbarIcon}>
+          <Divider light />
+          { openMenu
+            ? (
+              <>
+                <Grid item md={7} />
+                <Grid item md={3}>
+                  <Typography style={{ color: classes.toolbarIcon.color }}>ocultar</Typography>
+                </Grid>
+                <Grid item md={2}>
+                  <IconButton onClick={handleDrawerClose} id="drawer-close">
+                    <ChevronLeftIcon style={{ color: '#979797' }} />
+                  </IconButton>
+                </Grid>
+              </>
+            ) : (
+              <IconButton onClick={handleDrawerOpen} id="drawer-open">
+                <ChevronRightIcon style={{ color: '#979797' }} />
+              </IconButton>
+            )}
+        </Grid>
       </Drawer>
     </Grid>
-  )
+  );
 }

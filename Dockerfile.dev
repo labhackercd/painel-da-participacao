@@ -11,4 +11,4 @@ RUN rm -rf package-lock.json node_modules
 RUN npm install --legacy-peer-deps
 
 
-CMD ["npm", "start"]
+CMD ["npm", "run", "dev"]

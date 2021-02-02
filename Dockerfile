@@ -10,4 +10,4 @@ RUN rm -rf package-lock.json node_modules
 RUN npm install --legacy-peer-deps --silent
 RUN npm run build
 
-CMD ["serve","-s", "build"]
+CMD ["npm","start"]

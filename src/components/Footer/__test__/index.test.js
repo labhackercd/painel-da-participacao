@@ -1,11 +1,18 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import MockTheme from './../../mockTheme';
-import {shallow, render, mount} from "enzyme";
-import Footer from './../index';
+import { shallow, mount } from 'enzyme';
+import MockTheme from '../../mockTheme';
+import Footer from '../index';
 
-it("snapshot should not have changes", () => {
-    const component = shallow(<MockTheme><Footer></Footer></MockTheme>);
-    expect(component.exists()).toEqual(true);
-    expect(component).toMatchSnapshot();
+test('snapshot should not have changes', () => {
+  const component = shallow(<MockTheme><Footer /></MockTheme>);
+  expect(component.exists()).toEqual(true);
+  expect(component).toMatchSnapshot();
+});
+
+test('snapshot should not have changes', () => {
+  const component = mount(<MockTheme><Footer /></MockTheme>);
+  const wrapper = component.find('#title').at(0);
+  expect(wrapper.text().includes('Coordenação')).toBe(true);
+  // expect(component.exists()).toEqual(true);
+  // expect(component).toMatchSnapshot();
 });
