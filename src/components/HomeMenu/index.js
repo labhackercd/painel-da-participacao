@@ -45,21 +45,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function HomeMenu(props) {
+export default function HomeMenu(open) {
   const classes = useStyles();
-  const [open, setOpen] = useState(props.open);
+  const [openMenu, setOpenMenu] = useState(open);
   const handleDrawerOpen = () => {
-    setOpen(true);
+    setOpenMenu(true);
   };
   const handleDrawerClose = () => {
-    setOpen(false);
+    setOpenMenu(false);
   };
   return (
     <Grid container className={classes.homeMenuContainer}>
       <Drawer
         variant="permanent"
         classes={{
-          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+          paper: clsx(classes.drawerPaper, !openMenu && classes.drawerPaperClose),
           root: "margin: '10rem'",
         }}
         PaperProps={{
@@ -68,12 +68,12 @@ export default function HomeMenu(props) {
             boxShadow: 'none',
           },
         }}
-        open={open}
+        open={openMenu}
       >
         <MenuItens />
         <Grid container className={classes.toolbarIcon}>
           <Divider light />
-          { open
+          { openMenu
             ? (
               <>
                 <Grid item md={7} />

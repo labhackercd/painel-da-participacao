@@ -62,14 +62,22 @@ describe('Test Calendar Heat Chart', () => {
     };
 
     test("Snapshot of Calendar Heat Chart should not have changes", () => {
-        const component = mount(<GoogleChart chartType={"Calendar"} data={calendarHeatChartdata.values} options={calendarHeatChartdata.options}></GoogleChart>);
+        const component = mount(<GoogleChart
+                                    chartType={"Calendar"}
+                                    data={calendarHeatChartdata.values}
+                                    options={calendarHeatChartdata.options}>
+                                </GoogleChart>);
         expect(component.exists()).toEqual(true);
         expect(component).toMatchSnapshot();
     });
 
     test("Mounts the Calendar Heat Chart with the data", () => {
         const div = document.createElement("div")
-        ReactDOM.render(<GoogleChart chartType={"Calendar"} data={calendarHeatChartdata.values} options={calendarHeatChartdata.options}></GoogleChart>, div)
+        ReactDOM.render(<GoogleChart
+                            chartType={"Calendar"}
+                            data={calendarHeatChartdata.values}
+                            options={calendarHeatChartdata.options}>
+                        </GoogleChart>, div)
     });
 });
 
@@ -99,14 +107,21 @@ describe('Test Curve Line Chart', () => {
     };
 
     test("Snapshot of Line Chart should not have changes", () => {
-        const component = mount(<GoogleChart chartType={"LineChart"} data={curveLineChartdata.values} options={curveLineChartdata.options}></GoogleChart>);
+        const component = mount(<GoogleChart
+            chartType={"LineChart"}
+            data={curveLineChartdata.values}
+            options={curveLineChartdata.options}></GoogleChart>);
         expect(component.exists()).toEqual(true);
         expect(component).toMatchSnapshot();
     });
 
     test("Mounts the Line Chart with the data", () => {
         const div = document.createElement("div")
-        ReactDOM.render(<GoogleChart chartType={"LineChart"} data={curveLineChartdata.values} options={curveLineChartdata.options}></GoogleChart>, div)
+        ReactDOM.render(<GoogleChart
+                            chartType={"LineChart"}
+                            data={curveLineChartdata.values}
+                            options={curveLineChartdata.options}>
+                        </GoogleChart>, div)
     });
 });
 
@@ -127,14 +142,22 @@ describe('Test Pie Chart', () => {
     };
 
     test("Snapshot of Pie Chart should not have changes", () => {
-        const component = mount(<GoogleChart chartType={"PieChart"} data={pieChartdata.values} options={pieChartdata.options}></GoogleChart>);
+        const component = mount(<GoogleChart
+                                    chartType={"PieChart"}
+                                    data={pieChartdata.values}
+                                    options={pieChartdata.options}>
+                                </GoogleChart>);
         expect(component.exists()).toEqual(true);
         expect(component).toMatchSnapshot();
     });
 
     test("Mounts the Pie Chart with the data", () => {
         const div = document.createElement("div")
-        ReactDOM.render(<GoogleChart chartType={"PieChart"} data={pieChartdata.values} options={pieChartdata.options}></GoogleChart>, div)
+        ReactDOM.render(<GoogleChart
+                            chartType={"PieChart"}
+                            data={pieChartdata.values}
+                            options={pieChartdata.options}>
+                        </GoogleChart>, div)
     });
 });
 
@@ -142,7 +165,7 @@ describe('Test Stacked Bar Chart', () => {
 
     const stackedBarChartData = {
         values:[
-            ['Ferramenta', 'Audiências Interativas', 'Wikilegis', 'Enquetes', 'Pauta Participativa'],
+            ['Ferrament', 'Audiências Interativas', 'Wikilegis', 'Enquetes', 'Pauta Participativa'],
             ['',300, 800, 231, 545],
         ],
         options:{
@@ -156,14 +179,22 @@ describe('Test Stacked Bar Chart', () => {
     };
 
     test("Snapshot of Stacked Bar Chart should not have changes", () => {
-        const component = mount(<GoogleChart chartType={"BarChart"} data={stackedBarChartData.values} options={stackedBarChartData.options}></GoogleChart>);
+        const component = mount(<GoogleChart
+                                    chartType={"BarChart"}
+                                    data={stackedBarChartData.values}
+                                    options={stackedBarChartData.options}>
+                                </GoogleChart>);
         expect(component.exists()).toEqual(true);
         expect(component).toMatchSnapshot();
     });
 
     test("Mounts the Stacked Bar Chart with the data", () => {
         const div = document.createElement("div")
-        ReactDOM.render(<GoogleChart chartType={"BarChart"} data={stackedBarChartData.values} options={stackedBarChartData.options}></GoogleChart>, div)
+        ReactDOM.render(<GoogleChart
+                            chartType={"BarChart"}
+                            data={stackedBarChartData.values}
+                            options={stackedBarChartData.options}>
+                        </GoogleChart>, div)
     });
 });
 
@@ -216,14 +247,22 @@ describe('Test TreeMap Chart', () => {
     };
 
     test("Snapshot of TreeMap Chart should not have changes", () => {
-        const component = mount(<GoogleChart chartType={"TreeMap"} data={treeMapChartdata.values} options={treeMapChartdata.options}></GoogleChart>);
+        const component = mount(<GoogleChart
+                                    chartType={"TreeMap"}
+                                    data={treeMapChartdata.values}
+                                    options={treeMapChartdata.options}>
+                                </GoogleChart>);
         expect(component.exists()).toEqual(true);
         expect(component).toMatchSnapshot();
     });
 
     test("Mounts the TreeMap Chart with the data", () => {
         const div = document.createElement("div")
-        ReactDOM.render(<GoogleChart chartType={"TreeMap"} data={treeMapChartdata.values} options={treeMapChartdata.options}></GoogleChart>, div)
+        ReactDOM.render(<GoogleChart
+            chartType={"TreeMap"}
+            data={treeMapChartdata.values}
+            options={treeMapChartdata.options}
+        </GoogleChart>, div)
     });
 });
 */

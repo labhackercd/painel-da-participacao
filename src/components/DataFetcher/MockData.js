@@ -1,4 +1,4 @@
-export const data = {
+const data = {
   general_analysis: {
     audiencias: {
       data: {
@@ -21,3 +21,5 @@ export const data = {
     },
   },
 };
+
+export default data;

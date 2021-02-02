@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { shallow, mount } from 'enzyme';
-import { render, fireEvent, within } from '@testing-library/react';
-import { Select, MenuItem, Typography } from '@material-ui/core';
 import Header from '../index';
 import MockTheme from '../../mockTheme';
 

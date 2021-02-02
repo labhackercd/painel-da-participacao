@@ -1,4 +1,3 @@
-import React from 'react';
 import fetchDataFromAPI from '../index';
 
 it('fetches data from the API', () => {

@@ -1,6 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { shallow, render, mount } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import MockTheme from '../../mockTheme';
 import Footer from '../index';
 

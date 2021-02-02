@@ -33,13 +33,13 @@ const useStyles = makeStyles((theme) => ({
   appBarSpacer: theme.mixins.toolbar,
 }));
 
-function StyledTotalNumber(props) {
+function StyledTotalNumber(number) {
   return (
-    <Typography variant="h2" style={{ color: '#FFF', alignSelf: 'center' }}>{props.number}</Typography>
+    <Typography variant="h2" style={{ color: '#FFF', alignSelf: 'center' }}>{number}</Typography>
   );
 }
 
-export default function Audiencias(props) {
+export default function Audiencias() {
   const classes = useStyles();
   const [audienciasData, setAudienciasData] = useState({});
   const [data, setData] = useState('');
@@ -110,16 +110,16 @@ export default function Audiencias(props) {
     },
   };
 
+  async function loadData() {
+    const response = await fetchDataFromAPI({ year: '', semester: '', month: '' });
+    const audienciasDataResponse = response.general_analysis.audiencias.data;
+    setData(response);
+    setAudienciasData(audienciasDataResponse);
+  }
+
   useEffect(() => {
     loadData();
   }, []);
-
-  async function loadData() {
-    const response = await fetchDataFromAPI({ year: '', semester: '', month: '' });
-    const audienciasData = response.general_analysis.audiencias.data;
-    setData(response);
-    setAudienciasData(audienciasData);
-  }
 
   return (
     <Grid container>
