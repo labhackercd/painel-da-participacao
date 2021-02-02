@@ -1,9 +1,9 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import { act } from 'react-dom/test-utils';
 import MockTheme from '../../mockTheme';
-import Audiencias from '../../Audiencias/index';
-import Header from '../../Header';
+// import Audiencias from '../../Audiencias/index';
+// import Header from '../../Header';
 import ToolContent from '../index';
 
 /*
