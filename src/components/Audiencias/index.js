@@ -41,7 +41,7 @@ function StyledTotalNumber(number) {
 
 export default function Audiencias() {
   const classes = useStyles();
-  const [audienciasData, setAudienciasData] = useState({});
+  // const [audienciasData, setAudienciasData] = useState({});
   const [data, setData] = useState('');
   const barChartdata = {
     values: [
@@ -112,9 +112,9 @@ export default function Audiencias() {
 
   async function loadData() {
     const response = await fetchDataFromAPI({ year: '', semester: '', month: '' });
-    const audienciasDataResponse = response.general_analysis.audiencias.data;
+    // const audienciasDataResponse = response.general_analysis.audiencias.data;
     setData(response);
-    setAudienciasData(audienciasDataResponse);
+    // setAudienciasData(audienciasDataResponse);
   }
 
   useEffect(() => {

@@ -1,8 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { shallow, render, mount } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
-import { waitForElementToBeRemoved } from '@testing-library/react';
 import MockTheme from '../../mockTheme';
 import Audiencias from '../../Audiencias/index';
 import Header from '../../Header';

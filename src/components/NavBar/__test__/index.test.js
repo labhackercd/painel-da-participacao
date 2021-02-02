@@ -23,6 +23,9 @@ test('Test if clicking on tab button doesnt break page', () => {
   // tabButton.simulate('click');
 });
 
+function mockHandleTabPanelChange() {
+}
+
 test('Test if clicking on logout menu doesnt break page', () => {
   const wrapper = mount(<MockTheme><NavBar value={1} onChange={mockHandleTabPanelChange} TabIndicatorProps={{ style: { background: '#00C354' } }} /></MockTheme>);
   const menuButton = wrapper.find('#logoutMenu').last();

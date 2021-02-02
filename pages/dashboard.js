@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import NavBar from '../src/components/NavBar';
 import Footer from '../src/components/Footer';
-import ToolContent from '../src/components/ToolContent';
+// import ToolContent from '../src/components/ToolContent';
 
 const useStyles = makeStyles((theme) => ({
   body: {
@@ -32,8 +32,13 @@ function TabPanel(props) {
     </div>
   );
 }
+/*
+      <TabPanel id="tabTools" value={value} index={0}>
+        <ToolContent page={props.page}> </ToolContent>
+      </TabPanel>
+*/
 
-export default function Dashboard(props) {
+export default function Dashboard() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -45,7 +50,7 @@ export default function Dashboard(props) {
     <div className={classes.body}>
       <NavBar value={value} handleTabPanelChange={handleTabPanelChange} />
       <TabPanel id="tabTools" value={value} index={0}>
-        <ToolContent page={props.page}>{props.children }</ToolContent>
+        Item 1
       </TabPanel>
       <TabPanel id="tabDocuments" value={value} index={2}>
         Item Three
@@ -54,7 +59,7 @@ export default function Dashboard(props) {
     </div>
   );
 }
-/*
+
 TabPanel.defaultProps = {
   children: React.createElement('div'),
   value: 0,
@@ -66,4 +71,3 @@ TabPanel.propTypes = {
   value: PropTypes.number,
   index: PropTypes.number,
 };
-*/

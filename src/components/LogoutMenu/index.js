@@ -1,6 +1,7 @@
+/*
 import React, { useEffect } from 'react';
 import {
-  Icon, Box, Typography, Divider,
+  Box, Typography, Divider,
 } from '@material-ui/core';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -29,17 +30,24 @@ export default function LogoutMenu(props) {
           <img src={LogoutIcon} alt="Vercel Logo" />
         </Box>
         <Box width="70%" paddingLeft={1}>
-          <Box component="span" display="block"><Typography variant="h5" color="textPrimary">Pedro Brandão</Typography></Box>
-          <Box component="span" display="block"><Typography variant="h6" color="secondary">Acesso Nível 1</Typography></Box>
+          <Box component="span" display="block">
+            <Typography variant="h5" color="textPrimary">Pedro Brandão</Typography>
+          </Box>
+          <Box component="span" display="block">
+            <Typography variant="h6" color="secondary">Acesso Nível 1</Typography>
+          </Box>
         </Box>
       </MenuItem>
       <MenuItem onClick={props.handleClose} id="logoutButtonItem">
         <Divider />
         <Box display="flex" flexDirection="row-reverse" minWidth="100%">
-          <Box component="span" display="block" paddingLeft={1}><ExitToAppIcon fontSize="small" /></Box>
+          <Box component="span" display="block" paddingLeft={1}>
+            <ExitToAppIcon fontSize="small" />
+          </Box>
           <Box component="span" display="block"><Typography>Sair </Typography></Box>
         </Box>
       </MenuItem>
     </Menu>
   );
 }
+*/

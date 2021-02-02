@@ -1,6 +1,7 @@
 import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { createMuiTheme } from '@material-ui/core';
+import PropTypes from 'prop-types';
 
 export default function MockTheme({ children }) {
   const theme = createMuiTheme(
@@ -64,3 +65,11 @@ export default function MockTheme({ children }) {
   );
   return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 }
+
+MockTheme.defaultProps = {
+  children: React.createElement('div'),
+};
+
+MockTheme.propTypes = {
+  children: PropTypes.elementType,
+};

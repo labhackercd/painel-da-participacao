@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
 import {
   AppBar, Tabs, Toolbar, Tab, Grid, IconButton,
 } from '@material-ui/core';
 // import Logo from '../../assets/logo.svg';
 // import LogoutIcon from '../../assets/user_logout_icon.svg';
-import LogoutMenu from '../LogoutMenu/index';
+// import LogoutMenu from '../LogoutMenu/index';
 
 const CustomTab = withStyles({
   root: {
@@ -43,9 +44,13 @@ function a11yProps(index) {
 
 export default function NavBar(props) {
   const classes = useStyles();
-  const [logoutMenuOpen, setLogoutMenuOpen] = React.useState(false);
-  const [anchorEl, setAnchorEl] = React.useState();
+  // const [logoutMenuOpen, setLogoutMenuOpen] = React.useState(false);
+  // const [anchorEl, setAnchorEl] = React.useState();
+  const {
+    handleTabPanelChange, value,
+  } = props;
 
+  /*
   const recordButtonPosition = (event) => {
     setAnchorEl(event.currentTarget);
     setLogoutMenuOpen(true);
@@ -53,10 +58,11 @@ export default function NavBar(props) {
   const handleLogoutMenuClose = () => {
     setLogoutMenuOpen(false);
   };
+  */
 
   useEffect(() => {
 
-  }, [props.value]);
+  }, [value]);
 
   return (
 
@@ -69,23 +75,46 @@ export default function NavBar(props) {
             </div>
           </Grid>
           <Grid item md={9}>
-            {props.value !== undefined
+            {value !== undefined
                 && (
-                <Tabs value={props.value} onChange={props.handleTabPanelChange} TabIndicatorProps={{ style: { background: '#00C354' } }} className={classes.tab}>
+                <Tabs value={value} onChange={handleTabPanelChange} TabIndicatorProps={{ style: { background: '#00C354' } }} className={classes.tab}>
                   <CustomTab label="Dashboard" {...a11yProps(0)} />
                   <CustomTab label="Configurações" {...a11yProps(1)} />
                   <CustomTab label="Documentação" {...a11yProps(2)} />
                 </Tabs>
                 )}
           </Grid>
+          {/*
           <Grid item md={1}>
             <div className={classes.logout}>
-              <IconButton id="logoutMenu" onClick={(e) => { recordButtonPosition(e); }} aria-haspopup="true">{/* <LogoutIcon /> */}</IconButton>
-              <LogoutMenu open={logoutMenuOpen} handleClose={handleLogoutMenuClose} classes={classes} anchorEl={anchorEl} />
+              <IconButton
+                id="logoutMenu"
+                onClick={(e) => { recordButtonPosition(e); }}
+                aria-haspopup="true"
+              >
+                <LogoutIcon />}
+              </IconButton>
+              <LogoutMenu
+                open={logoutMenuOpen}
+                handleClose={handleLogoutMenuClose}
+                classes={classes}
+                anchorEl={anchorEl}
+              />
             </div>
           </Grid>
+          */}
         </Grid>
       </Toolbar>
     </AppBar>
   );
 }
+
+NavBar.defaultProps = {
+  value: 0,
+  handleTabPanelChange: () => {},
+};
+
+NavBar.propTypes = {
+  value: PropTypes.number,
+  handleTabPanelChange: PropTypes.func,
+};

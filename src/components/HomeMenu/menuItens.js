@@ -14,7 +14,7 @@ import NoticiasIcon from '../../assets/noticias_icon.svg';
 import PautaIcon from '../../assets/pauta_icon.svg';
 import WikilegisIcon from '../../assets/wikilegis_icon.svg';
 */
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     color: '#FFF',
   },
