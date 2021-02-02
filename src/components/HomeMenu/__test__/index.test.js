@@ -21,10 +21,12 @@ test('Test if clicking close drawer button doesnt break page', () => {
   const wrapper = mount(<MockTheme><HomeMenu open /></MockTheme>);
   const closeDrawerButton = wrapper.find('#drawer-close').last();
   closeDrawerButton.simulate('click');
+  const openDrawerButton = wrapper.find('#drawer-open').last();
+  openDrawerButton.simulate('click');
 });
 
 test('Test if clicking on list item button doesnt break page', () => {
-  const wrapper = mount(<MockTheme><HomeMenu open /></MockTheme>);
+  const wrapper = mount(<MockTheme><HomeMenu open={false} /></MockTheme>);
   const menuItens = wrapper.findWhere((node) => node.is(MenuItens));
   const listItemButton = menuItens.find('#general-view').last();
   listItemButton.simulate('click');

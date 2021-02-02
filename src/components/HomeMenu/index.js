@@ -48,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
 export default function HomeMenu(open) {
   const classes = useStyles();
   const [openMenu, setOpenMenu] = useState(open);
+
   const handleDrawerOpen = () => {
     setOpenMenu(true);
   };

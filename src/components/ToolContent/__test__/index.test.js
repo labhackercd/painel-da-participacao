@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
 import MockTheme from '../../mockTheme';
 // import Audiencias from '../../Audiencias/index';
@@ -23,6 +23,11 @@ it('snapshot should not have changes', () => {
   });
   expect(component.exists()).toEqual(true);
   expect(component).toMatchSnapshot();
+});
+
+it('tests mount component', async () => {
+  const wrapper = mount(<MockTheme><ToolContent open><div /></ToolContent></MockTheme>);
+  expect(wrapper.exists()).toEqual(true);
 });
 
 /*
