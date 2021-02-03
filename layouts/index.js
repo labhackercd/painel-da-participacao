@@ -32,12 +32,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-/*
-    <Link href={{ pathname: props.url, query: { tab: props.index } }}>
-      <Tab component="a" {...props}/>
-    </Link>
-*/
-
 function LinkTab(parans) {
   const classes = useStyles();
   const { url, ...props } = parans;
@@ -90,12 +84,6 @@ export default function Layout(props) {
     </div>
   );
 }
-/*
-Layout.defaultProps = {
-  children: React.createElement('div'),
-  value: 0,
-};
-*/
 
 Layout.propTypes = {
   value: PropTypes.number.isRequired,

@@ -3,7 +3,7 @@ import {
   List, ListItem, ListItemIcon, ListItemText, Typography,
 } from '@material-ui/core';
 import Link from 'next/link';
-import PeopleIcon from '@material-ui/icons/People';
+// import PeopleIcon from '@material-ui/icons/People';
 import HomeIcon from '@material-ui/icons/Home';
 
 import { makeStyles } from '@material-ui/core/styles';

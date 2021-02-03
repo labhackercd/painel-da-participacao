@@ -19,7 +19,7 @@ const useStyles = makeStyles(() => ({
     overflow: 'auto',
     display: 'flex',
     flexDirection: 'column',
-    height: '100vh',
+    height: '100%',
     padding: '0 0 2rem 0',
   },
 }));
@@ -32,7 +32,7 @@ export default function ToolContent(props) {
   */
 
   const {
-    children, open,
+    children,
   } = props;
   // const [data, setData] = useState({});
   // const [audienciasData, setAudienciasData] = useState({})
