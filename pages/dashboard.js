@@ -31,13 +31,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Dashboard() {
   const classes = useStyles();
+  const router = useRouter();
+  const queryTool = router.query.ferramenta;
 
   function renderToolContainer() {
-    const router = useRouter();
-    const queryTool = router.query.ferramenta;
-    // console.log(queryTool);
-    // console.log(process.env.NEXT_PUBLIC_AUDIENCIAS_APP_PAGE_URL_QUERY);
-
     switch (queryTool) {
       case process.env.NEXT_PUBLIC_AUDIENCIAS_APP_PAGE_URL_QUERY:
         return <Audiencias />;

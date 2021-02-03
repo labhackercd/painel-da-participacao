@@ -5,7 +5,7 @@ import {
 import Link from 'next/link';
 // import PeopleIcon from '@material-ui/icons/People';
 import HomeIcon from '@material-ui/icons/Home';
-
+import { useRouter } from 'next/router';
 import { makeStyles } from '@material-ui/core/styles';
 /*
 import DisqueCamaraIcon from '../../assets/0800_icon.svg';
@@ -23,40 +23,62 @@ const useStyles = makeStyles(() => ({
 
 export default function MenuItens() {
   const classes = useStyles();
+  const router = useRouter();
+  const queryTool = router.query.ferramenta;
+
+  const toolList = [
+    {
+      tool: 'general',
+      id: 'general-view',
+      title: 'Visão Geral',
+      pathname: process.env.NEXT_PUBLIC_DASHBOARD_PAGE_URL,
+      query: process.env.NEXT_PUBLIC_GENERAL_APP_PAGE_URL_QUERY,
+    },
+    {
+      tool: 'audiencias',
+      id: 'dashboard-audiencias',
+      title: 'Audiências Interativas',
+      pathname: process.env.NEXT_PUBLIC_DASHBOARD_PAGE_URL,
+      query: process.env.NEXT_PUBLIC_AUDIENCIAS_APP_PAGE_URL_QUERY,
+    },
+  ];
+
+  function colorOfItem(tool) {
+    // If tool item is the one selected return green, else white
+    if (queryTool === tool) {
+      return 'green';
+    }
+
+    return 'white';
+  }
+
+  function renderListItem(tool, index) {
+    return (
+      <Link href={{
+        pathname: tool.pathname,
+        query: { ferramenta: tool.query },
+      }}
+      >
+        <ListItem key={`#listitemindex${index}`} button id={tool.id}>
+          <ListItemIcon>
+            <HomeIcon style={{ color: 'white' }} />
+          </ListItemIcon>
+          <ListItemText
+            classes={{ root: classes.root }}
+            primary={(
+              <Typography style={{ color: colorOfItem(tool.query) }}>{tool.title}</Typography>
+            )}
+          />
+        </ListItem>
+      </Link>
+    );
+  }
 
   return (
     <List>
-      <Link href={{
-        pathname: process.env.NEXT_PUBLIC_DASHBOARD_PAGE_URL,
-        query: { ferramenta: process.env.NEXT_PUBLIC_GENERAL_APP_PAGE_URL_QUERY },
-      }}
-      >
-        <ListItem button id="general-view">
-          <ListItemIcon>
-            <HomeIcon style={{ color: 'white' }} />
-          </ListItemIcon>
-          <ListItemText
-            classes={{ root: classes.root }}
-            primary={<Typography>Visão Geral</Typography>}
-          />
-        </ListItem>
-      </Link>
-
-      <Link href={{
-        pathname: process.env.NEXT_PUBLIC_DASHBOARD_PAGE_URL,
-        query: { ferramenta: process.env.NEXT_PUBLIC_AUDIENCIAS_APP_PAGE_URL_QUERY },
-      }}
-      >
-        <ListItem button id="dashboard-audiencias">
-          <ListItemIcon>
-            <HomeIcon style={{ color: 'white' }} />
-          </ListItemIcon>
-          <ListItemText
-            classes={{ root: classes.root }}
-            primary={<Typography>Audiências Interativas</Typography>}
-          />
-        </ListItem>
-      </Link>
+      {toolList.map((tool, index) => (
+        renderListItem(tool, index)
+      ))}
 
     </List>
   );

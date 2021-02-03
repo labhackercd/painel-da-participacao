@@ -43,18 +43,21 @@ const useStyles = makeStyles((theme) => ({
     margin: '2rem 0 0 2rem',
     width: 'auto',
   },
+  divider: {
+    background: theme.palette.lightGrey.main,
+  },
 }));
 
 export default function HomeMenu(open) {
   const classes = useStyles();
   const [openMenu, setOpenMenu] = useState(open);
-
   const handleDrawerOpen = () => {
     setOpenMenu(true);
   };
   const handleDrawerClose = () => {
     setOpenMenu(false);
   };
+
   return (
     <Grid container className={classes.homeMenuContainer}>
       <Drawer
@@ -73,7 +76,7 @@ export default function HomeMenu(open) {
       >
         <MenuItens />
         <Grid container className={classes.toolbarIcon}>
-          <Divider light />
+          <Divider className={{ root: classes.divider }} />
           { openMenu
             ? (
               <>
