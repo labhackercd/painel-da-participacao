@@ -1,7 +1,8 @@
 import React from 'react';
 import {
-  List, Link, ListItem, ListItemIcon, ListItemText, Typography,
+  List, ListItem, ListItemIcon, ListItemText, Typography,
 } from '@material-ui/core';
+import Link from 'next/link';
 import PeopleIcon from '@material-ui/icons/People';
 import HomeIcon from '@material-ui/icons/Home';
 
@@ -25,69 +26,38 @@ export default function MenuItens() {
 
   return (
     <List>
-      <ListItem button id="general-view" component={Link} to="/dashboard">
-        <ListItemIcon>
-          <HomeIcon style={{ color: 'white' }} />
-        </ListItemIcon>
-        <ListItemText
-          classes={{ root: classes.root }}
-          primary={<Typography>Visão Geral</Typography>}
-        />
-      </ListItem>
-
-      <ListItem button>
-        <ListItemIcon>
-          <PeopleIcon />
-        </ListItemIcon>
-        <ListItemText
-          classes={{ root: classes.root }}
-          primary={<Typography>Audiências Interativas</Typography>}
-        />
-      </ListItem>
-      {/*
-      <ListItem button>
-        <ListItemIcon>
-          <DisqueCamaraIcon />
-        </ListItemIcon>
-        <ListItemText classes={{ root: classes.root }}
-                      primary={<Typography>0800 Câmara</Typography>} />
+      <Link href={{
+        pathname: process.env.NEXT_PUBLIC_DASHBOARD_PAGE_URL,
+        query: { ferramenta: process.env.NEXT_PUBLIC_GENERAL_APP_PAGE_URL_QUERY },
+      }}
+      >
+        <ListItem button id="general-view">
+          <ListItemIcon>
+            <HomeIcon style={{ color: 'white' }} />
+          </ListItemIcon>
+          <ListItemText
+            classes={{ root: classes.root }}
+            primary={<Typography>Visão Geral</Typography>}
+          />
         </ListItem>
-      <ListItem button>
-        <ListItemIcon>
-          <EnquetesIcon />
-        </ListItemIcon>
-        <ListItemText classes={{ root: classes.root }}
-                      primary={<Typography>Enquetes</Typography>} />
-      </ListItem>
-      <ListItem button>
-        <ListItemIcon>
-          <FaleConoscoIcon />
-        </ListItemIcon>
-        <ListItemText classes={{ root: classes.root }}
-                      primary={<Typography>Fale Conosco</Typography>} />
-      </ListItem>
-      <ListItem button>
-        <ListItemIcon>
-          <NoticiasIcon />
-        </ListItemIcon>
-        <ListItemText classes={{ root: classes.root }}
-                      primary={<Typography>Notícias</Typography>} />
-      </ListItem>
-      <ListItem button>
-        <ListItemIcon>
-          <PautaIcon />
-        </ListItemIcon>
-        <ListItemText classes={{ root: classes.root }}
-                      primary={<Typography>Pauta Participativa</Typography>} />
-      </ListItem>
-      <ListItem button>
-        <ListItemIcon>
-          <WikilegisIcon />
-        </ListItemIcon>
-        <ListItemText classes={{ root: classes.root }}
-                      primary={<Typography>Wikilegis 2.0</Typography>} />
-      </ListItem>
-      */}
+      </Link>
+
+      <Link href={{
+        pathname: process.env.NEXT_PUBLIC_DASHBOARD_PAGE_URL,
+        query: { ferramenta: process.env.NEXT_PUBLIC_AUDIENCIAS_APP_PAGE_URL_QUERY },
+      }}
+      >
+        <ListItem button id="dashboard-audiencias">
+          <ListItemIcon>
+            <HomeIcon style={{ color: 'white' }} />
+          </ListItemIcon>
+          <ListItemText
+            classes={{ root: classes.root }}
+            primary={<Typography>Audiências Interativas</Typography>}
+          />
+        </ListItem>
+      </Link>
+
     </List>
   );
 }

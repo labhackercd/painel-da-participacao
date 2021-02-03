@@ -39,7 +39,7 @@ export default function ToolContent(props) {
 
   return (
     <Grid container className={classes.root}>
-      <HomeMenu open={open} />
+      <HomeMenu open />
       <Container className={classes.container}>
         <main className={classes.content}>
           {

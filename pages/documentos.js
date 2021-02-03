@@ -1,9 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import NavBar from '../src/components/NavBar';
-import Footer from '../src/components/Footer';
-// import ToolContent from '../src/components/ToolContent';
 import Layout from '../layouts/index';
 
 const useStyles = makeStyles((theme) => ({
@@ -33,20 +30,15 @@ function TabPanel(props) {
     </div>
   );
 }
-/*
-      <TabPanel id="tabTools" value={value} index={0}>
-        <ToolContent page={props.page}> </ToolContent>
-      </TabPanel>
-*/
 
-export default function Teste2() {
+export default function Teste() {
   const classes = useStyles();
   const valueTab = 1;
 
   return (
     <div className={classes.body}>
       <Layout value={valueTab}>
-        <div>Este é um conteúdo teste da página 2</div>
+        <div>Este é um conteúdo de documentação</div>
       </Layout>
     </div>
   );
