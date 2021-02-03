@@ -39,24 +39,15 @@ function TabPanel(props) {
       </TabPanel>
 */
 
-export default function Dashboard() {
+export default function Teste() {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
-
-  const handleTabPanelChange = (event, newValue) => {
-    setValue(newValue);
-  };
+  const valueTab = 0;
 
   return (
     <div className={classes.body}>
-      <NavBar value={value} handleTabPanelChange={handleTabPanelChange} />
-      <TabPanel id="tabTools" value={value} index={0}>
-        Item 1
-      </TabPanel>
-      <TabPanel id="tabDocuments" value={value} index={2}>
-        Item Three
-      </TabPanel>
-      <Footer />
+      <Layout value={valueTab}>
+        <div>Este é um conteúdo teste</div>
+      </Layout>
     </div>
   );
 }

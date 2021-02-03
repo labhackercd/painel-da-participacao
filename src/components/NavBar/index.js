@@ -8,12 +8,6 @@ import {
 // import LogoutIcon from '../../assets/user_logout_icon.svg';
 // import LogoutMenu from '../LogoutMenu/index';
 
-const CustomTab = withStyles({
-  root: {
-    textTransform: 'capitalize',
-  },
-})(Tab);
-
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.black.main,
@@ -42,6 +36,12 @@ function a11yProps(index) {
   };
 }
 
+const CustomTab = withStyles({
+  root: {
+    textTransform: 'capitalize',
+  },
+})(Tab);
+
 export default function NavBar(props) {
   const classes = useStyles();
   // const [logoutMenuOpen, setLogoutMenuOpen] = React.useState(false);
@@ -49,16 +49,6 @@ export default function NavBar(props) {
   const {
     handleTabPanelChange, value,
   } = props;
-
-  /*
-  const recordButtonPosition = (event) => {
-    setAnchorEl(event.currentTarget);
-    setLogoutMenuOpen(true);
-  };
-  const handleLogoutMenuClose = () => {
-    setLogoutMenuOpen(false);
-  };
-  */
 
   useEffect(() => {
 
@@ -84,25 +74,6 @@ export default function NavBar(props) {
                 </Tabs>
                 )}
           </Grid>
-          {/*
-          <Grid item md={1}>
-            <div className={classes.logout}>
-              <IconButton
-                id="logoutMenu"
-                onClick={(e) => { recordButtonPosition(e); }}
-                aria-haspopup="true"
-              >
-                <LogoutIcon />}
-              </IconButton>
-              <LogoutMenu
-                open={logoutMenuOpen}
-                handleClose={handleLogoutMenuClose}
-                classes={classes}
-                anchorEl={anchorEl}
-              />
-            </div>
-          </Grid>
-          */}
         </Grid>
       </Toolbar>
     </AppBar>
