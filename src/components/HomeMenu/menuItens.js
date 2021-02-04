@@ -1,10 +1,11 @@
 import React from 'react';
 import {
-  List, Link, ListItem, ListItemIcon, ListItemText, Typography,
+  List, ListItem, ListItemIcon, ListItemText, Typography,
 } from '@material-ui/core';
-import PeopleIcon from '@material-ui/icons/People';
+import Link from 'next/link';
+// import PeopleIcon from '@material-ui/icons/People';
 import HomeIcon from '@material-ui/icons/Home';
-
+import { useRouter } from 'next/router';
 import { makeStyles } from '@material-ui/core/styles';
 /*
 import DisqueCamaraIcon from '../../assets/0800_icon.svg';
@@ -22,72 +23,65 @@ const useStyles = makeStyles(() => ({
 
 export default function MenuItens() {
   const classes = useStyles();
+  const router = useRouter();
+  const queryTool = router.query.ferramenta;
+
+  const toolList = [
+    {
+      tool: 'general',
+      id: 'general-view',
+      title: 'Visão Geral',
+      pathname: process.env.NEXT_PUBLIC_DASHBOARD_PAGE_URL,
+      query: process.env.NEXT_PUBLIC_GENERAL_APP_PAGE_URL_QUERY,
+    },
+    {
+      tool: 'audiencias',
+      id: 'dashboard-audiencias',
+      title: 'Audiências Interativas',
+      pathname: process.env.NEXT_PUBLIC_DASHBOARD_PAGE_URL,
+      query: process.env.NEXT_PUBLIC_AUDIENCIAS_APP_PAGE_URL_QUERY,
+    },
+  ];
+
+  function colorOfItem(tool) {
+    // If tool item is the one selected return green, else white
+    if (queryTool === tool) {
+      return 'green';
+    }
+
+    return 'white';
+  }
+
+  function renderListItem(tool) {
+    return (
+      <Link href={{
+        pathname: tool.pathname,
+        query: { ferramenta: tool.query },
+      }}
+      >
+        <ListItem key={`#listitemindex${tool.id}`} button id={tool.id}>
+          <ListItemIcon>
+            <HomeIcon style={{ color: 'white' }} />
+          </ListItemIcon>
+          <ListItemText
+            classes={{ root: classes.root }}
+            primary={(
+              <Typography style={{ color: colorOfItem(tool.query) }}>{tool.title}</Typography>
+            )}
+          />
+        </ListItem>
+      </Link>
+    );
+  }
 
   return (
     <List>
-      <ListItem button id="general-view" component={Link} to="/dashboard">
-        <ListItemIcon>
-          <HomeIcon style={{ color: 'white' }} />
-        </ListItemIcon>
-        <ListItemText
-          classes={{ root: classes.root }}
-          primary={<Typography>Visão Geral</Typography>}
-        />
-      </ListItem>
+      {toolList.map((tool) => (
+        <li key={`#listitem${tool.id}`}>
+          {renderListItem(tool)}
+        </li>
+      ))}
 
-      <ListItem button>
-        <ListItemIcon>
-          <PeopleIcon />
-        </ListItemIcon>
-        <ListItemText
-          classes={{ root: classes.root }}
-          primary={<Typography>Audiências Interativas</Typography>}
-        />
-      </ListItem>
-      {/*
-      <ListItem button>
-        <ListItemIcon>
-          <DisqueCamaraIcon />
-        </ListItemIcon>
-        <ListItemText classes={{ root: classes.root }}
-                      primary={<Typography>0800 Câmara</Typography>} />
-        </ListItem>
-      <ListItem button>
-        <ListItemIcon>
-          <EnquetesIcon />
-        </ListItemIcon>
-        <ListItemText classes={{ root: classes.root }}
-                      primary={<Typography>Enquetes</Typography>} />
-      </ListItem>
-      <ListItem button>
-        <ListItemIcon>
-          <FaleConoscoIcon />
-        </ListItemIcon>
-        <ListItemText classes={{ root: classes.root }}
-                      primary={<Typography>Fale Conosco</Typography>} />
-      </ListItem>
-      <ListItem button>
-        <ListItemIcon>
-          <NoticiasIcon />
-        </ListItemIcon>
-        <ListItemText classes={{ root: classes.root }}
-                      primary={<Typography>Notícias</Typography>} />
-      </ListItem>
-      <ListItem button>
-        <ListItemIcon>
-          <PautaIcon />
-        </ListItemIcon>
-        <ListItemText classes={{ root: classes.root }}
-                      primary={<Typography>Pauta Participativa</Typography>} />
-      </ListItem>
-      <ListItem button>
-        <ListItemIcon>
-          <WikilegisIcon />
-        </ListItemIcon>
-        <ListItemText classes={{ root: classes.root }}
-                      primary={<Typography>Wikilegis 2.0</Typography>} />
-      </ListItem>
-      */}
     </List>
   );
 }

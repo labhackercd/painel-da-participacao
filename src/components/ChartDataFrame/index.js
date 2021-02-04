@@ -9,11 +9,14 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     width: '100%',
+    paddingRight: '0.5rem',
+    paddingLeft: '0.5rem',
   },
   box: {
-    height: '3vh',
+    height: '4vh',
     borderRadius: '15px 15px 0 0',
     width: '100%',
+    backgroundColor: '#252525',
   },
   container: {
     backgroundColor: '#000',
@@ -24,9 +27,9 @@ const useStyles = makeStyles((theme) => ({
   },
   text: {
     color: theme.palette.white.main,
+    marginTop: '1vh',
   },
   header: {
-    padding: '0.1rem 1rem 0 0.5rem',
     height: '3vh',
     display: 'flex',
     justifyContent: 'center',
@@ -50,10 +53,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ChartDataFrame(
-  height, paddingRight, paddingLeft, title, download, children,
-) {
+export default function ChartDataFrame(props) {
   const classes = useStyles();
+
+  const {
+    // eslint-disable-next-line react/prop-types
+    height, children, title, download,
+  } = props;
 
   /*
   function handleDownload() {
@@ -67,26 +73,22 @@ export default function ChartDataFrame(
   */
 
   return (
-    <Grid container className={classes.root} style={{ paddingRight, paddingLeft }}>
-      <Box className={classes.box} color="#252525" bgcolor="#252525">
+    <Grid container className={classes.root}>
+      <Box className={classes.box}>
         <Grid container className={classes.header}>
-          <Grid item md={10}>
+          <Grid item xs={10}>
             <Typography variant="h5" className={classes.text}>
               {title}
             </Typography>
           </Grid>
-          <Grid item md={2}>
-            <Grid container className={classes.iconContainer}>
-              <Grid item md={1}>
-                {download
-                  ? (
-                    <IconButton style={{ color: '#FFF' }} className={classes.downloadIcon}>
-                      <CloudDownloadIcon />
-                    </IconButton>
-                  )
-                  : ''}
-              </Grid>
-            </Grid>
+          <Grid item xs={1}>
+            {download
+              ? (
+                <IconButton style={{ color: '#FFF' }} className={classes.downloadIcon}>
+                  <CloudDownloadIcon />
+                </IconButton>
+              )
+              : ''}
           </Grid>
         </Grid>
       </Box>

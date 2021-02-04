@@ -1,9 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import NavBar from '../src/components/NavBar';
-import Footer from '../src/components/Footer';
-// import ToolContent from '../src/components/ToolContent';
+import { Grid, Container } from '@material-ui/core';
+import { useRouter } from 'next/router';
+import HomeMenu from '../src/components/HomeMenu';
+import Layout from '../layouts/index';
+
+import Audiencias from '../src/containers/Audiencias';
 
 const useStyles = makeStyles((theme) => ({
   body: {
@@ -11,63 +14,47 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
   },
+  root: {
+    display: 'flex',
+  },
+  content: {
+    flexGrow: 1,
+    padding: '2.5rem 0 0 0',
+  },
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
+    padding: '0 0 2rem 0',
+  },
 }));
-
-function TabPanel(props) {
-  const {
-    children, value, index, ...other
-  } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-      <>{children}</>
-      )}
-    </div>
-  );
-}
-/*
-      <TabPanel id="tabTools" value={value} index={0}>
-        <ToolContent page={props.page}> </ToolContent>
-      </TabPanel>
-*/
 
 export default function Dashboard() {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+  const router = useRouter();
+  const queryTool = router.query.ferramenta;
 
-  const handleTabPanelChange = (event, newValue) => {
-    setValue(newValue);
-  };
+  function renderToolContainer() {
+    switch (queryTool) {
+      case process.env.NEXT_PUBLIC_AUDIENCIAS_APP_PAGE_URL_QUERY:
+        return <Audiencias />;
+      default:
+        return <div />;
+    }
+  }
 
   return (
-    <div className={classes.body}>
-      <NavBar value={value} handleTabPanelChange={handleTabPanelChange} />
-      <TabPanel id="tabTools" value={value} index={0}>
-        Item 1
-      </TabPanel>
-      <TabPanel id="tabDocuments" value={value} index={2}>
-        Item Three
-      </TabPanel>
-      <Footer />
-    </div>
+    <Layout value={0}>
+      <div className={classes.body}>
+        <Grid container className={classes.root}>
+          <HomeMenu />
+          <Container className={classes.container}>
+            <main className={classes.content}>
+              { renderToolContainer() }
+            </main>
+          </Container>
+        </Grid>
+      </div>
+    </Layout>
   );
 }
-
-TabPanel.defaultProps = {
-  children: React.createElement('div'),
-  value: 0,
-  index: 0,
-};
-
-TabPanel.propTypes = {
-  children: PropTypes.elementType,
-  value: PropTypes.number,
-  index: PropTypes.number,
-};
