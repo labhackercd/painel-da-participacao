@@ -55,7 +55,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ChartDataFrame(props) {
   const classes = useStyles();
-  const {paddingRight, paddingLeft, height, children, title, download } = props;
+
+  const {
+    // eslint-disable-next-line react/prop-types
+    height, children, title, download,
+  } = props;
 
   /*
   function handleDownload() {

@@ -1,11 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import { shallow, mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
-import { render } from '@testing-library/react';
+// import { render } from '@testing-library/react';
 import MockTheme from '../../mockTheme';
 import HomeMenu from '../index';
-import MenuItens from '../menuItens';
+// import MenuItens from '../menuItens';
 
 const useRouter = jest.spyOn(require('next/router'), 'useRouter');
 
