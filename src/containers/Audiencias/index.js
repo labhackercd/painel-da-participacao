@@ -37,17 +37,11 @@ const useStyles = makeStyles((theme) => ({
   appBarSpacer: theme.mixins.toolbar,
 }));
 
-function StyledTotalNumber(number) {
-  return (
-    <Typography variant="h2" style={{ color: '#FFF', alignSelf: 'center' }}>{number}</Typography>
-  );
-}
-
 export default function Audiencias() {
   const classes = useStyles();
   // const [audienciasData, setAudienciasData] = useState({});
   const [data, setData] = useState('');
-  const [datePeriodSelectData, setDatePeriodSelectData] = useState({year:  '', semester: '', month: ''})
+  const [datePeriodSelectData, setDatePeriodSelectData] = useState({ year: '', semester: '', month: '' });
   const barChartdata = {
     values: [
       ['City', '2010 Population', '2000 Population'],
@@ -135,7 +129,7 @@ export default function Audiencias() {
 
   return (
     <>
-      <Header setDatePeriodSelectData={setDatePeriodSelectData} title="Audiências Interativas" />
+      <Header setDatePeriodSelectData={setDatePeriodSelectData} datePeriodSelectData={datePeriodSelectData} title="Audiências Interativas" />
       <Grid container spacing={1} className={classes.spacingContainer}>
         <Grid item xs={3} className={classes.spacing}>
           <ChartDataFrame height="15vh" paddingRight="0.5rem" listView={false} download={false} title="Total usuários" className={classes.positionStats}>

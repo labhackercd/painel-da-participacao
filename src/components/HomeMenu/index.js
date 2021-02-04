@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Drawer, Divider, Grid, Typography, IconButton,
 } from '@material-ui/core';
@@ -48,15 +48,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function HomeMenu(open) {
+export default function HomeMenu() {
   const classes = useStyles();
-  const [openMenu, setOpenMenu] = useState(open);
-  const handleDrawerOpen = () => {
+  const [openMenu, setOpenMenu] = useState(true);
+
+  function handleDrawerOpen() {
     setOpenMenu(true);
-  };
-  const handleDrawerClose = () => {
+  }
+
+  function handleDrawerClose() {
     setOpenMenu(false);
-  };
+  }
 
   return (
     <Grid container className={classes.homeMenuContainer}>
@@ -76,7 +78,7 @@ export default function HomeMenu(open) {
       >
         <MenuItens />
         <Grid container className={classes.toolbarIcon}>
-          <Divider className={{ root: classes.divider }} />
+          <Divider />
           { openMenu
             ? (
               <>

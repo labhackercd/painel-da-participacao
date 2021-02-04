@@ -1,7 +1,7 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
-import MockTheme from '../../mockTheme';
+import MockTheme from '../../../components/mockTheme';
 import Audiencias from '../index';
 
 test('snapshot should not have changes', () => {
@@ -11,4 +11,12 @@ test('snapshot should not have changes', () => {
   });
   expect(component.exists()).toEqual(true);
   expect(component).toMatchSnapshot();
+});
+
+test('Test if Audiencias renders without crash whole lifecycle', () => {
+  let wrapper;
+  act(() => {
+    wrapper = mount(<MockTheme><Audiencias /></MockTheme>);
+  });
+  expect(wrapper.exists()).toEqual(true);
 });

@@ -47,7 +47,7 @@ export default function Dashboard() {
     <Layout value={0}>
       <div className={classes.body}>
         <Grid container className={classes.root}>
-          <HomeMenu open />
+          <HomeMenu />
           <Container className={classes.container}>
             <main className={classes.content}>
               { renderToolContainer() }
@@ -58,30 +58,3 @@ export default function Dashboard() {
     </Layout>
   );
 }
-
-/*
-  return (
-    <Layout value={0}>
-      <div className={classes.body}>
-        <Grid container className={classes.root}>
-          <HomeMenu open />
-          <Container className={classes.container}>
-            <main className={classes.content}>
-              { renderToolContainer() }
-            </main>
-          </Container>
-        </Grid>
-      </div>
-    </Layout>
-  );
-
-*/
-/*
-Dashboard.defaultProps = {
-  children: React.createElement('div'),
-};
-
-Dashboard.propTypes = {
-  children: PropTypes.elementType,
-};
-*/

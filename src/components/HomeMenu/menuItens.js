@@ -52,14 +52,14 @@ export default function MenuItens() {
     return 'white';
   }
 
-  function renderListItem(tool, index) {
+  function renderListItem(tool) {
     return (
       <Link href={{
         pathname: tool.pathname,
         query: { ferramenta: tool.query },
       }}
       >
-        <ListItem key={`#listitemindex${index}`} button id={tool.id}>
+        <ListItem key={`#listitemindex${tool.id}`} button id={tool.id}>
           <ListItemIcon>
             <HomeIcon style={{ color: 'white' }} />
           </ListItemIcon>
@@ -76,8 +76,10 @@ export default function MenuItens() {
 
   return (
     <List>
-      {toolList.map((tool, index) => (
-        renderListItem(tool, index)
+      {toolList.map((tool) => (
+        <li key={`#listitem${tool.id}`}>
+          {renderListItem(tool)}
+        </li>
       ))}
 
     </List>

@@ -56,7 +56,6 @@ export default function Layout(props) {
 
   return (
     <div className={classes.body}>
-      {/* <NavBar value={value} handleTabPanelChange={handleTabPanelChange} /> */}
       <AppBar position="static">
         <Toolbar className={classes.root}>
           <Grid container>

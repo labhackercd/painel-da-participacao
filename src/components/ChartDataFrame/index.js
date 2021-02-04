@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     height: '4vh',
     borderRadius: '15px 15px 0 0',
     width: '100%',
-    backgroundColor:'#252525',
+    backgroundColor: '#252525',
   },
   container: {
     backgroundColor: '#000',
@@ -89,7 +89,7 @@ export default function ChartDataFrame(props) {
         </Grid>
       </Box>
       <div className={classes.container} style={{ height }}>
-          {children}
+        {children}
       </div>
     </Grid>
   );
