@@ -42,6 +42,7 @@ export default function Audiencias() {
   // const [audienciasData, setAudienciasData] = useState({});
   const [data, setData] = useState('');
   const [datePeriodSelectData, setDatePeriodSelectData] = useState({ year: '', semester: '', month: '' });
+  /*
   const barChartdata = {
     values: [
       ['City', '2010 Population', '2000 Population'],
@@ -63,6 +64,7 @@ export default function Audiencias() {
       },
     },
   };
+  */
   const treeMapChartdata = {
     values: [
       [
@@ -117,7 +119,7 @@ export default function Audiencias() {
     const dataJson = {
       users_total: 100,
       audiencias_total: 234,
-      messages_total: 656,
+      messages_total: 125.2,
       questions_total: 545,
     };
     setData(dataJson);
@@ -131,27 +133,35 @@ export default function Audiencias() {
     <>
       <Header setDatePeriodSelectData={setDatePeriodSelectData} datePeriodSelectData={datePeriodSelectData} title="Audiências Interativas" />
       <Grid container spacing={1} className={classes.spacingContainer}>
-        <Grid item xs={3} className={classes.spacing}>
+        <Grid item xs={12} md={3} className={classes.spacing}>
           <ChartDataFrame height="15vh" paddingRight="0.5rem" listView={false} download={false} title="Total usuários" className={classes.positionStats}>
             {data ? <Typography variant="h2" style={{ color: '#FFF', alignSelf: 'center' }}>{data.users_total}</Typography> : ''}
           </ChartDataFrame>
         </Grid>
 
-        <Grid item xs={3} className={classes.spacing}>
+        <Grid item xs={12} md={3} className={classes.spacing}>
           <ChartDataFrame height="15vh" paddingLeft="0.5rem" listView={false} download={false} title="Total Audiências">
-            {data ? <Typography variant="h2" style={{ color: '#FFF', alignSelf: 'center' }}>{data.users_total}</Typography> : ''}
+            {data ? (
+              <Typography variant="h2" style={{ color: '#FFF', alignSelf: 'center' }}>
+                {`${data.audiencias_total} MIL`}
+              </Typography>
+            ) : ''}
           </ChartDataFrame>
         </Grid>
 
-        <Grid item xs={3} className={classes.spacing}>
+        <Grid item xs={12} md={3} className={classes.spacing}>
           <ChartDataFrame height="15vh" paddingLeft="0.5rem" listView={false} download={false} title="Total mensagens">
-            {data ? <Typography variant="h2" style={{ color: '#FFF', alignSelf: 'center' }}>{data.users_total}</Typography> : ''}
+            {data ? (
+              <Typography variant="h2" style={{ color: '#FFF', alignSelf: 'center' }}>
+                {`${data.questions_total} MI`}
+              </Typography>
+            ) : ''}
           </ChartDataFrame>
         </Grid>
 
-        <Grid item xs={3} className={classes.spacing}>
+        <Grid item xs={12} md={3} className={classes.spacing}>
           <ChartDataFrame height="15vh" paddingLeft="0.5rem" title="Total perguntas" listView={false} download={false}>
-            {data ? <Typography variant="h2" style={{ color: '#FFF', alignSelf: 'center' }}>{data.users_total}</Typography> : ''}
+            {data ? <Typography variant="h2" style={{ color: '#FFF', alignSelf: 'center' }}>{data.questions_total}</Typography> : ''}
           </ChartDataFrame>
         </Grid>
 
@@ -164,9 +174,7 @@ export default function Audiencias() {
         </Grid>
 
         <Grid item xs={6} className={classes.spacing}>
-          <ChartDataFrame height="35vh" paddingRight="0.5rem" listView download>
-            <GoogleChart chartType="BarChart" data={barChartdata.values} options={barChartdata.options} />
-          </ChartDataFrame>
+          <ChartDataFrame height="35vh" paddingRight="0.5rem" listView download />
         </Grid>
         <Grid item xs={6} className={classes.spacing}>
           <ChartDataFrame height="35vh" paddingLeft="0.5rem" listView download />
