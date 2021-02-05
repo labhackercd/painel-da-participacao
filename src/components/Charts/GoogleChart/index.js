@@ -5,6 +5,7 @@ import { Chart } from 'react-google-charts';
 Type Charts
  - LineChart
  - BarChart
+ - ColumnChart (same as barchart but vertical)
  - Calendar -> CalendarHeatChart
  - LineChart -> CurveLineChart with props options
  - PieChart
