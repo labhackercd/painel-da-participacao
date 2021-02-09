@@ -3,8 +3,8 @@ import { Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import ChartDataFrame from '../../components/ChartDataFrame/index';
 import Header from '../../components/Header/index';
-// import fetchDataFromAPI from '../DataFetcher';
 import GoogleChart from '../../components/Charts/GoogleChart';
+// import fetchDataFromAPI from '../DataFetcher';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,29 +42,6 @@ export default function Audiencias() {
   // const [audienciasData, setAudienciasData] = useState({});
   const [data, setData] = useState('');
   const [datePeriodSelectData, setDatePeriodSelectData] = useState({ year: '', semester: '', month: '' });
-  /*
-  const barChartdata = {
-    values: [
-      ['City', '2010 Population', '2000 Population'],
-      ['New York City, NY', 8175000, 8008000],
-      ['Los Angeles, CA', 3792000, 3694000],
-      ['Chicago, IL', 2695000, 2896000],
-      ['Houston, TX', 2099000, 1953000],
-      ['Philadelphia, PA', 1526000, 1517000],
-    ],
-    options: {
-      title: 'Population of Largest U.S. Cities',
-      chartArea: { width: '30%', height: '60%' },
-      hAxis: {
-        title: 'Total Population',
-        minValue: 0,
-      },
-      vAxis: {
-        title: 'City',
-      },
-    },
-  };
-  */
 
   const audiencesWithMoreParticipation = {
     chartType: 'ColumnChart',
@@ -116,10 +93,12 @@ export default function Audiencias() {
   };
 
   async function loadData() {
-    // const response = await fetchDataFromAPI({ year: '', semester: '', month: '' });
-    // const audienciasDataResponse = response.general_analysis.audiencias.data;
-    // setData(response);
-    // setAudienciasData(audienciasDataResponse);
+    /*
+    const response = await fetchDataFromAPI({ year: '', semester: '', month: '' });
+    const audienciasDataResponse = response.general_analysis.audiencias.data;
+    setData(response);
+    setAudienciasData(audienciasDataResponse);
+    */
     const dataJson = {
       users_total: 100,
       audiencias_total: 234,
