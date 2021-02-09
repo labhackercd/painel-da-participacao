@@ -91,6 +91,27 @@ export default function Audiencias() {
       backgroundColor: '#000000',
     },
   };
+  const audiencesUsersTotal = {
+    chartType: 'LineChart',
+    data: [
+      ['Ano', 'Total de Usuários', 'Novos Usuários'],
+      ['2016', 10, 5],
+      ['2017', 23, 15],
+      ['2018', 17, 9],
+      ['2019', 18, 10],
+      ['2020', 35, 14],
+    ],
+    options: {
+      legend: { position: 'top', maxLines: 3, textStyle: { color: 'white' } },
+      colors: ['#76480F', '#9E5E0D', '#DA7F0B'],
+      hAxis: { textStyle: { color: '#FFFFFF' }, gridlines: { color: 'transparent' } },
+      vAxis: { minValue: 0, gridlines: { color: 'transparent' }, textStyle: { color: '#FFFFFF' } },
+      series: {
+        1: { curveType: 'function' },
+      },
+      backgroundColor: '#000000',
+    },
+  };
 
   async function loadData() {
     /*
@@ -173,7 +194,13 @@ export default function Audiencias() {
           </ChartDataFrame>
         </Grid>
         <Grid item xs={6} className={classes.spacing}>
-          <ChartDataFrame height="35vh" paddingLeft="0.5rem" listView download />
+          <ChartDataFrame height="35vh" paddingLeft="0.5rem" title="Audiências que tiveram mais visualizações" listView download>
+            <GoogleChart
+              chartType={audiencesUsersTotal.chartType}
+              data={audiencesUsersTotal.data}
+              options={audiencesUsersTotal.options}
+            />
+          </ChartDataFrame>
         </Grid>
 
       </Grid>
