@@ -3,8 +3,8 @@ import { Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import ChartDataFrame from '../../components/ChartDataFrame/index';
 import Header from '../../components/Header/index';
-// import fetchDataFromAPI from '../DataFetcher';
 import GoogleChart from '../../components/Charts/GoogleChart';
+// import fetchDataFromAPI from '../DataFetcher';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,80 +42,63 @@ export default function Audiencias() {
   // const [audienciasData, setAudienciasData] = useState({});
   const [data, setData] = useState('');
   const [datePeriodSelectData, setDatePeriodSelectData] = useState({ year: '', semester: '', month: '' });
-  /*
-  const barChartdata = {
-    values: [
-      ['City', '2010 Population', '2000 Population'],
-      ['New York City, NY', 8175000, 8008000],
-      ['Los Angeles, CA', 3792000, 3694000],
-      ['Chicago, IL', 2695000, 2896000],
-      ['Houston, TX', 2099000, 1953000],
-      ['Philadelphia, PA', 1526000, 1517000],
+
+  const audiencesWithMoreParticipation = {
+    chartType: 'ColumnChart',
+    data: [
+      ['Data', 'Perguntas', 'Votos nas Perguntas', 'Mensagens do chat'],
+      ['01/12', 300, 800, 231],
+      ['02/12', 345, 545, 265],
+      ['03/12', 240, 865, 212],
+      ['04/12', 256, 870, 234],
+      ['05/12', 210, 856, 275],
+      ['06/12', 323, 822, 276],
+      ['07/12', 356, 762, 212],
+      ['08/12', 121, 542, 434],
+      ['09/12', 130, 232, 234],
+      ['10/12', 213, 212, 954],
+      ['11/12', 365, 309, 545],
+      ['12/12', 313, 312, 576],
+      ['13/12', 376, 376, 603],
+      ['14/12', 309, 354, 565],
+      ['15/12', 354, 323, 732],
     ],
     options: {
-      title: 'Population of Largest U.S. Cities',
-      chartArea: { width: '30%', height: '60%' },
-      hAxis: {
-        title: 'Total Population',
-        minValue: 0,
-      },
-      vAxis: {
-        title: 'City',
-      },
+      bars: 'vertical',
+      legend: { position: 'top', maxLines: 3, textStyle: { color: 'white' } },
+      isStacked: 'true',
+      colors: ['#76480F', '#9E5E0D', '#DA7F0B'],
+      bar: { groupWidth: '40%' },
+      hAxis: { textStyle: { color: '#FFFFFF' } },
+      vAxis: { minValue: 0, gridlines: { color: 'transparent' }, textStyle: { color: '#FFFFFF' } },
+      backgroundColor: '#000000',
     },
   };
-  */
-  const treeMapChartdata = {
-    values: [
-      [
-        'Location',
-        'Parent',
-        'Market trade volume (size)',
-        'Market increase/decrease (color)',
-      ],
-      ['Global', null, 0, 0],
-      ['America', 'Global', 0, 0],
-      ['Europe', 'Global', 0, 0],
-      ['Asia', 'Global', 0, 0],
-      ['Australia', 'Global', 0, 0],
-      ['Africa', 'Global', 0, 0],
-      ['Brazil', 'America', 11, 10],
-      ['USA', 'America', 52, 31],
-      ['Mexico', 'America', 24, 12],
-      ['Canada', 'America', 16, -23],
-      ['France', 'Europe', 42, -11],
-      ['Germany', 'Europe', 31, -2],
-      ['Sweden', 'Europe', 22, -13],
-      ['Italy', 'Europe', 17, 4],
-      ['UK', 'Europe', 21, -5],
-      ['China', 'Asia', 36, 4],
-      ['Japan', 'Asia', 20, -12],
-      ['India', 'Asia', 40, 63],
-      ['Laos', 'Asia', 4, 34],
-      ['Mongolia', 'Asia', 1, -5],
-      ['Iran', 'Asia', 18, 13],
-      ['Pakistan', 'Asia', 11, -52],
-      ['Egypt', 'Africa', 21, 0],
-      ['S. Africa', 'Africa', 30, 43],
-      ['Sudan', 'Africa', 12, 2],
-      ['Congo', 'Africa', 10, 12],
-      ['Zaire', 'Africa', 8, 10],
+
+  const audiencesWithMoreVisualizations = {
+    chartType: 'PieChart',
+    data: [
+      ['Audiência', 'Participação'],
+      ['Retomada das Aulas Presenciais em 2021', 11],
+      ['O impacto das queimadas nas...', 2],
+      ['Sem. virtual O papel do Legislativo...', 2],
     ],
     options: {
-      minColor: '#f00',
-      midColor: '#ddd',
-      maxColor: '#0d0',
-      headerHeight: 15,
-      fontColor: 'black',
-      showScale: true,
+      legend: { position: 'right', maxLines: 3, textStyle: { color: 'white' } },
+      colors: ['#76480F', '#9E5E0D', '#DA7F0B'],
+      hAxis: { textStyle: { color: '#FFFFFF' } },
+      vAxis: { minValue: 0, gridlines: { color: 'transparent' }, textStyle: { color: '#FFFFFF' } },
+      backgroundColor: '#000000',
     },
   };
 
   async function loadData() {
-    // const response = await fetchDataFromAPI({ year: '', semester: '', month: '' });
-    // const audienciasDataResponse = response.general_analysis.audiencias.data;
-    // setData(response);
-    // setAudienciasData(audienciasDataResponse);
+    /*
+    const response = await fetchDataFromAPI({ year: '', semester: '', month: '' });
+    const audienciasDataResponse = response.general_analysis.audiencias.data;
+    setData(response);
+    setAudienciasData(audienciasDataResponse);
+    */
     const dataJson = {
       users_total: 100,
       audiencias_total: 234,
@@ -168,23 +151,29 @@ export default function Audiencias() {
         <Grid item xs={12} className={classes.spacing}>
           <ChartDataFrame height="60vh" title="Temas de audiências mais participativas" listView export_data={data.treemap_chart_data} download>
             <div className={classes.contentBox}>
-              <GoogleChart chartType="TreeMap" data={treeMapChartdata.values} options={treeMapChartdata.options} />
+              <GoogleChart
+                chartType={audiencesWithMoreParticipation.chartType}
+                data={audiencesWithMoreParticipation.data}
+                options={audiencesWithMoreParticipation.options}
+              />
             </div>
           </ChartDataFrame>
         </Grid>
 
-        <Grid item xs={6} className={classes.spacing}>
+        <Grid item xs={12} className={classes.spacing}>
           <ChartDataFrame height="35vh" paddingRight="0.5rem" listView download />
+        </Grid>
+        <Grid item xs={6} className={classes.spacing}>
+          <ChartDataFrame height="35vh" paddingRight="0.5rem" title="Audiências que tiveram mais visualizações" listView download>
+            <GoogleChart
+              chartType={audiencesWithMoreVisualizations.chartType}
+              data={audiencesWithMoreVisualizations.data}
+              options={audiencesWithMoreVisualizations.options}
+            />
+          </ChartDataFrame>
         </Grid>
         <Grid item xs={6} className={classes.spacing}>
           <ChartDataFrame height="35vh" paddingLeft="0.5rem" listView download />
-        </Grid>
-
-        <Grid item xs={6} className={classes.spacing}>
-          <ChartDataFrame height="35vh" paddingRight="0.5rem" listView download />
-        </Grid>
-        <Grid item xs={6} className={classes.spacing}>
-          <ChartDataFrame height="35vh" paddingLeft="0.5rem" listViewdownload />
         </Grid>
 
       </Grid>
