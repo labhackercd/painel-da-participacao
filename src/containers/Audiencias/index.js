@@ -194,7 +194,7 @@ export default function Audiencias() {
           </ChartDataFrame>
         </Grid>
         <Grid item xs={6} className={classes.spacing}>
-          <ChartDataFrame height="35vh" paddingLeft="0.5rem" listView download>
+          <ChartDataFrame height="35vh" paddingLeft="0.5rem" title="Audiências que tiveram mais visualizações" listView download>
             <GoogleChart
               chartType={audiencesUsersTotal.chartType}
               data={audiencesUsersTotal.data}
