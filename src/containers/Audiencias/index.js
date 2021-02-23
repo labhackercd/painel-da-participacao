@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import axios from 'axios';
 import ChartDataFrame from '../../components/ChartDataFrame/index';
 import Header from '../../components/Header/index';
 import GoogleChart from '../../components/Charts/GoogleChart';
@@ -42,6 +45,7 @@ export default function Audiencias() {
   // const [audienciasData, setAudienciasData] = useState({});
   const [data, setData] = useState('');
   const [datePeriodSelectData, setDatePeriodSelectData] = useState({ year: '', semester: '', month: '' });
+  const [totalsAreLoaded, setTotalsAreLoaded] = useState(false);
 
   const audiencesWithMoreParticipation = {
     chartType: 'ColumnChart',
@@ -91,6 +95,7 @@ export default function Audiencias() {
       backgroundColor: '#000000',
     },
   };
+
   const audiencesUsersTotal = {
     chartType: 'LineChart',
     data: [
@@ -112,6 +117,29 @@ export default function Audiencias() {
       backgroundColor: '#000000',
     },
   };
+
+  async function fetchAudienciasTotals() {
+    const response = await axios.get('url');
+    return response.data;
+  }
+
+  function TotalFrame(props) {
+    const { isLoaded, info, title } = props;
+
+    return (
+      <ChartDataFrame height="15vh" paddingLeft="0.5rem" listView={false} download={false} title={title}>
+        {isLoaded ? (
+          <Typography variant="h2" style={{ color: '#FFF', alignSelf: 'center' }}>
+            {info}
+          </Typography>
+        ) : (
+          <Box display="flex" alignItems="center" justifyContent="center" width="100%" height="100%">
+            <CircularProgress color="secondary" />
+          </Box>
+        )}
+      </ChartDataFrame>
+    );
+  }
 
   async function loadData() {
     /*
@@ -144,29 +172,15 @@ export default function Audiencias() {
         </Grid>
 
         <Grid item xs={12} md={3} className={classes.spacing}>
-          <ChartDataFrame height="15vh" paddingLeft="0.5rem" listView={false} download={false} title="Total Audiências">
-            {data ? (
-              <Typography variant="h2" style={{ color: '#FFF', alignSelf: 'center' }}>
-                {`${data.audiencias_total} MIL`}
-              </Typography>
-            ) : ''}
-          </ChartDataFrame>
+          <TotalFrame isLoaded={totalsAreLoaded} info={`${data.audiencias_total} MIL`} title="Total Audiências" />
         </Grid>
 
         <Grid item xs={12} md={3} className={classes.spacing}>
-          <ChartDataFrame height="15vh" paddingLeft="0.5rem" listView={false} download={false} title="Total mensagens">
-            {data ? (
-              <Typography variant="h2" style={{ color: '#FFF', alignSelf: 'center' }}>
-                {`${data.questions_total} MI`}
-              </Typography>
-            ) : ''}
-          </ChartDataFrame>
+          <TotalFrame isLoaded={totalsAreLoaded} info={`${data.questions_total} MI`} title="Total Mensagens" />
         </Grid>
 
         <Grid item xs={12} md={3} className={classes.spacing}>
-          <ChartDataFrame height="15vh" paddingLeft="0.5rem" title="Total perguntas" listView={false} download={false}>
-            {data ? <Typography variant="h2" style={{ color: '#FFF', alignSelf: 'center' }}>{data.questions_total}</Typography> : ''}
-          </ChartDataFrame>
+          <TotalFrame isLoaded={totalsAreLoaded} info={data.questions_total} title="Total Perguntas" />
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
@@ -184,6 +198,7 @@ export default function Audiencias() {
         <Grid item xs={12} className={classes.spacing}>
           <ChartDataFrame height="35vh" paddingRight="0.5rem" listView download />
         </Grid>
+
         <Grid item xs={6} className={classes.spacing}>
           <ChartDataFrame height="35vh" paddingRight="0.5rem" title="Audiências que tiveram mais visualizações" listView download>
             <GoogleChart
