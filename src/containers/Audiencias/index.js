@@ -3,7 +3,8 @@ import { Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import axios from 'axios';
+import PropTypes from 'prop-types';
+// import axios from 'axios';
 import ChartDataFrame from '../../components/ChartDataFrame/index';
 import Header from '../../components/Header/index';
 import GoogleChart from '../../components/Charts/GoogleChart';
@@ -39,6 +40,24 @@ const useStyles = makeStyles((theme) => ({
   },
   appBarSpacer: theme.mixins.toolbar,
 }));
+
+function TotalFrame(props) {
+  const { isLoaded, info, title } = props;
+
+  return (
+    <ChartDataFrame height="15vh" paddingLeft="0.5rem" listView={false} download={false} title={title}>
+      {isLoaded ? (
+        <Typography variant="h2" style={{ color: '#FFF', alignSelf: 'center' }}>
+          {info}
+        </Typography>
+      ) : (
+        <Box display="flex" alignItems="center" justifyContent="center" width="100%" height="100%">
+          <CircularProgress color="secondary" />
+        </Box>
+      )}
+    </ChartDataFrame>
+  );
+}
 
 export default function Audiencias() {
   const classes = useStyles();
@@ -118,28 +137,12 @@ export default function Audiencias() {
     },
   };
 
+  /*
   async function fetchAudienciasTotals() {
     const response = await axios.get('url');
     return response.data;
   }
-
-  function TotalFrame(props) {
-    const { isLoaded, info, title } = props;
-
-    return (
-      <ChartDataFrame height="15vh" paddingLeft="0.5rem" listView={false} download={false} title={title}>
-        {isLoaded ? (
-          <Typography variant="h2" style={{ color: '#FFF', alignSelf: 'center' }}>
-            {info}
-          </Typography>
-        ) : (
-          <Box display="flex" alignItems="center" justifyContent="center" width="100%" height="100%">
-            <CircularProgress color="secondary" />
-          </Box>
-        )}
-      </ChartDataFrame>
-    );
-  }
+  */
 
   async function loadData() {
     /*
@@ -222,3 +225,15 @@ export default function Audiencias() {
     </>
   );
 }
+
+TotalFrame.propTypes = {
+  isLoaded: PropTypes.bool,
+  info: PropTypes.node,
+  title: PropTypes.string,
+};
+
+TotalFrame.defaultProps = {
+  isLoaded: false,
+  info: 'info',
+  title: 'Title',
+};
