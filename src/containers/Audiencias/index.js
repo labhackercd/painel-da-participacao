@@ -61,7 +61,7 @@ function TotalFrame(props) {
 
 function GoogleChartFrame(props) {
   const {
-    isLoaded, title, classes, data, chartType, chartOptions
+    isLoaded, title, classes, data, chartType, chartOptions,
   } = props;
 
   return (
@@ -170,19 +170,18 @@ export default function Audiencias() {
     const url = `https://tes.edemocracia.camara.leg.br/audiencias/reports/api/new-users/?period=${period}&ordering=start_date`;
     const newUsersTotalResponse = await axios.get(url);
     const values = newUsersTotalResponse.data.objects.results;
+    const arrayData = values.map(
+      (value) => [new Date(value.start_date).getFullYear().toString(), value.new_users],
+    );
 
-    const doubles = values.map(function(value) {
-      return [ new Date(value.start_date).getFullYear().toString() , value.new_users];
-    });
-
-    const chartCompleteData = [['Ano', 'Novos Usuários']].concat(doubles);
+    const chartCompleteData = [['Ano', 'Novos Usuários']].concat(arrayData);
     setNewUsersChartData(chartCompleteData);
     setNewUsersChartDataLoaded(true);
   }
 
   async function loadData() {
-    await fetchAndSetAudienciasTotalsData();
-    await fetchAndSetNewUsersChartData('yearly');
+    fetchAndSetAudienciasTotalsData();
+    fetchAndSetNewUsersChartData('yearly');
     /*
     await fetchAndSetUsersChartData();
 
@@ -269,14 +268,18 @@ TotalFrame.defaultProps = {
 
 GoogleChartFrame.propTypes = {
   isLoaded: PropTypes.bool,
-  classes: PropTypes.node,
+  classes: PropTypes.object,
   title: PropTypes.string,
   data: PropTypes.node,
+  chartType: PropTypes.string,
+  chartOptions: PropTypes.object,
 };
 
 GoogleChartFrame.defaultProps = {
   isLoaded: false,
-  classes: 'info',
+  classes: '',
   title: 'Title',
   data: {},
+  chartType: '',
+  chartOptions: {},
 };
