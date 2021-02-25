@@ -61,12 +61,12 @@ export default function Header() {
   return (
     <>
       <Grid container>
-        <Grid item md={2}>
+        <Grid item md={4}>
           <Typography variant="h3" style={{ color: '#FFF' }}>
-            Painel Geral
+            Audiências Interativas
           </Typography>
         </Grid>
-        <Grid item md={5} />
+        <Grid item md={3} />
         <Grid item md={5} className={classes.inputOptions}>
           <Button variant="contained" color="secondary">
             <Typography style={typography}>

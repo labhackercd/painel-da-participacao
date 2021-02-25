@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import PropTypes from 'prop-types';
-// import axios from 'axios';
+import axios from 'axios';
 import ChartDataFrame from '../../components/ChartDataFrame/index';
 import Header from '../../components/Header/index';
 import GoogleChart from '../../components/Charts/GoogleChart';
@@ -61,10 +61,14 @@ function TotalFrame(props) {
 
 export default function Audiencias() {
   const classes = useStyles();
-  // const [audienciasData, setAudienciasData] = useState({});
   const [data, setData] = useState('');
+  const [audienciasTotalsData, setAudienciasTotalsData] = useState('');
+  // const [newUsersChartData, setNewUsersChartData] = useState('');
+  // const [usersChartData, setUsersChartData] = useState('');
   const [datePeriodSelectData, setDatePeriodSelectData] = useState({ year: '', semester: '', month: '' });
   const [totalsAreLoaded, setTotalsAreLoaded] = useState(false);
+  // const [newUsersChartDataLoaded, setNewUsersChartDataLoaded] = useState(false);
+  // const [usersChartDataLoaded, setUsersChartDataLoaded] = useState(false);
 
   const audiencesWithMoreParticipation = {
     chartType: 'ColumnChart',
@@ -137,53 +141,70 @@ export default function Audiencias() {
     },
   };
 
+  async function fetchAndSetAudienciasTotalsData() {
+    // 'https://tes.edemocracia.camara.leg.br/audiencias/reports/api/votes/?period=monthly&start_date__gte=2018-01-01&end_date_lte=2018-12-31';
+    const newUsersTotalResponse = await axios.get('https://tes.edemocracia.camara.leg.br/audiencias/reports/api/new-users/');
+    // const audienciesTotalResponse = await axios.get('http://tes.edemocracia.camara.leg.br/audiencias/reports/api/rooms/');
+    // const messagesTotalResponse = await axios.get('http://tes.edemocracia.camara.leg.br/audiencias/reports/api/messages/');
+    // const questionsTotalResponse = await axios.get('http://tes.edemocracia.camara.leg.br/audiencias/reports/api/messages/');
+
+    const dataJson = {
+      users_total: newUsersTotalResponse.data.sum_total_results,
+      audiencias_total: 234,
+      messages_total: 125000000,
+      questions_total: 545,
+    };
+
+    await setAudienciasTotalsData(dataJson);
+    await setTotalsAreLoaded(true);
+  }
   /*
-  async function fetchAudienciasTotals() {
+  async function fetchAndSetNewUsersChartData(startDate, endDate, period) {
+    const response = await axios.get('url');
+    return response.data;
+  }
+
+  async function fetchAndSetUsersChartData(period) {
     const response = await axios.get('url');
     return response.data;
   }
   */
 
   async function loadData() {
+    await fetchAndSetAudienciasTotalsData();
     /*
+    await fetchAndSetNewUsersChartData();
+    await fetchAndSetUsersChartData();
+
     const response = await fetchDataFromAPI({ year: '', semester: '', month: '' });
     const audienciasDataResponse = response.general_analysis.audiencias.data;
     setData(response);
     setAudienciasData(audienciasDataResponse);
     */
-    const dataJson = {
-      users_total: 100,
-      audiencias_total: 234,
-      messages_total: 125.2,
-      questions_total: 545,
-    };
-    setData(dataJson);
   }
 
   useEffect(() => {
     loadData();
-  }, []);
+  }, [totalsAreLoaded, audienciasTotalsData]);
 
   return (
     <>
       <Header setDatePeriodSelectData={setDatePeriodSelectData} datePeriodSelectData={datePeriodSelectData} title="Audiências Interativas" />
       <Grid container spacing={1} className={classes.spacingContainer}>
         <Grid item xs={12} md={3} className={classes.spacing}>
-          <ChartDataFrame height="15vh" paddingRight="0.5rem" listView={false} download={false} title="Total usuários" className={classes.positionStats}>
-            {data ? <Typography variant="h2" style={{ color: '#FFF', alignSelf: 'center' }}>{data.users_total}</Typography> : ''}
-          </ChartDataFrame>
+          <TotalFrame isLoaded={totalsAreLoaded} info={`${audienciasTotalsData.users_total}`} title="Total de Usuários" />
         </Grid>
 
         <Grid item xs={12} md={3} className={classes.spacing}>
-          <TotalFrame isLoaded={totalsAreLoaded} info={`${data.audiencias_total} MIL`} title="Total Audiências" />
+          <TotalFrame isLoaded={totalsAreLoaded} info={`${audienciasTotalsData.audiencias_total}`} title="Total de Audiências" />
         </Grid>
 
         <Grid item xs={12} md={3} className={classes.spacing}>
-          <TotalFrame isLoaded={totalsAreLoaded} info={`${data.questions_total} MI`} title="Total Mensagens" />
+          <TotalFrame isLoaded={totalsAreLoaded} info={`${audienciasTotalsData.messages_total}`} title="Total de Mensagens" />
         </Grid>
 
         <Grid item xs={12} md={3} className={classes.spacing}>
-          <TotalFrame isLoaded={totalsAreLoaded} info={data.questions_total} title="Total Perguntas" />
+          <TotalFrame isLoaded={totalsAreLoaded} info={audienciasTotalsData.questions_total} title="Total de Perguntas" />
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
