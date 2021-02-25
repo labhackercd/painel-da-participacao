@@ -94,6 +94,7 @@ export default function Audiencias() {
   const [newUsersChartDataLoaded, setNewUsersChartDataLoaded] = useState(false);
   const [usersChartDataLoaded, setUsersChartDataLoaded] = useState(false);
 
+  // eslint-disable-next-line no-unused-vars
   const [selectedPeriodType, setSelectedPeriodType] = useState('yearly'); // yearly or monthly
   const [datePeriodSelectData, setDatePeriodSelectData] = useState({ year: '', semester: '', month: '' });
 
@@ -149,7 +150,6 @@ export default function Audiencias() {
     // const audienciesTotalResponse = await axios.get('http://tes.edemocracia.camara.leg.br/audiencias/reports/api/rooms/');
     // const messagesTotalResponse = await axios.get('http://tes.edemocracia.camara.leg.br/audiencias/reports/api/messages/');
     // const questionsTotalResponse = await axios.get('http://tes.edemocracia.camara.leg.br/audiencias/reports/api/messages/');
-
     const dataJson = {
       users_total: newUsersTotalResponse.data.sum_total_results,
       audiencias_total: 234,
