@@ -65,7 +65,7 @@ function GoogleChartFrame(props) {
   } = props;
 
   return (
-    <ChartDataFrame height="60vh" title={title} listView export_data={data.export_data} download>
+    <ChartDataFrame height="35vh" title={title} listView export_data={null} download>
       {isLoaded ? (
         <div className={classes.contentBox}>
           <GoogleChart
@@ -85,14 +85,17 @@ function GoogleChartFrame(props) {
 
 export default function Audiencias() {
   const classes = useStyles();
-  const [data, setData] = useState('');
+
   const [audienciasTotalsData, setAudienciasTotalsData] = useState('');
   const [newUsersChartData, setNewUsersChartData] = useState('');
-  // const [usersChartData, setUsersChartData] = useState('');
-  const [datePeriodSelectData, setDatePeriodSelectData] = useState({ year: '', semester: '', month: '' });
+  const [usersChartData, setUsersChartData] = useState('');
+
   const [totalsAreLoaded, setTotalsAreLoaded] = useState(false);
   const [newUsersChartDataLoaded, setNewUsersChartDataLoaded] = useState(false);
-  // const [usersChartDataLoaded, setUsersChartDataLoaded] = useState(false);
+  const [usersChartDataLoaded, setUsersChartDataLoaded] = useState(false);
+
+  const [selectedPeriodType, setSelectedPeriodType] = useState('yearly'); // yearly or monthly
+  const [datePeriodSelectData, setDatePeriodSelectData] = useState({ year: '', semester: '', month: '' });
 
   const audiencesWithMoreParticipation = {
     chartType: 'ColumnChart',
@@ -126,20 +129,12 @@ export default function Audiencias() {
     },
   };
 
-  const audiencesNewUsers = {
+  const audiencesChartsUsersSettings = {
     chartType: 'LineChart',
-    data: [
-      ['Ano', 'Novos Usuários'],
-      ['2016', 10],
-      ['2017', 23],
-      ['2018', 17],
-      ['2019', 18],
-      ['2020', 35],
-    ],
     options: {
       legend: { position: 'top', maxLines: 3, textStyle: { color: 'white' } },
       colors: ['#76480F', '#9E5E0D', '#DA7F0B'],
-      hAxis: { textStyle: { color: '#FFFFFF' }, gridlines: { color: 'transparent' } },
+      hAxis: { textStyle: { color: '#FFFFFF' }, gridlines: { color: 'transparent' }, title: 'Ano' },
       vAxis: { gridlines: { color: 'transparent' }, textStyle: { color: '#FFFFFF' }, format: '##.##' },
       series: {
         1: { curveType: 'function' },
@@ -150,7 +145,7 @@ export default function Audiencias() {
 
   async function fetchAndSetAudienciasTotalsData() {
     // 'https://tes.edemocracia.camara.leg.br/audiencias/reports/api/votes/?period=monthly&start_date__gte=2018-01-01&end_date_lte=2018-12-31';
-    const newUsersTotalResponse = await axios.get('https://tes.edemocracia.camara.leg.br/audiencias/reports/api/new-users/');
+    const newUsersTotalResponse = await axios.get(process.env.NEXT_PUBLIC_AUDIENCIAS_NEW_USERS_URL);
     // const audienciesTotalResponse = await axios.get('http://tes.edemocracia.camara.leg.br/audiencias/reports/api/rooms/');
     // const messagesTotalResponse = await axios.get('http://tes.edemocracia.camara.leg.br/audiencias/reports/api/messages/');
     // const questionsTotalResponse = await axios.get('http://tes.edemocracia.camara.leg.br/audiencias/reports/api/messages/');
@@ -166,30 +161,38 @@ export default function Audiencias() {
     await setTotalsAreLoaded(true);
   }
 
+  function computeTotalOfUsersByPeriod(values) {
+    const computedArray = [
+      [new Date(values[0].end_date).getFullYear().toString(), values[0].new_users],
+    ];
+    for (let i = 1; i < values.length; i += 1) {
+      computedArray.push(
+        [new Date(values[i].end_date).getFullYear().toString(),
+          values[i].new_users + computedArray[i - 1][1]],
+      );
+    }
+    const chartCompleteData = [['Ano', 'Total de Usuários']].concat(computedArray);
+    setUsersChartData(chartCompleteData);
+    setUsersChartDataLoaded(true);
+  }
+
   async function fetchAndSetNewUsersChartData(period) {
-    const url = `https://tes.edemocracia.camara.leg.br/audiencias/reports/api/new-users/?period=${period}&ordering=start_date`;
+    const url = `${process.env.NEXT_PUBLIC_AUDIENCIAS_NEW_USERS_URL}?period=${period}&ordering=start_date`;
     const newUsersTotalResponse = await axios.get(url);
     const values = newUsersTotalResponse.data.objects.results;
     const arrayData = values.map(
-      (value) => [new Date(value.start_date).getFullYear().toString(), value.new_users],
+      (value) => [new Date(value.end_date).getFullYear().toString(), value.new_users],
     );
-
     const chartCompleteData = [['Ano', 'Novos Usuários']].concat(arrayData);
     setNewUsersChartData(chartCompleteData);
     setNewUsersChartDataLoaded(true);
+
+    computeTotalOfUsersByPeriod(values);
   }
 
   async function loadData() {
     fetchAndSetAudienciasTotalsData();
-    fetchAndSetNewUsersChartData('yearly');
-    /*
-    await fetchAndSetUsersChartData();
-
-    const response = await fetchDataFromAPI({ year: '', semester: '', month: '' });
-    const audienciasDataResponse = response.general_analysis.audiencias.data;
-    setData(response);
-    setAudienciasData(audienciasDataResponse);
-    */
+    fetchAndSetNewUsersChartData(selectedPeriodType);
   }
 
   useEffect(() => {
@@ -217,7 +220,7 @@ export default function Audiencias() {
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <ChartDataFrame height="60vh" title="Temas de audiências mais participativas" listView export_data={data.treemap_chart_data} download>
+          <ChartDataFrame height="60vh" title="Temas de audiências mais participativas" listView export_data={null} download>
             <div className={classes.contentBox}>
               <GoogleChart
                 chartType={audiencesWithMoreParticipation.chartType}
@@ -234,19 +237,20 @@ export default function Audiencias() {
             title="Novos Usuários"
             classes={classes}
             data={newUsersChartData}
-            chartType={audiencesNewUsers.chartType}
-            chartOptions={audiencesNewUsers.options}
+            chartType={audiencesChartsUsersSettings.chartType}
+            chartOptions={audiencesChartsUsersSettings.options}
           />
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <ChartDataFrame height="35vh" paddingLeft="0.5rem" title="Novos Usuários" listView download>
-            <GoogleChart
-              chartType={audiencesNewUsers.chartType}
-              data={audiencesNewUsers.data}
-              options={audiencesNewUsers.options}
-            />
-          </ChartDataFrame>
+          <GoogleChartFrame
+            isLoaded={usersChartDataLoaded}
+            title="Número de usuários a cada ano"
+            classes={classes}
+            data={usersChartData}
+            chartType={audiencesChartsUsersSettings.chartType}
+            chartOptions={audiencesChartsUsersSettings.options}
+          />
         </Grid>
 
       </Grid>
