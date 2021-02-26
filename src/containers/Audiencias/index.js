@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import ChartDataFrame from '../../components/ChartDataFrame/index';
 import Header from '../../components/Header/index';
+import RankingTable from '../../components/RankingTable/index';
 import GoogleChart from '../../components/Charts/GoogleChart';
 // import fetchDataFromAPI from '../DataFetcher';
 
@@ -89,10 +90,12 @@ export default function Audiencias() {
   const [audienciasTotalsData, setAudienciasTotalsData] = useState('');
   const [newUsersChartData, setNewUsersChartData] = useState('');
   const [usersChartData, setUsersChartData] = useState('');
+  const [roomsRankingData, setRoomsRankingData] = useState('');
 
   const [totalsAreLoaded, setTotalsAreLoaded] = useState(false);
   const [newUsersChartDataLoaded, setNewUsersChartDataLoaded] = useState(false);
   const [usersChartDataLoaded, setUsersChartDataLoaded] = useState(false);
+  const [roomsRankingDataLoaded, setRoomsRankingDataLoaded] = useState(false);
 
   // eslint-disable-next-line no-unused-vars
   const [selectedPeriodType, setSelectedPeriodType] = useState('yearly'); // yearly or monthly
@@ -190,9 +193,17 @@ export default function Audiencias() {
     computeTotalOfUsersByPeriod(values);
   }
 
+  async function fetchAndSetRoomsRankingData() {
+    const url = `${process.env.NEXT_PUBLIC_AUDIENCIAS_ROOMS_RANKING_URL}`;
+    const rankingTotalResponse = await axios.get(url);
+    setRoomsRankingData(rankingTotalResponse.data.data);
+    setRoomsRankingDataLoaded(true);
+  }
+
   async function loadData() {
     fetchAndSetAudienciasTotalsData();
     fetchAndSetNewUsersChartData(selectedPeriodType);
+    fetchAndSetRoomsRankingData();
   }
 
   useEffect(() => {
@@ -228,6 +239,19 @@ export default function Audiencias() {
                 options={audiencesWithMoreParticipation.options}
               />
             </div>
+          </ChartDataFrame>
+        </Grid>
+        <Grid item xs={12} className={classes.spacing}>
+          <ChartDataFrame height="70vh" title="Ranking" listView export_data={null} download={false}>
+            {roomsRankingDataLoaded ? (
+              <Box width="100%" height="90%">
+                <RankingTable data={roomsRankingData} />
+              </Box>
+            ) : (
+              <Box display="flex" alignItems="center" justifyContent="center" width="100%" height="100%">
+                <CircularProgress color="secondary" />
+              </Box>
+            )}
           </ChartDataFrame>
         </Grid>
 

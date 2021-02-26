@@ -7,6 +7,7 @@ import MockTheme from '../../../components/mockTheme';
 import Audiencias from '../index';
 
 import newUsersMockResponse from './mocks/new_users_mock';
+import rankingRoomsMock from './mocks/ranking_rooms_mock';
 
 test('snapshot should not have changes', () => {
   let component;
@@ -29,9 +30,13 @@ test('Test audiencias default page lifecycle with requests', async (done) => {
   const mockInstance = new MockAdapter(axios);
   const period = 'yearly';
   const urlNewUsersByYear = `${process.env.NEXT_PUBLIC_AUDIENCIAS_NEW_USERS_URL}?period=${period}&ordering=start_date`;
-  await mockInstance.onGet(process.env.NEXT_PUBLIC_AUDIENCIAS_NEW_USERS_URL)
+  await mockInstance
+    .onGet(process.env.NEXT_PUBLIC_AUDIENCIAS_NEW_USERS_URL)
     .reply(200, newUsersMockResponse)
-    .onGet(urlNewUsersByYear).reply(200, newUsersMockResponse);
+    .onGet(urlNewUsersByYear)
+    .reply(200, newUsersMockResponse)
+    .onGet(process.env.NEXT_PUBLIC_AUDIENCIAS_ROOMS_RANKING_URL)
+    .reply(200, rankingRoomsMock);
 
   const wrapper = await mount(<MockTheme><Audiencias /></MockTheme>);
   wrapper.update();
