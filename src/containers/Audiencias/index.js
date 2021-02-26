@@ -179,7 +179,7 @@ export default function Audiencias() {
   async function fetchAndSetNewUsersChartData(period) {
     const url = `${process.env.NEXT_PUBLIC_AUDIENCIAS_NEW_USERS_URL}?period=${period}&ordering=start_date`;
     const newUsersTotalResponse = await axios.get(url);
-    const values = newUsersTotalResponse.data.objects.results;
+    const values = newUsersTotalResponse.data.results;
     const arrayData = values.map(
       (value) => [new Date(value.end_date).getFullYear().toString(), value.new_users],
     );
