@@ -196,9 +196,7 @@ export default function Audiencias() {
   async function fetchAndSetRoomsRankingData() {
     const url = `${process.env.NEXT_PUBLIC_AUDIENCIAS_ROOMS_RANKING_URL}`;
     const rankingTotalResponse = await axios.get(url);
-    // const values = rankingTotalResponse.data.results;
     setRoomsRankingData(rankingTotalResponse.data.data);
-    console.log(rankingTotalResponse.data);
     setRoomsRankingDataLoaded(true);
   }
 
