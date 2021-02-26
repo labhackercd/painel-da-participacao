@@ -33,5 +33,5 @@ export default function GoogleChart(props) {
 GoogleChart.propTypes = {
   chartType: PropTypes.string.isRequired,
   data: PropTypes.array.isRequired,
-  options: PropTypes.node.isRequired,
+  options: PropTypes.object.isRequired,
 };

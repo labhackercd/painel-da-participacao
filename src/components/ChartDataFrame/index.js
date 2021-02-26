@@ -78,7 +78,9 @@ export default function ChartDataFrame(props) {
         <Grid container className={classes.header}>
           <Grid item xs={10}>
             <Typography variant="h5" className={classes.text}>
-              {title}
+              <Box fontWeight="fontWeightBold">
+                {title}
+              </Box>
             </Typography>
           </Grid>
           <Grid item xs={1}>
