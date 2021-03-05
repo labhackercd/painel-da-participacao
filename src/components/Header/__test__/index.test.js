@@ -19,24 +19,15 @@ test('Test if Header renders without crash', () => {
 test('test onchange of year select input field', () => {
   const wrapper = mount(<MockTheme><Header /></MockTheme>);
   const sessionType = wrapper.find('select').at(0);
-  // console.log(sessionType.debug())
-  sessionType.instance().value = '3';
+  sessionType.instance().value = '2021';
   sessionType.simulate('change');
-  expect(wrapper.find('select').at(0).prop('value')).toEqual('3');
+  expect(wrapper.find('select').at(0).prop('value')).toEqual('2021');
 });
 
-test('test onchange of semester select input field', () => {
+test('Test onchange of Year Period select input field', () => {
   const wrapper = mount(<MockTheme><Header /></MockTheme>);
   const sessionType = wrapper.find('select').at(1);
   sessionType.instance().value = '3';
   sessionType.simulate('change');
   expect(wrapper.find('select').at(1).prop('value')).toEqual('3');
-});
-
-test('test onchange of month select input field', () => {
-  const wrapper = mount(<MockTheme><Header /></MockTheme>);
-  const sessionType = wrapper.find('select').at(2);
-  sessionType.instance().value = '3';
-  sessionType.simulate('change');
-  expect(wrapper.find('select').at(2).prop('value')).toEqual('3');
 });

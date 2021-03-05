@@ -1,3 +1,7 @@
+/* eslint-disable max-len */
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/destructuring-assignment */
 import React, { useState, useEffect } from 'react';
 import { Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -84,54 +88,22 @@ function GoogleChartFrame(props) {
   );
 }
 
-export default function Audiencias() {
+function Audiencias(props) {
   const classes = useStyles();
-
   const [audienciasTotalsData, setAudienciasTotalsData] = useState('');
-  const [newUsersChartData, setNewUsersChartData] = useState('');
-  const [usersChartData, setUsersChartData] = useState('');
-  const [roomsRankingData, setRoomsRankingData] = useState('');
-
+  const [newUsersChartData, setNewUsersChartData] = useState([]);
+  const [usersChartData, setUsersChartData] = useState([]);
+  const [roomsRankingData, setRoomsRankingData] = useState([]);
   const [totalsAreLoaded, setTotalsAreLoaded] = useState(false);
   const [newUsersChartDataLoaded, setNewUsersChartDataLoaded] = useState(false);
   const [usersChartDataLoaded, setUsersChartDataLoaded] = useState(false);
   const [roomsRankingDataLoaded, setRoomsRankingDataLoaded] = useState(false);
+  const [yearPeriod, setYearPeriod] = useState('2021');
+  const [monthPeriod, setMonthPeriod] = useState('0'); // month 0 correspons to "all months"
+  const [searchQuery, setSearchQuery] = useState(`?period=monthly&start_date__year=${new Date().getFullYear()}&ordering=start_date`);
 
   // eslint-disable-next-line no-unused-vars
-  const [selectedPeriodType, setSelectedPeriodType] = useState('yearly'); // yearly or monthly
-  const [datePeriodSelectData, setDatePeriodSelectData] = useState({ year: '', semester: '', month: '' });
-
-  const audiencesWithMoreParticipation = {
-    chartType: 'ColumnChart',
-    data: [
-      ['Data', 'Perguntas', 'Votos nas Perguntas', 'Mensagens do chat'],
-      ['01/12', 300, 800, 231],
-      ['02/12', 345, 545, 265],
-      ['03/12', 240, 865, 212],
-      ['04/12', 256, 870, 234],
-      ['05/12', 210, 856, 275],
-      ['06/12', 323, 822, 276],
-      ['07/12', 356, 762, 212],
-      ['08/12', 121, 542, 434],
-      ['09/12', 130, 232, 234],
-      ['10/12', 213, 212, 954],
-      ['11/12', 365, 309, 545],
-      ['12/12', 313, 312, 576],
-      ['13/12', 376, 376, 603],
-      ['14/12', 309, 354, 565],
-      ['15/12', 354, 323, 732],
-    ],
-    options: {
-      bars: 'vertical',
-      legend: { position: 'top', maxLines: 3, textStyle: { color: 'white' } },
-      isStacked: 'true',
-      colors: ['#76480F', '#9E5E0D', '#DA7F0B'],
-      bar: { groupWidth: '40%' },
-      hAxis: { textStyle: { color: '#FFFFFF' } },
-      vAxis: { minValue: 0, gridlines: { color: 'transparent' }, textStyle: { color: '#FFFFFF' } },
-      backgroundColor: '#000000',
-    },
-  };
+  const [selectedPeriodType, setSelectedPeriodType] = useState('monthly'); // yearly or monthly or daily
 
   const audiencesChartsUsersSettings = {
     chartType: 'LineChart',
@@ -147,23 +119,24 @@ export default function Audiencias() {
     },
   };
 
-  async function fetchAndSetAudienciasTotalsData() {
-    // 'https://tes.edemocracia.camara.leg.br/audiencias/reports/api/votes/?period=monthly&start_date__gte=2018-01-01&end_date_lte=2018-12-31';
-    const newUsersTotalResponse = await axios.get(process.env.NEXT_PUBLIC_AUDIENCIAS_NEW_USERS_URL);
-    // const audienciesTotalResponse = await axios.get('http://tes.edemocracia.camara.leg.br/audiencias/reports/api/rooms/');
-    // const messagesTotalResponse = await axios.get('http://tes.edemocracia.camara.leg.br/audiencias/reports/api/messages/');
-    // const questionsTotalResponse = await axios.get('http://tes.edemocracia.camara.leg.br/audiencias/reports/api/messages/');
+  async function fetchAndSetAudienciasTotalsData(query, period) {
+    const newUsersTotalResponse = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_NEW_USERS_URL}${query}`);
+    // const audienciesTotalResponse = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_ROOMS_RANKING_URL}${query}`);
+    // const messagesTotalResponse = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_MESSAGES_RANKING_URL}${query}`);
+    // const questionsTotalResponse = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_QUESTIONS_RANKING_URL}${query}`);
+    // MESSAGES E QUESTIONS COM ERRO DE CORS
+
     const dataJson = {
       users_total: newUsersTotalResponse.data.sum_total_results,
-      audiencias_total: 234,
-      messages_total: 125000000,
-      questions_total: 545,
+      audiencias_total: '-',
+      messages_total: '-',
+      questions_total: '-',
     };
 
     await setAudienciasTotalsData(dataJson);
     await setTotalsAreLoaded(true);
   }
-
+  /*
   function computeTotalOfUsersByPeriod(values) {
     const computedArray = [
       [new Date(values[0].end_date).getFullYear().toString(), values[0].new_users],
@@ -178,41 +151,103 @@ export default function Audiencias() {
     setUsersChartData(chartCompleteData);
     setUsersChartDataLoaded(true);
   }
+  */
 
-  async function fetchAndSetNewUsersChartData(period) {
-    const url = `${process.env.NEXT_PUBLIC_AUDIENCIAS_NEW_USERS_URL}?period=${period}&ordering=start_date`;
+  async function fetchAndSetNewUsersChartData(query, period) {
+    const url = `${process.env.NEXT_PUBLIC_AUDIENCIAS_NEW_USERS_URL}${query}`;
     const newUsersTotalResponse = await axios.get(url);
     const values = newUsersTotalResponse.data.results;
-    const arrayData = values.map(
-      (value) => [new Date(value.end_date).getFullYear().toString(), value.new_users],
-    );
-    const chartCompleteData = [['Ano', 'Novos Usuários']].concat(arrayData);
-    setNewUsersChartData(chartCompleteData);
+    let arrayData = [];
+    let collumPeriodTitle = [];
+    const monthNames = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+      'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro',
+    ];
+
+    switch (period) {
+      case 'daily':
+        arrayData = values.map(
+          (value) => [new Date(value.end_date).getDate().toString(), value.new_users],
+        );
+        collumPeriodTitle = ['Dia', 'Novos Usuários'];
+        break;
+      case 'monthly':
+        arrayData = values.map(
+          (value) => [monthNames[(new Date(value.end_date)).getMonth()], value.new_users],
+        );
+        collumPeriodTitle = ['Mês', 'Novos Usuários'];
+        break;
+      default:
+        arrayData = values.map(
+          (value) => [new Date(value.end_date).getFullYear().toString(), value.new_users],
+        );
+        collumPeriodTitle = ['Ano', 'Novos Usuários'];
+        break;
+    }
+
+    if (arrayData.length > 0) {
+      setNewUsersChartData([collumPeriodTitle].concat(arrayData));
+    } else {
+      setNewUsersChartData(arrayData);
+    }
+
     setNewUsersChartDataLoaded(true);
 
-    computeTotalOfUsersByPeriod(values);
+    /*
+    if (Array.isArray(values) && values.length) {
+      computeTotalOfUsersByPeriod(values);
+    }
+    */
   }
 
-  async function fetchAndSetRoomsRankingData() {
-    const url = `${process.env.NEXT_PUBLIC_AUDIENCIAS_ROOMS_RANKING_URL}`;
-    const rankingTotalResponse = await axios.get(url);
-    setRoomsRankingData(rankingTotalResponse.data.data);
-    setRoomsRankingDataLoaded(true);
+  async function loadData(query, period) {
+    fetchAndSetAudienciasTotalsData(query, period);
+    fetchAndSetNewUsersChartData(query, period);
+    // fetchAndSetRoomsRankingData();
   }
 
-  async function loadData() {
-    fetchAndSetAudienciasTotalsData();
-    fetchAndSetNewUsersChartData(selectedPeriodType);
-    fetchAndSetRoomsRankingData();
+  async function handleYearSelectPeriod(year) {
+    await setYearPeriod(year);
+  }
+
+  async function handleMonthSelectPeriod(month) {
+    await setMonthPeriod(month);
+  }
+
+  async function handleUpdatePeriodSearchQuery(month, year) {
+    let query = '';
+    let period = '';
+    if ((year === '0') && (month === '0')) {
+      query = '?period=yearly&ordering=start_date';
+      period = 'yearly';
+    } else if ((year !== '0') && (month === '0')) {
+      query = `?period=monthly&start_date__year=${year}&ordering=start_date`;
+      period = 'monthly';
+    } else {
+      // (yearPeriod !== '0') && (monthPeriod !== '0')
+      query = `?period=daily&start_date__year=${year}&start_date__month=${month}&ordering=start_date`;
+      period = 'daily';
+    }
+    await loadData(query, period);
+  }
+
+  async function handlePeriodChange(month, year) {
+    await handleUpdatePeriodSearchQuery(month, year);
   }
 
   useEffect(() => {
-    loadData();
+    loadData(searchQuery, selectedPeriodType);
   }, []);
 
   return (
     <>
-      <Header setDatePeriodSelectData={setDatePeriodSelectData} datePeriodSelectData={datePeriodSelectData} title="Audiências Interativas" />
+      <Header
+        title="Audiências Interativas"
+        handleYearSelectPeriod={handleYearSelectPeriod}
+        handleMonthSelectPeriod={handleMonthSelectPeriod}
+        handlePeriodChange={handlePeriodChange}
+        year={yearPeriod}
+        monthPeriod={monthPeriod}
+      />
       <Grid container spacing={1} className={classes.spacingContainer}>
         <Grid item xs={12} md={3} className={classes.spacing}>
           <TotalFrame isLoaded={totalsAreLoaded} info={`${audienciasTotalsData.users_total}`} title="Total de Usuários" />
@@ -231,52 +266,33 @@ export default function Audiencias() {
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <ChartDataFrame height="60vh" title="Temas de audiências mais participativas" listView export_data={null} download>
+          <ChartDataFrame height="70vh" title="Ranking" listView export_data={null} download={false}>
+            <Box width="100%" height="90%">
+              <RankingTable data={props.responseDataRanking} />
+            </Box>
+          </ChartDataFrame>
+        </Grid>
+
+        <Grid item xs={12} className={classes.spacing}>
+          {(newUsersChartData.length > 0) ? (
             <div className={classes.contentBox}>
-              <GoogleChart
-                chartType={audiencesWithMoreParticipation.chartType}
-                data={audiencesWithMoreParticipation.data}
-                options={audiencesWithMoreParticipation.options}
+              <GoogleChartFrame
+                isLoaded={newUsersChartDataLoaded}
+                title="Novos Usuários"
+                classes={classes}
+                data={newUsersChartData}
+                chartType={audiencesChartsUsersSettings.chartType}
+                chartOptions={audiencesChartsUsersSettings.options}
               />
             </div>
-          </ChartDataFrame>
-        </Grid>
-        <Grid item xs={12} className={classes.spacing}>
-          <ChartDataFrame height="70vh" title="Ranking" listView export_data={null} download={false}>
-            {roomsRankingDataLoaded ? (
-              <Box width="100%" height="90%">
-                <RankingTable data={roomsRankingData} />
-              </Box>
-            ) : (
+          ) : (
+            <ChartDataFrame height="10vh" title="Novos Usuários" listView export_data={null} download={false}>
               <Box display="flex" alignItems="center" justifyContent="center" width="100%" height="100%">
-                <CircularProgress color="secondary" />
+                <Typography>Não existem dados para o período selecionado</Typography>
               </Box>
-            )}
-          </ChartDataFrame>
+            </ChartDataFrame>
+          )}
         </Grid>
-
-        <Grid item xs={12} className={classes.spacing}>
-          <GoogleChartFrame
-            isLoaded={newUsersChartDataLoaded}
-            title="Novos Usuários"
-            classes={classes}
-            data={newUsersChartData}
-            chartType={audiencesChartsUsersSettings.chartType}
-            chartOptions={audiencesChartsUsersSettings.options}
-          />
-        </Grid>
-
-        <Grid item xs={12} className={classes.spacing}>
-          <GoogleChartFrame
-            isLoaded={usersChartDataLoaded}
-            title="Número de usuários a cada ano"
-            classes={classes}
-            data={usersChartData}
-            chartType={audiencesChartsUsersSettings.chartType}
-            chartOptions={audiencesChartsUsersSettings.options}
-          />
-        </Grid>
-
       </Grid>
     </>
   );
@@ -311,3 +327,5 @@ GoogleChartFrame.defaultProps = {
   chartType: '',
   chartOptions: {},
 };
+
+export default Audiencias;
