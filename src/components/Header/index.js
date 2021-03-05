@@ -63,7 +63,7 @@ const typography = { color: '#FFF', textTransform: 'capitalize' };
 
 export default function Header(props) {
   const classes = useStyles();
-  const [year, setYear] = useState(new Date().getFullYear());
+  const [year, setYear] = useState(new Date().getFullYear().toString());
   const [month, setMonth] = useState('0');
   const [selectMonthDisabled, setSelectMonthDisabled] = useState(true);
 
@@ -108,6 +108,7 @@ export default function Header(props) {
               }}
             >
               <option value="0">Todo o Período</option>
+              <option value="2021">2021</option>
               <option value="2020">2020</option>
               <option value="2019">2019</option>
               <option value="2018">2018</option>

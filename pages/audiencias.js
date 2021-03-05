@@ -46,6 +46,18 @@ function AudienciasPage({ dados }) {
     </Layout>
   );
 }
+export async function getStaticProps() {
+  const baseUrl = 'https://tes.edemocracia.camara.leg.br/audiencias/reports/api/ranking/?limit=1000&offset=1000';
+  const resp = await axios.get(`${baseUrl}`);
+  const dados = resp.data.results;
+
+  return {
+    props: {
+      dados,
+    },
+    revalidate: 600, // Update data every 10 minutes (600 seconds)
+  };
+}
 
 /*
 export async function getStaticProps() {
