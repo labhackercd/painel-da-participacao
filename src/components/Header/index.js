@@ -82,6 +82,7 @@ export default function Header(props) {
   };
 
   const handleSubmit = () => {
+    // eslint-disable-next-line react/prop-types
     props.handlePeriodChange(month, year);
   };
 

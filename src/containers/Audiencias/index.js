@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/destructuring-assignment */
@@ -118,17 +119,18 @@ function Audiencias(props) {
     },
   };
 
-  async function fetchAndSetAudienciasTotalsData() {
-    // 'https://tes.edemocracia.camara.leg.br/audiencias/reports/api/votes/?period=monthly&start_date__gte=2018-01-01&end_date_lte=2018-12-31';
-    const newUsersTotalResponse = await axios.get(process.env.NEXT_PUBLIC_AUDIENCIAS_NEW_USERS_URL);
-    // const audienciesTotalResponse = await axios.get('http://tes.edemocracia.camara.leg.br/audiencias/reports/api/rooms/');
-    // const messagesTotalResponse = await axios.get('http://tes.edemocracia.camara.leg.br/audiencias/reports/api/messages/');
-    // const questionsTotalResponse = await axios.get('http://tes.edemocracia.camara.leg.br/audiencias/reports/api/messages/');
+  async function fetchAndSetAudienciasTotalsData(query, period) {
+    const newUsersTotalResponse = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_NEW_USERS_URL}${query}`);
+    // const audienciesTotalResponse = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_ROOMS_RANKING_URL}${query}`);
+    // const messagesTotalResponse = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_MESSAGES_RANKING_URL}${query}`);
+    // const questionsTotalResponse = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_QUESTIONS_RANKING_URL}${query}`);
+    // MESSAGES E QUESTIONS COM ERRO DE CORS
+
     const dataJson = {
       users_total: newUsersTotalResponse.data.sum_total_results,
-      audiencias_total: 234,
-      messages_total: 125000000,
-      questions_total: 545,
+      audiencias_total: '-',
+      messages_total: '-',
+      questions_total: '-',
     };
 
     await setAudienciasTotalsData(dataJson);
@@ -198,7 +200,7 @@ function Audiencias(props) {
   }
 
   async function loadData(query, period) {
-    fetchAndSetAudienciasTotalsData();
+    fetchAndSetAudienciasTotalsData(query, period);
     fetchAndSetNewUsersChartData(query, period);
     // fetchAndSetRoomsRankingData();
   }
