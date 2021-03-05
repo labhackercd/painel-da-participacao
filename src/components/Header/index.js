@@ -10,12 +10,13 @@ const BootstrapInput = withStyles((theme) => ({
     borderRadius: 6,
     position: 'relative',
     backgroundColor: theme.palette.lightGrey.main,
+    color: 'black',
     padding: '10px 26px 10px 12px',
     transition: theme.transitions.create(['border-color', 'box-shadow']),
     '&:focus': {
       borderRadius: 4,
       boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
-      backgroundColor: theme.palette.white.main,
+      backgroundColor: theme.palette.lightGrey.main,
     },
   },
 }))(InputBase);
@@ -30,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
   inputOptions: {
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-end',
   },
   margin: {
     margin: theme.spacing(1),
@@ -40,46 +41,61 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignSelf: 'center',
   },
+  filterButton: {
+    fontWeight: 'bold',
+    backgroundColor: '#DA7F0B',
+    '&:hover': {
+      backgroundColor: '#E1A04E',
+    },
+  },
+  formControl: {
+    marginRight: '20px',
+  },
+  select: {
+    color: 'white',
+    '&:not([multiple]) option': {
+      backgroundColor: theme.palette.lightGrey.main,
+    },
+  },
 }));
 
 const typography = { color: '#FFF', textTransform: 'capitalize' };
 
-export default function Header() {
+export default function Header(props) {
   const classes = useStyles();
-  const [year, setYear] = useState(0);
-  const [semester, setSemester] = useState(0);
-  const [month, setMonth] = useState(0);
+  const [year, setYear] = useState(new Date().getFullYear());
+  const [month, setMonth] = useState('0');
+  const [selectMonthDisabled, setSelectMonthDisabled] = useState(true);
+
   const handleChangeYear = (event) => {
     setYear(event.target.value);
+    if (event.target.value === '0') {
+      setMonth('0');
+      setSelectMonthDisabled(true);
+    } else {
+      setSelectMonthDisabled(false);
+    }
   };
-  const handleChangeSemester = (event) => {
-    setSemester(event.target.value);
-  };
+
   const handleChangeMonth = (event) => {
     setMonth(event.target.value);
   };
+
+  const handleSubmit = () => {
+    props.handlePeriodChange(month, year);
+  };
+
   return (
     <>
       <Grid container>
-        <Grid item md={4}>
+        <Grid item xs={12} md={4}>
           <Typography variant="h3" style={{ color: '#FFF' }}>
             Audiências Interativas
           </Typography>
         </Grid>
-        <Grid item md={3} />
-        <Grid item md={5} className={classes.inputOptions}>
-          <Button variant="contained" color="secondary">
-            <Typography style={typography}>
-              Dados totais
-            </Typography>
-          </Button>
-          <div className={classes.filter}>
-            <Typography variant="h5">
-              Filtros
-            </Typography>
-          </div>
+        <Grid item md={8} className={classes.inputOptions}>
           {/* year select */}
-          <FormControl id="form-control-year">
+          <FormControl id="form-control-year" className={classes.formControl}>
             <InputLabel id="year-label">Ano</InputLabel>
             <Select
               id="select-year"
@@ -87,30 +103,19 @@ export default function Header() {
               native
               onChange={handleChangeYear}
               input={<BootstrapInput />}
+              classes={{
+                select: classes.select,
+              }}
             >
-              <option value="0">Ano</option>
-              <option value="1">2020</option>
-              <option value="2">2019</option>
-              <option value="3">2018</option>
+              <option value="0">Todo o Período</option>
+              <option value="2020">2020</option>
+              <option value="2019">2019</option>
+              <option value="2018">2018</option>
+              <option value="2017">2017</option>
+              <option value="2016">2016</option>
             </Select>
           </FormControl>
-          {/* Semester select */}
-          <FormControl id="form-control-semester">
-            <InputLabel id="semester-label">Semestre</InputLabel>
-            <Select
-              id="select-semester"
-              value={semester}
-              native
-              onChange={handleChangeSemester}
-              input={<BootstrapInput />}
-            >
-              <option value="0">Semestre</option>
-              <option value="1">1/2020</option>
-              <option value="2">1/2019</option>
-              <option value="3">2/2019</option>
-            </Select>
-          </FormControl>
-          <FormControl>
+          <FormControl id="form-control-month" className={classes.formControl}>
             <InputLabel id="month-label">Mês</InputLabel>
             <Select
               id="select-month"
@@ -118,13 +123,32 @@ export default function Header() {
               native
               onChange={handleChangeMonth}
               input={<BootstrapInput />}
+              classes={{
+                select: classes.select,
+              }}
+              disabled={selectMonthDisabled}
             >
-              <option value="0">Mês</option>
+              <option value="0">Todos os Meses</option>
               <option value="1">Janeiro</option>
               <option value="2">Fevereiro</option>
               <option value="3">Março</option>
+              <option value="4">Abril</option>
+              <option value="5">Maio</option>
+              <option value="6">Junho</option>
+              <option value="7">Julho</option>
+              <option value="8">Agosto</option>
+              <option value="9">Setembro</option>
+              <option value="10">Outubro</option>
+              <option value="11">Novembro</option>
+              <option value="12">Dezembro</option>
             </Select>
           </FormControl>
+
+          <Button variant="contained" className={classes.filterButton} onClick={handleSubmit}>
+            <Typography style={typography}>
+              Filtrar
+            </Typography>
+          </Button>
         </Grid>
       </Grid>
     </>

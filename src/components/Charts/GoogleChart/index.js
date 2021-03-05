@@ -16,7 +16,6 @@ Type Charts
 // export default function GoogleChart(chartType, data, options) {
 export default function GoogleChart(props) {
   const { chartType, data, options } = props;
-
   return (
     <Chart
       width="100%"
