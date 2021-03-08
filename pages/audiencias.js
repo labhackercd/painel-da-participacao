@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 function AudienciasPage({ dados }) {
   const classes = useStyles();
   return (
-    <Layout value={0}>
+    <Layout value={1}>
       <Grid container className={classes.root}>
         <Container className={classes.container}>
           <main className={classes.content}>
