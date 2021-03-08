@@ -249,11 +249,10 @@ function Audiencias(props) {
 
   async function getParticipationChartDataByYear(messagesData, questionsData, questionsVoteData) {
     const resultArray = [];
-    function pad(d) {
-      return (d < 10 ? `0${d.toString()}` : d.toString());
-    }
+    const begginingYear = 2016;
+    const currentYear = new Date().getFullYear();
 
-    for (let i = 2016; i <= 2020; i += 1) {
+    for (let i = begginingYear; i <= currentYear; i += 1) {
       const messageFiltered = messagesData.filter((message) => message.start_date === `${i}-01-01`);
       const questionFiltered = questionsData.filter((question) => question.start_date === `${i}-01-01`);
       const questionsVoteFiltered = questionsVoteData.filter((queVote) => queVote.start_date === `${i}-01-01`);
