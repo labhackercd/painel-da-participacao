@@ -3,7 +3,6 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Container } from '@material-ui/core';
 import { useRouter } from 'next/router';
-import HomeMenu from '../src/components/HomeMenu';
 import Layout from '../layouts/index';
 
 import Audiencias from '../src/containers/Audiencias';
@@ -47,7 +46,6 @@ export default function Dashboard() {
     <Layout value={0}>
       <div className={classes.body}>
         <Grid container className={classes.root}>
-          <HomeMenu />
           <Container className={classes.container}>
             <main className={classes.content}>
               { renderToolContainer() }

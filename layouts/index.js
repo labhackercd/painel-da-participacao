@@ -61,15 +61,16 @@ export default function Layout(props) {
           <Grid container>
             <Grid item md={2}>
               <div className={classes.logo}>
-                <IconButton>{/* <Logo /> */}</IconButton>
+                <IconButton><img src="/logo/logo_cd.svg" alt="Logo Câmara dos" /></IconButton>
               </div>
             </Grid>
-            <Grid item md={9}>
+            <Grid item md={10}>
               {value !== undefined
                 && (
                 <Tabs value={value} TabIndicatorProps={{ style: { background: '#00C354' } }} className={classes.tab}>
-                  <LinkTab label="Dashboard" url={process.env.NEXT_PUBLIC_DASHBOARD_PAGE_URL} index="0" {...a11yProps(0)} />
-                  <LinkTab label="Documentação" url={process.env.NEXT_PUBLIC_DOCUMENTS_PAGE_URL} index="1" {...a11yProps(1)} />
+                  <LinkTab label="Painel Geral" url={process.env.NEXT_PUBLIC_AUDIENCIAS_PAGE_URL} index="0" {...a11yProps(0)} />
+                  <LinkTab label="Audiências" url={process.env.NEXT_PUBLIC_AUDIENCIAS_PAGE_URL} index="1" {...a11yProps(1)} />
+                  <LinkTab label="Wikilegis" url={process.env.NEXT_PUBLIC_AUDIENCIAS_PAGE_URL} index="2" {...a11yProps(2)} />
                 </Tabs>
                 )}
             </Grid>
