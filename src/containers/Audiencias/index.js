@@ -1,3 +1,4 @@
+/* eslint-disable radix */
 /* eslint-disable max-len */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
@@ -92,8 +93,7 @@ function Audiencias(props) {
   const classes = useStyles();
   const [audienciasTotalsData, setAudienciasTotalsData] = useState('');
   const [newUsersChartData, setNewUsersChartData] = useState([]);
-  // const [usersChartData, setUsersChartData] = useState([]);
-  // const [roomsRankingData, setRoomsRankingData] = useState([]);
+  const [roomsRankingData, setRoomsRankingData] = useState(props.responseDataRanking);
   const [participantionChartData, setParticipantionChartData] = useState([]);
   const [totalsAreLoaded, setTotalsAreLoaded] = useState(false);
   const [newUsersChartDataLoaded, setNewUsersChartDataLoaded] = useState(false);
@@ -300,11 +300,37 @@ function Audiencias(props) {
     }
   }
 
+  async function filterAndSetRoomsRankingData(period, month, year) {
+    // to be implemented
+    let resultArray = [];
+    const allRooms = props.responseDataRanking;
+
+    switch (period) {
+      case 'daily':
+        resultArray = await allRooms.filter((value) => {
+          const [valueYear, valueMonth] = value.date.split('-'); // Or, var month = e.date.split('-')[1];
+          return (parseInt(month) === parseInt(valueMonth)) && (parseInt(year) === parseInt(valueYear));
+        });
+        break;
+      case 'monthly':
+        resultArray = await allRooms.filter((value) => {
+          const [valueYear, valueMonth] = value.date.split('-'); // Or, var month = e.date.split('-')[1];
+          return (parseInt(year) === parseInt(valueYear));
+        });
+        break;
+      default: // yearly -> Total period
+        resultArray = allRooms;
+        break;
+    }
+
+    await setRoomsRankingData(resultArray);
+  }
+
   async function loadData(query, period, month, year) {
     fetchAndSetAudienciasTotalsData(query);
     fetchAndSetNewUsersChartData(query, period);
     fetchAndSetParticipationChartData(query, period, month, year);
-    // fetchAndSetRoomsRankingData();
+    filterAndSetRoomsRankingData(period, month, year);
   }
 
   async function handleUpdatePeriodSearchQuery(month, year) {
@@ -328,7 +354,7 @@ function Audiencias(props) {
   }
 
   useEffect(() => {
-    loadData(searchQuery, selectedPeriodType);
+    loadData(searchQuery, selectedPeriodType, 0, 2021);
   }, []);
 
   return (
@@ -371,7 +397,7 @@ function Audiencias(props) {
         <Grid item xs={12} className={classes.spacing}>
           <ChartDataFrame height="70vh" title="Ranking" listView export_data={null} download={false}>
             <Box width="100%" height="90%">
-              <RankingTable data={props.responseDataRanking} />
+              <RankingTable data={roomsRankingData} />
             </Box>
           </ChartDataFrame>
         </Grid>
