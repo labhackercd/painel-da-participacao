@@ -94,7 +94,7 @@ export default function ChartDataFrame(props) {
           </Grid>
         </Grid>
       </Box>
-      <div className={classes.container} style={{ height }}>
+      <div className={classes.container} style={{ height: 'auto', minHeight: height }}>
         {children}
       </div>
     </Grid>
