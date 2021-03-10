@@ -7,7 +7,21 @@ const columns = [
     name: 'Título da audiência',
     selector: 'title',
     sortable: true,
-    maxWidth: '800px',
+    maxWidth: '600px',
+  },
+  {
+    name: 'Data',
+    selector: 'date',
+    sortable: true,
+    maxWidth: '60px',
+    center: true,
+  },
+  {
+    name: 'Votos',
+    selector: 'votes_count',
+    sortable: true,
+    maxWidth: '60px',
+    center: true,
   },
   {
     name: 'Perguntas',
@@ -36,6 +50,11 @@ const columns = [
     sortable: true,
     maxWidth: '130px',
     center: true,
+  },
+  {
+    name: 'Link',
+    button: true,
+    cell: (row) => <a href={`https://edemocracia.camara.leg.br${row.get_absolute_url}`} target="_blank" rel="noopener noreferrer">Ir para Audiencia</a>,
   },
 ];
 
