@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 const columns = [
   {
     name: 'Título da audiência',
-    selector: 'reunion_theme',
+    selector: 'title',
     sortable: true,
     maxWidth: '800px',
   },
@@ -41,10 +41,19 @@ const columns = [
 
 export default function RankingTable(props) {
   const { data } = props;
+  const dataResult = data.map(
+    (value) => (
+      {
+        ...value,
+        title: ((value.reunion_theme === null || value.reunion_theme === '') ? value.title_reunion : value.reunion_theme),
+      }
+    ),
+  );
+
   return (
     <DataTable
       columns={columns}
-      data={data}
+      data={dataResult}
       theme="dark"
       highlightOnHover
       pointerOnHover
