@@ -14,7 +14,6 @@ import ChartDataFrame from '../../components/ChartDataFrame/index';
 import Header from '../../components/Header/index';
 import RankingTable from '../../components/RankingTable/index';
 import GoogleChart from '../../components/Charts/GoogleChart';
-// import fetchDataFromAPI from '../DataFetcher';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -97,22 +96,42 @@ function Audiencias(props) {
   const [participantionChartData, setParticipantionChartData] = useState([]);
   const [totalsAreLoaded, setTotalsAreLoaded] = useState(false);
   const [newUsersChartDataLoaded, setNewUsersChartDataLoaded] = useState(false);
-  // const [usersChartDataLoaded, setUsersChartDataLoaded] = useState(false);
-  // const [roomsRankingDataLoaded, setRoomsRankingDataLoaded] = useState(false);
   const [participantionChartDataLoaded, setParticipantionChartDataLoaded] = useState(false);
   const [yearPeriod, setYearPeriod] = useState(new Date().getFullYear().toString());
   const [monthPeriod, setMonthPeriod] = useState('0'); // month 0 correspons to "all months"
   const [searchQuery, setSearchQuery] = useState(`?period=monthly&start_date__year=${new Date().getFullYear()}&ordering=start_date`);
+  const [periodSubTitle, setPeriodSubTitle] = useState(new Date().getFullYear().toString());
 
   // eslint-disable-next-line no-unused-vars
   const [selectedPeriodType, setSelectedPeriodType] = useState('monthly'); // yearly or monthly or daily
 
+  const monthNamesList = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
+    'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez',
+  ];
+
+  const fullMonthNamesList = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+    'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro',
+  ];
+
   const audiencesChartsUsersSettings = {
     chartType: 'LineChart',
+    data: [
+      ['Ano', 'Total de Usuários'],
+      ['2016', 10],
+      ['2017', 23],
+      ['2018', 17],
+      ['2019', 18],
+      ['2020', 35],
+    ],
     options: {
       legend: { position: 'top', maxLines: 3, textStyle: { color: 'white' } },
       colors: ['#76480F', '#9E5E0D', '#DA7F0B'],
-      hAxis: { textStyle: { color: '#FFFFFF' }, gridlines: { color: 'transparent' }, title: 'Ano' },
+      hAxis: {
+        textStyle: { color: '#FFFFFF' },
+        gridlines: { color: 'transparent' },
+        title: periodSubTitle,
+        titleTextStyle: { color: 'white' },
+      },
       vAxis: { gridlines: { color: 'transparent' }, textStyle: { color: '#FFFFFF' }, format: '##.##' },
       series: {
         1: { curveType: 'function' },
@@ -123,14 +142,37 @@ function Audiencias(props) {
 
   const audiencesWithMoreParticipation = {
     chartType: 'ColumnChart',
+    data: [
+      ['Data', 'Perguntas', 'Votos nas Perguntas', 'Mensagens do chat'],
+      ['01', 300, 800, 231],
+      ['02', 345, 545, 265],
+      ['03', 240, 865, 212],
+      ['04', 256, 870, 234],
+      ['05', 210, 856, 275],
+      ['06', 323, 822, 276],
+      ['07', 356, 762, 212],
+      ['08', 121, 542, 434],
+      ['09', 130, 232, 234],
+      ['10', 213, 212, 954],
+      ['11', 365, 309, 545],
+      ['12', 313, 312, 576],
+      ['13', 376, 376, 603],
+      ['14', 309, 354, 565],
+      ['15', 354, 323, 732],
+    ],
     options: {
       bars: 'vertical',
       legend: { position: 'top', maxLines: 3, textStyle: { color: 'white' } },
       isStacked: 'true',
       colors: ['#76480F', '#9E5E0D', '#DA7F0B'],
       bar: { groupWidth: '80%' },
-      hAxis: { textStyle: { color: '#FFFFFF' } },
-      vAxis: { minValue: 0, gridlines: { color: 'transparent' }, textStyle: { color: '#FFFFFF' } },
+      hAxis: { textStyle: { color: 'white' }, title: periodSubTitle, titleTextStyle: { color: 'white' } },
+      vAxis: {
+        minValue: 0,
+        gridlines: { color: 'transparent' },
+        textStyle: { color: '#FFFFFF' },
+        format: '##.##',
+      },
       backgroundColor: '#000000',
     },
   };
@@ -158,20 +200,18 @@ function Audiencias(props) {
     const values = newUsersTotalResponse.data.results;
     let arrayData = [];
     let collumPeriodTitle = [];
-    const monthNames = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
-      'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro',
-    ];
 
+    // formatDate(value.start_date)
     switch (period) {
       case 'daily':
         arrayData = values.map(
-          (value) => [new Date(value.end_date).getDate().toString(), value.new_users],
+          (value) => [value.start_date.match(/\d+/g)[2], value.new_users],
         );
         collumPeriodTitle = ['Dia', 'Novos Usuários'];
         break;
       case 'monthly':
         arrayData = values.map(
-          (value) => [monthNames[(new Date(value.end_date)).getMonth()], value.new_users],
+          (value) => [monthNamesList[(new Date(value.end_date)).getMonth()], value.new_users],
         );
         collumPeriodTitle = ['Mês', 'Novos Usuários'];
         break;
@@ -213,7 +253,7 @@ function Audiencias(props) {
 
       resultArray.push(
         [
-          `${i}`,
+          `${pad(i)}`,
           (messageFiltered.length > 0) ? messageFiltered[0].messages : 0,
           (questionFiltered.length > 0) ? questionFiltered[0].questions : 0,
           (questionsVoteFiltered.length > 0) ? questionsVoteFiltered[0].votes : 0,
@@ -225,9 +265,6 @@ function Audiencias(props) {
 
   async function getParticipationChartDataByMonth(month, year, messagesData, questionsData, questionsVoteData) {
     const resultArray = [];
-    const monthNames = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
-      'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro',
-    ];
 
     for (let i = 1; i <= 12; i += 1) {
       const messageFiltered = messagesData.filter((message) => message.start_date === `${year}-${pad(i)}-01`);
@@ -236,7 +273,7 @@ function Audiencias(props) {
 
       resultArray.push(
         [
-          `${monthNames[i - 1]}`,
+          `${monthNamesList[i - 1]}`,
           (messageFiltered.length > 0) ? messageFiltered[0].messages : 0,
           (questionFiltered.length > 0) ? questionFiltered[0].questions : 0,
           (questionsVoteFiltered.length > 0) ? questionsVoteFiltered[0].votes : 0,
@@ -326,7 +363,30 @@ function Audiencias(props) {
     await setRoomsRankingData(resultArray);
   }
 
+  async function updateChartsAndTableSubTitle(period, month, year) {
+    const todayDate = new Date();
+    /*
+    setPeriodSubTitle(`01/01/${year} à ${("0" + todayDate.getDate()).substr(-2) + "/"
+    + ("0" + (todayDate.getMonth() + 1)).substr(-2) + "/" + todayDate.getFullYear()}`);
+    */
+
+    switch (period) {
+      case 'daily':
+        setPeriodSubTitle(`${fullMonthNamesList[month - 1]}/${year}`);
+        break;
+      case 'monthly':
+        setPeriodSubTitle(`${year}`);
+        break;
+      default: // yearly -> Total period
+        setPeriodSubTitle(
+          `01/01/2016 à ${pad((todayDate.getDate() - 1))}/${pad((todayDate.getMonth()))}/${(todayDate.getFullYear())}`,
+        );
+        break;
+    }
+  }
+
   async function loadData(query, period, month, year) {
+    updateChartsAndTableSubTitle(period, month, year);
     fetchAndSetAudienciasTotalsData(query);
     fetchAndSetNewUsersChartData(query, period);
     fetchAndSetParticipationChartData(query, period, month, year);
@@ -356,6 +416,17 @@ function Audiencias(props) {
   useEffect(() => {
     loadData(searchQuery, selectedPeriodType, 0, 2021);
   }, []);
+
+  // eslint-disable-next-line no-shadow
+  function NoDataForSelectedPeriod(props) {
+    return (
+      <ChartDataFrame height="10vh" title={props.title} listView export_data={null} download={false}>
+        <Box display="flex" alignItems="center" justifyContent="center" width="100%" height="100%">
+          <Typography>Não existem dados para o período selecionado</Typography>
+        </Box>
+      </ChartDataFrame>
+    );
+  }
 
   return (
     <>
@@ -395,15 +466,19 @@ function Audiencias(props) {
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <ChartDataFrame height="70vh" title="Ranking" listView export_data={null} download={false}>
-            <Box width="100%" height="90%">
-              <RankingTable data={roomsRankingData} />
-            </Box>
-          </ChartDataFrame>
+          {(roomsRankingData !== undefined && roomsRankingData.length > 0) ? (
+            <ChartDataFrame height="30vh" title={`Salas (${periodSubTitle})`} listView export_data={null} download={false}>
+              <Box width="100%" height="90%">
+                <RankingTable data={roomsRankingData} />
+              </Box>
+            </ChartDataFrame>
+          ) : (
+            <NoDataForSelectedPeriod title="Salas" />
+          )}
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          {(newUsersChartData.length > 0) ? (
+          {(newUsersChartData !== undefined && newUsersChartData.length > 0) ? (
             <div className={classes.contentBox}>
               <GoogleChartFrame
                 isLoaded={newUsersChartDataLoaded}
@@ -415,11 +490,7 @@ function Audiencias(props) {
               />
             </div>
           ) : (
-            <ChartDataFrame height="10vh" title="Novos Usuários" listView export_data={null} download={false}>
-              <Box display="flex" alignItems="center" justifyContent="center" width="100%" height="100%">
-                <Typography>Não existem dados para o período selecionado</Typography>
-              </Box>
-            </ChartDataFrame>
+            <NoDataForSelectedPeriod title="Novos Usuários" />
           )}
         </Grid>
       </Grid>
