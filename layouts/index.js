@@ -59,12 +59,12 @@ export default function Layout(props) {
       <AppBar position="static">
         <Toolbar className={classes.root}>
           <Grid container>
-            <Grid item md={2}>
+            <Grid item xs={12} md={2}>
               <div className={classes.logo}>
                 <IconButton><img src="/logo/logo_cd.svg" alt="Logo Câmara dos" /></IconButton>
               </div>
             </Grid>
-            <Grid item md={10}>
+            <Grid item xs={12} md={10}>
               {value !== undefined
                 && (
                 <Tabs value={value} TabIndicatorProps={{ style: { background: '#00C354' } }} className={classes.tab}>
