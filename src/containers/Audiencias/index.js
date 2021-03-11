@@ -466,7 +466,7 @@ function Audiencias(props) {
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          {(roomsRankingData.length > 0) ? (
+          {(roomsRankingData !== undefined && roomsRankingData.length > 0) ? (
             <ChartDataFrame height="30vh" title={`Salas (${periodSubTitle})`} listView export_data={null} download={false}>
               <Box width="100%" height="90%">
                 <RankingTable data={roomsRankingData} />
@@ -478,7 +478,7 @@ function Audiencias(props) {
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          {(newUsersChartData.length > 0) ? (
+          {(newUsersChartData !== undefined && newUsersChartData.length > 0) ? (
             <div className={classes.contentBox}>
               <GoogleChartFrame
                 isLoaded={newUsersChartDataLoaded}
