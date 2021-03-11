@@ -4,6 +4,8 @@ import {
   Grid, Typography, Button,
   FormControl, InputBase, InputLabel, Select,
 } from '@material-ui/core';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
 
 const BootstrapInput = withStyles((theme) => ({
   input: {
@@ -88,7 +90,9 @@ export default function Header(props) {
 
   return (
     <>
-      <Grid container>
+      <AppBar position="sticky">
+        <Toolbar>
+          <Grid container>
         <Grid item xs={12} md={4}>
           <Typography variant="h3" style={{ color: '#FFF' }}>
             Audiências Interativas
@@ -153,6 +157,8 @@ export default function Header(props) {
           </Button>
         </Grid>
       </Grid>
+        </Toolbar>
+      </AppBar>
     </>
   );
 }
