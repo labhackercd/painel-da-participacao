@@ -4,6 +4,8 @@ import {
   Grid, Typography, Button,
   FormControl, InputBase, InputLabel, Select,
 } from '@material-ui/core';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
 
 const BootstrapInput = withStyles((theme) => ({
   input: {
@@ -88,71 +90,75 @@ export default function Header(props) {
 
   return (
     <>
-      <Grid container>
-        <Grid item xs={12} md={4}>
-          <Typography variant="h3" style={{ color: '#FFF' }}>
-            Audiências Interativas
-          </Typography>
-        </Grid>
-        <Grid item md={8} className={classes.inputOptions}>
-          {/* year select */}
-          <FormControl id="form-control-year" className={classes.formControl}>
-            <InputLabel id="year-label">Ano</InputLabel>
-            <Select
-              id="select-year"
-              value={year}
-              native
-              onChange={handleChangeYear}
-              input={<BootstrapInput />}
-              classes={{
-                select: classes.select,
-              }}
-            >
-              <option value="0">Todo o Período</option>
-              <option value="2021">2021</option>
-              <option value="2020">2020</option>
-              <option value="2019">2019</option>
-              <option value="2018">2018</option>
-              <option value="2017">2017</option>
-              <option value="2016">2016</option>
-            </Select>
-          </FormControl>
-          <FormControl id="form-control-month" className={classes.formControl}>
-            <InputLabel id="month-label">Mês</InputLabel>
-            <Select
-              id="select-month"
-              value={month}
-              native
-              onChange={handleChangeMonth}
-              input={<BootstrapInput />}
-              classes={{
-                select: classes.select,
-              }}
-              disabled={selectMonthDisabled}
-            >
-              <option value="0">Todos os Meses</option>
-              <option value="1">Janeiro</option>
-              <option value="2">Fevereiro</option>
-              <option value="3">Março</option>
-              <option value="4">Abril</option>
-              <option value="5">Maio</option>
-              <option value="6">Junho</option>
-              <option value="7">Julho</option>
-              <option value="8">Agosto</option>
-              <option value="9">Setembro</option>
-              <option value="10">Outubro</option>
-              <option value="11">Novembro</option>
-              <option value="12">Dezembro</option>
-            </Select>
-          </FormControl>
+      <AppBar position="sticky">
+        <Toolbar>
+          <Grid container>
+            <Grid item xs={12} md={4}>
+              <Typography variant="h3" style={{ color: '#FFF' }}>
+                Audiências Interativas
+              </Typography>
+            </Grid>
+            <Grid item md={8} className={classes.inputOptions}>
+              {/* year select */}
+              <FormControl id="form-control-year" className={classes.formControl}>
+                <InputLabel id="year-label">Ano</InputLabel>
+                <Select
+                  id="select-year"
+                  value={year}
+                  native
+                  onChange={handleChangeYear}
+                  input={<BootstrapInput />}
+                  classes={{
+                    select: classes.select,
+                  }}
+                >
+                  <option value="0">Todo o Período</option>
+                  <option value="2021">2021</option>
+                  <option value="2020">2020</option>
+                  <option value="2019">2019</option>
+                  <option value="2018">2018</option>
+                  <option value="2017">2017</option>
+                  <option value="2016">2016</option>
+                </Select>
+              </FormControl>
+              <FormControl id="form-control-month" className={classes.formControl}>
+                <InputLabel id="month-label">Mês</InputLabel>
+                <Select
+                  id="select-month"
+                  value={month}
+                  native
+                  onChange={handleChangeMonth}
+                  input={<BootstrapInput />}
+                  classes={{
+                    select: classes.select,
+                  }}
+                  disabled={selectMonthDisabled}
+                >
+                  <option value="0">Todos os Meses</option>
+                  <option value="1">Janeiro</option>
+                  <option value="2">Fevereiro</option>
+                  <option value="3">Março</option>
+                  <option value="4">Abril</option>
+                  <option value="5">Maio</option>
+                  <option value="6">Junho</option>
+                  <option value="7">Julho</option>
+                  <option value="8">Agosto</option>
+                  <option value="9">Setembro</option>
+                  <option value="10">Outubro</option>
+                  <option value="11">Novembro</option>
+                  <option value="12">Dezembro</option>
+                </Select>
+              </FormControl>
 
-          <Button variant="contained" className={classes.filterButton} onClick={handleSubmit}>
-            <Typography style={typography}>
-              Filtrar
-            </Typography>
-          </Button>
-        </Grid>
-      </Grid>
+              <Button variant="contained" className={classes.filterButton} onClick={handleSubmit}>
+                <Typography style={typography}>
+                  Filtrar
+                </Typography>
+              </Button>
+            </Grid>
+          </Grid>
+        </Toolbar>
+      </AppBar>
     </>
   );
 }

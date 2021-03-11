@@ -260,6 +260,8 @@ function Audiencias(props) {
         ],
       );
     }
+
+    console.log(resultArray);
     return resultArray;
   }
 
@@ -317,7 +319,7 @@ function Audiencias(props) {
     const questionsVoteData = questionsVotesResponse.data.results;
 
     let arrayData = [];
-    const collumPeriodTitle = ['Data', 'Perguntas', 'Votos nas Perguntas', 'Mensagens do chat'];
+    const collumPeriodTitle = ['Data', 'Mensagens do chat', 'Perguntas', 'Votos nas Perguntas'];
     switch (period) {
       case 'daily':
         arrayData = await getParticipationChartDataByDay(month, year, messagesData, questionsData, questionsVoteData);
