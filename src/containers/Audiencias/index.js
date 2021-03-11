@@ -14,7 +14,6 @@ import ChartDataFrame from '../../components/ChartDataFrame/index';
 import Header from '../../components/Header/index';
 import RankingTable from '../../components/RankingTable/index';
 import GoogleChart from '../../components/Charts/GoogleChart';
-// import fetchDataFromAPI from '../DataFetcher';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -97,8 +96,6 @@ function Audiencias(props) {
   const [participantionChartData, setParticipantionChartData] = useState([]);
   const [totalsAreLoaded, setTotalsAreLoaded] = useState(false);
   const [newUsersChartDataLoaded, setNewUsersChartDataLoaded] = useState(false);
-  // const [usersChartDataLoaded, setUsersChartDataLoaded] = useState(false);
-  // const [roomsRankingDataLoaded, setRoomsRankingDataLoaded] = useState(false);
   const [participantionChartDataLoaded, setParticipantionChartDataLoaded] = useState(false);
   const [yearPeriod, setYearPeriod] = useState(new Date().getFullYear().toString());
   const [monthPeriod, setMonthPeriod] = useState('0'); // month 0 correspons to "all months"
