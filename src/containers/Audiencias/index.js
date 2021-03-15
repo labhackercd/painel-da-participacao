@@ -184,13 +184,13 @@ function Audiencias(props) {
   };
 
   async function fetchAndSetAudienciasTotalsData(query) {
-    const newUsersTotalResponse = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_NEW_USERS_URL}${query}`);
+    const participantsUsersTotalResponse = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_PARTICIPANT_USERS_URL}${query}`);
     const audienciesTotalResponse = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_ROOMS_RANKING_URL}${query}`);
     const messagesTotalResponse = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_MESSAGES_RANKING_URL}${query}`);
     const questionsTotalResponse = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_QUESTIONS_RANKING_URL}${query}`);
 
     const dataJson = {
-      users_total: newUsersTotalResponse.data.sum_total_results,
+      users_total: participantsUsersTotalResponse.data.sum_total_results,
       audiencias_total: audienciesTotalResponse.data.sum_total_results,
       messages_total: messagesTotalResponse.data.sum_total_results,
       questions_total: questionsTotalResponse.data.sum_total_results,
@@ -476,19 +476,19 @@ function Audiencias(props) {
         </Grid>
 
         <Grid item xs={12} md={3} className={classes.spacing}>
-          <TotalFrame isLoaded={totalsAreLoaded} info={`${audienciasTotalsData.users_total}`} title="Total de Novos Usuários" />
+          <TotalFrame isLoaded={totalsAreLoaded} info={`${audienciasTotalsData.users_total}`} title="Participantes" />
         </Grid>
 
         <Grid item xs={12} md={3} className={classes.spacing}>
-          <TotalFrame isLoaded={totalsAreLoaded} info={`${audienciasTotalsData.audiencias_total}`} title="Total de Audiências" />
+          <TotalFrame isLoaded={totalsAreLoaded} info={`${audienciasTotalsData.audiencias_total}`} title="Audiências" />
         </Grid>
 
         <Grid item xs={12} md={3} className={classes.spacing}>
-          <TotalFrame isLoaded={totalsAreLoaded} info={`${audienciasTotalsData.messages_total}`} title="Total de Mensagens" />
+          <TotalFrame isLoaded={totalsAreLoaded} info={`${audienciasTotalsData.messages_total}`} title="Mensagens" />
         </Grid>
 
         <Grid item xs={12} md={3} className={classes.spacing}>
-          <TotalFrame isLoaded={totalsAreLoaded} info={audienciasTotalsData.questions_total} title="Total de Perguntas" />
+          <TotalFrame isLoaded={totalsAreLoaded} info={audienciasTotalsData.questions_total} title="Perguntas" />
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
