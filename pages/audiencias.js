@@ -43,7 +43,8 @@ function AudienciasPage({ dados }) {
             A Participação em Audiências Interativas
           </Box>
           <Box fontSize={16} style={{ color: '#737373' }}>
-            Painel de estatísticas de participação dos cidadãos em audiências públicas e eventos interativos da Câmara dos Deputados.
+            Painel de estatísticas de participação dos cidadãos em audiências públicas e
+            eventos interativos da Câmara dos Deputados.
           </Box>
         </Typography>
       </Box>
