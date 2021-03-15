@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 /* eslint-disable radix */
 /* eslint-disable max-len */
 /* eslint-disable react/prop-types */
@@ -18,6 +19,9 @@ import GoogleChart from '../../components/Charts/GoogleChart';
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+  },
+  headerBox: {
+    backgroundColor: theme.palette.primary.main,
   },
   footer: {
     marginTop: 'auto',
@@ -70,21 +74,23 @@ function GoogleChartFrame(props) {
   } = props;
 
   return (
-    <ChartDataFrame height="35vh" title={title} listView export_data={null} download>
-      {isLoaded ? (
-        <div className={classes.contentBox}>
-          <GoogleChart
-            chartType={chartType}
-            data={data}
-            options={chartOptions}
-          />
-        </div>
-      ) : (
-        <Box display="flex" alignItems="center" justifyContent="center" width="100%" height="100%">
-          <CircularProgress color="secondary" />
-        </Box>
-      )}
-    </ChartDataFrame>
+    <>
+      <ChartDataFrame height="35vh" title={title} listView export_data={null} download>
+        {isLoaded ? (
+          <div className={classes.contentBox}>
+            <GoogleChart
+              chartType={chartType}
+              data={data}
+              options={chartOptions}
+            />
+          </div>
+        ) : (
+          <Box display="flex" alignItems="center" justifyContent="center" width="100%" height="100%">
+            <CircularProgress color="secondary" />
+          </Box>
+        )}
+      </ChartDataFrame>
+    </>
   );
 }
 
@@ -261,7 +267,6 @@ function Audiencias(props) {
       );
     }
 
-    console.log(resultArray);
     return resultArray;
   }
 
@@ -430,6 +435,33 @@ function Audiencias(props) {
     );
   }
 
+  function Sectionheader(props) {
+    return (
+      <Box display="flex" marginBottom={1}>
+        <Box p={1}>
+          <Typography component="div">
+            <Box fontWeight="fontWeightBold" fontSize={39}>
+              {props.title}
+            </Box>
+          </Typography>
+        </Box>
+        <Box p={1} flexGrow={1} alignSelf="center">
+          <hr style={{ borderColor: '#DA7F0B' }} />
+        </Box>
+      </Box>
+    );
+  }
+
+  function SubSectionHeader(props) {
+    return (
+      <Typography component="div">
+        <Box fontWeight="fontWeightBold" fontSize={25} marginLeft={1} marginBottom={1}>
+          {props.title}
+        </Box>
+      </Typography>
+    );
+  }
+
   return (
     <>
       <Header
@@ -439,6 +471,10 @@ function Audiencias(props) {
         monthPeriod={monthPeriod}
       />
       <Grid container spacing={1} className={classes.spacingContainer}>
+        <Grid item xs={12}>
+          <Sectionheader title="Totais no período" />
+        </Grid>
+
         <Grid item xs={12} md={3} className={classes.spacing}>
           <TotalFrame isLoaded={totalsAreLoaded} info={`${audienciasTotalsData.users_total}`} title="Total de Novos Usuários" />
         </Grid>
@@ -456,6 +492,7 @@ function Audiencias(props) {
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
+          <Sectionheader title="Distribuição da participação no período" />
           <ChartDataFrame height="60vh" title="Temas de audiências mais participativas" listView export_data={null} download>
             <div className={classes.contentBox}>
               <GoogleChart
@@ -468,6 +505,7 @@ function Audiencias(props) {
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
+          <Sectionheader title="Ranking das audiências" />
           {(roomsRankingData !== undefined && roomsRankingData.length > 0) ? (
             <ChartDataFrame height="30vh" title={`Salas (${periodSubTitle})`} listView export_data={null} download={false}>
               <Box width="100%" height="90%">
@@ -480,20 +518,27 @@ function Audiencias(props) {
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          {(newUsersChartData !== undefined && newUsersChartData.length > 0) ? (
-            <div className={classes.contentBox}>
-              <GoogleChartFrame
-                isLoaded={newUsersChartDataLoaded}
-                title="Novos Usuários"
-                classes={classes}
-                data={newUsersChartData}
-                chartType={audiencesChartsUsersSettings.chartType}
-                chartOptions={audiencesChartsUsersSettings.options}
-              />
-            </div>
-          ) : (
-            <NoDataForSelectedPeriod title="Novos Usuários" />
-          )}
+          <Sectionheader title="Usuários" />
+        </Grid>
+
+        <Grid item xs={12} className={classes.spacing}>
+          <>
+            <SubSectionHeader title="Novos Usuários" />
+            {(newUsersChartData !== undefined && newUsersChartData.length > 0) ? (
+              <div className={classes.contentBox}>
+                <GoogleChartFrame
+                  isLoaded={newUsersChartDataLoaded}
+                  title="Novos Usuários"
+                  classes={classes}
+                  data={newUsersChartData}
+                  chartType={audiencesChartsUsersSettings.chartType}
+                  chartOptions={audiencesChartsUsersSettings.options}
+                />
+              </div>
+            ) : (
+              <NoDataForSelectedPeriod title="Novos Usuários" />
+            )}
+          </>
         </Grid>
       </Grid>
     </>

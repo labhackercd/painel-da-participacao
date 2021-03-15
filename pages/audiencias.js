@@ -5,6 +5,8 @@ import React from 'react';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Container } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 import Layout from '../layouts/index';
 
 import Audiencias from '../src/containers/Audiencias';
@@ -32,11 +34,29 @@ const useStyles = makeStyles((theme) => ({
 
 function AudienciasPage({ dados }) {
   const classes = useStyles();
+
+  function AudienciasHeader() {
+    return (
+      <Box marginBottom={5}>
+        <Typography component="div">
+          <Box fontWeight="fontWeightBold" fontSize={47}>
+            A Participação em Audiências Interativas
+          </Box>
+          <Box fontSize={16} style={{ color: '#737373' }}>
+            Painel de estatísticas de participação dos cidadãos em audiências públicas e
+            eventos interativos da Câmara dos Deputados.
+          </Box>
+        </Typography>
+      </Box>
+    );
+  }
+
   return (
     <Layout value={1}>
       <Grid container className={classes.root}>
         <Container className={classes.container}>
           <main className={classes.content}>
+            <AudienciasHeader />
             <Audiencias responseDataRanking={dados} />
           </main>
         </Container>
