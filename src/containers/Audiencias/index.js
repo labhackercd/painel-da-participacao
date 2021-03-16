@@ -98,10 +98,12 @@ function Audiencias(props) {
   const classes = useStyles();
   const [audienciasTotalsData, setAudienciasTotalsData] = useState('');
   const [newUsersChartData, setNewUsersChartData] = useState([]);
+  const [totalUsersChartData, setTotalUsersChartData] = useState([]);
   const [roomsRankingData, setRoomsRankingData] = useState(props.responseDataRanking);
   const [participantionChartData, setParticipantionChartData] = useState([]);
   const [totalsAreLoaded, setTotalsAreLoaded] = useState(false);
   const [newUsersChartDataLoaded, setNewUsersChartDataLoaded] = useState(false);
+  const [totalUsersChartDataLoaded, setTotalUsersChartDataLoaded] = useState(false);
   const [participantionChartDataLoaded, setParticipantionChartDataLoaded] = useState(false);
   const [yearPeriod, setYearPeriod] = useState(new Date().getFullYear().toString());
   const [monthPeriod, setMonthPeriod] = useState('0'); // month 0 correspons to "all months"
@@ -165,6 +167,43 @@ function Audiencias(props) {
     },
   };
 
+  function computeTotalOfUsersByPeriod(values, period) {
+    let computedArray = [];
+    let collumPeriodTitle = [];
+
+    function sumArrayFields(valuesData) {
+      const array = [];
+      array.push([new Date(valuesData[0].end_date).getFullYear().toString(), valuesData[0].new_users]);
+      for (let i = 1; i < values.length; i += 1) {
+        array.push(
+          [new Date(values[i].end_date).toString(),
+            values[i].new_users + array[i - 1][1]],
+        );
+      }
+      return array;
+    }
+
+    switch (period) {
+      case 'daily':
+        computedArray = sumArrayFields(values);
+        collumPeriodTitle = ['Dia', 'Novos Usuários'];
+        break;
+      case 'monthly':
+        computedArray = sumArrayFields(values);
+        collumPeriodTitle = ['Mês', 'Novos Usuários'];
+        break;
+      default:
+        computedArray = sumArrayFields(values);
+        collumPeriodTitle = ['Ano', 'Novos Usuários'];
+        break;
+    }
+
+    const chartCompleteData = collumPeriodTitle.concat(computedArray);
+    setTotalUsersChartData(chartCompleteData);
+    setTotalUsersChartDataLoaded(true);
+    console.log(chartCompleteData)
+  }
+
   async function fetchAndSetAudienciasTotalsData(query) {
     const participantsUsersTotalResponse = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_PARTICIPANT_USERS_URL}${query}`);
     const audienciesTotalResponse = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_ROOMS_RANKING_URL}${query}`);
@@ -222,11 +261,9 @@ function Audiencias(props) {
 
     setNewUsersChartDataLoaded(true);
 
-    /*
     if (Array.isArray(values) && values.length) {
-      computeTotalOfUsersByPeriod(values);
+      // computeTotalOfUsersByPeriod(values);
     }
-    */
   }
 
   function pad(d) {
@@ -507,23 +544,21 @@ function Audiencias(props) {
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <>
-            <SubSectionHeader title="Novos Usuários" />
-            {(newUsersChartData !== undefined && newUsersChartData.length > 0) ? (
-              <div className={classes.contentBox}>
-                <GoogleChartFrame
-                  isLoaded={newUsersChartDataLoaded}
-                  title="Novos Usuários"
-                  classes={classes}
-                  data={newUsersChartData}
-                  chartType={audiencesChartsUsersSettings.chartType}
-                  chartOptions={audiencesChartsUsersSettings.options}
-                />
-              </div>
-            ) : (
-              <NoDataForSelectedPeriod title="Novos Usuários" />
-            )}
-          </>
+          <SubSectionHeader title="Novos Usuários" />
+          {(newUsersChartData !== undefined && newUsersChartData.length > 0) ? (
+            <div className={classes.contentBox}>
+              <GoogleChartFrame
+                isLoaded={newUsersChartDataLoaded}
+                title="Novos Usuários"
+                classes={classes}
+                data={newUsersChartData}
+                chartType={audiencesChartsUsersSettings.chartType}
+                chartOptions={audiencesChartsUsersSettings.options}
+              />
+            </div>
+          ) : (
+            <NoDataForSelectedPeriod title="Novos Usuários" />
+          )}
         </Grid>
       </Grid>
     </>
@@ -561,20 +596,3 @@ GoogleChartFrame.defaultProps = {
 };
 
 export default Audiencias;
-
-/*
-  function computeTotalOfUsersByPeriod(values) {
-    const computedArray = [
-      [new Date(values[0].end_date).getFullYear().toString(), values[0].new_users],
-    ];
-    for (let i = 1; i < values.length; i += 1) {
-      computedArray.push(
-        [new Date(values[i].end_date).getFullYear().toString(),
-          values[i].new_users + computedArray[i - 1][1]],
-      );
-    }
-    const chartCompleteData = [['Ano', 'Total de Usuários']].concat(computedArray);
-    setUsersChartData(chartCompleteData);
-    setUsersChartDataLoaded(true);
-  }
-*/

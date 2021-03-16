@@ -37,7 +37,7 @@ function AudienciasPage({ dados }) {
 
   function AudienciasHeader() {
     return (
-      <Box marginBottom={5}>
+      <Box marginBottom={5} marginX={2}>
         <Typography component="div">
           <Box fontWeight="fontWeightBold" fontSize={47}>
             A Participação em Audiências Interativas
