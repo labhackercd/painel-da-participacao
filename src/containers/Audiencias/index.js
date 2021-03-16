@@ -148,24 +148,6 @@ function Audiencias(props) {
 
   const audiencesWithMoreParticipation = {
     chartType: 'ColumnChart',
-    data: [
-      ['Data', 'Perguntas', 'Votos nas Perguntas', 'Mensagens do chat'],
-      ['01', 300, 800, 231],
-      ['02', 345, 545, 265],
-      ['03', 240, 865, 212],
-      ['04', 256, 870, 234],
-      ['05', 210, 856, 275],
-      ['06', 323, 822, 276],
-      ['07', 356, 762, 212],
-      ['08', 121, 542, 434],
-      ['09', 130, 232, 234],
-      ['10', 213, 212, 954],
-      ['11', 365, 309, 545],
-      ['12', 313, 312, 576],
-      ['13', 376, 376, 603],
-      ['14', 309, 354, 565],
-      ['15', 354, 323, 732],
-    ],
     options: {
       bars: 'vertical',
       legend: { position: 'top', maxLines: 3, textStyle: { color: 'white' } },
@@ -177,7 +159,7 @@ function Audiencias(props) {
         minValue: 0,
         gridlines: { color: 'transparent' },
         textStyle: { color: '#FFFFFF' },
-        format: '##.##',
+        format: '###.##',
       },
       backgroundColor: '#000000',
     },
@@ -189,11 +171,14 @@ function Audiencias(props) {
     const messagesTotalResponse = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_MESSAGES_RANKING_URL}${query}`);
     const questionsTotalResponse = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_QUESTIONS_RANKING_URL}${query}`);
 
+    function numberWithDots(x) {
+      return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, '.');
+    }
     const dataJson = {
-      users_total: participantsUsersTotalResponse.data.sum_total_results,
-      audiencias_total: audienciesTotalResponse.data.sum_total_results,
-      messages_total: messagesTotalResponse.data.sum_total_results,
-      questions_total: questionsTotalResponse.data.sum_total_results,
+      users_total: numberWithDots(participantsUsersTotalResponse.data.sum_total_results),
+      audiencias_total: numberWithDots(audienciesTotalResponse.data.sum_total_results),
+      messages_total: numberWithDots(messagesTotalResponse.data.sum_total_results),
+      questions_total: numberWithDots(questionsTotalResponse.data.sum_total_results),
     };
 
     await setAudienciasTotalsData(dataJson);
