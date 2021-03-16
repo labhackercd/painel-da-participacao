@@ -168,40 +168,45 @@ function Audiencias(props) {
   };
 
   function computeTotalOfUsersByPeriod(values, period) {
-    let computedArray = [];
+    const computedArray = [];
     let collumPeriodTitle = [];
-
-    function sumArrayFields(valuesData) {
-      const array = [];
-      array.push([new Date(valuesData[0].end_date).getFullYear().toString(), valuesData[0].new_users]);
-      for (let i = 1; i < values.length; i += 1) {
-        array.push(
-          [new Date(values[i].end_date).toString(),
-            values[i].new_users + array[i - 1][1]],
-        );
-      }
-      return array;
-    }
 
     switch (period) {
       case 'daily':
-        computedArray = sumArrayFields(values);
-        collumPeriodTitle = ['Dia', 'Novos Usuários'];
+        computedArray.push([values[0].start_date.match(/\d+/g)[2], values[0].new_users]);
+        for (let i = 1; i < values.length; i += 1) {
+          computedArray.push(
+            [values[i].start_date.match(/\d+/g)[2],
+              values[i].new_users + computedArray[i - 1][1]],
+          );
+        }
+        collumPeriodTitle = [['Dia', 'Total de Usuários Cadastrados']];
         break;
       case 'monthly':
-        computedArray = sumArrayFields(values);
-        collumPeriodTitle = ['Mês', 'Novos Usuários'];
+        computedArray.push([monthNamesList[(new Date(values[0].end_date)).getMonth()], values[0].new_users]);
+        for (let i = 1; i < values.length; i += 1) {
+          computedArray.push(
+            [monthNamesList[(new Date(values[i].end_date)).getMonth()],
+              values[i].new_users + computedArray[i - 1][1]],
+          );
+        }
+        collumPeriodTitle = [['Mês', 'Total de Usuários Cadastrados']];
         break;
       default:
-        computedArray = sumArrayFields(values);
-        collumPeriodTitle = ['Ano', 'Novos Usuários'];
+        computedArray.push([new Date(values[0].end_date).getFullYear().toString(), values[0].new_users]);
+        for (let i = 1; i < values.length; i += 1) {
+          computedArray.push(
+            [new Date(values[i].end_date).getFullYear().toString(),
+              values[i].new_users + computedArray[i - 1][1]],
+          );
+        }
+        collumPeriodTitle = [['Ano', 'Total de Usuários Cadastrados']];
         break;
     }
 
     const chartCompleteData = collumPeriodTitle.concat(computedArray);
     setTotalUsersChartData(chartCompleteData);
     setTotalUsersChartDataLoaded(true);
-    console.log(chartCompleteData)
   }
 
   async function fetchAndSetAudienciasTotalsData(query) {
@@ -262,7 +267,7 @@ function Audiencias(props) {
     setNewUsersChartDataLoaded(true);
 
     if (Array.isArray(values) && values.length) {
-      // computeTotalOfUsersByPeriod(values);
+      computeTotalOfUsersByPeriod(values, period);
     }
   }
 
@@ -558,6 +563,24 @@ function Audiencias(props) {
             </div>
           ) : (
             <NoDataForSelectedPeriod title="Novos Usuários" />
+          )}
+        </Grid>
+
+        <Grid item xs={12} className={classes.spacing}>
+          <SubSectionHeader title="Total de Usuários Cadastrados" />
+          {(totalUsersChartData !== undefined && totalUsersChartData.length > 0) ? (
+            <div className={classes.contentBox}>
+              <GoogleChartFrame
+                isLoaded={totalUsersChartDataLoaded}
+                title="Total de Usuários Cadastrados"
+                classes={classes}
+                data={totalUsersChartData}
+                chartType={audiencesChartsUsersSettings.chartType}
+                chartOptions={audiencesChartsUsersSettings.options}
+              />
+            </div>
+          ) : (
+            <NoDataForSelectedPeriod title="Total de Usuários Cadastrados" />
           )}
         </Grid>
       </Grid>
