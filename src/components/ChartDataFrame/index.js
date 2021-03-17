@@ -59,7 +59,7 @@ export default function ChartDataFrame(props) {
 
   const {
     // eslint-disable-next-line react/prop-types
-    height, children, title, download, exportData,
+    height, children, title, download, exportData, align,
   } = props;
 
   return (
@@ -68,7 +68,7 @@ export default function ChartDataFrame(props) {
         <Box className={classes.header}>
           <Box flexGrow={1} marginLeft={2}>
             <Typography variant="h5" className={classes.text}>
-              <Box fontWeight="fontWeightBold">
+              <Box fontWeight="fontWeightBold" display="flex" justifyContent={align}>
                 {title}
               </Box>
             </Typography>

@@ -54,7 +54,7 @@ function TotalFrame(props) {
   const { isLoaded, info, title } = props;
 
   return (
-    <ChartDataFrame height="15vh" paddingLeft="0.5rem" listView={false} download={false} title={title}>
+    <ChartDataFrame height="15vh" paddingLeft="0.5rem" title={title} download={false} align="left">
       {isLoaded ? (
         <Typography variant="h2" style={{ color: '#FFF', alignSelf: 'center' }}>
           {info}
@@ -520,7 +520,7 @@ function Audiencias(props) {
 
         <Grid item xs={12} className={classes.spacing}>
           <Sectionheader title="Distribuição da participação no período" />
-          <ChartDataFrame height="60vh" title="Temas de audiências mais participativas" listView exportData={participantionChartData} download>
+          <ChartDataFrame height="60vh" title="Temas de audiências mais participativas" listView exportData={participantionChartData} download align="center">
             <div className={classes.contentBox}>
               <GoogleChart
                 chartType={audiencesWithMoreParticipation.chartType}
