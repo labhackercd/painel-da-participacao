@@ -75,7 +75,7 @@ function GoogleChartFrame(props) {
 
   return (
     <>
-      <ChartDataFrame height="35vh" title={title} listView exportData={exportData} download>
+      <ChartDataFrame height="35vh" title={title} listView exportData={exportData} download align="center">
         {isLoaded ? (
           <div className={classes.contentBox}>
             <GoogleChart
@@ -137,7 +137,6 @@ function Audiencias(props) {
       hAxis: {
         textStyle: { color: '#FFFFFF' },
         gridlines: { color: 'transparent' },
-        title: periodSubTitle,
         titleTextStyle: { color: 'white' },
       },
       vAxis: { gridlines: { color: 'transparent' }, textStyle: { color: '#FFFFFF' }, format: '##.##' },
@@ -520,7 +519,7 @@ function Audiencias(props) {
 
         <Grid item xs={12} className={classes.spacing}>
           <Sectionheader title="Distribuição da participação no período" />
-          <ChartDataFrame height="60vh" title="Temas de audiências mais participativas" listView exportData={participantionChartData} download align="center">
+          <ChartDataFrame height="60vh" title={periodSubTitle} listView exportData={participantionChartData} download align="center">
             <div className={classes.contentBox}>
               <GoogleChart
                 chartType={audiencesWithMoreParticipation.chartType}
@@ -534,7 +533,7 @@ function Audiencias(props) {
         <Grid item xs={12} className={classes.spacing}>
           <Sectionheader title="Ranking das audiências" />
           {(roomsRankingData !== undefined && roomsRankingData.length > 0) ? (
-            <ChartDataFrame height="30vh" title={`Salas (${periodSubTitle})`} listView exportData={roomsRankingData} download>
+            <ChartDataFrame height="30vh" title={periodSubTitle} listView exportData={roomsRankingData} download align="center">
               <Box width="100%" height="90%">
                 <RankingTable data={roomsRankingData} />
               </Box>
@@ -554,7 +553,7 @@ function Audiencias(props) {
             <div className={classes.contentBox}>
               <GoogleChartFrame
                 isLoaded={newUsersChartDataLoaded}
-                title="Novos Usuários"
+                title={periodSubTitle}
                 classes={classes}
                 data={newUsersChartData}
                 chartType={audiencesChartsUsersSettings.chartType}
@@ -576,7 +575,7 @@ function Audiencias(props) {
                 download={false}
                 exportData={totalUsersChartData}
                 isLoaded={totalUsersChartDataLoaded}
-                title="Total de Usuários Cadastrados"
+                title={periodSubTitle}
                 classes={classes}
                 data={totalUsersChartData}
                 chartType={audiencesChartsUsersSettings.chartType}
@@ -584,7 +583,7 @@ function Audiencias(props) {
               />
             </div>
           ) : (
-            <NoDataForSelectedPeriod title="Total de Usuários Cadastrados" />
+            <NoDataForSelectedPeriod title={periodSubTitle} />
           )}
         </Grid>
       </Grid>
