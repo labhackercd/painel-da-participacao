@@ -1,6 +1,46 @@
 import React from 'react';
-import DataTable from 'react-data-table-component';
+import DataTable, { createTheme } from 'react-data-table-component';
 import PropTypes from 'prop-types';
+
+createTheme('darkLAB', {
+  text: {
+    primary: '#FFFFFF',
+    secondary: '#FFFFFF',
+    disabled: '#FFFFFF',
+  },
+  background: {
+    default: '#000000',
+  },
+  context: {
+    text: '#FFFFFF',
+    background: '#FFFFFF',
+  },
+  divider: {
+    default: '#2F2F2F',
+  },
+  button: {
+    default: '#FFFFFF',
+    focus: '#ffc000',
+    hover: 'rgba(255, 255, 255, .12)',
+    disabled: 'rgba(255, 255, 255, .18)',
+  },
+  selected: {
+    default: '#9e5e0d',
+    text: '#9e5e0d',
+  },
+  sortFocus: {
+    default: '#9e5e0d',
+    text: '#9e5e0d',
+  },
+  highlightOnHover: {
+    default: '#9e5e0d',
+    text: '#ffffff',
+  },
+  striped: {
+    default: '#9e5e0d',
+    text: '#9e5e0d',
+  },
+});
 
 function formatDate(input) {
   const datePart = input.match(/\d+/g);
@@ -87,7 +127,7 @@ export default function RankingTable(props) {
     <DataTable
       columns={columns}
       data={data}
-      theme="dark"
+      theme="darkLAB"
       highlightOnHover
       pointerOnHover
       pagination
