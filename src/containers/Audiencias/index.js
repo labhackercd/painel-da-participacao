@@ -15,6 +15,11 @@ import ChartDataFrame from '../../components/ChartDataFrame/index';
 import Header from '../../components/Header/index';
 import RankingTable from '../../components/RankingTable/index';
 import GoogleChart from '../../components/Charts/GoogleChart';
+import Tooltip from '../../components/ToolTip/index';
+
+import {
+  participantsTotalToolTip, messagesTotalToolTip, audiencesTotalToolTip, audiencesRankingToolTip,
+} from '../../texts/tooltips';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -51,10 +56,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function TotalFrame(props) {
-  const { isLoaded, info, title } = props;
+  const {
+    isLoaded, info, title, toolTipText,
+  } = props;
 
   return (
-    <ChartDataFrame height="15vh" paddingLeft="0.5rem" title={title} download={false} align="left">
+    <ChartDataFrame height="15vh" paddingLeft="0.5rem" title={title} download={false} align="left" toolTipText={toolTipText}>
       {isLoaded ? (
         <Typography variant="h2" style={{ color: '#FFF', alignSelf: 'center' }}>
           {info}
@@ -462,14 +469,20 @@ function Audiencias(props) {
   }
 
   function Sectionheader(props) {
+    const { title, toolTipText } = props;
+
     return (
       <Box display="flex" marginBottom={1}>
         <Box p={1}>
           <Typography component="div">
             <Box fontWeight="fontWeightBold" fontSize={39}>
-              {props.title}
+              {title}
             </Box>
           </Typography>
+        </Box>
+        <Box alignSelf="center">
+          {(toolTipText !== null && toolTipText !== undefined)
+            && <Tooltip toolTipText={toolTipText} />}
         </Box>
         <Box p={1} flexGrow={1} alignSelf="center">
           <hr style={{ borderColor: '#DA7F0B' }} />
@@ -502,15 +515,15 @@ function Audiencias(props) {
         </Grid>
 
         <Grid item xs={12} md={3} className={classes.spacing}>
-          <TotalFrame isLoaded={totalsAreLoaded} info={`${audienciasTotalsData.users_total}`} title="Participantes" />
+          <TotalFrame isLoaded={totalsAreLoaded} info={`${audienciasTotalsData.users_total}`} title="Participantes" toolTipText={participantsTotalToolTip} />
         </Grid>
 
         <Grid item xs={12} md={3} className={classes.spacing}>
-          <TotalFrame isLoaded={totalsAreLoaded} info={`${audienciasTotalsData.audiencias_total}`} title="Audiências" />
+          <TotalFrame isLoaded={totalsAreLoaded} info={`${audienciasTotalsData.audiencias_total}`} title="Audiências" toolTipText={audiencesTotalToolTip} />
         </Grid>
 
         <Grid item xs={12} md={3} className={classes.spacing}>
-          <TotalFrame isLoaded={totalsAreLoaded} info={`${audienciasTotalsData.messages_total}`} title="Mensagens" />
+          <TotalFrame isLoaded={totalsAreLoaded} info={`${audienciasTotalsData.messages_total}`} title="Mensagens" toolTipText={messagesTotalToolTip} />
         </Grid>
 
         <Grid item xs={12} md={3} className={classes.spacing}>
@@ -531,7 +544,7 @@ function Audiencias(props) {
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <Sectionheader title="Ranking das audiências" />
+          <Sectionheader title="Ranking das audiências" toolTipText={audiencesRankingToolTip} />
           {(roomsRankingData !== undefined && roomsRankingData.length > 0) ? (
             <ChartDataFrame height="30vh" title={periodSubTitle} listView exportData={roomsRankingData} download align="center">
               <Box width="100%" height="90%">

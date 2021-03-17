@@ -6,6 +6,7 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 import { CSVLink } from 'react-csv';
+import Tooltips from '../ToolTip/index';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -59,19 +60,23 @@ export default function ChartDataFrame(props) {
 
   const {
     // eslint-disable-next-line react/prop-types
-    height, children, title, download, exportData, align,
+    height, children, title, download, exportData, align, toolTipText,
   } = props;
 
   return (
     <Grid container className={classes.root}>
       <Box className={classes.box}>
         <Box className={classes.header}>
-          <Box flexGrow={1} marginLeft={2}>
+          <Box marginLeft={2}>
             <Typography variant="h5" className={classes.text}>
               <Box fontWeight="fontWeightBold" display="flex" justifyContent={align}>
                 {title}
               </Box>
             </Typography>
+          </Box>
+          <Box flexGrow={1} display="flex" alignItems="center" marginTop={1}>
+            {(toolTipText !== null && toolTipText !== undefined)
+              && <Tooltips toolTipText={toolTipText} />}
           </Box>
           <Box marginRight={2} alignSelf="center" marginTop={1}>
             {download && (exportData !== undefined && exportData !== null)
