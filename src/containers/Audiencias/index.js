@@ -561,7 +561,7 @@ function Audiencias(props) {
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <SubSectionHeader title="Novos Usuários" />
+          <SubSectionHeader title="Novos cadastros de usuários" />
           {(newUsersChartData !== undefined && newUsersChartData.length > 0) ? (
             <div className={classes.contentBox}>
               <GoogleChartFrame
