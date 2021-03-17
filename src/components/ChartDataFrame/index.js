@@ -1,9 +1,11 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import {
   Grid, Box, Typography, IconButton,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
+import { CSVLink } from 'react-csv';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
   header: {
     height: '3vh',
     display: 'flex',
-    justifyContent: 'center',
     width: '100%',
   },
   icon: {
@@ -58,41 +59,32 @@ export default function ChartDataFrame(props) {
 
   const {
     // eslint-disable-next-line react/prop-types
-    height, children, title, download,
+    height, children, title, download, exportData,
   } = props;
-
-  /*
-  function handleDownload() {
-    console.log("handleDownload")
-    console.log(props.export_data[0]);
-  }
-
-  function formatData() {
-    return JSON.stringify(export_data)
-  }
-  */
 
   return (
     <Grid container className={classes.root}>
       <Box className={classes.box}>
-        <Grid container className={classes.header}>
-          <Grid item xs={10}>
+        <Box className={classes.header}>
+          <Box flexGrow={1} marginLeft={2}>
             <Typography variant="h5" className={classes.text}>
               <Box fontWeight="fontWeightBold">
                 {title}
               </Box>
             </Typography>
-          </Grid>
-          <Grid item xs={1}>
-            {download
+          </Box>
+          <Box marginRight={2} alignSelf="center" marginTop={1}>
+            {download && (exportData !== undefined && exportData !== null)
               ? (
-                <IconButton style={{ color: '#FFF' }} className={classes.downloadIcon}>
-                  <CloudDownloadIcon />
-                </IconButton>
+                <CSVLink data={exportData} filename={`${title}.csv`}>
+                  <IconButton style={{ color: '#FFF' }} className={classes.downloadIcon}>
+                    <CloudDownloadIcon />
+                  </IconButton>
+                </CSVLink>
               )
               : ''}
-          </Grid>
-        </Grid>
+          </Box>
+        </Box>
       </Box>
       <div className={classes.container} style={{ height: 'auto', minHeight: height }}>
         {children}
