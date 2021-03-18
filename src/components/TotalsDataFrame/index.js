@@ -1,11 +1,9 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import {
-  Grid, Box, Typography, IconButton,
+  Grid, Box, Typography,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
-import { CSVLink } from 'react-csv';
 import Tooltips from '../ToolTip/index';
 
 const useStyles = makeStyles((theme) => ({
