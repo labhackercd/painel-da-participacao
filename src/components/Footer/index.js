@@ -20,7 +20,7 @@ export default function Footer() {
         <Grid container>
           <Grid item md={2} />
           <Grid item md={4}>
-            <Typography> LabHacker Câmara dos Deputados </Typography>
+            <Typography id="footerLab"> LABHacker Câmara dos Deputados </Typography>
           </Grid>
           <Grid item md={4} />
           <Grid item md={2}>
