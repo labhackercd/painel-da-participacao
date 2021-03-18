@@ -12,9 +12,15 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import ChartDataFrame from '../../components/ChartDataFrame/index';
+import TotalsDataFrame from '../../components/TotalsDataFrame/index';
 import Header from '../../components/Header/index';
 import RankingTable from '../../components/RankingTable/index';
 import GoogleChart from '../../components/Charts/GoogleChart';
+import Tooltip from '../../components/ToolTip/index';
+
+import {
+  participantsTotalToolTip, messagesTotalToolTip, audiencesTotalToolTip, audiencesRankingToolTip,
+} from '../../texts/tooltips';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -51,10 +57,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function TotalFrame(props) {
-  const { isLoaded, info, title } = props;
+  const {
+    isLoaded, info, title, toolTipText,
+  } = props;
 
   return (
-    <ChartDataFrame height="15vh" paddingLeft="0.5rem" listView={false} download={false} title={title}>
+    <TotalsDataFrame height="15vh" paddingLeft="0.5rem" title={title} download={false} align="left" toolTipText={toolTipText}>
       {isLoaded ? (
         <Typography variant="h2" style={{ color: '#FFF', alignSelf: 'center' }}>
           {info}
@@ -64,7 +72,7 @@ function TotalFrame(props) {
           <CircularProgress color="secondary" />
         </Box>
       )}
-    </ChartDataFrame>
+    </TotalsDataFrame>
   );
 }
 
@@ -75,7 +83,7 @@ function GoogleChartFrame(props) {
 
   return (
     <>
-      <ChartDataFrame height="35vh" title={title} listView exportData={exportData} download>
+      <ChartDataFrame height="35vh" title={title} listView exportData={exportData} download align="center">
         {isLoaded ? (
           <div className={classes.contentBox}>
             <GoogleChart
@@ -137,7 +145,6 @@ function Audiencias(props) {
       hAxis: {
         textStyle: { color: '#FFFFFF' },
         gridlines: { color: 'transparent' },
-        title: periodSubTitle,
         titleTextStyle: { color: 'white' },
       },
       vAxis: { gridlines: { color: 'transparent' }, textStyle: { color: '#FFFFFF' }, format: '##.##' },
@@ -463,14 +470,20 @@ function Audiencias(props) {
   }
 
   function Sectionheader(props) {
+    const { title, toolTipText } = props;
+
     return (
       <Box display="flex" marginBottom={1}>
         <Box p={1}>
           <Typography component="div">
             <Box fontWeight="fontWeightBold" fontSize={39}>
-              {props.title}
+              {title}
             </Box>
           </Typography>
+        </Box>
+        <Box alignSelf="center">
+          {(toolTipText !== null && toolTipText !== undefined)
+            && <Tooltip toolTipText={toolTipText} />}
         </Box>
         <Box p={1} flexGrow={1} alignSelf="center">
           <hr style={{ borderColor: '#DA7F0B' }} />
@@ -503,15 +516,15 @@ function Audiencias(props) {
         </Grid>
 
         <Grid item xs={12} md={3} className={classes.spacing}>
-          <TotalFrame isLoaded={totalsAreLoaded} info={`${audienciasTotalsData.users_total}`} title="Participantes" />
+          <TotalFrame isLoaded={totalsAreLoaded} info={`${audienciasTotalsData.users_total}`} title="Participantes" toolTipText={participantsTotalToolTip} />
         </Grid>
 
         <Grid item xs={12} md={3} className={classes.spacing}>
-          <TotalFrame isLoaded={totalsAreLoaded} info={`${audienciasTotalsData.audiencias_total}`} title="Audiências" />
+          <TotalFrame isLoaded={totalsAreLoaded} info={`${audienciasTotalsData.audiencias_total}`} title="Audiências" toolTipText={audiencesTotalToolTip} />
         </Grid>
 
         <Grid item xs={12} md={3} className={classes.spacing}>
-          <TotalFrame isLoaded={totalsAreLoaded} info={`${audienciasTotalsData.messages_total}`} title="Mensagens" />
+          <TotalFrame isLoaded={totalsAreLoaded} info={`${audienciasTotalsData.messages_total}`} title="Mensagens" toolTipText={messagesTotalToolTip} />
         </Grid>
 
         <Grid item xs={12} md={3} className={classes.spacing}>
@@ -520,7 +533,7 @@ function Audiencias(props) {
 
         <Grid item xs={12} className={classes.spacing}>
           <Sectionheader title="Distribuição da participação no período" />
-          <ChartDataFrame height="60vh" title="Temas de audiências mais participativas" listView exportData={participantionChartData} download>
+          <ChartDataFrame height="60vh" title={periodSubTitle} listView exportData={participantionChartData} download align="center">
             <div className={classes.contentBox}>
               <GoogleChart
                 chartType={audiencesWithMoreParticipation.chartType}
@@ -532,9 +545,9 @@ function Audiencias(props) {
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <Sectionheader title="Ranking das audiências" />
+          <Sectionheader title="Ranking das audiências" toolTipText={audiencesRankingToolTip} />
           {(roomsRankingData !== undefined && roomsRankingData.length > 0) ? (
-            <ChartDataFrame height="30vh" title={`Salas (${periodSubTitle})`} listView exportData={roomsRankingData} download>
+            <ChartDataFrame height="30vh" title={periodSubTitle} listView exportData={roomsRankingData} download align="center">
               <Box width="100%" height="90%">
                 <RankingTable data={roomsRankingData} />
               </Box>
@@ -549,12 +562,12 @@ function Audiencias(props) {
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <SubSectionHeader title="Novos Usuários" />
+          <SubSectionHeader title="Novos cadastros de usuários" />
           {(newUsersChartData !== undefined && newUsersChartData.length > 0) ? (
             <div className={classes.contentBox}>
               <GoogleChartFrame
                 isLoaded={newUsersChartDataLoaded}
-                title="Novos Usuários"
+                title={periodSubTitle}
                 classes={classes}
                 data={newUsersChartData}
                 chartType={audiencesChartsUsersSettings.chartType}
@@ -576,7 +589,7 @@ function Audiencias(props) {
                 download={false}
                 exportData={totalUsersChartData}
                 isLoaded={totalUsersChartDataLoaded}
-                title="Total de Usuários Cadastrados"
+                title={periodSubTitle}
                 classes={classes}
                 data={totalUsersChartData}
                 chartType={audiencesChartsUsersSettings.chartType}
@@ -584,7 +597,7 @@ function Audiencias(props) {
               />
             </div>
           ) : (
-            <NoDataForSelectedPeriod title="Total de Usuários Cadastrados" />
+            <NoDataForSelectedPeriod title={periodSubTitle} />
           )}
         </Grid>
       </Grid>

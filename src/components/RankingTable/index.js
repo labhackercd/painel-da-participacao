@@ -20,7 +20,7 @@ createTheme('darkLAB', {
   },
   button: {
     default: '#FFFFFF',
-    focus: '#ffc000',
+    focus: 'rgba(255, 255, 255, .12)',
     hover: 'rgba(255, 255, 255, .12)',
     disabled: 'rgba(255, 255, 255, .18)',
   },

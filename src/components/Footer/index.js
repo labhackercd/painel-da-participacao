@@ -13,17 +13,20 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Footer() {
   const classes = useStyles();
+  const currentYear = new Date().getFullYear();
   return (
     <AppBar position="static">
       <Toolbar className={classes.root}>
         <Grid container>
           <Grid item md={2} />
           <Grid item md={4}>
-            <Typography id="title"> Coordenação de Participação Popular da Câmara dos Deputados </Typography>
+            <Typography id="footerLab"> LABHacker Câmara dos Deputados </Typography>
           </Grid>
           <Grid item md={4} />
           <Grid item md={2}>
-            <Typography>2020 - Dashboard da Participação </Typography>
+            <Typography>
+              { `${currentYear} - Dashboard da Participação` }
+            </Typography>
           </Grid>
         </Grid>
       </Toolbar>

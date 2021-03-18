@@ -11,8 +11,8 @@ test('snapshot should not have changes', () => {
 
 test('snapshot should not have changes', () => {
   const component = mount(<MockTheme><Footer /></MockTheme>);
-  const wrapper = component.find('#title').at(0);
-  expect(wrapper.text().includes('Coordenação')).toBe(true);
+  const wrapper = component.find('#footerLab').at(0);
+  expect(wrapper.text().includes('LABHacker')).toBe(true);
   // expect(component.exists()).toEqual(true);
   // expect(component).toMatchSnapshot();
 });
