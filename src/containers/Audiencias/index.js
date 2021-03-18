@@ -12,6 +12,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import ChartDataFrame from '../../components/ChartDataFrame/index';
+import TotalsDataFrame from '../../components/TotalsDataFrame/index';
 import Header from '../../components/Header/index';
 import RankingTable from '../../components/RankingTable/index';
 import GoogleChart from '../../components/Charts/GoogleChart';
@@ -61,7 +62,7 @@ function TotalFrame(props) {
   } = props;
 
   return (
-    <ChartDataFrame height="15vh" paddingLeft="0.5rem" title={title} download={false} align="left" toolTipText={toolTipText}>
+    <TotalsDataFrame height="15vh" paddingLeft="0.5rem" title={title} download={false} align="left" toolTipText={toolTipText}>
       {isLoaded ? (
         <Typography variant="h2" style={{ color: '#FFF', alignSelf: 'center' }}>
           {info}
@@ -71,7 +72,7 @@ function TotalFrame(props) {
           <CircularProgress color="secondary" />
         </Box>
       )}
-    </ChartDataFrame>
+    </TotalsDataFrame>
   );
 }
 

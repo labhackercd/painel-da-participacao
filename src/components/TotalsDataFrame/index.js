@@ -55,35 +55,28 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ChartDataFrame(props) {
+export default function TotalsDataFrame(props) {
   const classes = useStyles();
 
   const {
     // eslint-disable-next-line react/prop-types
-    height, children, title, download, exportData, align,
+    height, children, title, toolTipText,
   } = props;
 
   return (
     <Grid container className={classes.root}>
       <Box className={classes.box}>
         <Box className={classes.header}>
-          <Box marginLeft={2} flexGrow={1}>
+          <Box marginLeft={2}>
             <Typography variant="h5" className={classes.text}>
-              <Box fontWeight="fontWeightBold" display="flex" justifyContent={align}>
+              <Box fontWeight="fontWeightBold" display="flex">
                 {title}
               </Box>
             </Typography>
           </Box>
-          <Box marginRight={2} alignSelf="center" marginTop={1}>
-            {download && (exportData !== undefined && exportData !== null)
-              ? (
-                <CSVLink data={exportData} filename={`${title}.csv`}>
-                  <IconButton style={{ color: '#FFF' }} className={classes.downloadIcon}>
-                    <CloudDownloadIcon />
-                  </IconButton>
-                </CSVLink>
-              )
-              : ''}
+          <Box flexGrow={1} display="flex" alignItems="center" marginTop={1}>
+            {(toolTipText !== null && toolTipText !== undefined)
+              && <Tooltips toolTipText={toolTipText} />}
           </Box>
         </Box>
       </Box>
