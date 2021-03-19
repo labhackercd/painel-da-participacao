@@ -1,17 +1,10 @@
-import React from 'react';
-import { shallow, mount } from 'enzyme';
-import { act } from 'react-dom/test-utils';
-import MockTheme from '../../../components/mockTheme';
-import Audiencias from '../index';
 import {
   getParticipationChartDataByDay, getParticipationChartDataByMonth, getParticipationChartDataByYear,
   handleUpdatePeriodSearchQuery, pad,
 } from '../auxFunctions';
 
 import messagesRankingMock from './mocks/messages_ranking_mock';
-import participantesUsersMock from './mocks/participants_users_mock';
 import questionsRankingMock from './mocks/questions_ranking_mock';
-import roomsRankingMock from './mocks/rooms_ranking_mock';
 import votesRankingMock from './mocks/votes_ranking_mock';
 
 describe('Test pad function', () => {

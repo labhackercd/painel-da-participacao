@@ -168,7 +168,6 @@ test('Audiencia page lifecycle is getting informations of days of specific month
 
 test('Audiencia page lifecycle is getting informations with no values', async () => {
   const mockInstance = new MockAdapter(axios);
-  console.log("======================================================")
   mockInstance
     .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_PARTICIPANT_USERS_URL}${defaultSearchQuery}`)
     .reply(200, [])
