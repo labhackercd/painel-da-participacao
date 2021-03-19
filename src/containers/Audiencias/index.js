@@ -55,6 +55,21 @@ const useStyles = makeStyles((theme) => ({
   appBarSpacer: theme.mixins.toolbar,
 }));
 
+const defaultYear = new Date().getFullYear().toString();
+const defaultSelectedPeriodType = 'monthly'; // Get all months of the year
+const defaultMonthPeriod = '0'; // All months
+const defaultSearchQuery = `?period=monthly&start_date__year=${new Date().getFullYear()}&ordering=start_date`;
+const dailyKeyWord = 'daily';
+const monthlyKeyWord = 'monthly';
+
+const monthNamesList = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
+  'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez',
+];
+
+const fullMonthNamesList = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+  'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro',
+];
+
 function Audiencias(props) {
   const { responseDataRanking } = props;
 
@@ -68,21 +83,6 @@ function Audiencias(props) {
   const [newUsersChartDataLoaded, setNewUsersChartDataLoaded] = useState(false);
   const [totalUsersChartDataLoaded, setTotalUsersChartDataLoaded] = useState(false);
   const [periodSubTitle, setPeriodSubTitle] = useState(new Date().getFullYear().toString());
-
-  const defaultSelectedPeriodType = 'monthly';
-  const defaultYearPeriod = new Date().getFullYear().toString();
-  const defaultMonthPeriod = '0';
-  const defaultSearchQuery = `?period=monthly&start_date__year=${new Date().getFullYear()}&ordering=start_date`;
-  const dailyKeyWord = 'daily';
-  const monthlyKeyWord = 'monthly';
-
-  const monthNamesList = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
-    'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez',
-  ];
-
-  const fullMonthNamesList = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
-    'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro',
-  ];
 
   const audiencesChartsUsersSettings = {
     chartType: 'LineChart',
@@ -150,7 +150,7 @@ function Audiencias(props) {
         break;
       default:
         computedArray.push(
-          [new Date(values[0].end_date).getFullYear().toString(), values[0].new_users]
+          [new Date(values[0].end_date).getFullYear().toString(), values[0].new_users],
         );
         for (let i = 1; i < values.length; i += 1) {
           computedArray.push(
@@ -193,7 +193,6 @@ function Audiencias(props) {
     let arrayData = [];
     let collumPeriodTitle = [];
 
-    // formatDate(value.start_date)
     switch (period) {
       case dailyKeyWord:
         arrayData = values.map(
@@ -275,13 +274,14 @@ function Audiencias(props) {
         resultArray = await allRooms.filter((value) => {
           const [valueYear, valueMonth] = value.date.split('-'); // Or, var month = e.date.split('-')[1];
           return (
-            parseInt(month, 10) === parseInt(valueMonth, 10)) && (parseInt(year, 10) === parseInt(valueYear, 10)
+            (parseInt(month, 10) === parseInt(valueMonth, 10))
+            && (parseInt(year, 10) === parseInt(valueYear, 10))
           );
         });
         break;
       case monthlyKeyWord:
         resultArray = await allRooms.filter((value) => {
-          const [valueYear, valueMonth] = value.date.split('-'); // Or, var month = e.date.split('-')[1];
+          const [valueYear] = value.date.split('-'); // Or, var month = e.date.split('-')[1];
           return (parseInt(year, 10) === parseInt(valueYear, 10));
         });
         break;
@@ -326,7 +326,7 @@ function Audiencias(props) {
 
   useEffect(() => {
     // Load Initial page year with current year informations
-    loadData(defaultSearchQuery, defaultSelectedPeriodType, 0, defaultYearPeriod);
+    loadData(defaultSearchQuery, defaultSelectedPeriodType, 0, defaultYear);
   }, []);
 
   return (
@@ -334,7 +334,7 @@ function Audiencias(props) {
       <Header
         title="Audiências Interativas"
         handlePeriodChange={handlePeriodChange}
-        year={defaultYearPeriod}
+        year={defaultYear}
         monthPeriod={defaultMonthPeriod}
       />
       <Grid container spacing={1} className={classes.spacingContainer}>

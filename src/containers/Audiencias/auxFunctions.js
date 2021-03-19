@@ -1,11 +1,12 @@
 /* eslint-disable max-len */
 /* eslint-disable import/prefer-default-export */
-export function pad(d) {
-  return (d < 10 ? `0${d.toString()}` : d.toString());
-}
 const monthNamesList = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
   'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez',
 ];
+
+export function pad(d) {
+  return (d < 10 ? `0${d.toString()}` : d.toString());
+}
 
 export async function getParticipationChartDataByDay(month, year, messagesData, questionsData, questionsVoteData) {
   const totalOfDaysInMonth = await new Date(year, month, 0).getDate();
@@ -74,12 +75,15 @@ export async function getParticipationChartDataByYear(messagesData, questionsDat
 }
 
 export async function handleUpdatePeriodSearchQuery(month, year) {
+  const paramMonth = month.toString();
+  const paramYear = year.toString();
   let query = '';
   let period = '';
-  if (year === '0') {
+
+  if (paramYear === '0') {
     query = '?period=yearly&ordering=start_date';
     period = 'yearly';
-  } else if ((year !== '0') && (month === '0')) {
+  } else if ((paramYear !== '0') && (paramMonth === '0')) {
     query = `?period=monthly&start_date__year=${year}&ordering=start_date`;
     period = 'monthly';
   } else { // (yearPeriod !== '0') && (monthPeriod !== '0')
