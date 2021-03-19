@@ -72,7 +72,7 @@ function Audiencias(props) {
   const defaultSelectedPeriodType = 'monthly';
   const defaultYearPeriod = new Date().getFullYear().toString();
   const defaultMonthPeriod = '0';
-  const searchQuery = `?period=monthly&start_date__year=${new Date().getFullYear()}&ordering=start_date`;
+  const defaultSearchQuery = `?period=monthly&start_date__year=${new Date().getFullYear()}&ordering=start_date`;
   const dailyKeyWord = 'daily';
   const monthlyKeyWord = 'monthly';
 
@@ -86,14 +86,6 @@ function Audiencias(props) {
 
   const audiencesChartsUsersSettings = {
     chartType: 'LineChart',
-    data: [
-      ['Ano', 'Total de Usuários'],
-      ['2016', 10],
-      ['2017', 23],
-      ['2018', 17],
-      ['2019', 18],
-      ['2020', 35],
-    ],
     options: {
       legend: { position: 'top', maxLines: 3, textStyle: { color: 'white' } },
       colors: ['#76480F', '#9E5E0D', '#DA7F0B'],
@@ -145,7 +137,9 @@ function Audiencias(props) {
         collumPeriodTitle = [['Dia', 'Total de Usuários Cadastrados']];
         break;
       case monthlyKeyWord:
-        computedArray.push([monthNamesList[(new Date(values[0].end_date)).getMonth()], values[0].new_users]);
+        computedArray.push(
+          [monthNamesList[(new Date(values[0].end_date)).getMonth()], values[0].new_users],
+        );
         for (let i = 1; i < values.length; i += 1) {
           computedArray.push(
             [monthNamesList[(new Date(values[i].end_date)).getMonth()],
@@ -155,7 +149,9 @@ function Audiencias(props) {
         collumPeriodTitle = [['Mês', 'Total de Usuários Cadastrados']];
         break;
       default:
-        computedArray.push([new Date(values[0].end_date).getFullYear().toString(), values[0].new_users]);
+        computedArray.push(
+          [new Date(values[0].end_date).getFullYear().toString(), values[0].new_users]
+        );
         for (let i = 1; i < values.length; i += 1) {
           computedArray.push(
             [new Date(values[i].end_date).getFullYear().toString(),
@@ -166,8 +162,7 @@ function Audiencias(props) {
         break;
     }
 
-    const chartCompleteData = collumPeriodTitle.concat(computedArray);
-    setTotalUsersChartData(chartCompleteData);
+    setTotalUsersChartData(collumPeriodTitle.concat(computedArray));
     setTotalUsersChartDataLoaded(true);
   }
 
@@ -247,13 +242,19 @@ function Audiencias(props) {
 
     switch (period) {
       case dailyKeyWord:
-        arrayData = await getParticipationChartDataByDay(month, year, messagesData, questionsData, questionsVoteData);
+        arrayData = await getParticipationChartDataByDay(
+          month, year, messagesData, questionsData, questionsVoteData,
+        );
         break;
       case monthlyKeyWord:
-        arrayData = await getParticipationChartDataByMonth(month, year, messagesData, questionsData, questionsVoteData);
+        arrayData = await getParticipationChartDataByMonth(
+          month, year, messagesData, questionsData, questionsVoteData,
+        );
         break;
       default: // yearly -> Total period
-        arrayData = await getParticipationChartDataByYear(messagesData, questionsData, questionsVoteData);
+        arrayData = await getParticipationChartDataByYear(
+          messagesData, questionsData, questionsVoteData,
+        );
         break;
     }
 
@@ -273,13 +274,15 @@ function Audiencias(props) {
       case dailyKeyWord:
         resultArray = await allRooms.filter((value) => {
           const [valueYear, valueMonth] = value.date.split('-'); // Or, var month = e.date.split('-')[1];
-          return (parseInt(month) === parseInt(valueMonth)) && (parseInt(year) === parseInt(valueYear));
+          return (
+            parseInt(month, 10) === parseInt(valueMonth, 10)) && (parseInt(year, 10) === parseInt(valueYear, 10)
+          );
         });
         break;
       case monthlyKeyWord:
         resultArray = await allRooms.filter((value) => {
           const [valueYear, valueMonth] = value.date.split('-'); // Or, var month = e.date.split('-')[1];
-          return (parseInt(year) === parseInt(valueYear));
+          return (parseInt(year, 10) === parseInt(valueYear, 10));
         });
         break;
       default: // yearly -> Total period
@@ -323,7 +326,7 @@ function Audiencias(props) {
 
   useEffect(() => {
     // Load Initial page year with current year informations
-    loadData(searchQuery, defaultSelectedPeriodType, 0, defaultYearPeriod);
+    loadData(defaultSearchQuery, defaultSelectedPeriodType, 0, defaultYearPeriod);
   }, []);
 
   return (
