@@ -213,7 +213,9 @@ function Audiencias(props) {
         collumPeriodTitle = ['Ano', 'Novos Usuários'];
         break;
     }
-
+    console.log(period)
+    console.log(arrayData);
+    console.log(arrayData.length);
     if (arrayData.length > 0) {
       setNewUsersChartData([collumPeriodTitle].concat(arrayData));
     } else {

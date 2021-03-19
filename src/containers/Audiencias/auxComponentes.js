@@ -111,7 +111,7 @@ TotalFrame.defaultProps = {
   isLoaded: false,
   info: 'info',
   title: 'Title',
-  toolTipText: 'Info',
+  toolTipText: null,
 };
 
 GoogleChartFrame.propTypes = {
@@ -149,7 +149,7 @@ Sectionheader.propTypes = {
 
 Sectionheader.defaultProps = {
   title: 'Titulo',
-  toolTipText: 'Dica',
+  toolTipText: null,
 };
 
 SubSectionHeader.propTypes = {
