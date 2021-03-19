@@ -1,22 +1,21 @@
-/* eslint-disable no-shadow */
-/* eslint-disable radix */
-/* eslint-disable max-len */
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/destructuring-assignment */
 import React, { useState, useEffect } from 'react';
-import { Grid, Typography } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import ChartDataFrame from '../../components/ChartDataFrame/index';
-import TotalsDataFrame from '../../components/TotalsDataFrame/index';
 import Header from '../../components/Header/index';
 import RankingTable from '../../components/RankingTable/index';
 import GoogleChart from '../../components/Charts/GoogleChart';
-import Tooltip from '../../components/ToolTip/index';
+import {
+  getParticipationChartDataByDay, getParticipationChartDataByMonth, getParticipationChartDataByYear,
+  handleUpdatePeriodSearchQuery, pad,
+} from './auxFunctions';
+
+import {
+  TotalFrame, GoogleChartFrame, NoDataForSelectedPeriod, Sectionheader, SubSectionHeader,
+} from './auxComponentes';
 
 import {
   participantsTotalToolTip, messagesTotalToolTip, audiencesTotalToolTip, audiencesRankingToolTip,
@@ -56,70 +55,26 @@ const useStyles = makeStyles((theme) => ({
   appBarSpacer: theme.mixins.toolbar,
 }));
 
-function TotalFrame(props) {
-  const {
-    isLoaded, info, title, toolTipText,
-  } = props;
-
-  return (
-    <TotalsDataFrame height="15vh" paddingLeft="0.5rem" title={title} download={false} align="left" toolTipText={toolTipText}>
-      {isLoaded ? (
-        <Typography variant="h2" style={{ color: '#FFF', alignSelf: 'center' }}>
-          {info}
-        </Typography>
-      ) : (
-        <Box display="flex" alignItems="center" justifyContent="center" width="100%" height="100%">
-          <CircularProgress color="secondary" />
-        </Box>
-      )}
-    </TotalsDataFrame>
-  );
-}
-
-function GoogleChartFrame(props) {
-  const {
-    isLoaded, title, classes, data, chartType, chartOptions, exportData,
-  } = props;
-
-  return (
-    <>
-      <ChartDataFrame height="35vh" title={title} listView exportData={exportData} download align="center">
-        {isLoaded ? (
-          <div className={classes.contentBox}>
-            <GoogleChart
-              chartType={chartType}
-              data={data}
-              options={chartOptions}
-            />
-          </div>
-        ) : (
-          <Box display="flex" alignItems="center" justifyContent="center" width="100%" height="100%">
-            <CircularProgress color="secondary" />
-          </Box>
-        )}
-      </ChartDataFrame>
-    </>
-  );
-}
-
 function Audiencias(props) {
+  const { responseDataRanking } = props;
+
   const classes = useStyles();
   const [audienciasTotalsData, setAudienciasTotalsData] = useState('');
   const [newUsersChartData, setNewUsersChartData] = useState([]);
   const [totalUsersChartData, setTotalUsersChartData] = useState([]);
-  const [roomsRankingData, setRoomsRankingData] = useState(props.responseDataRanking);
+  const [roomsRankingData, setRoomsRankingData] = useState(responseDataRanking);
   const [participantionChartData, setParticipantionChartData] = useState([]);
   const [totalsAreLoaded, setTotalsAreLoaded] = useState(false);
   const [newUsersChartDataLoaded, setNewUsersChartDataLoaded] = useState(false);
   const [totalUsersChartDataLoaded, setTotalUsersChartDataLoaded] = useState(false);
-  const [participantionChartDataLoaded, setParticipantionChartDataLoaded] = useState(false);
-  const [yearPeriod, setYearPeriod] = useState(new Date().getFullYear().toString());
-  const [monthPeriod, setMonthPeriod] = useState('0'); // month 0 correspons to "all months"
-  const [searchQuery, setSearchQuery] = useState(`?period=monthly&start_date__year=${new Date().getFullYear()}&ordering=start_date`);
   const [periodSubTitle, setPeriodSubTitle] = useState(new Date().getFullYear().toString());
 
-  // eslint-disable-next-line no-unused-vars
-  const [selectedPeriodType, setSelectedPeriodType] = useState('monthly'); // yearly or monthly or daily
+  const defaultSelectedPeriodType = 'monthly';
+  const defaultYearPeriod = new Date().getFullYear().toString();
+  const defaultMonthPeriod = '0';
+  const searchQuery = `?period=monthly&start_date__year=${new Date().getFullYear()}&ordering=start_date`;
+  const dailyKeyWord = 'daily';
+  const monthlyKeyWord = 'monthly';
 
   const monthNamesList = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
     'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez',
@@ -179,7 +134,7 @@ function Audiencias(props) {
     let collumPeriodTitle = [];
 
     switch (period) {
-      case 'daily':
+      case dailyKeyWord:
         computedArray.push([values[0].start_date.match(/\d+/g)[2], values[0].new_users]);
         for (let i = 1; i < values.length; i += 1) {
           computedArray.push(
@@ -189,7 +144,7 @@ function Audiencias(props) {
         }
         collumPeriodTitle = [['Dia', 'Total de Usuários Cadastrados']];
         break;
-      case 'monthly':
+      case monthlyKeyWord:
         computedArray.push([monthNamesList[(new Date(values[0].end_date)).getMonth()], values[0].new_users]);
         for (let i = 1; i < values.length; i += 1) {
           computedArray.push(
@@ -245,13 +200,13 @@ function Audiencias(props) {
 
     // formatDate(value.start_date)
     switch (period) {
-      case 'daily':
+      case dailyKeyWord:
         arrayData = values.map(
           (value) => [value.start_date.match(/\d+/g)[2], value.new_users],
         );
         collumPeriodTitle = ['Dia', 'Novos Usuários'];
         break;
-      case 'monthly':
+      case monthlyKeyWord:
         arrayData = values.map(
           (value) => [monthNamesList[(new Date(value.end_date)).getMonth()], value.new_users],
         );
@@ -278,76 +233,6 @@ function Audiencias(props) {
     }
   }
 
-  function pad(d) {
-    return (d < 10 ? `0${d.toString()}` : d.toString());
-  }
-
-  async function getParticipationChartDataByDay(month, year, messagesData, questionsData, questionsVoteData) {
-    const totalOfDaysInMonth = await new Date(year, month, 0).getDate();
-    const resultArray = [];
-
-    for (let i = 1; i <= totalOfDaysInMonth; i += 1) {
-      const messageFiltered = messagesData.filter((message) => message.end_date === `${year}-${pad(month)}-${pad(i)}`);
-      const questionFiltered = questionsData.filter((question) => question.end_date === `${year}-${pad(month)}-${pad(i)}`);
-      const questionsVoteFiltered = questionsVoteData.filter((queVote) => queVote.end_date === `${year}-${pad(month)}-${pad(i)}`);
-
-      resultArray.push(
-        [
-          `${pad(i)}`,
-          (messageFiltered.length > 0) ? messageFiltered[0].messages : 0,
-          (questionFiltered.length > 0) ? questionFiltered[0].questions : 0,
-          (questionsVoteFiltered.length > 0) ? questionsVoteFiltered[0].votes : 0,
-        ],
-      );
-    }
-
-    return resultArray;
-  }
-
-  async function getParticipationChartDataByMonth(month, year, messagesData, questionsData, questionsVoteData) {
-    const resultArray = [];
-
-    for (let i = 1; i <= 12; i += 1) {
-      const messageFiltered = messagesData.filter((message) => message.start_date === `${year}-${pad(i)}-01`);
-      const questionFiltered = questionsData.filter((question) => question.start_date === `${year}-${pad(i)}-01`);
-      const questionsVoteFiltered = questionsVoteData.filter((queVote) => queVote.start_date === `${year}-${pad(i)}-01`);
-
-      resultArray.push(
-        [
-          `${monthNamesList[i - 1]}`,
-          (messageFiltered.length > 0) ? messageFiltered[0].messages : 0,
-          (questionFiltered.length > 0) ? questionFiltered[0].questions : 0,
-          (questionsVoteFiltered.length > 0) ? questionsVoteFiltered[0].votes : 0,
-        ],
-      );
-    }
-
-    return resultArray;
-  }
-
-  async function getParticipationChartDataByYear(messagesData, questionsData, questionsVoteData) {
-    const resultArray = [];
-    const begginingYear = 2016;
-    const currentYear = new Date().getFullYear();
-
-    for (let i = begginingYear; i <= currentYear; i += 1) {
-      const messageFiltered = messagesData.filter((message) => message.start_date === `${i}-01-01`);
-      const questionFiltered = questionsData.filter((question) => question.start_date === `${i}-01-01`);
-      const questionsVoteFiltered = questionsVoteData.filter((queVote) => queVote.start_date === `${i}-01-01`);
-
-      resultArray.push(
-        [
-          `${i}`,
-          (messageFiltered.length > 0) ? messageFiltered[0].messages : 0,
-          (questionFiltered.length > 0) ? questionFiltered[0].questions : 0,
-          (questionsVoteFiltered.length > 0) ? questionsVoteFiltered[0].votes : 0,
-        ],
-      );
-    }
-
-    return resultArray;
-  }
-
   async function fetchAndSetParticipationChartData(query, period, month, year) {
     const messagesResponse = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_MESSAGES_RANKING_URL}${query}`);
     const questionsResponse = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_QUESTIONS_RANKING_URL}${query}`);
@@ -359,11 +244,12 @@ function Audiencias(props) {
 
     let arrayData = [];
     const collumPeriodTitle = ['Data', 'Mensagens do chat', 'Perguntas', 'Votos nas Perguntas'];
+
     switch (period) {
-      case 'daily':
+      case dailyKeyWord:
         arrayData = await getParticipationChartDataByDay(month, year, messagesData, questionsData, questionsVoteData);
         break;
-      case 'monthly':
+      case monthlyKeyWord:
         arrayData = await getParticipationChartDataByMonth(month, year, messagesData, questionsData, questionsVoteData);
         break;
       default: // yearly -> Total period
@@ -384,13 +270,13 @@ function Audiencias(props) {
     const allRooms = props.responseDataRanking;
 
     switch (period) {
-      case 'daily':
+      case dailyKeyWord:
         resultArray = await allRooms.filter((value) => {
           const [valueYear, valueMonth] = value.date.split('-'); // Or, var month = e.date.split('-')[1];
           return (parseInt(month) === parseInt(valueMonth)) && (parseInt(year) === parseInt(valueYear));
         });
         break;
-      case 'monthly':
+      case monthlyKeyWord:
         resultArray = await allRooms.filter((value) => {
           const [valueYear, valueMonth] = value.date.split('-'); // Or, var month = e.date.split('-')[1];
           return (parseInt(year) === parseInt(valueYear));
@@ -406,16 +292,12 @@ function Audiencias(props) {
 
   async function updateChartsAndTableSubTitle(period, month, year) {
     const todayDate = new Date();
-    /*
-    setPeriodSubTitle(`01/01/${year} à ${("0" + todayDate.getDate()).substr(-2) + "/"
-    + ("0" + (todayDate.getMonth() + 1)).substr(-2) + "/" + todayDate.getFullYear()}`);
-    */
 
     switch (period) {
-      case 'daily':
+      case dailyKeyWord:
         setPeriodSubTitle(`${fullMonthNamesList[month - 1]}/${year}`);
         break;
-      case 'monthly':
+      case monthlyKeyWord:
         setPeriodSubTitle(`${year}`);
         break;
       default: // yearly -> Total period
@@ -434,81 +316,23 @@ function Audiencias(props) {
     filterAndSetRoomsRankingData(period, month, year);
   }
 
-  async function handleUpdatePeriodSearchQuery(month, year) {
-    let query = '';
-    let period = '';
-    if (year === '0') {
-      query = '?period=yearly&ordering=start_date';
-      period = 'yearly';
-    } else if ((year !== '0') && (month === '0')) {
-      query = `?period=monthly&start_date__year=${year}&ordering=start_date`;
-      period = 'monthly';
-    } else { // (yearPeriod !== '0') && (monthPeriod !== '0')
-      query = `?period=daily&start_date__year=${year}&start_date__month=${month}&ordering=start_date`;
-      period = 'daily';
-    }
+  async function handlePeriodChange(month, year) {
+    const { query, period } = await handleUpdatePeriodSearchQuery(month, year);
     await loadData(query, period, month, year); // Reload page data
   }
 
-  async function handlePeriodChange(month, year) {
-    await handleUpdatePeriodSearchQuery(month, year);
-  }
-
   useEffect(() => {
-    loadData(searchQuery, selectedPeriodType, 0, 2021);
+    // Load Initial page year with current year informations
+    loadData(searchQuery, defaultSelectedPeriodType, 0, defaultYearPeriod);
   }, []);
-
-  // eslint-disable-next-line no-shadow
-  function NoDataForSelectedPeriod(props) {
-    return (
-      <ChartDataFrame height="10vh" title={props.title} listView exportData={null} download={false}>
-        <Box display="flex" alignItems="center" justifyContent="center" width="100%" height="100%">
-          <Typography>Não existem dados para o período selecionado</Typography>
-        </Box>
-      </ChartDataFrame>
-    );
-  }
-
-  function Sectionheader(props) {
-    const { title, toolTipText } = props;
-
-    return (
-      <Box display="flex" marginBottom={1}>
-        <Box p={1}>
-          <Typography component="div">
-            <Box fontWeight="fontWeightBold" fontSize={39}>
-              {title}
-            </Box>
-          </Typography>
-        </Box>
-        <Box alignSelf="center">
-          {(toolTipText !== null && toolTipText !== undefined)
-            && <Tooltip toolTipText={toolTipText} />}
-        </Box>
-        <Box p={1} flexGrow={1} alignSelf="center">
-          <hr style={{ borderColor: '#DA7F0B' }} />
-        </Box>
-      </Box>
-    );
-  }
-
-  function SubSectionHeader(props) {
-    return (
-      <Typography component="div">
-        <Box fontWeight="fontWeightBold" fontSize={25} marginLeft={1} marginBottom={1}>
-          {props.title}
-        </Box>
-      </Typography>
-    );
-  }
 
   return (
     <>
       <Header
         title="Audiências Interativas"
         handlePeriodChange={handlePeriodChange}
-        year={yearPeriod}
-        monthPeriod={monthPeriod}
+        year={defaultYearPeriod}
+        monthPeriod={defaultMonthPeriod}
       />
       <Grid container spacing={1} className={classes.spacingContainer}>
         <Grid item xs={12}>
@@ -605,34 +429,12 @@ function Audiencias(props) {
   );
 }
 
-TotalFrame.propTypes = {
-  isLoaded: PropTypes.bool,
-  info: PropTypes.node,
-  title: PropTypes.string,
+Audiencias.propTypes = {
+  responseDataRanking: PropTypes.array,
 };
 
-TotalFrame.defaultProps = {
-  isLoaded: false,
-  info: 'info',
-  title: 'Title',
-};
-
-GoogleChartFrame.propTypes = {
-  isLoaded: PropTypes.bool,
-  classes: PropTypes.object,
-  title: PropTypes.string,
-  data: PropTypes.node,
-  chartType: PropTypes.string,
-  chartOptions: PropTypes.object,
-};
-
-GoogleChartFrame.defaultProps = {
-  isLoaded: false,
-  classes: '',
-  title: 'Title',
-  data: {},
-  chartType: '',
-  chartOptions: {},
+Audiencias.defaultProps = {
+  responseDataRanking: [],
 };
 
 export default Audiencias;
