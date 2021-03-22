@@ -305,7 +305,7 @@ function Audiencias(props) {
         break;
       default: // yearly -> Total period
         setPeriodSubTitle(
-          `01/01/2016 à ${pad((todayDate.getDate() - 1))}/${pad((todayDate.getMonth()))}/${(todayDate.getFullYear())}`,
+          `2016 a ${(todayDate.getFullYear())}`,
         );
         break;
     }
