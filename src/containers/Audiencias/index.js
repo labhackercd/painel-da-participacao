@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import ChartDataFrame from '../../components/ChartDataFrame/index';
@@ -360,14 +361,21 @@ function Audiencias(props) {
 
         <Grid item xs={12} className={classes.spacing}>
           <Sectionheader title="Distribuição da participação no período" />
-          <ChartDataFrame height="60vh" title={periodSubTitle} listView exportData={participantionChartData} download align="center">
-            <div className={classes.contentBox}>
-              <GoogleChart
-                chartType={audiencesWithMoreParticipation.chartType}
-                data={participantionChartData}
-                options={audiencesWithMoreParticipation.options}
-              />
-            </div>
+          <ChartDataFrame
+            height="60vh"
+            title={periodSubTitle}
+            listView
+            exportData={participantionChartData}
+            download
+            align="center"
+            apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
+            apiLastUpdate="16/03/2021 12:00"
+          >
+            <GoogleChart
+              chartType={audiencesWithMoreParticipation.chartType}
+              data={participantionChartData}
+              options={audiencesWithMoreParticipation.options}
+            />
           </ChartDataFrame>
         </Grid>
 

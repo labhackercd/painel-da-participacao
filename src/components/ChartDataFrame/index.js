@@ -52,6 +52,12 @@ const useStyles = makeStyles((theme) => ({
     marginRight: '2rem',
     padding: '0 0 0 2rem',
   },
+  updateLegend: {
+    backgroundColor: '#000',
+    display: 'flex',
+    justifyContent: 'left',
+    width: '100%',
+  },
 }));
 
 export default function ChartDataFrame(props) {
@@ -59,7 +65,7 @@ export default function ChartDataFrame(props) {
 
   const {
     // eslint-disable-next-line react/prop-types
-    height, children, title, download, exportData, align,
+    height, children, title, download, exportData, align, apiUrl, apiLastUpdate,
   } = props;
 
   return (
@@ -86,9 +92,23 @@ export default function ChartDataFrame(props) {
           </Box>
         </Box>
       </Box>
-      <div className={classes.container} style={{ height: 'auto', minHeight: height }}>
+      <div className={classes.container} style={{ height:'auto', minHeight: height, width: '100%' }}>
         {children}
       </div>
+      <Typography className={classes.updateLegend}>
+        <Box m={1}>
+          {'Fonte: '}
+          <a
+            href={apiUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            API Audiências
+          </a>
+
+          {` Atualizado em: 11/05/2020 18:00: `}
+        </Box>
+      </Typography>
     </Grid>
   );
 }
