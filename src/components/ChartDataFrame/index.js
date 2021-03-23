@@ -106,7 +106,7 @@ export default function ChartDataFrame(props) {
             API Audiências
           </a>
 
-          {` Atualizado em: 11/05/2020 18:00: `}
+          {`  Atualizado em: ${apiLastUpdate}`}
         </Box>
       </Typography>
     </Grid>

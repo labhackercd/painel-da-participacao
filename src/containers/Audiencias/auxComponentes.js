@@ -30,12 +30,21 @@ export function TotalFrame(props) {
 
 export function GoogleChartFrame(props) {
   const {
-    isLoaded, title, classes, data, chartType, chartOptions, exportData,
+    isLoaded, title, classes, data, chartType, chartOptions, exportData, roomsRankingDataLastUpdate
   } = props;
 
   return (
     <>
-      <ChartDataFrame height="35vh" title={title} listView exportData={exportData} download align="center">
+      <ChartDataFrame
+        height="35vh"
+        title={title}
+        listView
+        exportData={exportData}
+        download
+        align="center"
+        apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
+        apiLastUpdate={roomsRankingDataLastUpdate}
+      >
         {isLoaded ? (
           <div className={classes.contentBox}>
             <GoogleChart
@@ -122,6 +131,7 @@ GoogleChartFrame.propTypes = {
   chartType: PropTypes.string,
   chartOptions: PropTypes.object,
   exportData: PropTypes.array,
+  roomsRankingDataLastUpdate: PropTypes.string,
 };
 
 GoogleChartFrame.defaultProps = {
@@ -132,6 +142,7 @@ GoogleChartFrame.defaultProps = {
   chartType: '',
   chartOptions: {},
   exportData: [],
+  roomsRankingDataLastUpdate: 'Carregando',
 };
 
 NoDataForSelectedPeriod.propTypes = {

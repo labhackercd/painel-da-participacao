@@ -78,12 +78,16 @@ function Audiencias(props) {
   const [audienciasTotalsData, setAudienciasTotalsData] = useState('');
   const [newUsersChartData, setNewUsersChartData] = useState([]);
   const [totalUsersChartData, setTotalUsersChartData] = useState([]);
-  const [roomsRankingData, setRoomsRankingData] = useState(responseDataRanking);
+  const [roomsRankingData, setRoomsRankingData] = useState(responseDataRanking.data);
   const [participantionChartData, setParticipantionChartData] = useState([]);
   const [totalsAreLoaded, setTotalsAreLoaded] = useState(false);
   const [newUsersChartDataLoaded, setNewUsersChartDataLoaded] = useState(false);
   const [totalUsersChartDataLoaded, setTotalUsersChartDataLoaded] = useState(false);
   const [periodSubTitle, setPeriodSubTitle] = useState(new Date().getFullYear().toString());
+  const [participantionChartDataLastUpdate, setParticipantionChartDataLastUpdate] = useState('Carregando');
+  const [roomsRankingDataLastUpdate, setRoomsRankingDataLastUpdate] = useState(responseDataRanking.lastUpdate);
+  const [totalUsersChartDataLastUpdate, setTotalUsersChartDataLastUpdate] = useState('Carregando');
+  const [newUsersChartDataLastUpdate, setNewUsersChartDataLastUpdate] = useState('Carregando');
 
   const audiencesChartsUsersSettings = {
     chartType: 'LineChart',
@@ -216,6 +220,7 @@ function Audiencias(props) {
     }
 
     if (arrayData.length > 0) {
+      setNewUsersChartDataLastUpdate(values[0].modified);
       setNewUsersChartData([collumPeriodTitle].concat(arrayData));
     } else {
       setNewUsersChartData(arrayData);
@@ -259,6 +264,7 @@ function Audiencias(props) {
     }
 
     if (arrayData.length > 0) {
+      setParticipantionChartDataLastUpdate(questionsVoteData[0].modified);
       setParticipantionChartData([collumPeriodTitle].concat(arrayData));
     } else {
       setParticipantionChartData(arrayData);
@@ -268,7 +274,7 @@ function Audiencias(props) {
   async function filterAndSetRoomsRankingData(period, month, year) {
     // to be implemented
     let resultArray = [];
-    const allRooms = props.responseDataRanking;
+    const allRooms = props.responseDataRanking.data;
 
     switch (period) {
       case dailyKeyWord:
@@ -369,7 +375,7 @@ function Audiencias(props) {
             download
             align="center"
             apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
-            apiLastUpdate="16/03/2021 12:00"
+            apiLastUpdate={participantionChartDataLastUpdate}
           >
             <GoogleChart
               chartType={audiencesWithMoreParticipation.chartType}
@@ -382,7 +388,16 @@ function Audiencias(props) {
         <Grid item xs={12} className={classes.spacing}>
           <Sectionheader title="Ranking das audiências" toolTipText={audiencesRankingToolTip} />
           {(roomsRankingData !== undefined && roomsRankingData.length > 0) ? (
-            <ChartDataFrame height="30vh" title={periodSubTitle} listView exportData={roomsRankingData} download align="center">
+            <ChartDataFrame
+              height="30vh"
+              title={periodSubTitle}
+              listView
+              exportData={roomsRankingData}
+              download
+              align="center"
+              apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
+              apiLastUpdate={roomsRankingDataLastUpdate}
+            >
               <Box width="100%" height="90%">
                 <RankingTable data={roomsRankingData} />
               </Box>
@@ -409,6 +424,7 @@ function Audiencias(props) {
                 chartOptions={audiencesChartsUsersSettings.options}
                 exportData={newUsersChartData}
                 download
+                apiLastUpdate={newUsersChartDataLastUpdate}
               />
             </div>
           ) : (
@@ -429,6 +445,7 @@ function Audiencias(props) {
                 data={totalUsersChartData}
                 chartType={audiencesChartsUsersSettings.chartType}
                 chartOptions={audiencesChartsUsersSettings.options}
+                apiLastUpdate={totalUsersChartDataLastUpdate}
               />
             </div>
           ) : (
