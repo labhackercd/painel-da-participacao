@@ -77,7 +77,7 @@ export default function ChartDataFrame(props) {
             {download && (exportData !== undefined && exportData !== null)
               ? (
                 <CSVLink data={exportData} filename={`${title}.csv`}>
-                  <IconButton style={{ color: '#FFF' }} className={classes.downloadIcon}>
+                  <IconButton style={{ color: '#FFF' }} className={classes.downloadIcon} aria-label="Baixar CSV">
                     <CloudDownloadIcon />
                   </IconButton>
                 </CSVLink>

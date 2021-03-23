@@ -10,7 +10,7 @@ import RankingTable from '../../components/RankingTable/index';
 import GoogleChart from '../../components/Charts/GoogleChart';
 import {
   getParticipationChartDataByDay, getParticipationChartDataByMonth, getParticipationChartDataByYear,
-  handleUpdatePeriodSearchQuery, pad,
+  handleUpdatePeriodSearchQuery,
 } from './auxFunctions';
 
 import {
@@ -110,7 +110,7 @@ function Audiencias(props) {
       isStacked: 'true',
       colors: ['#76480F', '#9E5E0D', '#DA7F0B'],
       bar: { groupWidth: '80%' },
-      hAxis: { textStyle: { color: 'white' }, title: periodSubTitle, titleTextStyle: { color: 'white' } },
+      hAxis: { textStyle: { color: 'white' }, titleTextStyle: { color: 'white' } },
       vAxis: {
         minValue: 0,
         gridlines: { color: 'transparent' },

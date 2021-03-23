@@ -61,7 +61,7 @@ export default function Layout(props) {
           <Grid container>
             <Grid item xs={12} md={2}>
               <div className={classes.logo}>
-                <IconButton><img src="/logo/logo_cd.svg" alt="Logo Câmara dos" /></IconButton>
+                <IconButton><img src={`${process.env.NEXT_PUBLIC_APPLICATION_BASE_PATH_URL}/logo/logo_cd.svg`} alt="Logo Câmara dos Deputados" /></IconButton>
               </div>
             </Grid>
             <Grid item xs={12} md={10}>
