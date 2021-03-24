@@ -68,6 +68,17 @@ function AudienciasPage({ dados }) {
 export async function getStaticProps() {
   let dados = [];
 
+  function pad(d) {
+    return (d < 10 ? `0${d.toString()}` : d.toString());
+  }
+
+  function getLastUpdateHour(today) {
+    return (
+      `${pad(today.getDate())}/${pad(today.getMonth())}/${today.getFullYear()}
+      ${pad(today.getHours())}:${pad(today.getMinutes())}`
+    );
+  }
+
   async function getData() {
     const results = [];
     // let url = 'https://tes.edemocracia.camara.leg.br/audiencias/reports/api/ranking/?limit=500';
@@ -81,7 +92,7 @@ export async function getStaticProps() {
         results.push(...data.results);
       } while (url);
 
-      return results;
+      return { data: results, lastUpdate: getLastUpdateHour(new Date()) };
     } catch (err) {
       return [];
     }

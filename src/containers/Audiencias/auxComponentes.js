@@ -30,12 +30,21 @@ export function TotalFrame(props) {
 
 export function GoogleChartFrame(props) {
   const {
-    isLoaded, title, classes, data, chartType, chartOptions, exportData,
+    isLoaded, title, classes, data, chartType, chartOptions, exportData, apiLastUpdate,
   } = props;
 
   return (
     <>
-      <ChartDataFrame height="35vh" title={title} listView exportData={exportData} download align="center">
+      <ChartDataFrame
+        height="35vh"
+        title={title}
+        listView
+        exportData={exportData}
+        download
+        align="center"
+        apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
+        apiLastUpdate={apiLastUpdate}
+      >
         {isLoaded ? (
           <div className={classes.contentBox}>
             <GoogleChart
@@ -59,8 +68,11 @@ export function NoDataForSelectedPeriod(props) {
 
   return (
     <ChartDataFrame height="10vh" title={title} listView exportData={null} download={false}>
-      <Box display="flex" alignItems="center" justifyContent="center" width="100%" height="100%">
-        <Typography>Não existem dados para o período selecionado</Typography>
+      <Box display="flex" alignItems="center" justifyContent="center" width="100%" height="100%" margin={2}>
+        <img
+          src={`${process.env.NEXT_PUBLIC_APPLICATION_BASE_PATH_URL}/messages/no_data_find.svg`}
+          alt="Não existem dados para o período selecionado"
+        />
       </Box>
     </ChartDataFrame>
   );
@@ -122,6 +134,7 @@ GoogleChartFrame.propTypes = {
   chartType: PropTypes.string,
   chartOptions: PropTypes.object,
   exportData: PropTypes.array,
+  apiLastUpdate: PropTypes.string,
 };
 
 GoogleChartFrame.defaultProps = {
@@ -132,6 +145,7 @@ GoogleChartFrame.defaultProps = {
   chartType: '',
   chartOptions: {},
   exportData: [],
+  apiLastUpdate: 'Carregando',
 };
 
 NoDataForSelectedPeriod.propTypes = {

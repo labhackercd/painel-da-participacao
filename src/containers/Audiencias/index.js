@@ -10,7 +10,7 @@ import RankingTable from '../../components/RankingTable/index';
 import GoogleChart from '../../components/Charts/GoogleChart';
 import {
   getParticipationChartDataByDay, getParticipationChartDataByMonth, getParticipationChartDataByYear,
-  handleUpdatePeriodSearchQuery, pad,
+  handleUpdatePeriodSearchQuery,
 } from './auxFunctions';
 
 import {
@@ -77,12 +77,16 @@ function Audiencias(props) {
   const [audienciasTotalsData, setAudienciasTotalsData] = useState('');
   const [newUsersChartData, setNewUsersChartData] = useState([]);
   const [totalUsersChartData, setTotalUsersChartData] = useState([]);
-  const [roomsRankingData, setRoomsRankingData] = useState(responseDataRanking);
+  const [roomsRankingData, setRoomsRankingData] = useState(responseDataRanking.data);
   const [participantionChartData, setParticipantionChartData] = useState([]);
   const [totalsAreLoaded, setTotalsAreLoaded] = useState(false);
   const [newUsersChartDataLoaded, setNewUsersChartDataLoaded] = useState(false);
   const [totalUsersChartDataLoaded, setTotalUsersChartDataLoaded] = useState(false);
   const [periodSubTitle, setPeriodSubTitle] = useState(new Date().getFullYear().toString());
+  const [participantionChartDataLastUpdate, setParticipantionChartDataLastUpdate] = useState('Carregando');
+  const roomsRankingDataLastUpdate = responseDataRanking.lastUpdate;
+  const [totalUsersChartDataLastUpdate, setTotalUsersChartDataLastUpdate] = useState('Carregando');
+  const [newUsersChartDataLastUpdate, setNewUsersChartDataLastUpdate] = useState('Carregando');
 
   const audiencesChartsUsersSettings = {
     chartType: 'LineChart',
@@ -110,7 +114,7 @@ function Audiencias(props) {
       isStacked: 'true',
       colors: ['#76480F', '#9E5E0D', '#DA7F0B'],
       bar: { groupWidth: '80%' },
-      hAxis: { textStyle: { color: 'white' }, title: periodSubTitle, titleTextStyle: { color: 'white' } },
+      hAxis: { textStyle: { color: 'white' }, titleTextStyle: { color: 'white' } },
       vAxis: {
         minValue: 0,
         gridlines: { color: 'transparent' },
@@ -162,6 +166,7 @@ function Audiencias(props) {
         break;
     }
 
+    setTotalUsersChartDataLastUpdate(values[0].modified);
     setTotalUsersChartData(collumPeriodTitle.concat(computedArray));
     setTotalUsersChartDataLoaded(true);
   }
@@ -215,6 +220,7 @@ function Audiencias(props) {
     }
 
     if (arrayData.length > 0) {
+      setNewUsersChartDataLastUpdate(values[0].modified);
       setNewUsersChartData([collumPeriodTitle].concat(arrayData));
     } else {
       setNewUsersChartData(arrayData);
@@ -225,6 +231,22 @@ function Audiencias(props) {
     if (Array.isArray(values) && values.length) {
       computeTotalOfUsersByPeriod(values, period);
     }
+  }
+
+  function getApiLastUpdateDateAndHour(messagesData, questionsData, questionsVoteData) {
+    let lastUpdate = '';
+
+    if (messagesData.length > 0) {
+      lastUpdate = messagesData[0].modified;
+    } else if (questionsData.length > 0) {
+      lastUpdate = questionsData[0].modified;
+    } else if (questionsVoteData.length > 0) {
+      lastUpdate = questionsVoteData[0].modified;
+    } else {
+      lastUpdate = '-';
+    }
+
+    return lastUpdate;
   }
 
   async function fetchAndSetParticipationChartData(query, period, month, year) {
@@ -259,6 +281,9 @@ function Audiencias(props) {
 
     if (arrayData.length > 0) {
       setParticipantionChartData([collumPeriodTitle].concat(arrayData));
+      setParticipantionChartDataLastUpdate(
+        getApiLastUpdateDateAndHour(messagesData, questionsData, questionsVoteData),
+      );
     } else {
       setParticipantionChartData(arrayData);
     }
@@ -267,7 +292,7 @@ function Audiencias(props) {
   async function filterAndSetRoomsRankingData(period, month, year) {
     // to be implemented
     let resultArray = [];
-    const allRooms = props.responseDataRanking;
+    const allRooms = props.responseDataRanking.data;
 
     switch (period) {
       case dailyKeyWord:
@@ -305,7 +330,7 @@ function Audiencias(props) {
         break;
       default: // yearly -> Total period
         setPeriodSubTitle(
-          `01/01/2016 à ${pad((todayDate.getDate() - 1))}/${pad((todayDate.getMonth()))}/${(todayDate.getFullYear())}`,
+          `2016 a ${(todayDate.getFullYear())}`,
         );
         break;
     }
@@ -360,21 +385,37 @@ function Audiencias(props) {
 
         <Grid item xs={12} className={classes.spacing}>
           <Sectionheader title="Distribuição da participação no período" />
-          <ChartDataFrame height="60vh" title={periodSubTitle} listView exportData={participantionChartData} download align="center">
-            <div className={classes.contentBox}>
-              <GoogleChart
-                chartType={audiencesWithMoreParticipation.chartType}
-                data={participantionChartData}
-                options={audiencesWithMoreParticipation.options}
-              />
-            </div>
+          <ChartDataFrame
+            height="60vh"
+            title={periodSubTitle}
+            listView
+            exportData={participantionChartData}
+            download
+            align="center"
+            apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
+            apiLastUpdate={participantionChartDataLastUpdate}
+          >
+            <GoogleChart
+              chartType={audiencesWithMoreParticipation.chartType}
+              data={participantionChartData}
+              options={audiencesWithMoreParticipation.options}
+            />
           </ChartDataFrame>
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
           <Sectionheader title="Ranking das audiências" toolTipText={audiencesRankingToolTip} />
           {(roomsRankingData !== undefined && roomsRankingData.length > 0) ? (
-            <ChartDataFrame height="30vh" title={periodSubTitle} listView exportData={roomsRankingData} download align="center">
+            <ChartDataFrame
+              height="30vh"
+              title={periodSubTitle}
+              listView
+              exportData={roomsRankingData}
+              download
+              align="center"
+              apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
+              apiLastUpdate={roomsRankingDataLastUpdate}
+            >
               <Box width="100%" height="90%">
                 <RankingTable data={roomsRankingData} />
               </Box>
@@ -401,6 +442,7 @@ function Audiencias(props) {
                 chartOptions={audiencesChartsUsersSettings.options}
                 exportData={newUsersChartData}
                 download
+                apiLastUpdate={newUsersChartDataLastUpdate}
               />
             </div>
           ) : (
@@ -421,6 +463,7 @@ function Audiencias(props) {
                 data={totalUsersChartData}
                 chartType={audiencesChartsUsersSettings.chartType}
                 chartOptions={audiencesChartsUsersSettings.options}
+                apiLastUpdate={totalUsersChartDataLastUpdate}
               />
             </div>
           ) : (

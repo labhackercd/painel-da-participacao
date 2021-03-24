@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
   },
   filterButton: {
     fontWeight: 'bold',
-    backgroundColor: '#DA7F0B',
+    backgroundColor: '#9E5E0D',
     '&:hover': {
       backgroundColor: '#E1A04E',
     },

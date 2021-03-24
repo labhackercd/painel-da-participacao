@@ -77,8 +77,8 @@ const columns = [
     cell: (row) => formatDate(row.date),
   },
   {
-    name: 'Votos',
-    selector: 'votes_count',
+    name: 'Participantes',
+    selector: 'participants_count',
     sortable: true,
     maxWidth: '50px',
     center: true,
@@ -91,15 +91,15 @@ const columns = [
     center: true,
   },
   {
-    name: 'Mensagens',
-    selector: 'messages_count',
+    name: 'Votos',
+    selector: 'votes_count',
     sortable: true,
     maxWidth: '50px',
     center: true,
   },
   {
-    name: 'Participantes',
-    selector: 'participants_count',
+    name: 'Mensagens',
+    selector: 'messages_count',
     sortable: true,
     maxWidth: '50px',
     center: true,
@@ -132,6 +132,8 @@ export default function RankingTable(props) {
       pointerOnHover
       pagination
       paginationRowsPerPageOptions={[10, 50, 100, 1000]}
+      defaultSortField="participants_count"
+      defaultSortAsc={false}
     />
   );
 }
