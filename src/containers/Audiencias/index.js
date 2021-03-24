@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import ChartDataFrame from '../../components/ChartDataFrame/index';
@@ -85,7 +84,7 @@ function Audiencias(props) {
   const [totalUsersChartDataLoaded, setTotalUsersChartDataLoaded] = useState(false);
   const [periodSubTitle, setPeriodSubTitle] = useState(new Date().getFullYear().toString());
   const [participantionChartDataLastUpdate, setParticipantionChartDataLastUpdate] = useState('Carregando');
-  const [roomsRankingDataLastUpdate, setRoomsRankingDataLastUpdate] = useState(responseDataRanking.lastUpdate);
+  const roomsRankingDataLastUpdate = responseDataRanking.lastUpdate;
   const [totalUsersChartDataLastUpdate, setTotalUsersChartDataLastUpdate] = useState('Carregando');
   const [newUsersChartDataLastUpdate, setNewUsersChartDataLastUpdate] = useState('Carregando');
 
@@ -167,6 +166,7 @@ function Audiencias(props) {
         break;
     }
 
+    setTotalUsersChartDataLastUpdate(values[0].modified);
     setTotalUsersChartData(collumPeriodTitle.concat(computedArray));
     setTotalUsersChartDataLoaded(true);
   }
@@ -233,6 +233,22 @@ function Audiencias(props) {
     }
   }
 
+  function getApiLastUpdateDateAndHour(messagesData, questionsData, questionsVoteData) {
+    let lastUpdate = '';
+
+    if (messagesData.length > 0) {
+      lastUpdate = messagesData[0].modified;
+    } else if (questionsData.length > 0) {
+      lastUpdate = questionsData[0].modified;
+    } else if (questionsVoteData.length > 0) {
+      lastUpdate = questionsVoteData[0].modified;
+    } else {
+      lastUpdate = '-';
+    }
+
+    return lastUpdate;
+  }
+
   async function fetchAndSetParticipationChartData(query, period, month, year) {
     const messagesResponse = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_MESSAGES_RANKING_URL}${query}`);
     const questionsResponse = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_QUESTIONS_RANKING_URL}${query}`);
@@ -264,8 +280,10 @@ function Audiencias(props) {
     }
 
     if (arrayData.length > 0) {
-      setParticipantionChartDataLastUpdate(questionsVoteData[0].modified);
       setParticipantionChartData([collumPeriodTitle].concat(arrayData));
+      setParticipantionChartDataLastUpdate(
+        getApiLastUpdateDateAndHour(messagesData, questionsData, questionsVoteData),
+      );
     } else {
       setParticipantionChartData(arrayData);
     }
