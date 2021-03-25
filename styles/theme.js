@@ -74,6 +74,11 @@ const theme = createMuiTheme(
         anzac: '#E1A04E',
         divider: '#DA7F0B',
       },
+      wikilegis: {
+        salem: '#058D40',
+        jade: '#00C354',
+        camarone: '00612A',
+      },
     },
   },
 );

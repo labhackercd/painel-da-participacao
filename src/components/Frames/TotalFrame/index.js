@@ -1,10 +1,11 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import {
   Grid, Box, Typography,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import Tooltips from '../ToolTip/index';
+import Tooltips from '../../ToolTip/index';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,25 +36,9 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     width: '100%',
   },
-  icon: {
-    alignSelf: 'center',
-    padding: '-0.2rem 1rem 0 0',
-  },
-  listViewIcon: {
-    opacity: '0.5',
-  },
-  downloadIcon: {
-    opacity: '0.5',
-  },
-  iconContainer: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-    marginRight: '2rem',
-    padding: '0 0 0 2rem',
-  },
 }));
 
-export default function TotalsDataFrame(props) {
+function TotalsDataFrame(props) {
   const classes = useStyles();
 
   const {
@@ -84,3 +69,37 @@ export default function TotalsDataFrame(props) {
     </Grid>
   );
 }
+
+export default function TotalFrame(props) {
+  const {
+    isLoaded, info, title, toolTipText,
+  } = props;
+
+  return (
+    <TotalsDataFrame height="15vh" paddingLeft="0.5rem" title={title} download={false} align="left" toolTipText={toolTipText}>
+      {isLoaded ? (
+        <Typography variant="h2" style={{ color: '#FFF', alignSelf: 'center' }}>
+          {info}
+        </Typography>
+      ) : (
+        <Box display="flex" alignItems="center" justifyContent="center" width="100%" height="100%">
+          <CircularProgress color="secondary" />
+        </Box>
+      )}
+    </TotalsDataFrame>
+  );
+}
+
+TotalFrame.propTypes = {
+  isLoaded: PropTypes.bool,
+  info: PropTypes.node,
+  title: PropTypes.string,
+  toolTipText: PropTypes.string,
+};
+
+TotalFrame.defaultProps = {
+  isLoaded: false,
+  info: 'info',
+  title: 'Title',
+  toolTipText: null,
+};

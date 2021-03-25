@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Layout from '../layouts/index';
 
-import Audiencias from '../src/containers/Audiencias';
+import Wikilegis from '../src/containers/Wikilegis';
 
 const useStyles = makeStyles((theme) => ({
   body: {
@@ -57,7 +57,7 @@ function WikilegisPage({ dados }) {
         <Container className={classes.container}>
           <main className={classes.content}>
             <WikilegisHeader />
-            <Audiencias responseDataRanking={dados} />
+            <Wikilegis responseDataRanking={dados} />
           </main>
         </Container>
       </Grid>
