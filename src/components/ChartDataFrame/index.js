@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
   container: {
     backgroundColor: '#000',
-    borderRadius: '0 0 15px 15px',
+    borderRadius: '0 0 0 0',
     display: 'flex',
     justifyContent: 'center',
     width: '100%',
@@ -83,7 +83,7 @@ export default function ChartDataFrame(props) {
             {download && (exportData !== undefined && exportData !== null)
               ? (
                 <CSVLink data={exportData} filename={`${title}.csv`}>
-                  <IconButton style={{ color: '#FFF' }} className={classes.downloadIcon} aria-label="Baixar CSV">
+                  <IconButton style={{ color: '#FFF' }} className={classes.downloadIcon} aria-label="Baixar CSV" label="Baixar CSV">
                     <CloudDownloadIcon />
                   </IconButton>
                 </CSVLink>

@@ -52,6 +52,9 @@ const useStyles = makeStyles((theme) => ({
   positionStats: {
     display: 'flex',
   },
+  divider: {
+    borderColor: theme.palette.audiencias.divider,
+  },
   appBarSpacer: theme.mixins.toolbar,
 }));
 
@@ -364,7 +367,7 @@ function Audiencias(props) {
       />
       <Grid container spacing={1} className={classes.spacingContainer}>
         <Grid item xs={12}>
-          <Sectionheader title="Totais no período" />
+          <Sectionheader classes={classes} toolTipText={null} title="Totais no período" />
         </Grid>
 
         <Grid item xs={12} md={3} className={classes.spacing}>
@@ -384,7 +387,7 @@ function Audiencias(props) {
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <Sectionheader title="Distribuição da participação no período" />
+          <Sectionheader classes={classes} toolTipText={null} title="Distribuição da participação no período" />
           <ChartDataFrame
             height="60vh"
             title={periodSubTitle}
@@ -404,7 +407,7 @@ function Audiencias(props) {
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <Sectionheader title="Ranking das audiências" toolTipText={audiencesRankingToolTip} />
+          <Sectionheader classes={classes} title="Ranking das audiências" toolTipText={audiencesRankingToolTip} />
           {(roomsRankingData !== undefined && roomsRankingData.length > 0) ? (
             <ChartDataFrame
               height="30vh"
@@ -426,7 +429,7 @@ function Audiencias(props) {
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <Sectionheader title="Usuários" />
+          <Sectionheader classes={classes} toolTipText={null} title="Usuários" />
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>

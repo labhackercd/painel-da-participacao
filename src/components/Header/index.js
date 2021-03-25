@@ -39,24 +39,24 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
   },
   filter: {
-    color: '#B9B9B9',
+    color: theme.palette.audiencias.butteredRum,
     display: 'flex',
     alignSelf: 'center',
   },
   filterButton: {
     fontWeight: 'bold',
-    backgroundColor: '#9E5E0D',
+    backgroundColor: theme.palette.audiencias.butteredRum,
     '&:hover': {
-      backgroundColor: '#E1A04E',
+      backgroundColor: theme.palette.audiencias.anzac,
     },
   },
   formControl: {
     marginRight: '20px',
   },
   select: {
-    color: 'white',
+    color: theme.palette.white.main,
     '&:not([multiple]) option': {
-      backgroundColor: '#9E5E0D',
+      backgroundColor: theme.palette.audiencias.butteredRum,
     },
   },
 }));
@@ -67,7 +67,7 @@ export default function Header(props) {
   const classes = useStyles();
   const [year, setYear] = useState(new Date().getFullYear().toString());
   const [month, setMonth] = useState('0');
-  const [selectMonthDisabled, setSelectMonthDisabled] = useState(true);
+  const [selectMonthDisabled, setSelectMonthDisabled] = useState(false);
 
   const handleChangeYear = (event) => {
     setYear(event.target.value);

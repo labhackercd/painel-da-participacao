@@ -79,7 +79,8 @@ export function NoDataForSelectedPeriod(props) {
 }
 
 export function Sectionheader(props) {
-  const { title, toolTipText } = props;
+  // const classes = useStyles();
+  const { title, toolTipText, classes } = props;
 
   return (
     <Box display="flex" marginBottom={1}>
@@ -95,7 +96,7 @@ export function Sectionheader(props) {
           && <Tooltip toolTipText={toolTipText} />}
       </Box>
       <Box p={1} flexGrow={1} alignSelf="center">
-        <hr style={{ borderColor: '#DA7F0B' }} />
+        <hr className={classes.divider} />
       </Box>
     </Box>
   );
@@ -159,11 +160,13 @@ NoDataForSelectedPeriod.defaultProps = {
 Sectionheader.propTypes = {
   title: PropTypes.string,
   toolTipText: PropTypes.string,
+  classes: PropTypes.object,
 };
 
 Sectionheader.defaultProps = {
   title: 'Titulo',
   toolTipText: null,
+  classes: {},
 };
 
 SubSectionHeader.propTypes = {
