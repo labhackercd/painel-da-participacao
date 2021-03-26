@@ -40,11 +40,11 @@ function WikilegisPage({ dados }) {
       <Box marginBottom={5} marginX={2}>
         <Typography component="div">
           <Box fontWeight="fontWeightBold" fontSize={47}>
-            A Participação em Audiências Interativas
+            Participação na Wikilegis
           </Box>
           <Box fontSize={16} style={{ color: '#737373' }}>
-            Painel de estatísticas de participação dos cidadãos em audiências públicas e
-            eventos interativos da Câmara dos Deputados.
+            Painel de estatísticas da participação dos cidadãos
+            nas propostas legislativas da Câmara dos Deputados.
           </Box>
         </Typography>
       </Box>
