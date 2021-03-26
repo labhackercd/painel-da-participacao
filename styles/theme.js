@@ -69,6 +69,16 @@ const theme = createMuiTheme(
       text: {
         primary: '#FFFFFF',
       },
+      audiencias: {
+        butteredRum: '#9E5E0D',
+        anzac: '#E1A04E',
+        divider: '#DA7F0B',
+      },
+      wikilegis: {
+        salem: '#058D40',
+        jade: '#00C354',
+        camarone: '00612A',
+      },
     },
   },
 );

@@ -29,6 +29,13 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
   },
+  headerBox: {
+    backgroundColor: theme.palette.primary.main,
+  },
+  footer: {
+    marginTop: 'auto',
+    backgroundColor: theme.palette.primary.main,
+  },
   content: {
     overflow: 'auto',
     flexGrow: 1,
@@ -46,13 +53,13 @@ const useStyles = makeStyles((theme) => ({
   spacingContainer: {
     marginTop: theme.spacing(3),
   },
+  positionStats: {
+    display: 'flex',
+  },
   divider: {
-    borderColor: theme.palette.audiencias.divider,
+    borderColor: theme.palette.wikilegis.jade,
   },
   appBarSpacer: theme.mixins.toolbar,
-  toolTipIcon: {
-    color: '#DA7F0B',
-  },
 }));
 
 const defaultYear = new Date().getFullYear().toString();
@@ -70,7 +77,7 @@ const fullMonthNamesList = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', '
   'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro',
 ];
 
-function Audiencias(props) {
+function Wikilegis(props) {
   const { responseDataRanking } = props;
 
   const classes = useStyles();
@@ -92,7 +99,11 @@ function Audiencias(props) {
     chartType: 'LineChart',
     options: {
       legend: { position: 'top', maxLines: 3, textStyle: { color: 'white' } },
-      colors: ['#76480F', '#9E5E0D', '#DA7F0B'],
+      colors: [
+        customTheme.palette.wikilegis.salem,
+        customTheme.palette.wikilegis.jade,
+        customTheme.palette.wikilegis.camarone,
+      ],
       hAxis: {
         textStyle: { color: '#FFFFFF' },
         gridlines: { color: 'transparent' },
@@ -112,7 +123,11 @@ function Audiencias(props) {
       bars: 'vertical',
       legend: { position: 'top', maxLines: 3, textStyle: { color: 'white' } },
       isStacked: 'true',
-      colors: ['#76480F', '#9E5E0D', '#DA7F0B'],
+      colors: [
+        customTheme.palette.wikilegis.salem,
+        customTheme.palette.wikilegis.jade,
+        customTheme.palette.wikilegis.camarone,
+      ],
       bar: { groupWidth: '80%' },
       hAxis: { textStyle: { color: 'white' }, titleTextStyle: { color: 'white' } },
       vAxis: {
@@ -363,13 +378,17 @@ function Audiencias(props) {
         monthPeriod={defaultMonthPeriod}
       />
       <Grid container spacing={1} className={classes.spacingContainer}>
+        <Grid item xs={12}>
+          <Sectionheader classes={classes} toolTipText={null} title="Totais no período" />
+        </Grid>
+
         <Grid item xs={12} md={3} className={classes.spacing}>
           <TotalFrame
             isLoaded={totalsAreLoaded}
             info={`${audienciasTotalsData.users_total}`}
             title="Participantes"
             toolTipText={participantsTotalToolTip}
-            toolTipColor={customTheme.palette.audiencias.butteredRum}
+            toolTipColor={customTheme.palette.wikilegis.jade}
           />
         </Grid>
 
@@ -379,7 +398,7 @@ function Audiencias(props) {
             info={`${audienciasTotalsData.audiencias_total}`}
             title="Audiências"
             toolTipText={audiencesTotalToolTip}
-            toolTipColor={customTheme.palette.audiencias.butteredRum}
+            toolTipColor={customTheme.palette.wikilegis.jade}
           />
         </Grid>
 
@@ -389,7 +408,7 @@ function Audiencias(props) {
             info={`${audienciasTotalsData.messages_total}`}
             title="Mensagens"
             toolTipText={messagesTotalToolTip}
-            toolTipColor={customTheme.palette.audiencias.butteredRum}
+            toolTipColor={customTheme.palette.wikilegis.jade}
           />
         </Grid>
 
@@ -418,7 +437,7 @@ function Audiencias(props) {
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <Sectionheader classes={classes} title="Ranking das audiências" toolTipText={audiencesRankingToolTip} toolTipColor={customTheme.palette.audiencias.butteredRum} />
+          <Sectionheader classes={classes} title="Ranking das audiências" toolTipText={audiencesRankingToolTip} toolTipColor={customTheme.palette.wikilegis.jade} />
           {(roomsRankingData !== undefined && roomsRankingData.length > 0) ? (
             <ChartDataFrame
               height="30vh"
@@ -489,12 +508,12 @@ function Audiencias(props) {
   );
 }
 
-Audiencias.propTypes = {
+Wikilegis.propTypes = {
   responseDataRanking: PropTypes.array,
 };
 
-Audiencias.defaultProps = {
+Wikilegis.defaultProps = {
   responseDataRanking: [],
 };
 
-export default Audiencias;
+export default Wikilegis;

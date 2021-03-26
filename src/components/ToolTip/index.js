@@ -1,33 +1,32 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
 
-const HtmlTooltip = withStyles((theme) => ({
-  tooltip: {
-    backgroundColor: '#DA7F0B',
-    color: 'rgba(0, 0, 0, 0.87)',
+const useStyles = makeStyles(() => ({
+  toolTip: {
     maxWidth: 220,
-    fontSize: theme.typography.pxToRem(12),
   },
-}))(Tooltip);
+  toolTipIcon: {
+    color: '#DA7F0B',
+  },
+}));
 
 export default function Tooltips(props) {
+  const defaultClass = useStyles();
   const {
     // eslint-disable-next-line react/prop-types
-    toolTipText,
+    toolTipText, toolTipColor,
   } = props;
 
   return (
     <div>
-      <HtmlTooltip
-        title={toolTipText}
-      >
+      <Tooltip title={toolTipText} className={defaultClass.toolTip}>
         <IconButton aria-label="informação">
-          <InfoIcon style={{ color: '#DA7F0B' }} />
+          <InfoIcon style={{ color: toolTipColor }} />
         </IconButton>
-      </HtmlTooltip>
+      </Tooltip>
     </div>
   );
 }
