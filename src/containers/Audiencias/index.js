@@ -23,6 +23,8 @@ import {
   participantsTotalToolTip, messagesTotalToolTip, audiencesTotalToolTip, audiencesRankingToolTip,
 } from '../../texts/tooltips';
 
+import customTheme from '../../../styles/theme';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -361,20 +363,34 @@ function Audiencias(props) {
         monthPeriod={defaultMonthPeriod}
       />
       <Grid container spacing={1} className={classes.spacingContainer}>
-        <Grid item xs={12}>
-          <Sectionheader classes={classes} toolTipText={null} title="Totais no período" />
+        <Grid item xs={12} md={3} className={classes.spacing}>
+          <TotalFrame
+            isLoaded={totalsAreLoaded}
+            info={`${audienciasTotalsData.users_total}`}
+            title="Participantes"
+            toolTipText={participantsTotalToolTip}
+            toolTipColor={customTheme.palette.audiencias.butteredRum}
+          />
         </Grid>
 
         <Grid item xs={12} md={3} className={classes.spacing}>
-          <TotalFrame isLoaded={totalsAreLoaded} info={`${audienciasTotalsData.users_total}`} title="Participantes" toolTipText={participantsTotalToolTip} />
+          <TotalFrame
+            isLoaded={totalsAreLoaded}
+            info={`${audienciasTotalsData.audiencias_total}`}
+            title="Audiências"
+            toolTipText={audiencesTotalToolTip}
+            toolTipColor={customTheme.palette.audiencias.butteredRum}
+          />
         </Grid>
 
         <Grid item xs={12} md={3} className={classes.spacing}>
-          <TotalFrame isLoaded={totalsAreLoaded} info={`${audienciasTotalsData.audiencias_total}`} title="Audiências" toolTipText={audiencesTotalToolTip} />
-        </Grid>
-
-        <Grid item xs={12} md={3} className={classes.spacing}>
-          <TotalFrame isLoaded={totalsAreLoaded} info={`${audienciasTotalsData.messages_total}`} title="Mensagens" toolTipText={messagesTotalToolTip} />
+          <TotalFrame
+            isLoaded={totalsAreLoaded}
+            info={`${audienciasTotalsData.messages_total}`}
+            title="Mensagens"
+            toolTipText={messagesTotalToolTip}
+            toolTipColor={customTheme.palette.audiencias.butteredRum}
+          />
         </Grid>
 
         <Grid item xs={12} md={3} className={classes.spacing}>
@@ -402,7 +418,7 @@ function Audiencias(props) {
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <Sectionheader classes={classes} title="Ranking das audiências" toolTipText={audiencesRankingToolTip} />
+          <Sectionheader classes={classes} title="Ranking das audiências" toolTipText={audiencesRankingToolTip} toolTipColor={customTheme.palette.audiencias.butteredRum} />
           {(roomsRankingData !== undefined && roomsRankingData.length > 0) ? (
             <ChartDataFrame
               height="30vh"

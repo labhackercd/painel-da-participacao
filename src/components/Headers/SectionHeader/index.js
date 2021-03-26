@@ -6,7 +6,9 @@ import Tooltip from '../../ToolTip/index';
 
 export default function SectionHeader(props) {
   // const classes = useStyles();
-  const { title, toolTipText, classes } = props;
+  const {
+    title, toolTipText, classes, toolTipColor,
+  } = props;
 
   return (
     <Box display="flex" marginBottom={1}>
@@ -19,7 +21,7 @@ export default function SectionHeader(props) {
       </Box>
       <Box alignSelf="center">
         {(toolTipText !== null && toolTipText !== undefined)
-          && <Tooltip toolTipText={toolTipText} />}
+          && <Tooltip toolTipText={toolTipText} toolTipColor={toolTipColor} />}
       </Box>
       <Box p={1} flexGrow={1} alignSelf="center">
         <hr className={classes.divider} />
@@ -32,10 +34,12 @@ SectionHeader.propTypes = {
   title: PropTypes.string,
   toolTipText: PropTypes.string,
   classes: PropTypes.object,
+  toolTipColor: PropTypes.string,
 };
 
 SectionHeader.defaultProps = {
   title: 'Titulo',
   toolTipText: null,
   classes: {},
+  toolTipColor: '',
 };

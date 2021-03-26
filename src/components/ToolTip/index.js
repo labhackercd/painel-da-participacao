@@ -17,14 +17,14 @@ export default function Tooltips(props) {
   const defaultClass = useStyles();
   const {
     // eslint-disable-next-line react/prop-types
-    toolTipText,
+    toolTipText, toolTipColor,
   } = props;
 
   return (
     <div>
       <Tooltip title={toolTipText} className={defaultClass.toolTip}>
         <IconButton aria-label="informação">
-          <InfoIcon className={defaultClass.toolTipIcon} />
+          <InfoIcon style={{ color: toolTipColor }} />
         </IconButton>
       </Tooltip>
     </div>

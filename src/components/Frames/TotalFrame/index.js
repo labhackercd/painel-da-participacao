@@ -43,7 +43,7 @@ function TotalsDataFrame(props) {
 
   const {
     // eslint-disable-next-line react/prop-types
-    height, children, title, toolTipText,
+    height, children, title, toolTipText, toolTipColor,
   } = props;
 
   return (
@@ -59,7 +59,7 @@ function TotalsDataFrame(props) {
           </Box>
           <Box flexGrow={1} display="flex" alignItems="center" marginTop={1}>
             {(toolTipText !== null && toolTipText !== undefined)
-              && <Tooltips toolTipText={toolTipText} />}
+              && <Tooltips toolTipText={toolTipText} toolTipColor={toolTipColor} />}
           </Box>
         </Box>
       </Box>
@@ -72,11 +72,11 @@ function TotalsDataFrame(props) {
 
 export default function TotalFrame(props) {
   const {
-    isLoaded, info, title, toolTipText,
+    isLoaded, info, title, toolTipText, toolTipColor,
   } = props;
 
   return (
-    <TotalsDataFrame height="15vh" paddingLeft="0.5rem" title={title} download={false} align="left" toolTipText={toolTipText}>
+    <TotalsDataFrame height="15vh" paddingLeft="0.5rem" title={title} download={false} align="left" toolTipText={toolTipText} toolTipColor={toolTipColor}>
       {isLoaded ? (
         <Typography variant="h2" style={{ color: '#FFF', alignSelf: 'center' }}>
           {info}
@@ -95,6 +95,7 @@ TotalFrame.propTypes = {
   info: PropTypes.node,
   title: PropTypes.string,
   toolTipText: PropTypes.string,
+  toolTipColor: PropTypes.string,
 };
 
 TotalFrame.defaultProps = {
@@ -102,4 +103,5 @@ TotalFrame.defaultProps = {
   info: 'info',
   title: 'Title',
   toolTipText: null,
+  toolTipColor: '',
 };

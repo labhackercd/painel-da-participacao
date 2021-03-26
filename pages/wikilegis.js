@@ -52,7 +52,7 @@ function WikilegisPage({ dados }) {
   }
 
   return (
-    <Layout value={1}>
+    <Layout value={2}>
       <Grid container className={classes.root}>
         <Container className={classes.container}>
           <main className={classes.content}>

@@ -383,15 +383,33 @@ function Wikilegis(props) {
         </Grid>
 
         <Grid item xs={12} md={3} className={classes.spacing}>
-          <TotalFrame isLoaded={totalsAreLoaded} info={`${audienciasTotalsData.users_total}`} title="Participantes" toolTipText={participantsTotalToolTip} />
+          <TotalFrame
+            isLoaded={totalsAreLoaded}
+            info={`${audienciasTotalsData.users_total}`}
+            title="Participantes"
+            toolTipText={participantsTotalToolTip}
+            toolTipColor={customTheme.palette.wikilegis.jade}
+          />
         </Grid>
 
         <Grid item xs={12} md={3} className={classes.spacing}>
-          <TotalFrame isLoaded={totalsAreLoaded} info={`${audienciasTotalsData.audiencias_total}`} title="Audiências" toolTipText={audiencesTotalToolTip} />
+          <TotalFrame
+            isLoaded={totalsAreLoaded}
+            info={`${audienciasTotalsData.audiencias_total}`}
+            title="Audiências"
+            toolTipText={audiencesTotalToolTip}
+            toolTipColor={customTheme.palette.wikilegis.jade}
+          />
         </Grid>
 
         <Grid item xs={12} md={3} className={classes.spacing}>
-          <TotalFrame isLoaded={totalsAreLoaded} info={`${audienciasTotalsData.messages_total}`} title="Mensagens" toolTipText={messagesTotalToolTip} />
+          <TotalFrame
+            isLoaded={totalsAreLoaded}
+            info={`${audienciasTotalsData.messages_total}`}
+            title="Mensagens"
+            toolTipText={messagesTotalToolTip}
+            toolTipColor={customTheme.palette.wikilegis.jade}
+          />
         </Grid>
 
         <Grid item xs={12} md={3} className={classes.spacing}>
@@ -419,7 +437,7 @@ function Wikilegis(props) {
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <Sectionheader classes={classes} title="Ranking das audiências" toolTipText={audiencesRankingToolTip} />
+          <Sectionheader classes={classes} title="Ranking das audiências" toolTipText={audiencesRankingToolTip} toolTipColor={customTheme.palette.wikilegis.jade} />
           {(roomsRankingData !== undefined && roomsRankingData.length > 0) ? (
             <ChartDataFrame
               height="30vh"
