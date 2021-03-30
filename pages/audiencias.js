@@ -2,6 +2,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 // import PropTypes from 'prop-types';
+import Head from 'next/head';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Container } from '@material-ui/core';
@@ -54,16 +55,21 @@ function AudienciasPage({ dados }) {
   }
 
   return (
-    <Layout value={1}>
-      <Grid container className={classes.root}>
-        <Container className={classes.container}>
-          <main className={classes.content}>
-            <AudienciasHeader />
-            <Audiencias responseDataRanking={dados} />
-          </main>
-        </Container>
-      </Grid>
-    </Layout>
+    <>
+      <Head>
+        <title>Dashboard Audiências</title>
+      </Head>
+      <Layout value={1}>
+        <Grid container className={classes.root}>
+          <Container className={classes.container}>
+            <main className={classes.content}>
+              <AudienciasHeader />
+              <Audiencias responseDataRanking={dados} />
+            </main>
+          </Container>
+        </Grid>
+      </Layout>
+    </>
   );
 }
 
