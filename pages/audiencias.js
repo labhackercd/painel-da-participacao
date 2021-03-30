@@ -2,6 +2,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 // import PropTypes from 'prop-types';
+import Head from 'next/head';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Container } from '@material-ui/core';
@@ -38,11 +39,13 @@ function AudienciasPage({ dados }) {
   function AudienciasHeader() {
     return (
       <Box marginBottom={5} marginX={2}>
-        <Typography component="div">
-          <Box fontWeight="fontWeightBold" fontSize={47}>
+        <Typography variant="h1">
+          <Box fontWeight="fontWeightBold">
             A Participação em Audiências Interativas
           </Box>
-          <Box fontSize={16} style={{ color: '#737373' }}>
+        </Typography>
+        <Typography variant="h4">
+          <Box style={{ color: '#737373' }}>
             Painel de estatísticas de participação dos cidadãos em audiências públicas e
             eventos interativos da Câmara dos Deputados.
           </Box>
@@ -52,16 +55,21 @@ function AudienciasPage({ dados }) {
   }
 
   return (
-    <Layout value={1}>
-      <Grid container className={classes.root}>
-        <Container className={classes.container}>
-          <main className={classes.content}>
-            <AudienciasHeader />
-            <Audiencias responseDataRanking={dados} />
-          </main>
-        </Container>
-      </Grid>
-    </Layout>
+    <>
+      <Head>
+        <title>Dashboard Audiências</title>
+      </Head>
+      <Layout value={1}>
+        <Grid container className={classes.root}>
+          <Container className={classes.container}>
+            <main className={classes.content}>
+              <AudienciasHeader />
+              <Audiencias responseDataRanking={dados} />
+            </main>
+          </Container>
+        </Grid>
+      </Layout>
+    </>
   );
 }
 

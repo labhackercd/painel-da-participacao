@@ -73,7 +73,7 @@ export default function ChartDataFrame(props) {
       <Box className={classes.box}>
         <Box className={classes.header}>
           <Box marginLeft={2} flexGrow={1}>
-            <Typography variant="h5" className={classes.text}>
+            <Typography variant="h4" className={classes.text}>
               <Box fontWeight="fontWeightBold" display="flex" justifyContent={align}>
                 {title}
               </Box>
@@ -95,7 +95,7 @@ export default function ChartDataFrame(props) {
       <div className={classes.container} style={{ height: 'auto', minHeight: height, width: '100%' }}>
         {children}
       </div>
-      <Typography className={classes.updateLegend}>
+      <Typography className={classes.updateLegend} variant="h5">
         <Box m={1}>
           {'Fonte: '}
           <a
