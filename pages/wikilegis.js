@@ -38,11 +38,13 @@ function WikilegisPage({ dados }) {
   function WikilegisHeader() {
     return (
       <Box marginBottom={5} marginX={2}>
-        <Typography component="div">
-          <Box fontWeight="fontWeightBold" fontSize={47}>
+        <Typography variant="h1">
+          <Box fontWeight="fontWeightBold">
             Participação na Wikilegis
           </Box>
-          <Box fontSize={16} style={{ color: '#737373' }}>
+        </Typography>
+        <Typography variant="h4">
+          <Box style={{ color: '#737373' }}>
             Painel de estatísticas da participação dos cidadãos
             nas propostas legislativas da Câmara dos Deputados.
           </Box>

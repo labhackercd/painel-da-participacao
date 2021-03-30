@@ -3,20 +3,16 @@ import { createMuiTheme } from '@material-ui/core/styles';
 const theme = createMuiTheme(
   {
     typography: {
-      body: {
-        fontSize: 12,
-        fontStyle: 'semibold',
-      },
       h1: {
-        fontSize: 54,
+        fontSize: 47,
         fontStyle: 'semibold',
       },
       h2: {
-        fontSize: 36,
+        fontSize: 39,
         fontStyle: 'semibold',
       },
       h3: {
-        fontSize: 26,
+        fontSize: 25,
         fontStyle: 'semibold',
       },
       h4: {
@@ -24,16 +20,20 @@ const theme = createMuiTheme(
         fontStyle: 'semibold',
       },
       h5: {
-        fontSize: 14,
+        fontSize: 13,
         fontStyle: 'semibold',
       },
       h6: {
-        fontSize: 13,
+        fontSize: 12,
         fontStyle: 'semibold',
       },
       h7: {
         fontSize: 9,
         fontStyle: 'regular',
+      },
+      body: {
+        fontSize: 12,
+        fontStyle: 'semibold',
       },
       body1: {
         fontSize: 12,

@@ -6,7 +6,7 @@ import Box from '@material-ui/core/Box';
 export default function SubSectionHeader(props) {
   const { title } = props;
   return (
-    <Typography component="div">
+    <Typography component="div" variant="h3">
       <Box fontWeight="fontWeightBold" fontSize={25} marginLeft={1} marginBottom={1}>
         {title}
       </Box>

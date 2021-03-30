@@ -38,11 +38,13 @@ function AudienciasPage({ dados }) {
   function AudienciasHeader() {
     return (
       <Box marginBottom={5} marginX={2}>
-        <Typography component="div">
-          <Box fontWeight="fontWeightBold" fontSize={47}>
+        <Typography variant="h1">
+          <Box fontWeight="fontWeightBold">
             A Participação em Audiências Interativas
           </Box>
-          <Box fontSize={16} style={{ color: '#737373' }}>
+        </Typography>
+        <Typography variant="h4">
+          <Box style={{ color: '#737373' }}>
             Painel de estatísticas de participação dos cidadãos em audiências públicas e
             eventos interativos da Câmara dos Deputados.
           </Box>
