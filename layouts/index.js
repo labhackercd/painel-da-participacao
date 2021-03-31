@@ -38,7 +38,11 @@ function LinkTab(parans) {
 
   return (
     <Link href={{ pathname: url }}>
-      <Tab className={classes.tab} component="a" {...props} />
+      <Tab
+        className={classes.tab}
+        component="a"
+        {...props}
+      />
     </Link>
   );
 }
@@ -46,7 +50,6 @@ function LinkTab(parans) {
 function a11yProps(index) {
   return {
     id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
   };
 }
 
@@ -68,9 +71,36 @@ export default function Layout(props) {
               {value !== undefined
                 && (
                 <Tabs value={value} TabIndicatorProps={{ style: { background: '#00C354' } }} className={classes.tab}>
-                  <LinkTab label="Painel Geral" url={process.env.NEXT_PUBLIC_AUDIENCIAS_PAGE_URL} index="0" {...a11yProps(0)} />
-                  <LinkTab label="Audiências" url={process.env.NEXT_PUBLIC_AUDIENCIAS_PAGE_URL} index="1" {...a11yProps(1)} />
-                  <LinkTab label="Wikilegis" url={process.env.NEXT_PUBLIC_WIKILEGIS_PAGE_URL} index="2" {...a11yProps(2)} />
+                  <LinkTab
+                    id="generalPanelTab"
+                    label="Painel Geral"
+                    aria-label="Painel Geral"
+                    aria-controls="generalPanelTab"
+                    aria-selected={false}
+                    url={process.env.NEXT_PUBLIC_AUDIENCIAS_PAGE_URL}
+                    index="0"
+                    {...a11yProps(0)}
+                  />
+                  <LinkTab
+                    id="audienciasPanelTab"
+                    label="Audiências"
+                    aria-label="Página Audiências"
+                    aria-controls="audienciasPanelTab"
+                    aria-selected
+                    url={process.env.NEXT_PUBLIC_AUDIENCIAS_PAGE_URL}
+                    index="1"
+                    {...a11yProps(1)}
+                  />
+                  <LinkTab
+                    id="wikilegisPanelTab"
+                    label="Wikilegis"
+                    aria-label="Página Wikielegis"
+                    aria-controls="wikilegisPanelTab"
+                    aria-selected={false}
+                    url={process.env.NEXT_PUBLIC_WIKILEGIS_PAGE_URL}
+                    index="2"
+                    {...a11yProps(2)}
+                  />
                 </Tabs>
                 )}
             </Grid>

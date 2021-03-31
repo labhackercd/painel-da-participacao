@@ -45,7 +45,7 @@ function WikilegisPage({ dados }) {
           </Box>
         </Typography>
         <Typography variant="h4">
-          <Box style={{ color: '#737373' }}>
+          <Box style={{ color: '#BFBFBF' }}>
             Painel de estatísticas da participação dos cidadãos
             nas propostas legislativas da Câmara dos Deputados.
           </Box>
