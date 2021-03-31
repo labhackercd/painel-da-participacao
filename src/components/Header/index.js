@@ -94,9 +94,10 @@ export default function Header(props) {
         <Toolbar>
           <Box width="100%" className={classes.inputOptions}>
             <FormControl id="form-control-year" className={classes.formControl}>
-              <InputLabel id="year-label">Ano</InputLabel>
+              <InputLabel id="year-label" htmlFor="select-year">Ano</InputLabel>
               <Select
                 id="select-year"
+                labelId="year-label"
                 value={year}
                 native
                 onChange={handleChangeYear}
@@ -115,9 +116,10 @@ export default function Header(props) {
               </Select>
             </FormControl>
             <FormControl id="form-control-month" className={classes.formControl}>
-              <InputLabel id="month-label">Mês</InputLabel>
+              <InputLabel id="month-label" htmlFor="select-month">Mês</InputLabel>
               <Select
                 id="select-month"
+                labelId="month-label"
                 value={month}
                 native
                 onChange={handleChangeMonth}
