@@ -44,12 +44,14 @@ function AudienciasPage({ dados }) {
             A Participação em Audiências Interativas
           </Box>
         </Typography>
-        <Typography variant="h4">
-          <Box style={{ color: '#737373' }}>
-            Painel de estatísticas de participação dos cidadãos em audiências públicas e
-            eventos interativos da Câmara dos Deputados.
-          </Box>
-        </Typography>
+        <div>
+          <Typography component="p" variant="h4">
+            <Box style={{ color: '#BFBFBF' }}>
+              Painel de estatísticas de participação dos cidadãos em audiências públicas e
+              eventos interativos da Câmara dos Deputados.
+            </Box>
+          </Typography>
+        </div>
       </Box>
     );
   }
