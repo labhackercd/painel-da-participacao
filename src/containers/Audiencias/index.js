@@ -53,6 +53,7 @@ const useStyles = makeStyles((theme) => ({
   toolTipIcon: {
     color: '#DA7F0B',
   },
+
 }));
 
 const defaultYear = new Date().getFullYear().toString();
@@ -72,6 +73,14 @@ const fullMonthNamesList = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', '
 
 function Audiencias(props) {
   const { responseDataRanking } = props;
+  const headerColors = {
+    borderColor: '#DA7F0B',
+    button: {
+      main: '#DA7F0B',
+      hover: '#C47209',
+    },
+    toolTipBackground: '14D768',
+  };
 
   const classes = useStyles();
   const [audienciasTotalsData, setAudienciasTotalsData] = useState('');
@@ -361,6 +370,7 @@ function Audiencias(props) {
         handlePeriodChange={handlePeriodChange}
         year={defaultYear}
         monthPeriod={defaultMonthPeriod}
+        headerColors={headerColors}
       />
       <Grid container spacing={1} className={classes.spacingContainer}>
         <Grid item xs={12} md={3} className={classes.spacing}>

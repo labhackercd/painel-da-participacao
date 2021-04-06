@@ -83,7 +83,7 @@ export default function ChartDataFrame(props) {
           <Box marginRight={2} alignSelf="center" marginTop={1}>
             {download && (exportData !== undefined && exportData !== null)
               ? (
-                <CSVLink data={exportData} filename={`${title}.csv`} aria-label="Baixar arquivo CSV">
+                <CSVLink data={exportData} filename={`${title}.csv`} aria-label="Baixar arquivo CSV" title="Baixar arquivo CSV">
                   <CloudDownloadIcon className={classes.downloadIcon} />
                 </CSVLink>
               )

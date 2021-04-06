@@ -26,22 +26,23 @@ const useStyles = makeStyles((theme) => ({
   },
   filterButton: {
     fontWeight: 'bold',
-    backgroundColor: (props) => props.colors.buttonColor,
+    fontSize: '1rem',
+    backgroundColor: (props) => props.colors.button.main,
     '&:hover': {
-      backgroundColor: theme.palette.audiencias.anzac,
+      backgroundColor: (props) => props.colors.button.hover,
     },
   },
   formControl: {
     marginRight: '20px',
   },
   select: {
+    padding: '5px 13px 5px 6px',
     color: theme.palette.white.main,
     '&:not([multiple]) option': {
-      backgroundColor: theme.palette.audiencias.butteredRum,
+      backgroundColor: '#404040',
     },
   },
   inputBase: {
-    color: 'white',
     position: 'relative',
     backgroundColor: '#404040',
     padding: '5px 13px 5px 6px',
@@ -59,13 +60,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const typography = { color: '#FFF', textTransform: 'capitalize' };
-
 export default function Header(props) {
-  const colors = {
-    borderColor: '#DA7F0B',
-    buttonColor: '#DA7F0B',
-  };
+  const colors = props.headerColors;
 
   const classes = useStyles({ colors });
   const [year, setYear] = useState(new Date().getFullYear().toString());
@@ -153,7 +149,7 @@ export default function Header(props) {
               </Select>
             </FormControl>
             <Button variant="contained" className={classes.filterButton} onClick={handleSubmit}>
-              <Typography style={typography}>
+              <Typography style={{ color: 'black', textTransform: 'capitalize' }}>
                 Filtrar
               </Typography>
             </Button>
