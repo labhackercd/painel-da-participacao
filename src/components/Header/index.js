@@ -7,29 +7,15 @@ import {
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 
-const BootstrapInput = withStyles((theme) => ({
-  input: {
-    borderRadius: 6,
-    position: 'relative',
-    backgroundColor: '#9E5E0D',
-    color: 'black',
-    padding: '10px 26px 10px 12px',
-    transition: theme.transitions.create(['border-color', 'box-shadow']),
-    '&:focus': {
-      borderRadius: 4,
-      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
-      backgroundColor: '#9E5E0D',
-    },
-  },
-}))(InputBase);
+/*
+https://stackoverflow.com/questions/48879517/passing-props-to-material-ui-style
+https://www.google.com/search?q=how+to+use+variable+props+to+theme+material+ui&biw=1920&bih=949&sxsrf=ALeKk03Ws3LLqu41KzWCAHTRlYWc9uzPLg%3A1617651267950&ei=Q2ZrYNajOc-r5NoP5vm60A4&oq=how+to+use+variable+props+to+theme+material+ui&gs_lcp=Cgdnd3Mtd2l6EAM6BwgAEEcQsANQyQ5Yxi9gyDBoA3ACeACAAYMCiAHKGpIBBjAuNC4xMpgBAKABAaoBB2d3cy13aXrIAQjAAQE&sclient=gws-wiz&ved=0ahUKEwiW0cjJ7OfvAhXPFVkFHea8DuoQ4dUDCA0&uact=5
+https://stackoverflow.com/questions/56111294/how-to-use-theme-and-props-in-makestyles
+*/
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-  },
-  text: {
-    color: '#FFF',
-    textTransform: 'capitalize',
   },
   inputOptions: {
     display: 'flex',
@@ -38,14 +24,9 @@ const useStyles = makeStyles((theme) => ({
   margin: {
     margin: theme.spacing(1),
   },
-  filter: {
-    color: theme.palette.audiencias.butteredRum,
-    display: 'flex',
-    alignSelf: 'center',
-  },
   filterButton: {
     fontWeight: 'bold',
-    backgroundColor: theme.palette.audiencias.butteredRum,
+    backgroundColor: (props) => props.colors.buttonColor,
     '&:hover': {
       backgroundColor: theme.palette.audiencias.anzac,
     },
@@ -59,12 +40,34 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.audiencias.butteredRum,
     },
   },
+  inputBase: {
+    color: 'white',
+    position: 'relative',
+    backgroundColor: '#404040',
+    padding: '5px 13px 5px 6px',
+    border: '2px solid',
+    borderColor: (props) => props.colors.borderColor,
+    borderRadius: 6,
+    '&:focus': {
+      borderRadius: 4,
+      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+      backgroundColor: '#404040',
+    },
+  },
+  icon: {
+    fill: 'white',
+  },
 }));
 
 const typography = { color: '#FFF', textTransform: 'capitalize' };
 
 export default function Header(props) {
-  const classes = useStyles();
+  const colors = {
+    borderColor: '#DA7F0B',
+    buttonColor: '#DA7F0B',
+  };
+
+  const classes = useStyles({ colors });
   const [year, setYear] = useState(new Date().getFullYear().toString());
   const [month, setMonth] = useState('0');
   const [selectMonthDisabled, setSelectMonthDisabled] = useState(false);
@@ -90,7 +93,7 @@ export default function Header(props) {
 
   return (
     <>
-      <AppBar position="sticky">
+      <AppBar position="sticky" elevation={0}>
         <Toolbar>
           <Box width="100%" className={classes.inputOptions}>
             <FormControl id="form-control-year" className={classes.formControl}>
@@ -101,7 +104,12 @@ export default function Header(props) {
                 value={year}
                 native
                 onChange={handleChangeYear}
-                input={<BootstrapInput />}
+                input={<InputBase className={classes.inputBase} />}
+                inputProps={{
+                  classes: {
+                    icon: classes.icon,
+                  },
+                }}
                 classes={{
                   select: classes.select,
                 }}
@@ -123,7 +131,7 @@ export default function Header(props) {
                 value={month}
                 native
                 onChange={handleChangeMonth}
-                input={<BootstrapInput />}
+                input={<InputBase className={classes.inputBase} />}
                 classes={{
                   select: classes.select,
                 }}
