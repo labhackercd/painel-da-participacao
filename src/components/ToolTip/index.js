@@ -4,7 +4,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   toolTip: {
     maxWidth: 220,
   },
