@@ -63,7 +63,7 @@ export default function Layout(props) {
 
   return (
     <div className={classes.body}>
-      <PageNavbar />
+      <PageNavbar value={value} />
       <div className={classes.container}>
         {children}
       </div>

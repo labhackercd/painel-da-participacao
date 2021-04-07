@@ -6,6 +6,8 @@ import {
   IconButton,
   Drawer,
   Box,
+  Tab,
+  Tabs,
 } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -73,12 +75,37 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     color: 'white',
   },
+  tab: {
+    height: '92%',
+    textTransform: 'capitalize',
+    fontWeight: '600',
+    margin: '0.5rem 0 0 6rem',
+  },
 }));
 
-export default function PageNavbar() {
+function LinkTab(parans) {
+  const classes = useStyles();
+  const { url, ...props } = parans;
+  return (
+
+    <Link href={{ pathname: url }}>
+      <Tab className={classes.tab} {...props} />
+    </Link>
+
+  );
+}
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+  };
+}
+
+export default function PageNavbar(props) {
   const {
-    header, logo, menuButton, toolbar, drawerContainer, drawerMobile, divider, icon,
+    header, logo, menuButton, toolbar, drawerContainer, drawerMobile, divider, icon, tab,
   } = useStyles();
+  const { value } = props;
 
   const [state, setState] = useState({
     mobileView: false,
@@ -97,34 +124,64 @@ export default function PageNavbar() {
     window.addEventListener('resize', () => setResponsiveness());
   }, []);
 
-  const getDrawerChoices = () => headersData.map(({ label, href }) => (
-    <Link href={{ pathname: href }}>
-      {label}
-    </Link>
-  ));
-
-  const femmecubatorLogo = (
+  const camaraDeputadosLogo = (
     <img src={`${process.env.NEXT_PUBLIC_APPLICATION_BASE_PATH_URL}/logo/logo_cd.svg`} alt="Logo Câmara dos Deputados" />
   );
 
-  const getMenuButtons = () => headersData.map(({ label, href }) => (
-    <Button
-      {...{
-        key: label,
-        color: 'inherit',
-        to: href,
-        className: menuButton,
-      }}
-    >
-      {label}
-    </Button>
-  ));
+  function NavTabs(options) {
+    const { orientation } = options;
+
+    return (
+      <Tabs value={value} TabIndicatorProps={{ style: { background: 'white' } }} orientation={orientation}>
+        <LinkTab
+          id="generalPanelTab"
+          label="Painel Geral"
+          aria-label="Painel Geral"
+          aria-controls="generalPanelTab"
+          aria-selected={false}
+          url={process.env.NEXT_PUBLIC_AUDIENCIAS_PAGE_URL}
+          index="0"
+          {...a11yProps(0)}
+        />
+        <LinkTab
+          id="audienciasPanelTab"
+          label="Audiências"
+          aria-label="Página Audiências"
+          aria-controls="audienciasPanelTab"
+          aria-selected
+          url={process.env.NEXT_PUBLIC_AUDIENCIAS_PAGE_URL}
+          index="1"
+          {...a11yProps(1)}
+        />
+        <LinkTab
+          id="wikilegisPanelTab"
+          label="Wikilegis"
+          aria-label="Página Wikilegis"
+          aria-controls="wikilegisPanelTab"
+          aria-selected={false}
+          url={process.env.NEXT_PUBLIC_WIKILEGIS_PAGE_URL}
+          index="2"
+          {...a11yProps(2)}
+        />
+        <LinkTab
+          id="sobrePanelTab"
+          label="Sobre"
+          aria-label="Página sobre"
+          aria-controls="sobrePanelTab"
+          aria-selected={false}
+          url={process.env.NEXT_PUBLIC_WIKILEGIS_PAGE_URL}
+          index="3"
+          {...a11yProps(3)}
+        />
+      </Tabs>
+    );
+  }
 
   const displayDesktop = () => (
     <Toolbar>
-      {femmecubatorLogo}
+      {camaraDeputadosLogo}
       <Box width="100%" display="flex" alignContent="space-between">
-        {getMenuButtons()}
+        <NavTabs orientation="horizontal" />
       </Box>
     </Toolbar>
   );
@@ -157,10 +214,10 @@ export default function PageNavbar() {
             <ChevronLeftIcon />
           </IconButton>
           <Divider className={divider} variant="middle" />
-          <div className={drawerContainer}>{getDrawerChoices()}</div>
+          <div className={drawerContainer}><NavTabs orientation="vertical" /></div>
         </Drawer>
 
-        <div>{femmecubatorLogo}</div>
+        <div>{camaraDeputadosLogo}</div>
       </Toolbar>
     );
   };
