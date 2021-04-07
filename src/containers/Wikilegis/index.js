@@ -79,7 +79,13 @@ const fullMonthNamesList = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', '
 
 function Wikilegis(props) {
   const { responseDataRanking } = props;
-
+  const headerColors = {
+    borderColor: '#00C354',
+    button: {
+      main: '#14D768',
+      hover: '#C47209',
+    },
+  };
   const classes = useStyles();
   const [audienciasTotalsData, setAudienciasTotalsData] = useState('');
   const [newUsersChartData, setNewUsersChartData] = useState([]);
@@ -376,6 +382,7 @@ function Wikilegis(props) {
         handlePeriodChange={handlePeriodChange}
         year={defaultYear}
         monthPeriod={defaultMonthPeriod}
+        headerColors={headerColors}
       />
       <Grid container spacing={1} className={classes.spacingContainer}>
         <Grid item xs={12}>

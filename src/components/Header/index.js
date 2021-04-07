@@ -1,5 +1,7 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
 import React, { useState } from 'react';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import {
   Typography, Button, Box,
   FormControl, InputBase, InputLabel, Select,
@@ -7,29 +9,9 @@ import {
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 
-const BootstrapInput = withStyles((theme) => ({
-  input: {
-    borderRadius: 6,
-    position: 'relative',
-    backgroundColor: '#9E5E0D',
-    color: 'black',
-    padding: '10px 26px 10px 12px',
-    transition: theme.transitions.create(['border-color', 'box-shadow']),
-    '&:focus': {
-      borderRadius: 4,
-      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
-      backgroundColor: '#9E5E0D',
-    },
-  },
-}))(InputBase);
-
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-  },
-  text: {
-    color: '#FFF',
-    textTransform: 'capitalize',
   },
   inputOptions: {
     display: 'flex',
@@ -38,33 +20,55 @@ const useStyles = makeStyles((theme) => ({
   margin: {
     margin: theme.spacing(1),
   },
-  filter: {
-    color: theme.palette.audiencias.butteredRum,
-    display: 'flex',
-    alignSelf: 'center',
-  },
   filterButton: {
     fontWeight: 'bold',
-    backgroundColor: theme.palette.audiencias.butteredRum,
+    fontSize: '1rem',
+    backgroundColor: (props) => props.colors.button.main,
     '&:hover': {
-      backgroundColor: theme.palette.audiencias.anzac,
+      backgroundColor: (props) => props.colors.button.hover,
     },
   },
   formControl: {
     marginRight: '20px',
   },
   select: {
+    padding: '5px 13px 5px 6px',
     color: theme.palette.white.main,
     '&:not([multiple]) option': {
-      backgroundColor: theme.palette.audiencias.butteredRum,
+      backgroundColor: '#404040',
     },
+    '&.Mui-disabled': {
+      color: 'gray',
+    },
+  },
+  inputBase: {
+    position: 'relative',
+    backgroundColor: '#404040',
+    padding: '5px 13px 5px 6px',
+    border: '2px solid',
+    borderColor: (props) => props.colors.borderColor,
+    borderRadius: 6,
+    '&:focus': {
+      borderRadius: 4,
+      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+      backgroundColor: '#404040',
+    },
+    '&.Mui-disabled': {
+      borderColor: 'gray',
+    },
+  },
+  icon: {
+    fill: 'white',
+  },
+  iconDisabled: {
+    fill: 'gray',
   },
 }));
 
-const typography = { color: '#FFF', textTransform: 'capitalize' };
-
 export default function Header(props) {
-  const classes = useStyles();
+  const colors = props.headerColors;
+
+  const classes = useStyles({ colors });
   const [year, setYear] = useState(new Date().getFullYear().toString());
   const [month, setMonth] = useState('0');
   const [selectMonthDisabled, setSelectMonthDisabled] = useState(false);
@@ -90,7 +94,7 @@ export default function Header(props) {
 
   return (
     <>
-      <AppBar position="sticky">
+      <AppBar position="sticky" elevation={0}>
         <Toolbar>
           <Box width="100%" className={classes.inputOptions}>
             <FormControl id="form-control-year" className={classes.formControl}>
@@ -101,7 +105,12 @@ export default function Header(props) {
                 value={year}
                 native
                 onChange={handleChangeYear}
-                input={<BootstrapInput />}
+                input={<InputBase className={classes.inputBase} />}
+                inputProps={{
+                  classes: {
+                    icon: classes.icon,
+                  },
+                }}
                 classes={{
                   select: classes.select,
                 }}
@@ -123,9 +132,14 @@ export default function Header(props) {
                 value={month}
                 native
                 onChange={handleChangeMonth}
-                input={<BootstrapInput />}
+                input={<InputBase className={classes.inputBase} />}
                 classes={{
                   select: classes.select,
+                }}
+                inputProps={{
+                  classes: {
+                    icon: (selectMonthDisabled ? classes.iconDisabled : classes.icon),
+                  },
                 }}
                 disabled={selectMonthDisabled}
               >
@@ -145,7 +159,7 @@ export default function Header(props) {
               </Select>
             </FormControl>
             <Button variant="contained" className={classes.filterButton} onClick={handleSubmit}>
-              <Typography style={typography}>
+              <Typography style={{ color: 'black', textTransform: 'capitalize' }}>
                 Filtrar
               </Typography>
             </Button>
