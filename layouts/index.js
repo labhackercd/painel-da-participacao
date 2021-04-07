@@ -1,11 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'next/link';
 import { makeStyles } from '@material-ui/core/styles';
-import {
-  AppBar, Tabs, Toolbar, Tab, Grid, IconButton,
-} from '@material-ui/core';
 import Footer from '../src/components/Footer';
+import PageNavbar from './navbar';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,28 +27,10 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
   },
+  container: {
+    marginTop: '5vh',
+  },
 }));
-
-function LinkTab(parans) {
-  const classes = useStyles();
-  const { url, ...props } = parans;
-
-  return (
-    <Link href={{ pathname: url }}>
-      <Tab
-        className={classes.tab}
-        component="a"
-        {...props}
-      />
-    </Link>
-  );
-}
-
-function a11yProps(index) {
-  return {
-    id: `simple-tab-${index}`,
-  };
-}
 
 export default function Layout(props) {
   const classes = useStyles();
@@ -59,55 +38,8 @@ export default function Layout(props) {
 
   return (
     <div className={classes.body}>
-      <AppBar position="static">
-        <Toolbar className={classes.root}>
-          <Grid container>
-            <Grid item xs={12} md={2}>
-              <div className={classes.logo}>
-                <IconButton><img src={`${process.env.NEXT_PUBLIC_APPLICATION_BASE_PATH_URL}/logo/logo_cd.svg`} alt="Logo Câmara dos Deputados" /></IconButton>
-              </div>
-            </Grid>
-            <Grid item xs={12} md={10}>
-              {value !== undefined
-                && (
-                <Tabs value={value} TabIndicatorProps={{ style: { background: '#00C354' } }} className={classes.tab}>
-                  <LinkTab
-                    id="generalPanelTab"
-                    label="Painel Geral"
-                    aria-label="Painel Geral"
-                    aria-controls="generalPanelTab"
-                    aria-selected={false}
-                    url={process.env.NEXT_PUBLIC_AUDIENCIAS_PAGE_URL}
-                    index="0"
-                    {...a11yProps(0)}
-                  />
-                  <LinkTab
-                    id="audienciasPanelTab"
-                    label="Audiências"
-                    aria-label="Página Audiências"
-                    aria-controls="audienciasPanelTab"
-                    aria-selected
-                    url={process.env.NEXT_PUBLIC_AUDIENCIAS_PAGE_URL}
-                    index="1"
-                    {...a11yProps(1)}
-                  />
-                  <LinkTab
-                    id="wikilegisPanelTab"
-                    label="Wikilegis"
-                    aria-label="Página Wikielegis"
-                    aria-controls="wikilegisPanelTab"
-                    aria-selected={false}
-                    url={process.env.NEXT_PUBLIC_WIKILEGIS_PAGE_URL}
-                    index="2"
-                    {...a11yProps(2)}
-                  />
-                </Tabs>
-                )}
-            </Grid>
-          </Grid>
-        </Toolbar>
-      </AppBar>
-      <div>
+      <PageNavbar value={value} />
+      <div className={classes.container}>
         {children}
       </div>
       <Footer />

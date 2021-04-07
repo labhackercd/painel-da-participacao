@@ -121,7 +121,7 @@ function Audiencias(props) {
       bars: 'vertical',
       legend: { position: 'top', maxLines: 3, textStyle: { color: 'white' } },
       isStacked: 'true',
-      colors: ['#76480F', '#A36312', '#DA7F0B'],
+      colors: ['#744600', '#EBE23B', '#DA7F0B'],
       bar: { groupWidth: '80%' },
       hAxis: { textStyle: { color: 'white' }, titleTextStyle: { color: 'white' } },
       vAxis: {

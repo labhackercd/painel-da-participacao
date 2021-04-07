@@ -83,7 +83,7 @@ function Wikilegis(props) {
     borderColor: '#00C354',
     button: {
       main: '#14D768',
-      hover: '#C47209',
+      hover: '#00612A',
     },
   };
   const classes = useStyles();
