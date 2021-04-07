@@ -1,8 +1,8 @@
+/* eslint-disable react/prop-types */
 import {
   AppBar,
   Toolbar,
   makeStyles,
-  Button,
   IconButton,
   Drawer,
   Box,
@@ -15,36 +15,16 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
-const headersData = [
-  {
-    label: 'Painel Geral',
-    href: '/painelgeral',
-  },
-  {
-    label: 'Audiências',
-    href: '/audiencias',
-  },
-  {
-    label: 'Wikilegis',
-    href: '/wikilegis',
-  },
-  {
-    label: 'Sobre',
-    href: '/sobre',
-  },
-];
-
 const useStyles = makeStyles((theme) => ({
   header: {
     backgroundColor: theme.palette.black.main,
     paddingRight: '79px',
-    paddingLeft: '118px',
-    '@media (max-width: 900px)': {
+    paddingLeft: '10vh',
+    '@media (max-width: 1100px)': {
       paddingLeft: 0,
     },
   },
   logo: {
-    fontFamily: 'Work Sans, sans-serif',
     fontWeight: 600,
     color: '#FFFEFE',
     textAlign: 'left',
@@ -79,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
     height: '92%',
     textTransform: 'capitalize',
     fontWeight: '600',
-    margin: '0.5rem 0 0 6rem',
+    margin: '0rem 0 0 3rem',
   },
 }));
 
@@ -103,7 +83,7 @@ function a11yProps(index) {
 
 export default function PageNavbar(props) {
   const {
-    header, logo, menuButton, toolbar, drawerContainer, drawerMobile, divider, icon, tab,
+    header, drawerContainer, drawerMobile, divider,
   } = useStyles();
   const { value } = props;
 
@@ -115,7 +95,7 @@ export default function PageNavbar(props) {
   const { mobileView, drawerOpen } = state;
 
   useEffect(() => {
-    const setResponsiveness = () => (window.innerWidth < 900
+    const setResponsiveness = () => (window.innerWidth < 1100
       ? setState((prevState) => ({ ...prevState, mobileView: true }))
       : setState((prevState) => ({ ...prevState, mobileView: false })));
 

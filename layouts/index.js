@@ -1,10 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'next/link';
 import { makeStyles } from '@material-ui/core/styles';
-import {
-  AppBar, Tabs, Toolbar, Tab, Grid, IconButton,
-} from '@material-ui/core';
 import Footer from '../src/components/Footer';
 import PageNavbar from './navbar';
 
@@ -35,27 +31,6 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '5vh',
   },
 }));
-
-function LinkTab(parans) {
-  const classes = useStyles();
-  const { url, ...props } = parans;
-
-  return (
-    <Link href={{ pathname: url }}>
-      <Tab
-        className={classes.tab}
-        component="a"
-        {...props}
-      />
-    </Link>
-  );
-}
-
-function a11yProps(index) {
-  return {
-    id: `simple-tab-${index}`,
-  };
-}
 
 export default function Layout(props) {
   const classes = useStyles();
