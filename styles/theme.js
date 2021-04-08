@@ -80,6 +80,9 @@ const theme = createMuiTheme(
         jade: '#00C354',
         camarone: '00612A',
       },
+      generalPanel: {
+        fountainBlue: '#669FC3',
+      },
     },
   },
 );

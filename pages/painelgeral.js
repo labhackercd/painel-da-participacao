@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Layout from '../layouts/index';
 
-import Audiencias from '../src/containers/Audiencias';
+import PainelGeral from '../src/containers/PainelGeral';
 
 const useStyles = makeStyles((theme) => ({
   body: {
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function PainelGeral({ dados }) {
+function PainelGeralPage({ dados }) {
   const classes = useStyles();
 
   function PainelGeralHeader() {
@@ -41,14 +41,13 @@ function PainelGeral({ dados }) {
       <Box marginBottom={5} marginX={2}>
         <Typography variant="h1">
           <Box fontWeight="fontWeightBold">
-            A Participação em Audiências Interativas
+            Painel geral
           </Box>
         </Typography>
         <div>
           <Typography component="p" variant="h4">
             <Box style={{ color: '#BFBFBF' }}>
-              Painel de estatísticas de participação dos cidadãos em audiências públicas e
-              eventos interativos da Câmara dos Deputados.
+              Painel de estatísticas da participação no portal e-Democracia da Câmara dos Deputados.
             </Box>
           </Typography>
         </div>
@@ -59,14 +58,14 @@ function PainelGeral({ dados }) {
   return (
     <>
       <Head>
-        <title>Dashboard Audiências</title>
+        <title>Painel Geral</title>
       </Head>
       <Layout value={0}>
         <Grid container className={classes.root}>
           <Container className={classes.container}>
             <main className={classes.content}>
               <PainelGeralHeader />
-
+              <PainelGeral responseDataRanking={dados} />
             </main>
           </Container>
         </Grid>
@@ -118,4 +117,4 @@ export async function getStaticProps() {
   };
 }
 
-export default PainelGeral;
+export default PainelGeralPage;
