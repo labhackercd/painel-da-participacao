@@ -21,7 +21,7 @@ import GoogleChartFrame from './auxComponentes';
 
 import {
   participantsTotalToolTip, messagesTotalToolTip, audiencesTotalToolTip, audiencesRankingToolTip,
-} from '../../texts/tooltips';
+} from '../../services/texts/tooltips';
 
 import {
   MONTHS_LIST, MONTHS_ABBREVIATED_LIST, DEFAULT_YEAR, DEFAULT_SELECTED_PERIOD_TYPE,
@@ -519,7 +519,7 @@ function Wikilegis(props) {
 }
 
 Wikilegis.propTypes = {
-  responseDataRanking: PropTypes.array,
+  responseDataRanking: PropTypes.object,
 };
 
 Wikilegis.defaultProps = {
