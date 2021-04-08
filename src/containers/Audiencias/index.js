@@ -102,6 +102,8 @@ function Audiencias(props) {
     options: {
       legend: { position: 'top', maxLines: 3, textStyle: { color: 'white' } },
       colors: ['#76480F', '#9E5E0D', '#DA7F0B'],
+      lineWidth: 5,
+      pointSize: 15,
       hAxis: {
         textStyle: { color: '#FFFFFF' },
         gridlines: { color: 'transparent' },
@@ -373,37 +375,40 @@ function Audiencias(props) {
         headerColors={headerColors}
       />
       <Grid container spacing={1} className={classes.spacingContainer}>
-        <Grid item xs={12} md={3} className={classes.spacing}>
+        <Grid item xs={12} sm={6} md={3} className={classes.spacing}>
           <TotalFrame
             isLoaded={totalsAreLoaded}
             info={`${audienciasTotalsData.users_total}`}
             title="Participantes"
+            toolTipAriaLabel="Informação sobre o termo participantes"
             toolTipText={participantsTotalToolTip}
-            toolTipColor={customTheme.palette.audiencias.butteredRum}
+            toolTipColor={customTheme.palette.audiencias.seabuckthorn}
           />
         </Grid>
 
-        <Grid item xs={12} md={3} className={classes.spacing}>
+        <Grid item xs={12} sm={6} md={3} className={classes.spacing}>
           <TotalFrame
             isLoaded={totalsAreLoaded}
             info={`${audienciasTotalsData.audiencias_total}`}
             title="Audiências"
             toolTipText={audiencesTotalToolTip}
-            toolTipColor={customTheme.palette.audiencias.butteredRum}
+            toolTipAriaLabel="Informação sobre o termo audiências"
+            toolTipColor={customTheme.palette.audiencias.seabuckthorn}
           />
         </Grid>
 
-        <Grid item xs={12} md={3} className={classes.spacing}>
+        <Grid item xs={12} sm={6} md={3} className={classes.spacing}>
           <TotalFrame
             isLoaded={totalsAreLoaded}
             info={`${audienciasTotalsData.messages_total}`}
             title="Mensagens"
             toolTipText={messagesTotalToolTip}
-            toolTipColor={customTheme.palette.audiencias.butteredRum}
+            toolTipAriaLabel="Informação sobre o termo mensagens"
+            toolTipColor={customTheme.palette.audiencias.seabuckthorn}
           />
         </Grid>
 
-        <Grid item xs={12} md={3} className={classes.spacing}>
+        <Grid item xs={12} sm={6} md={3} className={classes.spacing}>
           <TotalFrame isLoaded={totalsAreLoaded} info={audienciasTotalsData.questions_total} title="Perguntas" />
         </Grid>
 
@@ -428,7 +433,7 @@ function Audiencias(props) {
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <Sectionheader classes={classes} title="Ranking das audiências" toolTipText={audiencesRankingToolTip} toolTipColor={customTheme.palette.audiencias.butteredRum} />
+          <Sectionheader classes={classes} title="Ranking das audiências" toolTipText={audiencesRankingToolTip} toolTipColor={customTheme.palette.audiencias.seabuckthorn} />
           {(roomsRankingData !== undefined && roomsRankingData.length > 0) ? (
             <ChartDataFrame
               height="30vh"

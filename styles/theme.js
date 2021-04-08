@@ -73,6 +73,7 @@ const theme = createMuiTheme(
         butteredRum: '#9E5E0D',
         anzac: '#E1A04E',
         divider: '#DA7F0B',
+        seabuckthorn: '#F59D2A',
       },
       wikilegis: {
         salem: '#058D40',

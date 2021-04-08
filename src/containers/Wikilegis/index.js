@@ -105,6 +105,8 @@ function Wikilegis(props) {
     chartType: 'LineChart',
     options: {
       legend: { position: 'top', maxLines: 3, textStyle: { color: 'white' } },
+      lineWidth: 5,
+      pointSize: 15,
       colors: [
         customTheme.palette.wikilegis.salem,
         customTheme.palette.wikilegis.jade,
@@ -389,38 +391,41 @@ function Wikilegis(props) {
           <Sectionheader classes={classes} toolTipText={null} title="Totais no período" />
         </Grid>
 
-        <Grid item xs={12} md={3} className={classes.spacing}>
+        <Grid item xs={12} sm={6} md={3} className={classes.spacing}>
           <TotalFrame
             isLoaded={totalsAreLoaded}
             info={`${audienciasTotalsData.users_total}`}
             title="Participantes"
             toolTipText={participantsTotalToolTip}
+            toolTipAriaLabel="Informação sobre o termo participantes"
             toolTipColor={customTheme.palette.wikilegis.jade}
           />
         </Grid>
 
-        <Grid item xs={12} md={3} className={classes.spacing}>
+        <Grid item xs={12} sm={6} md={3} className={classes.spacing}>
           <TotalFrame
             isLoaded={totalsAreLoaded}
             info={`${audienciasTotalsData.audiencias_total}`}
-            title="Audiências"
+            title="Propostas Legislativas"
             toolTipText={audiencesTotalToolTip}
+            toolTipAriaLabel="Informação sobre o termo propostas legislativas"
             toolTipColor={customTheme.palette.wikilegis.jade}
           />
         </Grid>
 
-        <Grid item xs={12} md={3} className={classes.spacing}>
+        <Grid item xs={12} sm={6} md={3} className={classes.spacing}>
           <TotalFrame
             isLoaded={totalsAreLoaded}
             info={`${audienciasTotalsData.messages_total}`}
-            title="Mensagens"
+            title="Opiniões"
+            toolTipAriaLabel="Informação sobre o termo opiniões"
             toolTipText={messagesTotalToolTip}
             toolTipColor={customTheme.palette.wikilegis.jade}
           />
         </Grid>
 
-        <Grid item xs={12} md={3} className={classes.spacing}>
-          <TotalFrame isLoaded={totalsAreLoaded} info={audienciasTotalsData.questions_total} title="Perguntas" />
+        <Grid item xs={12} sm={6} md={3} className={classes.spacing}>
+          <TotalFrame isLoaded={totalsAreLoaded} info={audienciasTotalsData.questions_total} title="Votos nas opiniões" />
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
