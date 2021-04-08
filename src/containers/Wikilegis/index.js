@@ -397,6 +397,7 @@ function Wikilegis(props) {
             info={`${audienciasTotalsData.users_total}`}
             title="Participantes"
             toolTipText={participantsTotalToolTip}
+            toolTipAriaLabel="Informação sobre o termo participantes"
             toolTipColor={customTheme.palette.wikilegis.jade}
           />
         </Grid>
@@ -405,8 +406,9 @@ function Wikilegis(props) {
           <TotalFrame
             isLoaded={totalsAreLoaded}
             info={`${audienciasTotalsData.audiencias_total}`}
-            title="Audiências"
+            title="Propostas Legislativas"
             toolTipText={audiencesTotalToolTip}
+            toolTipAriaLabel="Informação sobre o termo propostas legislativas"
             toolTipColor={customTheme.palette.wikilegis.jade}
           />
         </Grid>
@@ -415,14 +417,15 @@ function Wikilegis(props) {
           <TotalFrame
             isLoaded={totalsAreLoaded}
             info={`${audienciasTotalsData.messages_total}`}
-            title="Mensagens"
+            title="Opiniões"
+            toolTipAriaLabel="Informação sobre o termo opiniões"
             toolTipText={messagesTotalToolTip}
             toolTipColor={customTheme.palette.wikilegis.jade}
           />
         </Grid>
 
         <Grid item xs={12} md={3} className={classes.spacing}>
-          <TotalFrame isLoaded={totalsAreLoaded} info={audienciasTotalsData.questions_total} title="Perguntas" />
+          <TotalFrame isLoaded={totalsAreLoaded} info={audienciasTotalsData.questions_total} title="Votos nas opiniões" />
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>

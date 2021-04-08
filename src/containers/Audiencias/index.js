@@ -380,6 +380,7 @@ function Audiencias(props) {
             isLoaded={totalsAreLoaded}
             info={`${audienciasTotalsData.users_total}`}
             title="Participantes"
+            toolTipAriaLabel="Informação sobre o termo participantes"
             toolTipText={participantsTotalToolTip}
             toolTipColor={customTheme.palette.audiencias.seabuckthorn}
           />
@@ -391,6 +392,7 @@ function Audiencias(props) {
             info={`${audienciasTotalsData.audiencias_total}`}
             title="Audiências"
             toolTipText={audiencesTotalToolTip}
+            toolTipAriaLabel="Informação sobre o termo audiências"
             toolTipColor={customTheme.palette.audiencias.seabuckthorn}
           />
         </Grid>
@@ -401,6 +403,7 @@ function Audiencias(props) {
             info={`${audienciasTotalsData.messages_total}`}
             title="Mensagens"
             toolTipText={messagesTotalToolTip}
+            toolTipAriaLabel="Informação sobre o termo mensagens"
             toolTipColor={customTheme.palette.audiencias.seabuckthorn}
           />
         </Grid>
