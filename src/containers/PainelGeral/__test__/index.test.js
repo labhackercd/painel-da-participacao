@@ -4,7 +4,7 @@ import { act } from 'react-dom/test-utils';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import MockTheme from '../../../components/mockTheme';
-import Audiencias from '../index';
+import PainelGeral from '../index';
 
 import newUsersMock from './mocks/new_users_mock';
 import dataRanking from './mocks/ranking_rooms_mock';
@@ -22,7 +22,7 @@ const dailySearchQuery = '?period=daily&start_date__year=2021&start_date__month=
 test('snapshot should not have changes', () => {
   let component;
   act(() => {
-    component = shallow(<MockTheme><Audiencias data="mockdata" /></MockTheme>);
+    component = shallow(<MockTheme><PainelGeral /></MockTheme>);
   });
   expect(component.exists()).toEqual(true);
   expect(component).toMatchSnapshot();
@@ -31,7 +31,7 @@ test('snapshot should not have changes', () => {
 test('Test if Audiencias renders without crash whole lifecycle', () => {
   let wrapper;
   act(() => {
-    wrapper = mount(<MockTheme><Audiencias /></MockTheme>);
+    wrapper = mount(<MockTheme><PainelGeral /></MockTheme>);
   });
   expect(wrapper.exists()).toEqual(true);
 });
@@ -79,7 +79,7 @@ test('Default page lifecycle is getting default informations of period by month 
     .reply(200, newUsersMock.DAILY);
 
   const wrapper = mount(
-    <MockTheme><Audiencias responseDataRanking={dataRanking} /></MockTheme>,
+    <MockTheme><PainelGeral /></MockTheme>,
   );
   wrapper.update();
 
@@ -143,7 +143,7 @@ test('Audiencia page lifecycle is getting informations of days of specific month
     .reply(200, newUsersMock.DAILY);
 
   const wrapper = mount(
-    <MockTheme><Audiencias responseDataRanking={dataRanking} /></MockTheme>,
+    <MockTheme><PainelGeral responseDataRanking={dataRanking} /></MockTheme>,
   );
   wrapper.update();
 
@@ -196,7 +196,7 @@ test('Audiencia page lifecycle is getting informations with no values', async ()
     .reply(200, []);
 
   const wrapper = await mount(
-    <MockTheme><Audiencias responseDataRanking={[]} /></MockTheme>,
+    <MockTheme><PainelGeral /></MockTheme>,
   );
   await wrapper.update();
 

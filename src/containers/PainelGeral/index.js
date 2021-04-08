@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
 import axios from 'axios';
 import ChartDataFrame from '../../components/ChartDataFrame/index';
 import Header from '../../components/Header/index';
@@ -69,7 +68,7 @@ const fullMonthNamesList = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', '
   'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro',
 ];
 
-function PainelGeral(props) {
+function PainelGeral() {
   const headerColors = {
     borderColor: '#669FC3',
     button: {
@@ -493,13 +492,5 @@ function PainelGeral(props) {
     </>
   );
 }
-
-PainelGeral.propTypes = {
-  responseDataRanking: PropTypes.object,
-};
-
-PainelGeral.defaultProps = {
-  responseDataRanking: [],
-};
 
 export default PainelGeral;

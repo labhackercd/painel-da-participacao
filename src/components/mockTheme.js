@@ -77,11 +77,15 @@ export default function MockTheme({ children }) {
           butteredRum: '#9E5E0D',
           anzac: '#E1A04E',
           divider: '#DA7F0B',
+          seabuckthorn: '#F59D2A',
         },
         wikilegis: {
           salem: '#058D40',
           jade: '#00C354',
           camarone: '00612A',
+        },
+        generalPanel: {
+          fountainBlue: '#669FC3',
         },
       },
     },
