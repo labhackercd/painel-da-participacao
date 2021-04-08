@@ -391,7 +391,7 @@ function Wikilegis(props) {
           <Sectionheader classes={classes} toolTipText={null} title="Totais no período" />
         </Grid>
 
-        <Grid item xs={12} md={3} className={classes.spacing}>
+        <Grid item xs={12} sm={6} md={3} className={classes.spacing}>
           <TotalFrame
             isLoaded={totalsAreLoaded}
             info={`${audienciasTotalsData.users_total}`}
@@ -402,7 +402,7 @@ function Wikilegis(props) {
           />
         </Grid>
 
-        <Grid item xs={12} md={3} className={classes.spacing}>
+        <Grid item xs={12} sm={6} md={3} className={classes.spacing}>
           <TotalFrame
             isLoaded={totalsAreLoaded}
             info={`${audienciasTotalsData.audiencias_total}`}
@@ -413,7 +413,7 @@ function Wikilegis(props) {
           />
         </Grid>
 
-        <Grid item xs={12} md={3} className={classes.spacing}>
+        <Grid item xs={12} sm={6} md={3} className={classes.spacing}>
           <TotalFrame
             isLoaded={totalsAreLoaded}
             info={`${audienciasTotalsData.messages_total}`}
@@ -424,7 +424,7 @@ function Wikilegis(props) {
           />
         </Grid>
 
-        <Grid item xs={12} md={3} className={classes.spacing}>
+        <Grid item xs={12} sm={6} md={3} className={classes.spacing}>
           <TotalFrame isLoaded={totalsAreLoaded} info={audienciasTotalsData.questions_total} title="Votos nas opiniões" />
         </Grid>
 

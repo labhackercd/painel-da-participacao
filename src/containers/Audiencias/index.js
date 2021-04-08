@@ -375,7 +375,7 @@ function Audiencias(props) {
         headerColors={headerColors}
       />
       <Grid container spacing={1} className={classes.spacingContainer}>
-        <Grid item xs={12} md={3} className={classes.spacing}>
+        <Grid item xs={12} sm={6} md={3} className={classes.spacing}>
           <TotalFrame
             isLoaded={totalsAreLoaded}
             info={`${audienciasTotalsData.users_total}`}
@@ -386,7 +386,7 @@ function Audiencias(props) {
           />
         </Grid>
 
-        <Grid item xs={12} md={3} className={classes.spacing}>
+        <Grid item xs={12} sm={6} md={3} className={classes.spacing}>
           <TotalFrame
             isLoaded={totalsAreLoaded}
             info={`${audienciasTotalsData.audiencias_total}`}
@@ -397,7 +397,7 @@ function Audiencias(props) {
           />
         </Grid>
 
-        <Grid item xs={12} md={3} className={classes.spacing}>
+        <Grid item xs={12} sm={6} md={3} className={classes.spacing}>
           <TotalFrame
             isLoaded={totalsAreLoaded}
             info={`${audienciasTotalsData.messages_total}`}
@@ -408,7 +408,7 @@ function Audiencias(props) {
           />
         </Grid>
 
-        <Grid item xs={12} md={3} className={classes.spacing}>
+        <Grid item xs={12} sm={6} md={3} className={classes.spacing}>
           <TotalFrame isLoaded={totalsAreLoaded} info={audienciasTotalsData.questions_total} title="Perguntas" />
         </Grid>
 
