@@ -59,7 +59,13 @@ function TotalsDataFrame(props) {
           </Box>
           <Box flexGrow={1} display="flex" alignItems="center" marginTop={1}>
             {(toolTipText !== null && toolTipText !== undefined)
-              && <Tooltips toolTipText={toolTipText} toolTipColor={toolTipColor} toolTipAriaLabel={toolTipAriaLabel} />}
+              && (
+              <Tooltips
+                toolTipText={toolTipText}
+                toolTipColor={toolTipColor}
+                toolTipAriaLabel={toolTipAriaLabel}
+              />
+              )}
           </Box>
         </Box>
       </Box>

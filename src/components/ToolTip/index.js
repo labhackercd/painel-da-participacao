@@ -19,7 +19,6 @@ export default function Tooltips(props) {
     // eslint-disable-next-line react/prop-types
     toolTipText, toolTipColor, toolTipAriaLabel,
   } = props;
-  console.log(toolTipAriaLabel)
 
   function toolTipHtmlTitle(title) {
     return (
