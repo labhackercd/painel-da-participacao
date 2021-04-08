@@ -381,7 +381,7 @@ function Audiencias(props) {
             info={`${audienciasTotalsData.users_total}`}
             title="Participantes"
             toolTipText={participantsTotalToolTip}
-            toolTipColor={customTheme.palette.audiencias.butteredRum}
+            toolTipColor={customTheme.palette.audiencias.seabuckthorn}
           />
         </Grid>
 
@@ -391,7 +391,7 @@ function Audiencias(props) {
             info={`${audienciasTotalsData.audiencias_total}`}
             title="Audiências"
             toolTipText={audiencesTotalToolTip}
-            toolTipColor={customTheme.palette.audiencias.butteredRum}
+            toolTipColor={customTheme.palette.audiencias.seabuckthorn}
           />
         </Grid>
 
@@ -401,7 +401,7 @@ function Audiencias(props) {
             info={`${audienciasTotalsData.messages_total}`}
             title="Mensagens"
             toolTipText={messagesTotalToolTip}
-            toolTipColor={customTheme.palette.audiencias.butteredRum}
+            toolTipColor={customTheme.palette.audiencias.seabuckthorn}
           />
         </Grid>
 
@@ -430,7 +430,7 @@ function Audiencias(props) {
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <Sectionheader classes={classes} title="Ranking das audiências" toolTipText={audiencesRankingToolTip} toolTipColor={customTheme.palette.audiencias.butteredRum} />
+          <Sectionheader classes={classes} title="Ranking das audiências" toolTipText={audiencesRankingToolTip} toolTipColor={customTheme.palette.audiencias.seabuckthorn} />
           {(roomsRankingData !== undefined && roomsRankingData.length > 0) ? (
             <ChartDataFrame
               height="30vh"
