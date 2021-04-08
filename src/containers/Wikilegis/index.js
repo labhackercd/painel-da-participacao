@@ -23,6 +23,11 @@ import {
   participantsTotalToolTip, messagesTotalToolTip, audiencesTotalToolTip, audiencesRankingToolTip,
 } from '../../texts/tooltips';
 
+import {
+  MONTHS_LIST, MONTHS_ABBREVIATED_LIST, DEFAULT_YEAR, DEFAULT_SELECTED_PERIOD_TYPE,
+  DEFAULT_MONTH_PERIOD, DEFAULT_SEARCH_QUERY, DAILY_KEY_WORD, MONTHLY_KEY_WORD,
+} from '../../services/constants/constants';
+
 import customTheme from '../../../styles/theme';
 
 const useStyles = makeStyles((theme) => ({
@@ -62,20 +67,13 @@ const useStyles = makeStyles((theme) => ({
   appBarSpacer: theme.mixins.toolbar,
 }));
 
-const defaultYear = new Date().getFullYear().toString();
-const defaultSelectedPeriodType = 'monthly'; // Get all months of the year
-const defaultMonthPeriod = '0'; // All months
-const defaultSearchQuery = `?period=monthly&start_date__year=${new Date().getFullYear()}&ordering=start_date`;
-const dailyKeyWord = 'daily';
-const monthlyKeyWord = 'monthly';
-
-const monthNamesList = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
-  'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez',
-];
-
-const fullMonthNamesList = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
-  'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro',
-];
+const defaultYear = DEFAULT_YEAR;
+const defaultSelectedPeriodType = DEFAULT_SELECTED_PERIOD_TYPE; // Get all months of the year
+const defaultMonthPeriod = DEFAULT_MONTH_PERIOD; // All months
+const defaultSearchQuery = DEFAULT_SEARCH_QUERY;
+const dailyKeyWord = DAILY_KEY_WORD;
+const monthlyKeyWord = MONTHLY_KEY_WORD;
+const monthNamesList = MONTHS_ABBREVIATED_LIST;
 
 function Wikilegis(props) {
   const { responseDataRanking } = props;
@@ -346,7 +344,7 @@ function Wikilegis(props) {
 
     switch (period) {
       case dailyKeyWord:
-        setPeriodSubTitle(`${fullMonthNamesList[month - 1]}/${year}`);
+        setPeriodSubTitle(`${MONTHS_LIST[month - 1]}/${year}`);
         break;
       case monthlyKeyWord:
         setPeriodSubTitle(`${year}`);
