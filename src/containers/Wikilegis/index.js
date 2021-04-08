@@ -105,6 +105,8 @@ function Wikilegis(props) {
     chartType: 'LineChart',
     options: {
       legend: { position: 'top', maxLines: 3, textStyle: { color: 'white' } },
+      lineWidth: 5,
+      pointSize: 15,
       colors: [
         customTheme.palette.wikilegis.salem,
         customTheme.palette.wikilegis.jade,

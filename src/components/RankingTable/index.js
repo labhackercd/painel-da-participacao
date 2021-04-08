@@ -29,11 +29,11 @@ createTheme('darkLAB', {
     text: '#9e5e0d',
   },
   sortFocus: {
-    default: '#9e5e0d',
-    text: '#9e5e0d',
+    default: '#c9c9c9',
+    text: '#252525',
   },
   highlightOnHover: {
-    default: '#9e5e0d',
+    default: '#252525',
     text: '#ffffff',
   },
   striped: {

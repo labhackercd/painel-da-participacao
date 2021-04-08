@@ -102,6 +102,8 @@ function Audiencias(props) {
     options: {
       legend: { position: 'top', maxLines: 3, textStyle: { color: 'white' } },
       colors: ['#76480F', '#9E5E0D', '#DA7F0B'],
+      lineWidth: 5,
+      pointSize: 15,
       hAxis: {
         textStyle: { color: '#FFFFFF' },
         gridlines: { color: 'transparent' },

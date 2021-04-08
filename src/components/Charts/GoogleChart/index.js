@@ -20,11 +20,12 @@ export default function GoogleChart(props) {
     <Chart
       width="100%"
       height="100%"
+      loader={<div>Carregando Gráfico</div>}
       chartType={chartType}
-      loader={<div>Loading Chart</div>}
       data={data}
       options={options}
       rootProps={{ 'data-testid': '3' }}
+      aria-label="Representação em tabela dos dados presentes no gráfico"
     />
   );
 }
