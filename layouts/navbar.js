@@ -122,7 +122,7 @@ export default function PageNavbar(props) {
           aria-label="Painel Geral"
           aria-controls="generalPanelTab"
           aria-selected={false}
-          url={process.env.NEXT_PUBLIC_AUDIENCIAS_PAGE_URL}
+          url={process.env.NEXT_PUBLIC_GENERAL_APP_PAGE_URL_QUERY}
           index="0"
           {...a11yProps(0)}
         />
