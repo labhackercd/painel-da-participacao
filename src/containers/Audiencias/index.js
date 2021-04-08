@@ -10,9 +10,9 @@ import RankingTable from '../../components/RankingTable/index';
 import GoogleChart from '../../components/Charts/GoogleChart';
 import {
   getParticipationChartDataByDay, getParticipationChartDataByMonth, getParticipationChartDataByYear,
-} from './auxFunctions';
+} from '../../services/functions/auxFunctions/index';
 
-import { handleUpdatePeriodSearchQuery } from '../../services/functions/handlers';
+import { handleUpdatePeriodSearchQuery } from '../../services/functions/handlers/index';
 
 import TotalFrame from '../../components/Frames/TotalFrame/index';
 import Sectionheader from '../../components/Headers/SectionHeader/index';

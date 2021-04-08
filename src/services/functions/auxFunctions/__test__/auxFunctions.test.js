@@ -1,6 +1,6 @@
 import {
   getParticipationChartDataByDay, getParticipationChartDataByMonth, getParticipationChartDataByYear,
-} from '../auxFunctions';
+} from '../index';
 
 import messagesRankingMock from './mocks/messages_ranking_mock';
 import questionsRankingMock from './mocks/questions_ranking_mock';

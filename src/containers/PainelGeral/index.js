@@ -7,9 +7,9 @@ import Header from '../../components/Header/index';
 import GoogleChart from '../../components/Charts/GoogleChart';
 import {
   getParticipationChartDataByDay, getParticipationChartDataByMonth, getParticipationChartDataByYear,
-} from './auxFunctions';
+} from '../../services/functions/auxFunctions/index';
 
-import { handleUpdatePeriodSearchQuery } from '../../services/functions/handlers';
+import { handleUpdatePeriodSearchQuery } from '../../services/functions/handlers/index';
 import TotalFrame from '../../components/Frames/TotalFrame/index';
 import Sectionheader from '../../components/Headers/SectionHeader/index';
 import SubSectionHeader from '../../components/Headers/SubSectionHeader/index';

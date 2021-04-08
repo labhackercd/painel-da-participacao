@@ -1,4 +1,4 @@
-import { handleUpdatePeriodSearchQuery } from '../handlers';
+import { handleUpdatePeriodSearchQuery } from '../index';
 
 describe('Test handleUpdatePeriodSearchQuery function', () => {
   test('handleUpdatePeriodSearchQuery returns daily as result of period', async () => {
