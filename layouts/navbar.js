@@ -61,6 +61,9 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '600',
     margin: '0rem 0 0 3rem',
   },
+  tabs: {
+    marginLeft: '2rem',
+  },
 }));
 
 function LinkTab(parans) {
@@ -83,7 +86,7 @@ function a11yProps(index) {
 
 export default function PageNavbar(props) {
   const {
-    header, drawerContainer, drawerMobile, divider,
+    header, drawerContainer, drawerMobile, divider, tabs,
   } = useStyles();
   const { value } = props;
 
@@ -112,7 +115,7 @@ export default function PageNavbar(props) {
     const { orientation } = options;
 
     return (
-      <Tabs value={value} TabIndicatorProps={{ style: { background: 'white' } }} orientation={orientation}>
+      <Tabs value={value} className={tabs} TabIndicatorProps={{ style: { background: 'white' } }} orientation={orientation}>
         <LinkTab
           id="generalPanelTab"
           label="Painel Geral"
