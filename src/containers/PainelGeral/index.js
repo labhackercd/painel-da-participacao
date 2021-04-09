@@ -1,19 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import PropTypes from 'prop-types';
 import axios from 'axios';
 import ChartDataFrame from '../../components/ChartDataFrame/index';
 import Header from '../../components/Header/index';
-import RankingTable from '../../components/RankingTable/index';
 import GoogleChart from '../../components/Charts/GoogleChart';
 import {
   getParticipationChartDataByDay, getParticipationChartDataByMonth, getParticipationChartDataByYear,
 } from '../../services/functions/auxFunctions/index';
 
 import { handleUpdatePeriodSearchQuery } from '../../services/functions/handlers/index';
-
 import TotalFrame from '../../components/Frames/TotalFrame/index';
 import Sectionheader from '../../components/Headers/SectionHeader/index';
 import SubSectionHeader from '../../components/Headers/SubSectionHeader/index';
@@ -21,7 +17,7 @@ import NoDataForSelectedPeriod from '../../components/Informations/NoDataForSele
 import GoogleChartFrame from './auxComponentes';
 
 import {
-  participantsTotalToolTip, messagesTotalToolTip, audiencesTotalToolTip, audiencesRankingToolTip,
+  participantsTotalToolTip, messagesTotalToolTip, audiencesTotalToolTip,
 } from '../../services/texts/tooltips';
 
 import {
@@ -53,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(3),
   },
   divider: {
-    borderColor: theme.palette.audiencias.divider,
+    borderColor: theme.palette.generalPanel.fountainBlue,
   },
   appBarSpacer: theme.mixins.toolbar,
   toolTipIcon: {
@@ -70,29 +66,26 @@ const dailyKeyWord = DAILY_KEY_WORD;
 const monthlyKeyWord = MONTHLY_KEY_WORD;
 const monthNamesList = MONTHS_ABBREVIATED_LIST;
 
-function Audiencias(props) {
-  const { responseDataRanking } = props;
+function PainelGeral() {
   const headerColors = {
-    borderColor: '#DA7F0B',
+    borderColor: '#669FC3',
     button: {
-      main: '#DA7F0B',
-      hover: '#C47209',
+      main: '#669FC3',
+      hover: '#9bcae8',
     },
-    toolTipBackground: '14D768',
+    toolTipBackground: '669FC3',
   };
 
   const classes = useStyles();
   const [audienciasTotalsData, setAudienciasTotalsData] = useState('');
   const [newUsersChartData, setNewUsersChartData] = useState([]);
   const [totalUsersChartData, setTotalUsersChartData] = useState([]);
-  const [roomsRankingData, setRoomsRankingData] = useState(responseDataRanking.data);
   const [participantionChartData, setParticipantionChartData] = useState([]);
   const [totalsAreLoaded, setTotalsAreLoaded] = useState(false);
   const [newUsersChartDataLoaded, setNewUsersChartDataLoaded] = useState(false);
   const [totalUsersChartDataLoaded, setTotalUsersChartDataLoaded] = useState(false);
   const [periodSubTitle, setPeriodSubTitle] = useState(new Date().getFullYear().toString());
   const [participantionChartDataLastUpdate, setParticipantionChartDataLastUpdate] = useState('Carregando');
-  const roomsRankingDataLastUpdate = responseDataRanking.lastUpdate;
   const [totalUsersChartDataLastUpdate, setTotalUsersChartDataLastUpdate] = useState('Carregando');
   const [newUsersChartDataLastUpdate, setNewUsersChartDataLastUpdate] = useState('Carregando');
 
@@ -100,7 +93,7 @@ function Audiencias(props) {
     chartType: 'LineChart',
     options: {
       legend: { position: 'top', maxLines: 3, textStyle: { color: 'white' } },
-      colors: ['#76480F', '#9E5E0D', '#DA7F0B'],
+      colors: [customTheme.palette.generalPanel.fountainBlue],
       lineWidth: 5,
       pointSize: 15,
       hAxis: {
@@ -123,6 +116,29 @@ function Audiencias(props) {
       legend: { position: 'top', maxLines: 3, textStyle: { color: 'white' } },
       isStacked: 'true',
       colors: ['#744600', '#EBE23B', '#DA7F0B'],
+      bar: { groupWidth: '80%' },
+      hAxis: { textStyle: { color: 'white' }, titleTextStyle: { color: 'white' } },
+      vAxis: {
+        minValue: 0,
+        gridlines: { color: 'transparent' },
+        textStyle: { color: '#FFFFFF' },
+        format: '###.##',
+      },
+      backgroundColor: '#000000',
+    },
+  };
+
+  const wikilegisParticipationChartSettings = {
+    chartType: 'ColumnChart',
+    options: {
+      bars: 'vertical',
+      legend: { position: 'top', maxLines: 3, textStyle: { color: 'white' } },
+      isStacked: 'true',
+      colors: [
+        customTheme.palette.wikilegis.salem,
+        customTheme.palette.wikilegis.jade,
+        customTheme.palette.wikilegis.camarone,
+      ],
       bar: { groupWidth: '80%' },
       hAxis: { textStyle: { color: 'white' }, titleTextStyle: { color: 'white' } },
       vAxis: {
@@ -299,35 +315,6 @@ function Audiencias(props) {
     }
   }
 
-  async function filterAndSetRoomsRankingData(period, month, year) {
-    // to be implemented
-    let resultArray = [];
-    const allRooms = props.responseDataRanking.data;
-
-    switch (period) {
-      case dailyKeyWord:
-        resultArray = await allRooms.filter((value) => {
-          const [valueYear, valueMonth] = value.date.split('-'); // Or, var month = e.date.split('-')[1];
-          return (
-            (parseInt(month, 10) === parseInt(valueMonth, 10))
-            && (parseInt(year, 10) === parseInt(valueYear, 10))
-          );
-        });
-        break;
-      case monthlyKeyWord:
-        resultArray = await allRooms.filter((value) => {
-          const [valueYear] = value.date.split('-'); // Or, var month = e.date.split('-')[1];
-          return (parseInt(year, 10) === parseInt(valueYear, 10));
-        });
-        break;
-      default: // yearly -> Total period
-        resultArray = allRooms;
-        break;
-    }
-
-    await setRoomsRankingData(resultArray);
-  }
-
   async function updateChartsAndTableSubTitle(period, month, year) {
     const todayDate = new Date();
 
@@ -351,7 +338,6 @@ function Audiencias(props) {
     fetchAndSetAudienciasTotalsData(query);
     fetchAndSetNewUsersChartData(query, period);
     fetchAndSetParticipationChartData(query, period, month, year);
-    filterAndSetRoomsRankingData(period, month, year);
   }
 
   async function handlePeriodChange(month, year) {
@@ -367,7 +353,7 @@ function Audiencias(props) {
   return (
     <>
       <Header
-        title="Audiências Interativas"
+        title="Painel geral"
         handlePeriodChange={handlePeriodChange}
         year={defaultYear}
         monthPeriod={defaultMonthPeriod}
@@ -381,7 +367,7 @@ function Audiencias(props) {
             title="Participantes"
             toolTipAriaLabel="Informação sobre o termo participantes"
             toolTipText={participantsTotalToolTip}
-            toolTipColor={customTheme.palette.audiencias.seabuckthorn}
+            toolTipColor={customTheme.palette.generalPanel.fountainBlue}
           />
         </Grid>
 
@@ -392,7 +378,7 @@ function Audiencias(props) {
             title="Audiências"
             toolTipText={audiencesTotalToolTip}
             toolTipAriaLabel="Informação sobre o termo audiências"
-            toolTipColor={customTheme.palette.audiencias.seabuckthorn}
+            toolTipColor={customTheme.palette.generalPanel.fountainBlue}
           />
         </Grid>
 
@@ -403,7 +389,7 @@ function Audiencias(props) {
             title="Mensagens"
             toolTipText={messagesTotalToolTip}
             toolTipAriaLabel="Informação sobre o termo mensagens"
-            toolTipColor={customTheme.palette.audiencias.seabuckthorn}
+            toolTipColor={customTheme.palette.generalPanel.fountainBlue}
           />
         </Grid>
 
@@ -413,6 +399,10 @@ function Audiencias(props) {
 
         <Grid item xs={12} className={classes.spacing}>
           <Sectionheader classes={classes} toolTipText={null} title="Distribuição da participação no período" />
+        </Grid>
+
+        <Grid item xs={12} className={classes.spacing}>
+          <SubSectionHeader title="Audiências Interativas" />
           <ChartDataFrame
             height="60vh"
             title={periodSubTitle}
@@ -432,25 +422,23 @@ function Audiencias(props) {
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <Sectionheader classes={classes} title="Ranking das audiências" toolTipText={audiencesRankingToolTip} toolTipColor={customTheme.palette.audiencias.seabuckthorn} />
-          {(roomsRankingData !== undefined && roomsRankingData.length > 0) ? (
-            <ChartDataFrame
-              height="30vh"
-              title={periodSubTitle}
-              listView
-              exportData={roomsRankingData}
-              download
-              align="center"
-              apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
-              apiLastUpdate={roomsRankingDataLastUpdate}
-            >
-              <Box width="100%" height="90%">
-                <RankingTable data={roomsRankingData} />
-              </Box>
-            </ChartDataFrame>
-          ) : (
-            <NoDataForSelectedPeriod title="Salas" />
-          )}
+          <SubSectionHeader title="Wikilegis" />
+          <ChartDataFrame
+            height="60vh"
+            title={periodSubTitle}
+            listView
+            exportData={participantionChartData}
+            download
+            align="center"
+            apiUrl={process.env.NEXT_PUBLIC_WIKILEGIS_SWAGGER_URL}
+            apiLastUpdate={participantionChartDataLastUpdate}
+          >
+            <GoogleChart
+              chartType={wikilegisParticipationChartSettings.chartType}
+              data={participantionChartData}
+              options={wikilegisParticipationChartSettings.options}
+            />
+          </ChartDataFrame>
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
@@ -503,12 +491,4 @@ function Audiencias(props) {
   );
 }
 
-Audiencias.propTypes = {
-  responseDataRanking: PropTypes.object,
-};
-
-Audiencias.defaultProps = {
-  responseDataRanking: [],
-};
-
-export default Audiencias;
+export default PainelGeral;
