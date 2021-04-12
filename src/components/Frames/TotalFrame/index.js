@@ -89,7 +89,7 @@ export default function TotalFrame(props) {
         </Typography>
       ) : (
         <Box display="flex" alignItems="center" justifyContent="center" width="100%" height="100%">
-          <CircularProgress color="secondary" />
+          <CircularProgress />
         </Box>
       )}
     </TotalsDataFrame>

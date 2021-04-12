@@ -84,7 +84,7 @@ function Wikilegis(props) {
     },
   };
   const classes = useStyles();
-  const [audienciasTotalsData, setAudienciasTotalsData] = useState('');
+  const [wikilegisTotalsData, setWikilegisTotalsData] = useState('');
   const [newUsersChartData, setNewUsersChartData] = useState([]);
   const [totalUsersChartData, setTotalUsersChartData] = useState([]);
   const [roomsRankingData, setRoomsRankingData] = useState(responseDataRanking.data);
@@ -191,23 +191,23 @@ function Wikilegis(props) {
     setTotalUsersChartDataLoaded(true);
   }
 
-  async function fetchAndSetAudienciasTotalsData(query) {
-    const participantsUsersTotalResponse = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_PARTICIPANT_USERS_URL}${query}`);
-    const audienciesTotalResponse = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_ROOMS_RANKING_URL}${query}`);
-    const messagesTotalResponse = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_MESSAGES_RANKING_URL}${query}`);
-    const questionsTotalResponse = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_QUESTIONS_RANKING_URL}${query}`);
+  async function fetchAndSetWikilegisTotalsData(query) {
+    const participantsUsersTotalResponse = await axios.get(`${process.env.NEXT_PUBLIC_WIKILEGIS_PARTICIPANT_USERS_URL}${query}`);
+    const legislativeProposalsTotalResponse = await axios.get(`${process.env.NEXT_PUBLIC_WIKILEGIS_LEGISLATIVE_PROPOSALS_URL}${query}`);
+    const opinionsTotalResponse = await axios.get(`${process.env.NEXT_PUBLIC_WIKILEGIS_OPINIONS_URL}${query}`);
+    const votesTotalResponse = await axios.get(`${process.env.NEXT_PUBLIC_WIKILEGIS_VOTES_URL}${query}`);
 
     function numberWithDots(x) {
       return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, '.');
     }
     const dataJson = {
-      users_total: numberWithDots(participantsUsersTotalResponse.data.sum_total_results),
-      audiencias_total: numberWithDots(audienciesTotalResponse.data.sum_total_results),
-      messages_total: numberWithDots(messagesTotalResponse.data.sum_total_results),
-      questions_total: numberWithDots(questionsTotalResponse.data.sum_total_results),
+      participants_total: numberWithDots(participantsUsersTotalResponse.data.sum_total_results),
+      legis_propo_total: numberWithDots(legislativeProposalsTotalResponse.data.sum_total_results),
+      opinions_total: numberWithDots(opinionsTotalResponse.data.sum_total_results),
+      votes_total: numberWithDots(votesTotalResponse.data.sum_total_results),
     };
 
-    await setAudienciasTotalsData(dataJson);
+    await setWikilegisTotalsData(dataJson);
     await setTotalsAreLoaded(true);
   }
 
@@ -358,7 +358,7 @@ function Wikilegis(props) {
 
   async function loadData(query, period, month, year) {
     updateChartsAndTableSubTitle(period, month, year);
-    fetchAndSetAudienciasTotalsData(query);
+    fetchAndSetWikilegisTotalsData(query);
     fetchAndSetNewUsersChartData(query, period);
     fetchAndSetParticipationChartData(query, period, month, year);
     filterAndSetRoomsRankingData(period, month, year);
@@ -391,7 +391,7 @@ function Wikilegis(props) {
         <Grid item xs={12} sm={6} md={3} className={classes.spacing}>
           <TotalFrame
             isLoaded={totalsAreLoaded}
-            info={`${audienciasTotalsData.users_total}`}
+            info={`${wikilegisTotalsData.participants_total}`}
             title="Participantes"
             toolTipText={participantsTotalToolTip}
             toolTipAriaLabel="Informação sobre o termo participantes"
@@ -402,7 +402,7 @@ function Wikilegis(props) {
         <Grid item xs={12} sm={6} md={3} className={classes.spacing}>
           <TotalFrame
             isLoaded={totalsAreLoaded}
-            info={`${audienciasTotalsData.audiencias_total}`}
+            info={`${wikilegisTotalsData.legis_propo_total}`}
             title="Propostas Legislativas"
             toolTipText={audiencesTotalToolTip}
             toolTipAriaLabel="Informação sobre o termo propostas legislativas"
@@ -413,7 +413,7 @@ function Wikilegis(props) {
         <Grid item xs={12} sm={6} md={3} className={classes.spacing}>
           <TotalFrame
             isLoaded={totalsAreLoaded}
-            info={`${audienciasTotalsData.messages_total}`}
+            info={`${wikilegisTotalsData.opinions_total}`}
             title="Opiniões"
             toolTipAriaLabel="Informação sobre o termo opiniões"
             toolTipText={messagesTotalToolTip}
@@ -422,7 +422,7 @@ function Wikilegis(props) {
         </Grid>
 
         <Grid item xs={12} sm={6} md={3} className={classes.spacing}>
-          <TotalFrame isLoaded={totalsAreLoaded} info={audienciasTotalsData.questions_total} title="Votos nas opiniões" />
+          <TotalFrame isLoaded={totalsAreLoaded} info={wikilegisTotalsData.votes_total} title="Votos nas opiniões" />
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>

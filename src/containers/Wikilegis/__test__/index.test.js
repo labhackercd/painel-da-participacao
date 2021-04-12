@@ -22,7 +22,7 @@ const dailySearchQuery = '?period=daily&start_date__year=2021&start_date__month=
 test('snapshot should not have changes', () => {
   let component;
   act(() => {
-    component = shallow(<MockTheme><Wikilegis data="mockdata" /></MockTheme>);
+    component = shallow(<MockTheme><Wikilegis responseDataRanking={[]} /></MockTheme>);
   });
   expect(component.exists()).toEqual(true);
   expect(component).toMatchSnapshot();
@@ -31,7 +31,7 @@ test('snapshot should not have changes', () => {
 test('Test if Audiencias renders without crash whole lifecycle', () => {
   let wrapper;
   act(() => {
-    wrapper = mount(<MockTheme><Wikilegis /></MockTheme>);
+    wrapper = mount(<MockTheme><Wikilegis responseDataRanking={[]} /></MockTheme>);
   });
   expect(wrapper.exists()).toEqual(true);
 });
