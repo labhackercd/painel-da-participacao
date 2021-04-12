@@ -102,7 +102,7 @@ export async function getStaticProps() {
 
       return { data: results, lastUpdate: getLastUpdateHour(new Date()) };
     } catch (err) {
-      return [];
+      return { data: [], lastUpdate: getLastUpdateHour(new Date()) };
     }
   }
 

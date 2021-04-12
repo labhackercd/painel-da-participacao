@@ -270,9 +270,9 @@ function Wikilegis(props) {
   }
 
   async function fetchAndSetParticipationChartData(query, period, month, year) {
-    const messagesResponse = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_MESSAGES_RANKING_URL}${query}`);
-    const questionsResponse = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_QUESTIONS_RANKING_URL}${query}`);
-    const questionsVotesResponse = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_VOTES_RANKING_URL}${query}`);
+    const messagesResponse = await axios.get(`${process.env.NEXT_PUBLIC_WIKILEGIS_OPINIONS_URL}${query}`);
+    const questionsResponse = await axios.get(`${process.env.NEXT_PUBLIC_WIKILEGIS_OPINIONS_URL}${query}`);
+    const questionsVotesResponse = await axios.get(`${process.env.NEXT_PUBLIC_WIKILEGIS_OPINIONS_URL}${query}`);
 
     const messagesData = messagesResponse.data.results;
     const questionsData = questionsResponse.data.results;
@@ -522,7 +522,7 @@ Wikilegis.propTypes = {
 };
 
 Wikilegis.defaultProps = {
-  responseDataRanking: [],
+  responseDataRanking: { data: [], lastUpdate: new Date() },
 };
 
 export default Wikilegis;

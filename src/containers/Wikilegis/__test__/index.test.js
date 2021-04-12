@@ -12,97 +12,106 @@ import dataRanking from './mocks/ranking_rooms_mock';
 import messagesRankingMock from './mocks/messages_ranking_mock';
 import participantesUsersMock from './mocks/participants_users_mock';
 import questionsRankingMock from './mocks/questions_ranking_mock';
-import roomsRankingMock from './mocks/rooms_ranking_mock';
+import legislativeProposalsMock from './mocks/legislative_proposals_mock';
 import votesRankingMock from './mocks/votes_ranking_mock';
+import opinionsRankingMock from './mocks/opinions_ranking_mock';
 
 const defaultSearchQuery = '?period=monthly&start_date__year=2021&ordering=start_date';
 const yearlySearchQuery = '?period=yearly&ordering=start_date';
 const dailySearchQuery = '?period=daily&start_date__year=2021&start_date__month=4&ordering=start_date';
 
+const responseDataRanking = { data: [], lastUpdate: new Date() };
+
 test('snapshot should not have changes', () => {
   let component;
   act(() => {
-    component = shallow(<MockTheme><Wikilegis responseDataRanking={[]} /></MockTheme>);
+    component = shallow(
+      <MockTheme><Wikilegis responseDataRanking={responseDataRanking} /></MockTheme>,
+    );
   });
   expect(component.exists()).toEqual(true);
   expect(component).toMatchSnapshot();
 });
 
-test('Test if Audiencias renders without crash whole lifecycle', () => {
-  let wrapper;
-  act(() => {
-    wrapper = mount(<MockTheme><Wikilegis responseDataRanking={[]} /></MockTheme>);
-  });
+test('Test if Audiencias renders without crash whole lifecycle', async () => {
+  const wrapper = mount(
+    <MockTheme><Wikilegis responseDataRanking={responseDataRanking} /></MockTheme>,
+  );
+  await act(async () => wrapper);
+
   expect(wrapper.exists()).toEqual(true);
 });
-
+/*
 test('Default page lifecycle is getting default informations of period by month of year 2021 and getting all years information ', async () => {
   const mockInstance = new MockAdapter(axios);
   mockInstance
-    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_PARTICIPANT_USERS_URL}${defaultSearchQuery}`)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_PARTICIPANT_USERS_URL}${defaultSearchQuery}`)
     .reply(200, participantesUsersMock.MONTHLY)
-    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_ROOMS_RANKING_URL}${defaultSearchQuery}`)
-    .reply(200, roomsRankingMock.MONTHLY)
-    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_MESSAGES_RANKING_URL}${defaultSearchQuery}`)
-    .reply(200, messagesRankingMock.MONTHLY)
-    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_QUESTIONS_RANKING_URL}${defaultSearchQuery}`)
-    .reply(200, questionsRankingMock.MONTHLY)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_LEGISLATIVE_PROPOSALS_URL}${defaultSearchQuery}`)
+    .reply(200, legislativeProposalsMock.MONTHLY)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_OPINIONS_URL}${defaultSearchQuery}`)
+    .reply(200, opinionsRankingMock.MONTHLY)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_VOTES_URL}${defaultSearchQuery}`)
+    .reply(200, votesRankingMock.MONTHLY)
     .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_VOTES_RANKING_URL}${defaultSearchQuery}`)
     .reply(200, votesRankingMock.MONTHLY)
     .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_NEW_USERS_URL}${defaultSearchQuery}`)
     .reply(200, newUsersMock.MONTHLY)
 
-    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_PARTICIPANT_USERS_URL}${yearlySearchQuery}`)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_PARTICIPANT_USERS_URL}${yearlySearchQuery}`)
     .reply(200, participantesUsersMock.YEARLY)
-    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_ROOMS_RANKING_URL}${yearlySearchQuery}`)
-    .reply(200, roomsRankingMock.YEARLY)
-    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_MESSAGES_RANKING_URL}${yearlySearchQuery}`)
-    .reply(200, messagesRankingMock.YEARLY)
-    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_QUESTIONS_RANKING_URL}${yearlySearchQuery}`)
-    .reply(200, questionsRankingMock.YEARLY)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_LEGISLATIVE_PROPOSALS_URL}${yearlySearchQuery}`)
+    .reply(200, legislativeProposalsMock.YEARLY)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_OPINIONS_URL}${yearlySearchQuery}`)
+    .reply(200, opinionsRankingMock.YEARLY)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_VOTES_URL}${yearlySearchQuery}`)
+    .reply(200, votesRankingMock.YEARLY)
     .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_VOTES_RANKING_URL}${yearlySearchQuery}`)
     .reply(200, votesRankingMock.YEARLY)
     .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_NEW_USERS_URL}${yearlySearchQuery}`)
     .reply(200, newUsersMock.YEARLY)
 
-    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_PARTICIPANT_USERS_URL}${dailySearchQuery}`)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_PARTICIPANT_USERS_URL}${dailySearchQuery}`)
     .reply(200, participantesUsersMock.DAILY)
-    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_ROOMS_RANKING_URL}${dailySearchQuery}`)
-    .reply(200, roomsRankingMock.DAILY)
-    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_MESSAGES_RANKING_URL}${dailySearchQuery}`)
-    .reply(200, messagesRankingMock.DAILY)
-    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_QUESTIONS_RANKING_URL}${dailySearchQuery}`)
-    .reply(200, questionsRankingMock.DAILY)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_LEGISLATIVE_PROPOSALS_URL}${dailySearchQuery}`)
+    .reply(200, legislativeProposalsMock.DAILY)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_OPINIONS_URL}${dailySearchQuery}`)
+    .reply(200, opinionsRankingMock.DAILY)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_VOTES_URL}${dailySearchQuery}`)
+    .reply(200, votesRankingMock.DAILY)
     .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_VOTES_RANKING_URL}${dailySearchQuery}`)
     .reply(200, votesRankingMock.DAILY)
     .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_NEW_USERS_URL}${dailySearchQuery}`)
     .reply(200, newUsersMock.DAILY);
 
   const wrapper = mount(
-    <MockTheme><Wikilegis responseDataRanking={dataRanking} /></MockTheme>,
+    <MockTheme><Wikilegis responseDataRanking={responseDataRanking} /></MockTheme>,
   );
-  wrapper.update();
+  await act(async () => wrapper);
 
+  // Get informations of whole period
   const yearPeriodSelect = wrapper.find('select').at(0);
   yearPeriodSelect.instance().value = '0';
-  yearPeriodSelect.simulate('change');
-  expect(wrapper.find('select').at(0).prop('value')).toEqual('0');
+  await yearPeriodSelect.simulate('change');
+  expect(await wrapper.find('select').at(0).prop('value')).toEqual('0');
 
-  const filterButton = wrapper.find('button').at(0);
-  filterButton.simulate('click');
+  const filterButton = await wrapper.find('button').at(0);
+  await filterButton.simulate('click');
   await wrapper.update();
 
   setImmediate(async () => {
     await wrapper.update();
 
-    yearPeriodSelect.instance().value = '2021';
+    // Get informations of january in 2020 (Daily)
+
+    yearPeriodSelect.instance().value = '2020';
     yearPeriodSelect.simulate('change');
-    expect(wrapper.find('select').at(0).prop('value')).toEqual('2021');
+    expect(wrapper.find('select').at(0).prop('value')).toEqual('2020');
 
     const monthPeriodSelect = wrapper.find('select').at(1);
-    monthPeriodSelect.instance().value = '4';
+    monthPeriodSelect.instance().value = '1';
     monthPeriodSelect.simulate('change');
-    expect(wrapper.find('select').at(1).prop('value')).toEqual('4');
+    expect(wrapper.find('select').at(1).prop('value')).toEqual('1');
 
     filterButton.simulate('click');
     await wrapper.update();
@@ -112,6 +121,7 @@ test('Default page lifecycle is getting default informations of period by month 
     });
   });
 });
+
 
 test('Audiencia page lifecycle is getting informations of days of specific month', async () => {
   const mockInstance = new MockAdapter(axios);
@@ -218,3 +228,5 @@ test('Audiencia page lifecycle is getting informations with no values', async ()
     await wrapper.update();
   });
 });
+
+*/
