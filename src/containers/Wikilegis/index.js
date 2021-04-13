@@ -29,6 +29,8 @@ import {
   WIKILEGIS_INITIAL_YEAR,
 } from '../../services/constants/constants';
 
+import {rankingWikilegisColumns} from './settings';
+
 import customTheme from '../../../styles/theme';
 
 const useStyles = makeStyles((theme) => ({
@@ -311,7 +313,7 @@ function Wikilegis(props) {
     }
   }
 
-  async function filterAndSetRoomsRankingData(period, month, year) {
+  async function filterAndSetDocumentsRankingData(period, month, year) {
     // to be implemented
     let resultArray = [];
     const allRooms = props.responseDataRanking.data;
@@ -319,7 +321,7 @@ function Wikilegis(props) {
     switch (period) {
       case dailyKeyWord:
         resultArray = await allRooms.filter((value) => {
-          const [valueYear, valueMonth] = value.date.split('-'); // Or, var month = e.date.split('-')[1];
+          const [valueYear, valueMonth] = value.openning_date.split('-'); // Or, var month = e.date.split('-')[1];
           return (
             (parseInt(month, 10) === parseInt(valueMonth, 10))
             && (parseInt(year, 10) === parseInt(valueYear, 10))
@@ -328,7 +330,7 @@ function Wikilegis(props) {
         break;
       case monthlyKeyWord:
         resultArray = await allRooms.filter((value) => {
-          const [valueYear] = value.date.split('-'); // Or, var month = e.date.split('-')[1];
+          const [valueYear] = value.openning_date.split('-'); // Or, var month = e.date.split('-')[1];
           return (parseInt(year, 10) === parseInt(valueYear, 10));
         });
         break;
@@ -363,7 +365,7 @@ function Wikilegis(props) {
     fetchAndSetWikilegisTotalsData(query);
     fetchAndSetNewUsersChartData(query, period);
     fetchAndSetParticipationChartData(query, period, month, year);
-    filterAndSetRoomsRankingData(period, month, year);
+    filterAndSetDocumentsRankingData(period, month, year);
   }
 
   async function handlePeriodChange(month, year) {
@@ -465,11 +467,11 @@ function Wikilegis(props) {
               exportData={roomsRankingData}
               download
               align="center"
-              apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
+              apiUrl={process.env.NEXT_PUBLIC_WIKILEGIS_SWAGGER_URL}
               apiLastUpdate={roomsRankingDataLastUpdate}
             >
               <Box width="100%" height="90%">
-                <RankingTable data={roomsRankingData} />
+                <RankingTable data={roomsRankingData} columns={rankingWikilegisColumns} />
               </Box>
             </ChartDataFrame>
           ) : (

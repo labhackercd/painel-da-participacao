@@ -30,6 +30,8 @@ import {
   AUDIENCIAS_INITIAL_YEAR,
 } from '../../services/constants/constants';
 
+import { rankingAudienciaColumns } from './settings';
+
 import customTheme from '../../../styles/theme';
 
 const useStyles = makeStyles((theme) => ({
@@ -447,7 +449,7 @@ function Audiencias(props) {
               apiLastUpdate={roomsRankingDataLastUpdate}
             >
               <Box width="100%" height="90%">
-                <RankingTable data={roomsRankingData} />
+                <RankingTable data={roomsRankingData} columns={rankingAudienciaColumns} />
               </Box>
             </ChartDataFrame>
           ) : (
