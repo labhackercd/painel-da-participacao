@@ -19,7 +19,8 @@ import NoDataForSelectedPeriod from '../../components/Informations/NoDataForSele
 import GoogleChartFrame from './auxComponentes';
 
 import {
-  participantsTotalToolTip, messagesTotalToolTip, audiencesTotalToolTip, audiencesRankingToolTip,
+  wikilegisParticipantsToolTip, wikilegisOpinionsToolTip, wikilegisVotesToolTip,
+  wikilegisRankingToolTip, wikilegisLegislativeProposesToolTip,
 } from '../../services/texts/tooltips';
 
 import {
@@ -393,7 +394,7 @@ function Wikilegis(props) {
             isLoaded={totalsAreLoaded}
             info={`${wikilegisTotalsData.participants_total}`}
             title="Participantes"
-            toolTipText={participantsTotalToolTip}
+            toolTipText={wikilegisParticipantsToolTip}
             toolTipAriaLabel="Informação sobre o termo participantes"
             toolTipColor={customTheme.palette.wikilegis.jade}
           />
@@ -404,7 +405,7 @@ function Wikilegis(props) {
             isLoaded={totalsAreLoaded}
             info={`${wikilegisTotalsData.legis_propo_total}`}
             title="Propostas Legislativas"
-            toolTipText={audiencesTotalToolTip}
+            toolTipText={wikilegisLegislativeProposesToolTip}
             toolTipAriaLabel="Informação sobre o termo propostas legislativas"
             toolTipColor={customTheme.palette.wikilegis.jade}
           />
@@ -416,13 +417,20 @@ function Wikilegis(props) {
             info={`${wikilegisTotalsData.opinions_total}`}
             title="Opiniões"
             toolTipAriaLabel="Informação sobre o termo opiniões"
-            toolTipText={messagesTotalToolTip}
+            toolTipText={wikilegisOpinionsToolTip}
             toolTipColor={customTheme.palette.wikilegis.jade}
           />
         </Grid>
 
         <Grid item xs={12} sm={6} md={3} className={classes.spacing}>
-          <TotalFrame isLoaded={totalsAreLoaded} info={wikilegisTotalsData.votes_total} title="Votos nas opiniões" />
+          <TotalFrame
+            isLoaded={totalsAreLoaded}
+            info={wikilegisTotalsData.votes_total}
+            title="Votos nas opiniões"
+            toolTipAriaLabel="Informação sobre o termo votos na Wikilegis"
+            toolTipText={wikilegisVotesToolTip}
+            toolTipColor={customTheme.palette.wikilegis.jade}
+          />
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
@@ -446,7 +454,7 @@ function Wikilegis(props) {
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <Sectionheader classes={classes} title="Ranking das audiências" toolTipText={audiencesRankingToolTip} toolTipColor={customTheme.palette.wikilegis.jade} />
+          <Sectionheader classes={classes} title="Ranking das audiências" toolTipText={wikilegisRankingToolTip} toolTipColor={customTheme.palette.wikilegis.jade} />
           {(roomsRankingData !== undefined && roomsRankingData.length > 0) ? (
             <ChartDataFrame
               height="30vh"
