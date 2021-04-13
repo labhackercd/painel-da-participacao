@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable max-len */
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
@@ -41,6 +43,7 @@ test('Test if Audiencias renders without crash whole lifecycle', async () => {
 
   expect(wrapper.exists()).toEqual(true);
 });
+
 /*
 test('Default page lifecycle is getting default informations of period by month of year 2021 and getting all years information ', async () => {
   const mockInstance = new MockAdapter(axios);
@@ -121,7 +124,6 @@ test('Default page lifecycle is getting default informations of period by month 
     });
   });
 });
-
 
 test('Audiencia page lifecycle is getting informations of days of specific month', async () => {
   const mockInstance = new MockAdapter(axios);
