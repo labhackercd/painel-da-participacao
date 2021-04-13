@@ -51,6 +51,7 @@ describe('Test getParticipationChartDataByYear function', () => {
     const resultArray = await getParticipationChartDataByYear(
       messagesRankingMock.YEARLY.results, questionsRankingMock.YEARLY.results,
       votesRankingMock.YEARLY.results,
+      2016,
     );
     expect(resultArray).not.toBe(null);
     expect(resultArray.length).not.toBe(1);

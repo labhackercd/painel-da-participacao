@@ -51,9 +51,9 @@ export async function getParticipationChartDataByMonth(month, year, messagesData
   return resultArray;
 }
 
-export async function getParticipationChartDataByYear(messagesData, questionsData, questionsVoteData) {
+export async function getParticipationChartDataByYear(messagesData, questionsData, questionsVoteData, initialYear) {
   const resultArray = [];
-  const begginingYear = 2016;
+  const begginingYear = initialYear;
   const currentYear = new Date().getFullYear();
 
   for (let i = begginingYear; i <= currentYear; i += 1) {

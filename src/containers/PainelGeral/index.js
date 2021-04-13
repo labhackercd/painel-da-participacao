@@ -358,6 +358,7 @@ function PainelGeral() {
         year={defaultYear}
         monthPeriod={defaultMonthPeriod}
         headerColors={headerColors}
+        initialYear={2017}
       />
       <Grid container spacing={1} className={classes.spacingContainer}>
         <Grid item xs={12} sm={6} md={3} className={classes.spacing}>

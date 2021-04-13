@@ -1,3 +1,5 @@
+export const AUDIENCIAS_INITIAL_YEAR = 2016;
+export const WIKILEGIS_INITIAL_YEAR = 2019;
 export const MONTHS_LIST = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 export const MONTHS_ABBREVIATED_LIST = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
 export const DEFAULT_YEAR = new Date().getFullYear().toString();
