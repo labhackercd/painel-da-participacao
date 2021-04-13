@@ -37,6 +37,7 @@ test('Test if Header renders without crash', () => {
         year="2021"
         monthPeriod="1"
         headerColors={headerColors}
+        initialYear={2016}
       />
     </MockTheme>, div,
   );
@@ -51,6 +52,7 @@ test('test onchange of year select input field', () => {
         year="2021"
         monthPeriod="1"
         headerColors={headerColors}
+        initialYear={2019}
       />
     </MockTheme>,
   );
@@ -68,6 +70,7 @@ test('Test onchange of Year Period select input field', () => {
         year="2021"
         monthPeriod="1"
         headerColors={headerColors}
+        initialYear={2016}
       />
     </MockTheme>,
   );

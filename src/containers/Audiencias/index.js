@@ -27,6 +27,7 @@ import {
 import {
   MONTHS_LIST, MONTHS_ABBREVIATED_LIST, DEFAULT_YEAR, DEFAULT_SELECTED_PERIOD_TYPE,
   DEFAULT_MONTH_PERIOD, DEFAULT_SEARCH_QUERY, DAILY_KEY_WORD, MONTHLY_KEY_WORD,
+  AUDIENCIAS_INITIAL_YEAR,
 } from '../../services/constants/constants';
 
 import customTheme from '../../../styles/theme';
@@ -284,7 +285,7 @@ function Audiencias(props) {
         break;
       default: // yearly -> Total period
         arrayData = await getParticipationChartDataByYear(
-          messagesData, questionsData, questionsVoteData,
+          messagesData, questionsData, questionsVoteData, AUDIENCIAS_INITIAL_YEAR,
         );
         break;
     }
@@ -372,6 +373,7 @@ function Audiencias(props) {
         year={defaultYear}
         monthPeriod={defaultMonthPeriod}
         headerColors={headerColors}
+        initialYear={AUDIENCIAS_INITIAL_YEAR}
       />
       <Grid container spacing={1} className={classes.spacingContainer}>
         <Grid item xs={12} sm={6} md={3} className={classes.spacing}>

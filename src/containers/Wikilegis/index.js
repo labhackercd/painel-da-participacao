@@ -26,6 +26,7 @@ import {
 import {
   MONTHS_LIST, MONTHS_ABBREVIATED_LIST, DEFAULT_YEAR, DEFAULT_SELECTED_PERIOD_TYPE,
   DEFAULT_MONTH_PERIOD, DEFAULT_SEARCH_QUERY, DAILY_KEY_WORD, MONTHLY_KEY_WORD,
+  WIKILEGIS_INITIAL_YEAR,
 } from '../../services/constants/constants';
 
 import customTheme from '../../../styles/theme';
@@ -295,7 +296,7 @@ function Wikilegis(props) {
         break;
       default: // yearly -> Total period
         arrayData = await getParticipationChartDataByYear(
-          messagesData, questionsData, questionsVoteData,
+          messagesData, questionsData, questionsVoteData, WIKILEGIS_INITIAL_YEAR,
         );
         break;
     }
@@ -351,7 +352,7 @@ function Wikilegis(props) {
         break;
       default: // yearly -> Total period
         setPeriodSubTitle(
-          `2016 a ${(todayDate.getFullYear())}`,
+          `${WIKILEGIS_INITIAL_YEAR} a ${(todayDate.getFullYear())}`,
         );
         break;
     }
@@ -383,6 +384,7 @@ function Wikilegis(props) {
         year={defaultYear}
         monthPeriod={defaultMonthPeriod}
         headerColors={headerColors}
+        initialYear={WIKILEGIS_INITIAL_YEAR}
       />
       <Grid container spacing={1} className={classes.spacingContainer}>
         <Grid item xs={12}>

@@ -69,12 +69,13 @@ export default function Header(props) {
   const colors = props.headerColors;
 
   const classes = useStyles({ colors });
-  const [year, setYear] = useState(new Date().getFullYear().toString());
+  const currentYear = new Date().getFullYear();
+  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear().toString());
   const [month, setMonth] = useState('0');
   const [selectMonthDisabled, setSelectMonthDisabled] = useState(false);
 
   const handleChangeYear = (event) => {
-    setYear(event.target.value);
+    setSelectedYear(event.target.value);
     if (event.target.value === '0') {
       setMonth('0');
       setSelectMonthDisabled(true);
@@ -89,8 +90,12 @@ export default function Header(props) {
 
   const handleSubmit = () => {
     // eslint-disable-next-line react/prop-types
-    props.handlePeriodChange(month, year);
+    props.handlePeriodChange(month, selectedYear);
   };
+
+  // eslint-disable-next-line max-len
+  const rangeOfYears = (start, end) => Array(end - start + 1).fill(start).map((year2, index) => year2 + index);
+  const yearsRange = rangeOfYears(props.initialYear, currentYear);
 
   return (
     <>
@@ -102,7 +107,7 @@ export default function Header(props) {
               <Select
                 id="select-year"
                 labelId="year-label"
-                value={year}
+                value={selectedYear}
                 native
                 onChange={handleChangeYear}
                 input={<InputBase className={classes.inputBase} />}
@@ -116,12 +121,7 @@ export default function Header(props) {
                 }}
               >
                 <option value="0">Todo o Período</option>
-                <option value="2021">2021</option>
-                <option value="2020">2020</option>
-                <option value="2019">2019</option>
-                <option value="2018">2018</option>
-                <option value="2017">2017</option>
-                <option value="2016">2016</option>
+                {yearsRange.map((item) => <option key={`year${item}`} value={item}>{item}</option>)}
               </Select>
             </FormControl>
             <FormControl id="form-control-month" className={classes.formControl}>
