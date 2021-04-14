@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!your-module-name)/\"",
+    "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!your-module-name)/\" --silent",
     "eject": "react-scripts eject",
     "lint": "eslint ./",
     "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls"

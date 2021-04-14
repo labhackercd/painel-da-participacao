@@ -66,7 +66,7 @@ export default function ChartDataFrame(props) {
 
   const {
     // eslint-disable-next-line react/prop-types
-    height, children, title, download, exportData, align, apiUrl, apiLastUpdate,
+    height, children, title, download, exportData, align, apiUrl, apiLastUpdate, tool,
   } = props;
 
   return (
@@ -102,7 +102,7 @@ export default function ChartDataFrame(props) {
             target="_blank"
             rel="noopener noreferrer"
           >
-            API Audiências
+            {`API ${tool}`}
           </a>
 
           {`  Atualizado em: ${apiLastUpdate}`}
