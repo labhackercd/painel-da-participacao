@@ -29,7 +29,7 @@ import {
   WIKILEGIS_INITIAL_YEAR,
 } from '../../services/constants/constants';
 
-import {rankingWikilegisColumns} from './settings';
+import { rankingWikilegisColumns } from './settings';
 
 import customTheme from '../../../styles/theme';
 
