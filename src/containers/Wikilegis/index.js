@@ -8,7 +8,11 @@ import ChartDataFrame from '../../components/ChartDataFrame/index';
 import Header from '../../components/Header/index';
 import RankingTable from '../../components/RankingTable/index';
 import GoogleChart from '../../components/Charts/GoogleChart';
-import { getParticipationChartDataByDay, getParticipationChartDataByMonth, getParticipationChartDataByYear } from '../../services/functions/auxFunctions/index';
+import {
+  getWikilegisParticipationChartDataByDay,
+  getWikilegisParticipationChartDataByMonth,
+  getWikilegisParticipationChartDataByYear,
+} from '../../services/functions/auxFunctions/index';
 
 import { handleUpdatePeriodSearchQuery } from '../../services/functions/handlers/index';
 
@@ -257,15 +261,13 @@ function Wikilegis(props) {
     }
   }
 
-  function getApiLastUpdateDateAndHour(messagesData, questionsData, questionsVoteData) {
+  function getApiLastUpdateDateAndHour(opinionsData, voteData) {
     let lastUpdate = '';
 
-    if (messagesData.length > 0) {
-      lastUpdate = messagesData[0].modified;
-    } else if (questionsData.length > 0) {
-      lastUpdate = questionsData[0].modified;
-    } else if (questionsVoteData.length > 0) {
-      lastUpdate = questionsVoteData[0].modified;
+    if (opinionsData.length > 0) {
+      lastUpdate = opinionsData[0].modified;
+    } else if (voteData.length > 0) {
+      lastUpdate = voteData[0].modified;
     } else {
       lastUpdate = '-';
     }
@@ -274,31 +276,29 @@ function Wikilegis(props) {
   }
 
   async function fetchAndSetParticipationChartData(query, period, month, year) {
-    const messagesResponse = await axios.get(`${process.env.NEXT_PUBLIC_WIKILEGIS_OPINIONS_URL}${query}`);
-    const questionsResponse = await axios.get(`${process.env.NEXT_PUBLIC_WIKILEGIS_OPINIONS_URL}${query}`);
-    const questionsVotesResponse = await axios.get(`${process.env.NEXT_PUBLIC_WIKILEGIS_OPINIONS_URL}${query}`);
+    const opinionsResponse = await axios.get(`${process.env.NEXT_PUBLIC_WIKILEGIS_OPINIONS_URL}${query}`);
+    const votesResponse = await axios.get(`${process.env.NEXT_PUBLIC_WIKILEGIS_VOTES_URL}${query}`);
 
-    const messagesData = messagesResponse.data.results;
-    const questionsData = questionsResponse.data.results;
-    const questionsVoteData = questionsVotesResponse.data.results;
+    const opinionsData = opinionsResponse.data.results;
+    const voteData = votesResponse.data.results;
 
     let arrayData = [];
-    const collumPeriodTitle = ['Data', 'Mensagens do chat', 'Perguntas', 'Votos nas Perguntas'];
+    const collumPeriodTitle = ['Data', 'Opiniões', 'Votos'];
 
     switch (period) {
       case dailyKeyWord:
-        arrayData = await getParticipationChartDataByDay(
-          month, year, messagesData, questionsData, questionsVoteData,
+        arrayData = await getWikilegisParticipationChartDataByDay(
+          month, year, opinionsData, voteData,
         );
         break;
       case monthlyKeyWord:
-        arrayData = await getParticipationChartDataByMonth(
-          month, year, messagesData, questionsData, questionsVoteData,
+        arrayData = await getWikilegisParticipationChartDataByMonth(
+          month, year, opinionsData, voteData,
         );
         break;
       default: // yearly -> Total period
-        arrayData = await getParticipationChartDataByYear(
-          messagesData, questionsData, questionsVoteData, WIKILEGIS_INITIAL_YEAR,
+        arrayData = await getWikilegisParticipationChartDataByYear(
+          opinionsData, voteData, WIKILEGIS_INITIAL_YEAR,
         );
         break;
     }
@@ -306,7 +306,7 @@ function Wikilegis(props) {
     if (arrayData.length > 0) {
       setParticipantionChartData([collumPeriodTitle].concat(arrayData));
       setParticipantionChartDataLastUpdate(
-        getApiLastUpdateDateAndHour(messagesData, questionsData, questionsVoteData),
+        getApiLastUpdateDateAndHour(opinionsData, voteData),
       );
     } else {
       setParticipantionChartData(arrayData);
