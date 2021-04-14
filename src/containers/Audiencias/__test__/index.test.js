@@ -79,7 +79,9 @@ test('Default page lifecycle is getting default informations of period by month 
     .reply(200, newUsersMock.DAILY);
 
   const wrapper = mount(
-    <MockTheme><Audiencias responseDataRanking={dataRanking} /></MockTheme>,
+    <MockTheme>
+      <Audiencias responseDataRanking={{ data: dataRanking, lastUpdate: new Date() }} />
+    </MockTheme>,
   );
   wrapper.update();
 
@@ -143,7 +145,9 @@ test('Audiencia page lifecycle is getting informations of days of specific month
     .reply(200, newUsersMock.DAILY);
 
   const wrapper = mount(
-    <MockTheme><Audiencias responseDataRanking={dataRanking} /></MockTheme>,
+    <MockTheme>
+      <Audiencias responseDataRanking={{ data: dataRanking, lastUpdate: new Date() }} />
+    </MockTheme>,
   );
   wrapper.update();
 
