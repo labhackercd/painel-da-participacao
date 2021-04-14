@@ -448,6 +448,7 @@ function Wikilegis(props) {
             align="center"
             apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
             apiLastUpdate={participantionChartDataLastUpdate}
+            tool="Wikilegis"
           >
             <GoogleChart
               chartType={audiencesWithMoreParticipation.chartType}
@@ -458,7 +459,7 @@ function Wikilegis(props) {
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <Sectionheader classes={classes} title="Ranking das audiências" toolTipText={wikilegisRankingToolTip} toolTipColor={customTheme.palette.wikilegis.jade} />
+          <Sectionheader classes={classes} title="Ranking das propostas legislativas" toolTipText={wikilegisRankingToolTip} toolTipColor={customTheme.palette.wikilegis.jade} />
           {(roomsRankingData !== undefined && roomsRankingData.length > 0) ? (
             <ChartDataFrame
               height="30vh"
@@ -469,13 +470,14 @@ function Wikilegis(props) {
               align="center"
               apiUrl={process.env.NEXT_PUBLIC_WIKILEGIS_SWAGGER_URL}
               apiLastUpdate={roomsRankingDataLastUpdate}
+              tool="Wikilegis"
             >
               <Box width="100%" height="90%">
                 <RankingTable data={roomsRankingData} columns={rankingWikilegisColumns} />
               </Box>
             </ChartDataFrame>
           ) : (
-            <NoDataForSelectedPeriod title="Salas" />
+            <NoDataForSelectedPeriod title={periodSubTitle} tool="Wikilegis" />
           )}
         </Grid>
 
@@ -497,6 +499,7 @@ function Wikilegis(props) {
                 exportData={newUsersChartData}
                 download
                 apiLastUpdate={newUsersChartDataLastUpdate}
+                tool="Wikilegis"
               />
             </div>
           ) : (
@@ -518,6 +521,7 @@ function Wikilegis(props) {
                 chartType={audiencesChartsUsersSettings.chartType}
                 chartOptions={audiencesChartsUsersSettings.options}
                 apiLastUpdate={totalUsersChartDataLastUpdate}
+                tool="Wikilegis"
               />
             </div>
           ) : (

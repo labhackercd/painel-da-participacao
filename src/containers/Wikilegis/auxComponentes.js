@@ -7,7 +7,7 @@ import GoogleChart from '../../components/Charts/GoogleChart';
 
 export default function GoogleChartFrame(props) {
   const {
-    isLoaded, title, classes, data, chartType, chartOptions, exportData, apiLastUpdate,
+    isLoaded, title, classes, data, chartType, chartOptions, exportData, apiLastUpdate, tool,
   } = props;
 
   return (
@@ -21,6 +21,7 @@ export default function GoogleChartFrame(props) {
         align="center"
         apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
         apiLastUpdate={apiLastUpdate}
+        tool={tool}
       >
         {isLoaded ? (
           <div className={classes.contentBox}>
@@ -49,6 +50,7 @@ GoogleChartFrame.propTypes = {
   chartOptions: PropTypes.object,
   exportData: PropTypes.array,
   apiLastUpdate: PropTypes.string,
+  tool: PropTypes.string,
 };
 
 GoogleChartFrame.defaultProps = {
@@ -60,4 +62,5 @@ GoogleChartFrame.defaultProps = {
   chartOptions: {},
   exportData: [],
   apiLastUpdate: 'Carregando',
+  tool: 'e-Democracia',
 };
