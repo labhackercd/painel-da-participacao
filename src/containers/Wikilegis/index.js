@@ -220,7 +220,7 @@ function Wikilegis(props) {
   }
 
   async function fetchAndSetNewUsersChartData(query, period) {
-    const url = `${process.env.NEXT_PUBLIC_AUDIENCIAS_NEW_USERS_URL}${query}`;
+    const url = `${process.env.NEXT_PUBLIC_WIKILEGIS_NEW_USERS_URL}${query}`;
     const newUsersTotalResponse = await axios.get(url);
     const values = newUsersTotalResponse.data.results;
     let arrayData = [];
