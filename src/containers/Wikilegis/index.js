@@ -381,7 +381,7 @@ function Wikilegis(props) {
   return (
     <>
       <Header
-        title="Audiências Interativas"
+        title="Wikilegis"
         handlePeriodChange={handlePeriodChange}
         year={defaultYear}
         monthPeriod={defaultMonthPeriod}

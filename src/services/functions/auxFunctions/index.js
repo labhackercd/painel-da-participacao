@@ -153,27 +153,3 @@ export async function getWikilegisParticipationChartDataByYear(opinionsData, vot
     return resultArray;
   }
 }
-
-export async function handleUpdatePeriodSearchQuery(month, year) {
-  const paramMonth = month.toString();
-  const paramYear = year.toString();
-  let query = '';
-  let period = '';
-
-  try {
-    if (paramYear === '0') {
-      query = '?period=yearly&ordering=start_date';
-      period = 'yearly';
-    } else if ((paramYear !== '0') && (paramMonth === '0')) {
-      query = `?period=monthly&start_date__year=${year}&ordering=start_date`;
-      period = 'monthly';
-    } else { // (yearPeriod !== '0') && (monthPeriod !== '0')
-      query = `?period=daily&start_date__year=${year}&start_date__month=${month}&ordering=start_date`;
-      period = 'daily';
-    }
-  } catch (e) {
-    return { query, period };
-  }
-
-  return { query, period };
-}

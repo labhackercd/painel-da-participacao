@@ -36,6 +36,14 @@ describe('Test Bar Chart', () => {
     const div = document.createElement('div');
     ReactDOM.render(<GoogleChart chartType="BarChart" data={barChartdata.values} options={barChartdata.options} />, div);
   });
+
+  test('Google Charts error as it has undefined parameters', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(
+      <GoogleChart chartType={undefined} data={[[], []]} options={undefined} />,
+      div,
+    );
+  });
 });
 /*
 describe('Test Calendar Heat Chart', () => {

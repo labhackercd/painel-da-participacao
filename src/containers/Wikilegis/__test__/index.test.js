@@ -8,21 +8,19 @@ import MockAdapter from 'axios-mock-adapter';
 import MockTheme from '../../../components/mockTheme';
 import Wikilegis from '../index';
 
-import newUsersMock from './mocks/new_users_mock';
-import dataRanking from './mocks/ranking_rooms_mock';
+import newUsersMock from './__mocks__/new_users_mock';
 
-import messagesRankingMock from './mocks/messages_ranking_mock';
-import participantesUsersMock from './mocks/participants_users_mock';
-import questionsRankingMock from './mocks/questions_ranking_mock';
-import legislativeProposalsMock from './mocks/legislative_proposals_mock';
-import votesRankingMock from './mocks/votes_ranking_mock';
-import opinionsRankingMock from './mocks/opinions_ranking_mock';
+import participantesUsersMock from './__mocks__/participants_users_mock';
+import legislativeProposalsMock from './__mocks__/legislative_proposals_mock';
+import votesRankingMock from './__mocks__/votes_ranking_mock';
+import opinionsRankingMock from './__mocks__/opinions_ranking_mock';
+import documentsRanking from './__mocks__/documents_ranking';
 
 const defaultSearchQuery = '?period=monthly&start_date__year=2021&ordering=start_date';
 const yearlySearchQuery = '?period=yearly&ordering=start_date';
 const dailySearchQuery = '?period=daily&start_date__year=2021&start_date__month=4&ordering=start_date';
 
-const responseDataRanking = { data: [], lastUpdate: new Date() };
+const responseDataRanking = { data: documentsRanking, lastUpdate: '15/03/2021 15:05' };
 
 test('snapshot should not have changes', () => {
   let component;
@@ -44,7 +42,6 @@ test('Test if Audiencias renders without crash whole lifecycle', async () => {
   expect(wrapper.exists()).toEqual(true);
 });
 
-/*
 test('Default page lifecycle is getting default informations of period by month of year 2021 and getting all years information ', async () => {
   const mockInstance = new MockAdapter(axios);
   mockInstance
@@ -56,9 +53,7 @@ test('Default page lifecycle is getting default informations of period by month 
     .reply(200, opinionsRankingMock.MONTHLY)
     .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_VOTES_URL}${defaultSearchQuery}`)
     .reply(200, votesRankingMock.MONTHLY)
-    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_VOTES_RANKING_URL}${defaultSearchQuery}`)
-    .reply(200, votesRankingMock.MONTHLY)
-    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_NEW_USERS_URL}${defaultSearchQuery}`)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_NEW_USERS_URL}${defaultSearchQuery}`)
     .reply(200, newUsersMock.MONTHLY)
 
     .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_PARTICIPANT_USERS_URL}${yearlySearchQuery}`)
@@ -69,9 +64,7 @@ test('Default page lifecycle is getting default informations of period by month 
     .reply(200, opinionsRankingMock.YEARLY)
     .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_VOTES_URL}${yearlySearchQuery}`)
     .reply(200, votesRankingMock.YEARLY)
-    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_VOTES_RANKING_URL}${yearlySearchQuery}`)
-    .reply(200, votesRankingMock.YEARLY)
-    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_NEW_USERS_URL}${yearlySearchQuery}`)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_NEW_USERS_URL}${yearlySearchQuery}`)
     .reply(200, newUsersMock.YEARLY)
 
     .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_PARTICIPANT_USERS_URL}${dailySearchQuery}`)
@@ -82,9 +75,7 @@ test('Default page lifecycle is getting default informations of period by month 
     .reply(200, opinionsRankingMock.DAILY)
     .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_VOTES_URL}${dailySearchQuery}`)
     .reply(200, votesRankingMock.DAILY)
-    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_VOTES_RANKING_URL}${dailySearchQuery}`)
-    .reply(200, votesRankingMock.DAILY)
-    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_NEW_USERS_URL}${dailySearchQuery}`)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_NEW_USERS_URL}${dailySearchQuery}`)
     .reply(200, newUsersMock.DAILY);
 
   const wrapper = mount(
@@ -128,34 +119,30 @@ test('Default page lifecycle is getting default informations of period by month 
 test('Audiencia page lifecycle is getting informations of days of specific month', async () => {
   const mockInstance = new MockAdapter(axios);
   mockInstance
-    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_PARTICIPANT_USERS_URL}${defaultSearchQuery}`)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_PARTICIPANT_USERS_URL}${defaultSearchQuery}`)
     .reply(200, participantesUsersMock.MONTHLY)
-    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_ROOMS_RANKING_URL}${defaultSearchQuery}`)
-    .reply(200, roomsRankingMock.MONTHLY)
-    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_MESSAGES_RANKING_URL}${defaultSearchQuery}`)
-    .reply(200, messagesRankingMock.MONTHLY)
-    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_QUESTIONS_RANKING_URL}${defaultSearchQuery}`)
-    .reply(200, questionsRankingMock.MONTHLY)
-    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_VOTES_RANKING_URL}${defaultSearchQuery}`)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_LEGISLATIVE_PROPOSALS_URL}${defaultSearchQuery}`)
+    .reply(200, legislativeProposalsMock.MONTHLY)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_OPINIONS_URL}${defaultSearchQuery}`)
+    .reply(200, opinionsRankingMock.MONTHLY)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_VOTES_URL}${defaultSearchQuery}`)
     .reply(200, votesRankingMock.MONTHLY)
-    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_NEW_USERS_URL}${defaultSearchQuery}`)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_NEW_USERS_URL}${defaultSearchQuery}`)
     .reply(200, newUsersMock.MONTHLY)
 
-    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_PARTICIPANT_USERS_URL}${dailySearchQuery}`)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_PARTICIPANT_USERS_URL}${dailySearchQuery}`)
     .reply(200, participantesUsersMock.DAILY)
-    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_ROOMS_RANKING_URL}${dailySearchQuery}`)
-    .reply(200, roomsRankingMock.DAILY)
-    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_MESSAGES_RANKING_URL}${dailySearchQuery}`)
-    .reply(200, messagesRankingMock.DAILY)
-    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_QUESTIONS_RANKING_URL}${dailySearchQuery}`)
-    .reply(200, questionsRankingMock.DAILY)
-    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_VOTES_RANKING_URL}${dailySearchQuery}`)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_LEGISLATIVE_PROPOSALS_URL}${dailySearchQuery}`)
+    .reply(200, legislativeProposalsMock.DAILY)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_OPINIONS_URL}${dailySearchQuery}`)
+    .reply(200, opinionsRankingMock.DAILY)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_VOTES_URL}${dailySearchQuery}`)
     .reply(200, votesRankingMock.DAILY)
-    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_NEW_USERS_URL}${dailySearchQuery}`)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_NEW_USERS_URL}${dailySearchQuery}`)
     .reply(200, newUsersMock.DAILY);
 
   const wrapper = mount(
-    <MockTheme><Wikilegis responseDataRanking={dataRanking} /></MockTheme>,
+    <MockTheme><Wikilegis responseDataRanking={responseDataRanking} /></MockTheme>,
   );
   wrapper.update();
 
@@ -181,34 +168,29 @@ test('Audiencia page lifecycle is getting informations of days of specific month
 test('Audiencia page lifecycle is getting informations with no values', async () => {
   const mockInstance = new MockAdapter(axios);
   mockInstance
-    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_PARTICIPANT_USERS_URL}${defaultSearchQuery}`)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_PARTICIPANT_USERS_URL}${defaultSearchQuery}`)
     .reply(200, [])
-    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_ROOMS_RANKING_URL}${defaultSearchQuery}`)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_LEGISLATIVE_PROPOSALS_URL}${defaultSearchQuery}`)
     .reply(200, [])
-    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_MESSAGES_RANKING_URL}${defaultSearchQuery}`)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_OPINIONS_URL}${defaultSearchQuery}`)
     .reply(200, [])
-    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_QUESTIONS_RANKING_URL}${defaultSearchQuery}`)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_VOTES_URL}${defaultSearchQuery}`)
     .reply(200, [])
-    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_VOTES_RANKING_URL}${defaultSearchQuery}`)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_NEW_USERS_URL}${defaultSearchQuery}`)
     .reply(200, [])
-    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_NEW_USERS_URL}${defaultSearchQuery}`)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_PARTICIPANT_USERS_URL}${dailySearchQuery}`)
     .reply(200, [])
-
-    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_PARTICIPANT_USERS_URL}${dailySearchQuery}`)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_LEGISLATIVE_PROPOSALS_URL}${dailySearchQuery}`)
     .reply(200, [])
-    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_ROOMS_RANKING_URL}${dailySearchQuery}`)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_OPINIONS_URL}${dailySearchQuery}`)
     .reply(200, [])
-    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_MESSAGES_RANKING_URL}${dailySearchQuery}`)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_VOTES_URL}${dailySearchQuery}`)
     .reply(200, [])
-    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_QUESTIONS_RANKING_URL}${dailySearchQuery}`)
-    .reply(200, [])
-    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_VOTES_RANKING_URL}${dailySearchQuery}`)
-    .reply(200, [])
-    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_NEW_USERS_URL}${dailySearchQuery}`)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_NEW_USERS_URL}${dailySearchQuery}`)
     .reply(200, []);
 
   const wrapper = await mount(
-    <MockTheme><Wikilegis responseDataRanking={[]} /></MockTheme>,
+    <MockTheme><Wikilegis responseDataRanking={responseDataRanking} /></MockTheme>,
   );
   await wrapper.update();
 
@@ -230,5 +212,3 @@ test('Audiencia page lifecycle is getting informations with no values', async ()
     await wrapper.update();
   });
 });
-
-*/

@@ -60,6 +60,15 @@ describe('Test getParticipationChartDataByYear function', () => {
     expect(resultArray[0][0]).toBe('2016');
     expect(resultArray.length).toBe(6);
   });
+
+  test('getParticipationChartDataByYear catch with undefined values', async () => {
+    const resultArray = await getParticipationChartDataByYear(
+      undefined, undefined,
+      undefined,
+      2016,
+    );
+    expect(resultArray.length).toBe(0);
+  });
 });
 
 describe('Test getWikilegisParticipationChartDataByDay function', () => {
@@ -109,5 +118,13 @@ describe('Test getWikilegisParticipationChartDataByYear function', () => {
     expect(resultArray.length).not.toBe(1);
     expect(resultArray[0][0]).toBe('2016');
     expect(resultArray.length).toBe(6);
+  });
+
+  test('getWikilegisParticipationChartDataByYear catch with undefined values', async () => {
+    const resultArray = await getWikilegisParticipationChartDataByYear(
+      undefined, undefined,
+      2016,
+    );
+    expect(resultArray.length).toBe(0);
   });
 });
