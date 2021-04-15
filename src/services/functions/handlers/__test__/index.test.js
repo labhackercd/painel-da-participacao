@@ -27,4 +27,13 @@ describe('Test handleUpdatePeriodSearchQuery function', () => {
     expect(period).toBe('yearly');
     expect(query).toBe('?period=yearly&ordering=start_date');
   });
+
+  test('handleUpdatePeriodSearchQuery returns catch return', async () => {
+    const testMonth = undefined; // In this case the month doesn't matter
+    const testYear = undefined; // All years option
+    const { query, period } = await handleUpdatePeriodSearchQuery(testMonth, testYear);
+
+    expect(period).toBe('');
+    expect(query).toBe('');
+  });
 });

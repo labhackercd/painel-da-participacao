@@ -200,7 +200,7 @@ test('Audiencia page lifecycle is getting informations with no values', async ()
     .reply(200, []);
 
   const wrapper = await mount(
-    <MockTheme><Audiencias responseDataRanking={[]} /></MockTheme>,
+    <MockTheme><Audiencias responseDataRanking={{ data: dataRanking, lastUpdate: '01/01/01 00:00' }} /></MockTheme>,
   );
   await wrapper.update();
 
@@ -221,4 +221,48 @@ test('Audiencia page lifecycle is getting informations with no values', async ()
   setImmediate(async () => {
     await wrapper.update();
   });
+});
+
+test('Audiencia page lifecycle returning error at totals', async () => {
+  const mockInstance = new MockAdapter(axios);
+  mockInstance
+    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_PARTICIPANT_USERS_URL}${defaultSearchQuery}`)
+    .reply(400, [])
+    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_ROOMS_RANKING_URL}${defaultSearchQuery}`)
+    .reply(400, [])
+    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_MESSAGES_RANKING_URL}${defaultSearchQuery}`)
+    .reply(400, [])
+    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_QUESTIONS_RANKING_URL}${defaultSearchQuery}`)
+    .reply(200, [])
+    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_VOTES_RANKING_URL}${defaultSearchQuery}`)
+    .reply(200, [])
+    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_NEW_USERS_URL}${defaultSearchQuery}`)
+    .reply(200, []);
+
+  const wrapper = await mount(
+    <MockTheme><Audiencias responseDataRanking={{ data: dataRanking, lastUpdate: '01/01/01 00:00' }} /></MockTheme>,
+  );
+  await wrapper.update();
+});
+
+test('Audiencia page lifecycle test to get last update from questions', async () => {
+  const mockInstance = new MockAdapter(axios);
+  mockInstance
+    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_PARTICIPANT_USERS_URL}${defaultSearchQuery}`)
+    .reply(200, [])
+    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_ROOMS_RANKING_URL}${defaultSearchQuery}`)
+    .reply(200, [])
+    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_MESSAGES_RANKING_URL}${defaultSearchQuery}`)
+    .reply(200, [])
+    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_QUESTIONS_RANKING_URL}${defaultSearchQuery}`)
+    .reply(200, questionsRankingMock.MONTHLY)
+    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_VOTES_RANKING_URL}${defaultSearchQuery}`)
+    .reply(200, [])
+    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_NEW_USERS_URL}${defaultSearchQuery}`)
+    .reply(200, []);
+
+  const wrapper = await mount(
+    <MockTheme><Audiencias responseDataRanking={{ data: dataRanking, lastUpdate: '01/01/01 00:00' }} /></MockTheme>,
+  );
+  await wrapper.update();
 });
