@@ -84,6 +84,76 @@ export async function getParticipationChartDataByYear(messagesData, questionsDat
   }
 }
 
+export async function getWikilegisParticipationChartDataByDay(month, year, opinionsData, voteData) {
+  const totalOfDaysInMonth = await new Date(year, month, 0).getDate();
+  const resultArray = [];
+
+  try {
+    for (let i = 1; i <= totalOfDaysInMonth; i += 1) {
+      const opinionsFiltered = opinionsData.filter((opinion) => opinion.end_date === `${year}-${pad(month)}-${pad(i)}`);
+      const voteFiltered = voteData.filter((vote) => vote.end_date === `${year}-${pad(month)}-${pad(i)}`);
+
+      resultArray.push(
+        [
+          `${pad(i)}`,
+          (opinionsFiltered.length > 0) ? opinionsFiltered[0].opinions : 0,
+          (voteFiltered.length > 0) ? voteFiltered[0].votes : 0,
+        ],
+      );
+    }
+
+    return resultArray;
+  } catch (e) {
+    return [];
+  }
+}
+
+export async function getWikilegisParticipationChartDataByMonth(month, year, opinionsData, voteData) {
+  const resultArray = [];
+
+  try {
+    for (let i = 1; i <= 12; i += 1) {
+      const opinionsFiltered = opinionsData.filter((opinion) => opinion.start_date === `${year}-${pad(i)}-01`);
+      const voteFiltered = voteData.filter((vote) => vote.start_date === `${year}-${pad(i)}-01`);
+
+      resultArray.push(
+        [
+          `${monthNamesList[i - 1]}`,
+          (opinionsFiltered.length > 0) ? opinionsFiltered[0].opinions : 0,
+          (voteFiltered.length > 0) ? voteFiltered[0].votes : 0,
+        ],
+      );
+    }
+
+    return resultArray;
+  } catch (e) {
+    return resultArray;
+  }
+}
+
+export async function getWikilegisParticipationChartDataByYear(opinionsData, voteData, initialYear) {
+  const resultArray = [];
+  const begginingYear = initialYear;
+  const currentYear = new Date().getFullYear();
+  try {
+    for (let i = begginingYear; i <= currentYear; i += 1) {
+      const opinionsFiltered = opinionsData.filter((opinion) => opinion.start_date === `${i}-01-01`);
+      const voteFiltered = voteData.filter((vote) => vote.start_date === `${i}-01-01`);
+
+      resultArray.push(
+        [
+          `${i}`,
+          (opinionsFiltered.length > 0) ? opinionsFiltered[0].opinions : 0,
+          (voteFiltered.length > 0) ? voteFiltered[0].votes : 0,
+        ],
+      );
+    }
+    return resultArray;
+  } catch (e) {
+    return resultArray;
+  }
+}
+
 export async function handleUpdatePeriodSearchQuery(month, year) {
   const paramMonth = month.toString();
   const paramYear = year.toString();
