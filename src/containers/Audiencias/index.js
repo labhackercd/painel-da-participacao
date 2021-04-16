@@ -467,6 +467,7 @@ function Audiencias(props) {
             align="center"
             apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
             apiLastUpdate={participantionChartDataLastUpdate}
+            tool="Audiências"
           >
             <GoogleChart
               chartType={audiencesWithMoreParticipation.chartType}
@@ -488,6 +489,7 @@ function Audiencias(props) {
               align="center"
               apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
               apiLastUpdate={roomsRankingDataLastUpdate}
+              tool="Audiências"
             >
               <Box width="100%" height="90%">
                 <RankingTable data={roomsRankingData} columns={rankingAudienciaColumns} />
@@ -516,6 +518,7 @@ function Audiencias(props) {
                 exportData={newUsersChartData}
                 download
                 apiLastUpdate={newUsersChartDataLastUpdate}
+                tool="Audiências"
               />
             </div>
           ) : (
@@ -537,6 +540,7 @@ function Audiencias(props) {
                 chartType={audiencesChartsUsersSettings.chartType}
                 chartOptions={audiencesChartsUsersSettings.options}
                 apiLastUpdate={totalUsersChartDataLastUpdate}
+                tool="Audiências"
               />
             </div>
           ) : (
