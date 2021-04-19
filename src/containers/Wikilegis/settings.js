@@ -8,12 +8,26 @@ export const rankingWikilegisColumns = [
     selector: 'document.title',
     sortable: true,
     minWidth: '550px',
+    cell: (row) => (
+      <a
+        href={`${process.env.NEXT_PUBLIC_EDEMOCRACIA_BASE_URL}${row.get_absolute_url}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ color: '#ffffff', textDecoration: 'none' }}
+      >
+        {row.document.title}
+      </a>
+    ),
   },
   {
-    name: 'Data',
+    name: 'Data de Abertura',
     sortable: true,
-    center: true,
     cell: (row) => formatDate(row.openning_date),
+  },
+  {
+    name: 'Data de Encerramento',
+    sortable: true,
+    cell: (row) => formatDate(row.closing_date),
   },
   {
     name: 'Participantes',
@@ -38,6 +52,6 @@ export const rankingWikilegisColumns = [
     selector: 'document.responsible',
     sortable: true,
     center: true,
-    cell: (row) => (`${row.document.responsible.name} (${row.document.responsible.party_initials}-)`),
+    cell: (row) => (`${row.document.responsible.name} (${row.document.responsible.party_initials}-${row.document.responsible.uf})`),
   },
 ];
