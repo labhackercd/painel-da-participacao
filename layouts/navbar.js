@@ -120,7 +120,6 @@ export default function PageNavbar(props) {
           id="generalPanelTab"
           label="Painel Geral"
           aria-label="Painel Geral"
-          aria-controls="generalPanelTab"
           aria-selected={false}
           url={process.env.NEXT_PUBLIC_GENERAL_APP_PAGE_URL_QUERY}
           index="0"
@@ -130,7 +129,6 @@ export default function PageNavbar(props) {
           id="audienciasPanelTab"
           label="Audiências"
           aria-label="Página Audiências"
-          aria-controls="audienciasPanelTab"
           aria-selected
           url={process.env.NEXT_PUBLIC_AUDIENCIAS_PAGE_URL}
           index="1"
@@ -140,7 +138,6 @@ export default function PageNavbar(props) {
           id="wikilegisPanelTab"
           label="Wikilegis"
           aria-label="Página Wikilegis"
-          aria-controls="wikilegisPanelTab"
           aria-selected={false}
           url={process.env.NEXT_PUBLIC_WIKILEGIS_PAGE_URL}
           index="2"
@@ -150,7 +147,6 @@ export default function PageNavbar(props) {
           id="sobrePanelTab"
           label="Sobre"
           aria-label="Página sobre"
-          aria-controls="sobrePanelTab"
           aria-selected={false}
           url={process.env.NEXT_PUBLIC_WIKILEGIS_PAGE_URL}
           index="3"
