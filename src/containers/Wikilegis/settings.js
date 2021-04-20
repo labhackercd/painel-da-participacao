@@ -1,5 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable react/react-in-jsx-scope */
+import React from 'react';
 import { formatDate } from '../../services/format/date';
 
 export const rankingWikilegisColumns = [

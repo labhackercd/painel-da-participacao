@@ -33,7 +33,7 @@ test('snapshot should not have changes', () => {
   expect(component).toMatchSnapshot();
 });
 
-test('Test if Audiencias renders without crash whole lifecycle', async () => {
+test('Test if Wikilegis renders without crash whole lifecycle', async () => {
   const wrapper = mount(
     <MockTheme><Wikilegis responseDataRanking={responseDataRanking} /></MockTheme>,
   );
@@ -116,7 +116,7 @@ test('Default page lifecycle is getting default informations of period by month 
   });
 });
 
-test('Audiencia page lifecycle is getting informations of days of specific month', async () => {
+test('Wikilegis page lifecycle is getting informations of days of specific month', async () => {
   const mockInstance = new MockAdapter(axios);
   mockInstance
     .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_PARTICIPANT_USERS_URL}${defaultSearchQuery}`)
@@ -165,7 +165,7 @@ test('Audiencia page lifecycle is getting informations of days of specific month
   });
 });
 
-test('Audiencia page lifecycle is getting informations with no values', async () => {
+test('Wikilegis page lifecycle is getting informations with no values', async () => {
   const mockInstance = new MockAdapter(axios);
   mockInstance
     .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_PARTICIPANT_USERS_URL}${defaultSearchQuery}`)
