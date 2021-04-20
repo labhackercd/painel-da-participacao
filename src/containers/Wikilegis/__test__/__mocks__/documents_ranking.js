@@ -1,70 +1,6 @@
 const documentsRanking = [
   {
     document: {
-      title: 'Prisão em 2ª Instância',
-      description: 'Trata-se de Proposta de Emenda à Constituição (PEC) para transformar os recursos extraordinário e especial em ações revisionais de competência originária do Supremo Tribunal Federal e do Superior Tribunal de Justiça.',
-      document_type: {
-        id: 2,
-        title: 'Projeto de Emenda à Constituição',
-        initials: 'PEC',
-      },
-      number: 199,
-      year: 2019,
-      themes: [
-        {
-          id: 18,
-          name: 'Segurança',
-          slug: 'seguranca',
-          color: '#92f1fc',
-        },
-      ],
-      responsible: {
-        id: 7,
-        name: 'FÁBIO TRAD',
-        party_initials: 'PSD',
-      },
-    },
-    group_status: 'Aguardando resposta',
-    openning_date: '2019-12-16',
-    closing_date: '2020-02-21',
-    suggestions_count: 14,
-    vote_count: 64,
-    participants_count: 24,
-  },
-  {
-    document: {
-      title: 'Lei Brasileira de Liberdade, Responsabilidade e Transparência na Internet',
-      description: 'É com muita satisfação que o Deputado Federal Felipe Rigoni, Deputada Federal Tabata Amaral e Senador Alessandro Vieira abrem um processo de consulta pública, através do Wikilegis, mecanismo de e-democracia da Câmara dos Deputados, para a Lei Brasileira de Liberdade, Responsabilidade e Transparência na Internet, o projeto de lei 2927/2020, protocolado na Câmara dos Deputados.\r\n\r\nO projeto primou por estabelecer mecanismos de transparência e aspectos técnicos, alinhados com as melhores práticas internacionais, que contribuem para um ambiente de livre expressão na internet. \r\n\r\nUm dos principais motivadores da apresentação deste projeto de lei é combater a desinformação durante a pandemia do Coronavírus. Segundo estudo recente da Imperial College London, o Brasil já se tornou o epicentro da epidemia na América Latina: https://www.imperial.ac.uk/mrc-global-infectious-disease-analysis/covid-19/report-21-brazil\r\n\r\nO prazo para o recebimento de sugestões através do Wikilegis começa dia 8 de maio de 2020, e irá até o dia 18 de junho de 2020. Participe e envie sua sugestão!',
-      document_type: {
-        id: 1,
-        title: 'Projeto de Lei',
-        initials: 'PL',
-      },
-      number: 2927,
-      year: 2020,
-      themes: [
-        {
-          id: 6,
-          name: 'Comunicações',
-          slug: 'comunicacoes',
-          color: '#d7104c',
-        },
-      ],
-      responsible: {
-        id: 9,
-        name: 'Felipe Rigoni',
-        party_initials: 'PSB',
-      },
-    },
-    group_status: 'Aguardando resposta',
-    openning_date: '2020-05-08',
-    closing_date: '2020-06-18',
-    suggestions_count: 618,
-    vote_count: 5334,
-    participants_count: 394,
-  },
-  {
-    document: {
       title: 'Viabilização de medicamentos que contenham Cannabis sativa em sua formulação',
       description: 'Trata-se de projeto de lei para viabilizar a comercialização de medicamentos que contenham extratos, substratos ou partes da planta Cannabis sativa em sua formulação.',
       document_type: {
@@ -104,6 +40,7 @@ const documentsRanking = [
         id: 6,
         name: 'PAULO TEIXEIRA',
         party_initials: 'PT',
+        uf: 'SP',
       },
     },
     group_status: 'Aguardando resposta',
@@ -112,6 +49,7 @@ const documentsRanking = [
     suggestions_count: 14,
     vote_count: 187,
     participants_count: 40,
+    get_absolute_url: '/wikilegis/p/7-viabilizacao-de-medicamentos-que-contenham-cannabis-sativa-em-sua-formulacao/',
   },
   {
     document: {
@@ -132,6 +70,7 @@ const documentsRanking = [
         id: 5,
         name: 'EDUARDO BARBOSA',
         party_initials: 'PSDB',
+        uf: 'MG',
       },
     },
     group_status: 'Aguardando resposta',
@@ -140,6 +79,7 @@ const documentsRanking = [
     suggestions_count: 30,
     vote_count: 97,
     participants_count: 28,
+    get_absolute_url: '/wikilegis/p/5-politica-de-comunicacao-para-a-camara-dos-deputados/',
   },
   {
     document: {
@@ -164,6 +104,7 @@ const documentsRanking = [
         id: 4,
         name: 'FLORDELIS',
         party_initials: 'PSD',
+        uf: 'RJ',
       },
     },
     group_status: 'Aguardando resposta',
@@ -172,6 +113,7 @@ const documentsRanking = [
     suggestions_count: 16,
     vote_count: 95,
     participants_count: 32,
+    get_absolute_url: '/wikilegis/p/4-protecao-e-apoio-psicologico-a-mulher-atleta-vitima-de-violencia-fisica-ou-sexual/',
   },
   {
     document: {
@@ -196,6 +138,7 @@ const documentsRanking = [
         id: 3,
         name: 'ROBERTO ALVES',
         party_initials: 'REPUBLICANOS',
+        uf: 'SP',
       },
     },
     group_status: 'Aguardando resposta',
@@ -204,6 +147,7 @@ const documentsRanking = [
     suggestions_count: 16,
     vote_count: 138,
     participants_count: 31,
+    get_absolute_url: '/wikilegis/p/3-regulamenta-mensagens-de-advertencia-em-propagandas/',
   },
   {
     document: {
@@ -228,6 +172,7 @@ const documentsRanking = [
         id: 2,
         name: 'CÉLIO STUDART',
         party_initials: 'PV',
+        uf: 'CE',
       },
     },
     group_status: 'Aguardando resposta',
@@ -236,38 +181,7 @@ const documentsRanking = [
     suggestions_count: 15,
     vote_count: 266,
     participants_count: 54,
-  },
-  {
-    document: {
-      title: 'Valorização dos Movimentos Artísticos de Periferia',
-      description: 'Declara e eleva os movimentos artísticos presentes na periferia como patrimônio cultural e manifestação da cultura popular nacional, e dá outras providências.',
-      document_type: {
-        id: 1,
-        title: 'Projeto de Lei',
-        initials: 'PL',
-      },
-      number: 2358,
-      year: 2019,
-      themes: [
-        {
-          id: 8,
-          name: 'Cultura',
-          slug: 'cultura',
-          color: '#f2cf50',
-        },
-      ],
-      responsible: {
-        id: 1,
-        name: 'ÁUREA CAROLINA',
-        party_initials: 'PSOL',
-      },
-    },
-    group_status: 'Aguardando resposta',
-    openning_date: '2019-09-11',
-    closing_date: '2019-10-11',
-    suggestions_count: 24,
-    vote_count: 633,
-    participants_count: 86,
+    get_absolute_url: '/wikilegis/p/2-proibe-distribuicao-e-sorteio-de-animais-em-eventos/',
   },
 ];
 
