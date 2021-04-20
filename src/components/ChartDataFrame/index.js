@@ -66,8 +66,22 @@ export default function ChartDataFrame(props) {
 
   const {
     // eslint-disable-next-line react/prop-types
-    height, children, title, download, exportData, align, apiUrl, apiLastUpdate, tool,
+    height, children, title, download, exportData,
+    align, apiUrl, apiLastUpdate, tool, downloadHeaders,
+    section,
   } = props;
+  let formatedData = exportData;
+
+  // The CSVLink can't handle null objects so the function convert it
+  if (tool === 'Wikilegis' && section === 'Report') {
+    formatedData = exportData.map((data) => {
+      if (data.document.document_type === null) {
+        // eslint-disable-next-line no-param-reassign
+        data.document.document_type = { id: '', title: '', initials: '' };
+      }
+      return data;
+    });
+  }
 
   return (
     <Grid container className={classes.root}>
@@ -83,7 +97,7 @@ export default function ChartDataFrame(props) {
           <Box marginRight={2} alignSelf="center" marginTop={1}>
             {download && (exportData !== undefined && exportData !== null)
               ? (
-                <CSVLink data={exportData} filename={`${title}.csv`} aria-label="Baixar arquivo CSV" title="Baixar arquivo CSV">
+                <CSVLink headers={downloadHeaders} data={formatedData} filename={`${title}.csv`} aria-label="Baixar arquivo CSV" title="Baixar arquivo CSV">
                   <CloudDownloadIcon className={classes.downloadIcon} />
                 </CSVLink>
               )
