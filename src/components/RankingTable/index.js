@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import DataTable, { createTheme } from 'react-data-table-component';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
@@ -83,6 +83,38 @@ const useStyles = makeStyles(() => ({
 export default function RankingTable(props) {
   const { data, columns } = props;
   const classes = useStyles();
+  const [filteredData, setFilteredData] = useState(data);
+  const [searchedText, setSearchedText] = useState('');
+
+  useEffect(() => {
+    setFilteredData(data);
+  }, [data]);
+
+  const handleSearchText = (e) => {
+
+    // Search was cleaned or is empty
+    if (e.target.value === '') {
+      setFilteredData(data);
+    }
+    setSearchedText(e.target.value);
+  };
+
+  const filterRanking = () => {
+    const filter = data.filter(
+      (item) => (
+        item.date.toLowerCase().includes(searchedText.toLowerCase())
+        || (item.legislative_body_initials ? item.legislative_body_initials.toLowerCase() : '').includes(searchedText.toLowerCase())
+        || (item.messages_count ? item.messages_count.toString() : '').includes(searchedText.toLowerCase())
+        || (item.participants_count ? item.participants_count.toString() : '').includes(searchedText.toLowerCase())
+        || (item.questions_count ? item.questions_count.toString() : '').includes(searchedText.toLowerCase())
+        || (item.reunion_theme ? item.reunion_theme.toLowerCase() : '').includes(searchedText.toLowerCase())
+        || (item.reunion_type ? item.reunion_type.toLowerCase() : '').includes(searchedText.toLowerCase())
+        || (item.votes_count ? item.votes_count.toString() : '').includes(searchedText.toLowerCase())
+      ),
+    );
+    setFilteredData(filter);
+  };
+  // a ? a.toLowerCase() : "oi"
 
   return (
     <>
@@ -92,6 +124,7 @@ export default function RankingTable(props) {
             id="standard-search"
             type="search"
             placeholder="Pesquise aqui"
+            onChange={handleSearchText}
             InputLabelProps={{ className: classes.textField }}
             InputProps={{
               classes: {
@@ -105,7 +138,7 @@ export default function RankingTable(props) {
             }}
           />
         </FormControl>
-        <Button variant="contained" size="small" className={classes.button}>
+        <Button variant="contained" size="small" className={classes.button} onClick={filterRanking}>
           Buscar
         </Button>
 
@@ -113,7 +146,7 @@ export default function RankingTable(props) {
 
       <DataTable
         columns={columns}
-        data={data}
+        data={filteredData}
         theme="darkLAB"
         highlightOnHover
         pointerOnHover
