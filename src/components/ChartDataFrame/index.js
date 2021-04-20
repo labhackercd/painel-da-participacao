@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Grid, Box, Typography,
 } from '@material-ui/core';
@@ -125,3 +126,31 @@ export default function ChartDataFrame(props) {
     </Grid>
   );
 }
+
+ChartDataFrame.propTypes = {
+  height: PropTypes.string,
+  children: PropTypes.any,
+  title: PropTypes.string,
+  download: PropTypes.bool,
+  exportData: PropTypes.array,
+  align: PropTypes.string,
+  apiUrl: PropTypes.string,
+  apiLastUpdate: PropTypes.string,
+  tool: PropTypes.string,
+  downloadHeaders: PropTypes.array,
+  section: PropTypes.string,
+};
+
+ChartDataFrame.defaultProps = {
+  height: '',
+  children: '',
+  title: '',
+  download: false,
+  exportData: [],
+  align: '',
+  apiUrl: '',
+  apiLastUpdate: 'PropTypes.string',
+  tool: PropTypes.string,
+  downloadHeaders: [],
+  section: '',
+};
