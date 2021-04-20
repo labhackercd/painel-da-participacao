@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Grid, Box, Typography,
 } from '@material-ui/core';
@@ -66,8 +67,22 @@ export default function ChartDataFrame(props) {
 
   const {
     // eslint-disable-next-line react/prop-types
-    height, children, title, download, exportData, align, apiUrl, apiLastUpdate, tool,
+    height, children, title, download, exportData,
+    align, apiUrl, apiLastUpdate, tool, downloadHeaders,
+    section,
   } = props;
+  let formatedData = exportData;
+
+  // The CSVLink can't handle null objects so the function convert it
+  if (tool === 'Wikilegis' && section === 'Report') {
+    formatedData = exportData.map((data) => {
+      if (data.document.document_type === null) {
+        // eslint-disable-next-line no-param-reassign
+        data.document.document_type = { id: '', title: '', initials: '' };
+      }
+      return data;
+    });
+  }
 
   return (
     <Grid container className={classes.root}>
@@ -83,7 +98,7 @@ export default function ChartDataFrame(props) {
           <Box marginRight={2} alignSelf="center" marginTop={1}>
             {download && (exportData !== undefined && exportData !== null)
               ? (
-                <CSVLink data={exportData} filename={`${title}.csv`} aria-label="Baixar arquivo CSV" title="Baixar arquivo CSV">
+                <CSVLink headers={downloadHeaders} data={formatedData} filename={`${title}.csv`} aria-label="Baixar arquivo CSV" title="Baixar arquivo CSV">
                   <CloudDownloadIcon className={classes.downloadIcon} />
                 </CSVLink>
               )
@@ -111,3 +126,31 @@ export default function ChartDataFrame(props) {
     </Grid>
   );
 }
+
+ChartDataFrame.propTypes = {
+  height: PropTypes.string,
+  children: PropTypes.any,
+  title: PropTypes.string,
+  download: PropTypes.bool,
+  exportData: PropTypes.array,
+  align: PropTypes.string,
+  apiUrl: PropTypes.string,
+  apiLastUpdate: PropTypes.string,
+  tool: PropTypes.string,
+  downloadHeaders: PropTypes.array,
+  section: PropTypes.string,
+};
+
+ChartDataFrame.defaultProps = {
+  height: '',
+  children: '',
+  title: '',
+  download: false,
+  exportData: [],
+  align: '',
+  apiUrl: '',
+  apiLastUpdate: 'PropTypes.string',
+  tool: PropTypes.string,
+  downloadHeaders: [],
+  section: '',
+};

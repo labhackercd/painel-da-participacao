@@ -33,7 +33,7 @@ import {
   WIKILEGIS_INITIAL_YEAR,
 } from '../../services/constants/constants';
 
-import { rankingWikilegisColumns } from './settings';
+import { rankingWikilegisColumns, rankingWikilegisHeaders } from './settings';
 
 import customTheme from '../../../styles/theme';
 
@@ -465,12 +465,14 @@ function Wikilegis(props) {
               height="30vh"
               title={periodSubTitle}
               listView
-              exportData={roomsRankingData}
-              download
               align="center"
               apiUrl={process.env.NEXT_PUBLIC_WIKILEGIS_SWAGGER_URL}
               apiLastUpdate={roomsRankingDataLastUpdate}
               tool="Wikilegis"
+              section="Report"
+              exportData={roomsRankingData}
+              download
+              downloadHeaders={rankingWikilegisHeaders}
             >
               <Box width="100%" height="90%">
                 <RankingTable data={roomsRankingData} columns={rankingWikilegisColumns} />
