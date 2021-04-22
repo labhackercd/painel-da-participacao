@@ -31,7 +31,7 @@ import {
   AUDIENCIAS_INITIAL_YEAR,
 } from '../../services/constants/constants';
 
-import { rankingAudienciaColumns } from './settings';
+import { rankingAudienciaColumns, filterRankingAudiencias } from './settings';
 
 import customTheme from '../../../styles/theme';
 
@@ -492,7 +492,11 @@ function Audiencias(props) {
               tool="Audiências"
             >
               <Box width="100%" height="90%">
-                <RankingTable data={roomsRankingData} columns={rankingAudienciaColumns} />
+                <RankingTable
+                  data={roomsRankingData}
+                  columns={rankingAudienciaColumns}
+                  filterRanking={filterRankingAudiencias}
+                />
               </Box>
             </ChartDataFrame>
           ) : (

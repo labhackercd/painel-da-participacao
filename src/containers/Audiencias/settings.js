@@ -1,5 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable react/react-in-jsx-scope */
+import React from 'react';
 import { formatDate } from '../../services/format/date';
 
 export const rankingAudienciaColumns = [
@@ -70,3 +71,20 @@ export const rankingAudienciaColumns = [
     center: true,
   },
 ];
+
+export function filterRankingAudiencias(data, searchedText) {
+  const filter = data.filter(
+    (item) => (
+      item.date.toLowerCase().includes(searchedText.toLowerCase())
+      || (item.legislative_body_initials ? item.legislative_body_initials.toLowerCase() : '').includes(searchedText.toLowerCase())
+      || (item.messages_count ? item.messages_count.toString() : '').includes(searchedText.toLowerCase())
+      || (item.participants_count ? item.participants_count.toString() : '').includes(searchedText.toLowerCase())
+      || (item.questions_count ? item.questions_count.toString() : '').includes(searchedText.toLowerCase())
+      || (item.reunion_theme ? item.reunion_theme.toLowerCase() : '').includes(searchedText.toLowerCase())
+      || (item.reunion_type ? item.reunion_type.toLowerCase() : '').includes(searchedText.toLowerCase())
+      || (item.votes_count ? item.votes_count.toString() : '').includes(searchedText.toLowerCase())
+      || (item.date ? formatDate(item.date) : '').includes(searchedText.toLowerCase())
+    ),
+  );
+  return filter;
+}
