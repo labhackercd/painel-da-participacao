@@ -81,7 +81,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 export default function RankingTable(props) {
-  const { data, columns } = props;
+  const { data, columns, filterRanking } = props;
   const classes = useStyles();
   const [filteredData, setFilteredData] = useState(data);
   const [searchedText, setSearchedText] = useState('');
@@ -91,39 +91,27 @@ export default function RankingTable(props) {
   }, [data]);
 
   const handleSearchText = (e) => {
-
-    // Search was cleaned or is empty
+    // Search was cleaned or is empty, reset data of table to initial state
     if (e.target.value === '') {
       setFilteredData(data);
     }
     setSearchedText(e.target.value);
   };
 
-  const filterRanking = () => {
-    const filter = data.filter(
-      (item) => (
-        item.date.toLowerCase().includes(searchedText.toLowerCase())
-        || (item.legislative_body_initials ? item.legislative_body_initials.toLowerCase() : '').includes(searchedText.toLowerCase())
-        || (item.messages_count ? item.messages_count.toString() : '').includes(searchedText.toLowerCase())
-        || (item.participants_count ? item.participants_count.toString() : '').includes(searchedText.toLowerCase())
-        || (item.questions_count ? item.questions_count.toString() : '').includes(searchedText.toLowerCase())
-        || (item.reunion_theme ? item.reunion_theme.toLowerCase() : '').includes(searchedText.toLowerCase())
-        || (item.reunion_type ? item.reunion_type.toLowerCase() : '').includes(searchedText.toLowerCase())
-        || (item.votes_count ? item.votes_count.toString() : '').includes(searchedText.toLowerCase())
-      ),
-    );
+  const handlefilterRanking = () => {
+    const filter = filterRanking(data, searchedText);
     setFilteredData(filter);
   };
-  // a ? a.toLowerCase() : "oi"
 
   return (
     <>
       <Box display="flex" marginTop={2} marginRight={2} justifyContent="flex-end">
         <FormControl className={classes.root}>
           <TextField
-            id="standard-search"
+            id="ranking-table-search-field"
             type="search"
             placeholder="Pesquise aqui"
+            aria-label="Digite o termo a ser pesquisado na tabela"
             onChange={handleSearchText}
             InputLabelProps={{ className: classes.textField }}
             InputProps={{
@@ -138,7 +126,7 @@ export default function RankingTable(props) {
             }}
           />
         </FormControl>
-        <Button variant="contained" size="small" className={classes.button} onClick={filterRanking}>
+        <Button id="rankingSearchButton" variant="contained" size="small" className={classes.button} onClick={handlefilterRanking} aria-label="Pesquisar">
           Buscar
         </Button>
 
@@ -162,9 +150,11 @@ export default function RankingTable(props) {
 RankingTable.propTypes = {
   data: PropTypes.array,
   columns: PropTypes.array,
+  filterRanking: PropTypes.func,
 };
 
 RankingTable.defaultProps = {
   data: {},
   columns: [],
+  filterRanking: {},
 };
