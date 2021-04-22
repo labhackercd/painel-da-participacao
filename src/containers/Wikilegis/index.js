@@ -33,7 +33,7 @@ import {
   WIKILEGIS_INITIAL_YEAR,
 } from '../../services/constants/constants';
 
-import { rankingWikilegisColumns, rankingWikilegisHeaders } from './settings';
+import { rankingWikilegisColumns, rankingWikilegisHeaders, filterRankingWikilegis } from './settings';
 
 import customTheme from '../../../styles/theme';
 
@@ -475,7 +475,11 @@ function Wikilegis(props) {
               downloadHeaders={rankingWikilegisHeaders}
             >
               <Box width="100%" height="90%">
-                <RankingTable data={roomsRankingData} columns={rankingWikilegisColumns} />
+                <RankingTable
+                  data={roomsRankingData}
+                  columns={rankingWikilegisColumns}
+                  filterRanking={filterRankingWikilegis}
+                />
               </Box>
             </ChartDataFrame>
           ) : (

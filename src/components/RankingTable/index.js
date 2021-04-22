@@ -91,7 +91,7 @@ export default function RankingTable(props) {
   }, [data]);
 
   const handleSearchText = (e) => {
-    // Search was cleaned or is empty, reset data of table to initial state
+    // Search was cleaned or is empty => reset data of table to initial state
     if (e.target.value === '') {
       setFilteredData(data);
     }
