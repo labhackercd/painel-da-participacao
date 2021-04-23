@@ -32,7 +32,7 @@ Participantes são todos os usuários que enviaram suas opiniões ou votaram em 
 `;
 
 export const wikilegisRankingToolTip = `
-O intervalo de tempo para os cidadãos opinarem em uma proposta legislativa é definido pelo parlamentar responsável. O ranking mostra a parte relativa ao filtro de período aplicado, e não necessariamente a todo o intervalo em que a proposta esteve aberta para receber contribuições.
+O tempo de abertura para participação é definido pelo parlamentar. Os totais são consolidados na data de encerramento.
 `;
 
 export const wikilegisLegislativeProposesToolTip = `Propostas legislativas, disponibilizadas para receber opiniões dos cidadãos, de todos os tipos, a exemplo de Projetos de Lei, Resoluções, Atos da Mesa, etc.
