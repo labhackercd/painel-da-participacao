@@ -19,7 +19,7 @@ import TotalFrame from '../../components/Frames/TotalFrame/index';
 import Sectionheader from '../../components/Headers/SectionHeader/index';
 import SubSectionHeader from '../../components/Headers/SubSectionHeader/index';
 import NoDataForSelectedPeriod from '../../components/Informations/NoDataForSelectedPeriod/index';
-import GoogleChartFrame from './auxComponentes';
+import { GoogleChartFrame } from './auxComponentes';
 
 import {
   participantsTotalToolTip, messagesTotalToolTip, audiencesTotalToolTip, audiencesRankingToolTip,
@@ -45,7 +45,6 @@ const useStyles = makeStyles((theme) => ({
     padding: '2.5rem 0 0 0',
   },
   contentBox: {
-    display: 'flex',
     justifyContent: 'center',
     width: '100%',
   },
@@ -458,23 +457,23 @@ function Audiencias(props) {
 
         <Grid item xs={12} className={classes.spacing}>
           <Sectionheader classes={classes} toolTipText={null} title="Distribuição da participação no período" />
-          <ChartDataFrame
-            height="60vh"
-            title={periodSubTitle}
-            listView
-            exportData={participantionChartData}
-            download
-            align="center"
-            apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
-            apiLastUpdate={participantionChartDataLastUpdate}
-            tool="Audiências"
-          >
-            <GoogleChart
-              chartType={audiencesWithMoreParticipation.chartType}
+          {(participantionChartData !== undefined && participantionChartData.length > 0) ? (
+            <GoogleChartFrame
+              height="60vh"
+              download
+              exportData={participantionChartData}
+              title={periodSubTitle}
+              classes={classes}
               data={participantionChartData}
-              options={audiencesWithMoreParticipation.options}
+              chartType={audiencesWithMoreParticipation.chartType}
+              chartOptions={audiencesWithMoreParticipation.options}
+              apiLastUpdate={participantionChartDataLastUpdate}
+              tool="Audiências"
+              isLoaded
             />
-          </ChartDataFrame>
+          ) : (
+            <NoDataForSelectedPeriod title={periodSubTitle} />
+          )}
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
@@ -500,7 +499,7 @@ function Audiencias(props) {
               </Box>
             </ChartDataFrame>
           ) : (
-            <NoDataForSelectedPeriod title="Salas" />
+            <NoDataForSelectedPeriod title={periodSubTitle} />
           )}
         </Grid>
 
@@ -526,7 +525,7 @@ function Audiencias(props) {
               />
             </div>
           ) : (
-            <NoDataForSelectedPeriod title="Novos Usuários" />
+            <NoDataForSelectedPeriod title={periodSubTitle} />
           )}
         </Grid>
 

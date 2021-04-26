@@ -7,7 +7,7 @@ export default function NoDataForSelectedPeriod(props) {
   const { title, tool } = props;
   return (
     <ChartDataFrame
-      height="10vh"
+      height="50vh"
       title={title}
       listView
       download={false}
