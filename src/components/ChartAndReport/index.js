@@ -1,15 +1,16 @@
+/* eslint-disable react/require-default-props */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Box from '@material-ui/core/Box';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { withStyles } from '@material-ui/core/styles';
-import TableDarkTheme from '../../components/TableDarkTheme/index';
-import ChartDataFrame from '../../components/ChartDataFrame/index';
-import GoogleChart from '../../components/Charts/GoogleChart';
+import TableDarkTheme from '../TableDarkTheme/index';
+import ChartDataFrame from '../ChartDataFrame/index';
+import GoogleChart from '../Charts/GoogleChart';
 import convertArrayToJSON from '../../services/format/convertArrayToJson/index';
 
 const CustomRadio = withStyles({
@@ -53,9 +54,9 @@ function getColumns(data) {
   }));
 }
 
-export default function GoogleChartFrame(props) {
+export default function ChartAndReport(props) {
   const {
-    isLoaded, title, classes, data, chartType, chartOptions, exportData,
+    isLoaded, title, data, chartType, chartOptions, exportData,
     apiLastUpdate, tool, height,
   } = props;
   const [wayOfVisualizeData, setWayOfVisualizeData] = useState('chart');
@@ -102,7 +103,7 @@ export default function GoogleChartFrame(props) {
                   />
                 </Box>
               ) : (
-                <Box>
+                <Box width="100%">
                   <TableDarkTheme
                     data={convertDataToJson}
                     columns={columns}
@@ -127,9 +128,13 @@ export default function GoogleChartFrame(props) {
   );
 }
 
-GoogleChartFrame.propTypes = {
+FormControlRadioOptions.propTypes = {
+  handleChange: PropTypes.func,
+  currentValue: PropTypes.string,
+};
+
+ChartAndReport.propTypes = {
   isLoaded: PropTypes.bool,
-  classes: PropTypes.object,
   title: PropTypes.string,
   data: PropTypes.node,
   chartType: PropTypes.string,
@@ -137,11 +142,11 @@ GoogleChartFrame.propTypes = {
   exportData: PropTypes.array,
   apiLastUpdate: PropTypes.string,
   tool: PropTypes.string,
+  height: PropTypes.string,
 };
 
-GoogleChartFrame.defaultProps = {
+ChartAndReport.defaultProps = {
   isLoaded: false,
-  classes: '',
   title: 'Title',
   data: {},
   chartType: '',
@@ -149,4 +154,5 @@ GoogleChartFrame.defaultProps = {
   exportData: [],
   apiLastUpdate: 'Carregando',
   tool: '',
+  height: '35vh',
 };

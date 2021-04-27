@@ -19,7 +19,8 @@ import TotalFrame from '../../components/Frames/TotalFrame/index';
 import Sectionheader from '../../components/Headers/SectionHeader/index';
 import SubSectionHeader from '../../components/Headers/SubSectionHeader/index';
 import NoDataForSelectedPeriod from '../../components/Informations/NoDataForSelectedPeriod/index';
-import { GoogleChartFrame } from './auxComponentes';
+import GoogleChartFrame from './auxComponentes';
+import ChartAndReport from '../../components/ChartAndReport/index';
 
 import {
   participantsTotalToolTip, messagesTotalToolTip, audiencesTotalToolTip, audiencesRankingToolTip,
@@ -45,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
     padding: '2.5rem 0 0 0',
   },
   contentBox: {
+    display: 'flex',
     justifyContent: 'center',
     width: '100%',
   },
@@ -458,7 +460,7 @@ function Audiencias(props) {
         <Grid item xs={12} className={classes.spacing}>
           <Sectionheader classes={classes} toolTipText={null} title="Distribuição da participação no período" />
           {(participantionChartData !== undefined && participantionChartData.length > 0) ? (
-            <GoogleChartFrame
+            <ChartAndReport
               height="60vh"
               download
               exportData={participantionChartData}
