@@ -86,7 +86,7 @@ export default function TotalFrame(props) {
     <TotalsDataFrame height="15vh" paddingLeft="0.5rem" title={title} download={false} align="left" toolTipAriaLabel={toolTipAriaLabel} toolTipText={toolTipText} toolTipColor={toolTipColor}>
       {isLoaded ? (
         <Box style={{ width: '100%', height: '100%' }}>
-          <Box display="flex" alignItems="center" justifyContent="center" width="100%" height={hasSubInformation ? 'auto' : '100%'} paddingTop={hasSubInformation ? '4vh' : ''}>
+          <Box display="flex" alignItems="center" justifyContent="center" width="100%" height={hasSubInformation ? 'auto' : '100%'} paddingTop={hasSubInformation ? '5vh' : ''}>
             <Typography align="center" variant="h2" style={{ color: '#FFF', alignSelf: 'center', paddingTop: '5px' }} noWrap>
               {info}
             </Typography>
