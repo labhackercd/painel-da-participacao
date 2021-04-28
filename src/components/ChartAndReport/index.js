@@ -32,12 +32,12 @@ function FormControlRadioOptions(props) {
       <RadioGroup row aria-label="position" role="radio" name="position" defaultValue="chart" onChange={handleChange} value={currentValue}>
         <FormControlLabel
           value="chart"
-          control={<CustomRadio tabindex="0" value="chart" color="primary" inputProps={{ 'aria-label': 'Botão de Seleção visualizar dados em gráfico' }} />}
+          control={<CustomRadio tabIndex="0" value="chart" color="primary" inputProps={{ 'aria-label': 'Botão de Seleção visualizar dados em gráfico' }} />}
           label="Ver como Gráfico"
         />
         <FormControlLabel
           value="table"
-          control={<CustomRadio tabindex="-1" value="table" color="primary" inputProps={{ 'aria-label': 'Botão de Seleção visualizar dados em tabela' }} />}
+          control={<CustomRadio tabIndex="-1" value="table" color="primary" inputProps={{ 'aria-label': 'Botão de Seleção visualizar dados em tabela' }} />}
           label="Ver como Tabela"
         />
       </RadioGroup>
