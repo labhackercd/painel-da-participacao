@@ -69,7 +69,7 @@
       "!src/auth/axiosApi.js",
       "!src/router.js",
       "!src/components/mockTheme.js",
-      "!.mock.js"
+      "!*.mock.js"
     ]
   }
 }

@@ -8,7 +8,6 @@ import axios from 'axios';
 import ChartDataFrame from '../../components/ChartDataFrame/index';
 import Header from '../../components/Header/index';
 import RankingTable from '../../components/RankingTable/index';
-import GoogleChart from '../../components/Charts/GoogleChart';
 import {
   getParticipationChartDataByDay, getParticipationChartDataByMonth, getParticipationChartDataByYear,
 } from '../../services/functions/auxFunctions/index';
