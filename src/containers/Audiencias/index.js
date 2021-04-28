@@ -18,7 +18,6 @@ import TotalFrame from '../../components/Frames/TotalFrame/index';
 import Sectionheader from '../../components/Headers/SectionHeader/index';
 import SubSectionHeader from '../../components/Headers/SubSectionHeader/index';
 import NoDataForSelectedPeriod from '../../components/Informations/NoDataForSelectedPeriod/index';
-import GoogleChartFrame from './auxComponentes';
 import ChartAndReport from '../../components/ChartAndReport/index';
 
 import {
@@ -512,7 +511,7 @@ function Audiencias(props) {
           <SubSectionHeader title="Novos cadastros de usuários" />
           {(newUsersChartData !== undefined && newUsersChartData.length > 0) ? (
             <div className={classes.contentBox}>
-              <GoogleChartFrame
+              <ChartAndReport
                 isLoaded={newUsersChartDataLoaded}
                 title={periodSubTitle}
                 classes={classes}
@@ -534,7 +533,7 @@ function Audiencias(props) {
           <SubSectionHeader title="Total de Usuários Cadastrados" />
           {(totalUsersChartData !== undefined && totalUsersChartData.length > 0) ? (
             <div className={classes.contentBox}>
-              <GoogleChartFrame
+              <ChartAndReport
                 download={false}
                 exportData={totalUsersChartData}
                 isLoaded={totalUsersChartDataLoaded}

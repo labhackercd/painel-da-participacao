@@ -50,7 +50,5 @@ test('snapshot should not have changes', async () => {
     </MockTheme>,
   );
 
-  console.log(wrapper.debug());
-
   expect(wrapper.exists()).toEqual(true);
 });
