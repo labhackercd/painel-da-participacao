@@ -106,7 +106,7 @@ export default function ChartDataFrame(props) {
           </Box>
         </Box>
       </Box>
-      <div className={classes.container} style={{ height: 'auto', minHeight: height, width: '100%' }}>
+      <div className={classes.container} style={{ minHeight: height, width: '100%' }}>
         {children}
       </div>
       <Typography className={classes.updateLegend} variant="h5">

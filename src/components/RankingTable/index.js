@@ -129,7 +129,6 @@ export default function RankingTable(props) {
         <Button id="rankingSearchButton" variant="contained" size="small" className={classes.button} onClick={handlefilterRanking} aria-label="Pesquisar">
           Buscar
         </Button>
-
       </Box>
 
       <DataTable

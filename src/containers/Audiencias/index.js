@@ -8,7 +8,6 @@ import axios from 'axios';
 import ChartDataFrame from '../../components/ChartDataFrame/index';
 import Header from '../../components/Header/index';
 import RankingTable from '../../components/RankingTable/index';
-import GoogleChart from '../../components/Charts/GoogleChart';
 import {
   getParticipationChartDataByDay, getParticipationChartDataByMonth, getParticipationChartDataByYear,
 } from '../../services/functions/auxFunctions/index';
@@ -19,7 +18,7 @@ import TotalFrame from '../../components/Frames/TotalFrame/index';
 import Sectionheader from '../../components/Headers/SectionHeader/index';
 import SubSectionHeader from '../../components/Headers/SubSectionHeader/index';
 import NoDataForSelectedPeriod from '../../components/Informations/NoDataForSelectedPeriod/index';
-import GoogleChartFrame from './auxComponentes';
+import ChartAndReport from '../../components/ChartAndReport/index';
 
 import {
   participantsTotalToolTip, messagesTotalToolTip, audiencesTotalToolTip, audiencesRankingToolTip,
@@ -458,23 +457,23 @@ function Audiencias(props) {
 
         <Grid item xs={12} className={classes.spacing}>
           <Sectionheader classes={classes} toolTipText={null} title="Distribuição da participação no período" />
-          <ChartDataFrame
-            height="60vh"
-            title={periodSubTitle}
-            listView
-            exportData={participantionChartData}
-            download
-            align="center"
-            apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
-            apiLastUpdate={participantionChartDataLastUpdate}
-            tool="Audiências"
-          >
-            <GoogleChart
-              chartType={audiencesWithMoreParticipation.chartType}
+          {(participantionChartData !== undefined && participantionChartData.length > 0) ? (
+            <ChartAndReport
+              height="60vh"
+              download
+              exportData={participantionChartData}
+              title={periodSubTitle}
+              classes={classes}
               data={participantionChartData}
-              options={audiencesWithMoreParticipation.options}
+              chartType={audiencesWithMoreParticipation.chartType}
+              chartOptions={audiencesWithMoreParticipation.options}
+              apiLastUpdate={participantionChartDataLastUpdate}
+              tool="Audiências"
+              isLoaded
             />
-          </ChartDataFrame>
+          ) : (
+            <NoDataForSelectedPeriod title={periodSubTitle} />
+          )}
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
@@ -500,7 +499,7 @@ function Audiencias(props) {
               </Box>
             </ChartDataFrame>
           ) : (
-            <NoDataForSelectedPeriod title="Salas" />
+            <NoDataForSelectedPeriod title={periodSubTitle} />
           )}
         </Grid>
 
@@ -512,7 +511,7 @@ function Audiencias(props) {
           <SubSectionHeader title="Novos cadastros de usuários" />
           {(newUsersChartData !== undefined && newUsersChartData.length > 0) ? (
             <div className={classes.contentBox}>
-              <GoogleChartFrame
+              <ChartAndReport
                 isLoaded={newUsersChartDataLoaded}
                 title={periodSubTitle}
                 classes={classes}
@@ -526,7 +525,7 @@ function Audiencias(props) {
               />
             </div>
           ) : (
-            <NoDataForSelectedPeriod title="Novos Usuários" />
+            <NoDataForSelectedPeriod title={periodSubTitle} />
           )}
         </Grid>
 
@@ -534,7 +533,7 @@ function Audiencias(props) {
           <SubSectionHeader title="Total de Usuários Cadastrados" />
           {(totalUsersChartData !== undefined && totalUsersChartData.length > 0) ? (
             <div className={classes.contentBox}>
-              <GoogleChartFrame
+              <ChartAndReport
                 download={false}
                 exportData={totalUsersChartData}
                 isLoaded={totalUsersChartDataLoaded}
