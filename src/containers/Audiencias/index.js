@@ -203,6 +203,7 @@ function Audiencias(props) {
       const dataJson = {
         users_total: numberWithDots(participantsUsersTotalResponse.data.sum_total_results),
         audiencias_total: numberWithDots(audienciesTotalResponse.data.sum_total_results),
+        audiencias_total_finished: '10',
         messages_total: numberWithDots(messagesTotalResponse.data.sum_total_results),
         questions_total: numberWithDots(questionsTotalResponse.data.sum_total_results),
       };
@@ -213,6 +214,7 @@ function Audiencias(props) {
       const dataJson = {
         users_total: '-',
         audiencias_total: '-',
+        audiencias_total_finished: '-',
         messages_total: '-',
         questions_total: '-',
       };
@@ -437,6 +439,7 @@ function Audiencias(props) {
             toolTipText={audiencesTotalToolTip}
             toolTipAriaLabel="Informação sobre o termo audiências"
             toolTipColor={customTheme.palette.audiencias.seabuckthorn}
+            subInformation={`${audienciasTotalsData.audiencias_total_finished} realizadas`}
           />
         </Grid>
 

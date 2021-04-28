@@ -4,6 +4,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import {
   Grid, Box, Typography,
 } from '@material-ui/core';
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import { makeStyles } from '@material-ui/core/styles';
 import Tooltips from '../../ToolTip/index';
 
@@ -23,8 +24,6 @@ const useStyles = makeStyles((theme) => ({
   container: {
     backgroundColor: '#000',
     borderRadius: '0 0 15px 15px',
-    display: 'flex',
-    justifyContent: 'center',
     width: '100%',
   },
   text: {
@@ -79,14 +78,29 @@ function TotalsDataFrame(props) {
 export default function TotalFrame(props) {
   const {
     isLoaded, info, title, toolTipText, toolTipColor, toolTipAriaLabel,
+    subInformation,
   } = props;
+  const hasSubInformation = (subInformation !== '');
 
   return (
     <TotalsDataFrame height="15vh" paddingLeft="0.5rem" title={title} download={false} align="left" toolTipAriaLabel={toolTipAriaLabel} toolTipText={toolTipText} toolTipColor={toolTipColor}>
       {isLoaded ? (
-        <Typography variant="h2" style={{ color: '#FFF', alignSelf: 'center' }}>
-          {info}
-        </Typography>
+        <Box style={{ width: '100%', height: '100%' }}>
+          <Box display="flex" alignItems="center" justifyContent="center" width="100%" height={hasSubInformation ? 'auto' : '100%'} paddingTop={hasSubInformation ? '4vh' : ''}>
+            <Typography align="center" variant="h2" style={{ color: '#FFF', alignSelf: 'center', paddingTop: '5px' }} noWrap>
+              {info}
+            </Typography>
+          </Box>
+          { subInformation !== '' && (
+            <Box display="flex" alignItems="center" justifyContent="center" width="100%">
+              <ArrowUpwardIcon fontSize="small" style={{ color: toolTipColor }} />
+              <Typography align="center" variant="h5" style={{ color: '#FFF', alignSelf: 'center' }} noWrap>
+                {subInformation}
+              </Typography>
+            </Box>
+          )}
+
+        </Box>
       ) : (
         <Box display="flex" alignItems="center" justifyContent="center" width="100%" height="100%">
           <CircularProgress />
@@ -103,6 +117,7 @@ TotalFrame.propTypes = {
   toolTipText: PropTypes.string,
   toolTipColor: PropTypes.string,
   toolTipAriaLabel: PropTypes.string,
+  subInformation: PropTypes.string,
 };
 
 TotalFrame.defaultProps = {
@@ -112,4 +127,5 @@ TotalFrame.defaultProps = {
   toolTipText: null,
   toolTipColor: '',
   toolTipAriaLabel: '',
+  subInformation: '',
 };
