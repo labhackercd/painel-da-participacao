@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
     margin: '0rem 0 0 3rem',
   },
   tabs: {
-    marginLeft: '2rem',
+    marginLeft: '2vh',
   },
   offset: theme.mixins.toolbar,
 }));
@@ -87,7 +87,7 @@ function a11yProps(index) {
 
 export default function PageNavbar(props) {
   const {
-    header, drawerContainer, drawerMobile, divider, tabs, offset
+    header, drawerContainer, drawerMobile, divider, tabs, offset,
   } = useStyles();
   const { value } = props;
 
@@ -158,7 +158,7 @@ export default function PageNavbar(props) {
   }
 
   const displayDesktop = () => (
-    <Toolbar style={{ height: '4rem' }}>
+    <Toolbar>
       {camaraDeputadosLogo}
       <Box width="100%" display="flex" alignContent="space-between">
         <NavTabs orientation="horizontal" />

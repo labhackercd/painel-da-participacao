@@ -1,64 +1,80 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import Head from 'next/head';
-import Image from 'next/image';
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Container, Button } from '@material-ui/core';
+import { Grid, Button } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import Box from '@material-ui/core/Box';
-import Layout from '../layouts/index';
+// import Layout from '../layouts/index';
+import PageNavbar from '../layouts/navbar';
+// import Footer from '../src/components/Footer/index';
 
 const useStyles = makeStyles((theme) => ({
-  content: {
-    height: '100em',
+  root: {
+    height: '100vh',
   },
   container: {
     width: 'auto',
-    height: '100em',
+    height: '100%',
+    backgroundColor: theme.palette.primary.main,
   },
-  backgroundImage: {
-    width: '100%',
-    height: '100em',
-    backgroundImage: `url(${process.env.NEXT_PUBLIC_APPLICATION_BASE_PATH_URL}/background/background_initial_page.svg)`,
-    backgroundSize: 'contain',
+  box: {
+    display: 'flex',
+    flexFlow: 'column',
+    height: '100%',
+  },
+  boxHeader: {
+    flex: '0 1 auto',
+  },
+  boxContent: {
+    flex: '1 1 auto',
+  },
+  textBox: {
+    margin: '10%',
+  },
+  typographyBoxText: {
+    fontSize: '2.4em',
+  },
+  typographyNumberBoxText: {
+    fontSize: '2.4em',
+    color: 'blue',
   },
   wikilegisSection: {
     background: 'linear-gradient(180deg, #14D768 -51.22%, rgba(20, 215, 104, 0) 100%)',
-    //backgroundImage: `url(${process.env.NEXT_PUBLIC_APPLICATION_BASE_PATH_URL}/initialPage/frame_wikilegis.svg)`,
-    //backgroundRepeat: 'no-repeat',
     float: 'left',
   },
   audienciasSection: {
     background: 'linear-gradient(180deg, #F59D2A -51.22%, rgba(245, 157, 42, 0) 100%)',
     height: '100%',
   },
-  imgCenter: {
-    width: '100px',
-    height: '100px',
-    backgroundColor: 'green',
-    position: 'absolute',
-    left: 0,
-    top: 0,
-    bottom: 0,
-    right: 0,
-    margin: 'auto',
-  },
-  infoContainer: {
-    float: 'left',
-    padding: 0,
-    margin: '0 auto',
-    position: 'relative',
-  },
   buttonStyle: {
     color: 'black',
-    fontWeight: 700,
     textTransform: 'none',
+    fontWeight: 700,
+    '@media (max-width: 600px)': {
+      width: '90%',
+    },
+  },
+  buttonContainer: {
+    paddingTop: '15em',
+    '@media (max-width: 1100px)': {
+      paddingBottom: '5vh',
+    },
   },
   chartImages: {
     '@media (max-width: 600px)': {
       maxWidth: '150px',
       maxHeight: '200px',
+    },
+  },
+  toolSectionHeader: {
+    display: 'flex',
+    justifyContent: 'left',
+    paddingBottom: '9vh',
+    marginLeft: '3rem',
+    '@media (max-width: 1100px)': {
+      paddingTop: '2vh',
     },
   },
 }));
@@ -67,28 +83,39 @@ function Home() {
   const classes = useStyles();
 
   return (
-    <>
+    <div className={classes.root}>
       <Head>
         <title>Dashboard Audiências</title>
       </Head>
-      <Layout value={0}>
-        <main className={classes.content}>
+      <Box className={classes.box}>
+        <Box className={classes.boxHeader}>
+          <PageNavbar value={0} />
+        </Box>
+        <Box className={classes.boxContent}>
           <Grid container className={classes.container}>
-            <Grid item xs={12} md={5} className={classes.gridItem}>
-              <Typography variant="h1" gutterBottom>
-                PAINEL DA PARTICIPAÇÃO
-              </Typography>
-              <Typography>
-                XXX cidadãos se cadastraram no portal e-Democracia da Câmara dos Deputados no período de XXXXX.
-              </Typography>
-              <Typography>
-                Conheça os números de utilização das  ferramentas de participação pelos cidadãos.
-              </Typography>
+            <Grid item xs={12} md={5}>
+              <Box className={classes.textBox}>
+                <Box paddingBottom="100px">
+                  <Typography variant="h1" gutterBottom>
+                    PAINEL DA PARTICIPAÇÃO
+                  </Typography>
+                </Box>
+                <Typography variant="body1" gutterBottom className={classes.typographyBoxText}>
+                  XXX cidadãos se cadastraram no portal e-Democracia da
+                  Câmara dos Deputados no período de XXXXX.
+                </Typography>
+                <Box paddingTop="50px">
+                  <Typography className={classes.typographyBoxText}>
+                    Conheça os números de utilização das  ferramentas de participação
+                    pelos cidadãos.
+                  </Typography>
+                </Box>
+              </Box>
             </Grid>
             <Grid item xs={12} md={7}>
-              <Box height="100em" display="flex">
+              <Box height="100%" display="flex">
                 <Box width="50%" height="100%" className={classes.audienciasSection} display="flex" flexDirection="column" justifyContent="center">
-                  <Box display="flex" justifyContent="left" paddingBottom="7rem" marginLeft="3rem">
+                  <Box className={classes.toolSectionHeader}>
                     <Typography variant="h4">
                       Audiências Interativas
                       <br />
@@ -104,7 +131,7 @@ function Home() {
                       alt="Audiencias Chart"
                     />
                   </Box>
-                  <Box display="flex" justifyContent="center" paddingTop="15em">
+                  <Box display="flex" justifyContent="center" className={classes.buttonContainer}>
                     <Button
                       style={{ backgroundColor: '#F59D2A' }}
                       className={classes.buttonStyle}
@@ -118,7 +145,7 @@ function Home() {
                 </Box>
 
                 <Box width="50%" className={classes.wikilegisSection} display="flex" flexDirection="column" justifyContent="center">
-                  <Box display="flex" height="auto" justifyContent="left" paddingBottom="7rem" marginLeft="3rem">
+                  <Box className={classes.toolSectionHeader}>
                     <Typography variant="h4">
                       Wikilegis
                       <br />
@@ -134,7 +161,7 @@ function Home() {
                       alt="Wikilegis Chart"
                     />
                   </Box>
-                  <Box display="flex" justifyContent="center" paddingTop="15em">
+                  <Box display="flex" justifyContent="center" className={classes.buttonContainer}>
                     <Button
                       style={{ backgroundColor: '#14D768' }}
                       className={classes.buttonStyle}
@@ -149,9 +176,12 @@ function Home() {
               </Box>
             </Grid>
           </Grid>
-        </main>
-      </Layout>
-    </>
+        </Box>
+        {/* <Box>
+          <Footer />
+        </Box> */}
+      </Box>
+    </div>
   );
 }
 

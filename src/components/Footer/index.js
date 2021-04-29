@@ -1,13 +1,13 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
-  AppBar, Toolbar, Typography, Grid, Box,
+  Typography, Grid,
 } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.black.main,
-    height: '5rem',
+    height: '5vh',
     width: '100%',
     bottom: 0,
   },

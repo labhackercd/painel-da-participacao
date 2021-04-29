@@ -21,9 +21,8 @@ const useStyles = makeStyles((theme) => ({
   },
   body: {
     backgroundColor: theme.palette.primary.main,
-    height: '100%',
+    height: 'auto',
   },
-
 }));
 
 export default function Layout(props) {
@@ -33,9 +32,7 @@ export default function Layout(props) {
   return (
     <div className={classes.body}>
       <PageNavbar value={value} />
-      <div className={classes.container}>
-        {children}
-      </div>
+      {children}
       <Footer />
     </div>
   );
