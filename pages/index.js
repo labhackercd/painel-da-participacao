@@ -1,6 +1,7 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import Head from 'next/head';
+import Link from 'next/link';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Button } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
@@ -34,11 +35,14 @@ const useStyles = makeStyles((theme) => ({
     margin: '10%',
   },
   typographyBoxText: {
-    fontSize: '2.4em',
+    fontSize: '2.4rem',
   },
-  typographyNumberBoxText: {
-    fontSize: '2.4em',
-    color: 'blue',
+  typographyBoxTextTitle: {
+    fontSize: '2.938rem',
+  },
+  typographyHighLightedText: {
+    fontSize: '2.4rem',
+    color: '#1181E9',
   },
   wikilegisSection: {
     background: 'linear-gradient(180deg, #14D768 -51.22%, rgba(20, 215, 104, 0) 100%)',
@@ -69,12 +73,25 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   toolSectionHeader: {
-    display: 'flex',
-    justifyContent: 'left',
+
     paddingBottom: '9vh',
-    marginLeft: '3rem',
+    marginLeft: '1rem',
     '@media (max-width: 1100px)': {
       paddingTop: '2vh',
+    },
+  },
+  toolSectionHeaderTextTitle: {
+    fontFamily: 'Roboto',
+    fontSize: '1.563rem',
+    '@media (max-width: 600px)': {
+      fontSize: '1.1rem',
+    },
+  },
+  toolSectionHeaderTextSubTitle: {
+    fontFamily: 'Roboto',
+    fontSize: '1rem',
+    '@media (max-width: 600px)': {
+      fontSize: '1rem',
     },
   },
 }));
@@ -96,19 +113,31 @@ function Home() {
             <Grid item xs={12} md={5}>
               <Box className={classes.textBox}>
                 <Box paddingBottom="100px">
-                  <Typography variant="h1" gutterBottom>
+                  <Typography variant="h1" gutterBottom className={classes.typographyBoxTextTitle}>
                     PAINEL DA PARTICIPAÇÃO
                   </Typography>
                 </Box>
-                <Typography variant="body1" gutterBottom className={classes.typographyBoxText}>
-                  XXX cidadãos se cadastraram no portal e-Democracia da
-                  Câmara dos Deputados no período de XXXXX.
+                <Typography className={classes.typographyHighLightedText} display="inline">
+                  XXX
+                </Typography>
+                <Typography gutterBottom className={classes.typographyBoxText} display="inline">
+                  {' '}
+                  cidadãos se cadastraram no portal e-Democracia da Câmara dos Deputados
+                  no período de
+                </Typography>
+                <Typography className={classes.typographyHighLightedText} display="inline">
+                  {' '}
+                  XXXXX.
                 </Typography>
                 <Box paddingTop="50px">
-                  <Typography className={classes.typographyBoxText}>
-                    Conheça os números de utilização das  ferramentas de participação
-                    pelos cidadãos.
+                  <Typography className={classes.typographyBoxText} display="inline">
+                    Conheça os números de utilização das
                   </Typography>
+                  <Typography className={classes.typographyHighLightedText} display="inline">
+                    {' '}
+                    ferramentas de participação pelos cidadãos.
+                  </Typography>
+
                 </Box>
               </Box>
             </Grid>
@@ -116,61 +145,75 @@ function Home() {
               <Box height="100%" display="flex">
                 <Box width="50%" height="100%" className={classes.audienciasSection} display="flex" flexDirection="column" justifyContent="center">
                   <Box className={classes.toolSectionHeader}>
-                    <Typography variant="h4">
+                    <Typography variant="h4" className={classes.toolSectionHeaderTextTitle}>
                       Audiências Interativas
-                      <br />
-                      {' '}
+                    </Typography>
+                    <Typography variant="h4" className={classes.toolSectionHeaderTextSubTitle}>
                       Perguntas aos parlamentares
                     </Typography>
-                    <Typography />
                   </Box>
                   <Box display="flex" flexDirection="row-reverse">
                     <img
                       className={classes.chartImages}
                       src={`${process.env.NEXT_PUBLIC_APPLICATION_BASE_PATH_URL}/initialPage/audiencias_chart_frame.png`}
-                      alt="Audiencias Chart"
+                      alt=""
+                      role="presentation"
                     />
                   </Box>
                   <Box display="flex" justifyContent="center" className={classes.buttonContainer}>
-                    <Button
-                      style={{ backgroundColor: '#F59D2A' }}
-                      className={classes.buttonStyle}
-                      variant="contained"
-                      color="primary"
-                      endIcon={<BarChartIcon />}
+                    <Link
+                      href={`/${process.env.NEXT_PUBLIC_AUDIENCIAS_PAGE_URL}`}
+                      passHref
                     >
-                      Participação nas Audiências
-                    </Button>
+                      <Button
+                        style={{ backgroundColor: '#F59D2A' }}
+                        className={classes.buttonStyle}
+                        variant="contained"
+                        color="primary"
+                        endIcon={<BarChartIcon />}
+                      >
+                        Participação nas Audiências
+                      </Button>
+                    </Link>
+
                   </Box>
                 </Box>
 
                 <Box width="50%" className={classes.wikilegisSection} display="flex" flexDirection="column" justifyContent="center">
                   <Box className={classes.toolSectionHeader}>
-                    <Typography variant="h4">
+
+                    <Typography variant="h4" className={classes.toolSectionHeaderTextTitle}>
                       Wikilegis
                       <br />
                       {' '}
+                    </Typography>
+                    <Typography variant="h4" className={classes.toolSectionHeaderTextSubTitle}>
                       Opiniões em textos de propostas legislativas
                     </Typography>
-                    <Typography />
                   </Box>
                   <Box display="flex" justifyContent="left">
                     <img
                       className={classes.chartImages}
                       src={`${process.env.NEXT_PUBLIC_APPLICATION_BASE_PATH_URL}/initialPage/wikilegis_chart_frame.png`}
-                      alt="Wikilegis Chart"
+                      alt=""
+                      role="presentation"
                     />
                   </Box>
                   <Box display="flex" justifyContent="center" className={classes.buttonContainer}>
-                    <Button
-                      style={{ backgroundColor: '#14D768' }}
-                      className={classes.buttonStyle}
-                      variant="contained"
-                      color="primary"
-                      endIcon={<BarChartIcon />}
+                    <Link
+                      href={`/${process.env.NEXT_PUBLIC_WIKILEGIS_PAGE_URL}`}
+                      passHref
                     >
-                      Participação na Wikilegis
-                    </Button>
+                      <Button
+                        style={{ backgroundColor: '#14D768' }}
+                        className={classes.buttonStyle}
+                        variant="contained"
+                        color="primary"
+                        endIcon={<BarChartIcon />}
+                      >
+                        Participação na Wikilegis
+                      </Button>
+                    </Link>
                   </Box>
                 </Box>
               </Box>
