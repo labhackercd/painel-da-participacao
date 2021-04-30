@@ -17,7 +17,7 @@ import Link from 'next/link';
 
 const useStyles = makeStyles((theme) => ({
   header: {
-    backgroundColor: theme.palette.black.main,
+    backgroundColor: 'theme.palette.black.main',
     paddingRight: '79px',
     paddingLeft: '10vh',
     '@media (max-width: 1100px)': {
@@ -62,8 +62,9 @@ const useStyles = makeStyles((theme) => ({
     margin: '0rem 0 0 3rem',
   },
   tabs: {
-    marginLeft: '2rem',
+    marginLeft: '2vh',
   },
+  offset: theme.mixins.toolbar,
 }));
 
 function LinkTab(parans) {
@@ -86,7 +87,7 @@ function a11yProps(index) {
 
 export default function PageNavbar(props) {
   const {
-    header, drawerContainer, drawerMobile, divider, tabs,
+    header, drawerContainer, drawerMobile, divider, tabs, offset,
   } = useStyles();
   const { value } = props;
 
@@ -118,10 +119,10 @@ export default function PageNavbar(props) {
       <Tabs value={value} className={tabs} TabIndicatorProps={{ style: { background: 'white' } }} orientation={orientation}>
         <LinkTab
           id="generalPanelTab"
-          label="Painel Geral"
-          aria-label="Painel Geral"
+          label="Painel da Participação"
+          aria-label="Painel da Participação"
           aria-selected={false}
-          url={process.env.NEXT_PUBLIC_GENERAL_APP_PAGE_URL_QUERY}
+          url="/"
           index="0"
           {...a11yProps(0)}
         />
@@ -130,7 +131,7 @@ export default function PageNavbar(props) {
           label="Audiências"
           aria-label="Página Audiências"
           aria-selected
-          url={process.env.NEXT_PUBLIC_AUDIENCIAS_PAGE_URL}
+          url={`/${process.env.NEXT_PUBLIC_AUDIENCIAS_PAGE_URL}`}
           index="1"
           {...a11yProps(1)}
         />
@@ -139,7 +140,7 @@ export default function PageNavbar(props) {
           label="Wikilegis"
           aria-label="Página Wikilegis"
           aria-selected={false}
-          url={process.env.NEXT_PUBLIC_WIKILEGIS_PAGE_URL}
+          url={`/${process.env.NEXT_PUBLIC_WIKILEGIS_PAGE_URL}`}
           index="2"
           {...a11yProps(2)}
         />
@@ -206,6 +207,7 @@ export default function PageNavbar(props) {
       <AppBar position="absolute" className={header}>
         {mobileView ? displayMobile() : displayDesktop()}
       </AppBar>
+      <div className={offset} />
     </header>
   );
 }

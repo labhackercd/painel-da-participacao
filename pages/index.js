@@ -1,70 +1,231 @@
 import React from 'react';
+// import PropTypes from 'prop-types';
 import Head from 'next/head';
-import styles from '../styles/Home.module.css';
+import Link from 'next/link';
+import { makeStyles } from '@material-ui/core/styles';
+import { Grid, Button } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
+import BarChartIcon from '@material-ui/icons/BarChart';
+import Box from '@material-ui/core/Box';
+// import Layout from '../layouts/index';
+import PageNavbar from '../layouts/navbar';
+// import Footer from '../src/components/Footer/index';
 
-export default function Home() {
+const useStyles = makeStyles((theme) => ({
+  root: {
+    height: '100vh',
+  },
+  container: {
+    width: 'auto',
+    height: '100%',
+    backgroundColor: theme.palette.primary.main,
+  },
+  box: {
+    display: 'flex',
+    flexFlow: 'column',
+    height: '100%',
+  },
+  boxHeader: {
+    flex: '0 1 auto',
+  },
+  boxContent: {
+    flex: '1 1 auto',
+  },
+  textBox: {
+    margin: '10%',
+  },
+  typographyBoxText: {
+    fontSize: '2.4rem',
+  },
+  typographyBoxTextTitle: {
+    fontSize: '2.938rem',
+  },
+  typographyHighLightedText: {
+    fontSize: '2.4rem',
+    color: '#1181E9',
+  },
+  wikilegisSection: {
+    background: 'linear-gradient(180deg, #14D768 -51.22%, rgba(20, 215, 104, 0) 100%)',
+    float: 'left',
+  },
+  audienciasSection: {
+    background: 'linear-gradient(180deg, #F59D2A -51.22%, rgba(245, 157, 42, 0) 100%)',
+    height: '100%',
+  },
+  buttonStyle: {
+    color: 'black',
+    textTransform: 'none',
+    fontWeight: 700,
+    '@media (max-width: 600px)': {
+      width: '90%',
+    },
+  },
+  buttonContainer: {
+    paddingTop: '15em',
+    '@media (max-width: 1100px)': {
+      paddingBottom: '5vh',
+    },
+  },
+  chartImages: {
+    '@media (max-width: 600px)': {
+      maxWidth: '150px',
+      maxHeight: '200px',
+    },
+  },
+  toolSectionHeader: {
+
+    paddingBottom: '9vh',
+    marginLeft: '1rem',
+    '@media (max-width: 1100px)': {
+      paddingTop: '2vh',
+    },
+  },
+  toolSectionHeaderTextTitle: {
+    fontFamily: 'Roboto',
+    fontSize: '1.563rem',
+    '@media (max-width: 600px)': {
+      fontSize: '1.1rem',
+    },
+  },
+  toolSectionHeaderTextSubTitle: {
+    fontFamily: 'Roboto',
+    fontSize: '1rem',
+    '@media (max-width: 600px)': {
+      fontSize: '1rem',
+    },
+  },
+}));
+
+function Home() {
+  const classes = useStyles();
+
   return (
-    <div className={styles.container}>
+    <div className={classes.root}>
       <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Dashboard Audiências</title>
       </Head>
+      <Box className={classes.box}>
+        <Box className={classes.boxHeader}>
+          <PageNavbar value={0} />
+        </Box>
+        <Box className={classes.boxContent}>
+          <Grid container className={classes.container}>
+            <Grid item xs={12} md={5}>
+              <Box className={classes.textBox}>
+                <Box paddingBottom="100px">
+                  <Typography variant="h1" gutterBottom className={classes.typographyBoxTextTitle}>
+                    PAINEL DA PARTICIPAÇÃO
+                  </Typography>
+                </Box>
+                <Typography className={classes.typographyHighLightedText} display="inline">
+                  XXX
+                </Typography>
+                <Typography gutterBottom className={classes.typographyBoxText} display="inline">
+                  {' '}
+                  cidadãos se cadastraram no portal e-Democracia da Câmara dos Deputados
+                  no período de
+                </Typography>
+                <Typography className={classes.typographyHighLightedText} display="inline">
+                  {' '}
+                  XXXXX.
+                </Typography>
+                <Box paddingTop="50px">
+                  <Typography className={classes.typographyBoxText} display="inline">
+                    Conheça os números de utilização das
+                  </Typography>
+                  <Typography className={classes.typographyHighLightedText} display="inline">
+                    {' '}
+                    ferramentas de participação pelos cidadãos.
+                  </Typography>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to
-          {' '}
-          <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+                </Box>
+              </Box>
+            </Grid>
+            <Grid item xs={12} md={7}>
+              <Box height="100%" display="flex">
+                <Box width="50%" height="100%" className={classes.audienciasSection} display="flex" flexDirection="column" justifyContent="center">
+                  <Box className={classes.toolSectionHeader}>
+                    <Typography variant="h4" className={classes.toolSectionHeaderTextTitle}>
+                      Audiências Interativas
+                    </Typography>
+                    <Typography variant="h4" className={classes.toolSectionHeaderTextSubTitle}>
+                      Perguntas aos parlamentares
+                    </Typography>
+                  </Box>
+                  <Box display="flex" flexDirection="row-reverse">
+                    <img
+                      className={classes.chartImages}
+                      src={`${process.env.NEXT_PUBLIC_APPLICATION_BASE_PATH_URL}/initialPage/audiencias_chart_frame.png`}
+                      alt=""
+                      role="presentation"
+                    />
+                  </Box>
+                  <Box display="flex" justifyContent="center" className={classes.buttonContainer}>
+                    <Link
+                      href={`/${process.env.NEXT_PUBLIC_AUDIENCIAS_PAGE_URL}`}
+                      passHref
+                    >
+                      <Button
+                        style={{ backgroundColor: '#F59D2A' }}
+                        className={classes.buttonStyle}
+                        variant="contained"
+                        color="primary"
+                        endIcon={<BarChartIcon />}
+                      >
+                        Participação nas Audiências
+                      </Button>
+                    </Link>
 
-        <p className={styles.description}>
-          Get started by editing
-          {' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
+                  </Box>
+                </Box>
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+                <Box width="50%" className={classes.wikilegisSection} display="flex" flexDirection="column" justifyContent="center">
+                  <Box className={classes.toolSectionHeader}>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by
-          {' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
+                    <Typography variant="h4" className={classes.toolSectionHeaderTextTitle}>
+                      Wikilegis
+                      <br />
+                      {' '}
+                    </Typography>
+                    <Typography variant="h4" className={classes.toolSectionHeaderTextSubTitle}>
+                      Opiniões em textos de propostas legislativas
+                    </Typography>
+                  </Box>
+                  <Box display="flex" justifyContent="left">
+                    <img
+                      className={classes.chartImages}
+                      src={`${process.env.NEXT_PUBLIC_APPLICATION_BASE_PATH_URL}/initialPage/wikilegis_chart_frame.png`}
+                      alt=""
+                      role="presentation"
+                    />
+                  </Box>
+                  <Box display="flex" justifyContent="center" className={classes.buttonContainer}>
+                    <Link
+                      href={`/${process.env.NEXT_PUBLIC_WIKILEGIS_PAGE_URL}`}
+                      passHref
+                    >
+                      <Button
+                        style={{ backgroundColor: '#14D768' }}
+                        className={classes.buttonStyle}
+                        variant="contained"
+                        color="primary"
+                        endIcon={<BarChartIcon />}
+                      >
+                        Participação na Wikilegis
+                      </Button>
+                    </Link>
+                  </Box>
+                </Box>
+              </Box>
+            </Grid>
+          </Grid>
+        </Box>
+        {/* <Box>
+          <Footer />
+        </Box> */}
+      </Box>
     </div>
   );
 }
+
+export default Home;

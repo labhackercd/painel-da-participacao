@@ -5,10 +5,7 @@ import Footer from '../src/components/Footer';
 import PageNavbar from './navbar';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    backgroundColor: theme.palette.black.main,
-    height: '5vh',
-  },
+
   tab: {
     height: '92%',
     textTransform: 'capitalize',
@@ -24,11 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
   body: {
     backgroundColor: theme.palette.primary.main,
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  container: {
-    marginTop: '5vh',
+    height: 'auto',
   },
 }));
 
@@ -39,9 +32,7 @@ export default function Layout(props) {
   return (
     <div className={classes.body}>
       <PageNavbar value={value} />
-      <div className={classes.container}>
-        {children}
-      </div>
+      {children}
       <Footer />
     </div>
   );
