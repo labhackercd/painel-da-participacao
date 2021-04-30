@@ -17,7 +17,7 @@ import Link from 'next/link';
 
 const useStyles = makeStyles((theme) => ({
   header: {
-    backgroundColor: 'theme.palette.black.main',
+    backgroundColor: theme.palette.black.main,
     paddingRight: '79px',
     paddingLeft: '10vh',
     '@media (max-width: 1100px)': {
