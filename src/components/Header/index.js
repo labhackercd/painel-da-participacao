@@ -21,12 +21,16 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
   },
   filterButton: {
-    fontWeight: 'bold',
-    fontSize: '1rem',
     backgroundColor: (props) => props.colors.button.main,
     '&:hover': {
       backgroundColor: (props) => props.colors.button.hover,
     },
+  },
+  buttonTypography: {
+    color: '#212121',
+    textTransform: 'capitalize',
+    fontWeight: 'bold',
+    fontSize: '1rem',
   },
   formControl: {
     marginRight: '20px',
@@ -43,6 +47,8 @@ const useStyles = makeStyles((theme) => ({
   },
   inputBase: {
     position: 'relative',
+    fontWeight: 'bold',
+
     backgroundColor: '#404040',
     padding: '5px 13px 5px 6px',
     border: '2px solid',
@@ -63,6 +69,7 @@ const useStyles = makeStyles((theme) => ({
   iconDisabled: {
     fill: 'gray',
   },
+
 }));
 
 export default function Header(props) {
@@ -159,7 +166,7 @@ export default function Header(props) {
               </Select>
             </FormControl>
             <Button variant="contained" className={classes.filterButton} onClick={handleSubmit}>
-              <Typography style={{ color: 'black', textTransform: 'capitalize' }}>
+              <Typography className={classes.buttonTypography}>
                 Filtrar
               </Typography>
             </Button>
