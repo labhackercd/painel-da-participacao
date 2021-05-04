@@ -162,7 +162,7 @@ function Home() {
                   </Box>
                   <Box display="flex" justifyContent="center" className={classes.buttonContainer}>
                     <Link
-                      href={`/${process.env.NEXT_PUBLIC_AUDIENCIAS_PAGE_URL}`}
+                      href={`${process.env.NEXT_PUBLIC_AUDIENCIAS_PAGE_URL}`}
                       passHref
                     >
                       <Button
@@ -201,7 +201,7 @@ function Home() {
                   </Box>
                   <Box display="flex" justifyContent="center" className={classes.buttonContainer}>
                     <Link
-                      href={`/${process.env.NEXT_PUBLIC_WIKILEGIS_PAGE_URL}`}
+                      href={`${process.env.NEXT_PUBLIC_WIKILEGIS_PAGE_URL}`}
                       passHref
                     >
                       <Button

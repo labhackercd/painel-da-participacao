@@ -3,6 +3,10 @@
 import React from 'react';
 import { formatDate } from '../../services/format/date';
 
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 export const rankingWikilegisColumns = [
   {
     name: 'Proposta Legilastiva',
@@ -53,7 +57,7 @@ export const rankingWikilegisColumns = [
     selector: 'document.responsible',
     sortable: true,
     center: true,
-    cell: (row) => (`${row.document.responsible.name} (${row.document.responsible.party_initials}-${row.document.responsible.uf})`),
+    cell: (row) => (`${(row.document.responsible.name.toLowerCase()).replace(/(^|\s)\S/g, (l) => l.toUpperCase())} (${row.document.responsible.party_initials}-${row.document.responsible.uf})`),
   },
 ];
 
