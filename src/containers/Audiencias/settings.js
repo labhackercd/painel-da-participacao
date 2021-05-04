@@ -70,6 +70,14 @@ export const rankingAudienciaColumns = [
     maxWidth: '160px',
     center: true,
   },
+  {
+    name: 'Status',
+    selector: (row) => (row.is_active ? 'Realizada' : 'Cancelada'),
+    sortable: true,
+    maxWidth: '100px',
+    center: true,
+    cell: (row) => (row.is_active ? 'Realizada' : 'Cancelada'),
+  },
 ];
 
 export function filterRankingAudiencias(data, searchedText) {
@@ -84,6 +92,7 @@ export function filterRankingAudiencias(data, searchedText) {
       || (item.reunion_type ? item.reunion_type.toLowerCase() : '').includes(searchedText.toLowerCase())
       || (item.votes_count ? item.votes_count.toString() : '').includes(searchedText.toLowerCase())
       || (item.date ? formatDate(item.date) : '').includes(searchedText.toLowerCase())
+      || (item.is_active ? 'realizada' : 'cancelada').includes(searchedText.toLowerCase())
     ),
   );
   return filter;
