@@ -320,7 +320,7 @@ function Wikilegis(props) {
     switch (period) {
       case dailyKeyWord:
         resultArray = await allRooms.filter((value) => {
-          const [valueYear, valueMonth] = value.openning_date.split('-'); // Or, var month = e.date.split('-')[1];
+          const [valueYear, valueMonth] = value.closing_date.split('-'); // Or, var month = e.date.split('-')[1];
           return (
             (parseInt(month, 10) === parseInt(valueMonth, 10))
             && (parseInt(year, 10) === parseInt(valueYear, 10))
@@ -329,7 +329,7 @@ function Wikilegis(props) {
         break;
       case monthlyKeyWord:
         resultArray = await allRooms.filter((value) => {
-          const [valueYear] = value.openning_date.split('-'); // Or, var month = e.date.split('-')[1];
+          const [valueYear] = value.closing_date.split('-'); // Or, var month = e.date.split('-')[1];
           return (parseInt(year, 10) === parseInt(valueYear, 10));
         });
         break;
