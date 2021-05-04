@@ -2,11 +2,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Grid, Box, Typography,
+  Grid, Box, Typography, SvgIcon, Icon,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 import { CSVLink } from 'react-csv';
+import { ReactComponent as DownloadIconSVG } from '../../assets/icons/download_csv.svg';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -98,8 +99,19 @@ export default function ChartDataFrame(props) {
           <Box marginRight={2} alignSelf="center" marginTop={1}>
             {download && (exportData !== undefined && exportData !== null)
               ? (
-                <CSVLink headers={downloadHeaders} data={formatedData} filename={`${title}.csv`} aria-label="Baixar arquivo CSV" title="Baixar arquivo CSV">
-                  <CloudDownloadIcon className={classes.downloadIcon} />
+                <CSVLink
+                  headers={downloadHeaders}
+                  data={formatedData}
+                  filename={`${title}.csv`}
+                  aria-label="Baixar arquivo CSV"
+                  title="Baixar arquivo CSV"
+                  style={{ textDecoration: 'none' }}
+                >
+                  <Box display="flex" alignItems="center">
+                    <Icon style={{ width: '100%' }}>
+                      <img src={`${process.env.NEXT_PUBLIC_APPLICATION_BASE_PATH_URL}/icons/download_csv.svg`} alt="" aria-hidden="true" />
+                    </Icon>
+                  </Box>
                 </CSVLink>
               )
               : ''}
