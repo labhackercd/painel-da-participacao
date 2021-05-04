@@ -143,49 +143,53 @@ function Audiencias(props) {
     let collumPeriodTitle = [];
 
     try {
-      switch (period) {
-        case dailyKeyWord:
-          computedArray.push([values[0].start_date.match(/\d+/g)[2], values[0].new_users]);
-          for (let i = 1; i < values.length; i += 1) {
+      if (values === null) {
+        switch (period) {
+          case dailyKeyWord:
+            computedArray.push([values[0].start_date.match(/\d+/g)[2], values[0].new_users]);
+            for (let i = 1; i < values.length; i += 1) {
+              computedArray.push(
+                [values[i].start_date.match(/\d+/g)[2],
+                  values[i].new_users + computedArray[i - 1][1]],
+              );
+            }
+            collumPeriodTitle = [['Dia', 'Total de Usuários Cadastrados']];
+            break;
+          case monthlyKeyWord:
             computedArray.push(
-              [values[i].start_date.match(/\d+/g)[2],
-                values[i].new_users + computedArray[i - 1][1]],
+              [monthNamesList[(new Date(values[0].end_date)).getMonth()], values[0].new_users],
             );
-          }
-          collumPeriodTitle = [['Dia', 'Total de Usuários Cadastrados']];
-          break;
-        case monthlyKeyWord:
-          computedArray.push(
-            [monthNamesList[(new Date(values[0].end_date)).getMonth()], values[0].new_users],
-          );
-          for (let i = 1; i < values.length; i += 1) {
+            for (let i = 1; i < values.length; i += 1) {
+              computedArray.push(
+                [monthNamesList[(new Date(values[i].end_date)).getMonth()],
+                  values[i].new_users + computedArray[i - 1][1]],
+              );
+            }
+            collumPeriodTitle = [['Mês', 'Total de Usuários Cadastrados']];
+            break;
+          default:
             computedArray.push(
-              [monthNamesList[(new Date(values[i].end_date)).getMonth()],
-                values[i].new_users + computedArray[i - 1][1]],
+              [new Date(values[0].end_date).getFullYear().toString(), values[0].new_users],
             );
-          }
-          collumPeriodTitle = [['Mês', 'Total de Usuários Cadastrados']];
-          break;
-        default:
-          computedArray.push(
-            [new Date(values[0].end_date).getFullYear().toString(), values[0].new_users],
-          );
-          for (let i = 1; i < values.length; i += 1) {
-            computedArray.push(
-              [new Date(values[i].end_date).getFullYear().toString(),
-                values[i].new_users + computedArray[i - 1][1]],
-            );
-          }
-          collumPeriodTitle = [['Ano', 'Total de Usuários Cadastrados']];
-          break;
+            for (let i = 1; i < values.length; i += 1) {
+              computedArray.push(
+                [new Date(values[i].end_date).getFullYear().toString(),
+                  values[i].new_users + computedArray[i - 1][1]],
+              );
+            }
+            collumPeriodTitle = [['Ano', 'Total de Usuários Cadastrados']];
+            break;
+        }
+        setTotalUsersChartDataLastUpdate(values[0].modified);
+        setTotalUsersChartData(collumPeriodTitle.concat(computedArray));
+      } else {
+        collumPeriodTitle = [];
       }
     } catch (e) {
       // eslint-disable-next-line no-console
       console.error(e);
     }
 
-    setTotalUsersChartDataLastUpdate(values[0].modified);
-    setTotalUsersChartData(collumPeriodTitle.concat(computedArray));
     setTotalUsersChartDataLoaded(true);
   }
 
@@ -267,6 +271,8 @@ function Audiencias(props) {
 
     if (Array.isArray(values) && values.length) {
       computeTotalOfUsersByPeriod(values, period);
+    } else {
+      computeTotalOfUsersByPeriod(null, period);
     }
   }
 
