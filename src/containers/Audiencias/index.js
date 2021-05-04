@@ -203,7 +203,7 @@ function Audiencias(props) {
       const dataJson = {
         users_total: numberWithDots(participantsUsersTotalResponse.data.sum_total_results),
         audiencias_total: numberWithDots(audienciesTotalResponse.data.sum_total_results),
-        audiencias_total_finished: '10',
+        audiencias_total_finished: numberWithDots(audienciesTotalResponse.data.sum_finished),
         messages_total: numberWithDots(messagesTotalResponse.data.sum_total_results),
         questions_total: numberWithDots(questionsTotalResponse.data.sum_total_results),
       };
