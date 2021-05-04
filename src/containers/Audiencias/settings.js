@@ -17,12 +17,12 @@ export const rankingAudienciaColumns = [
             href={`${process.env.NEXT_PUBLIC_EDEMOCRACIA_BASE_URL}${row.get_absolute_url}`}
             target="_blank"
             rel="noopener noreferrer"
-            style={row.is_active ? { color: '#ffffff' } : { color: '#ffffff', textDecoration: 'none' }}
+            style={{ color: '#ffffff' }}
           >
             {((row.reunion_theme === null || row.reunion_theme === '') ? row.title_reunion : row.reunion_theme)}
           </a>
         )
-        : (((row.reunion_theme === null || row.reunion_theme === '') ? row.title_reunion : row.reunion_theme))
+        : ((row.reunion_theme === null || row.reunion_theme === '') ? row.title_reunion : row.reunion_theme)
     ),
   },
   {
