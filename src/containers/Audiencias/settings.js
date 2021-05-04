@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable react/react-in-jsx-scope */
 import React from 'react';
@@ -6,19 +7,31 @@ import { formatDate } from '../../services/format/date';
 export const rankingAudienciaColumns = [
   {
     name: 'Título da audiência',
-    selector: 'title',
+    selector: (row) => ((row.reunion_theme === null || row.reunion_theme === '') ? row.title_reunion : row.reunion_theme),
     sortable: true,
     maxWidth: '500px',
     cell: (row) => (
-      <a
-        href={`${process.env.NEXT_PUBLIC_EDEMOCRACIA_BASE_URL}${row.get_absolute_url}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{ color: '#ffffff', textDecoration: 'none' }}
-      >
-        {((row.reunion_theme === null || row.reunion_theme === '') ? row.title_reunion : row.reunion_theme)}
-      </a>
+      (row.is_active)
+        ? (
+          <a
+            href={`${process.env.NEXT_PUBLIC_EDEMOCRACIA_BASE_URL}${row.get_absolute_url}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: '#ffffff' }}
+          >
+            {((row.reunion_theme === null || row.reunion_theme === '') ? row.title_reunion : row.reunion_theme)}
+          </a>
+        )
+        : ((row.reunion_theme === null || row.reunion_theme === '') ? row.title_reunion : row.reunion_theme)
     ),
+  },
+  {
+    name: 'Status',
+    selector: (row) => (row.is_active ? 'Realizada' : 'Cancelada'),
+    sortable: true,
+    maxWidth: '100px',
+    center: true,
+    cell: (row) => (row.is_active ? 'Realizada' : 'Cancelada'),
   },
   {
     name: 'Data',
@@ -76,14 +89,15 @@ export function filterRankingAudiencias(data, searchedText) {
   const filter = data.filter(
     (item) => (
       item.date.toLowerCase().includes(searchedText.toLowerCase())
+      || (((item.reunion_theme === null || item.reunion_theme === '') ? item.title_reunion : item.reunion_theme) ? ((item.reunion_theme === null || item.reunion_theme === '') ? item.title_reunion : item.reunion_theme).toLowerCase() : '').includes(searchedText.toLowerCase())
       || (item.legislative_body_initials ? item.legislative_body_initials.toLowerCase() : '').includes(searchedText.toLowerCase())
       || (item.messages_count ? item.messages_count.toString() : '').includes(searchedText.toLowerCase())
       || (item.participants_count ? item.participants_count.toString() : '').includes(searchedText.toLowerCase())
       || (item.questions_count ? item.questions_count.toString() : '').includes(searchedText.toLowerCase())
-      || (item.reunion_theme ? item.reunion_theme.toLowerCase() : '').includes(searchedText.toLowerCase())
       || (item.reunion_type ? item.reunion_type.toLowerCase() : '').includes(searchedText.toLowerCase())
       || (item.votes_count ? item.votes_count.toString() : '').includes(searchedText.toLowerCase())
       || (item.date ? formatDate(item.date) : '').includes(searchedText.toLowerCase())
+      || (item.is_active ? 'realizada' : 'cancelada').includes(searchedText.toLowerCase())
     ),
   );
   return filter;

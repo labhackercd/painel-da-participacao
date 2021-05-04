@@ -139,8 +139,10 @@ export default function RankingTable(props) {
         pointerOnHover
         pagination
         paginationRowsPerPageOptions={[10, 50, 100, 1000]}
+        labelRowsPerPage="Teste"
         defaultSortField="participants_count"
         defaultSortAsc={false}
+        paginationComponentOptions={{ rowsPerPageText: 'Linhas por página:', rangeSeparatorText: 'de' }}
       />
     </>
   );

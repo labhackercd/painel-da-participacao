@@ -55,6 +55,7 @@ export default function TableDarkTheme(props) {
         pointerOnHover
         pagination
         paginationRowsPerPageOptions={[5, 10, (data.length)]}
+        paginationComponentOptions={{ rowsPerPageText: 'Linhas por página:', rangeSeparatorText: 'de' }}
         defaultSortAsc={false}
       />
     </>

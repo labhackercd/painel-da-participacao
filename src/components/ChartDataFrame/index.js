@@ -116,6 +116,7 @@ export default function ChartDataFrame(props) {
             href={apiUrl}
             target="_blank"
             rel="noopener noreferrer"
+            style={{ color: 'white' }}
           >
             {`API ${tool}`}
           </a>

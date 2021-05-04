@@ -131,7 +131,7 @@ export default function PageNavbar(props) {
           label="Audiências"
           aria-label="Página Audiências"
           aria-selected
-          url={`/${process.env.NEXT_PUBLIC_AUDIENCIAS_PAGE_URL}`}
+          url={`${process.env.NEXT_PUBLIC_AUDIENCIAS_PAGE_URL}`}
           index="1"
           {...a11yProps(1)}
         />
@@ -140,7 +140,7 @@ export default function PageNavbar(props) {
           label="Wikilegis"
           aria-label="Página Wikilegis"
           aria-selected={false}
-          url={`/${process.env.NEXT_PUBLIC_WIKILEGIS_PAGE_URL}`}
+          url={`${process.env.NEXT_PUBLIC_WIKILEGIS_PAGE_URL}`}
           index="2"
           {...a11yProps(2)}
         />
