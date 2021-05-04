@@ -59,6 +59,11 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'left',
     width: '100%',
   },
+  updateLegendText: {
+    fontFamily: 'Open Sans',
+    fontSize: '0.8rem',
+    color: '#B9B9B9',
+  },
 }));
 
 export default function ChartDataFrame(props) {
@@ -119,21 +124,21 @@ export default function ChartDataFrame(props) {
       <div className={classes.container} style={{ minHeight: height, width: '100%' }}>
         {children}
       </div>
-      <Typography className={classes.updateLegend} variant="h5">
-        <Box m={1}>
+      <Box className={classes.updateLegend} paddingLeft={1} paddingBottom={1}>
+        <Typography className={classes.updateLegendText}>
           {'Fonte: '}
           <a
             href={apiUrl}
             target="_blank"
             rel="noopener noreferrer"
-            style={{ color: 'white' }}
+            style={{ color: '#2BE6FF' }}
           >
             {`API ${tool}`}
           </a>
 
           {`  Atualizado em: ${apiLastUpdate}`}
-        </Box>
-      </Typography>
+        </Typography>
+      </Box>
     </Grid>
   );
 }
