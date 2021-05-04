@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-await-in-loop */
 import React from 'react';
 // import PropTypes from 'prop-types';
@@ -106,7 +107,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Home({ dados }) {
+function Home({ usersTotal }) {
   const classes = useStyles();
 
   return (
@@ -132,7 +133,7 @@ function Home({ dados }) {
                   </Typography>
                 </Box>
                 <Typography className={classes.typographyHighLightedText} display="inline">
-                  {dados.data.sum_total_results}
+                  {usersTotal}
                 </Typography>
                 <Typography gutterBottom className={classes.typographyBoxText} display="inline">
                   {' '}
@@ -246,33 +247,26 @@ function Home({ dados }) {
 }
 
 export async function getStaticProps() {
-  let dados = [];
-
   async function getData() {
-    const results = [];
     const url = `${process.env.NEXT_PUBLIC_EDEMOCRACIA_REPORT_RANKING_USERS_URL}?period=yearly`;
 
     try {
       const resp = await axios.get(url);
       const respData = await resp.data;
-
-      return { data: respData };
+      return respData.sum_total_results;
     } catch (err) {
-      return [];
+      return '-';
     }
   }
 
-  dados = await getData();
+  const usersTotal = await getData();
 
   return {
     props: {
-      dados,
+      usersTotal,
     },
-    revalidate: 600, // Update data every 10 minutes (600 seconds)
+    revalidate: 43200, // Update data every 12 hour(43200 seconds)
   };
 }
 
 export default Home;
-
-
-//https://tes.edemocracia.camara.leg.br/reports/api/new-users/?period=yearly
