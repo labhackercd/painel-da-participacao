@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable react/react-in-jsx-scope */
 import React from 'react';
@@ -10,15 +11,27 @@ export const rankingAudienciaColumns = [
     sortable: true,
     maxWidth: '500px',
     cell: (row) => (
-      <a
-        href={`${process.env.NEXT_PUBLIC_EDEMOCRACIA_BASE_URL}${row.get_absolute_url}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{ color: '#ffffff', textDecoration: 'none' }}
-      >
-        {((row.reunion_theme === null || row.reunion_theme === '') ? row.title_reunion : row.reunion_theme)}
-      </a>
+      (row.is_active)
+        ? (
+          <a
+            href={`${process.env.NEXT_PUBLIC_EDEMOCRACIA_BASE_URL}${row.get_absolute_url}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={row.is_active ? { color: '#ffffff' } : { color: '#ffffff', textDecoration: 'none' }}
+          >
+            {((row.reunion_theme === null || row.reunion_theme === '') ? row.title_reunion : row.reunion_theme)}
+          </a>
+        )
+        : (((row.reunion_theme === null || row.reunion_theme === '') ? row.title_reunion : row.reunion_theme))
     ),
+  },
+  {
+    name: 'Status',
+    selector: (row) => (row.is_active ? 'Realizada' : 'Cancelada'),
+    sortable: true,
+    maxWidth: '100px',
+    center: true,
+    cell: (row) => (row.is_active ? 'Realizada' : 'Cancelada'),
   },
   {
     name: 'Data',
@@ -69,14 +82,6 @@ export const rankingAudienciaColumns = [
     sortable: true,
     maxWidth: '160px',
     center: true,
-  },
-  {
-    name: 'Status',
-    selector: (row) => (row.is_active ? 'Realizada' : 'Cancelada'),
-    sortable: true,
-    maxWidth: '100px',
-    center: true,
-    cell: (row) => (row.is_active ? 'Realizada' : 'Cancelada'),
   },
 ];
 
