@@ -26,11 +26,13 @@ export const rankingWikilegisColumns = [
   },
   {
     name: 'Data de Abertura',
+    selector: 'openning_date',
     sortable: true,
     cell: (row) => formatDate(row.openning_date),
   },
   {
     name: 'Data de Encerramento',
+    selector: 'closing_date',
     sortable: true,
     cell: (row) => formatDate(row.closing_date),
   },
@@ -54,7 +56,7 @@ export const rankingWikilegisColumns = [
   },
   {
     name: 'Parlamentar Responsável',
-    selector: 'document.responsible',
+    selector: 'document.responsible.name',
     sortable: true,
     center: true,
     cell: (row) => (`${(row.document.responsible.name.toLowerCase()).replace(/(^|\s)\S/g, (l) => l.toUpperCase())} (${row.document.responsible.party_initials}-${row.document.responsible.uf})`),
