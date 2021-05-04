@@ -6,7 +6,7 @@ import { formatDate } from '../../services/format/date';
 export const rankingAudienciaColumns = [
   {
     name: 'Título da audiência',
-    selector: 'title',
+    selector: (row) => ((row.reunion_theme === null || row.reunion_theme === '') ? row.title_reunion : row.reunion_theme),
     sortable: true,
     maxWidth: '500px',
     cell: (row) => (
