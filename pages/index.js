@@ -1,7 +1,10 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-await-in-loop */
 import React from 'react';
 // import PropTypes from 'prop-types';
 import Head from 'next/head';
 import Link from 'next/link';
+import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Button } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
@@ -35,9 +38,13 @@ const useStyles = makeStyles((theme) => ({
     margin: '10%',
   },
   typographyBoxText: {
+    fontFamily: 'Open Sans',
     fontSize: '2.4rem',
   },
   typographyBoxTextTitle: {
+    fontFamily: 'Open Sans',
+    letterSpacing: '0.05em',
+    fontWeight: 'bold',
     fontSize: '2.938rem',
   },
   typographyHighLightedText: {
@@ -73,7 +80,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   toolSectionHeader: {
-
     paddingBottom: '9vh',
     marginLeft: '1rem',
     '@media (max-width: 1100px)': {
@@ -81,22 +87,27 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   toolSectionHeaderTextTitle: {
-    fontFamily: 'Roboto',
-    fontSize: '1.563rem',
+    fontFamily: 'Open Sans',
+    letterSpacing: '0.05em',
+    fontStyle: 'normal',
+    fontWeight: 'bold',
+    fontSize: '2.438rem',
     '@media (max-width: 600px)': {
       fontSize: '1.1rem',
     },
   },
   toolSectionHeaderTextSubTitle: {
-    fontFamily: 'Roboto',
-    fontSize: '1rem',
+    fontFamily: 'Open Sans',
+    fontWeight: '400',
+    letterSpacing: '0.05em',
+    fontSize: '1.2rem',
     '@media (max-width: 600px)': {
       fontSize: '1rem',
     },
   },
 }));
 
-function Home() {
+function Home({ usersTotal }) {
   const classes = useStyles();
 
   return (
@@ -114,11 +125,15 @@ function Home() {
               <Box className={classes.textBox}>
                 <Box paddingBottom="100px">
                   <Typography variant="h1" gutterBottom className={classes.typographyBoxTextTitle}>
-                    PAINEL DA PARTICIPAÇÃO
+                    PAINEL DA
+                    {' '}
+                    <br />
+                    {' '}
+                    PARTICIPAÇÃO
                   </Typography>
                 </Box>
                 <Typography className={classes.typographyHighLightedText} display="inline">
-                  XXX
+                  {usersTotal}
                 </Typography>
                 <Typography gutterBottom className={classes.typographyBoxText} display="inline">
                   {' '}
@@ -127,7 +142,10 @@ function Home() {
                 </Typography>
                 <Typography className={classes.typographyHighLightedText} display="inline">
                   {' '}
-                  XXXXX.
+                  {`2016 à ${new Date().getFullYear()}`}
+                </Typography>
+                <Typography gutterBottom className={classes.typographyBoxText} display="inline">
+                  .
                 </Typography>
                 <Box paddingTop="50px">
                   <Typography className={classes.typographyBoxText} display="inline">
@@ -145,10 +163,10 @@ function Home() {
               <Box height="100%" display="flex">
                 <Box width="50%" height="100%" className={classes.audienciasSection} display="flex" flexDirection="column" justifyContent="center">
                   <Box className={classes.toolSectionHeader}>
-                    <Typography variant="h4" className={classes.toolSectionHeaderTextTitle}>
+                    <Typography variant="h2" className={classes.toolSectionHeaderTextTitle}>
                       Audiências Interativas
                     </Typography>
-                    <Typography variant="h4" className={classes.toolSectionHeaderTextSubTitle}>
+                    <Typography className={classes.toolSectionHeaderTextSubTitle}>
                       Perguntas aos parlamentares
                     </Typography>
                   </Box>
@@ -182,12 +200,12 @@ function Home() {
                 <Box width="50%" className={classes.wikilegisSection} display="flex" flexDirection="column" justifyContent="center">
                   <Box className={classes.toolSectionHeader}>
 
-                    <Typography variant="h4" className={classes.toolSectionHeaderTextTitle}>
+                    <Typography variant="h2" className={classes.toolSectionHeaderTextTitle}>
                       Wikilegis
                       <br />
                       {' '}
                     </Typography>
-                    <Typography variant="h4" className={classes.toolSectionHeaderTextSubTitle}>
+                    <Typography className={classes.toolSectionHeaderTextSubTitle}>
                       Opiniões em textos de propostas legislativas
                     </Typography>
                   </Box>
@@ -226,6 +244,29 @@ function Home() {
       </Box>
     </div>
   );
+}
+
+export async function getStaticProps() {
+  async function getData() {
+    const url = `${process.env.NEXT_PUBLIC_EDEMOCRACIA_REPORT_RANKING_USERS_URL}?period=yearly`;
+
+    try {
+      const resp = await axios.get(url);
+      const respData = await resp.data;
+      return respData.sum_total_results;
+    } catch (err) {
+      return '-';
+    }
+  }
+
+  const usersTotal = await getData();
+
+  return {
+    props: {
+      usersTotal,
+    },
+    revalidate: 43200, // Update data every 12 hour(43200 seconds)
+  };
 }
 
 export default Home;
