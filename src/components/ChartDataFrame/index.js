@@ -2,12 +2,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Grid, Box, Typography, SvgIcon, Icon,
+  Grid, Box, Typography, Icon,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 import { CSVLink } from 'react-csv';
-import { ReactComponent as DownloadIconSVG } from '../../assets/icons/download_csv.svg';
 
 const useStyles = makeStyles((theme) => ({
   root: {
