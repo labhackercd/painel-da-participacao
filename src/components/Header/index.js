@@ -3,8 +3,8 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
-  Typography, Button, Box,
-  FormControl, InputBase, InputLabel, Select,
+  Button, Box, FormControl,
+  InputBase, InputLabel, Select,
 } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -25,13 +25,11 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       backgroundColor: (props) => props.colors.button.hover,
     },
-  },
-  buttonTypography: {
     color: '#212121',
     textTransform: 'capitalize',
     fontWeight: 'bold',
-    fontSize: '1rem',
   },
+
   formControl: {
     marginRight: '20px',
   },
@@ -166,9 +164,7 @@ export default function Header(props) {
               </Select>
             </FormControl>
             <Button variant="contained" className={classes.filterButton} onClick={handleSubmit}>
-              <Typography className={classes.buttonTypography}>
-                Filtrar
-              </Typography>
+              Filtrar
             </Button>
           </Box>
         </Toolbar>
