@@ -143,7 +143,7 @@ function Audiencias(props) {
     let collumPeriodTitle = [];
 
     try {
-      if (values === null) {
+      if (values !== null) {
         switch (period) {
           case dailyKeyWord:
             computedArray.push([values[0].start_date.match(/\d+/g)[2], values[0].new_users]);
@@ -181,7 +181,6 @@ function Audiencias(props) {
             break;
         }
         setTotalUsersChartDataLastUpdate(values[0].modified);
-        setTotalUsersChartData(collumPeriodTitle.concat(computedArray));
       } else {
         collumPeriodTitle = [];
       }
@@ -189,7 +188,7 @@ function Audiencias(props) {
       // eslint-disable-next-line no-console
       console.error(e);
     }
-
+    setTotalUsersChartData(collumPeriodTitle.concat(computedArray));
     setTotalUsersChartDataLoaded(true);
   }
 
