@@ -138,14 +138,7 @@ function Home({ usersTotal }) {
                 <Typography gutterBottom className={classes.typographyBoxText} display="inline">
                   {' '}
                   cidadãos se cadastraram no portal e-Democracia da Câmara dos Deputados
-                  no período de
-                </Typography>
-                <Typography className={classes.typographyHighLightedText} display="inline">
-                  {' '}
-                  {`2016 à ${new Date().getFullYear()}`}
-                </Typography>
-                <Typography gutterBottom className={classes.typographyBoxText} display="inline">
-                  .
+                  até hoje.
                 </Typography>
                 <Box paddingTop="50px">
                   <Typography className={classes.typographyBoxText} display="inline">

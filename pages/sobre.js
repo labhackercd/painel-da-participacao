@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: '15px',
     paddingBottom: '10px',
     '@media (max-width: 600px)': {
-      fontSize: '2.2rem',
+      fontSize: '1.9rem',
     },
   },
   typograhyH3: {
@@ -69,11 +69,17 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '600',
     paddingTop: '5px',
     paddingBottom: '10px',
+    '@media (max-width: 600px)': {
+      fontSize: '1.5rem',
+    },
   },
   typographyParagraph: {
     fontSize: '1.1rem',
     paddingBottom: '10px',
     textAlign: 'justify',
+    '@media (max-width: 600px)': {
+      fontSize: '0.9rem',
+    },
   },
   bannerBox: {
     width: '100%',
