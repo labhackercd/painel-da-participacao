@@ -5,15 +5,10 @@ import React from 'react';
 import Image from 'next/image';
 // import PropTypes from 'prop-types';
 import Head from 'next/head';
-import Link from 'next/link';
-import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Button } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Hidden from '@material-ui/core/Hidden';
-import BarChartIcon from '@material-ui/icons/BarChart';
 import Box from '@material-ui/core/Box';
-// import Layout from '../layouts/index';
 import PageNavbar from '../layouts/navbar';
 import Footer from '../src/components/Footer/index';
 
@@ -141,11 +136,11 @@ function Sobre() {
   return (
     <div className={classes.root}>
       <Head>
-        <title>Dashboard Audiências</title>
+        <title>Sobre</title>
       </Head>
       <Box className={classes.box}>
         <Box className={classes.boxHeader}>
-          <PageNavbar value={0} />
+          <PageNavbar value={3} />
         </Box>
         <Box className={classes.boxContent}>
           <Box className={classes.textBoxMargin}>
