@@ -1,13 +1,6 @@
 /* eslint-disable react/prop-types */
 import {
-  AppBar,
-  Toolbar,
-  makeStyles,
-  IconButton,
-  Drawer,
-  Box,
-  Tab,
-  Tabs,
+  AppBar, Toolbar, makeStyles, IconButton, Drawer, Box, Tab, Tabs,
 } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -149,7 +142,7 @@ export default function PageNavbar(props) {
           label="Sobre"
           aria-label="Página sobre"
           aria-selected={false}
-          url={process.env.NEXT_PUBLIC_WIKILEGIS_PAGE_URL}
+          url={process.env.NEXT_PUBLIC_SOBRE_PAGE_URL}
           index="3"
           {...a11yProps(3)}
         />
