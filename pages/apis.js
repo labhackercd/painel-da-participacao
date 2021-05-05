@@ -287,7 +287,7 @@ function Api() {
       </Head>
       <Box className={classes.box}>
         <Box className={classes.boxHeader}>
-          <PageNavbar value={3} />
+          <PageNavbar value={4} />
         </Box>
         <Box className={classes.boxContent}>
           <Box className={classes.textBoxMargin}>

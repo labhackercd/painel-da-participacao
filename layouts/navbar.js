@@ -146,6 +146,15 @@ export default function PageNavbar(props) {
           index="3"
           {...a11yProps(3)}
         />
+        <LinkTab
+          id="apiPanelTab"
+          label="APIs"
+          aria-label="Página apis"
+          aria-selected={false}
+          url={process.env.NEXT_PUBLIC_API_PAGE_URL}
+          index="4"
+          {...a11yProps(4)}
+        />
       </Tabs>
     );
   }
