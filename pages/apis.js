@@ -152,21 +152,33 @@ const useStyles = makeStyles((theme) => ({
   apiCardButtons: {
     display: 'flex',
     flexDirection: 'row-reverse',
-    paddingBottom: '1vh',
+    paddingBottom: '15px',
   },
   cardsContainer: {
     paddingTop: '20px',
     paddingBottom: '20px',
   },
+  anchorLink: {
+    marginLeft: '10px',
+    marginRight: '10px',
+  },
 }));
 
 function IconLink(props) {
+  const classes = useStyles();
   const { icon, url, helpText } = props;
 
   return (
-    <Link href={{ pathname: url }}>
-      <IconButton aria-label={helpText} title={helpText}>{icon}</IconButton>
-    </Link>
+    <a
+      className={classes.anchorLink}
+      target="_blank"
+      href={url}
+      rel="noopener noreferrer"
+      title={helpText}
+      aria-label={helpText}
+    >
+      {icon}
+    </a>
   );
 }
 
@@ -319,7 +331,7 @@ function Api() {
             </Typography>
             <Grid container style={{ paddingTop: '20px', paddingBottom: '20px' }} spacing={2}>
               {apiCardsInfo.map((tool) => (
-                <ApiCard title={tool.title} infoText={tool.infoText} toolColor={tool.toolColor} urls={tool.urls} />
+                <ApiCard key={tool.title} title={tool.title} infoText={tool.infoText} toolColor={tool.toolColor} urls={tool.urls} />
               ))}
             </Grid>
             <Typography variant="h2" className={`${classes.typography} ${classes.typograhyH2}`}>
@@ -327,7 +339,7 @@ function Api() {
             </Typography>
             <Grid container className={classes.cardsContainer} spacing={2}>
               {moreCardsInfo.map((tool) => (
-                <ApiCard title={tool.title} infoText={tool.infoText} toolColor={tool.toolColor} urls={tool.urls} />
+                <ApiCard key={tool.title} title={tool.title} infoText={tool.infoText} toolColor={tool.toolColor} urls={tool.urls} />
               ))}
             </Grid>
           </Box>
