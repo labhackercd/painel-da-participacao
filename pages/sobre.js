@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     margin: '5vh',
     '@media (min-width: 1100px)': {
       /* topo | direita | inferior | esquerda */
-      margin: '7vh 15vh 7vh 15vh',
+      margin: '7vh 30vh 7vh 30vh',
     },
     '@media (max-width: 600px)': {
       paddingBottom: '3vh',
@@ -56,24 +56,24 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   typograhyH2: {
-    fontSize: '2.938rem',
+    fontSize: '2.5rem',
     fontWeight: 'bold',
+    paddingTop: '15px',
+    paddingBottom: '10px',
     '@media (max-width: 600px)': {
       fontSize: '2.2rem',
     },
   },
   typograhyH3: {
-    fontSize: '2.438rem',
+    fontSize: '2rem',
     fontWeight: '600',
     paddingTop: '5px',
-  },
-  typographySubTitle: {
-    fontSize: '1rem',
+    paddingBottom: '10px',
   },
   typographyParagraph: {
-    fontSize: '1.563rem',
-    paddingTop: '10px',
-    paddingBottom: '15px',
+    fontSize: '1.1rem',
+    paddingBottom: '10px',
+    textAlign: 'justify',
   },
   bannerBox: {
     width: '100%',
@@ -91,8 +91,15 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     paddingLeft: '2vh',
     '@media (min-width: 1100px)': {
-      paddingLeft: '15vh',
+      paddingLeft: '30vh',
     },
+  },
+  bannerBoxParticipaLogo: {
+    width: '10%',
+    height: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    marginRight: '30vh',
   },
   bannerBoxLogos: {
     width: '200px',
@@ -147,7 +154,7 @@ function Sobre() {
             <Typography variant="h1" className={`${classes.typography} ${classes.typograhyTitle}`}>
               SOBRE O PAINEL DA PARTICIPAÇÃO
             </Typography>
-            <Typography className={`${classes.typography} ${classes.typographySubTitle}`}>
+            <Typography className={`${classes.typography} ${classes.typographyParagraph}`}>
               Critérios e definições adotados para apresentação dos dados
             </Typography>
           </Box>
@@ -161,7 +168,7 @@ function Sobre() {
               </Typography>
             </Box>
             <Hidden mdDown>
-              <Box width="10%" height="100%" display="flex" alignItems="center" marginRight="200px">
+              <Box className={classes.bannerBoxParticipaLogo}>
                 <Image
                   src={`${process.env.NEXT_PUBLIC_APPLICATION_BASE_PATH_URL}/logo/logo_participa.svg`}
                   alt="Logotipo da aplicação participa"
