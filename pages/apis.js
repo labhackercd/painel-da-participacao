@@ -274,7 +274,7 @@ function Api() {
       infoText: 'Na página você encontra um conjunto amplo de dados públicos sobre a Câmara dos Deputados e os trabalhos desenvolvidos. Há dados sobre votações, deputados, legislaturas, etc.',
       toolColor: '#7F69EE',
       urls: {
-        github: null,
+        github: `${process.env.NEXT_PUBLIC_DADOS_ABERTOS_GITHUB_URL}`,
         api: `${process.env.NEXT_PUBLIC_DADOS_ABERTOS_SWAGGER_URL}`,
         site: `${process.env.NEXT_PUBLIC_DADOS_ABERTOS_SITE_URL}`,
       },
