@@ -62,7 +62,6 @@ const useStyles = makeStyles((theme) => ({
   toolTipIcon: {
     color: '#DA7F0B',
   },
-
 }));
 
 const defaultYear = DEFAULT_YEAR;
@@ -81,7 +80,7 @@ function Audiencias(props) {
       main: '#DA7F0B',
       hover: '#C47209',
     },
-    toolTipBackground: '14D768',
+    // toolTipBackground: '#14D768',
   };
 
   const classes = useStyles();
@@ -480,7 +479,13 @@ function Audiencias(props) {
               isLoaded
             />
           ) : (
-            <NoDataForSelectedPeriod title={periodSubTitle} />
+            <NoDataForSelectedPeriod
+              title={periodSubTitle}
+              tool="Audiências"
+              apiLastUpdate={totalUsersChartDataLastUpdate}
+              toolColor={headerColors.borderColor}
+              apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
+            />
           )}
         </Grid>
 
@@ -507,7 +512,13 @@ function Audiencias(props) {
               </Box>
             </ChartDataFrame>
           ) : (
-            <NoDataForSelectedPeriod title={periodSubTitle} />
+            <NoDataForSelectedPeriod
+              title={periodSubTitle}
+              tool="Audiências"
+              apiLastUpdate={totalUsersChartDataLastUpdate}
+              toolColor={headerColors.borderColor}
+              apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
+            />
           )}
         </Grid>
 
@@ -533,7 +544,13 @@ function Audiencias(props) {
               />
             </div>
           ) : (
-            <NoDataForSelectedPeriod title={periodSubTitle} />
+            <NoDataForSelectedPeriod
+              title={periodSubTitle}
+              tool="Audiências"
+              apiLastUpdate={totalUsersChartDataLastUpdate}
+              toolColor={headerColors.borderColor}
+              apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
+            />
           )}
         </Grid>
 
@@ -555,7 +572,13 @@ function Audiencias(props) {
               />
             </div>
           ) : (
-            <NoDataForSelectedPeriod title={periodSubTitle} />
+            <NoDataForSelectedPeriod
+              title={periodSubTitle}
+              tool="Audiências"
+              apiLastUpdate={totalUsersChartDataLastUpdate}
+              toolColor={headerColors.borderColor}
+              apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
+            />
           )}
         </Grid>
       </Grid>
