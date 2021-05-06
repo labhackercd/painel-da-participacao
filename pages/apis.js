@@ -264,9 +264,9 @@ function Api() {
       infoText: 'Disponibiliza as ferramentas do e-Democracia com guias para a instalação, administração e utilização. Cada organização pode escolher quais ferramentas baixar e adotar.',
       toolColor: '#CE242E',
       urls: {
-        github: 'https://www.google.com',
-        api: 'https://www.google.com',
-        site: 'https://www.google.com',
+        github: null,
+        api: null,
+        site: `${process.env.NEXT_PUBLIC_EDEMOCRACIA_ABERTO_SITE_URL}`,
       },
     },
     {
@@ -274,8 +274,8 @@ function Api() {
       infoText: 'Na página você encontra um conjunto amplo de dados públicos sobre a Câmara dos Deputados e os trabalhos desenvolvidos. Há dados sobre votações, deputados, legislaturas, etc.',
       toolColor: '#7F69EE',
       urls: {
-        github: `${process.env.NEXT_PUBLIC_DADOS_ABERTOS_GITHUB_URL}`,
-        api: `${process.env.NEXT_PUBLIC_DADOS_ABERTOS_SWAGGER_URL}`,
+        github: null,
+        api: null,
         site: `${process.env.NEXT_PUBLIC_DADOS_ABERTOS_SITE_URL}`,
       },
     },

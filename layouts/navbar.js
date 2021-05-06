@@ -121,7 +121,7 @@ export default function PageNavbar(props) {
         />
         <LinkTab
           id="audienciasPanelTab"
-          label="Audiências"
+          label="Audiências Interativas"
           aria-label="Página Audiências"
           aria-selected
           url={`${process.env.NEXT_PUBLIC_AUDIENCIAS_PAGE_URL}`}
