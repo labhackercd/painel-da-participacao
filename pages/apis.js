@@ -5,17 +5,15 @@ import React from 'react';
 import Image from 'next/image';
 // import PropTypes from 'prop-types';
 import Head from 'next/head';
-import Link from 'next/link';
 import { makeStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import Hidden from '@material-ui/core/Hidden';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
-import AlarmIcon from '@material-ui/icons/Alarm';
+import SettingsEthernetIcon from '@material-ui/icons/SettingsEthernet';
 import GitHubIcon from '@material-ui/icons/GitHub';
-import CodeIcon from '@material-ui/icons/Code';
+import LanguageIcon from '@material-ui/icons/Language';
 import PageNavbar from '../layouts/navbar';
 import Footer from '../src/components/Footer/index';
 
@@ -187,9 +185,9 @@ function ApiCard(props) {
   const {
     title, infoText, toolColor, urls,
   } = props;
-  const githubIconHelpText = `Ir para página do github do ${title} `;
+  const githubIconHelpText = `Ir para página do Github do ${title} `;
   const apiIconHelpText = `Ir para página de API's do ${title}`;
-  const codeIconHelpText = `Ir para o repositório do ${title}`;
+  const siteIconHelpText = `Ir para o repositório do ${title}`;
 
   return (
     <Grid item md={4} sm={6} xs={12}>
@@ -201,9 +199,12 @@ function ApiCard(props) {
             <Typography className={classes.apiCardBodyTypographyParagraph}>{infoText}</Typography>
           </Box>
           <Box className={classes.apiCardButtons}>
-            <IconLink icon={<GitHubIcon style={{ color: toolColor }} />} helpText={githubIconHelpText} url={urls.github} />
-            <IconLink icon={<AlarmIcon style={{ color: toolColor }} />} helpText={apiIconHelpText} url={urls.api} />
-            <IconLink icon={<CodeIcon style={{ color: toolColor }} />} helpText={codeIconHelpText} url={urls.code} />
+            {urls.github !== null
+                && <IconLink icon={<GitHubIcon style={{ color: toolColor }} />} helpText={githubIconHelpText} url={urls.github} />}
+            {urls.api !== null
+                && <IconLink icon={<SettingsEthernetIcon style={{ color: toolColor }} />} helpText={apiIconHelpText} url={urls.api} />}
+            {urls.site !== null
+                && <IconLink icon={<LanguageIcon style={{ color: toolColor }} />} helpText={siteIconHelpText} url={urls.site} />}
           </Box>
         </Box>
       </Paper>
@@ -220,9 +221,9 @@ function Api() {
       infoText: 'A plataforma e-Democracia é um portal que reúne ferramentas de participação online no processo legislativo da Câmara dos Deputados.Acesse os dados e contribua para o código-fonte.',
       toolColor: '#1181E9',
       urls: {
-        github: 'https://www.google.com',
-        api: 'https://www.google.com',
-        code: 'https://www.google.com',
+        github: `${process.env.NEXT_PUBLIC_EDEMOCRACIA_GITHUB_URL}`,
+        api: `${process.env.NEXT_PUBLIC_EDEMOCRACIA_SWAGGER_URL}`,
+        site: `${process.env.NEXT_PUBLIC_EDEMOCRACIA_BASE_URL}`,
       },
     },
     {
@@ -230,9 +231,9 @@ function Api() {
       infoText: 'A ferramenta permite a participação em audiências públicas - e outros tipos de eventos - por meio do envio de perguntas e mensagens.',
       toolColor: '#F59D2A',
       urls: {
-        github: 'https://www.google.com',
-        api: 'https://www.google.com',
-        code: 'https://www.google.com',
+        github: `${process.env.NEXT_PUBLIC_AUDIENCIAS_GITHUB_URL}`,
+        api: `${process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}`,
+        site: `${process.env.NEXT_PUBLIC_AUDIENCIAS_SITE_URL}`,
       },
     },
     {
@@ -240,9 +241,9 @@ function Api() {
       infoText: 'Disponibiliza propostas legislativas para análise dos cidadãos que opinam  em trechos do texto e avaliam as opiniões uns dos outros.',
       toolColor: '#14D768',
       urls: {
-        github: 'https://www.google.com',
-        api: 'https://www.google.com',
-        code: 'https://www.google.com',
+        github: `${process.env.NEXT_PUBLIC_WIKILEGIS_GITHUB_URL}`,
+        api: `${process.env.NEXT_PUBLIC_WIKILEGIS_SWAGGER_URL}`,
+        site: `${process.env.NEXT_PUBLIC_WIKILEGIS_SITE_URL}`,
       },
     },
     {
@@ -250,9 +251,9 @@ function Api() {
       infoText: 'Mostra o histórico de utilização de ferramentas na plataforma e-Democracia por meio de gráficos, totais e tabelas.',
       toolColor: '#E438B4',
       urls: {
-        github: 'https://www.google.com',
-        api: 'https://www.google.com',
-        code: 'https://www.google.com',
+        github: `${process.env.NEXT_PUBLIC_PARTICIPATION_GITHUB_URL}`,
+        api: null,
+        site: `${process.env.NEXT_PUBLIC_PARTICIPATION_SITE_URL}`,
       },
     },
   ];
@@ -265,7 +266,7 @@ function Api() {
       urls: {
         github: 'https://www.google.com',
         api: 'https://www.google.com',
-        code: 'https://www.google.com',
+        site: 'https://www.google.com',
       },
     },
     {
@@ -273,9 +274,9 @@ function Api() {
       infoText: 'Na página você encontra um conjunto amplo de dados públicos sobre a Câmara dos Deputados e os trabalhos desenvolvidos. Há dados sobre votações, deputados, legislaturas, etc.',
       toolColor: '#7F69EE',
       urls: {
-        github: 'https://www.google.com',
-        api: 'https://www.google.com',
-        code: 'https://www.google.com',
+        github: null,
+        api: `${process.env.NEXT_PUBLIC_DADOS_ABERTOS_SWAGGER_URL}`,
+        site: `${process.env.NEXT_PUBLIC_DADOS_ABERTOS_SITE_URL}`,
       },
     },
   ];
