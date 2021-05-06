@@ -36,7 +36,8 @@ import customTheme from '../../../styles/theme';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
+    width: '100%',
+    height: '100%',
   },
   content: {
     overflow: 'auto',
@@ -414,7 +415,7 @@ function Audiencias(props) {
   }, []);
 
   return (
-    <>
+    <div className={classes.root}>
       <Header
         title="Audiências Interativas"
         handlePeriodChange={handlePeriodChange}
@@ -582,7 +583,7 @@ function Audiencias(props) {
           )}
         </Grid>
       </Grid>
-    </>
+    </div>
   );
 }
 

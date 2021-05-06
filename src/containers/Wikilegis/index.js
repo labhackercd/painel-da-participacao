@@ -38,7 +38,8 @@ import customTheme from '../../../styles/theme';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
+    width: '100%',
+    height: '100%',
   },
   headerBox: {
     backgroundColor: theme.palette.primary.main,
@@ -389,7 +390,7 @@ function Wikilegis(props) {
   }, []);
 
   return (
-    <>
+    <div className={classes.root}>
       <Header
         title="Wikilegis"
         handlePeriodChange={handlePeriodChange}
@@ -570,7 +571,7 @@ function Wikilegis(props) {
           )}
         </Grid>
       </Grid>
-    </>
+    </div>
   );
 }
 
