@@ -121,7 +121,7 @@ export default function PageNavbar(props) {
         />
         <LinkTab
           id="audienciasPanelTab"
-          label="Audiências"
+          label="Audiências Interativas"
           aria-label="Página Audiências"
           aria-selected
           url={`${process.env.NEXT_PUBLIC_AUDIENCIAS_PAGE_URL}`}
@@ -145,6 +145,15 @@ export default function PageNavbar(props) {
           url={process.env.NEXT_PUBLIC_SOBRE_PAGE_URL}
           index="3"
           {...a11yProps(3)}
+        />
+        <LinkTab
+          id="apiPanelTab"
+          label="APIs"
+          aria-label="Página apis"
+          aria-selected={false}
+          url={process.env.NEXT_PUBLIC_API_PAGE_URL}
+          index="4"
+          {...a11yProps(4)}
         />
       </Tabs>
     );
