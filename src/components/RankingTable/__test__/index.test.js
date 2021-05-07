@@ -1,7 +1,8 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import RankingTable from '../index';
-import { rankingAudienciaColumns, filterRankingAudiencias } from '../../../containers/Audiencias/settings';
+import { rankingAudienciaColumns } from '../../../containers/Audiencias/chartsAndReportsSettings';
+import filterRankingAudiencias from '../../../containers/Audiencias/auxFunctions/filterRanking';
 import { dataMock } from './mocks/data_mock';
 
 test('Test if Audiencias renders without crash whole lifecycle', async () => {

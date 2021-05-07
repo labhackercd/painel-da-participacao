@@ -38,7 +38,8 @@ import customTheme from '../../../styles/theme';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
+    width: '100%',
+    height: '100%',
   },
   headerBox: {
     backgroundColor: theme.palette.primary.main,
@@ -389,7 +390,7 @@ function Wikilegis(props) {
   }, []);
 
   return (
-    <>
+    <div className={classes.root}>
       <Header
         title="Wikilegis"
         handlePeriodChange={handlePeriodChange}
@@ -465,7 +466,13 @@ function Wikilegis(props) {
               isLoaded
             />
           ) : (
-            <NoDataForSelectedPeriod title={periodSubTitle} />
+            <NoDataForSelectedPeriod
+              title={periodSubTitle}
+              tool="Wikilegis"
+              apiLastUpdate={totalUsersChartDataLastUpdate}
+              toolColor={headerColors.borderColor}
+              apiUrl={process.env.NEXT_PUBLIC_WIKILEGIS_SWAGGER_URL}
+            />
           )}
         </Grid>
 
@@ -494,7 +501,13 @@ function Wikilegis(props) {
               </Box>
             </ChartDataFrame>
           ) : (
-            <NoDataForSelectedPeriod title={periodSubTitle} tool="Wikilegis" />
+            <NoDataForSelectedPeriod
+              title={periodSubTitle}
+              tool="Wikilegis"
+              apiLastUpdate={totalUsersChartDataLastUpdate}
+              toolColor={headerColors.borderColor}
+              apiUrl={process.env.NEXT_PUBLIC_WIKILEGIS_SWAGGER_URL}
+            />
           )}
         </Grid>
 
@@ -520,7 +533,13 @@ function Wikilegis(props) {
               />
             </div>
           ) : (
-            <NoDataForSelectedPeriod title="Novos Usuários" />
+            <NoDataForSelectedPeriod
+              title={periodSubTitle}
+              tool="Wikilegis"
+              apiLastUpdate={totalUsersChartDataLastUpdate}
+              toolColor={headerColors.borderColor}
+              apiUrl={process.env.NEXT_PUBLIC_WIKILEGIS_SWAGGER_URL}
+            />
           )}
         </Grid>
 
@@ -542,11 +561,17 @@ function Wikilegis(props) {
               />
             </div>
           ) : (
-            <NoDataForSelectedPeriod title={periodSubTitle} />
+            <NoDataForSelectedPeriod
+              title={periodSubTitle}
+              tool="Wikilegis"
+              apiLastUpdate={totalUsersChartDataLastUpdate}
+              toolColor={headerColors.borderColor}
+              apiUrl={process.env.NEXT_PUBLIC_WIKILEGIS_SWAGGER_URL}
+            />
           )}
         </Grid>
       </Grid>
-    </>
+    </div>
   );
 }
 

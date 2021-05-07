@@ -1,42 +1,39 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable max-len */
+/* eslint-disable spaced-comment */
 /* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
-import { Grid } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
+import { Grid, Box, makeStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import ChartDataFrame from '../../components/ChartDataFrame/index';
-import Header from '../../components/Header/index';
-import RankingTable from '../../components/RankingTable/index';
+import { Alert, AlertTitle } from '@material-ui/lab';
 import {
-  getParticipationChartDataByDay, getParticipationChartDataByMonth, getParticipationChartDataByYear,
-} from '../../services/functions/auxFunctions/index';
+  ChartDataFrame, Header, RankingTable, TotalFrame, SectionHeader, SubSectionHeader,
+  NoDataForSelectedPeriod, ChartAndReport,
+} from '../../components';
 
 import { handleUpdatePeriodSearchQuery } from '../../services/functions/handlers/index';
-
-import TotalFrame from '../../components/Frames/TotalFrame/index';
-import Sectionheader from '../../components/Headers/SectionHeader/index';
-import SubSectionHeader from '../../components/Headers/SubSectionHeader/index';
-import NoDataForSelectedPeriod from '../../components/Informations/NoDataForSelectedPeriod/index';
-import ChartAndReport from '../../components/ChartAndReport/index';
-
-import {
-  participantsTotalToolTip, messagesTotalToolTip, audiencesTotalToolTip, audiencesRankingToolTip,
-} from '../../services/texts/tooltips';
-
+import formatNumberWithDots from '../../utils/formatNumberWithDots';
 import {
   MONTHS_LIST, MONTHS_ABBREVIATED_LIST, DEFAULT_YEAR, DEFAULT_SELECTED_PERIOD_TYPE,
   DEFAULT_MONTH_PERIOD, DEFAULT_SEARCH_QUERY, DAILY_KEY_WORD, MONTHLY_KEY_WORD,
   AUDIENCIAS_INITIAL_YEAR,
 } from '../../services/constants/constants';
-
-import { rankingAudienciaColumns, filterRankingAudiencias } from './settings';
+import {
+  participantsTotalToolTip, messagesTotalToolTip, audiencesTotalToolTip, audiencesRankingToolTip,
+} from '../../services/texts/tooltips';
+import {
+  getParticipationChartDataByDay, getParticipationChartDataByMonth, getParticipationChartDataByYear,
+} from './auxFunctions/computeParticipation';
+import filterRankingAudiencias from './auxFunctions/filterRanking';
+import { rankingAudienciaColumns, audiencesChartsUsersSettings, audiencesWithMoreParticipation } from './chartsAndReportsSettings';
 
 import customTheme from '../../../styles/theme';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
+    width: '100%',
+    height: '100%',
   },
   content: {
     overflow: 'auto',
@@ -62,7 +59,6 @@ const useStyles = makeStyles((theme) => ({
   toolTipIcon: {
     color: '#DA7F0B',
   },
-
 }));
 
 const defaultYear = DEFAULT_YEAR;
@@ -74,70 +70,76 @@ const monthlyKeyWord = MONTHLY_KEY_WORD;
 const monthNamesList = MONTHS_ABBREVIATED_LIST;
 
 function Audiencias(props) {
-  const { responseDataRanking } = props;
+  const TOOLNAME = 'Audiências Interativas';
+  const { responseDataRanking, defaultApisData, apiLastCacheMade } = props;
   const headerColors = {
     borderColor: '#DA7F0B',
     button: {
       main: '#DA7F0B',
       hover: '#C47209',
     },
-    toolTipBackground: '14D768',
+    // toolTipBackground: '#14D768',
   };
 
   const classes = useStyles();
+  // Charts and report Data
   const [audienciasTotalsData, setAudienciasTotalsData] = useState('');
   const [newUsersChartData, setNewUsersChartData] = useState([]);
   const [totalUsersChartData, setTotalUsersChartData] = useState([]);
-  const [roomsRankingData, setRoomsRankingData] = useState(responseDataRanking.data);
+  const [roomsRankingData, setRoomsRankingData] = useState(defaultApisData.audienciasRankingData);
   const [participantionChartData, setParticipantionChartData] = useState([]);
+  // Load Status
   const [totalsAreLoaded, setTotalsAreLoaded] = useState(false);
   const [newUsersChartDataLoaded, setNewUsersChartDataLoaded] = useState(false);
   const [totalUsersChartDataLoaded, setTotalUsersChartDataLoaded] = useState(false);
-  const [periodSubTitle, setPeriodSubTitle] = useState(new Date().getFullYear().toString());
-  const [participantionChartDataLastUpdate, setParticipantionChartDataLastUpdate] = useState('Carregando');
+  // Information states
+  const [periodSubTitle, setPeriodSubTitle] = useState(defaultYear);
+  const [participantionChartDataLastUpdate, setParticipantionChartDataLastUpdate] = useState(apiLastCacheMade);
   const roomsRankingDataLastUpdate = responseDataRanking.lastUpdate;
-  const [totalUsersChartDataLastUpdate, setTotalUsersChartDataLastUpdate] = useState('Carregando');
-  const [newUsersChartDataLastUpdate, setNewUsersChartDataLastUpdate] = useState('Carregando');
+  const [totalUsersChartDataLastUpdate, setTotalUsersChartDataLastUpdate] = useState(apiLastCacheMade);
+  const [newUsersChartDataLastUpdate, setNewUsersChartDataLastUpdate] = useState(apiLastCacheMade);
+  // Period Selected states
+  const [selectedPeriod, setSelectedPeriod] = useState(defaultSelectedPeriodType);
+  const [selectedYear, setSelectedYear] = useState(defaultYear);
+  const [selectedMonth, setSelectedMonth] = useState(defaultMonthPeriod);
+  // Api's default data
+  const [apisDataObject, setApisDataObject] = useState({
+    audiencesParticipantAPIData: defaultApisData.audienceParticipantUsersAPIData,
+    audiencesRoomsAPIData: defaultApisData.audiencesRoomsAPIData,
+    audiencesMessagesAPIData: defaultApisData.audienceMessagesAPIData,
+    audiencesQuestionsAPIData: defaultApisData.audienceQuestionsAPIData,
+    audiencesNewUsersAPIData: defaultApisData.audienceNewUsersAPIData,
+    audiencesVotesAPIData: defaultApisData.audienceVotesAPIData,
+  });
 
-  const audiencesChartsUsersSettings = {
-    chartType: 'LineChart',
-    options: {
-      legend: { position: 'top', maxLines: 3, textStyle: { color: 'white' } },
-      colors: ['#76480F', '#9E5E0D', '#DA7F0B'],
-      lineWidth: 5,
-      pointSize: 15,
-      hAxis: {
-        textStyle: { color: '#FFFFFF' },
-        gridlines: { color: 'transparent' },
-        titleTextStyle: { color: 'white' },
-      },
-      vAxis: { gridlines: { color: 'transparent' }, textStyle: { color: '#FFFFFF' }, format: '##.##' },
-      series: {
-        1: { curveType: 'function' },
-      },
-      backgroundColor: '#000000',
-    },
-  };
+  async function fetchDataFromApi(apiUrl, query) {
+    try {
+      const axiosResponse = await axios.get(`${apiUrl}${query}`);
+      return axiosResponse.data;
+    } catch (e) {
+      return null;
+    }
+  }
 
-  const audiencesWithMoreParticipation = {
-    chartType: 'ColumnChart',
-    options: {
-      bars: 'vertical',
-      legend: { position: 'top', maxLines: 3, textStyle: { color: 'white' } },
-      isStacked: 'true',
-      colors: ['#744600', '#EBE23B', '#DA7F0B'],
-      bar: { groupWidth: '80%' },
-      hAxis: { textStyle: { color: 'white' }, titleTextStyle: { color: 'white' } },
-      vAxis: {
-        minValue: 0,
-        gridlines: { color: 'transparent' },
-        textStyle: { color: '#FFFFFF' },
-        format: '###.##',
-      },
-      backgroundColor: '#000000',
-    },
-  };
+  async function fetchAndUpdateApisData(query) {
+    const participants = await fetchDataFromApi(process.env.NEXT_PUBLIC_AUDIENCIAS_PARTICIPANT_USERS_URL, query);
+    const rooms = await fetchDataFromApi(process.env.NEXT_PUBLIC_AUDIENCIAS_ROOMS_RANKING_URL, query);
+    const messages = await fetchDataFromApi(process.env.NEXT_PUBLIC_AUDIENCIAS_MESSAGES_RANKING_URL, query);
+    const questions = await fetchDataFromApi(process.env.NEXT_PUBLIC_AUDIENCIAS_QUESTIONS_RANKING_URL, query);
+    const newUsers = await fetchDataFromApi(process.env.NEXT_PUBLIC_AUDIENCIAS_NEW_USERS_URL, query);
+    const votes = await fetchDataFromApi(process.env.NEXT_PUBLIC_AUDIENCIAS_VOTES_RANKING_URL, query);
 
+    setApisDataObject({
+      audiencesParticipantAPIData: participants,
+      audiencesRoomsAPIData: rooms,
+      audiencesMessagesAPIData: messages,
+      audiencesQuestionsAPIData: questions,
+      audiencesNewUsersAPIData: newUsers,
+      audiencesVotesAPIData: votes,
+    });
+  }
+
+  // TODO -> CHANGE THIS FUNCTION TO GET NEW API DATA INSTEAD OF CALCULATE IT
   function computeTotalOfUsersByPeriod(values, period) {
     const computedArray = [];
     let collumPeriodTitle = [];
@@ -192,89 +194,6 @@ function Audiencias(props) {
     setTotalUsersChartDataLoaded(true);
   }
 
-  async function fetchAndSetAudienciasTotalsData(query) {
-    function numberWithDots(x) {
-      return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, '.');
-    }
-
-    try {
-      const participantsUsersTotalResponse = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_PARTICIPANT_USERS_URL}${query}`);
-      const audienciesTotalResponse = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_ROOMS_RANKING_URL}${query}`);
-      const messagesTotalResponse = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_MESSAGES_RANKING_URL}${query}`);
-      const questionsTotalResponse = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_QUESTIONS_RANKING_URL}${query}`);
-
-      const dataJson = {
-        users_total: numberWithDots(participantsUsersTotalResponse.data.sum_total_results),
-        audiencias_total: numberWithDots(audienciesTotalResponse.data.sum_total_results),
-        audiencias_total_finished: numberWithDots(audienciesTotalResponse.data.sum_finished),
-        messages_total: numberWithDots(messagesTotalResponse.data.sum_total_results),
-        questions_total: numberWithDots(questionsTotalResponse.data.sum_total_results),
-      };
-
-      await setAudienciasTotalsData(dataJson);
-      await setTotalsAreLoaded(true);
-    } catch (e) {
-      const dataJson = {
-        users_total: '-',
-        audiencias_total: '-',
-        audiencias_total_finished: '-',
-        messages_total: '-',
-        questions_total: '-',
-      };
-
-      await setAudienciasTotalsData(dataJson);
-      await setTotalsAreLoaded(true);
-    }
-  }
-
-  async function fetchAndSetNewUsersChartData(query, period) {
-    const url = `${process.env.NEXT_PUBLIC_AUDIENCIAS_NEW_USERS_URL}${query}`;
-    const newUsersTotalResponse = await axios.get(url);
-    const values = newUsersTotalResponse.data.results;
-    let arrayData = [];
-    let collumPeriodTitle = [];
-
-    try {
-      switch (period) {
-        case dailyKeyWord:
-          arrayData = values.map(
-            (value) => [value.start_date.match(/\d+/g)[2], value.new_users],
-          );
-          collumPeriodTitle = ['Dia', 'Novos Usuários'];
-          break;
-        case monthlyKeyWord:
-          arrayData = values.map(
-            (value) => [monthNamesList[(new Date(value.end_date)).getMonth()], value.new_users],
-          );
-          collumPeriodTitle = ['Mês', 'Novos Usuários'];
-          break;
-        default:
-          arrayData = values.map(
-            (value) => [new Date(value.end_date).getFullYear().toString(), value.new_users],
-          );
-          collumPeriodTitle = ['Ano', 'Novos Usuários'];
-          break;
-      }
-    } catch (e) {
-      arrayData = [];
-    }
-
-    if (arrayData.length > 0) {
-      setNewUsersChartDataLastUpdate(values[0].modified);
-      setNewUsersChartData([collumPeriodTitle].concat(arrayData));
-    } else {
-      setNewUsersChartData(arrayData);
-    }
-
-    setNewUsersChartDataLoaded(true);
-
-    if (Array.isArray(values) && values.length) {
-      computeTotalOfUsersByPeriod(values, period);
-    } else {
-      computeTotalOfUsersByPeriod(null, period);
-    }
-  }
-
   function getApiLastUpdateDateAndHour(messagesData, questionsData, questionsVoteData) {
     let lastUpdate = '';
 
@@ -291,54 +210,9 @@ function Audiencias(props) {
     return lastUpdate;
   }
 
-  async function fetchAndSetParticipationChartData(query, period, month, year) {
-    try {
-      const messagesResponse = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_MESSAGES_RANKING_URL}${query}`);
-      const questionsResponse = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_QUESTIONS_RANKING_URL}${query}`);
-      const questionsVotesResponse = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_VOTES_RANKING_URL}${query}`);
-
-      const messagesData = messagesResponse.data.results;
-      const questionsData = questionsResponse.data.results;
-      const questionsVoteData = questionsVotesResponse.data.results;
-
-      let arrayData = [];
-      const collumPeriodTitle = ['Data', 'Mensagens do chat', 'Perguntas', 'Votos nas Perguntas'];
-
-      switch (period) {
-        case dailyKeyWord:
-          arrayData = await getParticipationChartDataByDay(
-            month, year, messagesData, questionsData, questionsVoteData,
-          );
-          break;
-        case monthlyKeyWord:
-          arrayData = await getParticipationChartDataByMonth(
-            month, year, messagesData, questionsData, questionsVoteData,
-          );
-          break;
-        default: // yearly -> Total period
-          arrayData = await getParticipationChartDataByYear(
-            messagesData, questionsData, questionsVoteData, AUDIENCIAS_INITIAL_YEAR,
-          );
-          break;
-      }
-
-      if (arrayData.length > 0) {
-        setParticipantionChartData([collumPeriodTitle].concat(arrayData));
-        setParticipantionChartDataLastUpdate(
-          getApiLastUpdateDateAndHour(messagesData, questionsData, questionsVoteData),
-        );
-      } else {
-        setParticipantionChartData(arrayData);
-      }
-    } catch (e) {
-      setParticipantionChartData([]);
-    }
-  }
-
   async function filterAndSetRoomsRankingData(period, month, year) {
-    // to be implemented
     let resultArray = [];
-    const allRooms = props.responseDataRanking.data;
+    const allRooms = defaultApisData.audienciasRankingData;
     try {
       switch (period) {
         case dailyKeyWord:
@@ -388,34 +262,167 @@ function Audiencias(props) {
     }
   }
 
-  async function loadData(query, period, month, year) {
+  async function updateNewUsersChartData(period) {
+    const values = apisDataObject.audiencesNewUsersAPIData.results;
+    let arrayData = [];
+    let collumPeriodTitle = [];
+
     try {
-      updateChartsAndTableSubTitle(period, month, year);
-      fetchAndSetAudienciasTotalsData(query);
-      fetchAndSetNewUsersChartData(query, period);
-      fetchAndSetParticipationChartData(query, period, month, year);
-      filterAndSetRoomsRankingData(period, month, year);
+      switch (period) {
+        case dailyKeyWord:
+          arrayData = values.map(
+            (value) => [value.start_date.match(/\d+/g)[2], value.new_users],
+          );
+          collumPeriodTitle = ['Dia', 'Novos Usuários'];
+          break;
+        case monthlyKeyWord:
+          arrayData = values.map(
+            (value) => [monthNamesList[(new Date(value.end_date)).getMonth()], value.new_users],
+          );
+          collumPeriodTitle = ['Mês', 'Novos Usuários'];
+          break;
+        default:
+          arrayData = values.map(
+            (value) => [new Date(value.end_date).getFullYear().toString(), value.new_users],
+          );
+          collumPeriodTitle = ['Ano', 'Novos Usuários'];
+          break;
+      }
     } catch (e) {
-      console.error('Erro ao carregar dados da página');
+      arrayData = [];
     }
+
+    if (arrayData.length > 0) {
+      // setNewUsersChartDataLastUpdate(values[0].modified); TROCAR POR LAST CACHE MADE
+      setNewUsersChartData([collumPeriodTitle].concat(arrayData));
+    } else {
+      setNewUsersChartData(arrayData); // TALVEZ TROCAR POR FALSE
+    }
+
+    setNewUsersChartDataLoaded(true);
+
+    if (Array.isArray(values) && values.length) {
+      computeTotalOfUsersByPeriod(values, period);
+    } else {
+      computeTotalOfUsersByPeriod(null, period);
+    }
+  }
+
+  async function updateTotalsData() {
+    try {
+      const dataJson = {
+        users_total: formatNumberWithDots(apisDataObject.audiencesParticipantAPIData.sum_total_results),
+        audiencias_total: formatNumberWithDots(apisDataObject.audiencesRoomsAPIData.sum_total_results),
+        audiencias_total_finished: formatNumberWithDots(apisDataObject.audiencesRoomsAPIData.sum_finished),
+        messages_total: formatNumberWithDots(apisDataObject.audiencesMessagesAPIData.sum_total_results),
+        questions_total: formatNumberWithDots(apisDataObject.audiencesQuestionsAPIData.sum_total_results),
+      };
+
+      await setAudienciasTotalsData(dataJson);
+      await setTotalsAreLoaded(true);
+    } catch (e) {
+      const dataJson = {
+        users_total: '-',
+        audiencias_total: '-',
+        audiencias_total_finished: '-',
+        messages_total: '-',
+        questions_total: '-',
+      };
+
+      await setAudienciasTotalsData(dataJson);
+      await setTotalsAreLoaded(true);
+    }
+  }
+
+  async function updateParticipationChartData(period, month, year) {
+    try {
+      const messagesData = apisDataObject.audiencesMessagesAPIData.results;
+      const questionsData = apisDataObject.audiencesQuestionsAPIData.results;
+      const questionsVoteData = apisDataObject.audiencesVotesAPIData.results;
+
+      let arrayData = [];
+      const collumPeriodTitle = ['Data', 'Mensagens do chat', 'Perguntas', 'Votos nas Perguntas'];
+
+      switch (period) {
+        case dailyKeyWord:
+          arrayData = await getParticipationChartDataByDay(
+            month, year, messagesData, questionsData, questionsVoteData,
+          );
+          break;
+        case monthlyKeyWord:
+          arrayData = await getParticipationChartDataByMonth(
+            month, year, messagesData, questionsData, questionsVoteData,
+          );
+          break;
+        default: // yearly -> Total period
+          arrayData = await getParticipationChartDataByYear(
+            messagesData, questionsData, questionsVoteData, AUDIENCIAS_INITIAL_YEAR,
+          );
+          break;
+      }
+
+      if (arrayData.length > 0) {
+        setParticipantionChartData([collumPeriodTitle].concat(arrayData));
+        setParticipantionChartDataLastUpdate(
+          getApiLastUpdateDateAndHour(messagesData, questionsData, questionsVoteData),
+        );
+      } else {
+        setParticipantionChartData(arrayData);
+      }
+    } catch (e) {
+      setParticipantionChartData([]);
+    }
+  }
+
+  async function updateAllPageInformations(period, month, year) {
+    try {
+      await updateTotalsData();
+      await filterAndSetRoomsRankingData(period, month, year);
+      await updateParticipationChartData(period, month, year);
+      await updateNewUsersChartData(period);
+    } catch (e) {
+      console.error('Erro ao carregar dados da página Update Page');
+    }
+  }
+
+  async function resetPageComponentsLoadedStatusToFalse() {
+    setTotalsAreLoaded(false);
+    setNewUsersChartDataLoaded(false);
+    setTotalUsersChartDataLoaded(false);
+  }
+
+  async function newLoadData(query, period, month, year) {
+    try {
+      await resetPageComponentsLoadedStatusToFalse();
+      await updateChartsAndTableSubTitle(period, month, year);
+      await fetchAndUpdateApisData(query);
+    } catch (e) {
+      console.error('Erro ao carregar dados da página NewLoadData');
+    }
+  }
+
+  async function updateSelectedPeriodInterval(period, month, year) {
+    setSelectedPeriod(period);
+    setSelectedMonth(month);
+    setSelectedYear(year);
   }
 
   async function handlePeriodChange(month, year) {
     try {
       const { query, period } = await handleUpdatePeriodSearchQuery(month, year);
-      await loadData(query, period, month, year); // Reload page data
+      await updateSelectedPeriodInterval(period, month, year);
+      await newLoadData(query, period, month, year);
     } catch (e) {
       console.error('Erro ao tentar modificar período selecionado');
     }
   }
 
   useEffect(() => {
-    // Load Initial page year with current year informations
-    loadData(defaultSearchQuery, defaultSelectedPeriodType, 0, defaultYear);
-  }, []);
+    updateAllPageInformations(selectedPeriod, selectedMonth, selectedYear);
+  }, [apisDataObject]);
 
   return (
-    <>
+    <div className={classes.root}>
       <Header
         title="Audiências Interativas"
         handlePeriodChange={handlePeriodChange}
@@ -425,6 +432,14 @@ function Audiencias(props) {
         initialYear={AUDIENCIAS_INITIAL_YEAR}
       />
       <Grid container spacing={1} className={classes.spacingContainer}>
+        <Grid item xs={12}>
+          <Alert severity="warning">
+            <AlertTitle>Alerta</AlertTitle>
+            Um erro ocorreu ao obter dados do servidor,
+            <strong>estão sendo utilizados dados de cache.</strong>
+          </Alert>
+        </Grid>
+
         <Grid item xs={12} sm={6} md={3} className={classes.spacing}>
           <TotalFrame
             isLoaded={totalsAreLoaded}
@@ -464,7 +479,7 @@ function Audiencias(props) {
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <Sectionheader classes={classes} toolTipText={null} title="Distribuição da participação no período" />
+          <SectionHeader classes={classes} toolTipText={null} title="Distribuição da participação no período" />
           {(participantionChartData !== undefined && participantionChartData.length > 0) ? (
             <ChartAndReport
               height="60vh"
@@ -476,16 +491,22 @@ function Audiencias(props) {
               chartType={audiencesWithMoreParticipation.chartType}
               chartOptions={audiencesWithMoreParticipation.options}
               apiLastUpdate={participantionChartDataLastUpdate}
-              tool="Audiências"
+              tool={TOOLNAME}
               isLoaded
             />
           ) : (
-            <NoDataForSelectedPeriod title={periodSubTitle} />
+            <NoDataForSelectedPeriod
+              title={periodSubTitle}
+              tool={TOOLNAME}
+              apiLastUpdate={totalUsersChartDataLastUpdate}
+              toolColor={headerColors.borderColor}
+              apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
+            />
           )}
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <Sectionheader classes={classes} toolTipAriaLabel="Seção Ranking das Audiências" title="Ranking das audiências" toolTipText={audiencesRankingToolTip} toolTipColor={customTheme.palette.audiencias.seabuckthorn} />
+          <SectionHeader classes={classes} toolTipAriaLabel="Seção Ranking das Audiências" title="Ranking das audiências" toolTipText={audiencesRankingToolTip} toolTipColor={customTheme.palette.audiencias.seabuckthorn} />
           {(roomsRankingData !== undefined && roomsRankingData.length > 0) ? (
             <ChartDataFrame
               height="30vh"
@@ -496,7 +517,7 @@ function Audiencias(props) {
               align="center"
               apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
               apiLastUpdate={roomsRankingDataLastUpdate}
-              tool="Audiências"
+              tool={TOOLNAME}
             >
               <Box width="100%" height="90%">
                 <RankingTable
@@ -507,12 +528,18 @@ function Audiencias(props) {
               </Box>
             </ChartDataFrame>
           ) : (
-            <NoDataForSelectedPeriod title={periodSubTitle} />
+            <NoDataForSelectedPeriod
+              title={periodSubTitle}
+              tool={TOOLNAME}
+              apiLastUpdate={totalUsersChartDataLastUpdate}
+              toolColor={headerColors.borderColor}
+              apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
+            />
           )}
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <Sectionheader classes={classes} toolTipText={null} title="Usuários" />
+          <SectionHeader classes={classes} toolTipText={null} title="Usuários" />
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
@@ -529,11 +556,17 @@ function Audiencias(props) {
                 exportData={newUsersChartData}
                 download
                 apiLastUpdate={newUsersChartDataLastUpdate}
-                tool="Audiências"
+                tool={TOOLNAME}
               />
             </div>
           ) : (
-            <NoDataForSelectedPeriod title={periodSubTitle} />
+            <NoDataForSelectedPeriod
+              title={periodSubTitle}
+              tool={TOOLNAME}
+              apiLastUpdate={totalUsersChartDataLastUpdate}
+              toolColor={headerColors.borderColor}
+              apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
+            />
           )}
         </Grid>
 
@@ -551,24 +584,34 @@ function Audiencias(props) {
                 chartType={audiencesChartsUsersSettings.chartType}
                 chartOptions={audiencesChartsUsersSettings.options}
                 apiLastUpdate={totalUsersChartDataLastUpdate}
-                tool="Audiências"
+                tool={TOOLNAME}
               />
             </div>
           ) : (
-            <NoDataForSelectedPeriod title={periodSubTitle} />
+            <NoDataForSelectedPeriod
+              title={periodSubTitle}
+              tool={TOOLNAME}
+              apiLastUpdate={totalUsersChartDataLastUpdate}
+              toolColor={headerColors.borderColor}
+              apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
+            />
           )}
         </Grid>
       </Grid>
-    </>
+    </div>
   );
 }
 
 Audiencias.propTypes = {
   responseDataRanking: PropTypes.object,
+  defaultApisData: PropTypes.object,
+  apiLastCacheMade: PropTypes.string,
 };
 
 Audiencias.defaultProps = {
   responseDataRanking: [],
+  defaultApisData: {},
+  apiLastCacheMade: 'Carregando ...',
 };
 
 export default Audiencias;
