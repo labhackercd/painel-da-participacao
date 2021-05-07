@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable max-len */
+/* eslint-disable spaced-comment */
 /* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
 import { Grid } from '@material-ui/core';
@@ -23,6 +26,8 @@ import ChartAndReport from '../../components/ChartAndReport/index';
 import {
   participantsTotalToolTip, messagesTotalToolTip, audiencesTotalToolTip, audiencesRankingToolTip,
 } from '../../services/texts/tooltips';
+
+import formatNumberWithDots from '../../utils/formatNumberWithDots';
 
 import {
   MONTHS_LIST, MONTHS_ABBREVIATED_LIST, DEFAULT_YEAR, DEFAULT_SELECTED_PERIOD_TYPE,
@@ -74,7 +79,7 @@ const monthlyKeyWord = MONTHLY_KEY_WORD;
 const monthNamesList = MONTHS_ABBREVIATED_LIST;
 
 function Audiencias(props) {
-  const { responseDataRanking } = props;
+  const { responseDataRanking, defaultApisData, apiLastCacheMade } = props;
   const headerColors = {
     borderColor: '#DA7F0B',
     button: {
@@ -88,16 +93,32 @@ function Audiencias(props) {
   const [audienciasTotalsData, setAudienciasTotalsData] = useState('');
   const [newUsersChartData, setNewUsersChartData] = useState([]);
   const [totalUsersChartData, setTotalUsersChartData] = useState([]);
-  const [roomsRankingData, setRoomsRankingData] = useState(responseDataRanking.data);
+  const [roomsRankingData, setRoomsRankingData] = useState(defaultApisData.audienciasRankingData);
   const [participantionChartData, setParticipantionChartData] = useState([]);
+
   const [totalsAreLoaded, setTotalsAreLoaded] = useState(false);
   const [newUsersChartDataLoaded, setNewUsersChartDataLoaded] = useState(false);
   const [totalUsersChartDataLoaded, setTotalUsersChartDataLoaded] = useState(false);
-  const [periodSubTitle, setPeriodSubTitle] = useState(new Date().getFullYear().toString());
-  const [participantionChartDataLastUpdate, setParticipantionChartDataLastUpdate] = useState('Carregando');
+
+  const [periodSubTitle, setPeriodSubTitle] = useState(defaultYear);
+
+  const [participantionChartDataLastUpdate, setParticipantionChartDataLastUpdate] = useState(apiLastCacheMade);
   const roomsRankingDataLastUpdate = responseDataRanking.lastUpdate;
-  const [totalUsersChartDataLastUpdate, setTotalUsersChartDataLastUpdate] = useState('Carregando');
-  const [newUsersChartDataLastUpdate, setNewUsersChartDataLastUpdate] = useState('Carregando');
+  const [totalUsersChartDataLastUpdate, setTotalUsersChartDataLastUpdate] = useState(apiLastCacheMade);
+  const [newUsersChartDataLastUpdate, setNewUsersChartDataLastUpdate] = useState(apiLastCacheMade);
+
+  const [selectedPeriod, setSelectedPeriod] = useState(defaultSelectedPeriodType);
+  const [selectedYear, setSelectedYear] = useState(defaultYear);
+  const [selectedMonth, setSelectedMonth] = useState(defaultMonthPeriod);
+
+  const [apisDataObject, setApisDataObject] = useState({
+    audiencesParticipantAPIData: defaultApisData.audienceParticipantUsersAPIData,
+    audiencesRoomsAPIData: defaultApisData.audiencesRoomsAPIData,
+    audiencesMessagesAPIData: defaultApisData.audienceMessagesAPIData,
+    audiencesQuestionsAPIData: defaultApisData.audienceQuestionsAPIData,
+    audiencesNewUsersAPIData: defaultApisData.audienceNewUsersAPIData,
+    audiencesVotesAPIData: defaultApisData.audienceVotesAPIData,
+  });
 
   const audiencesChartsUsersSettings = {
     chartType: 'LineChart',
@@ -138,6 +159,34 @@ function Audiencias(props) {
     },
   };
 
+  async function fetchDataFromApi(apiUrl, query) {
+    try {
+      const axiosResponse = await axios.get(`${apiUrl}${query}`);
+      return axiosResponse.data;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  async function fetchAndUpdateApisData(query) {
+    const participants = await fetchDataFromApi(process.env.NEXT_PUBLIC_AUDIENCIAS_PARTICIPANT_USERS_URL, query);
+    const rooms = await fetchDataFromApi(process.env.NEXT_PUBLIC_AUDIENCIAS_ROOMS_RANKING_URL, query);
+    const messages = await fetchDataFromApi(process.env.NEXT_PUBLIC_AUDIENCIAS_MESSAGES_RANKING_URL, query);
+    const questions = await fetchDataFromApi(process.env.NEXT_PUBLIC_AUDIENCIAS_QUESTIONS_RANKING_URL, query);
+    const newUsers = await fetchDataFromApi(process.env.NEXT_PUBLIC_AUDIENCIAS_NEW_USERS_URL, query);
+    const votes = await fetchDataFromApi(process.env.NEXT_PUBLIC_AUDIENCIAS_VOTES_RANKING_URL, query);
+
+    setApisDataObject({
+      audiencesParticipantAPIData: participants,
+      audiencesRoomsAPIData: rooms,
+      audiencesMessagesAPIData: messages,
+      audiencesQuestionsAPIData: questions,
+      audiencesNewUsersAPIData: newUsers,
+      audiencesVotesAPIData: votes,
+    });
+  }
+
+  // ============================== OLD ===================================================
   function computeTotalOfUsersByPeriod(values, period) {
     const computedArray = [];
     let collumPeriodTitle = [];
@@ -192,89 +241,6 @@ function Audiencias(props) {
     setTotalUsersChartDataLoaded(true);
   }
 
-  async function fetchAndSetAudienciasTotalsData(query) {
-    function numberWithDots(x) {
-      return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, '.');
-    }
-
-    try {
-      const participantsUsersTotalResponse = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_PARTICIPANT_USERS_URL}${query}`);
-      const audienciesTotalResponse = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_ROOMS_RANKING_URL}${query}`);
-      const messagesTotalResponse = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_MESSAGES_RANKING_URL}${query}`);
-      const questionsTotalResponse = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_QUESTIONS_RANKING_URL}${query}`);
-
-      const dataJson = {
-        users_total: numberWithDots(participantsUsersTotalResponse.data.sum_total_results),
-        audiencias_total: numberWithDots(audienciesTotalResponse.data.sum_total_results),
-        audiencias_total_finished: numberWithDots(audienciesTotalResponse.data.sum_finished),
-        messages_total: numberWithDots(messagesTotalResponse.data.sum_total_results),
-        questions_total: numberWithDots(questionsTotalResponse.data.sum_total_results),
-      };
-
-      await setAudienciasTotalsData(dataJson);
-      await setTotalsAreLoaded(true);
-    } catch (e) {
-      const dataJson = {
-        users_total: '-',
-        audiencias_total: '-',
-        audiencias_total_finished: '-',
-        messages_total: '-',
-        questions_total: '-',
-      };
-
-      await setAudienciasTotalsData(dataJson);
-      await setTotalsAreLoaded(true);
-    }
-  }
-
-  async function fetchAndSetNewUsersChartData(query, period) {
-    const url = `${process.env.NEXT_PUBLIC_AUDIENCIAS_NEW_USERS_URL}${query}`;
-    const newUsersTotalResponse = await axios.get(url);
-    const values = newUsersTotalResponse.data.results;
-    let arrayData = [];
-    let collumPeriodTitle = [];
-
-    try {
-      switch (period) {
-        case dailyKeyWord:
-          arrayData = values.map(
-            (value) => [value.start_date.match(/\d+/g)[2], value.new_users],
-          );
-          collumPeriodTitle = ['Dia', 'Novos Usuários'];
-          break;
-        case monthlyKeyWord:
-          arrayData = values.map(
-            (value) => [monthNamesList[(new Date(value.end_date)).getMonth()], value.new_users],
-          );
-          collumPeriodTitle = ['Mês', 'Novos Usuários'];
-          break;
-        default:
-          arrayData = values.map(
-            (value) => [new Date(value.end_date).getFullYear().toString(), value.new_users],
-          );
-          collumPeriodTitle = ['Ano', 'Novos Usuários'];
-          break;
-      }
-    } catch (e) {
-      arrayData = [];
-    }
-
-    if (arrayData.length > 0) {
-      setNewUsersChartDataLastUpdate(values[0].modified);
-      setNewUsersChartData([collumPeriodTitle].concat(arrayData));
-    } else {
-      setNewUsersChartData(arrayData);
-    }
-
-    setNewUsersChartDataLoaded(true);
-
-    if (Array.isArray(values) && values.length) {
-      computeTotalOfUsersByPeriod(values, period);
-    } else {
-      computeTotalOfUsersByPeriod(null, period);
-    }
-  }
-
   function getApiLastUpdateDateAndHour(messagesData, questionsData, questionsVoteData) {
     let lastUpdate = '';
 
@@ -289,50 +255,6 @@ function Audiencias(props) {
     }
 
     return lastUpdate;
-  }
-
-  async function fetchAndSetParticipationChartData(query, period, month, year) {
-    try {
-      const messagesResponse = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_MESSAGES_RANKING_URL}${query}`);
-      const questionsResponse = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_QUESTIONS_RANKING_URL}${query}`);
-      const questionsVotesResponse = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_VOTES_RANKING_URL}${query}`);
-
-      const messagesData = messagesResponse.data.results;
-      const questionsData = questionsResponse.data.results;
-      const questionsVoteData = questionsVotesResponse.data.results;
-
-      let arrayData = [];
-      const collumPeriodTitle = ['Data', 'Mensagens do chat', 'Perguntas', 'Votos nas Perguntas'];
-
-      switch (period) {
-        case dailyKeyWord:
-          arrayData = await getParticipationChartDataByDay(
-            month, year, messagesData, questionsData, questionsVoteData,
-          );
-          break;
-        case monthlyKeyWord:
-          arrayData = await getParticipationChartDataByMonth(
-            month, year, messagesData, questionsData, questionsVoteData,
-          );
-          break;
-        default: // yearly -> Total period
-          arrayData = await getParticipationChartDataByYear(
-            messagesData, questionsData, questionsVoteData, AUDIENCIAS_INITIAL_YEAR,
-          );
-          break;
-      }
-
-      if (arrayData.length > 0) {
-        setParticipantionChartData([collumPeriodTitle].concat(arrayData));
-        setParticipantionChartDataLastUpdate(
-          getApiLastUpdateDateAndHour(messagesData, questionsData, questionsVoteData),
-        );
-      } else {
-        setParticipantionChartData(arrayData);
-      }
-    } catch (e) {
-      setParticipantionChartData([]);
-    }
   }
 
   async function filterAndSetRoomsRankingData(period, month, year) {
@@ -388,22 +310,158 @@ function Audiencias(props) {
     }
   }
 
-  async function loadData(query, period, month, year) {
+  // =================================== NEW ====================================
+  async function updateNewUsersChartData(period) {
+    const values = apisDataObject.audiencesNewUsersAPIData.results;
+    let arrayData = [];
+    let collumPeriodTitle = [];
+
     try {
-      updateChartsAndTableSubTitle(period, month, year);
-      fetchAndSetAudienciasTotalsData(query);
-      fetchAndSetNewUsersChartData(query, period);
-      fetchAndSetParticipationChartData(query, period, month, year);
-      filterAndSetRoomsRankingData(period, month, year);
+      switch (period) {
+        case dailyKeyWord:
+          arrayData = values.map(
+            (value) => [value.start_date.match(/\d+/g)[2], value.new_users],
+          );
+          collumPeriodTitle = ['Dia', 'Novos Usuários'];
+          break;
+        case monthlyKeyWord:
+          arrayData = values.map(
+            (value) => [monthNamesList[(new Date(value.end_date)).getMonth()], value.new_users],
+          );
+          collumPeriodTitle = ['Mês', 'Novos Usuários'];
+          break;
+        default:
+          arrayData = values.map(
+            (value) => [new Date(value.end_date).getFullYear().toString(), value.new_users],
+          );
+          collumPeriodTitle = ['Ano', 'Novos Usuários'];
+          break;
+      }
     } catch (e) {
-      console.error('Erro ao carregar dados da página');
+      arrayData = [];
     }
+
+    if (arrayData.length > 0) {
+      // setNewUsersChartDataLastUpdate(values[0].modified); TROCAR POR LAST CACHE MADE
+      setNewUsersChartData([collumPeriodTitle].concat(arrayData));
+    } else {
+      setNewUsersChartData(arrayData); // TALVEZ TROCAR POR FALSE
+    }
+
+    setNewUsersChartDataLoaded(true);
+
+    if (Array.isArray(values) && values.length) {
+      computeTotalOfUsersByPeriod(values, period);
+    } else {
+      computeTotalOfUsersByPeriod(null, period);
+    }
+  }
+
+  async function updateTotalsData() {
+    try {
+      const dataJson = {
+        users_total: formatNumberWithDots(apisDataObject.audiencesParticipantAPIData.sum_total_results),
+        audiencias_total: formatNumberWithDots(apisDataObject.audiencesRoomsAPIData.sum_total_results),
+        audiencias_total_finished: formatNumberWithDots(apisDataObject.audiencesRoomsAPIData.sum_finished),
+        messages_total: formatNumberWithDots(apisDataObject.audiencesMessagesAPIData.sum_total_results),
+        questions_total: formatNumberWithDots(apisDataObject.audiencesQuestionsAPIData.sum_total_results),
+      };
+
+      await setAudienciasTotalsData(dataJson);
+      await setTotalsAreLoaded(true);
+    } catch (e) {
+      const dataJson = {
+        users_total: '-',
+        audiencias_total: '-',
+        audiencias_total_finished: '-',
+        messages_total: '-',
+        questions_total: '-',
+      };
+
+      await setAudienciasTotalsData(dataJson);
+      await setTotalsAreLoaded(true);
+    }
+  }
+
+  async function updateParticipationChartData(period, month, year) {
+    try {
+      const messagesData = apisDataObject.audiencesMessagesAPIData.results;
+      const questionsData = apisDataObject.audiencesQuestionsAPIData.results;
+      const questionsVoteData = apisDataObject.audiencesVotesAPIData.results;
+
+      let arrayData = [];
+      const collumPeriodTitle = ['Data', 'Mensagens do chat', 'Perguntas', 'Votos nas Perguntas'];
+
+      switch (period) {
+        case dailyKeyWord:
+          arrayData = await getParticipationChartDataByDay(
+            month, year, messagesData, questionsData, questionsVoteData,
+          );
+          break;
+        case monthlyKeyWord:
+          arrayData = await getParticipationChartDataByMonth(
+            month, year, messagesData, questionsData, questionsVoteData,
+          );
+          break;
+        default: // yearly -> Total period
+          arrayData = await getParticipationChartDataByYear(
+            messagesData, questionsData, questionsVoteData, AUDIENCIAS_INITIAL_YEAR,
+          );
+          break;
+      }
+
+      if (arrayData.length > 0) {
+        setParticipantionChartData([collumPeriodTitle].concat(arrayData));
+        setParticipantionChartDataLastUpdate(
+          getApiLastUpdateDateAndHour(messagesData, questionsData, questionsVoteData),
+        );
+      } else {
+        setParticipantionChartData(arrayData);
+      }
+    } catch (e) {
+      setParticipantionChartData([]);
+    }
+  }
+
+  async function updateAllPageInformations(period, month, year) {
+    try {
+      await updateTotalsData();
+      await filterAndSetRoomsRankingData(period, month, year);
+      await updateParticipationChartData(period, month, year);
+      await updateNewUsersChartData(period);
+    } catch (e) {
+      console.error('Erro ao carregar dados da página Update Page');
+    }
+  }
+
+  async function resetPageComponentsLoadedStatusToFalse() {
+    setTotalsAreLoaded(false);
+    setNewUsersChartDataLoaded(false);
+    setTotalUsersChartDataLoaded(false);
+  }
+
+  async function newLoadData(query, period, month, year) {
+    try {
+      await resetPageComponentsLoadedStatusToFalse();
+      await updateChartsAndTableSubTitle(period, month, year);
+      await fetchAndUpdateApisData(query);
+    } catch (e) {
+      console.error('Erro ao carregar dados da página NewLoadData');
+    }
+  }
+
+  async function updateSelectedPeriodInterval(period, month, year) {
+    setSelectedPeriod(period);
+    setSelectedMonth(month);
+    setSelectedYear(year);
   }
 
   async function handlePeriodChange(month, year) {
     try {
       const { query, period } = await handleUpdatePeriodSearchQuery(month, year);
-      await loadData(query, period, month, year); // Reload page data
+      // await loadData(query, period, month, year); // Reload page data
+      await updateSelectedPeriodInterval(period, month, year);
+      await newLoadData(query, period, month, year);
     } catch (e) {
       console.error('Erro ao tentar modificar período selecionado');
     }
@@ -411,8 +469,13 @@ function Audiencias(props) {
 
   useEffect(() => {
     // Load Initial page year with current year informations
-    loadData(defaultSearchQuery, defaultSelectedPeriodType, 0, defaultYear);
+    // loadData(defaultSearchQuery, defaultSelectedPeriodType, 0, defaultYear);
+    newLoadData(defaultSearchQuery, defaultSelectedPeriodType, defaultMonthPeriod, defaultYear);
   }, []);
+
+  useEffect(() => {
+    updateAllPageInformations(selectedPeriod, selectedMonth, selectedYear);
+  }, [apisDataObject]);
 
   return (
     <div className={classes.root}>
@@ -589,10 +652,14 @@ function Audiencias(props) {
 
 Audiencias.propTypes = {
   responseDataRanking: PropTypes.object,
+  defaultApisData: PropTypes.object,
+  apiLastCacheMade: PropTypes.string,
 };
 
 Audiencias.defaultProps = {
   responseDataRanking: [],
+  defaultApisData: {},
+  apiLastCacheMade: 'Carregando ...',
 };
 
 export default Audiencias;
