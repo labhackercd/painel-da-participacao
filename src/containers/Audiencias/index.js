@@ -6,7 +6,7 @@ import React, { useState, useEffect } from 'react';
 import { Grid, Box, makeStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-
+import { Alert, AlertTitle } from '@material-ui/lab';
 import {
   ChartDataFrame, Header, RankingTable, TotalFrame, SectionHeader, SubSectionHeader,
   NoDataForSelectedPeriod, ChartAndReport,
@@ -410,7 +410,6 @@ function Audiencias(props) {
   async function handlePeriodChange(month, year) {
     try {
       const { query, period } = await handleUpdatePeriodSearchQuery(month, year);
-      // await loadData(query, period, month, year); // Reload page data
       await updateSelectedPeriodInterval(period, month, year);
       await newLoadData(query, period, month, year);
     } catch (e) {
@@ -418,7 +417,6 @@ function Audiencias(props) {
     }
   }
 
-  // Triggered when period is changed
   useEffect(() => {
     updateAllPageInformations(selectedPeriod, selectedMonth, selectedYear);
   }, [apisDataObject]);
@@ -434,6 +432,14 @@ function Audiencias(props) {
         initialYear={AUDIENCIAS_INITIAL_YEAR}
       />
       <Grid container spacing={1} className={classes.spacingContainer}>
+        <Grid item xs={12}>
+          <Alert severity="warning">
+            <AlertTitle>Alerta</AlertTitle>
+            Um erro ocorreu ao obter dados do servidor,
+            <strong>estão sendo utilizados dados de cache.</strong>
+          </Alert>
+        </Grid>
+
         <Grid item xs={12} sm={6} md={3} className={classes.spacing}>
           <TotalFrame
             isLoaded={totalsAreLoaded}
