@@ -118,7 +118,7 @@ export async function getStaticProps() {
         audienceQuestionsAPIData: questionsResponseData.data,
         audienceVotesAPIData: votesResponseData.data,
       },
-      apiLastCacheMade: format(new Date(), ' dd/LL/yyyy, k:m', { locale: ptBR }),
+      apiLastCacheMade: format(new Date(), ' dd/LL/yyyy, k:mm', { locale: ptBR }),
     },
     revalidate: 6000, // Update data every hour (600 seconds)
   };
