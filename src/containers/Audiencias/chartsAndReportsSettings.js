@@ -1,6 +1,4 @@
 /* eslint-disable no-nested-ternary */
-/* eslint-disable import/prefer-default-export */
-/* eslint-disable react/react-in-jsx-scope */
 import React from 'react';
 import { formatDate } from '../../services/format/date';
 
@@ -85,20 +83,41 @@ export const rankingAudienciaColumns = [
   },
 ];
 
-export function filterRankingAudiencias(data, searchedText) {
-  const filter = data.filter(
-    (item) => (
-      item.date.toLowerCase().includes(searchedText.toLowerCase())
-      || (((item.reunion_theme === null || item.reunion_theme === '') ? item.title_reunion : item.reunion_theme) ? ((item.reunion_theme === null || item.reunion_theme === '') ? item.title_reunion : item.reunion_theme).toLowerCase() : '').includes(searchedText.toLowerCase())
-      || (item.legislative_body_initials ? item.legislative_body_initials.toLowerCase() : '').includes(searchedText.toLowerCase())
-      || (item.messages_count ? item.messages_count.toString() : '').includes(searchedText.toLowerCase())
-      || (item.participants_count ? item.participants_count.toString() : '').includes(searchedText.toLowerCase())
-      || (item.questions_count ? item.questions_count.toString() : '').includes(searchedText.toLowerCase())
-      || (item.reunion_type ? item.reunion_type.toLowerCase() : '').includes(searchedText.toLowerCase())
-      || (item.votes_count ? item.votes_count.toString() : '').includes(searchedText.toLowerCase())
-      || (item.date ? formatDate(item.date) : '').includes(searchedText.toLowerCase())
-      || (item.is_active ? 'realizada' : 'cancelada').includes(searchedText.toLowerCase())
-    ),
-  );
-  return filter;
-}
+export const audiencesChartsUsersSettings = {
+  chartType: 'LineChart',
+  options: {
+    legend: { position: 'top', maxLines: 3, textStyle: { color: 'white' } },
+    colors: ['#76480F', '#9E5E0D', '#DA7F0B'],
+    lineWidth: 5,
+    pointSize: 15,
+    hAxis: {
+      textStyle: { color: '#FFFFFF' },
+      gridlines: { color: 'transparent' },
+      titleTextStyle: { color: 'white' },
+    },
+    vAxis: { gridlines: { color: 'transparent' }, textStyle: { color: '#FFFFFF' }, format: '##.##' },
+    series: {
+      1: { curveType: 'function' },
+    },
+    backgroundColor: '#000000',
+  },
+};
+
+export const audiencesWithMoreParticipation = {
+  chartType: 'ColumnChart',
+  options: {
+    bars: 'vertical',
+    legend: { position: 'top', maxLines: 3, textStyle: { color: 'white' } },
+    isStacked: 'true',
+    colors: ['#744600', '#EBE23B', '#DA7F0B'],
+    bar: { groupWidth: '80%' },
+    hAxis: { textStyle: { color: 'white' }, titleTextStyle: { color: 'white' } },
+    vAxis: {
+      minValue: 0,
+      gridlines: { color: 'transparent' },
+      textStyle: { color: '#FFFFFF' },
+      format: '###.##',
+    },
+    backgroundColor: '#000000',
+  },
+};

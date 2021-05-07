@@ -3,39 +3,30 @@
 /* eslint-disable spaced-comment */
 /* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
-import { Grid } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
+import { Grid, Box, makeStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import ChartDataFrame from '../../components/ChartDataFrame/index';
-import Header from '../../components/Header/index';
-import RankingTable from '../../components/RankingTable/index';
+
 import {
-  getParticipationChartDataByDay, getParticipationChartDataByMonth, getParticipationChartDataByYear,
-} from '../../services/functions/auxFunctions/index';
+  ChartDataFrame, Header, RankingTable, TotalFrame, SectionHeader, SubSectionHeader,
+  NoDataForSelectedPeriod, ChartAndReport,
+} from '../../components';
 
 import { handleUpdatePeriodSearchQuery } from '../../services/functions/handlers/index';
-
-import TotalFrame from '../../components/Frames/TotalFrame/index';
-import Sectionheader from '../../components/Headers/SectionHeader/index';
-import SubSectionHeader from '../../components/Headers/SubSectionHeader/index';
-import NoDataForSelectedPeriod from '../../components/Informations/NoDataForSelectedPeriod/index';
-import ChartAndReport from '../../components/ChartAndReport/index';
-
-import {
-  participantsTotalToolTip, messagesTotalToolTip, audiencesTotalToolTip, audiencesRankingToolTip,
-} from '../../services/texts/tooltips';
-
 import formatNumberWithDots from '../../utils/formatNumberWithDots';
-
 import {
   MONTHS_LIST, MONTHS_ABBREVIATED_LIST, DEFAULT_YEAR, DEFAULT_SELECTED_PERIOD_TYPE,
   DEFAULT_MONTH_PERIOD, DEFAULT_SEARCH_QUERY, DAILY_KEY_WORD, MONTHLY_KEY_WORD,
   AUDIENCIAS_INITIAL_YEAR,
 } from '../../services/constants/constants';
-
-import { rankingAudienciaColumns, filterRankingAudiencias } from './settings';
+import {
+  participantsTotalToolTip, messagesTotalToolTip, audiencesTotalToolTip, audiencesRankingToolTip,
+} from '../../services/texts/tooltips';
+import {
+  getParticipationChartDataByDay, getParticipationChartDataByMonth, getParticipationChartDataByYear,
+} from './auxFunctions/computeParticipation';
+import filterRankingAudiencias from './auxFunctions/filterRanking';
+import { rankingAudienciaColumns, audiencesChartsUsersSettings, audiencesWithMoreParticipation } from './chartsAndReportsSettings';
 
 import customTheme from '../../../styles/theme';
 
@@ -79,6 +70,7 @@ const monthlyKeyWord = MONTHLY_KEY_WORD;
 const monthNamesList = MONTHS_ABBREVIATED_LIST;
 
 function Audiencias(props) {
+  const TOOLNAME = 'Audiências Interativas';
   const { responseDataRanking, defaultApisData, apiLastCacheMade } = props;
   const headerColors = {
     borderColor: '#DA7F0B',
@@ -90,27 +82,27 @@ function Audiencias(props) {
   };
 
   const classes = useStyles();
+  // Charts and report Data
   const [audienciasTotalsData, setAudienciasTotalsData] = useState('');
   const [newUsersChartData, setNewUsersChartData] = useState([]);
   const [totalUsersChartData, setTotalUsersChartData] = useState([]);
   const [roomsRankingData, setRoomsRankingData] = useState(defaultApisData.audienciasRankingData);
   const [participantionChartData, setParticipantionChartData] = useState([]);
-
+  // Load Status
   const [totalsAreLoaded, setTotalsAreLoaded] = useState(false);
   const [newUsersChartDataLoaded, setNewUsersChartDataLoaded] = useState(false);
   const [totalUsersChartDataLoaded, setTotalUsersChartDataLoaded] = useState(false);
-
+  // Information states
   const [periodSubTitle, setPeriodSubTitle] = useState(defaultYear);
-
   const [participantionChartDataLastUpdate, setParticipantionChartDataLastUpdate] = useState(apiLastCacheMade);
   const roomsRankingDataLastUpdate = responseDataRanking.lastUpdate;
   const [totalUsersChartDataLastUpdate, setTotalUsersChartDataLastUpdate] = useState(apiLastCacheMade);
   const [newUsersChartDataLastUpdate, setNewUsersChartDataLastUpdate] = useState(apiLastCacheMade);
-
+  // Period Selected states
   const [selectedPeriod, setSelectedPeriod] = useState(defaultSelectedPeriodType);
   const [selectedYear, setSelectedYear] = useState(defaultYear);
   const [selectedMonth, setSelectedMonth] = useState(defaultMonthPeriod);
-
+  // Api's default data
   const [apisDataObject, setApisDataObject] = useState({
     audiencesParticipantAPIData: defaultApisData.audienceParticipantUsersAPIData,
     audiencesRoomsAPIData: defaultApisData.audiencesRoomsAPIData,
@@ -119,45 +111,6 @@ function Audiencias(props) {
     audiencesNewUsersAPIData: defaultApisData.audienceNewUsersAPIData,
     audiencesVotesAPIData: defaultApisData.audienceVotesAPIData,
   });
-
-  const audiencesChartsUsersSettings = {
-    chartType: 'LineChart',
-    options: {
-      legend: { position: 'top', maxLines: 3, textStyle: { color: 'white' } },
-      colors: ['#76480F', '#9E5E0D', '#DA7F0B'],
-      lineWidth: 5,
-      pointSize: 15,
-      hAxis: {
-        textStyle: { color: '#FFFFFF' },
-        gridlines: { color: 'transparent' },
-        titleTextStyle: { color: 'white' },
-      },
-      vAxis: { gridlines: { color: 'transparent' }, textStyle: { color: '#FFFFFF' }, format: '##.##' },
-      series: {
-        1: { curveType: 'function' },
-      },
-      backgroundColor: '#000000',
-    },
-  };
-
-  const audiencesWithMoreParticipation = {
-    chartType: 'ColumnChart',
-    options: {
-      bars: 'vertical',
-      legend: { position: 'top', maxLines: 3, textStyle: { color: 'white' } },
-      isStacked: 'true',
-      colors: ['#744600', '#EBE23B', '#DA7F0B'],
-      bar: { groupWidth: '80%' },
-      hAxis: { textStyle: { color: 'white' }, titleTextStyle: { color: 'white' } },
-      vAxis: {
-        minValue: 0,
-        gridlines: { color: 'transparent' },
-        textStyle: { color: '#FFFFFF' },
-        format: '###.##',
-      },
-      backgroundColor: '#000000',
-    },
-  };
 
   async function fetchDataFromApi(apiUrl, query) {
     try {
@@ -186,7 +139,7 @@ function Audiencias(props) {
     });
   }
 
-  // ============================== OLD ===================================================
+  // TODO -> CHANGE THIS FUNCTION TO GET NEW API DATA INSTEAD OF CALCULATE IT
   function computeTotalOfUsersByPeriod(values, period) {
     const computedArray = [];
     let collumPeriodTitle = [];
@@ -258,9 +211,8 @@ function Audiencias(props) {
   }
 
   async function filterAndSetRoomsRankingData(period, month, year) {
-    // to be implemented
     let resultArray = [];
-    const allRooms = props.responseDataRanking.data;
+    const allRooms = defaultApisData.audienciasRankingData;
     try {
       switch (period) {
         case dailyKeyWord:
@@ -310,7 +262,6 @@ function Audiencias(props) {
     }
   }
 
-  // =================================== NEW ====================================
   async function updateNewUsersChartData(period) {
     const values = apisDataObject.audiencesNewUsersAPIData.results;
     let arrayData = [];
@@ -467,12 +418,7 @@ function Audiencias(props) {
     }
   }
 
-  useEffect(() => {
-    // Load Initial page year with current year informations
-    // loadData(defaultSearchQuery, defaultSelectedPeriodType, 0, defaultYear);
-    newLoadData(defaultSearchQuery, defaultSelectedPeriodType, defaultMonthPeriod, defaultYear);
-  }, []);
-
+  // Triggered when period is changed
   useEffect(() => {
     updateAllPageInformations(selectedPeriod, selectedMonth, selectedYear);
   }, [apisDataObject]);
@@ -527,7 +473,7 @@ function Audiencias(props) {
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <Sectionheader classes={classes} toolTipText={null} title="Distribuição da participação no período" />
+          <SectionHeader classes={classes} toolTipText={null} title="Distribuição da participação no período" />
           {(participantionChartData !== undefined && participantionChartData.length > 0) ? (
             <ChartAndReport
               height="60vh"
@@ -539,13 +485,13 @@ function Audiencias(props) {
               chartType={audiencesWithMoreParticipation.chartType}
               chartOptions={audiencesWithMoreParticipation.options}
               apiLastUpdate={participantionChartDataLastUpdate}
-              tool="Audiências"
+              tool={TOOLNAME}
               isLoaded
             />
           ) : (
             <NoDataForSelectedPeriod
               title={periodSubTitle}
-              tool="Audiências"
+              tool={TOOLNAME}
               apiLastUpdate={totalUsersChartDataLastUpdate}
               toolColor={headerColors.borderColor}
               apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
@@ -554,7 +500,7 @@ function Audiencias(props) {
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <Sectionheader classes={classes} toolTipAriaLabel="Seção Ranking das Audiências" title="Ranking das audiências" toolTipText={audiencesRankingToolTip} toolTipColor={customTheme.palette.audiencias.seabuckthorn} />
+          <SectionHeader classes={classes} toolTipAriaLabel="Seção Ranking das Audiências" title="Ranking das audiências" toolTipText={audiencesRankingToolTip} toolTipColor={customTheme.palette.audiencias.seabuckthorn} />
           {(roomsRankingData !== undefined && roomsRankingData.length > 0) ? (
             <ChartDataFrame
               height="30vh"
@@ -565,7 +511,7 @@ function Audiencias(props) {
               align="center"
               apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
               apiLastUpdate={roomsRankingDataLastUpdate}
-              tool="Audiências"
+              tool={TOOLNAME}
             >
               <Box width="100%" height="90%">
                 <RankingTable
@@ -578,7 +524,7 @@ function Audiencias(props) {
           ) : (
             <NoDataForSelectedPeriod
               title={periodSubTitle}
-              tool="Audiências"
+              tool={TOOLNAME}
               apiLastUpdate={totalUsersChartDataLastUpdate}
               toolColor={headerColors.borderColor}
               apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
@@ -587,7 +533,7 @@ function Audiencias(props) {
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <Sectionheader classes={classes} toolTipText={null} title="Usuários" />
+          <SectionHeader classes={classes} toolTipText={null} title="Usuários" />
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
@@ -604,13 +550,13 @@ function Audiencias(props) {
                 exportData={newUsersChartData}
                 download
                 apiLastUpdate={newUsersChartDataLastUpdate}
-                tool="Audiências"
+                tool={TOOLNAME}
               />
             </div>
           ) : (
             <NoDataForSelectedPeriod
               title={periodSubTitle}
-              tool="Audiências"
+              tool={TOOLNAME}
               apiLastUpdate={totalUsersChartDataLastUpdate}
               toolColor={headerColors.borderColor}
               apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
@@ -632,13 +578,13 @@ function Audiencias(props) {
                 chartType={audiencesChartsUsersSettings.chartType}
                 chartOptions={audiencesChartsUsersSettings.options}
                 apiLastUpdate={totalUsersChartDataLastUpdate}
-                tool="Audiências"
+                tool={TOOLNAME}
               />
             </div>
           ) : (
             <NoDataForSelectedPeriod
               title={periodSubTitle}
-              tool="Audiências"
+              tool={TOOLNAME}
               apiLastUpdate={totalUsersChartDataLastUpdate}
               toolColor={headerColors.borderColor}
               apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}

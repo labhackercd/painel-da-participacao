@@ -4,6 +4,7 @@ import MockTheme from '../../mockTheme';
 import ChartAndReport from '../index';
 import { participationChartDataMock } from './mocks/participationChartData.mock';
 
+const TOOLNAME = 'Tool';
 const participantionChartData = participationChartDataMock;
 const periodSubTitle = '2021';
 const audiencesWithMoreParticipation = {
@@ -44,7 +45,7 @@ test('snapshot should not have changes', async () => {
         chartType={audiencesWithMoreParticipation.chartType}
         chartOptions={audiencesWithMoreParticipation.options}
         apiLastUpdate={participantionChartDataLastUpdate}
-        tool="Audiências"
+        tool={TOOLNAME}
         isLoaded
       />
     </MockTheme>,
