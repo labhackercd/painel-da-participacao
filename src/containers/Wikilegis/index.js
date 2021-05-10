@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
 import { Grid, Box, makeStyles } from '@material-ui/core';
@@ -118,6 +119,60 @@ function Wikilegis(props) {
     wikilegisVotesAPIData: defaultApisData.wikilegisVotesAPIData,
     wikilegisNewUsersAPIData: defaultApisData.wikilegisNewUsersAPIData,
   });
+
+  function computeTotalOfUsersByPeriod(values, period) {
+    const computedArray = [];
+    let collumPeriodTitle = [];
+
+    try {
+      if (values !== null) {
+        switch (period) {
+          case dailyKeyWord:
+            computedArray.push([values[0].start_date.match(/\d+/g)[2], values[0].new_users]);
+            for (let i = 1; i < values.length; i += 1) {
+              computedArray.push(
+                [values[i].start_date.match(/\d+/g)[2],
+                  values[i].new_users + computedArray[i - 1][1]],
+              );
+            }
+            collumPeriodTitle = [['Dia', 'Total de Usuários Cadastrados']];
+            break;
+          case monthlyKeyWord:
+            computedArray.push(
+              [monthNamesList[(new Date(values[0].end_date)).getMonth()], values[0].new_users],
+            );
+            for (let i = 1; i < values.length; i += 1) {
+              computedArray.push(
+                [monthNamesList[(new Date(values[i].end_date)).getMonth()],
+                  values[i].new_users + computedArray[i - 1][1]],
+              );
+            }
+            collumPeriodTitle = [['Mês', 'Total de Usuários Cadastrados']];
+            break;
+          default:
+            computedArray.push(
+              [new Date(values[0].end_date).getFullYear().toString(), values[0].new_users],
+            );
+            for (let i = 1; i < values.length; i += 1) {
+              computedArray.push(
+                [new Date(values[i].end_date).getFullYear().toString(),
+                  values[i].new_users + computedArray[i - 1][1]],
+              );
+            }
+            collumPeriodTitle = [['Ano', 'Total de Usuários Cadastrados']];
+            break;
+        }
+
+        setTotalUsersChartDataLastUpdate(values[0].modified);
+      } else {
+        collumPeriodTitle = [];
+      }
+    } catch (e) {
+      console.error(e);
+    }
+    setTotalUsersChartData(collumPeriodTitle.concat(computedArray));
+    setTotalUsersChartDataLoaded(true);
+  }
 
   async function fetchDataFromApi(apiUrl, query) {
     try {
@@ -337,61 +392,6 @@ function Wikilegis(props) {
   useEffect(() => {
     updateAllPageInformations(selectedPeriod, selectedMonth, selectedYear);
   }, [apisDataObject]);
-
-  function computeTotalOfUsersByPeriod(values, period) {
-    const computedArray = [];
-    let collumPeriodTitle = [];
-
-    try {
-      if (values !== null) {
-        switch (period) {
-          case dailyKeyWord:
-            computedArray.push([values[0].start_date.match(/\d+/g)[2], values[0].new_users]);
-            for (let i = 1; i < values.length; i += 1) {
-              computedArray.push(
-                [values[i].start_date.match(/\d+/g)[2],
-                  values[i].new_users + computedArray[i - 1][1]],
-              );
-            }
-            collumPeriodTitle = [['Dia', 'Total de Usuários Cadastrados']];
-            break;
-          case monthlyKeyWord:
-            computedArray.push(
-              [monthNamesList[(new Date(values[0].end_date)).getMonth()], values[0].new_users],
-            );
-            for (let i = 1; i < values.length; i += 1) {
-              computedArray.push(
-                [monthNamesList[(new Date(values[i].end_date)).getMonth()],
-                  values[i].new_users + computedArray[i - 1][1]],
-              );
-            }
-            collumPeriodTitle = [['Mês', 'Total de Usuários Cadastrados']];
-            break;
-          default:
-            computedArray.push(
-              [new Date(values[0].end_date).getFullYear().toString(), values[0].new_users],
-            );
-            for (let i = 1; i < values.length; i += 1) {
-              computedArray.push(
-                [new Date(values[i].end_date).getFullYear().toString(),
-                  values[i].new_users + computedArray[i - 1][1]],
-              );
-            }
-            collumPeriodTitle = [['Ano', 'Total de Usuários Cadastrados']];
-            break;
-        }
-
-        setTotalUsersChartDataLastUpdate(values[0].modified);
-      } else {
-        collumPeriodTitle = [];
-      }
-    } catch (e) {
-    // eslint-disable-next-line no-console
-      console.error(e);
-    }
-    setTotalUsersChartData(collumPeriodTitle.concat(computedArray));
-    setTotalUsersChartDataLoaded(true);
-  }
 
   return (
     <div className={classes.root}>
