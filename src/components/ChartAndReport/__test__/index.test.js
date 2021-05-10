@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import { render, fireEvent } from '@testing-library/react';
 import MockTheme from '../../mockTheme';
 import ChartAndReport from '../index';

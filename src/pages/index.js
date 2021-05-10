@@ -14,7 +14,6 @@ import Box from '@material-ui/core/Box';
 import PageNavbar from '../layouts/navbar';
 // import Footer from '../components/Footer/index';
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100vh',
