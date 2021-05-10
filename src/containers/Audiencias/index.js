@@ -28,7 +28,7 @@ import {
 import filterRankingAudiencias from './auxFunctions/filterRanking';
 import { rankingAudienciaColumns, audiencesChartsUsersSettings, audiencesWithMoreParticipation } from './chartsAndReportsSettings';
 
-import customTheme from '../../../styles/theme';
+import customTheme from '../../styles/theme';
 
 const useStyles = makeStyles((theme) => ({
   root: {

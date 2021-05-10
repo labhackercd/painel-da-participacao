@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Image from 'next/image';
 import PageNavbar from '../layouts/navbar';
-import Footer from '../src/components/Footer/index';
+import Footer from '../components/Footer/index';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -56,13 +56,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Custom500() {
+function Custom404() {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <Head>
-        <title>Painel da Participação Erro 500</title>
+        <title>Painel da Participação Erro 404</title>
       </Head>
       <Box className={classes.box}>
         <Box className={classes.boxHeader}>
@@ -71,18 +71,18 @@ function Custom500() {
         <Box className={classes.boxContent}>
           <Box className={classes.textBox}>
             <Typography className={classes.typographyTitle} align="center">
-              {'<Erro 500 />'}
+              {'<Erro 404 />'}
             </Typography>
             <Typography className={classes.typographySubTitle} align="center">
-              Servidor fora do ar
+              Página não encontrada
             </Typography>
             <Typography className={classes.typographyInfoText} align="center">
-              Por favor tente novamente mais tarde
+              A URL informada não existe
             </Typography>
           </Box>
           <Box>
             <Image
-              src={`${process.env.NEXT_PUBLIC_APPLICATION_BASE_PATH_URL}/info/500_image.png`}
+              src={`${process.env.NEXT_PUBLIC_APPLICATION_BASE_PATH_URL}/info/404_image.png`}
               alt=""
               width="700px"
               height="500px"
@@ -97,4 +97,4 @@ function Custom500() {
   );
 }
 
-export default Custom500;
+export default Custom404;

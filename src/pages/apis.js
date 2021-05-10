@@ -15,7 +15,7 @@ import SettingsEthernetIcon from '@material-ui/icons/SettingsEthernet';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import LanguageIcon from '@material-ui/icons/Language';
 import PageNavbar from '../layouts/navbar';
-import Footer from '../src/components/Footer/index';
+import Footer from '../components/Footer/index';
 
 const useStyles = makeStyles((theme) => ({
   root: {

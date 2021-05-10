@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import Hidden from '@material-ui/core/Hidden';
 import Box from '@material-ui/core/Box';
 import PageNavbar from '../layouts/navbar';
-import Footer from '../src/components/Footer/index';
+import Footer from '../components/Footer/index';
 
 const useStyles = makeStyles((theme) => ({
   root: {

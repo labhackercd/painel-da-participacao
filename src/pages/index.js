@@ -12,7 +12,8 @@ import BarChartIcon from '@material-ui/icons/BarChart';
 import Box from '@material-ui/core/Box';
 // import Layout from '../layouts/index';
 import PageNavbar from '../layouts/navbar';
-// import Footer from '../src/components/Footer/index';
+// import Footer from '../components/Footer/index';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {

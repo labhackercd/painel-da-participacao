@@ -35,7 +35,7 @@ import { rankingWikilegisColumns, rankingWikilegisHeaders } from './settings/ran
 import { filterRankingWikilegis } from './auxFunctions/filterRanking';
 import { getApiLastUpdateDateAndHour } from './auxFunctions/getApiLastUpdateDateAndHour';
 
-import customTheme from '../../../styles/theme';
+import customTheme from '../../styles/theme';
 
 const useStyles = makeStyles((theme) => ({
   root: {

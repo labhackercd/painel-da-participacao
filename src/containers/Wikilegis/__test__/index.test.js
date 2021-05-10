@@ -15,12 +15,15 @@ import legislativeProposalsMock from './__mocks__/legislative_proposals_mock';
 import votesRankingMock from './__mocks__/votes_ranking_mock';
 import opinionsRankingMock from './__mocks__/opinions_ranking_mock';
 import documentsRanking from './__mocks__/documents_ranking';
+import { defaultApisData } from './__mocks__/staticProps/defaultApisData.mock';
+import { dados } from './__mocks__/staticProps/dados.mock';
 
 const defaultSearchQuery = '?period=monthly&start_date__year=2021&ordering=start_date';
 const yearlySearchQuery = '?period=yearly&ordering=start_date';
 const dailySearchQuery = '?period=daily&start_date__year=2021&start_date__month=4&ordering=start_date';
 
 const responseDataRanking = { data: documentsRanking, lastUpdate: '15/03/2021 15:05' };
+const apiLastCacheMade = ' 10/05/2021, 18:10';
 
 test('snapshot should not have changes', () => {
   let component;
@@ -35,7 +38,7 @@ test('snapshot should not have changes', () => {
 
 test('Test if Wikilegis renders without crash whole lifecycle', async () => {
   const wrapper = mount(
-    <MockTheme><Wikilegis responseDataRanking={responseDataRanking} /></MockTheme>,
+    <MockTheme><Wikilegis responseDataRanking={dados} defaultApisData={defaultApisData} apiLastCacheMade={apiLastCacheMade} /></MockTheme>,
   );
   await act(async () => wrapper);
 
@@ -79,7 +82,7 @@ test('Default page lifecycle is getting default informations of period by month 
     .reply(200, newUsersMock.DAILY);
 
   const wrapper = mount(
-    <MockTheme><Wikilegis responseDataRanking={responseDataRanking} /></MockTheme>,
+    <MockTheme><Wikilegis responseDataRanking={dados} defaultApisData={defaultApisData} apiLastCacheMade={apiLastCacheMade} /></MockTheme>,
   );
   await act(async () => wrapper);
 
@@ -142,7 +145,7 @@ test('Wikilegis page lifecycle is getting informations of days of specific month
     .reply(200, newUsersMock.DAILY);
 
   const wrapper = mount(
-    <MockTheme><Wikilegis responseDataRanking={responseDataRanking} /></MockTheme>,
+    <MockTheme><Wikilegis responseDataRanking={dados} defaultApisData={defaultApisData} apiLastCacheMade={apiLastCacheMade} /></MockTheme>,
   );
   wrapper.update();
 
@@ -190,7 +193,7 @@ test('Wikilegis page lifecycle is getting informations with no values', async ()
     .reply(200, []);
 
   const wrapper = await mount(
-    <MockTheme><Wikilegis responseDataRanking={responseDataRanking} /></MockTheme>,
+    <MockTheme><Wikilegis responseDataRanking={dados} defaultApisData={defaultApisData} apiLastCacheMade={apiLastCacheMade} /></MockTheme>,
   );
   await wrapper.update();
 

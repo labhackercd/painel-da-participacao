@@ -1,4 +1,4 @@
-import customTheme from '../../../../styles/theme';
+import customTheme from '../../../styles/theme';
 
 export const audiencesChartsUsersSettings = {
   chartType: 'LineChart',

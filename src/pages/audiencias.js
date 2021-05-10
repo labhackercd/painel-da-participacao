@@ -11,8 +11,8 @@ import {
 import { format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import Layout from '../layouts/index';
-import { DEFAULT_SEARCH_QUERY } from '../src/services/constants/constants';
-import Audiencias from '../src/containers/Audiencias';
+import { DEFAULT_SEARCH_QUERY } from '../services/constants/constants';
+import Audiencias from '../containers/Audiencias';
 
 const useStyles = makeStyles((theme) => ({
   body: {

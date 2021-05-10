@@ -10,11 +10,11 @@ import {
 } from '@material-ui/core/';
 import { format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
-import { DEFAULT_SEARCH_QUERY } from '../src/services/constants/constants';
+import { DEFAULT_SEARCH_QUERY } from '../services/constants/constants';
 
 import Layout from '../layouts/index';
 
-import Wikilegis from '../src/containers/Wikilegis';
+import Wikilegis from '../containers/Wikilegis';
 
 const useStyles = makeStyles((theme) => ({
   body: {
