@@ -6,7 +6,7 @@ import {
   getWikilegisParticipationChartDataByDay,
   getWikilegisParticipationChartDataByMonth,
   getWikilegisParticipationChartDataByYear,
-} from '../../services/functions/auxFunctions/index';
+} from './auxFunctions/computeParticipation';
 
 import { handleUpdatePeriodSearchQuery } from '../../services/functions/handlers/index';
 
@@ -26,7 +26,9 @@ import {
   WIKILEGIS_INITIAL_YEAR,
 } from '../../services/constants/constants';
 
-import { rankingWikilegisColumns, rankingWikilegisHeaders, filterRankingWikilegis } from './settings';
+import { audiencesChartsUsersSettings, audiencesWithMoreParticipation } from './settings/chartsSettings';
+import { rankingWikilegisColumns, rankingWikilegisHeaders } from './settings/rankingSettings';
+import { filterRankingWikilegis } from './auxFunctions/filterRanking';
 
 import customTheme from '../../../styles/theme';
 
@@ -77,6 +79,7 @@ const monthlyKeyWord = MONTHLY_KEY_WORD;
 const monthNamesList = MONTHS_ABBREVIATED_LIST;
 
 function Wikilegis(props) {
+  const TOOLNAME = 'Wikilegis';
   const { responseDataRanking } = props;
   const headerColors = {
     borderColor: '#00C354',
@@ -99,53 +102,6 @@ function Wikilegis(props) {
   const roomsRankingDataLastUpdate = responseDataRanking.lastUpdate;
   const [totalUsersChartDataLastUpdate, setTotalUsersChartDataLastUpdate] = useState('Carregando');
   const [newUsersChartDataLastUpdate, setNewUsersChartDataLastUpdate] = useState('Carregando');
-
-  const audiencesChartsUsersSettings = {
-    chartType: 'LineChart',
-    options: {
-      legend: { position: 'top', maxLines: 3, textStyle: { color: 'white' } },
-      lineWidth: 5,
-      pointSize: 15,
-      colors: [
-        customTheme.palette.wikilegis.salem,
-        customTheme.palette.wikilegis.jade,
-        customTheme.palette.wikilegis.camarone,
-      ],
-      hAxis: {
-        textStyle: { color: '#FFFFFF' },
-        gridlines: { color: 'transparent' },
-        titleTextStyle: { color: 'white' },
-      },
-      vAxis: { gridlines: { color: 'transparent' }, textStyle: { color: '#FFFFFF' }, format: '##.##' },
-      series: {
-        1: { curveType: 'function' },
-      },
-      backgroundColor: '#000000',
-    },
-  };
-
-  const audiencesWithMoreParticipation = {
-    chartType: 'ColumnChart',
-    options: {
-      bars: 'vertical',
-      legend: { position: 'top', maxLines: 3, textStyle: { color: 'white' } },
-      isStacked: 'true',
-      colors: [
-        customTheme.palette.wikilegis.salem,
-        customTheme.palette.wikilegis.jade,
-        customTheme.palette.wikilegis.camarone,
-      ],
-      bar: { groupWidth: '80%' },
-      hAxis: { textStyle: { color: 'white' }, titleTextStyle: { color: 'white' } },
-      vAxis: {
-        minValue: 0,
-        gridlines: { color: 'transparent' },
-        textStyle: { color: '#FFFFFF' },
-        format: '###.##',
-      },
-      backgroundColor: '#000000',
-    },
-  };
 
   function computeTotalOfUsersByPeriod(values, period) {
     const computedArray = [];
@@ -386,7 +342,7 @@ function Wikilegis(props) {
   return (
     <div className={classes.root}>
       <Header
-        title="Wikilegis"
+        title={TOOLNAME}
         handlePeriodChange={handlePeriodChange}
         year={defaultYear}
         monthPeriod={defaultMonthPeriod}
@@ -456,13 +412,13 @@ function Wikilegis(props) {
               chartOptions={audiencesWithMoreParticipation.options}
               apiLastUpdate={participantionChartDataLastUpdate}
               apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
-              tool="Wikilegis"
+              tool={TOOLNAME}
               isLoaded
             />
           ) : (
             <NoDataForSelectedPeriod
               title={periodSubTitle}
-              tool="Wikilegis"
+              tool={TOOLNAME}
               apiLastUpdate={totalUsersChartDataLastUpdate}
               toolColor={headerColors.borderColor}
               apiUrl={process.env.NEXT_PUBLIC_WIKILEGIS_SWAGGER_URL}
@@ -480,7 +436,7 @@ function Wikilegis(props) {
               align="center"
               apiUrl={process.env.NEXT_PUBLIC_WIKILEGIS_SWAGGER_URL}
               apiLastUpdate={roomsRankingDataLastUpdate}
-              tool="Wikilegis"
+              tool={TOOLNAME}
               section="Report"
               exportData={roomsRankingData}
               download
@@ -497,7 +453,7 @@ function Wikilegis(props) {
           ) : (
             <NoDataForSelectedPeriod
               title={periodSubTitle}
-              tool="Wikilegis"
+              tool={TOOLNAME}
               apiLastUpdate={totalUsersChartDataLastUpdate}
               toolColor={headerColors.borderColor}
               apiUrl={process.env.NEXT_PUBLIC_WIKILEGIS_SWAGGER_URL}
@@ -523,13 +479,13 @@ function Wikilegis(props) {
                 exportData={newUsersChartData}
                 download
                 apiLastUpdate={newUsersChartDataLastUpdate}
-                tool="Wikilegis"
+                tool={TOOLNAME}
               />
             </div>
           ) : (
             <NoDataForSelectedPeriod
               title={periodSubTitle}
-              tool="Wikilegis"
+              tool={TOOLNAME}
               apiLastUpdate={totalUsersChartDataLastUpdate}
               toolColor={headerColors.borderColor}
               apiUrl={process.env.NEXT_PUBLIC_WIKILEGIS_SWAGGER_URL}
@@ -551,13 +507,13 @@ function Wikilegis(props) {
                 chartType={audiencesChartsUsersSettings.chartType}
                 chartOptions={audiencesChartsUsersSettings.options}
                 apiLastUpdate={totalUsersChartDataLastUpdate}
-                tool="Wikilegis"
+                tool={TOOLNAME}
               />
             </div>
           ) : (
             <NoDataForSelectedPeriod
               title={periodSubTitle}
-              tool="Wikilegis"
+              tool={TOOLNAME}
               apiLastUpdate={totalUsersChartDataLastUpdate}
               toolColor={headerColors.borderColor}
               apiUrl={process.env.NEXT_PUBLIC_WIKILEGIS_SWAGGER_URL}
