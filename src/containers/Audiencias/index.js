@@ -13,7 +13,7 @@ import {
 } from '../../components';
 
 import { handleUpdatePeriodSearchQuery } from '../../services/functions/handlers/index';
-import formatNumberWithDots from '../../utils/formatNumberWithDots';
+import formatNumberWithDots from '../../utils/format/numbers/formatNumbersWithDots/formatNumberWithDots';
 import {
   MONTHS_LIST, MONTHS_ABBREVIATED_LIST, DEFAULT_YEAR, DEFAULT_SELECTED_PERIOD_TYPE,
   DEFAULT_MONTH_PERIOD, DEFAULT_SEARCH_QUERY, DAILY_KEY_WORD, MONTHLY_KEY_WORD,

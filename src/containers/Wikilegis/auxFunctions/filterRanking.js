@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-import { formatDate } from '../../../services/format/date';
+import { formatDate } from '../../../utils/format/date';
 
 export function filterRankingWikilegis(data, searchedText) {
   const filter = data.filter(

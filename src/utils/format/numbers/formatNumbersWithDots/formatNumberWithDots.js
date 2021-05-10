@@ -1,3 +1,3 @@
-export default function numberWithDots(x) {
+export default function formatNumberWithDots(x) {
   return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, '.');
 }

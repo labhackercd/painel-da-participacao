@@ -23,7 +23,7 @@ import {
   wikilegisParticipantsToolTip, wikilegisOpinionsToolTip, wikilegisVotesToolTip,
   wikilegisRankingToolTip, wikilegisLegislativeProposesToolTip,
 } from '../../services/texts/tooltips';
-import formatNumberWithDots from '../../utils/formatNumberWithDots';
+import formatNumberWithDots from '../../utils/format/numbers/formatNumbersWithDots/formatNumberWithDots';
 
 import {
   MONTHS_LIST, MONTHS_ABBREVIATED_LIST, DEFAULT_YEAR, DEFAULT_SELECTED_PERIOD_TYPE,
