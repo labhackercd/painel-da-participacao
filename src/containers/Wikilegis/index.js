@@ -1,3 +1,5 @@
+/* eslint-disable no-shadow */
+/* eslint-disable react/prop-types */
 /* eslint-disable no-console */
 /* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
@@ -105,7 +107,7 @@ function Wikilegis(props) {
   const [periodSubTitle, setPeriodSubTitle] = useState(new Date().getFullYear().toString());
   const [participantionChartDataLastUpdate, setParticipantionChartDataLastUpdate] = useState(apiLastCacheMade);
   const roomsRankingDataLastUpdate = apiLastCacheMade;
-  const [totalUsersChartDataLastUpdate, setTotalUsersChartDataLastUpdate] = useState(apiLastCacheMade);
+  // const [totalUsersChartDataLastUpdate, setTotalUsersChartDataLastUpdate] = useState(apiLastCacheMade);
   const [newUsersChartDataLastUpdate, setNewUsersChartDataLastUpdate] = useState(apiLastCacheMade);
   // Period Selected states
   const [selectedPeriod, setSelectedPeriod] = useState(defaultSelectedPeriodType);
@@ -163,7 +165,7 @@ function Wikilegis(props) {
             break;
         }
 
-        setTotalUsersChartDataLastUpdate(values[0].modified);
+        // setTotalUsersChartDataLastUpdate(values[0].modified);
       } else {
         collumPeriodTitle = [];
       }
@@ -393,6 +395,43 @@ function Wikilegis(props) {
     updateAllPageInformations(selectedPeriod, selectedMonth, selectedYear);
   }, [apisDataObject]);
 
+  function ChartAndNoDataRenderHandler(props) {
+    const {
+      height, chartData, chartDataLoaded, title, chartClasses,
+      chartSettings, apiLastUpdate, toolName, color,
+      apiUrl,
+    } = props;
+
+    return (
+      (chartData !== undefined && chartData.length > 0) ? (
+        <div className={classes.contentBox}>
+          <ChartAndReport
+            height={height}
+            data={chartData}
+            isLoaded={chartDataLoaded}
+            title={title}
+            classes={chartClasses}
+            chartType={chartSettings.chartType}
+            chartOptions={chartSettings.options}
+            exportData={chartData}
+            download
+            apiLastUpdate={apiLastUpdate}
+            tool={toolName}
+            apiUrl={process.env.NEXT_PUBLIC_WIKILEGIS_SWAGGER_URL}
+          />
+        </div>
+      ) : (
+        <NoDataForSelectedPeriod
+          title={title}
+          tool={toolName}
+          apiLastUpdate={apiLastUpdate}
+          toolColor={color}
+          apiUrl={apiUrl}
+        />
+      )
+    );
+  }
+
   return (
     <div className={classes.root}>
       <Header
@@ -454,30 +493,18 @@ function Wikilegis(props) {
 
         <Grid item xs={12} className={classes.spacing}>
           <SectionHeader classes={classes} toolTipText={null} title="Distribuição da participação no período" />
-          {(participantionChartData !== undefined && participantionChartData.length > 0) ? (
-            <ChartAndReport
-              height="60vh"
-              download
-              exportData={participantionChartData}
-              title={periodSubTitle}
-              classes={classes}
-              data={participantionChartData}
-              chartType={audiencesWithMoreParticipation.chartType}
-              chartOptions={audiencesWithMoreParticipation.options}
-              apiLastUpdate={participantionChartDataLastUpdate}
-              apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
-              tool={TOOLNAME}
-              isLoaded
-            />
-          ) : (
-            <NoDataForSelectedPeriod
-              title={periodSubTitle}
-              tool={TOOLNAME}
-              apiLastUpdate={participantionChartDataLastUpdate}
-              toolColor={headerColors.borderColor}
-              apiUrl={process.env.NEXT_PUBLIC_WIKILEGIS_SWAGGER_URL}
-            />
-          )}
+          <ChartAndNoDataRenderHandler
+            height="60vh"
+            chartData={participantionChartData}
+            chartDataLoaded
+            title={periodSubTitle}
+            chartClasses={classes}
+            chartSettings={audiencesWithMoreParticipation}
+            apiLastUpdate={participantionChartDataLastUpdate}
+            toolName={TOOLNAME}
+            color={headerColors.borderColor}
+            apiUrl={process.env.NEXT_PUBLIC_WIKILEGIS_SWAGGER_URL}
+          />
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
@@ -521,58 +548,34 @@ function Wikilegis(props) {
 
         <Grid item xs={12} className={classes.spacing}>
           <SubSectionHeader title="Novos cadastros de usuários" />
-          {(newUsersChartData !== undefined && newUsersChartData.length > 0) ? (
-            <div className={classes.contentBox}>
-              <ChartAndReport
-                isLoaded={newUsersChartDataLoaded}
-                title={periodSubTitle}
-                classes={classes}
-                data={newUsersChartData}
-                chartType={audiencesChartsUsersSettings.chartType}
-                chartOptions={audiencesChartsUsersSettings.options}
-                exportData={newUsersChartData}
-                download
-                apiLastUpdate={newUsersChartDataLastUpdate}
-                tool={TOOLNAME}
-              />
-            </div>
-          ) : (
-            <NoDataForSelectedPeriod
-              title={periodSubTitle}
-              tool={TOOLNAME}
-              apiLastUpdate={newUsersChartDataLastUpdate}
-              toolColor={headerColors.borderColor}
-              apiUrl={process.env.NEXT_PUBLIC_WIKILEGIS_SWAGGER_URL}
-            />
-          )}
+          <ChartAndNoDataRenderHandler
+            height="60vh"
+            chartData={newUsersChartData}
+            chartDataLoaded={newUsersChartDataLoaded}
+            title={periodSubTitle}
+            chartClasses={classes}
+            chartSettings={audiencesChartsUsersSettings}
+            apiLastUpdate={newUsersChartDataLastUpdate}
+            toolName={TOOLNAME}
+            color={headerColors.borderColor}
+            apiUrl={process.env.NEXT_PUBLIC_WIKILEGIS_SWAGGER_URL}
+          />
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
           <SubSectionHeader title="Total de Usuários Cadastrados" />
-          {(totalUsersChartData !== undefined && totalUsersChartData.length > 0) ? (
-            <div className={classes.contentBox}>
-              <ChartAndReport
-                download={false}
-                exportData={totalUsersChartData}
-                isLoaded={totalUsersChartDataLoaded}
-                title={periodSubTitle}
-                classes={classes}
-                data={totalUsersChartData}
-                chartType={audiencesChartsUsersSettings.chartType}
-                chartOptions={audiencesChartsUsersSettings.options}
-                apiLastUpdate={totalUsersChartDataLastUpdate}
-                tool={TOOLNAME}
-              />
-            </div>
-          ) : (
-            <NoDataForSelectedPeriod
-              title={periodSubTitle}
-              tool={TOOLNAME}
-              apiLastUpdate={totalUsersChartDataLastUpdate}
-              toolColor={headerColors.borderColor}
-              apiUrl={process.env.NEXT_PUBLIC_WIKILEGIS_SWAGGER_URL}
-            />
-          )}
+          <ChartAndNoDataRenderHandler
+            height="60vh"
+            chartData={totalUsersChartData}
+            chartDataLoaded={totalUsersChartDataLoaded}
+            title={periodSubTitle}
+            chartClasses={classes}
+            chartSettings={audiencesChartsUsersSettings}
+            apiLastUpdate={newUsersChartDataLastUpdate}
+            toolName={TOOLNAME}
+            color={headerColors.borderColor}
+            apiUrl={process.env.NEXT_PUBLIC_WIKILEGIS_SWAGGER_URL}
+          />
         </Grid>
       </Grid>
     </div>
