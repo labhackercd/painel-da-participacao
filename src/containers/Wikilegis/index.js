@@ -30,6 +30,7 @@ import {
 import { audiencesChartsUsersSettings, audiencesWithMoreParticipation } from './settings/chartsSettings';
 import { rankingWikilegisColumns, rankingWikilegisHeaders } from './settings/rankingSettings';
 import { filterRankingWikilegis } from './auxFunctions/filterRanking';
+import { getApiLastUpdateDateAndHour } from './auxFunctions/getApiLastUpdateDateAndHour';
 
 import customTheme from '../../../styles/theme';
 
@@ -244,10 +245,27 @@ function Wikilegis(props) {
     }
   }
 
+  async function updateChartsAndTableSubTitle(period, month, year) {
+    const todayDate = new Date();
+
+    switch (period) {
+      case dailyKeyWord:
+        setPeriodSubTitle(`${MONTHS_LIST[month - 1]}/${year}`);
+        break;
+      case monthlyKeyWord:
+        setPeriodSubTitle(`${year}`);
+        break;
+      default: // yearly -> Total period
+        setPeriodSubTitle(
+          `${WIKILEGIS_INITIAL_YEAR} a ${(todayDate.getFullYear())}`,
+        );
+        break;
+    }
+  }
+
   async function filterAndSetDocumentsRankingData(period, month, year) {
-    // to be implemented
     let resultArray = [];
-    const allRooms = props.responseDataRanking.data;
+    const allRooms = defaultApisData.wikilegisRankingData;
 
     switch (period) {
       case dailyKeyWord:
@@ -288,24 +306,6 @@ function Wikilegis(props) {
     setTotalsAreLoaded(false);
     setNewUsersChartDataLoaded(false);
     setTotalUsersChartDataLoaded(false);
-  }
-
-  async function updateChartsAndTableSubTitle(period, month, year) {
-    const todayDate = new Date();
-
-    switch (period) {
-      case dailyKeyWord:
-        setPeriodSubTitle(`${MONTHS_LIST[month - 1]}/${year}`);
-        break;
-      case monthlyKeyWord:
-        setPeriodSubTitle(`${year}`);
-        break;
-      default: // yearly -> Total period
-        setPeriodSubTitle(
-          `${WIKILEGIS_INITIAL_YEAR} a ${(todayDate.getFullYear())}`,
-        );
-        break;
-    }
   }
 
   async function newLoadData(query, period, month, year) {
@@ -393,20 +393,6 @@ function Wikilegis(props) {
     setTotalUsersChartDataLoaded(true);
   }
 
-  function getApiLastUpdateDateAndHour(opinionsData, voteData) {
-    let lastUpdate = '';
-
-    if (opinionsData.length > 0) {
-      lastUpdate = opinionsData[0].modified;
-    } else if (voteData.length > 0) {
-      lastUpdate = voteData[0].modified;
-    } else {
-      lastUpdate = '-';
-    }
-
-    return lastUpdate;
-  }
-
   return (
     <div className={classes.root}>
       <Header
@@ -487,7 +473,7 @@ function Wikilegis(props) {
             <NoDataForSelectedPeriod
               title={periodSubTitle}
               tool={TOOLNAME}
-              apiLastUpdate={totalUsersChartDataLastUpdate}
+              apiLastUpdate={participantionChartDataLastUpdate}
               toolColor={headerColors.borderColor}
               apiUrl={process.env.NEXT_PUBLIC_WIKILEGIS_SWAGGER_URL}
             />
@@ -522,7 +508,7 @@ function Wikilegis(props) {
             <NoDataForSelectedPeriod
               title={periodSubTitle}
               tool={TOOLNAME}
-              apiLastUpdate={totalUsersChartDataLastUpdate}
+              apiLastUpdate={roomsRankingDataLastUpdate}
               toolColor={headerColors.borderColor}
               apiUrl={process.env.NEXT_PUBLIC_WIKILEGIS_SWAGGER_URL}
             />
@@ -554,7 +540,7 @@ function Wikilegis(props) {
             <NoDataForSelectedPeriod
               title={periodSubTitle}
               tool={TOOLNAME}
-              apiLastUpdate={totalUsersChartDataLastUpdate}
+              apiLastUpdate={newUsersChartDataLastUpdate}
               toolColor={headerColors.borderColor}
               apiUrl={process.env.NEXT_PUBLIC_WIKILEGIS_SWAGGER_URL}
             />
