@@ -1,5 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable react/react-in-jsx-scope */
+/* eslint-disable react/destructuring-assignment */
+
 import React from 'react';
 import { formatDate } from '../../../utils/format/date';
 

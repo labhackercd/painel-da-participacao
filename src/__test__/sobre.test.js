@@ -1,10 +1,10 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import MockTheme from './mocks/mockTheme';
-import Custom404 from '../404';
+import Sobre from '../pages/sobre';
 
-test('Snapshot 404 page should not have changes', () => {
-  const component = mount(<MockTheme><Custom404 /></MockTheme>);
+test('Snapshot Sobre page should not have changes', () => {
+  const component = mount(<MockTheme><Sobre /></MockTheme>);
   expect(component.exists()).toEqual(true);
   expect(component).toMatchSnapshot();
 });
