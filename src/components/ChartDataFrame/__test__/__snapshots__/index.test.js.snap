@@ -3,3 +3,5 @@
 exports[`snapshot should not have changes 1`] = `ShallowWrapper {}`;
 
 exports[`snapshot should not have changes 2`] = `ReactWrapper {}`;
+
+exports[`snapshot should not have changes 3`] = `ReactWrapper {}`;

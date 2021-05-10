@@ -1,5 +1,6 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
+import { render, fireEvent } from '@testing-library/react';
 import MockTheme from '../../mockTheme';
 import ChartAndReport from '../index';
 import { participationChartDataMock } from './mocks/participationChartData.mock';
@@ -33,8 +34,8 @@ test('snapshot should not have changes', () => {
   expect(component).toMatchSnapshot();
 });
 
-test('snapshot should not have changes', async () => {
-  const wrapper = await mount(
+test('Test ChardAndReport change option', async () => {
+  const wrapper = await render(
     <MockTheme>
       <ChartAndReport
         height="60vh"
@@ -51,5 +52,7 @@ test('snapshot should not have changes', async () => {
     </MockTheme>,
   );
 
-  expect(wrapper.exists()).toEqual(true);
+  const radio = wrapper.getByLabelText('Ver como Tabela');
+  fireEvent.change(radio, { target: { value: 'table' } });
+  expect(radio.value).toBe('table');
 });

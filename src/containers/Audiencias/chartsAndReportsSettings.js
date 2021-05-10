@@ -1,6 +1,7 @@
 /* eslint-disable no-nested-ternary */
+/* eslint-disable react/destructuring-assignment */
 import React from 'react';
-import { formatDate } from '../../services/format/date';
+import { formatDate } from '../../utils/format/date';
 
 export const rankingAudienciaColumns = [
   {

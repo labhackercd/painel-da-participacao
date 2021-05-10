@@ -1,4 +1,4 @@
-import { formatDate } from '../../../services/format/date';
+import { formatDate } from '../../../utils/format/date';
 
 export default function filterRankingAudiencias(data, searchedText) {
   const filter = data.filter(

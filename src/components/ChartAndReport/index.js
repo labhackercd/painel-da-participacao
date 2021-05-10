@@ -11,7 +11,7 @@ import { withStyles } from '@material-ui/core/styles';
 import TableDarkTheme from '../TableDarkTheme/index';
 import ChartDataFrame from '../ChartDataFrame/index';
 import GoogleChart from '../Charts/GoogleChart';
-import convertArrayToJSON from '../../services/format/convertArrayToJson/index';
+import convertArrayToJSON from '../../utils/format/convertArrayToJson/index';
 
 const CustomRadio = withStyles({
   root: {

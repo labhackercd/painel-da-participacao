@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 /* eslint-disable import/prefer-default-export */
 import { MONTHS_ABBREVIATED_LIST } from '../../../services/constants/constants';
-import padNumberWithZeroOnLeft from '../../../utils/padNumberWithZeroOnLeft';
+import padNumberWithZeroOnLeft from '../../../utils/format/numbers/padNumberWithZeroOnLeft';
 
 export async function getParticipationChartDataByDay(month, year, messagesData, questionsData, questionsVoteData) {
   const totalOfDaysInMonth = await new Date(year, month, 0).getDate();
