@@ -1,13 +1,17 @@
+/* eslint-disable max-len */
 /* eslint-disable no-await-in-loop */
 /* eslint-disable react/prop-types */
 import React from 'react';
 // import PropTypes from 'prop-types';
 import Head from 'next/head';
 import axios from 'axios';
-import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Container } from '@material-ui/core';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
+import {
+  makeStyles, Grid, Container, Box, Typography,
+} from '@material-ui/core/';
+import { format } from 'date-fns';
+import ptBR from 'date-fns/locale/pt-BR';
+import { DEFAULT_SEARCH_QUERY } from '../src/services/constants/constants';
+
 import Layout from '../layouts/index';
 
 import Wikilegis from '../src/containers/Wikilegis';
@@ -33,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function WikilegisPage({ dados }) {
+function WikilegisPage({ dados, defaultApisData, apiLastCacheMade }) {
   const classes = useStyles();
 
   function WikilegisHeader() {
@@ -64,7 +68,7 @@ function WikilegisPage({ dados }) {
           <Container className={classes.container}>
             <main className={classes.content}>
               <WikilegisHeader />
-              <Wikilegis responseDataRanking={dados} />
+              <Wikilegis responseDataRanking={dados} defaultApisData={defaultApisData} apiLastCacheMade={apiLastCacheMade} />
             </main>
           </Container>
         </Grid>
@@ -74,22 +78,10 @@ function WikilegisPage({ dados }) {
 }
 
 export async function getStaticProps() {
-  let dados = [];
+  let wikilegisRankingData = [];
 
-  function pad(d) {
-    return (d < 10 ? `0${d.toString()}` : d.toString());
-  }
-
-  function getLastUpdateHour(today) {
-    return (
-      `${pad(today.getDate())}/${pad(today.getMonth())}/${today.getFullYear()}
-      ${pad(today.getHours())}:${pad(today.getMinutes())}`
-    );
-  }
-
-  async function getData() {
+  async function getWikilegisRankingData() {
     const results = [];
-    // let url = 'https://tes.edemocracia.camara.leg.br/audiencias/reports/api/ranking/?limit=500';
     let url = `${process.env.NEXT_PUBLIC_WIKILEGIS_DOCUMENTS_RANKING_URL}?limit=500`;
 
     try {
@@ -100,17 +92,31 @@ export async function getStaticProps() {
         results.push(...data.results);
       } while (url);
 
-      return { data: results, lastUpdate: getLastUpdateHour(new Date()) };
+      return { data: results, lastUpdate: format(new Date(), ' dd/LL/yyyy, k:m', { locale: ptBR }) };
     } catch (err) {
-      return { data: [], lastUpdate: getLastUpdateHour(new Date()) };
+      return [];
     }
   }
 
-  dados = await getData();
+  wikilegisRankingData = await getWikilegisRankingData();
+  const participantsResponse = await axios.get(`${process.env.NEXT_PUBLIC_WIKILEGIS_PARTICIPANT_USERS_URL}${DEFAULT_SEARCH_QUERY}`);
+  const legislativeProposalsResponseData = await axios.get(`${process.env.NEXT_PUBLIC_WIKILEGIS_LEGISLATIVE_PROPOSALS_URL}${DEFAULT_SEARCH_QUERY}`);
+  const opinionsResponseData = await axios.get(`${process.env.NEXT_PUBLIC_WIKILEGIS_OPINIONS_URL}${DEFAULT_SEARCH_QUERY}`);
+  const votesResponseData = await axios.get(`${process.env.NEXT_PUBLIC_WIKILEGIS_VOTES_URL}${DEFAULT_SEARCH_QUERY}`);
+  const newUsersResponseData = await axios.get(`${process.env.NEXT_PUBLIC_WIKILEGIS_NEW_USERS_URL}${DEFAULT_SEARCH_QUERY}`);
 
   return {
     props: {
-      dados,
+      dados: wikilegisRankingData,
+      defaultApisData: {
+        wikilegisRankingData: wikilegisRankingData.data,
+        wikilegisParticipantUsersAPIData: participantsResponse.data,
+        wikilegisLegislativeProposalsAPIData: legislativeProposalsResponseData.data,
+        wikilegisOpinionsAPIData: opinionsResponseData.data,
+        wikilegisVotesAPIData: votesResponseData.data,
+        wikilegisNewUsersAPIData: newUsersResponseData.data,
+      },
+      apiLastCacheMade: format(new Date(), ' dd/LL/yyyy, k:mm', { locale: ptBR }),
     },
     revalidate: 600, // Update data every 10 minutes (600 seconds)
   };

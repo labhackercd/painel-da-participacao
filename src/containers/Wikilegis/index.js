@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
 import { Grid, Box, makeStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
@@ -19,11 +20,11 @@ import {
   wikilegisParticipantsToolTip, wikilegisOpinionsToolTip, wikilegisVotesToolTip,
   wikilegisRankingToolTip, wikilegisLegislativeProposesToolTip,
 } from '../../services/texts/tooltips';
+import formatNumberWithDots from '../../utils/formatNumberWithDots';
 
 import {
   MONTHS_LIST, MONTHS_ABBREVIATED_LIST, DEFAULT_YEAR, DEFAULT_SELECTED_PERIOD_TYPE,
-  DEFAULT_MONTH_PERIOD, DEFAULT_SEARCH_QUERY, DAILY_KEY_WORD, MONTHLY_KEY_WORD,
-  WIKILEGIS_INITIAL_YEAR,
+  DEFAULT_MONTH_PERIOD, DAILY_KEY_WORD, MONTHLY_KEY_WORD, WIKILEGIS_INITIAL_YEAR,
 } from '../../services/constants/constants';
 
 import { audiencesChartsUsersSettings, audiencesWithMoreParticipation } from './settings/chartsSettings';
@@ -73,14 +74,13 @@ const useStyles = makeStyles((theme) => ({
 const defaultYear = DEFAULT_YEAR;
 const defaultSelectedPeriodType = DEFAULT_SELECTED_PERIOD_TYPE; // Get all months of the year
 const defaultMonthPeriod = DEFAULT_MONTH_PERIOD; // All months
-const defaultSearchQuery = DEFAULT_SEARCH_QUERY;
 const dailyKeyWord = DAILY_KEY_WORD;
 const monthlyKeyWord = MONTHLY_KEY_WORD;
 const monthNamesList = MONTHS_ABBREVIATED_LIST;
 
 function Wikilegis(props) {
   const TOOLNAME = 'Wikilegis';
-  const { responseDataRanking } = props;
+  const { defaultApisData, apiLastCacheMade } = props;
   const headerColors = {
     borderColor: '#00C354',
     button: {
@@ -89,19 +89,254 @@ function Wikilegis(props) {
     },
   };
   const classes = useStyles();
+  // Charts and report Data
   const [wikilegisTotalsData, setWikilegisTotalsData] = useState('');
   const [newUsersChartData, setNewUsersChartData] = useState([]);
   const [totalUsersChartData, setTotalUsersChartData] = useState([]);
-  const [roomsRankingData, setRoomsRankingData] = useState(responseDataRanking.data);
+  const [roomsRankingData, setRoomsRankingData] = useState(defaultApisData.audienciasRankingDat);
   const [participantionChartData, setParticipantionChartData] = useState([]);
+  // Load Status
   const [totalsAreLoaded, setTotalsAreLoaded] = useState(false);
   const [newUsersChartDataLoaded, setNewUsersChartDataLoaded] = useState(false);
   const [totalUsersChartDataLoaded, setTotalUsersChartDataLoaded] = useState(false);
+  // Information states
   const [periodSubTitle, setPeriodSubTitle] = useState(new Date().getFullYear().toString());
-  const [participantionChartDataLastUpdate, setParticipantionChartDataLastUpdate] = useState('Carregando');
-  const roomsRankingDataLastUpdate = responseDataRanking.lastUpdate;
-  const [totalUsersChartDataLastUpdate, setTotalUsersChartDataLastUpdate] = useState('Carregando');
-  const [newUsersChartDataLastUpdate, setNewUsersChartDataLastUpdate] = useState('Carregando');
+  const [participantionChartDataLastUpdate, setParticipantionChartDataLastUpdate] = useState(apiLastCacheMade);
+  const roomsRankingDataLastUpdate = apiLastCacheMade;
+  const [totalUsersChartDataLastUpdate, setTotalUsersChartDataLastUpdate] = useState(apiLastCacheMade);
+  const [newUsersChartDataLastUpdate, setNewUsersChartDataLastUpdate] = useState(apiLastCacheMade);
+  // Period Selected states
+  const [selectedPeriod, setSelectedPeriod] = useState(defaultSelectedPeriodType);
+  const [selectedYear, setSelectedYear] = useState(defaultYear);
+  const [selectedMonth, setSelectedMonth] = useState(defaultMonthPeriod);
+  const [apisDataObject, setApisDataObject] = useState({
+    wikilegisParticipantAPIData: defaultApisData.wikilegisParticipantUsersAPIData,
+    wikilegisLegislativeProposalsAPIData: defaultApisData.wikilegisLegislativeProposalsAPIData,
+    wikilegisOpinionsAPIData: defaultApisData.wikilegisMessagesAPIData,
+    wikilegisQuestionsAPIData: defaultApisData.wikilegisQuestionsAPIData,
+    wikilegisVotesAPIData: defaultApisData.wikilegisVotesAPIData,
+    wikilegisNewUsersAPIData: defaultApisData.wikilegisNewUsersAPIData,
+  });
+
+  async function fetchDataFromApi(apiUrl, query) {
+    try {
+      const axiosResponse = await axios.get(`${apiUrl}${query}`);
+      return axiosResponse.data;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  async function fetchAndUpdateApisData(query) {
+    const participants = await fetchDataFromApi(process.env.NEXT_PUBLIC_WIKILEGIS_PARTICIPANT_USERS_URL, query);
+    const legislativeProposals = await fetchDataFromApi(process.env.NEXT_PUBLIC_WIKILEGIS_LEGISLATIVE_PROPOSALS_URL, query);
+    const opinions = await fetchDataFromApi(process.env.NEXT_PUBLIC_WIKILEGIS_OPINIONS_URL, query);
+    const votes = await fetchDataFromApi(process.env.NEXT_PUBLIC_WIKILEGIS_VOTES_URL, query);
+    const newUsers = await fetchDataFromApi(process.env.NEXT_PUBLIC_WIKILEGIS_NEW_USERS_URL, query);
+
+    setApisDataObject({
+      wikilegisParticipantAPIData: participants,
+      wikilegisLegislativeProposalsAPIData: legislativeProposals,
+      wikilegisOpinionsAPIData: opinions,
+      wikilegisVotesAPIData: votes,
+      wikilegisNewUsersAPIData: newUsers,
+    });
+  }
+
+  async function updateTotalsData() {
+    try {
+      const dataJson = {
+        participants_total: formatNumberWithDots(apisDataObject.wikilegisParticipantAPIData.sum_total_results),
+        legis_propo_total: formatNumberWithDots(apisDataObject.wikilegisLegislativeProposalsAPIData.sum_total_results),
+        opinions_total: formatNumberWithDots(apisDataObject.wikilegisLegislativeProposalsAPIData.sum_total_results),
+        votes_total: formatNumberWithDots(apisDataObject.wikilegisVotesAPIData.sum_total_results),
+      };
+
+      await setWikilegisTotalsData(dataJson);
+      await setTotalsAreLoaded(true);
+    } catch (e) {
+      const dataJson = {
+        participants_total: '-',
+        legis_propo_total: '-',
+        opinions_total: '-',
+        votes_total: '-',
+      };
+
+      await setWikilegisTotalsData(dataJson);
+      await setTotalsAreLoaded(true);
+    }
+  }
+
+  async function updateParticipationChartData(period, month, year) {
+    const opinionsData = apisDataObject.wikilegisOpinionsAPIData.results;
+    const voteData = apisDataObject.wikilegisVotesAPIData.results;
+
+    let arrayData = [];
+    const collumPeriodTitle = ['Data', 'Opiniões', 'Votos'];
+
+    switch (period) {
+      case dailyKeyWord:
+        arrayData = await getWikilegisParticipationChartDataByDay(
+          month, year, opinionsData, voteData,
+        );
+        break;
+      case monthlyKeyWord:
+        arrayData = await getWikilegisParticipationChartDataByMonth(
+          month, year, opinionsData, voteData,
+        );
+        break;
+      default: // yearly -> Total period
+        arrayData = await getWikilegisParticipationChartDataByYear(
+          opinionsData, voteData, WIKILEGIS_INITIAL_YEAR,
+        );
+        break;
+    }
+
+    if (arrayData.length > 0) {
+      setParticipantionChartData([collumPeriodTitle].concat(arrayData));
+      setParticipantionChartDataLastUpdate(
+        getApiLastUpdateDateAndHour(opinionsData, voteData),
+      );
+    } else {
+      setParticipantionChartData(arrayData);
+    }
+  }
+
+  async function updateNewUsersChartData(period) {
+    const values = apisDataObject.wikilegisNewUsersAPIData.results;
+    let arrayData = [];
+    let collumPeriodTitle = [];
+
+    switch (period) {
+      case dailyKeyWord:
+        arrayData = values.map(
+          (value) => [value.start_date.match(/\d+/g)[2], value.new_users],
+        );
+        collumPeriodTitle = ['Dia', 'Novos Usuários'];
+        break;
+      case monthlyKeyWord:
+        arrayData = values.map(
+          (value) => [monthNamesList[(new Date(value.end_date)).getMonth()], value.new_users],
+        );
+        collumPeriodTitle = ['Mês', 'Novos Usuários'];
+        break;
+      default:
+        arrayData = values.map(
+          (value) => [new Date(value.end_date).getFullYear().toString(), value.new_users],
+        );
+        collumPeriodTitle = ['Ano', 'Novos Usuários'];
+        break;
+    }
+
+    if (arrayData.length > 0) {
+      setNewUsersChartDataLastUpdate(values[0].modified);
+      setNewUsersChartData([collumPeriodTitle].concat(arrayData));
+    } else {
+      setNewUsersChartData(arrayData);
+    }
+
+    setNewUsersChartDataLoaded(true);
+
+    if (Array.isArray(values) && values.length) {
+      computeTotalOfUsersByPeriod(values, period);
+    } else {
+      computeTotalOfUsersByPeriod(null, period);
+    }
+  }
+
+  async function filterAndSetDocumentsRankingData(period, month, year) {
+    // to be implemented
+    let resultArray = [];
+    const allRooms = props.responseDataRanking.data;
+
+    switch (period) {
+      case dailyKeyWord:
+        resultArray = await allRooms.filter((value) => {
+          const [valueYear, valueMonth] = value.closing_date.split('-'); // Or, var month = e.date.split('-')[1];
+          return (
+            (parseInt(month, 10) === parseInt(valueMonth, 10))
+            && (parseInt(year, 10) === parseInt(valueYear, 10))
+          );
+        });
+        break;
+      case monthlyKeyWord:
+        resultArray = await allRooms.filter((value) => {
+          const [valueYear] = value.closing_date.split('-'); // Or, var month = e.date.split('-')[1];
+          return (parseInt(year, 10) === parseInt(valueYear, 10));
+        });
+        break;
+      default: // yearly -> Total period
+        resultArray = allRooms;
+        break;
+    }
+
+    await setRoomsRankingData(resultArray);
+  }
+
+  async function updateAllPageInformations(period, month, year) {
+    try {
+      await updateTotalsData();
+      await filterAndSetDocumentsRankingData(period, month, year);
+      await updateParticipationChartData(period, month, year);
+      await updateNewUsersChartData(period);
+    } catch (e) {
+      console.error('Erro ao carregar dados da página Update Page');
+    }
+  }
+
+  async function resetPageComponentsLoadedStatusToFalse() {
+    setTotalsAreLoaded(false);
+    setNewUsersChartDataLoaded(false);
+    setTotalUsersChartDataLoaded(false);
+  }
+
+  async function updateChartsAndTableSubTitle(period, month, year) {
+    const todayDate = new Date();
+
+    switch (period) {
+      case dailyKeyWord:
+        setPeriodSubTitle(`${MONTHS_LIST[month - 1]}/${year}`);
+        break;
+      case monthlyKeyWord:
+        setPeriodSubTitle(`${year}`);
+        break;
+      default: // yearly -> Total period
+        setPeriodSubTitle(
+          `${WIKILEGIS_INITIAL_YEAR} a ${(todayDate.getFullYear())}`,
+        );
+        break;
+    }
+  }
+
+  async function newLoadData(query, period, month, year) {
+    try {
+      await resetPageComponentsLoadedStatusToFalse();
+      await updateChartsAndTableSubTitle(period, month, year);
+      await fetchAndUpdateApisData(query);
+    } catch (e) {
+      console.error('Erro ao carregar dados da página NewLoadData');
+    }
+  }
+
+  async function updateSelectedPeriodInterval(period, month, year) {
+    setSelectedPeriod(period);
+    setSelectedMonth(month);
+    setSelectedYear(year);
+  }
+
+  async function handlePeriodChange(month, year) {
+    try {
+      const { query, period } = await handleUpdatePeriodSearchQuery(month, year);
+      await updateSelectedPeriodInterval(period, month, year);
+      await newLoadData(query, period, month, year);
+    } catch (e) {
+      console.error('Erro ao tentar modificar período selecionado');
+    }
+  }
+
+  useEffect(() => {
+    updateAllPageInformations(selectedPeriod, selectedMonth, selectedYear);
+  }, [apisDataObject]);
 
   function computeTotalOfUsersByPeriod(values, period) {
     const computedArray = [];
@@ -158,70 +393,6 @@ function Wikilegis(props) {
     setTotalUsersChartDataLoaded(true);
   }
 
-  async function fetchAndSetWikilegisTotalsData(query) {
-    const participantsUsersTotalResponse = await axios.get(`${process.env.NEXT_PUBLIC_WIKILEGIS_PARTICIPANT_USERS_URL}${query}`);
-    const legislativeProposalsTotalResponse = await axios.get(`${process.env.NEXT_PUBLIC_WIKILEGIS_LEGISLATIVE_PROPOSALS_URL}${query}`);
-    const opinionsTotalResponse = await axios.get(`${process.env.NEXT_PUBLIC_WIKILEGIS_OPINIONS_URL}${query}`);
-    const votesTotalResponse = await axios.get(`${process.env.NEXT_PUBLIC_WIKILEGIS_VOTES_URL}${query}`);
-
-    function numberWithDots(x) {
-      return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, '.');
-    }
-    const dataJson = {
-      participants_total: numberWithDots(participantsUsersTotalResponse.data.sum_total_results),
-      legis_propo_total: numberWithDots(legislativeProposalsTotalResponse.data.sum_total_results),
-      opinions_total: numberWithDots(opinionsTotalResponse.data.sum_total_results),
-      votes_total: numberWithDots(votesTotalResponse.data.sum_total_results),
-    };
-
-    await setWikilegisTotalsData(dataJson);
-    await setTotalsAreLoaded(true);
-  }
-
-  async function fetchAndSetNewUsersChartData(query, period) {
-    const url = `${process.env.NEXT_PUBLIC_WIKILEGIS_NEW_USERS_URL}${query}`;
-    const newUsersTotalResponse = await axios.get(url);
-    const values = newUsersTotalResponse.data.results;
-    let arrayData = [];
-    let collumPeriodTitle = [];
-
-    switch (period) {
-      case dailyKeyWord:
-        arrayData = values.map(
-          (value) => [value.start_date.match(/\d+/g)[2], value.new_users],
-        );
-        collumPeriodTitle = ['Dia', 'Novos Usuários'];
-        break;
-      case monthlyKeyWord:
-        arrayData = values.map(
-          (value) => [monthNamesList[(new Date(value.end_date)).getMonth()], value.new_users],
-        );
-        collumPeriodTitle = ['Mês', 'Novos Usuários'];
-        break;
-      default:
-        arrayData = values.map(
-          (value) => [new Date(value.end_date).getFullYear().toString(), value.new_users],
-        );
-        collumPeriodTitle = ['Ano', 'Novos Usuários'];
-        break;
-    }
-
-    if (arrayData.length > 0) {
-      setNewUsersChartDataLastUpdate(values[0].modified);
-      setNewUsersChartData([collumPeriodTitle].concat(arrayData));
-    } else {
-      setNewUsersChartData(arrayData);
-    }
-
-    setNewUsersChartDataLoaded(true);
-
-    if (Array.isArray(values) && values.length) {
-      computeTotalOfUsersByPeriod(values, period);
-    } else {
-      computeTotalOfUsersByPeriod(null, period);
-    }
-  }
-
   function getApiLastUpdateDateAndHour(opinionsData, voteData) {
     let lastUpdate = '';
 
@@ -235,109 +406,6 @@ function Wikilegis(props) {
 
     return lastUpdate;
   }
-
-  async function fetchAndSetParticipationChartData(query, period, month, year) {
-    const opinionsResponse = await axios.get(`${process.env.NEXT_PUBLIC_WIKILEGIS_OPINIONS_URL}${query}`);
-    const votesResponse = await axios.get(`${process.env.NEXT_PUBLIC_WIKILEGIS_VOTES_URL}${query}`);
-
-    const opinionsData = opinionsResponse.data.results;
-    const voteData = votesResponse.data.results;
-
-    let arrayData = [];
-    const collumPeriodTitle = ['Data', 'Opiniões', 'Votos'];
-
-    switch (period) {
-      case dailyKeyWord:
-        arrayData = await getWikilegisParticipationChartDataByDay(
-          month, year, opinionsData, voteData,
-        );
-        break;
-      case monthlyKeyWord:
-        arrayData = await getWikilegisParticipationChartDataByMonth(
-          month, year, opinionsData, voteData,
-        );
-        break;
-      default: // yearly -> Total period
-        arrayData = await getWikilegisParticipationChartDataByYear(
-          opinionsData, voteData, WIKILEGIS_INITIAL_YEAR,
-        );
-        break;
-    }
-
-    if (arrayData.length > 0) {
-      setParticipantionChartData([collumPeriodTitle].concat(arrayData));
-      setParticipantionChartDataLastUpdate(
-        getApiLastUpdateDateAndHour(opinionsData, voteData),
-      );
-    } else {
-      setParticipantionChartData(arrayData);
-    }
-  }
-
-  async function filterAndSetDocumentsRankingData(period, month, year) {
-    // to be implemented
-    let resultArray = [];
-    const allRooms = props.responseDataRanking.data;
-
-    switch (period) {
-      case dailyKeyWord:
-        resultArray = await allRooms.filter((value) => {
-          const [valueYear, valueMonth] = value.closing_date.split('-'); // Or, var month = e.date.split('-')[1];
-          return (
-            (parseInt(month, 10) === parseInt(valueMonth, 10))
-            && (parseInt(year, 10) === parseInt(valueYear, 10))
-          );
-        });
-        break;
-      case monthlyKeyWord:
-        resultArray = await allRooms.filter((value) => {
-          const [valueYear] = value.closing_date.split('-'); // Or, var month = e.date.split('-')[1];
-          return (parseInt(year, 10) === parseInt(valueYear, 10));
-        });
-        break;
-      default: // yearly -> Total period
-        resultArray = allRooms;
-        break;
-    }
-
-    await setRoomsRankingData(resultArray);
-  }
-
-  async function updateChartsAndTableSubTitle(period, month, year) {
-    const todayDate = new Date();
-
-    switch (period) {
-      case dailyKeyWord:
-        setPeriodSubTitle(`${MONTHS_LIST[month - 1]}/${year}`);
-        break;
-      case monthlyKeyWord:
-        setPeriodSubTitle(`${year}`);
-        break;
-      default: // yearly -> Total period
-        setPeriodSubTitle(
-          `${WIKILEGIS_INITIAL_YEAR} a ${(todayDate.getFullYear())}`,
-        );
-        break;
-    }
-  }
-
-  async function loadData(query, period, month, year) {
-    updateChartsAndTableSubTitle(period, month, year);
-    fetchAndSetWikilegisTotalsData(query);
-    fetchAndSetNewUsersChartData(query, period);
-    fetchAndSetParticipationChartData(query, period, month, year);
-    filterAndSetDocumentsRankingData(period, month, year);
-  }
-
-  async function handlePeriodChange(month, year) {
-    const { query, period } = await handleUpdatePeriodSearchQuery(month, year);
-    await loadData(query, period, month, year); // Reload page data
-  }
-
-  useEffect(() => {
-    // Load Initial page year with current year informations
-    loadData(defaultSearchQuery, defaultSelectedPeriodType, 0, defaultYear);
-  }, []);
 
   return (
     <div className={classes.root}>
@@ -526,11 +594,13 @@ function Wikilegis(props) {
 }
 
 Wikilegis.propTypes = {
-  responseDataRanking: PropTypes.object,
+  defaultApisData: PropTypes.object,
+  apiLastCacheMade: PropTypes.string,
 };
 
 Wikilegis.defaultProps = {
-  responseDataRanking: { data: [], lastUpdate: new Date() },
+  defaultApisData: {},
+  apiLastCacheMade: 'Carregando ...',
 };
 
 export default Wikilegis;
