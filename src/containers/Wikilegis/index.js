@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Grid } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
+import { Grid, Box, makeStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import ChartDataFrame from '../../components/ChartDataFrame/index';
-import Header from '../../components/Header/index';
-import RankingTable from '../../components/RankingTable/index';
 import {
   getWikilegisParticipationChartDataByDay,
   getWikilegisParticipationChartDataByMonth,
@@ -15,11 +10,10 @@ import {
 
 import { handleUpdatePeriodSearchQuery } from '../../services/functions/handlers/index';
 
-import TotalFrame from '../../components/Frames/TotalFrame/index';
-import Sectionheader from '../../components/Headers/SectionHeader/index';
-import SubSectionHeader from '../../components/Headers/SubSectionHeader/index';
-import NoDataForSelectedPeriod from '../../components/Informations/NoDataForSelectedPeriod/index';
-import ChartAndReport from '../../components/ChartAndReport/index';
+import {
+  ChartDataFrame, Header, RankingTable, TotalFrame, SectionHeader, SubSectionHeader,
+  NoDataForSelectedPeriod, ChartAndReport,
+} from '../../components';
 
 import {
   wikilegisParticipantsToolTip, wikilegisOpinionsToolTip, wikilegisVotesToolTip,
@@ -401,7 +395,7 @@ function Wikilegis(props) {
       />
       <Grid container spacing={1} className={classes.spacingContainer}>
         <Grid item xs={12}>
-          <Sectionheader classes={classes} toolTipText={null} title="Totais no período" />
+          <SectionHeader classes={classes} toolTipText={null} title="Totais no período" />
         </Grid>
 
         <Grid item xs={12} sm={6} md={3} className={classes.spacing}>
@@ -449,7 +443,7 @@ function Wikilegis(props) {
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <Sectionheader classes={classes} toolTipText={null} title="Distribuição da participação no período" />
+          <SectionHeader classes={classes} toolTipText={null} title="Distribuição da participação no período" />
           {(participantionChartData !== undefined && participantionChartData.length > 0) ? (
             <ChartAndReport
               height="60vh"
@@ -477,7 +471,7 @@ function Wikilegis(props) {
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <Sectionheader classes={classes} title="Ranking das propostas legislativas" toolTipText={wikilegisRankingToolTip} toolTipColor={customTheme.palette.wikilegis.jade} />
+          <SectionHeader classes={classes} title="Ranking das propostas legislativas" toolTipText={wikilegisRankingToolTip} toolTipColor={customTheme.palette.wikilegis.jade} />
           {(roomsRankingData !== undefined && roomsRankingData.length > 0) ? (
             <ChartDataFrame
               height="30vh"
@@ -512,7 +506,7 @@ function Wikilegis(props) {
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <Sectionheader classes={classes} toolTipText={null} title="Usuários" />
+          <SectionHeader classes={classes} toolTipText={null} title="Usuários" />
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
