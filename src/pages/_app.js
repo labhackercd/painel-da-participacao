@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
-import Router from 'next/router';
-import NProgress from 'nprogress'; // nprogress module
+import Router, { useRouter } from 'next/router';
 import 'nprogress/nprogress.css'; // styles of nprogress
 import { ThemeProvider, makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import * as gtag from '../../lib/googleAnalytics/gtag';
 
 import theme from '../styles/theme';
 
@@ -18,27 +18,27 @@ const useStyles = makeStyles((themeDOM) => ({
   },
 }));
 
-// Binding events.
-Router.events.on('routeChangeStart', () => NProgress.start());
-Router.events.on('routeChangeComplete', () => NProgress.done());
-Router.events.on('routeChangeError', () => NProgress.done());
-
 export default function MyApp(props) {
   const classes = useStyles();
   const { Component, pageProps } = props;
   const [loadingPage, setLoadingPage] = useState(false);
+  const router = useRouter();
 
   Router.events.on('routeChangeStart', () => setLoadingPage(true));
-  Router.events.on('routeChangeComplete', () => setLoadingPage(false));
+  Router.events.on('routeChangeComplete', () => {
+    setLoadingPage(false);
+  });
   Router.events.on('routeChangeError', () => setLoadingPage(false));
 
-  React.useEffect(() => {
-    // Remove the server-side injected CSS.
-    const jssStyles = document.querySelector('#jss-server-side');
-    if (jssStyles) {
-      jssStyles.parentElement.removeChild(jssStyles);
-    }
-  }, []);
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      gtag.pageview(url);
+    };
+    router.events.on('routeChangeComplete', handleRouteChange);
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router]);
 
   return (
     <>
