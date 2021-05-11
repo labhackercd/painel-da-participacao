@@ -381,6 +381,7 @@ function Audiencias(props) {
       await updateParticipationChartData(period, month, year);
       await updateNewUsersChartData(period);
     } catch (e) {
+      console.log('Update all page informations');
       console.error('Erro ao carregar dados da página Update Page');
     }
   }

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-danger */
 import React from 'react';
 import Document, {
   Html, Head, Main, NextScript,
@@ -12,6 +13,24 @@ export default class MyDocument extends Document {
         <Head>
           {/* PWA primary color */}
           <meta name="theme-color" content={theme.palette.primary.main} />
+          {/* START GOOGLE ANALYTICS SCRIPTS - REMOVE THIS BLOCK IF NOT USE GOOGLE ANALYTICS */}
+          <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID_TOKEN}`}
+          />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${process.env.NEXT_PUBLIC_GA_ID_TOKEN}', {
+              page_path: window.location.pathname,
+            });
+          `,
+            }}
+          />
+          {/* END GOOGLE ANALYTICS SCRIPTS */}
         </Head>
         <body>
           <Main />

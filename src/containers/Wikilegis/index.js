@@ -226,37 +226,42 @@ function Wikilegis(props) {
   }
 
   async function updateParticipationChartData(period, month, year) {
-    const opinionsData = apisDataObject.wikilegisOpinionsAPIData.results;
-    const voteData = apisDataObject.wikilegisVotesAPIData.results;
-
-    let arrayData = [];
     const collumPeriodTitle = ['Data', 'Opiniões', 'Votos'];
+    try {
+      const opinionsData = apisDataObject.wikilegisOpinionsAPIData.results;
+      const voteData = apisDataObject.wikilegisVotesAPIData.results;
 
-    switch (period) {
-      case dailyKeyWord:
-        arrayData = await getWikilegisParticipationChartDataByDay(
-          month, year, opinionsData, voteData,
-        );
-        break;
-      case monthlyKeyWord:
-        arrayData = await getWikilegisParticipationChartDataByMonth(
-          month, year, opinionsData, voteData,
-        );
-        break;
-      default: // yearly -> Total period
-        arrayData = await getWikilegisParticipationChartDataByYear(
-          opinionsData, voteData, WIKILEGIS_INITIAL_YEAR,
-        );
-        break;
-    }
+      let arrayData = [];
 
-    if (arrayData.length > 0) {
-      setParticipantionChartData([collumPeriodTitle].concat(arrayData));
-      setParticipantionChartDataLastUpdate(
-        getApiLastUpdateDateAndHour(opinionsData, voteData),
-      );
-    } else {
-      setParticipantionChartData(arrayData);
+      switch (period) {
+        case dailyKeyWord:
+          arrayData = await getWikilegisParticipationChartDataByDay(
+            month, year, opinionsData, voteData,
+          );
+          break;
+        case monthlyKeyWord:
+          arrayData = await getWikilegisParticipationChartDataByMonth(
+            month, year, opinionsData, voteData,
+          );
+          break;
+        default: // yearly -> Total period
+          arrayData = await getWikilegisParticipationChartDataByYear(
+            opinionsData, voteData, WIKILEGIS_INITIAL_YEAR,
+          );
+          break;
+      }
+
+      if (arrayData.length > 0) {
+        setParticipantionChartData([collumPeriodTitle].concat(arrayData));
+        setParticipantionChartDataLastUpdate(
+          getApiLastUpdateDateAndHour(opinionsData, voteData),
+        );
+      } else {
+        setParticipantionChartData(arrayData);
+      }
+    } catch (e) {
+      setParticipantionChartData([]);
+      setParticipantionChartDataLastUpdate(apiLastCacheMade);
     }
   }
 
