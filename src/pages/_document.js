@@ -5,13 +5,9 @@ import Document, {
 } from 'next/document';
 import { ServerStyleSheets } from '@material-ui/core/styles';
 import theme from '../styles/theme';
-import {GA_TRACKING_ID} from '../../lib/googleAnalytics/gtag';
-
-
 
 export default class MyDocument extends Document {
   render() {
-
     return (
       <Html lang="en">
         <Head>
