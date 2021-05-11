@@ -111,11 +111,10 @@ export default function PageNavbar(props) {
     return (
       <Tabs value={value} className={tabs} TabIndicatorProps={{ style: { background: 'white' } }} orientation={orientation}>
         <LinkTab
-          id="generalPanelTab"
           label="Painel da Participação"
           aria-label="Painel da Participação"
           aria-selected={false}
-          url="/"
+          url={`${process.env.NEXT_PUBLIC_INITIAL_PAGE_URL}`}
           index="0"
           {...a11yProps(0)}
         />
