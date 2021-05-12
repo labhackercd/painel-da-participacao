@@ -2,13 +2,17 @@
 /* eslint-disable no-await-in-loop */
 import React from 'react';
 // import PropTypes from 'prop-types';
+import Image from 'next/image';
 import Head from 'next/head';
 import Link from 'next/link';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Button } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
+import Hidden from '@material-ui/core/Hidden';
 import BarChartIcon from '@material-ui/icons/BarChart';
+import Carousel from 'react-elastic-carousel';
+
 import Box from '@material-ui/core/Box';
 // import Layout from '../layouts/index';
 import PageNavbar from '../layouts/navbar';
@@ -17,10 +21,6 @@ import PageNavbar from '../layouts/navbar';
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100vh',
-  },
-  container: {
-    width: 'auto',
-    height: '100%',
     backgroundColor: theme.palette.primary.main,
   },
   box: {
@@ -33,9 +33,53 @@ const useStyles = makeStyles((theme) => ({
   },
   boxContent: {
     flex: '1 1 auto',
+    width: 'auto',
+    height: '100%',
+    marginTop: '5vh',
+  },
+  bannerBox: {
+    width: '100%',
+    display: 'flex',
+    height: '280px',
+    '@media (max-width: 600px)': {
+      height: '250px',
+    },
+    background: ' linear-gradient(90deg, rgba(228, 56, 180, 0.3) 0%, rgba(245, 157, 42, 0.3) 32.29%, rgba(17, 129, 233, 0.3) 63.54%, rgba(20, 215, 104, 0.3) 100%);',
+  },
+  bannerBoxText: {
+    height: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    flexGrow: 1,
+    paddingLeft: '2vh',
+    '@media (min-width: 1100px)': {
+      paddingLeft: '10vh',
+    },
+  },
+  bannerBoxParticipaLogo: {
+    width: '10%',
+    height: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    marginRight: '40vh',
+  },
+  typography: {
+    fontFamily: 'Open Sans',
+    letterSpacing: '0.05em',
+  },
+  typograhyTitle: {
+    fontSize: '2.938rem',
+    fontWeight: 'bold',
+    '@media (max-width: 600px)': {
+      fontSize: '2rem',
+    },
   },
   textBox: {
-    margin: '10%',
+    paddingLeft: '2vh',
+    paddingTop: '3vh',
+    '@media (min-width: 1100px)': {
+      paddingLeft: '10vh',
+    },
   },
   typographyBoxText: {
     fontFamily: 'Open Sans',
@@ -49,66 +93,45 @@ const useStyles = makeStyles((theme) => ({
   },
   typographyHighLightedText: {
     fontSize: '2.4rem',
-    color: '#1181E9',
-  },
-  wikilegisSection: {
-    background: 'linear-gradient(180deg, #14D768 -51.22%, rgba(20, 215, 104, 0) 100%)',
-    float: 'left',
-  },
-  audienciasSection: {
-    background: 'linear-gradient(180deg, #F59D2A -51.22%, rgba(245, 157, 42, 0) 100%)',
-    height: '100%',
-  },
-  buttonStyle: {
-    color: 'black',
-    textTransform: 'none',
-    fontWeight: 700,
-    '@media (max-width: 600px)': {
-      width: '90%',
-    },
-  },
-  buttonContainer: {
-    paddingTop: '15em',
-    '@media (max-width: 1100px)': {
-      paddingBottom: '5vh',
-    },
-  },
-  chartImages: {
-    '@media (max-width: 600px)': {
-      maxWidth: '150px',
-      maxHeight: '200px',
-    },
-  },
-  toolSectionHeader: {
-    paddingBottom: '9vh',
-    marginLeft: '1rem',
-    '@media (max-width: 1100px)': {
-      paddingTop: '2vh',
-    },
-  },
-  toolSectionHeaderTextTitle: {
-    fontFamily: 'Open Sans',
-    letterSpacing: '0.05em',
-    fontStyle: 'normal',
     fontWeight: 'bold',
-    fontSize: '2.438rem',
-    '@media (max-width: 600px)': {
-      fontSize: '1.1rem',
-    },
   },
-  toolSectionHeaderTextSubTitle: {
-    fontFamily: 'Open Sans',
-    fontWeight: '400',
-    letterSpacing: '0.05em',
-    fontSize: '1.2rem',
+  gridContainer: {
+    width: '100%',
+    height: 'auto',
+  },
+  caroulselBox: {
+    width: '100%',
+    minHeight: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     '@media (max-width: 600px)': {
-      fontSize: '1rem',
+      marginTop: '10vh',
     },
   },
 }));
 
 function Home({ usersTotal }) {
   const classes = useStyles();
+
+  const carouselItens = [
+    {
+      id: 1, toolName: 'Wikilegis', description: 'Opiniões em textos de propostas legislativas', color: '#14D768',
+    },
+    {
+      id: 2, toolName: 'Audiências Interativas', description: 'Perguntas aos parlamentares', color: '#F59D2A',
+    },
+  ];
+
+  const items = [
+    { id: 1, title: 'item #1' },
+    { id: 2, title: 'item #2' },
+    { id: 3, title: 'item #3' },
+    { id: 4, title: 'item #4' },
+    { id: 5, title: 'item #5' },
+  ];
+
+
 
   return (
     <div className={classes.root}>
@@ -120,18 +143,26 @@ function Home({ usersTotal }) {
           <PageNavbar value={0} />
         </Box>
         <Box className={classes.boxContent}>
-          <Grid container className={classes.container}>
+          <Box className={classes.bannerBox}>
+            <Box className={classes.bannerBoxText}>
+              <Typography className={`${classes.typography} ${classes.typograhyTitle}`}>
+                Painel da Participação
+              </Typography>
+            </Box>
+            <Hidden mdDown>
+              <Box className={classes.bannerBoxParticipaLogo}>
+                <Image
+                  src={`${process.env.NEXT_PUBLIC_APPLICATION_BASE_PATH_URL}/logo/logo_participa.svg`}
+                  alt="Logotipo do LABHacker"
+                  width={700}
+                  height={700}
+                />
+              </Box>
+            </Hidden>
+          </Box>
+          <Grid container classesName={classes.gridContainer}>
             <Grid item xs={12} md={5}>
               <Box className={classes.textBox}>
-                <Box paddingBottom="100px">
-                  <Typography variant="h1" gutterBottom className={classes.typographyBoxTextTitle}>
-                    PAINEL DA
-                    {' '}
-                    <br />
-                    {' '}
-                    PARTICIPAÇÃO
-                  </Typography>
-                </Box>
                 <Typography className={classes.typographyHighLightedText} display="inline">
                   {usersTotal}
                 </Typography>
@@ -148,84 +179,15 @@ function Home({ usersTotal }) {
                     {' '}
                     ferramentas de participação pelos cidadãos.
                   </Typography>
-
                 </Box>
               </Box>
             </Grid>
             <Grid item xs={12} md={7}>
-              <Box height="100%" display="flex">
-                <Box width="50%" height="100%" className={classes.audienciasSection} display="flex" flexDirection="column" justifyContent="center">
-                  <Box className={classes.toolSectionHeader}>
-                    <Typography variant="h2" className={classes.toolSectionHeaderTextTitle}>
-                      Audiências Interativas
-                    </Typography>
-                    <Typography className={classes.toolSectionHeaderTextSubTitle}>
-                      Perguntas aos parlamentares
-                    </Typography>
-                  </Box>
-                  <Box display="flex" flexDirection="row-reverse">
-                    <img
-                      className={classes.chartImages}
-                      src={`${process.env.NEXT_PUBLIC_APPLICATION_BASE_PATH_URL}/initialPage/audiencias_chart_frame.png`}
-                      alt=""
-                      role="presentation"
-                    />
-                  </Box>
-                  <Box display="flex" justifyContent="center" className={classes.buttonContainer}>
-                    <Link
-                      href={`${process.env.NEXT_PUBLIC_AUDIENCIAS_PAGE_URL}`}
-                      passHref
-                    >
-                      <Button
-                        style={{ backgroundColor: '#F59D2A' }}
-                        className={classes.buttonStyle}
-                        variant="contained"
-                        color="primary"
-                        endIcon={<BarChartIcon />}
-                      >
-                        Participação nas Audiências
-                      </Button>
-                    </Link>
-
-                  </Box>
-                </Box>
-
-                <Box width="50%" className={classes.wikilegisSection} display="flex" flexDirection="column" justifyContent="center">
-                  <Box className={classes.toolSectionHeader}>
-
-                    <Typography variant="h2" className={classes.toolSectionHeaderTextTitle}>
-                      Wikilegis
-                      <br />
-                      {' '}
-                    </Typography>
-                    <Typography className={classes.toolSectionHeaderTextSubTitle}>
-                      Opiniões em textos de propostas legislativas
-                    </Typography>
-                  </Box>
-                  <Box display="flex" justifyContent="left">
-                    <img
-                      className={classes.chartImages}
-                      src={`${process.env.NEXT_PUBLIC_APPLICATION_BASE_PATH_URL}/initialPage/wikilegis_chart_frame.png`}
-                      alt=""
-                      role="presentation"
-                    />
-                  </Box>
-                  <Box display="flex" justifyContent="center" className={classes.buttonContainer}>
-                    <Link
-                      href={`${process.env.NEXT_PUBLIC_WIKILEGIS_PAGE_URL}`}
-                      passHref
-                    >
-                      <Button
-                        style={{ backgroundColor: '#14D768' }}
-                        className={classes.buttonStyle}
-                        variant="contained"
-                        color="primary"
-                        endIcon={<BarChartIcon />}
-                      >
-                        Participação na Wikilegis
-                      </Button>
-                    </Link>
-                  </Box>
+              <Box className={classes.caroulselBox}>
+                <Box width="50%">
+                  <Carousel>
+                    {items.map((item) => <div key={item.id}>{item.title}</div>)}
+                  </Carousel>
                 </Box>
               </Box>
             </Grid>
