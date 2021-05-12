@@ -11,38 +11,45 @@ import { Grid, Button } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Hidden from '@material-ui/core/Hidden';
 import BarChartIcon from '@material-ui/icons/BarChart';
-import Carousel from 'react-elastic-carousel';
-
+import IconButton from '@material-ui/core/IconButton';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+// import Carousel, { arrowsPlugin, autoplayPlugin } from '@brainhubeu/react-carousel';
+// import '@brainhubeu/react-carousel/lib/style.css';
 import Box from '@material-ui/core/Box';
 // import Layout from '../layouts/index';
 import PageNavbar from '../layouts/navbar';
-// import Footer from '../components/Footer/index';
+import Footer from '../components/Footer/index';
+import Carousel from '../components/Carousel/index';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: '100vh',
-    backgroundColor: theme.palette.primary.main,
+    height: 'auto',
   },
   box: {
     display: 'flex',
     flexFlow: 'column',
+    width: 'auto',
+    backgroundColor: theme.palette.primary.main,
     height: '100%',
+    '@media (min-width: 1100px)': {
+      height: '100vh',
+    },
   },
   boxHeader: {
-    flex: '0 1 auto',
+
   },
   boxContent: {
-    flex: '1 1 auto',
-    width: 'auto',
-    height: '100%',
-    marginTop: '5vh',
+    flex: '1 ',
+    display: 'flex',
+    flexFlow: 'column',
   },
   bannerBox: {
     width: '100%',
     display: 'flex',
-    height: '280px',
+    height: '250px',
     '@media (max-width: 600px)': {
-      height: '250px',
+      height: '200px',
     },
     background: ' linear-gradient(90deg, rgba(228, 56, 180, 0.3) 0%, rgba(245, 157, 42, 0.3) 32.29%, rgba(17, 129, 233, 0.3) 63.54%, rgba(20, 215, 104, 0.3) 100%);',
   },
@@ -95,9 +102,15 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '2.4rem',
     fontWeight: 'bold',
   },
+  boxGridContainer: {
+    flex: '1 ',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   gridContainer: {
     width: '100%',
-    height: 'auto',
+    height: '100%',
   },
   caroulselBox: {
     width: '100%',
@@ -105,9 +118,18 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    '@media (max-width: 600px)': {
-      marginTop: '10vh',
+    '@media (max-width: 900px)': {
+      paddingBottom: '20px',
     },
+  },
+  caroulselInsideBox: {
+    width: '100%',
+    '@media (min-width: 1300px)': {
+      width: '70%',
+    },
+  },
+  iconStyle: {
+    color: 'white',
   },
 }));
 
@@ -116,10 +138,10 @@ function Home({ usersTotal }) {
 
   const carouselItens = [
     {
-      id: 1, toolName: 'Wikilegis', description: 'Opiniões em textos de propostas legislativas', color: '#14D768',
+      toolName: 'Wikilegis', description: 'Opiniões em textos de propostas legislativas', color: '#14D768', buttonText: 'A participação na Wikilegis', toolPage: `${process.env.NEXT_PUBLIC_WIKILEGIS_PAGE_URL}`,
     },
     {
-      id: 2, toolName: 'Audiências Interativas', description: 'Perguntas aos parlamentares', color: '#F59D2A',
+      id: 2, toolName: 'Audiências Interativas', description: 'Perguntas aos parlamentares', color: '#F59D2A', buttonText: 'A participação nas Audiências', toolPage: `${process.env.NEXT_PUBLIC_AUDIENCIAS_PAGE_URL}`,
     },
   ];
 
@@ -130,8 +152,6 @@ function Home({ usersTotal }) {
     { id: 4, title: 'item #4' },
     { id: 5, title: 'item #5' },
   ];
-
-
 
   return (
     <div className={classes.root}>
@@ -160,43 +180,46 @@ function Home({ usersTotal }) {
               </Box>
             </Hidden>
           </Box>
-          <Grid container classesName={classes.gridContainer}>
-            <Grid item xs={12} md={5}>
-              <Box className={classes.textBox}>
-                <Typography className={classes.typographyHighLightedText} display="inline">
-                  {usersTotal}
-                </Typography>
-                <Typography gutterBottom className={classes.typographyBoxText} display="inline">
-                  {' '}
-                  cidadãos se cadastraram no portal e-Democracia da Câmara dos Deputados
-                  até hoje.
-                </Typography>
-                <Box paddingTop="50px">
-                  <Typography className={classes.typographyBoxText} display="inline">
-                    Conheça os números de utilização das
-                  </Typography>
+          <Box className={classes.boxGridContainer}>
+            <Grid container>
+              <Grid item xs={12} md={5}>
+                <Box className={classes.textBox}>
                   <Typography className={classes.typographyHighLightedText} display="inline">
-                    {' '}
-                    ferramentas de participação pelos cidadãos.
+                    {usersTotal}
                   </Typography>
+                  <Typography gutterBottom className={classes.typographyBoxText} display="inline">
+                    {' '}
+                    cidadãos se cadastraram no portal e-Democracia da Câmara dos Deputados
+                    até hoje.
+                  </Typography>
+                  <Box paddingTop="50px">
+                    <Typography className={classes.typographyBoxText} display="inline">
+                      Conheça os números de utilização das
+                    </Typography>
+                    <Typography className={classes.typographyHighLightedText} display="inline">
+                      {' '}
+                      ferramentas de participação pelos cidadãos.
+                    </Typography>
+                  </Box>
                 </Box>
-              </Box>
-            </Grid>
-            <Grid item xs={12} md={7}>
-              <Box className={classes.caroulselBox}>
-                <Box width="50%">
-                  <Carousel>
-                    {items.map((item) => <div key={item.id}>{item.title}</div>)}
-                  </Carousel>
+              </Grid>
+              <Grid item xs={12} md={7}>
+                <Box className={classes.caroulselBox}>
+                  <Box className={classes.caroulselInsideBox}>
+                    <Carousel carouselItens={carouselItens} />
+                  </Box>
                 </Box>
-              </Box>
+              </Grid>
+
             </Grid>
-          </Grid>
+          </Box>
+
         </Box>
-        {/* <Box>
+        <Box>
           <Footer />
-        </Box> */}
+        </Box>
       </Box>
+
     </div>
   );
 }
