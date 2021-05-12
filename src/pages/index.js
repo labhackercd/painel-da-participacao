@@ -1,23 +1,12 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-await-in-loop */
 import React from 'react';
-// import PropTypes from 'prop-types';
 import Image from 'next/image';
 import Head from 'next/head';
-import Link from 'next/link';
 import axios from 'axios';
-import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Button } from '@material-ui/core';
-import Typography from '@material-ui/core/Typography';
-import Hidden from '@material-ui/core/Hidden';
-import BarChartIcon from '@material-ui/icons/BarChart';
-import IconButton from '@material-ui/core/IconButton';
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-// import Carousel, { arrowsPlugin, autoplayPlugin } from '@brainhubeu/react-carousel';
-// import '@brainhubeu/react-carousel/lib/style.css';
-import Box from '@material-ui/core/Box';
-// import Layout from '../layouts/index';
+import {
+  makeStyles, Grid, Typography, Hidden, Box,
+} from '@material-ui/core';
 import PageNavbar from '../layouts/navbar';
 import Footer from '../components/Footer/index';
 import Carousel from '../components/Carousel/index';
@@ -143,14 +132,6 @@ function Home({ usersTotal }) {
     {
       id: 2, toolName: 'Audiências Interativas', description: 'Perguntas aos parlamentares', color: '#F59D2A', buttonText: 'A participação nas Audiências', toolPage: `${process.env.NEXT_PUBLIC_AUDIENCIAS_PAGE_URL}`,
     },
-  ];
-
-  const items = [
-    { id: 1, title: 'item #1' },
-    { id: 2, title: 'item #2' },
-    { id: 3, title: 'item #3' },
-    { id: 4, title: 'item #4' },
-    { id: 5, title: 'item #5' },
   ];
 
   return (

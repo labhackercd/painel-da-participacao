@@ -45,7 +45,7 @@ export default function Caroulsel({ carouselItens }) {
       swipeable
     >
       {carouselItens.map((item) => (
-        <CaroulselItem item={item} />
+        <CarouselItem item={item} />
       ))}
     </Carousel>
   );

@@ -1,13 +1,11 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import {
   Box, Typography, Button, makeStyles,
 } from '@material-ui/core';
 import Link from 'next/link';
 
-const useStyles = makeStyles((theme) => ({
-  baseBox: {
-
-  },
+const useStyles = makeStyles(() => ({
   typography: {
     fontFamily: 'Open Sans',
     letterSpacing: '0.05em',
@@ -31,7 +29,6 @@ const useStyles = makeStyles((theme) => ({
   buttonContainer: {
     paddingTop: '15px',
   },
-
 }));
 
 export default function CarouselItem({ item }) {
@@ -66,7 +63,7 @@ export default function CarouselItem({ item }) {
             variant="contained"
             color="primary"
           >
-              {item.buttonText}
+            {item.buttonText}
           </Button>
         </Link>
       </Box>
