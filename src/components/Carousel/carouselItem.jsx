@@ -13,10 +13,16 @@ const useStyles = makeStyles(() => ({
   typographyToolTitle: {
     fontSize: '2.438rem',
     fontWeight: 'bold',
+    '@media (max-width: 600px)': {
+      fontSize: '1.4rem',
+    },
   },
   typographyDescription: {
     fontSize: '1.625rem',
     fontWeight: 'regular',
+    '@media (max-width: 600px)': {
+      fontSize: '1rem',
+    },
   },
   buttonStyle: {
     color: 'black',

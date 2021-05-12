@@ -80,16 +80,31 @@ const useStyles = makeStyles((theme) => ({
   typographyBoxText: {
     fontFamily: 'Open Sans',
     fontSize: '2.4rem',
+    '@media (max-width: 600px)': {
+      fontSize: '1.1rem',
+    },
   },
   typographyBoxTextTitle: {
     fontFamily: 'Open Sans',
     letterSpacing: '0.05em',
     fontWeight: 'bold',
     fontSize: '2.938rem',
+    '@media (max-width: 600px)': {
+      fontSize: '1.4rem',
+    },
   },
   typographyHighLightedText: {
     fontSize: '2.4rem',
     fontWeight: 'bold',
+    '@media (max-width: 600px)': {
+      fontSize: '1.1rem',
+    },
+  },
+  typographyParagraphBox: {
+    paddingTop: '50px',
+    '@media (max-width: 960px)': {
+      paddingTop: '10px',
+    },
   },
   boxGridContainer: {
     flex: '1 ',
@@ -108,6 +123,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
     '@media (max-width: 900px)': {
+      paddingTop: '30px',
       paddingBottom: '20px',
     },
   },
@@ -173,7 +189,7 @@ function Home({ usersTotal }) {
                     cidadãos se cadastraram no portal e-Democracia da Câmara dos Deputados
                     até hoje.
                   </Typography>
-                  <Box paddingTop="50px">
+                  <Box className={classes.typographyParagraphBox}>
                     <Typography className={classes.typographyBoxText} display="inline">
                       Conheça os números de utilização das
                     </Typography>
