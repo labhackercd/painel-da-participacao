@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import {
-  ChartDataFrame, Header, RankingTable, TotalFrame, SectionHeader, SubSectionHeader,
+  AlertCachedData, ChartDataFrame, Header, RankingTable, TotalFrame, SectionHeader, SubSectionHeader,
   NoDataForSelectedPeriod, ChartAndReport,
 } from '../../components';
 
@@ -71,7 +71,9 @@ const monthNamesList = MONTHS_ABBREVIATED_LIST;
 
 function Audiencias(props) {
   const TOOLNAME = 'Audiências Interativas';
-  const { responseDataRanking, defaultApisData, apiLastCacheMade } = props;
+  const {
+    responseDataRanking, defaultApisData, apiLastCacheMade, apiLastCacheMadeHour,
+  } = props;
   const headerColors = {
     borderColor: '#DA7F0B',
     button: {
@@ -88,6 +90,8 @@ function Audiencias(props) {
   const [totalUsersChartData, setTotalUsersChartData] = useState([]);
   const [roomsRankingData, setRoomsRankingData] = useState(defaultApisData.audienciasRankingData);
   const [participantionChartData, setParticipantionChartData] = useState([]);
+  // Error Status
+  const [showCachedDataAlert, setShowCachedDataAlert] = useState(false);
   // Load Status
   const [totalsAreLoaded, setTotalsAreLoaded] = useState(false);
   const [newUsersChartDataLoaded, setNewUsersChartDataLoaded] = useState(false);
@@ -113,31 +117,47 @@ function Audiencias(props) {
   });
   const totalAcumuladoUsuariosCadastradosString = 'Total Acumulado de Usuários Cadastrados';
 
+  function checkIfCachedDataIsUpdated() {
+    const currentDateAndHour = new Date();
+    const cachedHour = new Date(apiLastCacheMadeHour);
+    let diff = (currentDateAndHour.getTime() - cachedHour.getTime()) / 1000;
+    diff /= 60;
+    const diffRound = Math.abs(Math.round(diff)); // Return the difference in hour
+
+    if (diffRound > 2) {
+      setShowCachedDataAlert(true);
+    }
+  }
+
   async function fetchDataFromApi(apiUrl, query) {
     try {
       const axiosResponse = await axios.get(`${apiUrl}${query}`);
       return axiosResponse.data;
     } catch (e) {
-      return null;
+      throw new Error(`Erro ao obter dados da api ${apiUrl}`);
     }
   }
 
   async function fetchAndUpdateApisData(query) {
-    const participants = await fetchDataFromApi(process.env.NEXT_PUBLIC_AUDIENCIAS_PARTICIPANT_USERS_URL, query);
-    const rooms = await fetchDataFromApi(process.env.NEXT_PUBLIC_AUDIENCIAS_ROOMS_RANKING_URL, query);
-    const messages = await fetchDataFromApi(process.env.NEXT_PUBLIC_AUDIENCIAS_MESSAGES_RANKING_URL, query);
-    const questions = await fetchDataFromApi(process.env.NEXT_PUBLIC_AUDIENCIAS_QUESTIONS_RANKING_URL, query);
-    const newUsers = await fetchDataFromApi(process.env.NEXT_PUBLIC_AUDIENCIAS_NEW_USERS_URL, query);
-    const votes = await fetchDataFromApi(process.env.NEXT_PUBLIC_AUDIENCIAS_VOTES_RANKING_URL, query);
-
-    setApisDataObject({
-      audiencesParticipantAPIData: participants,
-      audiencesRoomsAPIData: rooms,
-      audiencesMessagesAPIData: messages,
-      audiencesQuestionsAPIData: questions,
-      audiencesNewUsersAPIData: newUsers,
-      audiencesVotesAPIData: votes,
-    });
+    try {
+      const participants = await fetchDataFromApi(process.env.NEXT_PUBLIC_AUDIENCIAS_PARTICIPANT_USERS_URL, query);
+      const rooms = await fetchDataFromApi(process.env.NEXT_PUBLIC_AUDIENCIAS_ROOMS_RANKING_URL, query);
+      const messages = await fetchDataFromApi(process.env.NEXT_PUBLIC_AUDIENCIAS_MESSAGES_RANKING_URL, query);
+      const questions = await fetchDataFromApi(process.env.NEXT_PUBLIC_AUDIENCIAS_QUESTIONS_RANKING_URL, query);
+      const newUsers = await fetchDataFromApi(process.env.NEXT_PUBLIC_AUDIENCIAS_NEW_USERS_URL, query);
+      const votes = await fetchDataFromApi(process.env.NEXT_PUBLIC_AUDIENCIAS_VOTES_RANKING_URL, query);
+      setApisDataObject({
+        audiencesParticipantAPIData: participants,
+        audiencesRoomsAPIData: rooms,
+        audiencesMessagesAPIData: messages,
+        audiencesQuestionsAPIData: questions,
+        audiencesNewUsersAPIData: newUsers,
+        audiencesVotesAPIData: votes,
+      });
+    } catch (e) {
+      // If an error occurred, throw error and set default cachedData to whole page;
+      throw new Error('Erro ao obter dados das APIS');
+    }
   }
 
   // TODO -> CHANGE THIS FUNCTION TO GET NEW API DATA INSTEAD OF CALCULATE IT
@@ -393,13 +413,26 @@ function Audiencias(props) {
     setTotalUsersChartDataLoaded(false);
   }
 
+  async function setAllApiDataToDefaultCache() {
+    setApisDataObject({
+      audiencesParticipantAPIData: defaultApisData.audienceParticipantUsersAPIData,
+      audiencesRoomsAPIData: defaultApisData.audiencesRoomsAPIData,
+      audiencesMessagesAPIData: defaultApisData.audienceMessagesAPIData,
+      audiencesQuestionsAPIData: defaultApisData.audienceQuestionsAPIData,
+      audiencesNewUsersAPIData: defaultApisData.audienceNewUsersAPIData,
+      audiencesVotesAPIData: defaultApisData.audienceVotesAPIData,
+    });
+  }
+
   async function newLoadData(query, period, month, year) {
     try {
       await resetPageComponentsLoadedStatusToFalse();
       await updateChartsAndTableSubTitle(period, month, year);
       await fetchAndUpdateApisData(query);
     } catch (e) {
-      console.error('Erro ao carregar dados da página NewLoadData');
+      console.error('Erro ao obter dados e atualizar página');
+      setAllApiDataToDefaultCache();
+      setShowCachedDataAlert();
     }
   }
 
@@ -423,6 +456,10 @@ function Audiencias(props) {
     updateAllPageInformations(selectedPeriod, selectedMonth, selectedYear);
   }, [apisDataObject]);
 
+  useEffect(() => {
+    checkIfCachedDataIsUpdated();
+  }, []);
+
   return (
     <div className={classes.root}>
       <Header
@@ -434,13 +471,11 @@ function Audiencias(props) {
         initialYear={AUDIENCIAS_INITIAL_YEAR}
       />
       <Grid container spacing={1} className={classes.spacingContainer}>
-        <Grid item xs={12}>
-          <Alert severity="warning">
-            <AlertTitle>Alerta</AlertTitle>
-            Um erro ocorreu ao obter dados do servidor,
-            <strong>estão sendo utilizados dados de cache.</strong>
-          </Alert>
-        </Grid>
+
+        { showCachedDataAlert
+            && (
+              <AlertCachedData apiLastCacheMade={apiLastCacheMade} />
+            )}
 
         <Grid item xs={12} sm={6} md={3} className={classes.spacing}>
           <TotalFrame
@@ -608,12 +643,14 @@ Audiencias.propTypes = {
   responseDataRanking: PropTypes.object,
   defaultApisData: PropTypes.object,
   apiLastCacheMade: PropTypes.string,
+  apiLastCacheMadeHour: PropTypes.string,
 };
 
 Audiencias.defaultProps = {
   responseDataRanking: [],
   defaultApisData: {},
   apiLastCacheMade: 'Carregando ...',
+  apiLastCacheMadeHour: '',
 };
 
 export default Audiencias;

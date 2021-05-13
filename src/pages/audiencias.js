@@ -35,7 +35,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function AudienciasPage({ dados, defaultApisData, apiLastCacheMade }) {
+function AudienciasPage({
+  dados, defaultApisData, apiLastCacheMade, apiLastCacheMadeHour,
+}) {
   const classes = useStyles();
 
   function AudienciasHeader() {
@@ -68,7 +70,12 @@ function AudienciasPage({ dados, defaultApisData, apiLastCacheMade }) {
           <Container className={classes.container}>
             <main className={classes.content}>
               <AudienciasHeader />
-              <Audiencias responseDataRanking={dados} defaultApisData={defaultApisData} apiLastCacheMade={apiLastCacheMade} />
+              <Audiencias
+                responseDataRanking={dados}
+                defaultApisData={defaultApisData}
+                apiLastCacheMade={apiLastCacheMade}
+                apiLastCacheMadeHour={apiLastCacheMadeHour}
+              />
             </main>
           </Container>
         </Grid>
@@ -118,6 +125,7 @@ export async function getStaticProps() {
         audienceVotesAPIData: votesResponseData.data,
       },
       apiLastCacheMade: format(new Date(), ' dd/LL/yyyy, k:mm', { locale: ptBR }),
+      apiLastCacheMadeHour: (new Date()).toString(),
     },
     revalidate: 6000, // Update data every hour (600 seconds)
   };

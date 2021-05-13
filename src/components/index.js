@@ -1,3 +1,4 @@
+import { AlertCachedData } from './Alert/index';
 import ChartAndReport from './ChartAndReport/index';
 import ChartDataFrame from './ChartDataFrame/index';
 import GoogleChart from './Charts/GoogleChart';
@@ -12,7 +13,7 @@ import ToolTip from './ToolTip/index';
 import TotalFrame from './Frames/TotalFrame';
 
 export {
-  ChartAndReport, ChartDataFrame, GoogleChart, Footer,
+  AlertCachedData, ChartAndReport, ChartDataFrame, GoogleChart, Footer,
   Header, NoDataForSelectedPeriod, RankingTable, SectionHeader,
   SubSectionHeader, TableDarkTheme, ToolTip, TotalFrame,
 };
