@@ -111,6 +111,7 @@ function Audiencias(props) {
     audiencesNewUsersAPIData: defaultApisData.audienceNewUsersAPIData,
     audiencesVotesAPIData: defaultApisData.audienceVotesAPIData,
   });
+  const totalAcumuladoUsuariosCadastradosString = 'Total Acumulado de Usuários Cadastrados';
 
   async function fetchDataFromApi(apiUrl, query) {
     try {
@@ -155,7 +156,7 @@ function Audiencias(props) {
                   values[i].new_users + computedArray[i - 1][1]],
               );
             }
-            collumPeriodTitle = [['Dia', 'Total de Usuários Cadastrados']];
+            collumPeriodTitle = [['Dia', totalAcumuladoUsuariosCadastradosString]];
             break;
           case monthlyKeyWord:
             computedArray.push(
@@ -167,7 +168,7 @@ function Audiencias(props) {
                   values[i].new_users + computedArray[i - 1][1]],
               );
             }
-            collumPeriodTitle = [['Mês', 'Total de Usuários Cadastrados']];
+            collumPeriodTitle = [['Mês', totalAcumuladoUsuariosCadastradosString]];
             break;
           default:
             computedArray.push(
@@ -179,7 +180,7 @@ function Audiencias(props) {
                   values[i].new_users + computedArray[i - 1][1]],
               );
             }
-            collumPeriodTitle = [['Ano', 'Total de Usuários Cadastrados']];
+            collumPeriodTitle = [['Ano', totalAcumuladoUsuariosCadastradosString]];
             break;
         }
         setTotalUsersChartDataLastUpdate(values[0].modified);
@@ -572,7 +573,7 @@ function Audiencias(props) {
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <SubSectionHeader title="Total de Usuários Cadastrados" />
+          <SubSectionHeader title={totalAcumuladoUsuariosCadastradosString} />
           {(totalUsersChartData !== undefined && totalUsersChartData.length > 0) ? (
             <div className={classes.contentBox}>
               <ChartAndReport

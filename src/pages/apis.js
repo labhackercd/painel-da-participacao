@@ -270,7 +270,7 @@ function Api() {
       },
     },
     {
-      title: 'Portal de Dados Abertos da Câmara dos Deputados',
+      title: 'Portal de Dados Abertos',
       infoText: 'Na página você encontra um conjunto amplo de dados públicos sobre a Câmara dos Deputados e os trabalhos desenvolvidos. Há dados sobre votações, deputados, legislaturas, etc.',
       toolColor: '#7F69EE',
       urls: {

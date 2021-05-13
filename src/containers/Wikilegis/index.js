@@ -121,6 +121,7 @@ function Wikilegis(props) {
     wikilegisVotesAPIData: defaultApisData.wikilegisVotesAPIData,
     wikilegisNewUsersAPIData: defaultApisData.wikilegisNewUsersAPIData,
   });
+  const totalAcumuladoUsuariosCadastrados = 'Total Acumulado de Usuários Cadastrados';
 
   function computeTotalOfUsersByPeriod(values, period) {
     const computedArray = [];
@@ -137,7 +138,7 @@ function Wikilegis(props) {
                   values[i].new_users + computedArray[i - 1][1]],
               );
             }
-            collumPeriodTitle = [['Dia', 'Total de Usuários Cadastrados']];
+            collumPeriodTitle = [['Dia', totalAcumuladoUsuariosCadastrados]];
             break;
           case monthlyKeyWord:
             computedArray.push(
@@ -149,7 +150,7 @@ function Wikilegis(props) {
                   values[i].new_users + computedArray[i - 1][1]],
               );
             }
-            collumPeriodTitle = [['Mês', 'Total de Usuários Cadastrados']];
+            collumPeriodTitle = [['Mês', totalAcumuladoUsuariosCadastrados]];
             break;
           default:
             computedArray.push(
@@ -161,7 +162,7 @@ function Wikilegis(props) {
                   values[i].new_users + computedArray[i - 1][1]],
               );
             }
-            collumPeriodTitle = [['Ano', 'Total de Usuários Cadastrados']];
+            collumPeriodTitle = [['Ano', totalAcumuladoUsuariosCadastrados]];
             break;
         }
 
@@ -568,7 +569,7 @@ function Wikilegis(props) {
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <SubSectionHeader title="Total de Usuários Cadastrados" />
+          <SubSectionHeader title={totalAcumuladoUsuariosCadastrados} />
           <ChartAndNoDataRenderHandler
             height="60vh"
             chartData={totalUsersChartData}

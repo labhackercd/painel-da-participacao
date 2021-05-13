@@ -432,30 +432,6 @@ function Sobre() {
             </>
             { /* ====================================================================================== */}
           </Box>
-          <Box className={classes.bannerBox} style={{ justifyContent: 'space-evenly', alignItems: 'center' }}>
-            <Box>
-              <img
-                src={`${process.env.NEXT_PUBLIC_APPLICATION_BASE_PATH_URL}/logo/logo_cd.svg`}
-                alt="Logotipo Câmara dos Deputados"
-                className={classes.bannerBoxLogos}
-
-              />
-            </Box>
-            <Box>
-              <img
-                src={`${process.env.NEXT_PUBLIC_APPLICATION_BASE_PATH_URL}/logo/logo_participa.svg`}
-                alt="Logotipo da aplicação participa"
-                className={classes.bannerBoxLogos}
-              />
-            </Box>
-            <Box>
-              <img
-                src={`${process.env.NEXT_PUBLIC_APPLICATION_BASE_PATH_URL}/logo/logo_lab.svg`}
-                alt="Logotipo da aplicação LABHacker"
-                className={classes.bannerBoxLogos}
-              />
-            </Box>
-          </Box>
         </Box>
         <Box>
           <Footer />
