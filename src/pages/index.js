@@ -20,10 +20,7 @@ const useStyles = makeStyles((theme) => ({
     flexFlow: 'column',
     width: 'auto',
     backgroundColor: theme.palette.primary.main,
-    height: '100%',
-    '@media (min-width: 1100px)': {
-      height: '100vh',
-    },
+    height: 'auto',
   },
   boxHeader: {
 
@@ -210,7 +207,6 @@ function Home({ usersTotal }) {
 
             </Grid>
           </Box>
-
         </Box>
         <Box>
           <Footer />
