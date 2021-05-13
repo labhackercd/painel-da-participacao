@@ -10,6 +10,7 @@ import {
 import PageNavbar from '../layouts/navbar';
 import Footer from '../components/Footer/index';
 import Carousel from '../components/Carousel/index';
+import formatNumberWithDots from '../utils/format/numbers/formatNumbersWithDots/formatNumberWithDots';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
   boxContent: {
     flex: '1 ',
+    height: '100vh',
     display: 'flex',
     flexFlow: 'column',
   },
@@ -140,7 +142,7 @@ function Home({ usersTotal }) {
 
   const carouselItens = [
     {
-      toolName: 'Wikilegis', description: 'Opiniões em textos de propostas legislativas', color: '#14D768', buttonText: 'A participação na Wikilegis', toolPage: `${process.env.NEXT_PUBLIC_WIKILEGIS_PAGE_URL}`,
+      id: 1, toolName: 'Wikilegis', description: 'Opiniões em textos de propostas legislativas', color: '#14D768', buttonText: 'A participação na Wikilegis', toolPage: `${process.env.NEXT_PUBLIC_WIKILEGIS_PAGE_URL}`,
     },
     {
       id: 2, toolName: 'Audiências Interativas', description: 'Perguntas aos parlamentares', color: '#F59D2A', buttonText: 'A participação nas Audiências', toolPage: `${process.env.NEXT_PUBLIC_AUDIENCIAS_PAGE_URL}`,
@@ -179,12 +181,11 @@ function Home({ usersTotal }) {
               <Grid item xs={12} md={5}>
                 <Box className={classes.textBox}>
                   <Typography className={classes.typographyHighLightedText} display="inline">
-                    {usersTotal}
+                    {formatNumberWithDots(usersTotal)}
                   </Typography>
                   <Typography gutterBottom className={classes.typographyBoxText} display="inline">
                     {' '}
-                    cidadãos se cadastraram no portal e-Democracia da Câmara dos Deputados
-                    até hoje.
+                    cidadãos se cadastraram no portal e-Democracia da Câmara dos Deputados.
                   </Typography>
                   <Box className={classes.typographyParagraphBox}>
                     <Typography className={classes.typographyBoxText} display="inline">

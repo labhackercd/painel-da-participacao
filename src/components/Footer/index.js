@@ -128,8 +128,8 @@ export default function Footer() {
           {footerItens.map((item) => infoItem(item))}
         </Box>
         <Box className={classes.bottomInformations}>
-          <Typography>LABHacker Câmara dos Deputados Painel da Particpação</Typography>
-          <Typography>{`${currentYear} - Dashboard da Participação`}</Typography>
+          <Typography>LABHacker Câmara dos Deputados Painel da Participação</Typography>
+          <Typography>{`${currentYear} - Painel da Participação`}</Typography>
         </Box>
       </Box>
 
