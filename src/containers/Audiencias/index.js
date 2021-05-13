@@ -6,7 +6,6 @@ import React, { useState, useEffect } from 'react';
 import { Grid, Box, makeStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { Alert, AlertTitle } from '@material-ui/lab';
 import {
   AlertCachedData, ChartDataFrame, Header, RankingTable, TotalFrame, SectionHeader, SubSectionHeader,
   NoDataForSelectedPeriod, ChartAndReport,
@@ -72,7 +71,7 @@ const monthNamesList = MONTHS_ABBREVIATED_LIST;
 function Audiencias(props) {
   const TOOLNAME = 'Audiências Interativas';
   const {
-    responseDataRanking, defaultApisData, apiLastCacheMade, apiLastCacheMadeHour,
+    defaultApisData, apiLastCacheMade, apiLastCacheMadeHour,
   } = props;
   const headerColors = {
     borderColor: '#DA7F0B',
@@ -99,7 +98,7 @@ function Audiencias(props) {
   // Information states
   const [periodSubTitle, setPeriodSubTitle] = useState(defaultYear);
   const [participantionChartDataLastUpdate, setParticipantionChartDataLastUpdate] = useState(apiLastCacheMade);
-  const roomsRankingDataLastUpdate = responseDataRanking.lastUpdate;
+  const roomsRankingDataLastUpdate = apiLastCacheMade;
   const [totalUsersChartDataLastUpdate, setTotalUsersChartDataLastUpdate] = useState(apiLastCacheMade);
   const [newUsersChartDataLastUpdate, setNewUsersChartDataLastUpdate] = useState(apiLastCacheMade);
   // Period Selected states
@@ -472,10 +471,9 @@ function Audiencias(props) {
       />
       <Grid container spacing={1} className={classes.spacingContainer}>
 
-        { showCachedDataAlert
-            && (
-              <AlertCachedData apiLastCacheMade={apiLastCacheMade} />
-            )}
+        { showCachedDataAlert && (
+          <AlertCachedData apiLastCacheMade={apiLastCacheMade} />
+        )}
 
         <Grid item xs={12} sm={6} md={3} className={classes.spacing}>
           <TotalFrame
@@ -640,14 +638,12 @@ function Audiencias(props) {
 }
 
 Audiencias.propTypes = {
-  responseDataRanking: PropTypes.object,
   defaultApisData: PropTypes.object,
   apiLastCacheMade: PropTypes.string,
   apiLastCacheMadeHour: PropTypes.string,
 };
 
 Audiencias.defaultProps = {
-  responseDataRanking: [],
   defaultApisData: {},
   apiLastCacheMade: 'Carregando ...',
   apiLastCacheMadeHour: '',

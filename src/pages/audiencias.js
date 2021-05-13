@@ -127,7 +127,7 @@ export async function getStaticProps() {
       apiLastCacheMade: format(new Date(), ' dd/LL/yyyy, k:mm', { locale: ptBR }),
       apiLastCacheMadeHour: (new Date()).toString(),
     },
-    revalidate: 6000, // Update data every hour (600 seconds)
+    revalidate: 3600, // Update data every hour (3600 seconds)
   };
 }
 
