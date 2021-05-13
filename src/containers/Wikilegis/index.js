@@ -433,6 +433,10 @@ function Wikilegis(props) {
     updateAllPageInformations(selectedPeriod, selectedMonth, selectedYear);
   }, [apisDataObject]);
 
+  useEffect(() => {
+    checkIfCachedDataIsUpdated();
+  }, []);
+
   function ChartAndNoDataRenderHandler(props) {
     const {
       height, chartData, chartDataLoaded, title, chartClasses,

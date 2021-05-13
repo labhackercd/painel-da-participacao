@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
@@ -125,7 +126,7 @@ export default function Footer() {
           </Box>
         </Box>
         <Box className={classes.informationsDiv}>
-          {footerItens.map((item) => <InfoItem title={item.title} subItens={item.subItens} key={item.title} />)}
+          {footerItens.map((item) => (<InfoItem title={item.title} subItens={item.subItens} key={item.title} />))}
         </Box>
         <Box className={classes.bottomInformations}>
           <Typography>LABHacker Câmara dos Deputados Painel da Participação</Typography>
