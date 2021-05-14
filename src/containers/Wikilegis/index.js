@@ -15,7 +15,7 @@ import {
 import { handleUpdatePeriodSearchQuery } from '../../services/functions/handlers/index';
 
 import {
-  ChartDataFrame, Header, RankingTable, TotalFrame, SectionHeader, SubSectionHeader,
+  AlertCachedData, ChartDataFrame, Header, RankingTable, TotalFrame, SectionHeader, SubSectionHeader,
   NoDataForSelectedPeriod, ChartAndReport,
 } from '../../components';
 
@@ -84,7 +84,7 @@ const monthNamesList = MONTHS_ABBREVIATED_LIST;
 
 function Wikilegis(props) {
   const TOOLNAME = 'Wikilegis';
-  const { defaultApisData, apiLastCacheMade } = props;
+  const { defaultApisData, apiLastCacheMade, apiLastCacheMadeHour } = props;
   const headerColors = {
     borderColor: '#00C354',
     button: {
@@ -97,8 +97,10 @@ function Wikilegis(props) {
   const [wikilegisTotalsData, setWikilegisTotalsData] = useState('');
   const [newUsersChartData, setNewUsersChartData] = useState([]);
   const [totalUsersChartData, setTotalUsersChartData] = useState([]);
-  const [roomsRankingData, setRoomsRankingData] = useState(defaultApisData.audienciasRankingDat);
+  const [roomsRankingData, setRoomsRankingData] = useState(defaultApisData.wikilegisRankingData);
   const [participantionChartData, setParticipantionChartData] = useState([]);
+  // Error Status
+  const [showCachedDataAlert, setShowCachedDataAlert] = useState(false);
   // Load Status
   const [totalsAreLoaded, setTotalsAreLoaded] = useState(false);
   const [newUsersChartDataLoaded, setNewUsersChartDataLoaded] = useState(false);
@@ -177,29 +179,46 @@ function Wikilegis(props) {
     setTotalUsersChartDataLoaded(true);
   }
 
+  function checkIfCachedDataIsUpdated() {
+    const currentDateAndHour = new Date();
+    const cachedHour = new Date(apiLastCacheMadeHour);
+    let diff = (currentDateAndHour.getTime() - cachedHour.getTime()) / 1000;
+    diff /= 60;
+    const diffRound = Math.abs(Math.round(diff)); // Return the difference in hour
+
+    if (diffRound > 2) {
+      setShowCachedDataAlert(true);
+    }
+  }
+
   async function fetchDataFromApi(apiUrl, query) {
     try {
       const axiosResponse = await axios.get(`${apiUrl}${query}`);
       return axiosResponse.data;
     } catch (e) {
-      return null;
+      throw new Error(`Erro ao obter dados da api ${apiUrl}`);
     }
   }
 
   async function fetchAndUpdateApisData(query) {
-    const participants = await fetchDataFromApi(process.env.NEXT_PUBLIC_WIKILEGIS_PARTICIPANT_USERS_URL, query);
-    const legislativeProposals = await fetchDataFromApi(process.env.NEXT_PUBLIC_WIKILEGIS_LEGISLATIVE_PROPOSALS_URL, query);
-    const opinions = await fetchDataFromApi(process.env.NEXT_PUBLIC_WIKILEGIS_OPINIONS_URL, query);
-    const votes = await fetchDataFromApi(process.env.NEXT_PUBLIC_WIKILEGIS_VOTES_URL, query);
-    const newUsers = await fetchDataFromApi(process.env.NEXT_PUBLIC_WIKILEGIS_NEW_USERS_URL, query);
+    try {
+      const participants = await fetchDataFromApi(process.env.NEXT_PUBLIC_WIKILEGIS_PARTICIPANT_USERS_URL, query);
+      const legislativeProposals = await fetchDataFromApi(process.env.NEXT_PUBLIC_WIKILEGIS_LEGISLATIVE_PROPOSALS_URL, query);
+      const opinions = await fetchDataFromApi(process.env.NEXT_PUBLIC_WIKILEGIS_OPINIONS_URL, query);
+      const votes = await fetchDataFromApi(process.env.NEXT_PUBLIC_WIKILEGIS_VOTES_URL, query);
+      const newUsers = await fetchDataFromApi(process.env.NEXT_PUBLIC_WIKILEGIS_NEW_USERS_URL, query);
 
-    setApisDataObject({
-      wikilegisParticipantAPIData: participants,
-      wikilegisLegislativeProposalsAPIData: legislativeProposals,
-      wikilegisOpinionsAPIData: opinions,
-      wikilegisVotesAPIData: votes,
-      wikilegisNewUsersAPIData: newUsers,
-    });
+      setApisDataObject({
+        wikilegisParticipantAPIData: participants,
+        wikilegisLegislativeProposalsAPIData: legislativeProposals,
+        wikilegisOpinionsAPIData: opinions,
+        wikilegisVotesAPIData: votes,
+        wikilegisNewUsersAPIData: newUsers,
+      });
+    } catch (e) {
+      // If an error occurred, throw error and set default cachedData to whole page;
+      throw new Error('Erro ao obter dados das APIS');
+    }
   }
 
   async function updateTotalsData() {
@@ -371,13 +390,26 @@ function Wikilegis(props) {
     setTotalUsersChartDataLoaded(false);
   }
 
+  async function setAllApiDataToDefaultCache() {
+    setApisDataObject({
+      wikilegisParticipantAPIData: defaultApisData.wikilegisParticipantUsersAPIData,
+      wikilegisLegislativeProposalsAPIData: defaultApisData.wikilegisLegislativeProposalsAPIData,
+      wikilegisOpinionsAPIData: defaultApisData.wikilegisMessagesAPIData,
+      wikilegisQuestionsAPIData: defaultApisData.wikilegisQuestionsAPIData,
+      wikilegisVotesAPIData: defaultApisData.wikilegisVotesAPIData,
+      wikilegisNewUsersAPIData: defaultApisData.wikilegisNewUsersAPIData,
+    });
+  }
+
   async function newLoadData(query, period, month, year) {
     try {
       await resetPageComponentsLoadedStatusToFalse();
       await updateChartsAndTableSubTitle(period, month, year);
       await fetchAndUpdateApisData(query);
     } catch (e) {
-      console.error('Erro ao carregar dados da página NewLoadData');
+      console.error('Erro ao obter dados e atualizar página');
+      setAllApiDataToDefaultCache();
+      setShowCachedDataAlert();
     }
   }
 
@@ -400,6 +432,10 @@ function Wikilegis(props) {
   useEffect(() => {
     updateAllPageInformations(selectedPeriod, selectedMonth, selectedYear);
   }, [apisDataObject]);
+
+  useEffect(() => {
+    checkIfCachedDataIsUpdated();
+  }, []);
 
   function ChartAndNoDataRenderHandler(props) {
     const {
@@ -449,6 +485,11 @@ function Wikilegis(props) {
         initialYear={WIKILEGIS_INITIAL_YEAR}
       />
       <Grid container spacing={1} className={classes.spacingContainer}>
+
+        { showCachedDataAlert && (
+          <AlertCachedData apiLastCacheMade={apiLastCacheMade} />
+        )}
+
         <Grid item xs={12}>
           <SectionHeader classes={classes} toolTipText={null} title="Totais no período" />
         </Grid>
