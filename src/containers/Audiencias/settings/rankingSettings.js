@@ -1,7 +1,8 @@
+/* eslint-disable import/prefer-default-export */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
-import { formatDate } from '../../utils/format/date';
+import { formatDate } from '../../../utils/format/date';
 
 export const rankingAudienciaColumns = [
   {
@@ -84,41 +85,16 @@ export const rankingAudienciaColumns = [
   },
 ];
 
-export const audiencesChartsUsersSettings = {
-  chartType: 'LineChart',
-  options: {
-    legend: { position: 'top', maxLines: 3, textStyle: { color: 'white' } },
-    colors: ['#76480F', '#9E5E0D', '#DA7F0B'],
-    lineWidth: 5,
-    pointSize: 15,
-    hAxis: {
-      textStyle: { color: '#FFFFFF' },
-      gridlines: { color: 'transparent' },
-      titleTextStyle: { color: 'white' },
-    },
-    vAxis: { gridlines: { color: 'transparent' }, textStyle: { color: '#FFFFFF' }, format: '##.##' },
-    series: {
-      1: { curveType: 'function' },
-    },
-    backgroundColor: '#000000',
-  },
-};
-
-export const audiencesWithMoreParticipation = {
-  chartType: 'ColumnChart',
-  options: {
-    bars: 'vertical',
-    legend: { position: 'top', maxLines: 3, textStyle: { color: 'white' } },
-    isStacked: 'true',
-    colors: ['#744600', '#EBE23B', '#DA7F0B'],
-    bar: { groupWidth: '80%' },
-    hAxis: { textStyle: { color: 'white' }, titleTextStyle: { color: 'white' } },
-    vAxis: {
-      minValue: 0,
-      gridlines: { color: 'transparent' },
-      textStyle: { color: '#FFFFFF' },
-      format: '###.##',
-    },
-    backgroundColor: '#000000',
-  },
-};
+export const rankingAudienciasHeaders = [
+  { label: 'Título da Reunião', key: 'title_reunion' },
+  { label: 'Tema da Reunião', key: 'reunion_theme' },
+  { label: 'Proposta Legislativa', key: 'legislative_body_initials' },
+  { label: 'Data', key: 'date' },
+  { label: 'Número de Mensagens', key: 'messages_count' },
+  { label: 'Número de Perguntas', key: 'questions_count' },
+  { label: 'Número de Votos', key: 'votes_count' },
+  { label: 'Número de Participantes', key: 'participants_count' },
+  { label: 'Número de Perguntas', key: 'questions_count' },
+  { label: 'URL', key: 'get_absolute_url' },
+  { label: 'Audiência Aconteceu', key: 'is_active' },
+];

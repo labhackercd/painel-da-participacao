@@ -25,7 +25,8 @@ import {
   getParticipationChartDataByDay, getParticipationChartDataByMonth, getParticipationChartDataByYear,
 } from './auxFunctions/computeParticipation';
 import filterRankingAudiencias from './auxFunctions/filterRanking';
-import { rankingAudienciaColumns, audiencesChartsUsersSettings, audiencesWithMoreParticipation } from './chartsAndReportsSettings';
+import { audiencesChartsUsersSettings, audiencesWithMoreParticipation } from './settings/chartsSettings';
+import { rankingAudienciasHeaders, rankingAudienciaColumns } from './settings/rankingSettings';
 
 import customTheme from '../../styles/theme';
 
@@ -547,12 +548,13 @@ function Audiencias(props) {
               height="30vh"
               title={periodSubTitle}
               listView
-              exportData={roomsRankingData}
-              download
               align="center"
               apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
               apiLastUpdate={roomsRankingDataLastUpdate}
               tool={TOOLNAME}
+              exportData={roomsRankingData}
+              download
+              downloadHeaders={rankingAudienciasHeaders}
             >
               <Box width="100%" height="90%">
                 <RankingTable
