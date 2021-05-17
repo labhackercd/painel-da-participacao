@@ -10,11 +10,10 @@ import {
   AlertCachedData, ChartDataFrame, Header, RankingTable, TotalFrame, SectionHeader, SubSectionHeader,
   NoDataForSelectedPeriod, ChartAndReport,
 } from '../../components';
-
 import { handleUpdatePeriodSearchQuery } from '../../services/functions/handlers/index';
 import formatNumberWithDots from '../../utils/format/numbers/formatNumbersWithDots/formatNumberWithDots';
 import {
-  MONTHS_LIST, MONTHS_ABBREVIATED_LIST, DEFAULT_SELECTED_PERIOD_TYPE,
+  AUDIENCIAS_TOOL_NAME, MONTHS_LIST, MONTHS_ABBREVIATED_LIST, DEFAULT_SELECTED_PERIOD_TYPE,
   DEFAULT_MONTH_PERIOD, DEFAULT_SEARCH_QUERY, DAILY_KEY_WORD, MONTHLY_KEY_WORD,
   AUDIENCIAS_INITIAL_YEAR, DEFAULT_YEAR_PERIOD, CURRENT_YEAR,
 } from '../../services/constants/constants';
@@ -64,13 +63,12 @@ const useStyles = makeStyles((theme) => ({
 const defaultSelectedPeriodType = DEFAULT_SELECTED_PERIOD_TYPE; // Get all months of the year
 const defaultMonthPeriod = DEFAULT_MONTH_PERIOD; // All months
 const defaultYearPeriod = DEFAULT_YEAR_PERIOD; // All years
-const defaultSearchQuery = DEFAULT_SEARCH_QUERY;
 const dailyKeyWord = DAILY_KEY_WORD;
 const monthlyKeyWord = MONTHLY_KEY_WORD;
 const monthNamesList = MONTHS_ABBREVIATED_LIST;
 
 function Audiencias(props) {
-  const TOOLNAME = 'Audiências Interativas';
+  const TOOLNAME = AUDIENCIAS_TOOL_NAME;
   const {
     defaultApisData, apiLastCacheMade, apiLastCacheMadeHour,
   } = props;
