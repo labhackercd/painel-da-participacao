@@ -16,7 +16,7 @@ import formatNumberWithDots from '../../utils/format/numbers/formatNumbersWithDo
 import {
   MONTHS_LIST, MONTHS_ABBREVIATED_LIST, DEFAULT_YEAR, DEFAULT_SELECTED_PERIOD_TYPE,
   DEFAULT_MONTH_PERIOD, DEFAULT_SEARCH_QUERY, DAILY_KEY_WORD, MONTHLY_KEY_WORD,
-  AUDIENCIAS_INITIAL_YEAR,
+  AUDIENCIAS_INITIAL_YEAR, DEFAULT_YEAR_PERIOD, CURRENT_YEAR,
 } from '../../services/constants/constants';
 import {
   participantsTotalToolTip, messagesTotalToolTip, audiencesTotalToolTip, audiencesRankingToolTip,
@@ -64,6 +64,7 @@ const useStyles = makeStyles((theme) => ({
 const defaultYear = DEFAULT_YEAR;
 const defaultSelectedPeriodType = DEFAULT_SELECTED_PERIOD_TYPE; // Get all months of the year
 const defaultMonthPeriod = DEFAULT_MONTH_PERIOD; // All months
+const defaultYearPeriod = DEFAULT_YEAR_PERIOD; // All years
 const defaultSearchQuery = DEFAULT_SEARCH_QUERY;
 const dailyKeyWord = DAILY_KEY_WORD;
 const monthlyKeyWord = MONTHLY_KEY_WORD;
@@ -97,7 +98,7 @@ function Audiencias(props) {
   const [newUsersChartDataLoaded, setNewUsersChartDataLoaded] = useState(false);
   const [totalUsersChartDataLoaded, setTotalUsersChartDataLoaded] = useState(false);
   // Information states
-  const [periodSubTitle, setPeriodSubTitle] = useState(defaultYear);
+  const [periodSubTitle, setPeriodSubTitle] = useState(`${AUDIENCIAS_INITIAL_YEAR} a ${CURRENT_YEAR}`);
   const [participantionChartDataLastUpdate, setParticipantionChartDataLastUpdate] = useState(apiLastCacheMade);
   const roomsRankingDataLastUpdate = apiLastCacheMade;
   const [totalUsersChartDataLastUpdate, setTotalUsersChartDataLastUpdate] = useState(apiLastCacheMade);
@@ -263,7 +264,6 @@ function Audiencias(props) {
   }
 
   async function updateChartsAndTableSubTitle(period, month, year) {
-    const todayDate = new Date();
     try {
       switch (period) {
         case dailyKeyWord:
@@ -274,7 +274,7 @@ function Audiencias(props) {
           break;
         default: // yearly -> Total period
           setPeriodSubTitle(
-            `2016 a ${(todayDate.getFullYear())}`,
+            `${AUDIENCIAS_INITIAL_YEAR} a ${CURRENT_YEAR}`,
           );
           break;
       }
@@ -471,10 +471,12 @@ function Audiencias(props) {
         initialYear={AUDIENCIAS_INITIAL_YEAR}
       />
       <Grid container spacing={1} className={classes.spacingContainer}>
-
         { showCachedDataAlert && (
           <AlertCachedData apiLastCacheMade={apiLastCacheMade} />
         )}
+        <Grid item xs={12}>
+          <SectionHeader classes={classes} toolTipText={null} title="Totais no Período" />
+        </Grid>
 
         <Grid item xs={12} sm={6} md={3} className={classes.spacing}>
           <TotalFrame
@@ -491,9 +493,9 @@ function Audiencias(props) {
           <TotalFrame
             isLoaded={totalsAreLoaded}
             info={`${audienciasTotalsData.audiencias_total}`}
-            title="Audiências"
+            title="Audiências Interativas"
             toolTipText={audiencesTotalToolTip}
-            toolTipAriaLabel="Informação sobre o termo audiências"
+            toolTipAriaLabel="Informação sobre o termo audiências interativas"
             toolTipColor={customTheme.palette.audiencias.seabuckthorn}
             subInformation={`${audienciasTotalsData.audiencias_total_finished} realizadas`}
           />

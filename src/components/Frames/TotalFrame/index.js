@@ -81,9 +81,6 @@ export default function TotalFrame(props) {
   } = props;
   const hasSubInformation = (subInformation !== '');
 
-  // <Box display="flex" alignItems="center" justifyContent="center" width="100%" height={hasSubInformation ? 'auto' : '100%'} >
-
-
   return (
     <TotalsDataFrame height="15vh" paddingLeft="0.5rem" title={title} download={false} align="left" toolTipAriaLabel={toolTipAriaLabel} toolTipText={toolTipText} toolTipColor={toolTipColor}>
       {isLoaded ? (

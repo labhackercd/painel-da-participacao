@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/destructuring-assignment */
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import {
-  Button, Box, FormControl,
-  InputBase, InputLabel, Select,
+  Button, Box, FormControl, InputBase, InputLabel, Select,
+  AppBar, Toolbar, makeStyles,
 } from '@material-ui/core';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
+import {
+  DEFAULT_MONTH_PERIOD, DEFAULT_YEAR_PERIOD, CURRENT_YEAR, MONTHS_LIST,
+} from '../../services/constants/constants';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -74,10 +74,9 @@ export default function Header(props) {
   const colors = props.headerColors;
 
   const classes = useStyles({ colors });
-  const currentYear = new Date().getFullYear();
-  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear().toString());
-  const [month, setMonth] = useState('0');
-  const [selectMonthDisabled, setSelectMonthDisabled] = useState(false);
+  const [selectedYear, setSelectedYear] = useState(DEFAULT_YEAR_PERIOD);
+  const [month, setMonth] = useState(DEFAULT_MONTH_PERIOD);
+  const [selectMonthDisabled, setSelectMonthDisabled] = useState(true);
 
   const handleChangeYear = (event) => {
     setSelectedYear(event.target.value);
@@ -100,8 +99,7 @@ export default function Header(props) {
 
   // eslint-disable-next-line max-len
   const rangeOfYears = (start, end) => Array(end - start + 1).fill(start).map((year2, index) => year2 + index);
-  const yearsRange = rangeOfYears(props.initialYear, currentYear);
-
+  const yearsRange = rangeOfYears(props.initialYear, CURRENT_YEAR);
   return (
     <>
       <AppBar position="sticky" elevation={0}>
@@ -149,18 +147,7 @@ export default function Header(props) {
                 disabled={selectMonthDisabled}
               >
                 <option value="0">Todos os Meses</option>
-                <option value="1">Janeiro</option>
-                <option value="2">Fevereiro</option>
-                <option value="3">Março</option>
-                <option value="4">Abril</option>
-                <option value="5">Maio</option>
-                <option value="6">Junho</option>
-                <option value="7">Julho</option>
-                <option value="8">Agosto</option>
-                <option value="9">Setembro</option>
-                <option value="10">Outubro</option>
-                <option value="11">Novembro</option>
-                <option value="12">Dezembro</option>
+                {MONTHS_LIST.map((monthItem, indexMonth) => <option key={`month${monthItem}`} value={indexMonth + 1}>{monthItem}</option>)}
               </Select>
             </FormControl>
             <Button variant="contained" className={classes.filterButton} onClick={handleSubmit}>

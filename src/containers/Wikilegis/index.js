@@ -28,6 +28,7 @@ import formatNumberWithDots from '../../utils/format/numbers/formatNumbersWithDo
 import {
   MONTHS_LIST, MONTHS_ABBREVIATED_LIST, DEFAULT_YEAR, DEFAULT_SELECTED_PERIOD_TYPE,
   DEFAULT_MONTH_PERIOD, DAILY_KEY_WORD, MONTHLY_KEY_WORD, WIKILEGIS_INITIAL_YEAR,
+  CURRENT_YEAR,
 } from '../../services/constants/constants';
 
 import { audiencesChartsUsersSettings, audiencesWithMoreParticipation } from './settings/chartsSettings';
@@ -92,6 +93,7 @@ function Wikilegis(props) {
       hover: '#00612A',
     },
   };
+
   const classes = useStyles();
   // Charts and report Data
   const [wikilegisTotalsData, setWikilegisTotalsData] = useState('');
@@ -106,7 +108,7 @@ function Wikilegis(props) {
   const [newUsersChartDataLoaded, setNewUsersChartDataLoaded] = useState(false);
   const [totalUsersChartDataLoaded, setTotalUsersChartDataLoaded] = useState(false);
   // Information states
-  const [periodSubTitle, setPeriodSubTitle] = useState(new Date().getFullYear().toString());
+  const [periodSubTitle, setPeriodSubTitle] = useState(`${WIKILEGIS_INITIAL_YEAR} a ${CURRENT_YEAR}`);
   const [participantionChartDataLastUpdate, setParticipantionChartDataLastUpdate] = useState(apiLastCacheMade);
   const roomsRankingDataLastUpdate = apiLastCacheMade;
   // const [totalUsersChartDataLastUpdate, setTotalUsersChartDataLastUpdate] = useState(apiLastCacheMade);
@@ -116,13 +118,15 @@ function Wikilegis(props) {
   const [selectedYear, setSelectedYear] = useState(defaultYear);
   const [selectedMonth, setSelectedMonth] = useState(defaultMonthPeriod);
   const [apisDataObject, setApisDataObject] = useState({
+    wikilegisRankingAPIData: defaultApisData.wikilegisRankingData,
     wikilegisParticipantAPIData: defaultApisData.wikilegisParticipantUsersAPIData,
     wikilegisLegislativeProposalsAPIData: defaultApisData.wikilegisLegislativeProposalsAPIData,
-    wikilegisOpinionsAPIData: defaultApisData.wikilegisMessagesAPIData,
+    wikilegisOpinionsAPIData: defaultApisData.wikilegisOpinionsAPIData,
     wikilegisQuestionsAPIData: defaultApisData.wikilegisQuestionsAPIData,
     wikilegisVotesAPIData: defaultApisData.wikilegisVotesAPIData,
     wikilegisNewUsersAPIData: defaultApisData.wikilegisNewUsersAPIData,
   });
+
   const totalAcumuladoUsuariosCadastrados = 'Total Acumulado de Usuários Cadastrados';
 
   function computeTotalOfUsersByPeriod(values, period) {
@@ -250,9 +254,7 @@ function Wikilegis(props) {
     try {
       const opinionsData = apisDataObject.wikilegisOpinionsAPIData.results;
       const voteData = apisDataObject.wikilegisVotesAPIData.results;
-
       let arrayData = [];
-
       switch (period) {
         case dailyKeyWord:
           arrayData = await getWikilegisParticipationChartDataByDay(
@@ -328,8 +330,6 @@ function Wikilegis(props) {
   }
 
   async function updateChartsAndTableSubTitle(period, month, year) {
-    const todayDate = new Date();
-
     switch (period) {
       case dailyKeyWord:
         setPeriodSubTitle(`${MONTHS_LIST[month - 1]}/${year}`);
@@ -339,7 +339,7 @@ function Wikilegis(props) {
         break;
       default: // yearly -> Total period
         setPeriodSubTitle(
-          `${WIKILEGIS_INITIAL_YEAR} a ${(todayDate.getFullYear())}`,
+          `${WIKILEGIS_INITIAL_YEAR} a ${CURRENT_YEAR}`,
         );
         break;
     }
@@ -392,9 +392,10 @@ function Wikilegis(props) {
 
   async function setAllApiDataToDefaultCache() {
     setApisDataObject({
+      wikilegisRankingAPIData: defaultApisData.wikilegisRankingData,
       wikilegisParticipantAPIData: defaultApisData.wikilegisParticipantUsersAPIData,
       wikilegisLegislativeProposalsAPIData: defaultApisData.wikilegisLegislativeProposalsAPIData,
-      wikilegisOpinionsAPIData: defaultApisData.wikilegisMessagesAPIData,
+      wikilegisOpinionsAPIData: defaultApisData.wikilegisOpinionsAPIData,
       wikilegisQuestionsAPIData: defaultApisData.wikilegisQuestionsAPIData,
       wikilegisVotesAPIData: defaultApisData.wikilegisVotesAPIData,
       wikilegisNewUsersAPIData: defaultApisData.wikilegisNewUsersAPIData,
