@@ -14,7 +14,7 @@ import {
 import { handleUpdatePeriodSearchQuery } from '../../services/functions/handlers/index';
 import formatNumberWithDots from '../../utils/format/numbers/formatNumbersWithDots/formatNumberWithDots';
 import {
-  MONTHS_LIST, MONTHS_ABBREVIATED_LIST, DEFAULT_YEAR, DEFAULT_SELECTED_PERIOD_TYPE,
+  MONTHS_LIST, MONTHS_ABBREVIATED_LIST, DEFAULT_SELECTED_PERIOD_TYPE,
   DEFAULT_MONTH_PERIOD, DEFAULT_SEARCH_QUERY, DAILY_KEY_WORD, MONTHLY_KEY_WORD,
   AUDIENCIAS_INITIAL_YEAR, DEFAULT_YEAR_PERIOD, CURRENT_YEAR,
 } from '../../services/constants/constants';
@@ -61,7 +61,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const defaultYear = DEFAULT_YEAR;
 const defaultSelectedPeriodType = DEFAULT_SELECTED_PERIOD_TYPE; // Get all months of the year
 const defaultMonthPeriod = DEFAULT_MONTH_PERIOD; // All months
 const defaultYearPeriod = DEFAULT_YEAR_PERIOD; // All years
@@ -105,7 +104,7 @@ function Audiencias(props) {
   const [newUsersChartDataLastUpdate, setNewUsersChartDataLastUpdate] = useState(apiLastCacheMade);
   // Period Selected states
   const [selectedPeriod, setSelectedPeriod] = useState(defaultSelectedPeriodType);
-  const [selectedYear, setSelectedYear] = useState(defaultYear);
+  const [selectedYear, setSelectedYear] = useState(defaultYearPeriod);
   const [selectedMonth, setSelectedMonth] = useState(defaultMonthPeriod);
   // Api's default data
   const [apisDataObject, setApisDataObject] = useState({
@@ -465,7 +464,7 @@ function Audiencias(props) {
       <Header
         title="Audiências Interativas"
         handlePeriodChange={handlePeriodChange}
-        year={defaultYear}
+        year={defaultYearPeriod}
         monthPeriod={defaultMonthPeriod}
         headerColors={headerColors}
         initialYear={AUDIENCIAS_INITIAL_YEAR}

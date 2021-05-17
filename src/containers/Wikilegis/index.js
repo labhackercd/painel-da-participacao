@@ -26,9 +26,9 @@ import {
 import formatNumberWithDots from '../../utils/format/numbers/formatNumbersWithDots/formatNumberWithDots';
 
 import {
-  MONTHS_LIST, MONTHS_ABBREVIATED_LIST, DEFAULT_YEAR, DEFAULT_SELECTED_PERIOD_TYPE,
+  MONTHS_LIST, MONTHS_ABBREVIATED_LIST, DEFAULT_SELECTED_PERIOD_TYPE,
   DEFAULT_MONTH_PERIOD, DAILY_KEY_WORD, MONTHLY_KEY_WORD, WIKILEGIS_INITIAL_YEAR,
-  CURRENT_YEAR,
+  CURRENT_YEAR, DEFAULT_YEAR_PERIOD,
 } from '../../services/constants/constants';
 
 import { audiencesChartsUsersSettings, audiencesWithMoreParticipation } from './settings/chartsSettings';
@@ -76,9 +76,9 @@ const useStyles = makeStyles((theme) => ({
   appBarSpacer: theme.mixins.toolbar,
 }));
 
-const defaultYear = DEFAULT_YEAR;
 const defaultSelectedPeriodType = DEFAULT_SELECTED_PERIOD_TYPE; // Get all months of the year
 const defaultMonthPeriod = DEFAULT_MONTH_PERIOD; // All months
+const defaultYearPeriod = DEFAULT_YEAR_PERIOD; // All
 const dailyKeyWord = DAILY_KEY_WORD;
 const monthlyKeyWord = MONTHLY_KEY_WORD;
 const monthNamesList = MONTHS_ABBREVIATED_LIST;
@@ -115,7 +115,7 @@ function Wikilegis(props) {
   const [newUsersChartDataLastUpdate, setNewUsersChartDataLastUpdate] = useState(apiLastCacheMade);
   // Period Selected states
   const [selectedPeriod, setSelectedPeriod] = useState(defaultSelectedPeriodType);
-  const [selectedYear, setSelectedYear] = useState(defaultYear);
+  const [selectedYear, setSelectedYear] = useState(defaultYearPeriod);
   const [selectedMonth, setSelectedMonth] = useState(defaultMonthPeriod);
   const [apisDataObject, setApisDataObject] = useState({
     wikilegisRankingAPIData: defaultApisData.wikilegisRankingData,
@@ -480,7 +480,7 @@ function Wikilegis(props) {
       <Header
         title={TOOLNAME}
         handlePeriodChange={handlePeriodChange}
-        year={defaultYear}
+        year={defaultYearPeriod}
         monthPeriod={defaultMonthPeriod}
         headerColors={headerColors}
         initialYear={WIKILEGIS_INITIAL_YEAR}
