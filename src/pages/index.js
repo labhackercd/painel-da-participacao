@@ -15,6 +15,7 @@ import formatNumberWithDots from '../utils/format/numbers/formatNumbersWithDots/
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100%',
+    // QHD/WQHD (2560×1440) QUADHD - 4K UHD (3840×2160) 4K ULTRA HD
     '@media (min-width: 2300px)': {
       height: '100vh',
       width: '100vw',
