@@ -289,16 +289,28 @@ function Sobre() {
                 Totais
               </Typography>
               <Typography component="p" className={`${classes.typography} ${classes.typographyParagraph}`}>
-                Os totais referem-se ao somatório dos dados referentes ao período selecionado  na busca - que pode ser um mês, um ano ou todo o período.
+                Os totais referem-se ao somatório dos dados referentes ao período selecionado na busca - que pode ser um mês, um ano ou todo o período.
+                {' '}
               </Typography>
               <Typography component="p" className={`${classes.typography} ${classes.typographyParagraph}`}>
                 O total de participantes inclui apenas  usuários que enviaram mensagens ou perguntas; ou votaram em perguntas de outros participantes. Cada participante é contabilizado uma única vez, mesmo realizando  uma ou mais ações no período escolhido na busca.
+                {' '}
               </Typography>
               <Typography component="p" className={`${classes.typography} ${classes.typographyParagraph}`}>
-                O total das audiências considera tanto os eventos realizados quanto os cancelados. A soma de eventos realizados fica disponibilizada  uma linha abaixo.
+                O
+                {' '}
+                <b>total das audiências</b>
+                {' '}
+                considera tanto os eventos realizados quanto os cancelados. A soma de
+                {' '}
+                <b>eventos realizados</b>
+                {' '}
+                fica disponibilizada na linha abaixo.
+                {' '}
               </Typography>
               <Typography component="p" className={`${classes.typography} ${classes.typographyParagraph}`}>
-                Toda ação - perguntar, enviar mensagem no chat ou votar em perguntas de outros cidadãos - é considerada nos totais, gráficos e tabelas, independentemente se em uma audiência realizada ou cancelada*.
+                Toda ação - perguntar, enviar mensagem no chat ou votar em perguntas de outros cidadãos - é considerada nos totais, gráficos e tabelas, independentemente se em uma audiência realizada ou cancelada.
+                {' '}
               </Typography>
 
               <Typography variant="h3" className={`${classes.typography} ${classes.typograhyH3}`}>
@@ -337,7 +349,8 @@ function Sobre() {
                 refere-se ao acúmulo dos novos cadastros durante o período selecionado.
               </Typography>
               <Typography component="p" className={`${classes.typography} ${classes.typographyParagraph}`}>
-                Os gráficos - a depender do período -  revelam um crescimento repentino de cadastros nos meses de setembro e de novembro de 2017.  A explicação se dá pelo fato de a ferramenta Audiências Interativas ter sido desenvolvida em 2016 com uma base de usuários própria. Em 2017, quando uma nova versão da plataforma  e-Democracia passou a funcionar - para incorporar novas ferramentas de participação que viessem a ser desenvolvidas no LABHacker - , buscou-se a base de usuários do antigo e-Democracia então unificada ao “login cidadão” da Câmara dos Deputados.
+                Os gráficos - a depender do período -  revelam um crescimento repentino de cadastros nos meses de setembro e de novembro de 2017.  A explicação se dá pelo fato de a ferramenta Audiências Interativas ter sido desenvolvida em 2016 com uma base de usuários própria. Em 2017, quando uma nova versão da plataforma  e-Democracia passou a funcionar - para incorporar novas ferramentas de participação que viessem a ser desenvolvidas no LABHacker - , buscou-se a base de usuários do antigo e-Democracia.
+                {' '}
               </Typography>
 
               <Typography variant="h3" className={`${classes.typography} ${classes.typograhyH3}`}>
@@ -346,14 +359,7 @@ function Sobre() {
               <Typography component="p" className={`${classes.typography} ${classes.typographyParagraph}`}>
                 API Audiências Interativas -
                 {' '}
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ color: 'white' }}
-                  href={`${process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}`}
-                >
-                  {process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
-                </a>
+                <AnchorTag url={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}>{process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}</AnchorTag>
               </Typography>
 
             </>
