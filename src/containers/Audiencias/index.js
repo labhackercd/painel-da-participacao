@@ -554,6 +554,7 @@ function Audiencias(props) {
               exportData={roomsRankingData}
               download
               downloadHeaders={rankingAudienciasHeaders}
+              section="Report"
             >
               <Box width="100%" height="90%">
                 <RankingTable

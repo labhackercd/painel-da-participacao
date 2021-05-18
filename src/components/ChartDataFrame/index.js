@@ -105,14 +105,22 @@ export default function ChartDataFrame(props) {
                 <CSVLink
                   headers={downloadHeaders}
                   data={formatedData}
-                  filename={`${title}.csv`}
+                  filename={`${tool}-${title}.csv`}
                   aria-label="Baixar arquivo CSV"
-                  title="Baixar arquivo CSV"
+                  title="Baixar dados em um arquivo CSV"
                   style={{ textDecoration: 'none' }}
                 >
                   <Box display="flex" alignItems="center">
                     <Icon style={{ width: '100%' }}>
-                      <img src={`${process.env.NEXT_PUBLIC_APPLICATION_BASE_PATH_URL}/icons/download_csv.svg`} alt="" aria-hidden="true" />
+                      <img
+                        src={
+                          (section === 'Report')
+                            ? `${process.env.NEXT_PUBLIC_APPLICATION_BASE_PATH_URL}/icons/download_report_csv.svg`
+                            : `${process.env.NEXT_PUBLIC_APPLICATION_BASE_PATH_URL}/icons/download_report_chart_csv.svg`
+                        }
+                        alt=""
+                        aria-hidden="true"
+                      />
                     </Icon>
                   </Box>
                 </CSVLink>
