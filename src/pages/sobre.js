@@ -146,6 +146,20 @@ function SectionHeader(props) {
 function Sobre() {
   const classes = useStyles();
 
+  function AnchorTag(props) {
+    const { url, children } = props;
+    return (
+      <a
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ color: 'white' }}
+      >
+        {children}
+      </a>
+    );
+  }
+
   return (
     <div className={classes.root}>
       <Head>
@@ -189,14 +203,25 @@ function Sobre() {
               Objetivo
             </Typography>
             <Typography component="p" className={`${classes.typography} ${classes.typographyParagraph}`}>
-              O painel da participação foi desenvolvido para mostrar o histórico de utilização de dois dos  canais de participação da Câmara dos Deputados, que estão disponíveis na  plataforma eDemocracia.
+              O
+              {' '}
+              <b>painel da participação</b>
+              {' '}
+              foi desenvolvido para mostrar o histórico de utilização de dois dos
+              {' '}
+              <AnchorTag url="https://www2.camara.leg.br/participacao/saiba-como-participar">canais de participação</AnchorTag>
+              {' '}
+              da Câmara dos Deputados, que estão disponíveis na
+              {' '}
+              <AnchorTag url="https://edemocracia.camara.leg.br/sobre/">plataforma eDemocracia</AnchorTag>
+              .
             </Typography>
-
             <Typography variant="h2" className={`${classes.typography} ${classes.typograhyH2}`}>
               Atualização
             </Typography>
             <Typography component="p" className={`${classes.typography} ${classes.typographyParagraph}`}>
-              O processo de atualização dos dados acontece após as  23:59. Portanto, o resultado retornado por período estará limitado até o dia anterior.
+              O processo de consolidação dos dados acontece após as 23h59 (horário de Brasíla). Portanto, o resultado da pesquisa estará limitado ao dia anterior. A data da última atualização está disponível abaixo dos gráficos ou tabelas.
+              {' '}
             </Typography>
 
             <Typography variant="h2" className={`${classes.typography} ${classes.typograhyH2}`}>
@@ -218,13 +243,15 @@ function Sobre() {
             </Typography>
 
             <Typography variant="h3" className={`${classes.typography} ${classes.typograhyH3}`}>
-              Participantes e total de participantes
+              Participantes
             </Typography>
             <Typography component="p" className={`${classes.typography} ${classes.typographyParagraph}`}>
-              Participantes são os usuários que realizaram uma ou mais interações efetivas , que são contabilizadas como participação - a exemplo de perguntar, enviar mensagens, opinar ou votar.  Um único participante pode realizar uma ou mais  ações, em distintos momentos,  mas sua presença será contabilizada uma única vez, dentro do período escolhido na busca.
+              Participantes são os usuários que realizaram uma ou mais interações efetivas , que são contabilizadas como participação - a exemplo de perguntar, enviar mensagens, opinar ou votar.  Um único participante pode realizar uma ou mais  ações, em distintos momentos, mas sua presença será contabilizada uma única vez dentro do período escolhido na busca.
+              {' '}
             </Typography>
             <Typography component="p" className={`${classes.typography} ${classes.typographyParagraph}`}>
               Como cada participante é contabilizado uma única vez por período, o total de um ano não será a simples soma de todos os meses, de modo a evitar contagens repetidas do mesmo participante.  Se, por exemplo, um mesmo participante enviar mensagens em meses diferentes de 2019, será contabilizada sua participação distintamente em cada um desses meses, mas se a busca for referente ao ano inteiro (ou mesmo a todo o período disponível), o mesmo participante será contabilizado uma única vez.
+              {' '}
             </Typography>
 
             <Typography variant="h3" className={`${classes.typography} ${classes.typograhyH3}`}>
@@ -241,13 +268,21 @@ function Sobre() {
                 Limitação do período
               </Typography>
               <Typography component="p" className={`${classes.typography} ${classes.typographyParagraph}`}>
-                Quando o painel mostrar totais ou números acumulados, estes se referem apenas ao período de tempo selecionado na busca.
+                O painel da participação exibe os dados de participação referentes à ferramenta Audiências Interativas somente a partir de novembro de 2016.
+                {' '}
               </Typography>
               <Typography component="p" className={`${classes.typography} ${classes.typographyParagraph}`}>
-                No período de 2009 a 2016, as ferramentas de participação do painel tiveram diferentes versões, cujo conteúdo está disponível para consulta na página de arquivo do antigo portal e-Democracia.
+                No período de 2009 a 2016, as ferramentas de participação do painel tiveram diferentes versões, cujo conteúdo está disponível para consulta na
+                {' '}
+                <AnchorTag url="http://arquivo.edemocracia.camara.leg.br/">página de arquivo do antigo portal e-Democracia. </AnchorTag>
               </Typography>
               <Typography component="p" className={`${classes.typography} ${classes.typographyParagraph}`}>
-                Os dados disponíveis no painel são relativos à presente versão da ferramenta Audiências Interativas, em funcionamento a partir de novembro de 2016.
+                Os dados disponíveis no painel são relativos à presente versão da ferramenta
+                {' '}
+                <AnchorTag url="https://edemocracia.camara.leg.br/audiencias/">Audiências Interativas</AnchorTag>
+                {' '}
+                , em funcionamento a partir de novembro de 2016.
+                {' '}
               </Typography>
 
               <Typography variant="h3" className={`${classes.typography} ${classes.typograhyH3}`}>
