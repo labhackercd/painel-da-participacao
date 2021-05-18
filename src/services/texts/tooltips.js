@@ -4,7 +4,7 @@ A maior parte das audiências e eventos com interatividade são realizadas por a
 unidades da Câmara dos Deputados.`;
 
 export const audiencesTotalToolTip = `
-O número refere-se a audiências, mas também inclui outros tipos de eventos com interatividade online, a exemplo de Seminários, Reuniões e Comissões Gerais.
+O número refere-se a audiências canceladas e realizadas, mas também inclui outros tipos de eventos - seminários, reuniões, etc.
 `;
 
 export const participantsTotalToolTip = `

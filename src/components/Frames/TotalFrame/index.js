@@ -4,7 +4,6 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import {
   Grid, Box, Typography,
 } from '@material-ui/core';
-import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import { makeStyles } from '@material-ui/core/styles';
 import Tooltips from '../../ToolTip/index';
 
@@ -85,15 +84,14 @@ export default function TotalFrame(props) {
   return (
     <TotalsDataFrame height="15vh" paddingLeft="0.5rem" title={title} download={false} align="left" toolTipAriaLabel={toolTipAriaLabel} toolTipText={toolTipText} toolTipColor={toolTipColor}>
       {isLoaded ? (
-        <Box style={{ width: '100%', height: '100%' }}>
-          <Box display="flex" alignItems="center" justifyContent="center" width="100%" height={hasSubInformation ? 'auto' : '100%'} paddingTop={hasSubInformation ? '5vh' : ''}>
-            <Typography align="center" variant="h2" style={{ color: '#FFF', alignSelf: 'center', paddingTop: '5px' }} noWrap>
+        <Box style={{ width: '100%', height: '100%' }} display="flex" alignItems="center" justifyContent="center" width="100%" flexDirection="column">
+          <Box paddingTop={hasSubInformation ? '1vh' : ''}>
+            <Typography align="center" variant="h2" style={{ color: '#FFF', alignSelf: 'center' }} noWrap>
               {info}
             </Typography>
           </Box>
           { subInformation !== '' && (
-            <Box display="flex" alignItems="center" justifyContent="center" width="100%">
-              <ArrowUpwardIcon fontSize="small" style={{ color: toolTipColor }} />
+            <Box>
               <Typography align="center" variant="h5" style={{ color: '#FFF', alignSelf: 'center' }} noWrap>
                 {subInformation}
               </Typography>

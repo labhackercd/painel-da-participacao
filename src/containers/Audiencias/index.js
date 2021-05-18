@@ -10,13 +10,12 @@ import {
   AlertCachedData, ChartDataFrame, Header, RankingTable, TotalFrame, SectionHeader, SubSectionHeader,
   NoDataForSelectedPeriod, ChartAndReport,
 } from '../../components';
-
 import { handleUpdatePeriodSearchQuery } from '../../services/functions/handlers/index';
 import formatNumberWithDots from '../../utils/format/numbers/formatNumbersWithDots/formatNumberWithDots';
 import {
-  MONTHS_LIST, MONTHS_ABBREVIATED_LIST, DEFAULT_YEAR, DEFAULT_SELECTED_PERIOD_TYPE,
+  AUDIENCIAS_TOOL_NAME, MONTHS_LIST, MONTHS_ABBREVIATED_LIST, DEFAULT_SELECTED_PERIOD_TYPE,
   DEFAULT_MONTH_PERIOD, DEFAULT_SEARCH_QUERY, DAILY_KEY_WORD, MONTHLY_KEY_WORD,
-  AUDIENCIAS_INITIAL_YEAR,
+  AUDIENCIAS_INITIAL_YEAR, DEFAULT_YEAR_PERIOD, CURRENT_YEAR,
 } from '../../services/constants/constants';
 import {
   participantsTotalToolTip, messagesTotalToolTip, audiencesTotalToolTip, audiencesRankingToolTip,
@@ -25,7 +24,8 @@ import {
   getParticipationChartDataByDay, getParticipationChartDataByMonth, getParticipationChartDataByYear,
 } from './auxFunctions/computeParticipation';
 import filterRankingAudiencias from './auxFunctions/filterRanking';
-import { rankingAudienciaColumns, audiencesChartsUsersSettings, audiencesWithMoreParticipation } from './chartsAndReportsSettings';
+import { audiencesChartsUsersSettings, audiencesWithMoreParticipation } from './settings/chartsSettings';
+import { rankingAudienciasHeaders, rankingAudienciaColumns } from './settings/rankingSettings';
 
 import customTheme from '../../styles/theme';
 
@@ -60,16 +60,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const defaultYear = DEFAULT_YEAR;
 const defaultSelectedPeriodType = DEFAULT_SELECTED_PERIOD_TYPE; // Get all months of the year
 const defaultMonthPeriod = DEFAULT_MONTH_PERIOD; // All months
-const defaultSearchQuery = DEFAULT_SEARCH_QUERY;
+const defaultYearPeriod = DEFAULT_YEAR_PERIOD; // All years
 const dailyKeyWord = DAILY_KEY_WORD;
 const monthlyKeyWord = MONTHLY_KEY_WORD;
 const monthNamesList = MONTHS_ABBREVIATED_LIST;
 
 function Audiencias(props) {
-  const TOOLNAME = 'Audiências Interativas';
+  const TOOLNAME = AUDIENCIAS_TOOL_NAME;
   const {
     defaultApisData, apiLastCacheMade, apiLastCacheMadeHour,
   } = props;
@@ -96,14 +95,14 @@ function Audiencias(props) {
   const [newUsersChartDataLoaded, setNewUsersChartDataLoaded] = useState(false);
   const [totalUsersChartDataLoaded, setTotalUsersChartDataLoaded] = useState(false);
   // Information states
-  const [periodSubTitle, setPeriodSubTitle] = useState(defaultYear);
+  const [periodSubTitle, setPeriodSubTitle] = useState(`${AUDIENCIAS_INITIAL_YEAR} a ${CURRENT_YEAR}`);
   const [participantionChartDataLastUpdate, setParticipantionChartDataLastUpdate] = useState(apiLastCacheMade);
   const roomsRankingDataLastUpdate = apiLastCacheMade;
   const [totalUsersChartDataLastUpdate, setTotalUsersChartDataLastUpdate] = useState(apiLastCacheMade);
   const [newUsersChartDataLastUpdate, setNewUsersChartDataLastUpdate] = useState(apiLastCacheMade);
   // Period Selected states
   const [selectedPeriod, setSelectedPeriod] = useState(defaultSelectedPeriodType);
-  const [selectedYear, setSelectedYear] = useState(defaultYear);
+  const [selectedYear, setSelectedYear] = useState(defaultYearPeriod);
   const [selectedMonth, setSelectedMonth] = useState(defaultMonthPeriod);
   // Api's default data
   const [apisDataObject, setApisDataObject] = useState({
@@ -262,7 +261,6 @@ function Audiencias(props) {
   }
 
   async function updateChartsAndTableSubTitle(period, month, year) {
-    const todayDate = new Date();
     try {
       switch (period) {
         case dailyKeyWord:
@@ -273,7 +271,7 @@ function Audiencias(props) {
           break;
         default: // yearly -> Total period
           setPeriodSubTitle(
-            `2016 a ${(todayDate.getFullYear())}`,
+            `${AUDIENCIAS_INITIAL_YEAR} a ${CURRENT_YEAR}`,
           );
           break;
       }
@@ -464,16 +462,18 @@ function Audiencias(props) {
       <Header
         title="Audiências Interativas"
         handlePeriodChange={handlePeriodChange}
-        year={defaultYear}
+        year={defaultYearPeriod}
         monthPeriod={defaultMonthPeriod}
         headerColors={headerColors}
         initialYear={AUDIENCIAS_INITIAL_YEAR}
       />
       <Grid container spacing={1} className={classes.spacingContainer}>
-
         { showCachedDataAlert && (
           <AlertCachedData apiLastCacheMade={apiLastCacheMade} />
         )}
+        <Grid item xs={12}>
+          <SectionHeader classes={classes} toolTipText={null} title="Totais no Período" />
+        </Grid>
 
         <Grid item xs={12} sm={6} md={3} className={classes.spacing}>
           <TotalFrame
@@ -490,9 +490,9 @@ function Audiencias(props) {
           <TotalFrame
             isLoaded={totalsAreLoaded}
             info={`${audienciasTotalsData.audiencias_total}`}
-            title="Audiências"
+            title="Audiências Interativas"
             toolTipText={audiencesTotalToolTip}
-            toolTipAriaLabel="Informação sobre o termo audiências"
+            toolTipAriaLabel="Informação sobre o termo audiências interativas"
             toolTipColor={customTheme.palette.audiencias.seabuckthorn}
             subInformation={`${audienciasTotalsData.audiencias_total_finished} realizadas`}
           />
@@ -547,12 +547,14 @@ function Audiencias(props) {
               height="30vh"
               title={periodSubTitle}
               listView
-              exportData={roomsRankingData}
-              download
               align="center"
               apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
               apiLastUpdate={roomsRankingDataLastUpdate}
               tool={TOOLNAME}
+              exportData={roomsRankingData}
+              download
+              downloadHeaders={rankingAudienciasHeaders}
+              section="Report"
             >
               <Box width="100%" height="90%">
                 <RankingTable

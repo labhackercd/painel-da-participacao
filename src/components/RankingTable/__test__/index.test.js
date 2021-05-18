@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import RankingTable from '../index';
-import { rankingAudienciaColumns } from '../../../containers/Audiencias/chartsAndReportsSettings';
+import { rankingAudienciaColumns } from '../../../containers/Audiencias/settings/rankingSettings';
 import filterRankingAudiencias from '../../../containers/Audiencias/auxFunctions/filterRanking';
 import { dataMock } from './mocks/data_mock';
 
