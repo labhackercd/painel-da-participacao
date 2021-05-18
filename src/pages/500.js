@@ -12,7 +12,12 @@ import Footer from '../components/Footer/index';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: '100vh',
+    height: '100%',
+    '@media (min-width: 2300px)': {
+      height: '100vh',
+      width: '100vw',
+    },
+    backgroundColor: theme.palette.primary.main,
   },
   box: {
     display: 'flex',

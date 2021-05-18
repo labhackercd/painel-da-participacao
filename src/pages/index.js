@@ -14,7 +14,11 @@ import formatNumberWithDots from '../utils/format/numbers/formatNumbersWithDots/
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: 'auto',
+    height: '100%',
+    '@media (min-width: 2300px)': {
+      height: '100vh',
+      width: '100vw',
+    },
     backgroundColor: theme.palette.primary.main,
   },
   box: {
@@ -22,14 +26,13 @@ const useStyles = makeStyles((theme) => ({
     flexFlow: 'column',
     width: 'auto',
     backgroundColor: theme.palette.primary.main,
-    height: 'auto',
+    height: '100%',
   },
   boxHeader: {
 
   },
   boxContent: {
     flex: '1 ',
-    height: '100vh',
     display: 'flex',
     flexFlow: 'column',
   },
@@ -37,6 +40,9 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     display: 'flex',
     height: '250px',
+    '@media (min-width: 2200px)': {
+      height: '400px',
+    },
     '@media (max-width: 600px)': {
       height: '200px',
     },
@@ -58,6 +64,9 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     marginRight: '40vh',
+    '@media (max-width: 2200px)': {
+      marginRight: '20vh',
+    },
   },
   typography: {
     fontFamily: 'Open Sans',
@@ -111,6 +120,8 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    paddingTop: '10vh',
+    paddingBottom: '10vh',
   },
   gridContainer: {
     width: '100%',
