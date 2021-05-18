@@ -6,6 +6,10 @@ import CarouselItem from './carouselItem';
 
 export default function Caroulsel({ carouselItens }) {
   const responsive = {
+    largedesktop: {
+      breakpoint: { max: 3840, min: 2160 },
+      items: 1,
+    },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
       items: 1,
