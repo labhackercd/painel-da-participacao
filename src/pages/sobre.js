@@ -377,7 +377,14 @@ function Sobre() {
                 limita-se a exibir os dados de participação da ferramenta Wikilegis a partir de 2019.
               </Typography>
               <Typography component="p" className={`${classes.typography} ${classes.typographyParagraph}`}>
-                No período de 2009 a 2016, as ferramentas de participação do painel tiveram diferentes versões, cujo conteúdo está disponível para consulta na página de arquivo da antiga plataforma e-Democracia. O conteúdo da segunda versão da Wikilegis, entre 2016 e 2019, também está disponível para consulta em modo de arquivo.
+                No período de 2009 a 2016, as ferramentas de participação do painel tiveram diferentes versões, cujo conteúdo está disponível para consulta na
+                {' '}
+                <AnchorTag url="http://arquivo.edemocracia.camara.leg.br/">página de arquivo da antiga plataforma e-Democracia</AnchorTag>
+                . O conteúdo da segunda versão da Wikilegis, entre 2016 e 2019, também está
+                {' '}
+                <AnchorTag url="https://edemocracia.camara.leg.br/wikilegis-arquivo/">disponível para consulta em modo de arquivo</AnchorTag>
+                .
+                {' '}
               </Typography>
               <Typography component="p" className={`${classes.typography} ${classes.typographyParagraph}`}>
                 O painel da participação exibe os dados da versão mais atual da Wikilegis, que passou a funcionar a partir de setembro  de 2019.
@@ -422,18 +429,19 @@ function Sobre() {
               </Typography>
 
               <Typography variant="h3" className={`${classes.typography} ${classes.typograhyH3}`}>
-                Ranking das audiências
+                Ranking das propostas legislativas
               </Typography>
               <Typography component="p" className={`${classes.typography} ${classes.typographyParagraph}`}>
                 A tabela
                 {' '}
                 <b>Ranking das propostas legislativas</b>
                 {' '}
-                detalha quantitativos de participação, no período filtrado. A tabela é pré-ordenada pelo maior  número de participantes, mas pode ser ordenadapelas diferentes colunas.
+                detalha quantitativos de participação, no período filtrado. A tabela é pré-ordenada pelo maior  número de participantes, mas pode ser ordenada pelas diferentes colunas.
 
               </Typography>
               <Typography component="p" className={`${classes.typography} ${classes.typographyParagraph}`}>
-                Os somatórios de participantes, opiniões e votos nas opiniões são contabilizados apósa data de encerramento da consulta pública da proposta legislativa. Em outras palavras, os totais são calculados após o encerramento da participação  naquela proposta legislativa.
+                Os somatórios de participantes, opiniões e votos nas opiniões são contabilizados após a data de encerramento da consulta pública da proposta legislativa. Em outras palavras, os totais são calculados após o encerramento da participação  naquela proposta legislativa.
+                {' '}
               </Typography>
 
               <Typography variant="h3" className={`${classes.typography} ${classes.typograhyH3}`}>
