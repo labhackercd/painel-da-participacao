@@ -429,7 +429,7 @@ function Audiencias(props) {
     } catch (e) {
       console.error('Erro ao obter dados e atualizar página');
       setAllApiDataToDefaultCache();
-      setShowCachedDataAlert();
+      setShowCachedDataAlert(true);
     }
   }
 
