@@ -3,12 +3,11 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { Grid, Box, Typography } from '@material-ui/core';
-import { Alert, AlertTitle } from '@material-ui/lab';
 import WarningIcon from '@material-ui/icons/Warning';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   gridItem: {
     width: '100%',
     display: 'flex',
