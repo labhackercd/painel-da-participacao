@@ -471,6 +471,8 @@ function Audiencias(props) {
         { showCachedDataAlert && (
           <AlertCachedData apiLastCacheMade={apiLastCacheMade} />
         )}
+          <AlertCachedData apiLastCacheMade={apiLastCacheMade} />
+
         <Grid item xs={12}>
           <SectionHeader classes={classes} toolTipText={null} title="Totais no Período" />
         </Grid>
