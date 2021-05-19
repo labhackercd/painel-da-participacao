@@ -157,7 +157,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Home({ usersTotal }) {
+function Home({ usersTotal, apiLastCacheMade }) {
   const classes = useStyles();
 
   return (
@@ -207,7 +207,9 @@ function Home({ usersTotal }) {
                       ferramentas de participação pelos cidadãos.
                     </Typography>
                     <Typography className={`${classes.typography} ${classes.typographyCaption}`}>
-                      * Dados atualizados até dd/mm/aa
+                      * Dados atualizados em
+                      {' '}
+                      {apiLastCacheMade}
                     </Typography>
                   </Box>
                 </Box>
@@ -239,7 +241,7 @@ export async function getStaticProps() {
     try {
       const resp = await axios.get(url);
       const respData = await resp.data;
-      return respData.sum_total_results;
+      return respData;
     } catch (err) {
       return '-';
     }
@@ -249,7 +251,8 @@ export async function getStaticProps() {
 
   return {
     props: {
-      usersTotal,
+      usersTotal: usersTotal.sum_total_results,
+      apiLastCacheMade: (usersTotal.results[0].modified).split(' ')[0],
     },
     revalidate: 43200, // Update data every 12 hour(43200 seconds)
   };
