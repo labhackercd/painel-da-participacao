@@ -35,8 +35,10 @@ const useStyles = makeStyles(() => ({
 
   },
   informationsDiv: {
+    margin: '20px',
     display: 'flex',
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
     '@media (max-width: 600px)': {
       flexDirection: 'column',
     },
@@ -50,13 +52,6 @@ const useStyles = makeStyles(() => ({
   typography: {
     fontFamily: 'Open Sans',
     letterSpacing: '0.05em',
-  },
-  informationItemTypographyTitle: {
-    fontSize: '1.25rem',
-    fontWeight: 'bold',
-    '@media (max-width: 600px)': {
-      fontSize: '0.7',
-    },
   },
   informationItemTypographyText: {
     fontSize: '1rem',
@@ -78,32 +73,13 @@ export default function Footer() {
   const classes = useStyles();
   const currentYear = new Date().getFullYear();
 
-  function InfoItem(props) {
-    const { title, subItens } = props;
-    return (
-      <Box className={classes.informationItem}>
-        <Typography className={`${classes.typography} ${classes.informationItemTypographyTitle}`}>{title}</Typography>
-        {subItens.map((subItem) => (
-          <Box display="flex">
-            {(subItem.url !== '' && subItem.url !== undefined)
-              ? (
-                <a href={subItem.url} style={{ color: 'white', textDecoration: 'none' }}>
-                  {' '}
-                  <Typography className={`${classes.typography} ${classes.informationItemTypographyText}`}>{subItem.text}</Typography>
-                </a>
-              )
-              : <Typography className={`${classes.typography} ${classes.informationItemTypographyText}`}>{subItem.text}</Typography>}
-          </Box>
-        ))}
-      </Box>
-    );
-  }
-
   return (
     <footer className={classes.root}>
       <Box className={classes.footerContainer}>
-        <Box className={classes.bannerBox} style={{ justifyContent: 'space-evenly', alignItems: 'center' }}>
+        <Box className={classes.bannerBox} />
+        <Box className={classes.informationsDiv}>
           <Box>
+            {' '}
             <img
               src={`${process.env.NEXT_PUBLIC_APPLICATION_BASE_PATH_URL}/logo/logo_cd.svg`}
               alt="Logotipo Câmara dos Deputados"
@@ -111,26 +87,22 @@ export default function Footer() {
             />
           </Box>
           <Box>
-            <img
-              src={`${process.env.NEXT_PUBLIC_APPLICATION_BASE_PATH_URL}/logo/logo_participa.svg`}
-              alt="Logotipo da aplicação participa"
-              className={classes.bannerBoxLogos}
-            />
+            <Typography className={`${classes.typography} ${classes.informationItemTypographyText}`}>
+              Painel da Participação
+            </Typography>
           </Box>
           <Box>
-            <img
-              src={`${process.env.NEXT_PUBLIC_APPLICATION_BASE_PATH_URL}/logo/logo_lab.svg`}
-              alt="Logotipo da aplicação LABHacker"
-              className={classes.bannerBoxLogos}
-            />
+            <Typography className={`${classes.typography} ${classes.informationItemTypographyText}`}>
+              Versão 1.0 desenvolvida em 2021 pelo LABHacker da Câmara dos Deputados
+            </Typography>
           </Box>
-        </Box>
-        <Box className={classes.informationsDiv}>
-          {footerItens.map((item) => (<InfoItem title={item.title} subItens={item.subItens} key={item.title} />))}
-        </Box>
-        <Box className={classes.bottomInformations}>
-          <Typography>LABHacker Câmara dos Deputados Painel da Participação</Typography>
-          <Typography>{`${currentYear} - Painel da Participação`}</Typography>
+          <Box>
+            <u>
+              <Typography style={{ fontWeight: 'bold' }} className={`${classes.typography} ${classes.informationItemTypographyText}`}>Fale Conosco</Typography>
+            </u>
+            <Typography className={`${classes.typography} ${classes.informationItemTypographyText}`}>Disque-Câmara:</Typography>
+            <Typography className={`${classes.typography} ${classes.informationItemTypographyText}`}>0800-0-619-619 de 8h às 20h</Typography>
+          </Box>
         </Box>
       </Box>
 
