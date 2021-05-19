@@ -3,8 +3,12 @@ import React from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import CarouselItem from './carouselItem';
+import apiCaroulselImg from '../../assets/caroulselImages/apicaroulsel.png';
+import audienciasCaroulselImg from '../../assets/caroulselImages/audienciascaroulsel.png';
+import sobreCaroulselImg from '../../assets/caroulselImages/sobrecaroulsel.png';
+import wikilegisCaroulselImg from '../../assets/caroulselImages/wikilegiscaroulsel.png';
 
-export default function Caroulsel({ carouselItens }) {
+export default function Caroulsel() {
   const responsive = {
     largedesktop: {
       breakpoint: { max: 3840, min: 2160 },
@@ -23,6 +27,45 @@ export default function Caroulsel({ carouselItens }) {
       items: 1,
     },
   };
+
+  const carouselItens = [
+    {
+      id: 1,
+      toolName: 'Wikilegis',
+      description: 'Opiniões em textos de propostas legislativas',
+      color: '#14D768',
+      buttonText: 'Ver a participação no Wikilegis',
+      toolPage: `${process.env.NEXT_PUBLIC_WIKILEGIS_PAGE_URL}`,
+      img: wikilegisCaroulselImg,
+    },
+    {
+      id: 2,
+      toolName: 'Audiências Interativas',
+      description: 'Perguntas aos parlamentares',
+      color: '#F59D2A',
+      buttonText: 'Ver a participação no Audiências',
+      toolPage: `${process.env.NEXT_PUBLIC_AUDIENCIAS_PAGE_URL}`,
+      img: audienciasCaroulselImg,
+    },
+    {
+      id: 3,
+      toolName: 'Sobre',
+      description: 'Critérios e definições para os dados',
+      color: '#1181E9',
+      buttonText: 'Saiba mais',
+      toolPage: `${process.env.NEXT_PUBLIC_SOBRE_PAGE_URL}`,
+      img: sobreCaroulselImg,
+    },
+    {
+      id: 4,
+      toolName: 'APIs e Códigos abertos',
+      description: 'Ferramentas para desenvolvedores',
+      color: '#CE242E',
+      buttonText: 'Acesse APIs e Códigos',
+      toolPage: `${process.env.NEXT_PUBLIC_API_PAGE_URL}`,
+      img: apiCaroulselImg,
+    },
+  ];
 
   return (
     <Carousel

@@ -52,11 +52,7 @@ export default function CarouselItem({ item }) {
   return (
     <Box display="flex" flexDirection="column" alignItems="center" paddingBottom="50px">
       <Box>
-        <svg width="108" height="108" viewBox="0 0 108 108" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="54" cy="54" r="52.5" fill="#212121" stroke={item.color} strokeWidth="3" />
-          <path d="M37.832 48.1529H45.4518V72.9172H37.832V48.1529ZM37.832 35.7708H45.4518V45.6765H37.832V35.7708ZM63.2313 63.0115H70.8511V72.9172H63.2313V63.0115ZM63.2313 55.5822H70.8511V60.5351H63.2313V55.5822ZM50.5317 55.5822H58.1515V72.9172H50.5317V55.5822ZM50.5317 45.6765H58.1515V53.1058H50.5317V45.6765Z" fill={item.color} />
-        </svg>
-
+        <img src={item.img} alt="" width="150px" height="150px" />
       </Box>
       <Box>
         <Typography className={`${classes.typography} ${classes.typographyToolTitle}`} align="center">
