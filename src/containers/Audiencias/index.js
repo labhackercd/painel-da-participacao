@@ -429,7 +429,7 @@ function Audiencias(props) {
     } catch (e) {
       console.error('Erro ao obter dados e atualizar página');
       setAllApiDataToDefaultCache();
-      setShowCachedDataAlert();
+      setShowCachedDataAlert(true);
     }
   }
 
@@ -471,6 +471,7 @@ function Audiencias(props) {
         { showCachedDataAlert && (
           <AlertCachedData apiLastCacheMade={apiLastCacheMade} />
         )}
+
         <Grid item xs={12}>
           <SectionHeader classes={classes} toolTipText={null} title="Totais no Período" />
         </Grid>
