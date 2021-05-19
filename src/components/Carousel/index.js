@@ -4,7 +4,7 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import CarouselItem from './carouselItem';
 
-export default function Caroulsel({ carouselItens }) {
+export default function Caroulsel() {
   const responsive = {
     largedesktop: {
       breakpoint: { max: 3840, min: 2160 },
@@ -23,6 +23,20 @@ export default function Caroulsel({ carouselItens }) {
       items: 1,
     },
   };
+
+  const carouselItens = [
+    {
+      id: 1,
+      toolName: 'Wikilegis',
+      description: 'Opiniões em textos de propostas legislativas',
+      color: '#14D768',
+      buttonText: 'Ver a participação no Wikilegis',
+      toolPage: `${process.env.NEXT_PUBLIC_WIKILEGIS_PAGE_URL}`,
+    },
+    {
+      id: 2, toolName: 'Audiências Interativas', description: 'Perguntas aos parlamentares', color: '#F59D2A', buttonText: 'Ver a participação no Audiências', toolPage: `${process.env.NEXT_PUBLIC_AUDIENCIAS_PAGE_URL}`,
+    },
+  ];
 
   return (
     <Carousel

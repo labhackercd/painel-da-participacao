@@ -80,6 +80,13 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '2rem',
     },
   },
+  typographyCaption: {
+    fontSize: '1.5rem',
+    fontWeight: 'regular',
+    '@media (max-width: 600px)': {
+      fontSize: '1rem',
+    },
+  },
   textBox: {
     paddingLeft: '2vh',
     paddingTop: '3vh',
@@ -121,7 +128,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: '10vh',
+    paddingTop: '5vh',
     paddingBottom: '10vh',
   },
   gridContainer: {
@@ -152,15 +159,6 @@ const useStyles = makeStyles((theme) => ({
 
 function Home({ usersTotal }) {
   const classes = useStyles();
-
-  const carouselItens = [
-    {
-      id: 1, toolName: 'Wikilegis', description: 'Opiniões em textos de propostas legislativas', color: '#14D768', buttonText: 'Ver a participação no Wikilegis', toolPage: `${process.env.NEXT_PUBLIC_WIKILEGIS_PAGE_URL}`,
-    },
-    {
-      id: 2, toolName: 'Audiências Interativas', description: 'Perguntas aos parlamentares', color: '#F59D2A', buttonText: 'Ver a participação no Audiências', toolPage: `${process.env.NEXT_PUBLIC_AUDIENCIAS_PAGE_URL}`,
-    },
-  ];
 
   return (
     <div className={classes.root}>
@@ -198,7 +196,7 @@ function Home({ usersTotal }) {
                   </Typography>
                   <Typography gutterBottom className={classes.typographyBoxText} display="inline">
                     {' '}
-                    cidadãos se cadastraram no portal e-Democracia da Câmara dos Deputados.
+                    cidadãos se cadastraram no portal e-Democracia da Câmara dos Deputados.*
                   </Typography>
                   <Box className={classes.typographyParagraphBox}>
                     <Typography className={classes.typographyBoxText} display="inline">
@@ -208,13 +206,16 @@ function Home({ usersTotal }) {
                       {' '}
                       ferramentas de participação pelos cidadãos.
                     </Typography>
+                    <Typography className={`${classes.typography} ${classes.typographyCaption}`}>
+                      * Dados atualizados até dd/mm/aa
+                    </Typography>
                   </Box>
                 </Box>
               </Grid>
               <Grid item xs={12} md={7}>
                 <Box className={classes.caroulselBox}>
                   <Box className={classes.caroulselInsideBox}>
-                    <Carousel carouselItens={carouselItens} />
+                    <Carousel />
                   </Box>
                 </Box>
               </Grid>
