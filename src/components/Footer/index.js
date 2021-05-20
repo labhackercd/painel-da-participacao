@@ -5,7 +5,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import {
   Typography, Box,
 } from '@material-ui/core';
-import { footerItens } from './itens';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -29,11 +28,6 @@ const useStyles = makeStyles(() => ({
     alignItems: 'center',
     marginRight: '30vh',
   },
-  bannerBoxLogos: {
-    width: 'auto',
-    height: '30px',
-
-  },
   informationsDiv: {
     margin: '20px',
     display: 'flex',
@@ -44,7 +38,6 @@ const useStyles = makeStyles(() => ({
     },
   },
   informationItem: {
-    margin: '30px',
     '@media (max-width: 900px)': {
       margin: '15px',
     },
@@ -56,29 +49,21 @@ const useStyles = makeStyles(() => ({
   informationItemTypographyText: {
     fontSize: '1rem',
     fontWeight: 'regular',
-  },
-  bottomInformations: {
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'space-around',
-    paddingBottom: '10px',
     '@media (max-width: 600px)': {
-      flexDirection: 'column',
-      alignItems: 'center',
+      textAlign: 'center',
     },
   },
 }));
 
 export default function Footer() {
   const classes = useStyles();
-  const currentYear = new Date().getFullYear();
 
   return (
     <footer className={classes.root}>
       <Box className={classes.footerContainer}>
         <Box className={classes.bannerBox} />
         <Box className={classes.informationsDiv}>
-          <Box>
+          <Box className={classes.informationItem}>
             {' '}
             <img
               src={`${process.env.NEXT_PUBLIC_APPLICATION_BASE_PATH_URL}/logo/logo_cd.svg`}
@@ -86,17 +71,17 @@ export default function Footer() {
               className={classes.bannerBoxLogos}
             />
           </Box>
-          <Box>
+          <Box className={classes.informationItem}>
             <Typography className={`${classes.typography} ${classes.informationItemTypographyText}`}>
               Painel da Participação
             </Typography>
           </Box>
-          <Box>
+          <Box className={classes.informationItem}>
             <Typography className={`${classes.typography} ${classes.informationItemTypographyText}`}>
               Versão 1.0 desenvolvida em 2021 pelo LABHacker da Câmara dos Deputados
             </Typography>
           </Box>
-          <Box>
+          <Box className={classes.informationItem}>
             <u>
               <Typography style={{ fontWeight: 'bold' }} className={`${classes.typography} ${classes.informationItemTypographyText}`}>Fale Conosco</Typography>
             </u>
