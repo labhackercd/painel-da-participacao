@@ -4,30 +4,30 @@
 export const pageTitle = 'Wikilegis';
 
 // ==== Totals ====
-export const wikilegisTotalsTexts = {
+export const wikilegisTotalsSectionTexts = {
   title: 'Totais no Período',
   toolTip: null,
-  toolTipAriaLabel: '',
+  toolTipAriaLabel: null,
 
   subSectionParticipantsTotals: {
     title: 'Participantes',
     toolTip: 'Participantes são todos os usuários que enviaram suas opiniões ou votaram em outras opiniões.',
-    toolTipAriaLabel: '',
+    toolTipAriaLabel: 'Informação sobre o termo participantes',
   },
   subSectionLegislativeProposalsTotals: {
     title: 'Propostas Legislativas',
     toolTip: 'O número refere-se a audiências canceladas e realizadas, mas também inclui outros tipos de eventos - seminários, reuniões, etc.',
-    toolTipAriaLabel: 'Informação sobre o termo audiências interativas',
+    toolTipAriaLabel: 'Informação sobre o termo propostas legislativas.',
   },
   subSectionOpinionsTotals: {
-    title: 'Mensagens',
+    title: 'Opiniões',
     toolTip: 'Opiniões são contribuições em trechos da proposta legislativa enviadas pelos participantes. Podem ser um simples comentário ou uma sugestão mais elaborada de reformulação do texto.',
-    toolTipAriaLabel: 'Informação sobre o termo mensagens',
+    toolTipAriaLabel: 'Informação sobre o termo Opiniões',
   },
   subSectionVotesTotals: {
-    title: 'Perguntas',
-    toolTip: null,
-    toolTipAriaLabel: null,
+    title: 'Votos nas Opiniões',
+    toolTip: '?',
+    toolTipAriaLabel: 'Informação sobre o termo votos',
   },
 };
 
@@ -40,9 +40,9 @@ export const distributionOfParticipationSectionTexts = {
 
 // ====  Ranking section ====
 export const rankingSectionTexts = {
-  title: 'Ranking das audiências',
-  toolTip: 'O ranking das audiências também inclui todos os demais tipos de eventos com interatividade online, a exemplo de Seminários e Comissões Gerais.',
-  toolTipAriaLabel: 'Seção Ranking das Audiências',
+  title: 'Ranking das propostas legislativas',
+  toolTip: 'O tempo de abertura para participação é definido pelo parlamentar. Os totais são consolidados na data de encerramento.',
+  toolTipAriaLabel: 'Seção Ranking das Propostas Legislativas',
 };
 
 // ====  Users Section ====
@@ -54,8 +54,8 @@ export const usersSectionTexts = {
   // New Users SubSection
   subSectionNewUsers: {
     title: 'Novos cadastros de usuários',
-    toolTip: '',
-    toolTipAriaLabel: '',
+    toolTip: null,
+    toolTipAriaLabel: null,
   },
 
   // Accumulated Total of Registered Users SubSection

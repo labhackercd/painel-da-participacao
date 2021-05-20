@@ -18,11 +18,6 @@ import {
   AlertCachedData, ChartDataFrame, Header, RankingTable, TotalFrame, SectionHeader, SubSectionHeader,
   NoDataForSelectedPeriod, ChartAndReport,
 } from '../../components';
-
-import {
-  wikilegisParticipantsToolTip, wikilegisOpinionsToolTip, wikilegisVotesToolTip,
-  wikilegisRankingToolTip, wikilegisLegislativeProposesToolTip,
-} from '../../services/texts/tooltips';
 import formatNumberWithDots from '../../utils/format/numbers/formatNumbersWithDots/formatNumberWithDots';
 
 import {
@@ -37,6 +32,8 @@ import { filterRankingWikilegis } from './auxFunctions/filterRanking';
 import { getApiLastUpdateDateAndHour } from './auxFunctions/getApiLastUpdateDateAndHour';
 import { useStyles } from './style';
 import customTheme from '../../styles/theme';
+
+import * as TEXTCONSTANTS from '../../settings/texts/WikilegisPage';
 
 const defaultSelectedPeriodType = DEFAULT_SELECTED_PERIOD_TYPE; // Get all months of the year
 const defaultMonthPeriod = DEFAULT_MONTH_PERIOD; // All months
@@ -440,7 +437,7 @@ function Wikilegis(props) {
   return (
     <div className={classes.root}>
       <Header
-        title={TOOLNAME}
+        title={TEXTCONSTANTS.pageTitle}
         handlePeriodChange={handlePeriodChange}
         year={defaultYearPeriod}
         monthPeriod={defaultMonthPeriod}
@@ -454,16 +451,21 @@ function Wikilegis(props) {
         )}
 
         <Grid item xs={12}>
-          <SectionHeader classes={classes} toolTipText={null} title="Totais no período" />
+          <SectionHeader
+            classes={classes}
+            title={TEXTCONSTANTS.wikilegisTotalsSectionTexts.title}
+            toolTipText={TEXTCONSTANTS.wikilegisTotalsSectionTexts.toolTip}
+            toolTipAriaLabel={TEXTCONSTANTS.wikilegisTotalsSectionTexts.toolTipAriaLabel}
+          />
         </Grid>
 
         <Grid item xs={12} sm={6} md={3} className={classes.spacing}>
           <TotalFrame
             isLoaded={totalsAreLoaded}
             info={`${wikilegisTotalsData.participants_total}`}
-            title="Participantes"
-            toolTipText={wikilegisParticipantsToolTip}
-            toolTipAriaLabel="Informação sobre o termo participantes"
+            title={TEXTCONSTANTS.wikilegisTotalsSectionTexts.subSectionParticipantsTotals.title}
+            toolTipText={TEXTCONSTANTS.wikilegisTotalsSectionTexts.subSectionParticipantsTotals.toolTip}
+            toolTipAriaLabel={TEXTCONSTANTS.wikilegisTotalsSectionTexts.subSectionParticipantsTotals.toolTipAriaLabel}
             toolTipColor={customTheme.palette.wikilegis.jade}
           />
         </Grid>
@@ -472,9 +474,9 @@ function Wikilegis(props) {
           <TotalFrame
             isLoaded={totalsAreLoaded}
             info={`${wikilegisTotalsData.legis_propo_total}`}
-            title="Propostas Legislativas"
-            toolTipText={wikilegisLegislativeProposesToolTip}
-            toolTipAriaLabel="Informação sobre o termo propostas legislativas"
+            title={TEXTCONSTANTS.wikilegisTotalsSectionTexts.subSectionLegislativeProposalsTotals.title}
+            toolTipText={TEXTCONSTANTS.wikilegisTotalsSectionTexts.subSectionLegislativeProposalsTotals.toolTip}
+            toolTipAriaLabel={TEXTCONSTANTS.wikilegisTotalsSectionTexts.subSectionLegislativeProposalsTotals.toolTipAriaLabel}
             toolTipColor={customTheme.palette.wikilegis.jade}
           />
         </Grid>
@@ -483,9 +485,9 @@ function Wikilegis(props) {
           <TotalFrame
             isLoaded={totalsAreLoaded}
             info={`${wikilegisTotalsData.opinions_total}`}
-            title="Opiniões"
-            toolTipAriaLabel="Informação sobre o termo opiniões"
-            toolTipText={wikilegisOpinionsToolTip}
+            title={TEXTCONSTANTS.wikilegisTotalsSectionTexts.subSectionOpinionsTotals.title}
+            toolTipText={TEXTCONSTANTS.wikilegisTotalsSectionTexts.subSectionOpinionsTotals.toolTip}
+            toolTipAriaLabel={TEXTCONSTANTS.wikilegisTotalsSectionTexts.subSectionOpinionsTotals.toolTipAriaLabel}
             toolTipColor={customTheme.palette.wikilegis.jade}
           />
         </Grid>
@@ -494,15 +496,20 @@ function Wikilegis(props) {
           <TotalFrame
             isLoaded={totalsAreLoaded}
             info={wikilegisTotalsData.votes_total}
-            title="Votos nas opiniões"
-            toolTipAriaLabel="Informação sobre o termo votos na Wikilegis"
-            toolTipText={wikilegisVotesToolTip}
+            title={TEXTCONSTANTS.wikilegisTotalsSectionTexts.subSectionVotesTotals.title}
+            toolTipText={TEXTCONSTANTS.wikilegisTotalsSectionTexts.subSectionVotesTotals.toolTip}
+            toolTipAriaLabel={TEXTCONSTANTS.wikilegisTotalsSectionTexts.subSectionVotesTotals.toolTipAriaLabel}
             toolTipColor={customTheme.palette.wikilegis.jade}
           />
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <SectionHeader classes={classes} toolTipText={null} title="Distribuição da participação no período" />
+          <SectionHeader
+            classes={classes}
+            title={TEXTCONSTANTS.distributionOfParticipationSectionTexts.title}
+            toolTipText={TEXTCONSTANTS.distributionOfParticipationSectionTexts.toolTip}
+            toolTipAriaLabel={TEXTCONSTANTS.distributionOfParticipationSectionTexts.toolTipAriaLabel}
+          />
           <ChartAndNoDataRenderHandler
             height="60vh"
             chartData={participantionChartData}
@@ -518,7 +525,13 @@ function Wikilegis(props) {
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <SectionHeader classes={classes} title="Ranking das propostas legislativas" toolTipText={wikilegisRankingToolTip} toolTipColor={customTheme.palette.wikilegis.jade} />
+          <SectionHeader
+            classes={classes}
+            title={TEXTCONSTANTS.rankingSectionTexts.title}
+            toolTipText={TEXTCONSTANTS.rankingSectionTexts.toolTip}
+            toolTipAriaLabel={TEXTCONSTANTS.rankingSectionTexts.toolTipAriaLabel}
+            toolTipColor={customTheme.palette.wikilegis.jade}
+          />
           {(roomsRankingData !== undefined && roomsRankingData.length > 0) ? (
             <ChartDataFrame
               height="30vh"
@@ -553,11 +566,20 @@ function Wikilegis(props) {
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <SectionHeader classes={classes} toolTipText={null} title="Usuários" />
+          <SectionHeader
+            classes={classes}
+            title={TEXTCONSTANTS.usersSectionTexts.title}
+            toolTipText={TEXTCONSTANTS.usersSectionTexts.toolTip}
+            toolTipAriaLabel={TEXTCONSTANTS.usersSectionTexts.toolTipAriaLabel}
+          />
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <SubSectionHeader title="Novos cadastros de usuários" />
+          <SubSectionHeader
+            title={TEXTCONSTANTS.usersSectionTexts.subSectionNewUsers.title}
+            toolTipText={TEXTCONSTANTS.usersSectionTexts.subSectionNewUsers.toolTip}
+            toolTipAriaLabel={TEXTCONSTANTS.usersSectionTexts.subSectionNewUsers.toolTipAriaLabel}
+          />
           <ChartAndNoDataRenderHandler
             height="60vh"
             chartData={newUsersChartData}
@@ -573,7 +595,11 @@ function Wikilegis(props) {
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <SubSectionHeader title={totalAcumuladoUsuariosCadastrados} />
+          <SubSectionHeader
+            title={TEXTCONSTANTS.usersSectionTexts.subSectionAccumulatedRegisteredUsers.title}
+            toolTipText={TEXTCONSTANTS.usersSectionTexts.subSectionAccumulatedRegisteredUsers.toolTip}
+            toolTipAriaLabel={TEXTCONSTANTS.usersSectionTexts.subSectionAccumulatedRegisteredUsers.toolTipAriaLabel}
+          />
           <ChartAndNoDataRenderHandler
             height="60vh"
             chartData={totalUsersChartData}
