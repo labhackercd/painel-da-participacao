@@ -10,7 +10,7 @@ import {
 } from '@material-ui/core/';
 import { format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
-import { DEFAULT_SEARCH_QUERY } from '../services/constants/constants';
+import { DEFAULT_SEARCH_QUERY } from '../settings/applicationOptions/index';
 
 import Layout from '../layouts/index';
 

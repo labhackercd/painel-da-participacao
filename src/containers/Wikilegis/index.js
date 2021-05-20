@@ -20,11 +20,8 @@ import {
 } from '../../components';
 import formatNumberWithDots from '../../utils/format/numbers/formatNumbersWithDots/formatNumberWithDots';
 
-import {
-  MONTHS_LIST, MONTHS_ABBREVIATED_LIST, DEFAULT_SELECTED_PERIOD_TYPE,
-  DEFAULT_MONTH_PERIOD, DAILY_KEY_WORD, MONTHLY_KEY_WORD, WIKILEGIS_INITIAL_YEAR,
-  CURRENT_YEAR, DEFAULT_YEAR_PERIOD,
-} from '../../services/constants/constants';
+import * as APPLICATION_OPTIONS from '../../settings/applicationOptions/index';
+import * as APPLICATION_CONSTANTS from '../../utils/constants/index';
 
 import { audiencesChartsUsersSettings, audiencesWithMoreParticipation } from './settings/chartsSettings';
 import { rankingWikilegisColumns, rankingWikilegisHeaders } from './settings/rankingSettings';
@@ -35,15 +32,17 @@ import customTheme from '../../styles/theme';
 
 import * as TEXTCONSTANTS from '../../settings/texts/WikilegisPage';
 
-const defaultSelectedPeriodType = DEFAULT_SELECTED_PERIOD_TYPE; // Get all months of the year
-const defaultMonthPeriod = DEFAULT_MONTH_PERIOD; // All months
-const defaultYearPeriod = DEFAULT_YEAR_PERIOD; // All
-const dailyKeyWord = DAILY_KEY_WORD;
-const monthlyKeyWord = MONTHLY_KEY_WORD;
-const monthNamesList = MONTHS_ABBREVIATED_LIST;
+const defaultSelectedPeriodType = APPLICATION_OPTIONS.DEFAULT_SELECTED_PERIOD_TYPE; // Get all months of the year
+const defaultMonthPeriod = APPLICATION_OPTIONS.DEFAULT_MONTH_PERIOD; // All months
+const defaultYearPeriod = APPLICATION_OPTIONS.DEFAULT_YEAR_PERIOD; // All years
+const dailyKeyWord = APPLICATION_CONSTANTS.DAILY_KEY_WORD;
+const monthlyKeyWord = APPLICATION_CONSTANTS.MONTHLY_KEY_WORD;
+const monthNamesList = APPLICATION_CONSTANTS.MONTHS_ABBREVIATED_LIST;
+const wikilegisInitialYear = APPLICATION_OPTIONS.WIKILEGIS_INITIAL_YEAR;
+const currentYear = APPLICATION_CONSTANTS.CURRENT_YEAR;
 
 function Wikilegis(props) {
-  const TOOLNAME = 'Wikilegis';
+  const TOOLNAME = APPLICATION_OPTIONS.WIKILEGIS_TOOL_NAME;
   const { defaultApisData, apiLastCacheMade, apiLastCacheMadeHour } = props;
   const headerColors = {
     borderColor: '#00C354',
@@ -67,7 +66,7 @@ function Wikilegis(props) {
   const [newUsersChartDataLoaded, setNewUsersChartDataLoaded] = useState(false);
   const [totalUsersChartDataLoaded, setTotalUsersChartDataLoaded] = useState(false);
   // Information states
-  const [periodSubTitle, setPeriodSubTitle] = useState(`${WIKILEGIS_INITIAL_YEAR} a ${CURRENT_YEAR}`);
+  const [periodSubTitle, setPeriodSubTitle] = useState(`${wikilegisInitialYear} a ${currentYear}`);
   const [participantionChartDataLastUpdate, setParticipantionChartDataLastUpdate] = useState(apiLastCacheMade);
   const roomsRankingDataLastUpdate = apiLastCacheMade;
   // const [totalUsersChartDataLastUpdate, setTotalUsersChartDataLastUpdate] = useState(apiLastCacheMade);
@@ -227,7 +226,7 @@ function Wikilegis(props) {
           break;
         default: // yearly -> Total period
           arrayData = await getWikilegisParticipationChartDataByYear(
-            opinionsData, voteData, WIKILEGIS_INITIAL_YEAR,
+            opinionsData, voteData, wikilegisInitialYear,
           );
           break;
       }
@@ -291,14 +290,14 @@ function Wikilegis(props) {
   async function updateChartsAndTableSubTitle(period, month, year) {
     switch (period) {
       case dailyKeyWord:
-        setPeriodSubTitle(`${MONTHS_LIST[month - 1]}/${year}`);
+        setPeriodSubTitle(`${APPLICATION_CONSTANTS.MONTHS_LIST[month - 1]}/${year}`);
         break;
       case monthlyKeyWord:
         setPeriodSubTitle(`${year}`);
         break;
       default: // yearly -> Total period
         setPeriodSubTitle(
-          `${WIKILEGIS_INITIAL_YEAR} a ${CURRENT_YEAR}`,
+          `${wikilegisInitialYear} a ${currentYear}`,
         );
         break;
     }
@@ -442,7 +441,7 @@ function Wikilegis(props) {
         year={defaultYearPeriod}
         monthPeriod={defaultMonthPeriod}
         headerColors={headerColors}
-        initialYear={WIKILEGIS_INITIAL_YEAR}
+        initialYear={wikilegisInitialYear}
       />
       <Grid container spacing={1} className={classes.spacingContainer}>
 

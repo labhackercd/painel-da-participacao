@@ -5,17 +5,17 @@ import {
   Button, Box, FormControl, InputBase, InputLabel, Select,
   AppBar, Toolbar,
 } from '@material-ui/core';
-import {
-  DEFAULT_MONTH_PERIOD, DEFAULT_YEAR_PERIOD, CURRENT_YEAR, MONTHS_LIST,
-} from '../../services/constants/constants';
+import * as APPLICATION_OPTIONS from '../../settings/applicationOptions/index';
+import * as APPLICATION_CONSTANTS from '../../utils/constants/index';
+
 import { useStyles } from './style';
 
 export default function Header(props) {
   const colors = props.headerColors;
 
   const classes = useStyles({ colors });
-  const [selectedYear, setSelectedYear] = useState(DEFAULT_YEAR_PERIOD);
-  const [month, setMonth] = useState(DEFAULT_MONTH_PERIOD);
+  const [selectedYear, setSelectedYear] = useState(APPLICATION_OPTIONS.DEFAULT_YEAR_PERIOD);
+  const [month, setMonth] = useState(APPLICATION_OPTIONS.DEFAULT_MONTH_PERIOD);
   const [selectMonthDisabled, setSelectMonthDisabled] = useState(true);
 
   const handleChangeYear = (event) => {
@@ -39,7 +39,7 @@ export default function Header(props) {
 
   // eslint-disable-next-line max-len
   const rangeOfYears = (start, end) => Array(end - start + 1).fill(start).map((year2, index) => year2 + index);
-  const yearsRange = rangeOfYears(props.initialYear, CURRENT_YEAR);
+  const yearsRange = rangeOfYears(props.initialYear, APPLICATION_CONSTANTS.CURRENT_YEAR);
   return (
     <>
       <AppBar position="sticky" elevation={0}>
@@ -87,7 +87,7 @@ export default function Header(props) {
                 disabled={selectMonthDisabled}
               >
                 <option value="0">Todos os Meses</option>
-                {MONTHS_LIST.map((monthItem, indexMonth) => <option key={`month${monthItem}`} value={indexMonth + 1}>{monthItem}</option>)}
+                {APPLICATION_CONSTANTS.MONTHS_LIST.map((monthItem, indexMonth) => <option key={`month${monthItem}`} value={indexMonth + 1}>{monthItem}</option>)}
               </Select>
             </FormControl>
             <Button variant="contained" className={classes.filterButton} onClick={handleSubmit}>

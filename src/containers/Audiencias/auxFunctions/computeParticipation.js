@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 /* eslint-disable import/prefer-default-export */
-import { MONTHS_ABBREVIATED_LIST } from '../../../services/constants/constants';
+import { MONTHS_ABBREVIATED_LIST } from '../../../utils/constants/index';
 import padNumberWithZeroOnLeft from '../../../utils/format/numbers/padNumberWithZeroOnLeft';
 
 export async function getParticipationChartDataByDay(month, year, messagesData, questionsData, questionsVoteData) {

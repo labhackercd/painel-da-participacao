@@ -50,7 +50,6 @@ export default function CarouselItem({ item }) {
   const classes = useStyles();
 
   return (
-    <li key={item.toolname}>
       <Box display="flex" flexDirection="column" alignItems="center" paddingBottom="50px">
         <Box>
           <img src={item.img} alt="" width="150px" height="150px" />
@@ -83,6 +82,5 @@ export default function CarouselItem({ item }) {
           </Link>
         </Box>
       </Box>
-    </li>
   );
 }
