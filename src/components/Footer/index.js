@@ -5,7 +5,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import {
   Typography, Box,
 } from '@material-ui/core';
-import { footerItens } from './itens';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -29,20 +28,16 @@ const useStyles = makeStyles(() => ({
     alignItems: 'center',
     marginRight: '30vh',
   },
-  bannerBoxLogos: {
-    width: 'auto',
-    height: '30px',
-
-  },
   informationsDiv: {
+    margin: '20px',
     display: 'flex',
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
     '@media (max-width: 600px)': {
       flexDirection: 'column',
     },
   },
   informationItem: {
-    margin: '30px',
     '@media (max-width: 900px)': {
       margin: '15px',
     },
@@ -51,86 +46,48 @@ const useStyles = makeStyles(() => ({
     fontFamily: 'Open Sans',
     letterSpacing: '0.05em',
   },
-  informationItemTypographyTitle: {
-    fontSize: '1.25rem',
-    fontWeight: 'bold',
-    '@media (max-width: 600px)': {
-      fontSize: '0.7',
-    },
-  },
   informationItemTypographyText: {
     fontSize: '1rem',
     fontWeight: 'regular',
-  },
-  bottomInformations: {
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'space-around',
-    paddingBottom: '10px',
     '@media (max-width: 600px)': {
-      flexDirection: 'column',
-      alignItems: 'center',
+      textAlign: 'center',
     },
   },
 }));
 
 export default function Footer() {
   const classes = useStyles();
-  const currentYear = new Date().getFullYear();
-
-  function InfoItem(props) {
-    const { title, subItens } = props;
-    return (
-      <Box className={classes.informationItem}>
-        <Typography className={`${classes.typography} ${classes.informationItemTypographyTitle}`}>{title}</Typography>
-        {subItens.map((subItem) => (
-          <Box display="flex">
-            {(subItem.url !== '' && subItem.url !== undefined)
-              ? (
-                <a href={subItem.url} style={{ color: 'white', textDecoration: 'none' }}>
-                  {' '}
-                  <Typography className={`${classes.typography} ${classes.informationItemTypographyText}`}>{subItem.text}</Typography>
-                </a>
-              )
-              : <Typography className={`${classes.typography} ${classes.informationItemTypographyText}`}>{subItem.text}</Typography>}
-          </Box>
-        ))}
-      </Box>
-    );
-  }
 
   return (
     <footer className={classes.root}>
       <Box className={classes.footerContainer}>
-        <Box className={classes.bannerBox} style={{ justifyContent: 'space-evenly', alignItems: 'center' }}>
-          <Box>
+        <Box className={classes.bannerBox} />
+        <Box className={classes.informationsDiv}>
+          <Box className={classes.informationItem}>
+            {' '}
             <img
               src={`${process.env.NEXT_PUBLIC_APPLICATION_BASE_PATH_URL}/logo/logo_cd.svg`}
               alt="Logotipo Câmara dos Deputados"
               className={classes.bannerBoxLogos}
             />
           </Box>
-          <Box>
-            <img
-              src={`${process.env.NEXT_PUBLIC_APPLICATION_BASE_PATH_URL}/logo/logo_participa.svg`}
-              alt="Logotipo da aplicação participa"
-              className={classes.bannerBoxLogos}
-            />
+          <Box className={classes.informationItem}>
+            <Typography className={`${classes.typography} ${classes.informationItemTypographyText}`}>
+              Painel da Participação
+            </Typography>
           </Box>
-          <Box>
-            <img
-              src={`${process.env.NEXT_PUBLIC_APPLICATION_BASE_PATH_URL}/logo/logo_lab.svg`}
-              alt="Logotipo da aplicação LABHacker"
-              className={classes.bannerBoxLogos}
-            />
+          <Box className={classes.informationItem}>
+            <Typography className={`${classes.typography} ${classes.informationItemTypographyText}`}>
+              Versão 1.0 desenvolvida em 2021 pelo LABHacker da Câmara dos Deputados
+            </Typography>
           </Box>
-        </Box>
-        <Box className={classes.informationsDiv}>
-          {footerItens.map((item) => (<InfoItem title={item.title} subItens={item.subItens} key={item.title} />))}
-        </Box>
-        <Box className={classes.bottomInformations}>
-          <Typography>LABHacker Câmara dos Deputados Painel da Participação</Typography>
-          <Typography>{`${currentYear} - Painel da Participação`}</Typography>
+          <Box className={classes.informationItem}>
+            <u>
+              <Typography style={{ fontWeight: 'bold' }} className={`${classes.typography} ${classes.informationItemTypographyText}`}>Fale Conosco</Typography>
+            </u>
+            <Typography className={`${classes.typography} ${classes.informationItemTypographyText}`}>Disque-Câmara:</Typography>
+            <Typography className={`${classes.typography} ${classes.informationItemTypographyText}`}>0800-0-619-619 de 8h às 20h</Typography>
+          </Box>
         </Box>
       </Box>
 
