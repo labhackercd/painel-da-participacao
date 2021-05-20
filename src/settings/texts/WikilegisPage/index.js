@@ -1,7 +1,10 @@
 /* eslint-disable import/prefer-default-export */
 
 // Page Texts
-export const pageTitle = 'Wikilegis';
+export const pageToolTitle = 'Wikilegis';
+export const pageHTMLTitle = 'Dashboard Wikilegis';
+export const pageTitle = 'Participação na Wikilegis';
+export const pageSubTitle = 'Painel de estatísticas da participação dos cidadãos nas propostas legislativas da Câmara dos Deputados.';
 
 // ==== Totals ====
 export const wikilegisTotalsSectionTexts = {

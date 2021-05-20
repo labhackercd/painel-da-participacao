@@ -428,7 +428,7 @@ function Audiencias(props) {
   return (
     <div className={classes.root}>
       <Header
-        title={TEXTCONSTANTS.pageTitle}
+        title={TEXTCONSTANTS.pageToolTitle}
         handlePeriodChange={handlePeriodChange}
         year={defaultYearPeriod}
         monthPeriod={defaultMonthPeriod}
