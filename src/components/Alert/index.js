@@ -4,48 +4,8 @@
 import React from 'react';
 import { Grid, Box, Typography } from '@material-ui/core';
 import WarningIcon from '@material-ui/icons/Warning';
-import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-
-const useStyles = makeStyles(() => ({
-  gridItem: {
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-  },
-  paper: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    background: '#F5632A',
-    color: 'black',
-    '@media (max-width: 600px)': {
-      width: '90%',
-    },
-    width: '50%',
-    height: '4rem',
-  },
-  iconBox: {
-    width: '10%',
-    height: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  textBox: {
-    height: '100%',
-    width: '80%',
-    flexGrow: 1,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingLeft: '10px',
-  },
-  textTypography: {
-    fontFamily: 'Open Sans',
-    fontSize: '0.813rem',
-    fontWeight: 600,
-  },
-}));
+import { useStyles } from './style';
 
 export function AlertCachedData({ apiLastCacheMade }) {
   const classes = useStyles();

@@ -26,39 +26,8 @@ import {
 import filterRankingAudiencias from './auxFunctions/filterRanking';
 import { audiencesChartsUsersSettings, audiencesWithMoreParticipation } from './settings/chartsSettings';
 import { rankingAudienciasHeaders, rankingAudienciaColumns } from './settings/rankingSettings';
-
+import { useStyles } from './style';
 import customTheme from '../../styles/theme';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-    height: '100%',
-  },
-  content: {
-    overflow: 'auto',
-    flexGrow: 1,
-    padding: '2.5rem 0 0 0',
-  },
-  contentBox: {
-    display: 'flex',
-    justifyContent: 'center',
-    width: '100%',
-  },
-  spacing: {
-    marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1),
-  },
-  spacingContainer: {
-    marginTop: theme.spacing(3),
-  },
-  divider: {
-    borderColor: theme.palette.audiencias.divider,
-  },
-  appBarSpacer: theme.mixins.toolbar,
-  toolTipIcon: {
-    color: '#DA7F0B',
-  },
-}));
 
 const defaultSelectedPeriodType = DEFAULT_SELECTED_PERIOD_TYPE; // Get all months of the year
 const defaultMonthPeriod = DEFAULT_MONTH_PERIOD; // All months
@@ -158,7 +127,6 @@ function Audiencias(props) {
     }
   }
 
-  // TODO -> CHANGE THIS FUNCTION TO GET NEW API DATA INSTEAD OF CALCULATE IT
   function computeTotalOfUsersByPeriod(values, period) {
     const computedArray = [];
     let collumPeriodTitle = [];
@@ -471,7 +439,6 @@ function Audiencias(props) {
         { showCachedDataAlert && (
           <AlertCachedData apiLastCacheMade={apiLastCacheMade} />
         )}
-        <AlertCachedData apiLastCacheMade={apiLastCacheMade} />
 
         <Grid item xs={12}>
           <SectionHeader classes={classes} toolTipText={null} title="Totais no Período" />

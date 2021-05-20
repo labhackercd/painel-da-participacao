@@ -35,46 +35,8 @@ import { audiencesChartsUsersSettings, audiencesWithMoreParticipation } from './
 import { rankingWikilegisColumns, rankingWikilegisHeaders } from './settings/rankingSettings';
 import { filterRankingWikilegis } from './auxFunctions/filterRanking';
 import { getApiLastUpdateDateAndHour } from './auxFunctions/getApiLastUpdateDateAndHour';
-
+import { useStyles } from './style';
 import customTheme from '../../styles/theme';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-    height: '100%',
-  },
-  headerBox: {
-    backgroundColor: theme.palette.primary.main,
-  },
-  footer: {
-    marginTop: 'auto',
-    backgroundColor: theme.palette.primary.main,
-  },
-  content: {
-    overflow: 'auto',
-    flexGrow: 1,
-    padding: '2.5rem 0 0 0',
-  },
-  contentBox: {
-    display: 'flex',
-    justifyContent: 'center',
-    width: '100%',
-  },
-  spacing: {
-    marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1),
-  },
-  spacingContainer: {
-    marginTop: theme.spacing(3),
-  },
-  positionStats: {
-    display: 'flex',
-  },
-  divider: {
-    borderColor: theme.palette.wikilegis.jade,
-  },
-  appBarSpacer: theme.mixins.toolbar,
-}));
 
 const defaultSelectedPeriodType = DEFAULT_SELECTED_PERIOD_TYPE; // Get all months of the year
 const defaultMonthPeriod = DEFAULT_MONTH_PERIOD; // All months
