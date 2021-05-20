@@ -30,7 +30,7 @@ import * as TEXTCONSTANTS from '../../settings/texts/AudienciasPage';
 const defaultSelectedPeriodType = APPLICATION_OPTIONS.DEFAULT_SELECTED_PERIOD_TYPE; // Get all months of the year
 const defaultMonthPeriod = APPLICATION_OPTIONS.DEFAULT_MONTH_PERIOD; // All months
 const defaultYearPeriod = APPLICATION_OPTIONS.DEFAULT_YEAR_PERIOD; // All years
-const dailyKeyWord =APPLICATION_CONSTANTS. DAILY_KEY_WORD;
+const dailyKeyWord = APPLICATION_CONSTANTS.DAILY_KEY_WORD;
 const monthlyKeyWord = APPLICATION_CONSTANTS.MONTHLY_KEY_WORD;
 const monthNamesList = APPLICATION_CONSTANTS.MONTHS_ABBREVIATED_LIST;
 const audienceInitialYear = APPLICATION_OPTIONS.AUDIENCIAS_INITIAL_YEAR;

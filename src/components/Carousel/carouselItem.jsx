@@ -50,37 +50,37 @@ export default function CarouselItem({ item }) {
   const classes = useStyles();
 
   return (
-      <Box display="flex" flexDirection="column" alignItems="center" paddingBottom="50px">
-        <Box>
-          <img src={item.img} alt="" width="150px" height="150px" />
-        </Box>
-        <Box>
-          <Typography className={`${classes.typography} ${classes.typographyToolTitle}`} align="center">
-            {item.toolName}
-          </Typography>
-        </Box>
-        <Box width="60%" height="100%">
-          <Typography className={`${classes.typography} ${classes.typographyDescription}`} align="center">
-            {item.description}
-          </Typography>
-        </Box>
-        <Box className={classes.buttonContainer}>
-          <Link
-            href={item.toolPage}
-            passHref
-          >
-            <Button
-              style={{ backgroundColor: item.color }}
-              className={classes.buttonStyle}
-              variant="contained"
-              color="primary"
-            >
-              <Typography className={`${classes.typography} ${classes.typographyButton}`} align="center">
-                {item.buttonText}
-              </Typography>
-            </Button>
-          </Link>
-        </Box>
+    <Box display="flex" flexDirection="column" alignItems="center" paddingBottom="50px">
+      <Box>
+        <img src={item.img} alt="" width="150px" height="150px" />
       </Box>
+      <Box>
+        <Typography className={`${classes.typography} ${classes.typographyToolTitle}`} align="center">
+          {item.toolName}
+        </Typography>
+      </Box>
+      <Box width="60%" height="100%">
+        <Typography className={`${classes.typography} ${classes.typographyDescription}`} align="center">
+          {item.description}
+        </Typography>
+      </Box>
+      <Box className={classes.buttonContainer}>
+        <Link
+          href={item.toolPage}
+          passHref
+        >
+          <Button
+            style={{ backgroundColor: item.color }}
+            className={classes.buttonStyle}
+            variant="contained"
+            color="primary"
+          >
+            <Typography className={`${classes.typography} ${classes.typographyButton}`} align="center">
+              {item.buttonText}
+            </Typography>
+          </Button>
+        </Link>
+      </Box>
+    </Box>
   );
 }
