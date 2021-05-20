@@ -5,6 +5,7 @@ import {
   Typography, Box,
 } from '@material-ui/core';
 import { useStyles } from './style';
+import logoCamaraDosDeputados from '../../assets/images/logos/logo_cd.svg';
 
 export default function Footer() {
   const classes = useStyles();
@@ -17,7 +18,7 @@ export default function Footer() {
           <Box className={classes.informationItem}>
             {' '}
             <img
-              src={`${process.env.NEXT_PUBLIC_APPLICATION_BASE_PATH_URL}/logo/logo_cd.svg`}
+              src={logoCamaraDosDeputados}
               alt="Logotipo Câmara dos Deputados"
               className={classes.bannerBoxLogos}
             />

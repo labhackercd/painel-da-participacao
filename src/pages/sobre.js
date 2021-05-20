@@ -12,6 +12,8 @@ import Box from '@material-ui/core/Box';
 import PageNavbar from '../layouts/navbar';
 import Footer from '../components/Footer/index';
 
+import logoParticipa from '../assets/images/logos/logo_participa.svg';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     height: 'auto',
@@ -190,7 +192,7 @@ function Sobre() {
             <Hidden mdDown>
               <Box className={classes.bannerBoxParticipaLogo}>
                 <Image
-                  src={`${process.env.NEXT_PUBLIC_APPLICATION_BASE_PATH_URL}/logo/logo_participa.svg`}
+                  src={logoParticipa}
                   alt="Logotipo da aplicação participa"
                   width={500}
                   height={500}

@@ -8,6 +8,8 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
+import logoCamaraDosDeputados from '../assets/images/logos/logo_cd.svg';
+
 const useStyles = makeStyles((theme) => ({
   header: {
     backgroundColor: theme.palette.black.main,
@@ -102,7 +104,7 @@ export default function PageNavbar(props) {
   }, []);
 
   const camaraDeputadosLogo = (
-    <img src={`${process.env.NEXT_PUBLIC_APPLICATION_BASE_PATH_URL}/logo/logo_cd.svg`} alt="Logo Câmara dos Deputados" />
+    <img src={logoCamaraDosDeputados} alt="Logo Câmara dos Deputados" />
   );
 
   function NavTabs(options) {

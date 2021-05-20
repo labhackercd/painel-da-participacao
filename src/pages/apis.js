@@ -16,6 +16,7 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 import LanguageIcon from '@material-ui/icons/Language';
 import PageNavbar from '../layouts/navbar';
 import Footer from '../components/Footer/index';
+import logoLABHacker from '../assets/images/logos/logo_lab.svg';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -315,7 +316,7 @@ function Api() {
             <Hidden mdDown>
               <Box className={classes.bannerBoxParticipaLogo}>
                 <Image
-                  src={`${process.env.NEXT_PUBLIC_APPLICATION_BASE_PATH_URL}/logo/logo_lab.svg`}
+                  src={logoLABHacker}
                   alt="Logotipo do LABHacker"
                   width={700}
                   height={700}

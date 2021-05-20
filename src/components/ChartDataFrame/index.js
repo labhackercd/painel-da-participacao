@@ -7,6 +7,9 @@ import {
 import { CSVLink } from 'react-csv';
 import { useStyles } from './style';
 
+import downloadReportCSVIcon from '../../assets/icons/download_report_csv.svg';
+import downloadChartAndReportCSVIcon from '../../assets/icons/download_report_chart_csv.svg';
+
 export default function ChartDataFrame(props) {
   const classes = useStyles();
 
@@ -56,8 +59,8 @@ export default function ChartDataFrame(props) {
                       <img
                         src={
                           (section === 'Report')
-                            ? `${process.env.NEXT_PUBLIC_APPLICATION_BASE_PATH_URL}/icons/download_report_csv.svg`
-                            : `${process.env.NEXT_PUBLIC_APPLICATION_BASE_PATH_URL}/icons/download_report_chart_csv.svg`
+                            ? downloadReportCSVIcon
+                            : downloadChartAndReportCSVIcon
                         }
                         alt=""
                         aria-hidden="true"
