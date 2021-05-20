@@ -3,7 +3,7 @@
 /* eslint-disable spaced-comment */
 /* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
-import { Grid, Box, makeStyles } from '@material-ui/core';
+import { Grid, Box } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import {
@@ -18,9 +18,6 @@ import {
   AUDIENCIAS_INITIAL_YEAR, DEFAULT_YEAR_PERIOD, CURRENT_YEAR,
 } from '../../services/constants/constants';
 import {
-  participantsTotalToolTip, messagesTotalToolTip, audiencesTotalToolTip, audiencesRankingToolTip,
-} from '../../services/texts/tooltips';
-import {
   getParticipationChartDataByDay, getParticipationChartDataByMonth, getParticipationChartDataByYear,
 } from './auxFunctions/computeParticipation';
 import filterRankingAudiencias from './auxFunctions/filterRanking';
@@ -28,6 +25,8 @@ import { audiencesChartsUsersSettings, audiencesWithMoreParticipation } from './
 import { rankingAudienciasHeaders, rankingAudienciaColumns } from './settings/rankingSettings';
 import { useStyles } from './style';
 import customTheme from '../../styles/theme';
+
+import * as TEXTCONSTANTS from '../../settings/texts/AudienciasPage';
 
 const defaultSelectedPeriodType = DEFAULT_SELECTED_PERIOD_TYPE; // Get all months of the year
 const defaultMonthPeriod = DEFAULT_MONTH_PERIOD; // All months
@@ -428,7 +427,7 @@ function Audiencias(props) {
   return (
     <div className={classes.root}>
       <Header
-        title="Audiências Interativas"
+        title={TEXTCONSTANTS.pageTitle}
         handlePeriodChange={handlePeriodChange}
         year={defaultYearPeriod}
         monthPeriod={defaultMonthPeriod}
@@ -441,16 +440,20 @@ function Audiencias(props) {
         )}
 
         <Grid item xs={12}>
-          <SectionHeader classes={classes} toolTipText={null} title="Totais no Período" />
+          <SectionHeader
+            classes={classes}
+            toolTipText={TEXTCONSTANTS.audiencesTotalsTexts.toolTip}
+            title={TEXTCONSTANTS.audiencesTotalsTexts.title}
+          />
         </Grid>
 
         <Grid item xs={12} sm={6} md={3} className={classes.spacing}>
           <TotalFrame
             isLoaded={totalsAreLoaded}
             info={`${audienciasTotalsData.users_total}`}
-            title="Participantes"
-            toolTipAriaLabel="Informação sobre o termo participantes"
-            toolTipText={participantsTotalToolTip}
+            title={TEXTCONSTANTS.audiencesTotalsTexts.subSectionParticipantsTotals.title}
+            toolTipText={TEXTCONSTANTS.audiencesTotalsTexts.subSectionParticipantsTotals.toolTip}
+            toolTipAriaLabel={TEXTCONSTANTS.audiencesTotalsTexts.subSectionParticipantsTotals.toolTipAriaLabel}
             toolTipColor={customTheme.palette.audiencias.seabuckthorn}
           />
         </Grid>
@@ -459,9 +462,9 @@ function Audiencias(props) {
           <TotalFrame
             isLoaded={totalsAreLoaded}
             info={`${audienciasTotalsData.audiencias_total}`}
-            title="Audiências Interativas"
-            toolTipText={audiencesTotalToolTip}
-            toolTipAriaLabel="Informação sobre o termo audiências interativas"
+            title={TEXTCONSTANTS.audiencesTotalsTexts.subSectionAudiencesTotals.title}
+            toolTipText={TEXTCONSTANTS.audiencesTotalsTexts.subSectionAudiencesTotals.toolTip}
+            toolTipAriaLabel={TEXTCONSTANTS.audiencesTotalsTexts.subSectionAudiencesTotals.toolTipAriaLabel}
             toolTipColor={customTheme.palette.audiencias.seabuckthorn}
             subInformation={`${audienciasTotalsData.audiencias_total_finished} realizadas`}
           />
@@ -471,19 +474,30 @@ function Audiencias(props) {
           <TotalFrame
             isLoaded={totalsAreLoaded}
             info={`${audienciasTotalsData.messages_total}`}
-            title="Mensagens"
-            toolTipText={messagesTotalToolTip}
-            toolTipAriaLabel="Informação sobre o termo mensagens"
+            title={TEXTCONSTANTS.audiencesTotalsTexts.subSectionMessagesTotals.title}
+            toolTipText={TEXTCONSTANTS.audiencesTotalsTexts.subSectionMessagesTotals.toolTip}
+            toolTipAriaLabel={TEXTCONSTANTS.audiencesTotalsTexts.subSectionMessagesTotals.toolTipAriaLabel}
             toolTipColor={customTheme.palette.audiencias.seabuckthorn}
           />
         </Grid>
 
         <Grid item xs={12} sm={6} md={3} className={classes.spacing}>
-          <TotalFrame isLoaded={totalsAreLoaded} info={audienciasTotalsData.questions_total} title="Perguntas" />
+          <TotalFrame
+            isLoaded={totalsAreLoaded}
+            info={audienciasTotalsData.questions_total}
+            title={TEXTCONSTANTS.audiencesTotalsTexts.subSectionQuestionsTotals.title}
+            toolTipText={TEXTCONSTANTS.audiencesTotalsTexts.subSectionQuestionsTotals.toolTip}
+            toolTipAriaLabel={TEXTCONSTANTS.audiencesTotalsTexts.subSectionQuestionsTotals.toolTipAriaLabel}
+          />
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <SectionHeader classes={classes} toolTipText={null} title="Distribuição da participação no período" />
+          <SectionHeader
+            classes={classes}
+            title={TEXTCONSTANTS.distributionOfParticipationSectionTexts.title}
+            toolTipText={TEXTCONSTANTS.distributionOfParticipationSectionTexts.toolTip}
+            toolTipAriaLabel={TEXTCONSTANTS.distributionOfParticipationSectionTexts.toolTipAriaLabel}
+          />
           {(participantionChartData !== undefined && participantionChartData.length > 0) ? (
             <ChartAndReport
               height="60vh"
@@ -510,7 +524,13 @@ function Audiencias(props) {
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <SectionHeader classes={classes} toolTipAriaLabel="Seção Ranking das Audiências" title="Ranking das audiências" toolTipText={audiencesRankingToolTip} toolTipColor={customTheme.palette.audiencias.seabuckthorn} />
+          <SectionHeader
+            classes={classes}
+            toolTipColor={customTheme.palette.audiencias.seabuckthorn}
+            title={TEXTCONSTANTS.rankingSectionTexts.title}
+            toolTipText={TEXTCONSTANTS.rankingSectionTexts.toolTip}
+            toolTipAriaLabel={TEXTCONSTANTS.rankingSectionTexts.toolTipAriaLabel}
+          />
           {(roomsRankingData !== undefined && roomsRankingData.length > 0) ? (
             <ChartDataFrame
               height="30vh"
@@ -545,11 +565,16 @@ function Audiencias(props) {
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <SectionHeader classes={classes} toolTipText={null} title="Usuários" />
+          <SectionHeader
+            classes={classes}
+            title={TEXTCONSTANTS.usersSectionTexts.title}
+            toolTipText={TEXTCONSTANTS.usersSectionTexts.toolTip}
+            toolTipAriaLabel={TEXTCONSTANTS.usersSectionTexts.toolTipAriaLabel}
+          />
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <SubSectionHeader title="Novos cadastros de usuários" />
+          <SubSectionHeader title={TEXTCONSTANTS.usersSectionTexts.subSectionNewUsers.title} />
           {(newUsersChartData !== undefined && newUsersChartData.length > 0) ? (
             <div className={classes.contentBox}>
               <ChartAndReport
@@ -577,7 +602,7 @@ function Audiencias(props) {
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <SubSectionHeader title={totalAcumuladoUsuariosCadastradosString} />
+          <SubSectionHeader title={TEXTCONSTANTS.usersSectionTexts.subSectionAccumulatedRegisteredUsers.title} />
           {(totalUsersChartData !== undefined && totalUsersChartData.length > 0) ? (
             <div className={classes.contentBox}>
               <ChartAndReport
