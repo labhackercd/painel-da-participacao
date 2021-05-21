@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import MockTheme from './mocks/mockTheme';
+import MockTheme from '../mocks/theme/mockTheme';
 import Custom404 from '../pages/404';
 
 test('Snapshot 404 page should not have changes', () => {

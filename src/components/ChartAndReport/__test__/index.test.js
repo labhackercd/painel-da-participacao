@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { render, fireEvent } from '@testing-library/react';
-import MockTheme from '../../mockTheme';
+import MockTheme from '../../../mocks/theme/mockTheme';
 import ChartAndReport from '../index';
 import { participationChartDataMock } from './mocks/participationChartData.mock';
 

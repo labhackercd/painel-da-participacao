@@ -3,7 +3,7 @@ import { shallow, mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import MockTheme from '../../../components/mockTheme';
+import MockTheme from '../../../mocks/theme/mockTheme';
 import Audiencias from '../index';
 
 import newUsersMock from './mocks/new_users_mock';

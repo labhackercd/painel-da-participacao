@@ -50,16 +50,22 @@ export default function MockTheme({ children }) {
       },
       palette: {
         primary: {
-          main: '#121212',
+          main: '#2e2e2e',
         },
         secondary: {
           main: '#00C354',
         },
         black: {
-          main: '#000',
+          main: '#212121',
+          secondary: '#252525',
         },
         white: {
           main: '#FFF',
+        },
+        gray: {
+          tundora: '#404040',
+          dusty: '#979797',
+          silver: '#C4C4C4',
         },
         background: {
           main: '#121212',
@@ -73,7 +79,11 @@ export default function MockTheme({ children }) {
         text: {
           primary: '#FFFFFF',
         },
+        blue: {
+          cyan: '#2BE6FF',
+        },
         audiencias: {
+          toolTip: '#DA7F0B',
           butteredRum: '#9E5E0D',
           anzac: '#E1A04E',
           divider: '#DA7F0B',
@@ -82,10 +92,10 @@ export default function MockTheme({ children }) {
         wikilegis: {
           salem: '#058D40',
           jade: '#00C354',
-          camarone: '00612A',
+          camarone: '#00612A',
         },
-        generalPanel: {
-          fountainBlue: '#669FC3',
+        alert: {
+          background: '#F5632A',
         },
       },
     },
