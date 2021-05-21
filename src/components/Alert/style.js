@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import { makeStyles } from '@material-ui/core/styles';
 
-export const useStyles = makeStyles(() => ({
+export const useStyles = makeStyles((theme) => ({
   gridItem: {
     width: '100%',
     display: 'flex',
@@ -10,7 +10,7 @@ export const useStyles = makeStyles(() => ({
   paper: {
     display: 'flex',
     flexWrap: 'wrap',
-    background: '#F5632A',
+    background: theme.palette.alert.background,
     color: 'black',
     '@media (max-width: 600px)': {
       width: '90%',

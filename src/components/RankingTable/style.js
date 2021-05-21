@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import { makeStyles } from '@material-ui/core/styles';
 
-export const useStyles = makeStyles(() => ({
+export const useStyles = makeStyles((theme) => ({
   root: {
     '& .MuiInput-underline:before': {
       borderBottomColor: 'white',
@@ -25,7 +25,7 @@ export const useStyles = makeStyles(() => ({
     color: 'white',
   },
   button: {
-    backgroundColor: '#C4C4C4',
+    backgroundColor: theme.palette.gray.silver,
     marginRight: 2,
     textTransform: 'none',
   },

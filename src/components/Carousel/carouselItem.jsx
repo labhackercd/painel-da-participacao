@@ -5,7 +5,7 @@ import {
 } from '@material-ui/core';
 import Link from 'next/link';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   typography: {
     fontFamily: 'Open Sans',
     letterSpacing: '0.05em',
@@ -33,7 +33,7 @@ const useStyles = makeStyles(() => ({
     margin: 8,
   },
   buttonStyle: {
-    color: '#212121',
+    color: theme.palette.black.main,
     textTransform: 'none',
     fontWeight: 700,
     '@media (max-width: 600px)': {

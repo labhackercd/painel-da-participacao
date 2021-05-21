@@ -17,7 +17,7 @@ export const useStyles = makeStyles((theme) => ({
     '&:hover': {
       backgroundColor: (props) => props.colors.button.hover,
     },
-    color: '#212121',
+    color: theme.palette.black.primary,
     textTransform: 'capitalize',
     fontWeight: 'bold',
   },
@@ -29,7 +29,7 @@ export const useStyles = makeStyles((theme) => ({
     padding: '5px 13px 5px 6px',
     color: theme.palette.white.main,
     '&:not([multiple]) option': {
-      backgroundColor: '#404040',
+      backgroundColor: theme.palette.gray.tundora,
     },
     '&.Mui-disabled': {
       color: 'gray',
@@ -39,7 +39,7 @@ export const useStyles = makeStyles((theme) => ({
     position: 'relative',
     fontWeight: 'bold',
 
-    backgroundColor: '#404040',
+    backgroundColor: theme.palette.gray.tundora,
     padding: '5px 13px 5px 6px',
     border: '2px solid',
     borderColor: (props) => props.colors.borderColor,
@@ -47,7 +47,7 @@ export const useStyles = makeStyles((theme) => ({
     '&:focus': {
       borderRadius: 4,
       boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
-      backgroundColor: '#404040',
+      backgroundColor: theme.palette.gray.tundora,
     },
     '&.Mui-disabled': {
       borderColor: 'gray',

@@ -12,7 +12,7 @@ export const useStyles = makeStyles((theme) => ({
     height: '4vh',
     borderRadius: '15px 15px 0 0',
     width: '100%',
-    backgroundColor: '#252525',
+    backgroundColor: theme.palette.black.secondary,
   },
   container: {
     backgroundColor: '#000',

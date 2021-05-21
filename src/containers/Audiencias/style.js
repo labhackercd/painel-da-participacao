@@ -28,6 +28,6 @@ export const useStyles = makeStyles((theme) => ({
   },
   appBarSpacer: theme.mixins.toolbar,
   toolTipIcon: {
-    color: '#DA7F0B',
+    color: theme.palette.audiencias.toolTip,
   },
 }));

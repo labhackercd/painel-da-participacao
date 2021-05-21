@@ -57,14 +57,14 @@ export const usersSectionTexts = {
   // New Users SubSection
   subSectionNewUsers: {
     title: 'Novos cadastros de usuários',
-    toolTip: '',
-    toolTipAriaLabel: '',
+    toolTip: null,
+    toolTipAriaLabel: null,
   },
 
   // Accumulated Total of Registered Users SubSection
   subSectionAccumulatedRegisteredUsers: {
     title: 'Total Acumulado de Usuários Cadastrados',
-    toolTip: '',
-    toolTipAriaLabel: '',
+    toolTip: null,
+    toolTipAriaLabel: null,
   },
 };

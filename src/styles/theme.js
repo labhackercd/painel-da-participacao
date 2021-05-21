@@ -52,10 +52,16 @@ const theme = createMuiTheme(
         main: '#00C354',
       },
       black: {
-        main: '#000',
+        main: '#212121',
+        secondary: '#252525',
       },
       white: {
         main: '#FFF',
+      },
+      gray: {
+        tundora: '#404040',
+        dusty: '#979797',
+        silver: '#C4C4C4',
       },
       background: {
         main: '#121212',
@@ -69,7 +75,11 @@ const theme = createMuiTheme(
       text: {
         primary: '#FFFFFF',
       },
+      blue: {
+        cyan: '#2BE6FF',
+      },
       audiencias: {
+        toolTip: '#DA7F0B',
         butteredRum: '#9E5E0D',
         anzac: '#E1A04E',
         divider: '#DA7F0B',
@@ -78,10 +88,10 @@ const theme = createMuiTheme(
       wikilegis: {
         salem: '#058D40',
         jade: '#00C354',
-        camarone: '00612A',
+        camarone: '#00612A',
       },
-      generalPanel: {
-        fountainBlue: '#669FC3',
+      alert: {
+        background: '#F5632A',
       },
     },
   },
