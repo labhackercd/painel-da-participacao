@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function WikilegisPage({
-  dados, defaultApisData, apiLastCacheMade, apiLastCacheMadeHour,
+  defaultApisData, apiLastCacheMade, apiLastCacheMadeHour,
 }) {
   const classes = useStyles();
 
@@ -69,7 +69,6 @@ function WikilegisPage({
             <main className={classes.content}>
               <WikilegisHeader />
               <Wikilegis
-                responseDataRanking={dados}
                 defaultApisData={defaultApisData}
                 apiLastCacheMade={apiLastCacheMade}
                 apiLastCacheMadeHour={apiLastCacheMadeHour}
@@ -112,7 +111,6 @@ export async function getStaticProps() {
 
   return {
     props: {
-      dados: wikilegisRankingData,
       defaultApisData: {
         wikilegisRankingData: wikilegisRankingData.data,
         wikilegisParticipantUsersAPIData: participantsResponse.data,

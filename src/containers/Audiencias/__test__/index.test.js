@@ -11,12 +11,6 @@ const monthlySearchQuery = '?period=monthly&start_date__year=2021&ordering=start
 const yearlySearchQuery = '?period=yearly&ordering=start_date';
 const dailySearchQuery = '?period=daily&start_date__year=2021&start_date__month=4&ordering=start_date';
 
-/*
-                defaultApisData={defaultApisData}
-                apiLastCacheMade={apiLastCacheMade}
-                apiLastCacheMadeHour={apiLastCacheMadeHour}
-*/
-
 const defaultPropsData = {
   defaultApisData: {
     audienciasRankingData: apisMock.rankingApiMock,

@@ -7,29 +7,43 @@ import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import MockTheme from '../../../mocks/theme/mockTheme';
 import Wikilegis from '../index';
-
+import * as apisMock from '../../../mocks/wikilegis';
 import newUsersMock from './__mocks__/new_users_mock';
 
 import participantesUsersMock from './__mocks__/participants_users_mock';
 import legislativeProposalsMock from './__mocks__/legislative_proposals_mock';
 import votesRankingMock from './__mocks__/votes_ranking_mock';
 import opinionsRankingMock from './__mocks__/opinions_ranking_mock';
-import documentsRanking from './__mocks__/documents_ranking';
-import { defaultApisData } from './__mocks__/staticProps/defaultApisData.mock';
-import { dados } from './__mocks__/staticProps/dados.mock';
 
-const defaultSearchQuery = '?period=monthly&start_date__year=2021&ordering=start_date';
+const defaultSearchQuery = '?period=yearly&ordering=start_date';
+const monthlySearchQuery = '?period=monthly&start_date__year=2021&ordering=start_date';
 const yearlySearchQuery = '?period=yearly&ordering=start_date';
 const dailySearchQuery = '?period=daily&start_date__year=2021&start_date__month=4&ordering=start_date';
 
-const responseDataRanking = { data: documentsRanking, lastUpdate: '15/03/2021 15:05' };
-const apiLastCacheMade = ' 10/05/2021, 18:10';
+const defaultPropsData = {
+  defaultApisData: {
+    wikilegisRankingData: apisMock.rankingApiMock.YEARLY,
+    wikilegisParticipantUsersAPIData: apisMock.participantsApiMock.YEARLY,
+    wikilegisLegislativeProposalsAPIData: apisMock.legislativeProposalsMock.YEARLY,
+    wikilegisOpinionsAPIData: apisMock.opinionsApiMock.YEARLY,
+    wikilegisVotesAPIData: apisMock.votesApiMock.YEARLY,
+    wikilegisNewUsersAPIData: apisMock.newUsersApiMock.YEARLY,
+  },
+  apiLastCacheMade: '01/01/2021, 12:00',
+  apiLastCacheMadeHour: (new Date()).toString(),
+};
 
 test('snapshot should not have changes', () => {
   let component;
   act(() => {
     component = shallow(
-      <MockTheme><Wikilegis responseDataRanking={responseDataRanking} /></MockTheme>,
+      <MockTheme>
+        <Wikilegis
+          defaultApisData={defaultPropsData.defaultApisData}
+          apiLastCacheMade={defaultPropsData.apiLastCacheMade}
+          apiLastCacheMadeHour={defaultPropsData.apiLastCacheMadeHour}
+        />
+      </MockTheme>,
     );
   });
   expect(component.exists()).toEqual(true);
@@ -38,7 +52,13 @@ test('snapshot should not have changes', () => {
 
 test('Test if Wikilegis renders without crash whole lifecycle', async () => {
   const wrapper = mount(
-    <MockTheme><Wikilegis responseDataRanking={dados} defaultApisData={defaultApisData} apiLastCacheMade={apiLastCacheMade} /></MockTheme>,
+    <MockTheme>
+      <Wikilegis
+        defaultApisData={defaultPropsData.defaultApisData}
+        apiLastCacheMade={defaultPropsData.apiLastCacheMade}
+        apiLastCacheMadeHour={defaultPropsData.apiLastCacheMadeHour}
+      />
+    </MockTheme>,
   );
   await act(async () => wrapper);
 
@@ -48,49 +68,55 @@ test('Test if Wikilegis renders without crash whole lifecycle', async () => {
 test('Default page lifecycle is getting default informations of period by month of year 2021 and getting all years information ', async () => {
   const mockInstance = new MockAdapter(axios);
   mockInstance
-    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_PARTICIPANT_USERS_URL}${defaultSearchQuery}`)
-    .reply(200, participantesUsersMock.MONTHLY)
-    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_LEGISLATIVE_PROPOSALS_URL}${defaultSearchQuery}`)
-    .reply(200, legislativeProposalsMock.MONTHLY)
-    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_OPINIONS_URL}${defaultSearchQuery}`)
-    .reply(200, opinionsRankingMock.MONTHLY)
-    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_VOTES_URL}${defaultSearchQuery}`)
-    .reply(200, votesRankingMock.MONTHLY)
-    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_NEW_USERS_URL}${defaultSearchQuery}`)
-    .reply(200, newUsersMock.MONTHLY)
-
     .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_PARTICIPANT_USERS_URL}${yearlySearchQuery}`)
-    .reply(200, participantesUsersMock.YEARLY)
+    .reply(200, apisMock.participantsApiMock.MONTHLY)
     .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_LEGISLATIVE_PROPOSALS_URL}${yearlySearchQuery}`)
-    .reply(200, legislativeProposalsMock.YEARLY)
+    .reply(200, apisMock.legislativeProposalsMock.MONTHLY)
     .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_OPINIONS_URL}${yearlySearchQuery}`)
-    .reply(200, opinionsRankingMock.YEARLY)
+    .reply(200, apisMock.opinionsApiMock.MONTHLY)
     .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_VOTES_URL}${yearlySearchQuery}`)
-    .reply(200, votesRankingMock.YEARLY)
+    .reply(200, apisMock.votesApiMock.MONTHLY)
     .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_NEW_USERS_URL}${yearlySearchQuery}`)
-    .reply(200, newUsersMock.YEARLY)
+    .reply(200, apisMock.newUsersApiMock.MONTHLY)
+
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_PARTICIPANT_USERS_URL}${monthlySearchQuery}`)
+    .reply(200, apisMock.participantsApiMock.MONTHLY)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_LEGISLATIVE_PROPOSALS_URL}${monthlySearchQuery}`)
+    .reply(200, apisMock.legislativeProposalsMock.MONTHLY)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_OPINIONS_URL}${monthlySearchQuery}`)
+    .reply(200, apisMock.opinionsApiMock.MONTHLY)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_VOTES_URL}${monthlySearchQuery}`)
+    .reply(200, apisMock.votesApiMock.MONTHLY)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_NEW_USERS_URL}${monthlySearchQuery}`)
+    .reply(200, apisMock.newUsersApiMock.MONTHLY)
 
     .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_PARTICIPANT_USERS_URL}${dailySearchQuery}`)
-    .reply(200, participantesUsersMock.DAILY)
+    .reply(200, apisMock.participantsApiMock.DAILY)
     .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_LEGISLATIVE_PROPOSALS_URL}${dailySearchQuery}`)
-    .reply(200, legislativeProposalsMock.DAILY)
+    .reply(200, apisMock.legislativeProposalsMock.DAILY)
     .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_OPINIONS_URL}${dailySearchQuery}`)
-    .reply(200, opinionsRankingMock.DAILY)
+    .reply(200, apisMock.opinionsApiMock.DAILY)
     .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_VOTES_URL}${dailySearchQuery}`)
-    .reply(200, votesRankingMock.DAILY)
+    .reply(200, apisMock.votesApiMock.DAILY)
     .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_NEW_USERS_URL}${dailySearchQuery}`)
-    .reply(200, newUsersMock.DAILY);
+    .reply(200, apisMock.newUsersApiMock.DAILY);
 
   const wrapper = mount(
-    <MockTheme><Wikilegis responseDataRanking={dados} defaultApisData={defaultApisData} apiLastCacheMade={apiLastCacheMade} /></MockTheme>,
+    <MockTheme>
+      <Wikilegis
+        defaultApisData={defaultPropsData.defaultApisData}
+        apiLastCacheMade={defaultPropsData.apiLastCacheMade}
+        apiLastCacheMadeHour={defaultPropsData.apiLastCacheMadeHour}
+      />
+    </MockTheme>,
   );
   await act(async () => wrapper);
 
   // Get informations of whole period
   const yearPeriodSelect = wrapper.find('select').at(0);
-  yearPeriodSelect.instance().value = '0';
+  yearPeriodSelect.instance().value = '2021';
   await yearPeriodSelect.simulate('change');
-  expect(await wrapper.find('select').at(0).prop('value')).toEqual('0');
+  expect(await wrapper.find('select').at(0).prop('value')).toEqual('2021');
 
   const filterButton = await wrapper.find('button').at(0);
   await filterButton.simulate('click');
@@ -122,30 +148,36 @@ test('Default page lifecycle is getting default informations of period by month 
 test('Wikilegis page lifecycle is getting informations of days of specific month', async () => {
   const mockInstance = new MockAdapter(axios);
   mockInstance
-    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_PARTICIPANT_USERS_URL}${defaultSearchQuery}`)
-    .reply(200, participantesUsersMock.MONTHLY)
-    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_LEGISLATIVE_PROPOSALS_URL}${defaultSearchQuery}`)
-    .reply(200, legislativeProposalsMock.MONTHLY)
-    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_OPINIONS_URL}${defaultSearchQuery}`)
-    .reply(200, opinionsRankingMock.MONTHLY)
-    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_VOTES_URL}${defaultSearchQuery}`)
-    .reply(200, votesRankingMock.MONTHLY)
-    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_NEW_USERS_URL}${defaultSearchQuery}`)
-    .reply(200, newUsersMock.MONTHLY)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_PARTICIPANT_USERS_URL}${monthlySearchQuery}`)
+    .reply(200, apisMock.participantsApiMock.MONTHLY)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_LEGISLATIVE_PROPOSALS_URL}${monthlySearchQuery}`)
+    .reply(200, apisMock.legislativeProposalsMock.MONTHLY)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_OPINIONS_URL}${monthlySearchQuery}`)
+    .reply(200, apisMock.opinionsApiMock.MONTHLY)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_VOTES_URL}${monthlySearchQuery}`)
+    .reply(200, apisMock.votesApiMock.MONTHLY)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_NEW_USERS_URL}${monthlySearchQuery}`)
+    .reply(200, apisMock.newUsersApiMock.MONTHLY)
 
     .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_PARTICIPANT_USERS_URL}${dailySearchQuery}`)
-    .reply(200, participantesUsersMock.DAILY)
+    .reply(200, apisMock.participantsApiMock.DAILY)
     .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_LEGISLATIVE_PROPOSALS_URL}${dailySearchQuery}`)
-    .reply(200, legislativeProposalsMock.DAILY)
+    .reply(200, apisMock.legislativeProposalsMock.DAILY)
     .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_OPINIONS_URL}${dailySearchQuery}`)
-    .reply(200, opinionsRankingMock.DAILY)
+    .reply(200, apisMock.opinionsApiMock.DAILY)
     .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_VOTES_URL}${dailySearchQuery}`)
-    .reply(200, votesRankingMock.DAILY)
+    .reply(200, apisMock.votesApiMock.DAILY)
     .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_NEW_USERS_URL}${dailySearchQuery}`)
-    .reply(200, newUsersMock.DAILY);
+    .reply(200, apisMock.newUsersApiMock.DAILY);
 
   const wrapper = mount(
-    <MockTheme><Wikilegis responseDataRanking={dados} defaultApisData={defaultApisData} apiLastCacheMade={apiLastCacheMade} /></MockTheme>,
+    <MockTheme>
+      <Wikilegis
+        defaultApisData={defaultPropsData.defaultApisData}
+        apiLastCacheMade={defaultPropsData.apiLastCacheMade}
+        apiLastCacheMadeHour={defaultPropsData.apiLastCacheMadeHour}
+      />
+    </MockTheme>,
   );
   wrapper.update();
 
@@ -193,7 +225,13 @@ test('Wikilegis page lifecycle is getting informations with no values', async ()
     .reply(200, []);
 
   const wrapper = await mount(
-    <MockTheme><Wikilegis responseDataRanking={dados} defaultApisData={defaultApisData} apiLastCacheMade={apiLastCacheMade} /></MockTheme>,
+    <MockTheme>
+      <Wikilegis
+        defaultApisData={defaultPropsData.defaultApisData}
+        apiLastCacheMade={defaultPropsData.apiLastCacheMade}
+        apiLastCacheMadeHour={defaultPropsData.apiLastCacheMadeHour}
+      />
+    </MockTheme>,
   );
   await wrapper.update();
 
