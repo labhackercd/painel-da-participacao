@@ -40,7 +40,7 @@ describe('Test Bar Chart', () => {
   test('Google Charts error as it has undefined parameters', () => {
     const div = document.createElement('div');
     ReactDOM.render(
-      <GoogleChart chartType={undefined} data={[[], []]} options={undefined} />,
+      <GoogleChart chartType={undefined} data={undefined} options={undefined} />,
       div,
     );
   });

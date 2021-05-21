@@ -71,7 +71,9 @@
       "!src/router.js",
       "!src/components/mockTheme.js",
       "!*.mock.js",
-      "!lib/googleAnalytics/gtag.js"
+      "!lib/googleAnalytics/gtag.js",
+      "!src/pages/_app.js",
+      "!src/pages/_document.js"
     ]
   }
 }

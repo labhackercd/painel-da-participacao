@@ -39,6 +39,12 @@ test('Audiencia page lifecycle is getting informations of days of specific month
   const button = wrapper.find('#rankingSearchButton').at(0);
   button.simulate('click');
 
+  // Return to default state
+  searchField.instance().value = '';
+  searchField.simulate('change');
+  await wrapper.update();
+  button.simulate('click');
+
   setImmediate(async () => {
     await wrapper.update();
   });
