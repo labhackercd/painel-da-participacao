@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import DataTable, { createTheme } from 'react-data-table-component';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';
+import { useStyles } from './style';
 
 createTheme('darkLAB', {
   text: {
@@ -48,37 +48,6 @@ createTheme('darkLAB', {
     text: '#9e5e0d',
   },
 });
-
-const useStyles = makeStyles(() => ({
-  root: {
-    '& .MuiInput-underline:before': {
-      borderBottomColor: 'white',
-    },
-    '& label.Mui-focused': {
-      color: 'white',
-    },
-    '& .MuiInput-underline:after': {
-      borderBottomColor: 'white',
-    },
-    marginRight: 15,
-  },
-  input: {
-    '&::placeholder': {
-      color: 'white',
-      fontSize: 14,
-      textOverflow: 'ellipsis !important',
-    },
-  },
-  textField: {
-    color: 'white',
-  },
-  button: {
-    backgroundColor: '#C4C4C4',
-    marginRight: 2,
-    textTransform: 'none',
-  },
-
-}));
 
 export default function RankingTable(props) {
   const { data, columns, filterRanking } = props;

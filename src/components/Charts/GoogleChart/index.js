@@ -18,6 +18,10 @@ export default function GoogleChart(props) {
   const { chartType, data, options } = props;
 
   try {
+    if (chartType === undefined || data === undefined || options === undefined) {
+      throw new Error('Parâmatros Invalidos');
+    }
+
     return (
       <Chart
         width="100%"

@@ -11,6 +11,7 @@ import PageNavbar from '../layouts/navbar';
 import Footer from '../components/Footer/index';
 import Carousel from '../components/Carousel/index';
 import formatNumberWithDots from '../utils/format/numbers/formatNumbersWithDots/formatNumberWithDots';
+import logoParticipa from '../assets/images/logos/logo_participa.svg';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -83,6 +84,7 @@ const useStyles = makeStyles((theme) => ({
   typographyCaption: {
     fontSize: '1.5rem',
     fontWeight: 'regular',
+    paddingTop: '15px',
     '@media (max-width: 600px)': {
       fontSize: '1rem',
     },
@@ -179,7 +181,7 @@ function Home({ usersTotal, apiLastCacheMade }) {
             <Hidden mdDown>
               <Box className={classes.bannerBoxParticipaLogo}>
                 <Image
-                  src={`${process.env.NEXT_PUBLIC_APPLICATION_BASE_PATH_URL}/logo/logo_participa.svg`}
+                  src={logoParticipa}
                   alt="Logotipo do LABHacker"
                   width={700}
                   height={700}

@@ -11,7 +11,8 @@ import {
 import { format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import Layout from '../layouts/index';
-import { DEFAULT_SEARCH_QUERY } from '../services/constants/constants';
+import { DEFAULT_SEARCH_QUERY } from '../settings/applicationOptions/index';
+import * as TEXTCONSTANTS from '../settings/texts/AudienciasPage';
 import Audiencias from '../containers/Audiencias';
 
 const useStyles = makeStyles((theme) => ({
@@ -36,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function AudienciasPage({
-  dados, defaultApisData, apiLastCacheMade, apiLastCacheMadeHour,
+  defaultApisData, apiLastCacheMade, apiLastCacheMadeHour,
 }) {
   const classes = useStyles();
 
@@ -45,14 +46,13 @@ function AudienciasPage({
       <Box marginBottom={5} marginX={2}>
         <Typography variant="h1">
           <Box fontWeight="fontWeightBold">
-            A Participação em Audiências Interativas
+            {TEXTCONSTANTS.pageTitle}
           </Box>
         </Typography>
         <div>
           <Typography component="p" variant="h4">
             <Box style={{ color: '#BFBFBF' }}>
-              Painel de estatísticas de participação dos cidadãos em audiências públicas e
-              eventos interativos da Câmara dos Deputados.
+              {TEXTCONSTANTS.pageSubTitle}
             </Box>
           </Typography>
         </div>
@@ -63,7 +63,7 @@ function AudienciasPage({
   return (
     <>
       <Head>
-        <title>Dashboard Audiências</title>
+        <title>{TEXTCONSTANTS.pageHTMLTitle}</title>
       </Head>
       <Layout value={1}>
         <Grid container className={classes.root}>
@@ -71,7 +71,6 @@ function AudienciasPage({
             <main className={classes.content}>
               <AudienciasHeader />
               <Audiencias
-                responseDataRanking={dados}
                 defaultApisData={defaultApisData}
                 apiLastCacheMade={apiLastCacheMade}
                 apiLastCacheMadeHour={apiLastCacheMadeHour}
@@ -114,7 +113,6 @@ export async function getStaticProps() {
 
   return {
     props: {
-      dados: audienciasRankingData,
       defaultApisData: {
         audienciasRankingData: audienciasRankingData.data,
         audienceParticipantUsersAPIData: participantsResponse.data,

@@ -3,7 +3,7 @@
 /* eslint-disable spaced-comment */
 /* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
-import { Grid, Box, makeStyles } from '@material-ui/core';
+import { Grid, Box } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import {
@@ -12,63 +12,32 @@ import {
 } from '../../components';
 import { handleUpdatePeriodSearchQuery } from '../../services/functions/handlers/index';
 import formatNumberWithDots from '../../utils/format/numbers/formatNumbersWithDots/formatNumberWithDots';
-import {
-  AUDIENCIAS_TOOL_NAME, MONTHS_LIST, MONTHS_ABBREVIATED_LIST, DEFAULT_SELECTED_PERIOD_TYPE,
-  DEFAULT_MONTH_PERIOD, DEFAULT_SEARCH_QUERY, DAILY_KEY_WORD, MONTHLY_KEY_WORD,
-  AUDIENCIAS_INITIAL_YEAR, DEFAULT_YEAR_PERIOD, CURRENT_YEAR,
-} from '../../services/constants/constants';
-import {
-  participantsTotalToolTip, messagesTotalToolTip, audiencesTotalToolTip, audiencesRankingToolTip,
-} from '../../services/texts/tooltips';
+
+import * as APPLICATION_OPTIONS from '../../settings/applicationOptions/index';
+import * as APPLICATION_CONSTANTS from '../../utils/constants/index';
+
 import {
   getParticipationChartDataByDay, getParticipationChartDataByMonth, getParticipationChartDataByYear,
 } from './auxFunctions/computeParticipation';
 import filterRankingAudiencias from './auxFunctions/filterRanking';
 import { audiencesChartsUsersSettings, audiencesWithMoreParticipation } from './settings/chartsSettings';
 import { rankingAudienciasHeaders, rankingAudienciaColumns } from './settings/rankingSettings';
-
+import { useStyles } from './style';
 import customTheme from '../../styles/theme';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-    height: '100%',
-  },
-  content: {
-    overflow: 'auto',
-    flexGrow: 1,
-    padding: '2.5rem 0 0 0',
-  },
-  contentBox: {
-    display: 'flex',
-    justifyContent: 'center',
-    width: '100%',
-  },
-  spacing: {
-    marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1),
-  },
-  spacingContainer: {
-    marginTop: theme.spacing(3),
-  },
-  divider: {
-    borderColor: theme.palette.audiencias.divider,
-  },
-  appBarSpacer: theme.mixins.toolbar,
-  toolTipIcon: {
-    color: '#DA7F0B',
-  },
-}));
+import * as TEXTCONSTANTS from '../../settings/texts/AudienciasPage';
 
-const defaultSelectedPeriodType = DEFAULT_SELECTED_PERIOD_TYPE; // Get all months of the year
-const defaultMonthPeriod = DEFAULT_MONTH_PERIOD; // All months
-const defaultYearPeriod = DEFAULT_YEAR_PERIOD; // All years
-const dailyKeyWord = DAILY_KEY_WORD;
-const monthlyKeyWord = MONTHLY_KEY_WORD;
-const monthNamesList = MONTHS_ABBREVIATED_LIST;
+const defaultSelectedPeriodType = APPLICATION_OPTIONS.DEFAULT_SELECTED_PERIOD_TYPE; // Get all months of the year
+const defaultMonthPeriod = APPLICATION_OPTIONS.DEFAULT_MONTH_PERIOD; // All months
+const defaultYearPeriod = APPLICATION_OPTIONS.DEFAULT_YEAR_PERIOD; // All years
+const dailyKeyWord = APPLICATION_CONSTANTS.DAILY_KEY_WORD;
+const monthlyKeyWord = APPLICATION_CONSTANTS.MONTHLY_KEY_WORD;
+const monthNamesList = APPLICATION_CONSTANTS.MONTHS_ABBREVIATED_LIST;
+const audienceInitialYear = APPLICATION_OPTIONS.AUDIENCIAS_INITIAL_YEAR;
+const currentYear = APPLICATION_CONSTANTS.CURRENT_YEAR;
 
 function Audiencias(props) {
-  const TOOLNAME = AUDIENCIAS_TOOL_NAME;
+  const TOOLNAME = APPLICATION_OPTIONS.AUDIENCIAS_TOOL_NAME;
   const {
     defaultApisData, apiLastCacheMade, apiLastCacheMadeHour,
   } = props;
@@ -95,7 +64,7 @@ function Audiencias(props) {
   const [newUsersChartDataLoaded, setNewUsersChartDataLoaded] = useState(false);
   const [totalUsersChartDataLoaded, setTotalUsersChartDataLoaded] = useState(false);
   // Information states
-  const [periodSubTitle, setPeriodSubTitle] = useState(`${AUDIENCIAS_INITIAL_YEAR} a ${CURRENT_YEAR}`);
+  const [periodSubTitle, setPeriodSubTitle] = useState(`${audienceInitialYear} a ${currentYear}`);
   const [participantionChartDataLastUpdate, setParticipantionChartDataLastUpdate] = useState(apiLastCacheMade);
   const roomsRankingDataLastUpdate = apiLastCacheMade;
   const [totalUsersChartDataLastUpdate, setTotalUsersChartDataLastUpdate] = useState(apiLastCacheMade);
@@ -158,7 +127,6 @@ function Audiencias(props) {
     }
   }
 
-  // TODO -> CHANGE THIS FUNCTION TO GET NEW API DATA INSTEAD OF CALCULATE IT
   function computeTotalOfUsersByPeriod(values, period) {
     const computedArray = [];
     let collumPeriodTitle = [];
@@ -264,14 +232,14 @@ function Audiencias(props) {
     try {
       switch (period) {
         case dailyKeyWord:
-          setPeriodSubTitle(`${MONTHS_LIST[month - 1]}/${year}`);
+          setPeriodSubTitle(`${APPLICATION_CONSTANTS.MONTHS_LIST[month - 1]}/${year}`);
           break;
         case monthlyKeyWord:
           setPeriodSubTitle(`${year}`);
           break;
         default: // yearly -> Total period
           setPeriodSubTitle(
-            `${AUDIENCIAS_INITIAL_YEAR} a ${CURRENT_YEAR}`,
+            `${audienceInitialYear} a ${currentYear}`,
           );
           break;
       }
@@ -374,7 +342,7 @@ function Audiencias(props) {
           break;
         default: // yearly -> Total period
           arrayData = await getParticipationChartDataByYear(
-            messagesData, questionsData, questionsVoteData, AUDIENCIAS_INITIAL_YEAR,
+            messagesData, questionsData, questionsVoteData, audienceInitialYear,
           );
           break;
       }
@@ -460,12 +428,12 @@ function Audiencias(props) {
   return (
     <div className={classes.root}>
       <Header
-        title="Audiências Interativas"
+        title={TEXTCONSTANTS.pageToolTitle}
         handlePeriodChange={handlePeriodChange}
         year={defaultYearPeriod}
         monthPeriod={defaultMonthPeriod}
         headerColors={headerColors}
-        initialYear={AUDIENCIAS_INITIAL_YEAR}
+        initialYear={audienceInitialYear}
       />
       <Grid container spacing={1} className={classes.spacingContainer}>
         { showCachedDataAlert && (
@@ -473,16 +441,20 @@ function Audiencias(props) {
         )}
 
         <Grid item xs={12}>
-          <SectionHeader classes={classes} toolTipText={null} title="Totais no Período" />
+          <SectionHeader
+            classes={classes}
+            toolTipText={TEXTCONSTANTS.audiencesTotalsTexts.toolTip}
+            title={TEXTCONSTANTS.audiencesTotalsTexts.title}
+          />
         </Grid>
 
         <Grid item xs={12} sm={6} md={3} className={classes.spacing}>
           <TotalFrame
             isLoaded={totalsAreLoaded}
             info={`${audienciasTotalsData.users_total}`}
-            title="Participantes"
-            toolTipAriaLabel="Informação sobre o termo participantes"
-            toolTipText={participantsTotalToolTip}
+            title={TEXTCONSTANTS.audiencesTotalsTexts.subSectionParticipantsTotals.title}
+            toolTipText={TEXTCONSTANTS.audiencesTotalsTexts.subSectionParticipantsTotals.toolTip}
+            toolTipAriaLabel={TEXTCONSTANTS.audiencesTotalsTexts.subSectionParticipantsTotals.toolTipAriaLabel}
             toolTipColor={customTheme.palette.audiencias.seabuckthorn}
           />
         </Grid>
@@ -491,9 +463,9 @@ function Audiencias(props) {
           <TotalFrame
             isLoaded={totalsAreLoaded}
             info={`${audienciasTotalsData.audiencias_total}`}
-            title="Audiências Interativas"
-            toolTipText={audiencesTotalToolTip}
-            toolTipAriaLabel="Informação sobre o termo audiências interativas"
+            title={TEXTCONSTANTS.audiencesTotalsTexts.subSectionAudiencesTotals.title}
+            toolTipText={TEXTCONSTANTS.audiencesTotalsTexts.subSectionAudiencesTotals.toolTip}
+            toolTipAriaLabel={TEXTCONSTANTS.audiencesTotalsTexts.subSectionAudiencesTotals.toolTipAriaLabel}
             toolTipColor={customTheme.palette.audiencias.seabuckthorn}
             subInformation={`${audienciasTotalsData.audiencias_total_finished} realizadas`}
           />
@@ -503,19 +475,30 @@ function Audiencias(props) {
           <TotalFrame
             isLoaded={totalsAreLoaded}
             info={`${audienciasTotalsData.messages_total}`}
-            title="Mensagens"
-            toolTipText={messagesTotalToolTip}
-            toolTipAriaLabel="Informação sobre o termo mensagens"
+            title={TEXTCONSTANTS.audiencesTotalsTexts.subSectionMessagesTotals.title}
+            toolTipText={TEXTCONSTANTS.audiencesTotalsTexts.subSectionMessagesTotals.toolTip}
+            toolTipAriaLabel={TEXTCONSTANTS.audiencesTotalsTexts.subSectionMessagesTotals.toolTipAriaLabel}
             toolTipColor={customTheme.palette.audiencias.seabuckthorn}
           />
         </Grid>
 
         <Grid item xs={12} sm={6} md={3} className={classes.spacing}>
-          <TotalFrame isLoaded={totalsAreLoaded} info={audienciasTotalsData.questions_total} title="Perguntas" />
+          <TotalFrame
+            isLoaded={totalsAreLoaded}
+            info={audienciasTotalsData.questions_total}
+            title={TEXTCONSTANTS.audiencesTotalsTexts.subSectionQuestionsTotals.title}
+            toolTipText={TEXTCONSTANTS.audiencesTotalsTexts.subSectionQuestionsTotals.toolTip}
+            toolTipAriaLabel={TEXTCONSTANTS.audiencesTotalsTexts.subSectionQuestionsTotals.toolTipAriaLabel}
+          />
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <SectionHeader classes={classes} toolTipText={null} title="Distribuição da participação no período" />
+          <SectionHeader
+            classes={classes}
+            title={TEXTCONSTANTS.distributionOfParticipationSectionTexts.title}
+            toolTipText={TEXTCONSTANTS.distributionOfParticipationSectionTexts.toolTip}
+            toolTipAriaLabel={TEXTCONSTANTS.distributionOfParticipationSectionTexts.toolTipAriaLabel}
+          />
           {(participantionChartData !== undefined && participantionChartData.length > 0) ? (
             <ChartAndReport
               height="60vh"
@@ -542,7 +525,13 @@ function Audiencias(props) {
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <SectionHeader classes={classes} toolTipAriaLabel="Seção Ranking das Audiências" title="Ranking das audiências" toolTipText={audiencesRankingToolTip} toolTipColor={customTheme.palette.audiencias.seabuckthorn} />
+          <SectionHeader
+            classes={classes}
+            toolTipColor={customTheme.palette.audiencias.seabuckthorn}
+            title={TEXTCONSTANTS.rankingSectionTexts.title}
+            toolTipText={TEXTCONSTANTS.rankingSectionTexts.toolTip}
+            toolTipAriaLabel={TEXTCONSTANTS.rankingSectionTexts.toolTipAriaLabel}
+          />
           {(roomsRankingData !== undefined && roomsRankingData.length > 0) ? (
             <ChartDataFrame
               height="30vh"
@@ -577,11 +566,16 @@ function Audiencias(props) {
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <SectionHeader classes={classes} toolTipText={null} title="Usuários" />
+          <SectionHeader
+            classes={classes}
+            title={TEXTCONSTANTS.usersSectionTexts.title}
+            toolTipText={TEXTCONSTANTS.usersSectionTexts.toolTip}
+            toolTipAriaLabel={TEXTCONSTANTS.usersSectionTexts.toolTipAriaLabel}
+          />
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <SubSectionHeader title="Novos cadastros de usuários" />
+          <SubSectionHeader title={TEXTCONSTANTS.usersSectionTexts.subSectionNewUsers.title} />
           {(newUsersChartData !== undefined && newUsersChartData.length > 0) ? (
             <div className={classes.contentBox}>
               <ChartAndReport
@@ -609,7 +603,7 @@ function Audiencias(props) {
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <SubSectionHeader title={totalAcumuladoUsuariosCadastradosString} />
+          <SubSectionHeader title={TEXTCONSTANTS.usersSectionTexts.subSectionAccumulatedRegisteredUsers.title} />
           {(totalUsersChartData !== undefined && totalUsersChartData.length > 0) ? (
             <div className={classes.contentBox}>
               <ChartAndReport

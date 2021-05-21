@@ -10,6 +10,8 @@ import Image from 'next/image';
 import PageNavbar from '../layouts/navbar';
 import Footer from '../components/Footer/index';
 
+import error500Image from '../assets/images/informations/500_image.png';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100%',
@@ -37,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    paddingTop: '10vh',
   },
   textBox: {
     paddingBottom: '20px',
@@ -88,7 +91,7 @@ function Custom500() {
           </Box>
           <Box>
             <Image
-              src={`${process.env.NEXT_PUBLIC_APPLICATION_BASE_PATH_URL}/info/500_image.png`}
+              src={error500Image}
               alt=""
               width="700px"
               height="500px"

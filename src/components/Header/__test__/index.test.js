@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { shallow, mount } from 'enzyme';
 import Header from '../index';
-import MockTheme from '../../mockTheme';
+import MockTheme from '../../../mocks/theme/mockTheme';
 
 const headerColors = {
   borderColor: '#DA7F0B',

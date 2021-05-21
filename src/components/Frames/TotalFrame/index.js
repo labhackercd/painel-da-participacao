@@ -4,37 +4,8 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import {
   Grid, Box, Typography,
 } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 import Tooltips from '../../ToolTip/index';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    width: '100%',
-    paddingRight: '0.5rem',
-    paddingLeft: '0.5rem',
-  },
-  box: {
-    height: '4vh',
-    borderRadius: '15px 15px 0 0',
-    width: '100%',
-    backgroundColor: '#252525',
-  },
-  container: {
-    backgroundColor: '#000',
-    borderRadius: '0 0 15px 15px',
-    width: '100%',
-  },
-  text: {
-    color: theme.palette.white.main,
-    marginTop: '1vh',
-  },
-  header: {
-    height: '3vh',
-    display: 'flex',
-    width: '100%',
-  },
-}));
+import { useStyles } from './style';
 
 function TotalsDataFrame(props) {
   const classes = useStyles();

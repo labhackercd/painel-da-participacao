@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import MockTheme from '../../mockTheme';
+import MockTheme from '../../../mocks/theme/mockTheme';
 import ChartDataFrame from '../index';
 import documentsRanking from './mocks/legislativeProposals.mock';
 

@@ -3,8 +3,7 @@ import {
   getWikilegisParticipationChartDataByYear,
 } from '../computeParticipation';
 
-import messagesRankingMock from './mocks/messages_ranking_mock';
-import questionsRankingMock from './mocks/questions_ranking_mock';
+import * as apiMock from '../../../../mocks/wikilegis/index';
 
 describe('Test getWikilegisParticipationChartDataByDay function', () => {
   const testMonth = 4;
@@ -13,7 +12,7 @@ describe('Test getWikilegisParticipationChartDataByDay function', () => {
   test('getWikilegisParticipationChartDataByDay return data with 30 days(april)', async () => {
     const resultArray = await getWikilegisParticipationChartDataByDay(
       testMonth, testYear,
-      messagesRankingMock.DAILY.results, questionsRankingMock.DAILY.results,
+      apiMock.opinionsApiMock.DAILY.results, apiMock.votesApiMock.DAILY.results,
     );
     expect(resultArray.length).toBe(30);
   });
@@ -21,7 +20,7 @@ describe('Test getWikilegisParticipationChartDataByDay function', () => {
   test('getWikilegisParticipationChartDataByDay return data with 31 days(may)', async () => {
     const resultArray = await getWikilegisParticipationChartDataByDay(
       (testMonth + 1), testYear,
-      messagesRankingMock.DAILY.results, questionsRankingMock.DAILY.results,
+      apiMock.opinionsApiMock.DAILY.results, apiMock.votesApiMock.DAILY.results,
     );
     expect(resultArray.length).toBe(31);
   });
@@ -34,7 +33,7 @@ describe('Test getWikilegisParticipationChartDataByMonth function', () => {
   test('getWikilegisParticipationChartDataByMonth return data with 12 months', async () => {
     const resultArray = await getWikilegisParticipationChartDataByMonth(
       testMonth, testYear,
-      messagesRankingMock.MONTHLY.results, questionsRankingMock.MONTHLY.results,
+      apiMock.opinionsApiMock.DAILY.results, apiMock.votesApiMock.DAILY.results,
     );
 
     expect(resultArray).not.toBe(null);
@@ -46,7 +45,7 @@ describe('Test getWikilegisParticipationChartDataByMonth function', () => {
 describe('Test getWikilegisParticipationChartDataByYear function', () => {
   test('getWikilegisParticipationChartDataByYear return data with 6 years', async () => {
     const resultArray = await getWikilegisParticipationChartDataByYear(
-      messagesRankingMock.YEARLY.results, questionsRankingMock.YEARLY.results,
+      apiMock.opinionsApiMock.YEARLY.results, apiMock.votesApiMock.YEARLY.results,
       2016,
     );
     expect(resultArray).not.toBe(null);

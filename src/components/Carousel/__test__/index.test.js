@@ -1,6 +1,8 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import Caroulsel from '../index';
+import CaroulselItem from '../carouselItem';
+import MockTheme from '../../../mocks/theme/mockTheme';
 
 const carouselItens = [
   {
@@ -12,13 +14,20 @@ const carouselItens = [
 ];
 
 it('snapshot should not have changes', () => {
-  const component = shallow(<Caroulsel carouselItens={[]} />);
+  const component = shallow(<MockTheme><Caroulsel carouselItens={[]} /></MockTheme>);
   expect(component.exists()).toEqual(true);
   expect(component).toMatchSnapshot();
 });
 
 it('Render Carousel With Data', () => {
-  const component = mount(<Caroulsel carouselItens={carouselItens} />);
+  const component = mount(<MockTheme><Caroulsel carouselItens={carouselItens} /></MockTheme>);
+  expect(component.exists()).toEqual(true);
+  expect(component).toMatchSnapshot();
+});
+
+// Test Caroulsel Item
+it('Render Carousel Item', () => {
+  const component = mount(<MockTheme><CaroulselItem item={carouselItens[0]} /></MockTheme>);
   expect(component.exists()).toEqual(true);
   expect(component).toMatchSnapshot();
 });

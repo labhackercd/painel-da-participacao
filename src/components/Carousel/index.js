@@ -3,10 +3,10 @@ import React from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import CarouselItem from './carouselItem';
-import apiCaroulselImg from '../../assets/caroulselImages/apicaroulsel.png';
-import audienciasCaroulselImg from '../../assets/caroulselImages/audienciascaroulsel.png';
-import sobreCaroulselImg from '../../assets/caroulselImages/sobrecaroulsel.png';
-import wikilegisCaroulselImg from '../../assets/caroulselImages/wikilegiscaroulsel.png';
+import apiCaroulselImg from '../../assets/images/caroulselImages/apicaroulsel.png';
+import audienciasCaroulselImg from '../../assets/images/caroulselImages/audienciascaroulsel.png';
+import sobreCaroulselImg from '../../assets/images/caroulselImages/sobrecaroulsel.png';
+import wikilegisCaroulselImg from '../../assets/images/caroulselImages/wikilegiscaroulsel.png';
 
 export default function Caroulsel() {
   const responsive = {
@@ -92,7 +92,7 @@ export default function Caroulsel() {
       swipeable
     >
       {carouselItens.map((item) => (
-        <CarouselItem item={item} />
+        <CarouselItem item={item} key={item.toolName} />
       ))}
     </Carousel>
   );

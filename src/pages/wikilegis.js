@@ -10,11 +10,10 @@ import {
 } from '@material-ui/core/';
 import { format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
-import { DEFAULT_SEARCH_QUERY } from '../services/constants/constants';
-
+import { DEFAULT_SEARCH_QUERY } from '../settings/applicationOptions/index';
 import Layout from '../layouts/index';
-
 import Wikilegis from '../containers/Wikilegis';
+import * as TEXTCONSTANTS from '../settings/texts/WikilegisPage';
 
 const useStyles = makeStyles((theme) => ({
   body: {
@@ -38,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function WikilegisPage({
-  dados, defaultApisData, apiLastCacheMade, apiLastCacheMadeHour,
+  defaultApisData, apiLastCacheMade, apiLastCacheMadeHour,
 }) {
   const classes = useStyles();
 
@@ -47,13 +46,12 @@ function WikilegisPage({
       <Box marginBottom={5} marginX={2}>
         <Typography variant="h1">
           <Box fontWeight="fontWeightBold">
-            Participação na Wikilegis
+            {TEXTCONSTANTS.pageTitle}
           </Box>
         </Typography>
         <Typography variant="h4">
           <Box style={{ color: '#BFBFBF' }}>
-            Painel de estatísticas da participação dos cidadãos
-            nas propostas legislativas da Câmara dos Deputados.
+            {TEXTCONSTANTS.pageSubTitle}
           </Box>
         </Typography>
       </Box>
@@ -63,7 +61,7 @@ function WikilegisPage({
   return (
     <>
       <Head>
-        <title>Dashboard Wikilegis</title>
+        <title>{TEXTCONSTANTS.pageHTMLTitle}</title>
       </Head>
       <Layout value={2}>
         <Grid container className={classes.root}>
@@ -71,7 +69,6 @@ function WikilegisPage({
             <main className={classes.content}>
               <WikilegisHeader />
               <Wikilegis
-                responseDataRanking={dados}
                 defaultApisData={defaultApisData}
                 apiLastCacheMade={apiLastCacheMade}
                 apiLastCacheMadeHour={apiLastCacheMadeHour}
@@ -114,7 +111,6 @@ export async function getStaticProps() {
 
   return {
     props: {
-      dados: wikilegisRankingData,
       defaultApisData: {
         wikilegisRankingData: wikilegisRankingData.data,
         wikilegisParticipantUsersAPIData: participantsResponse.data,
