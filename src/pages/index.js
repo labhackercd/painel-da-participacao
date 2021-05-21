@@ -165,7 +165,7 @@ function Home({ usersTotal, apiLastCacheMade }) {
   return (
     <div className={classes.root}>
       <Head>
-        <title>Dashboard Audiências</title>
+        <title>Painel da Participação</title>
       </Head>
       <Box className={classes.box}>
         <Box className={classes.boxHeader}>
