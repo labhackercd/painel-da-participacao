@@ -15,9 +15,33 @@ import questionsRankingMock from './mocks/questions_ranking_mock';
 import roomsRankingMock from './mocks/rooms_ranking_mock';
 import votesRankingMock from './mocks/votes_ranking_mock';
 
+// import * as mock from '../../../mocks/audiencias';
+
 const defaultSearchQuery = '?period=monthly&start_date__year=2021&ordering=start_date';
 const yearlySearchQuery = '?period=yearly&ordering=start_date';
 const dailySearchQuery = '?period=daily&start_date__year=2021&start_date__month=4&ordering=start_date';
+
+/*
+                defaultApisData={defaultApisData}
+                apiLastCacheMade={apiLastCacheMade}
+                apiLastCacheMadeHour={apiLastCacheMadeHour}
+
+
+const defaultData = {
+  defaultApisData: {
+    audienciasRankingData: mock.rankingApiMock,
+    audienceParticipantUsersAPIData: participantsResponse.data,
+    audiencesRoomsAPIData: roomsResponseData.data,
+    audienceMessagesAPIData: messagesResponseData.data,
+    audienceNewUsersAPIData: newUsersResponseData.data,
+    audienceQuestionsAPIData: questionsResponseData.data,
+    audienceVotesAPIData: votesResponseData.data,
+  },
+  apiLastCacheMade: format(new Date(), ' dd/LL/yyyy, k:mm', { locale: ptBR }),
+  apiLastCacheMadeHour: (new Date()).toString(),
+}
+*/
+
 
 test('snapshot should not have changes', () => {
   let component;

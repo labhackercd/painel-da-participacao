@@ -11,6 +11,7 @@ const messagesRankingMock = {
         messages: 62,
         month: 4,
         year: 2020,
+        modified: '30/04/2021 14:56',
       },
       {
         start_date: '2021-04-29',
@@ -19,6 +20,7 @@ const messagesRankingMock = {
         messages: 124,
         month: 4,
         year: 2020,
+        modified: '30/04/2021 14:56',
       },
       {
         start_date: '2021-04-30',
@@ -27,6 +29,7 @@ const messagesRankingMock = {
         messages: 27,
         month: 4,
         year: 2020,
+        modified: '30/04/2021 14:56',
       },
     ],
     sum_total_results: 213,
@@ -43,6 +46,7 @@ const messagesRankingMock = {
         messages: 1,
         month: 1,
         year: 2021,
+        modified: '30/04/2021 14:56',
       },
       {
         start_date: '2021-02-01',
@@ -51,6 +55,7 @@ const messagesRankingMock = {
         messages: 24,
         month: 2,
         year: 2021,
+        modified: '30/04/2021 14:56',
       },
       {
         start_date: '2021-03-01',
@@ -59,6 +64,7 @@ const messagesRankingMock = {
         messages: 179,
         month: 3,
         year: 2021,
+        modified: '30/04/2021 14:56',
       },
     ],
     sum_total_results: 204,
@@ -75,6 +81,7 @@ const messagesRankingMock = {
         messages: 87,
         month: 1,
         year: 2016,
+        modified: '30/04/2021 14:56',
       },
       {
         start_date: '2017-01-01',
@@ -83,6 +90,7 @@ const messagesRankingMock = {
         messages: 6107,
         month: 1,
         year: 2017,
+        modified: '30/04/2021 14:56',
       },
       {
         start_date: '2018-01-01',
@@ -91,6 +99,7 @@ const messagesRankingMock = {
         messages: 5247,
         month: 1,
         year: 2018,
+        modified: '30/04/2021 14:56',
       },
       {
         start_date: '2019-01-01',
@@ -99,6 +108,7 @@ const messagesRankingMock = {
         messages: 6597,
         month: 1,
         year: 2019,
+        modified: '30/04/2021 14:56',
       },
       {
         start_date: '2020-01-01',
@@ -107,6 +117,7 @@ const messagesRankingMock = {
         messages: 6954,
         month: 1,
         year: 2020,
+        modified: '30/04/2021 14:56',
       },
       {
         start_date: '2021-01-01',
@@ -115,6 +126,7 @@ const messagesRankingMock = {
         messages: 204,
         month: 1,
         year: 2021,
+        modified: '30/04/2021 14:56',
       },
     ],
     sum_total_results: 25196,

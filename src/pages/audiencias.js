@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function AudienciasPage({
-  dados, defaultApisData, apiLastCacheMade, apiLastCacheMadeHour,
+  defaultApisData, apiLastCacheMade, apiLastCacheMadeHour,
 }) {
   const classes = useStyles();
 
@@ -71,7 +71,6 @@ function AudienciasPage({
             <main className={classes.content}>
               <AudienciasHeader />
               <Audiencias
-                responseDataRanking={dados}
                 defaultApisData={defaultApisData}
                 apiLastCacheMade={apiLastCacheMade}
                 apiLastCacheMadeHour={apiLastCacheMadeHour}
@@ -114,7 +113,6 @@ export async function getStaticProps() {
 
   return {
     props: {
-      dados: audienciasRankingData,
       defaultApisData: {
         audienciasRankingData: audienciasRankingData.data,
         audienceParticipantUsersAPIData: participantsResponse.data,
