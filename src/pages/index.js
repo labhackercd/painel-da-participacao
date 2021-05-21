@@ -84,6 +84,7 @@ const useStyles = makeStyles((theme) => ({
   typographyCaption: {
     fontSize: '1.5rem',
     fontWeight: 'regular',
+    paddingTop: '15px',
     '@media (max-width: 600px)': {
       fontSize: '1rem',
     },
