@@ -1,9 +1,9 @@
 import { filterRankingWikilegis } from '../filterRanking';
-import documentsRanking from './mocks/documentsRanking.mock';
+import * as apiMock from '../../../../mocks/wikilegis/index';
 
 describe('Test filterRankingWikilegis function', () => {
   test('filterRankingWikilegis return data searching by title', async () => {
-    const resultArray = await filterRankingWikilegis(documentsRanking, 'formulação');
+    const resultArray = await filterRankingWikilegis(apiMock.rankingApiMock.data, 'formulação');
     expect(resultArray.length).toBe(1);
   });
 });

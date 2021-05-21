@@ -8,12 +8,6 @@ import MockAdapter from 'axios-mock-adapter';
 import MockTheme from '../../../mocks/theme/mockTheme';
 import Wikilegis from '../index';
 import * as apisMock from '../../../mocks/wikilegis';
-import newUsersMock from './__mocks__/new_users_mock';
-
-import participantesUsersMock from './__mocks__/participants_users_mock';
-import legislativeProposalsMock from './__mocks__/legislative_proposals_mock';
-import votesRankingMock from './__mocks__/votes_ranking_mock';
-import opinionsRankingMock from './__mocks__/opinions_ranking_mock';
 
 const defaultSearchQuery = '?period=yearly&ordering=start_date';
 const monthlySearchQuery = '?period=monthly&start_date__year=2021&ordering=start_date';
