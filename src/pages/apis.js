@@ -306,11 +306,11 @@ function Api() {
                 Participe da comunidade de
                 {' '}
                 <br />
-                desenvolvedores da
+                desenvolvedores e
                 {' '}
                 <br />
                 {' '}
-                Câmara dos Deputados.
+                e hackers cívicos.
               </Typography>
             </Box>
             <Hidden mdDown>
