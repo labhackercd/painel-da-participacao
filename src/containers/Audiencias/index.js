@@ -42,11 +42,7 @@ function Audiencias(props) {
     defaultApisData, apiLastCacheMade, apiLastCacheMadeHour,
   } = props;
   const headerColors = {
-    borderColor: '#DA7F0B',
-    button: {
-      main: '#DA7F0B',
-      hover: '#C47209',
-    },
+    borderColor: TEXTCONSTANTS.pageColor,
   };
 
   const classes = useStyles();

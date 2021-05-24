@@ -1,5 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import { makeStyles } from '@material-ui/core/styles';
+import { lighten } from 'polished';
 
 export const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,9 +14,9 @@ export const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
   },
   filterButton: {
-    backgroundColor: (props) => props.colors.button.main,
+    backgroundColor: (props) => props.colors.borderColor,
     '&:hover': {
-      backgroundColor: (props) => props.colors.button.hover,
+      backgroundColor: (props) => (lighten(0.2, props.colors.borderColor)),
     },
     color: theme.palette.black.primary,
     textTransform: 'capitalize',

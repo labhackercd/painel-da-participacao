@@ -45,11 +45,7 @@ function Wikilegis(props) {
   const TOOLNAME = APPLICATION_OPTIONS.WIKILEGIS_TOOL_NAME;
   const { defaultApisData, apiLastCacheMade, apiLastCacheMadeHour } = props;
   const headerColors = {
-    borderColor: '#00C354',
-    button: {
-      main: '#14D768',
-      hover: '#00612A',
-    },
+    borderColor: TEXTCONSTANTS.pageColor,
   };
 
   const classes = useStyles();
