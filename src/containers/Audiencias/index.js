@@ -81,7 +81,7 @@ function Audiencias(props) {
     audiencesNewUsersAPIData: defaultApisData.audienceNewUsersAPIData,
     audiencesVotesAPIData: defaultApisData.audienceVotesAPIData,
   });
-  const totalAcumuladoUsuariosCadastradosString = 'Total Acumulado de Usuários Cadastrados';
+  const totalAcumuladoUsuariosCadastradosString = TEXTCONSTANTS.usersSectionTexts.subSectionAccumulatedRegisteredUsers.title;
 
   function checkIfCachedDataIsUpdated() {
     const currentDateAndHour = new Date();

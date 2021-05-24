@@ -85,7 +85,7 @@ function Wikilegis(props) {
     wikilegisNewUsersAPIData: defaultApisData.wikilegisNewUsersAPIData,
   });
 
-  const totalAcumuladoUsuariosCadastrados = 'Total Acumulado de Usuários Cadastrados';
+  const totalAcumuladoUsuariosCadastrados = TEXTCONSTANTS.usersSectionTexts.subSectionAccumulatedRegisteredUsers.title;
 
   function computeTotalOfUsersByPeriod(values, period) {
     const computedArray = [];
