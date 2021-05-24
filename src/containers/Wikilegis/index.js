@@ -146,9 +146,9 @@ function Wikilegis(props) {
     const cachedHour = new Date(apiLastCacheMadeHour);
     let diff = (currentDateAndHour.getTime() - cachedHour.getTime()) / 1000;
     diff /= 60;
-    const diffRound = Math.abs(Math.round(diff)); // Return the difference in hour
+    const diffRound = Math.abs(Math.round(diff)); // Return the difference in minutes
 
-    if (diffRound > 2) {
+    if (diffRound > APPLICATION_OPTIONS.SHOW_API_CACHE_ERROR_MESSAGE_LIMIT_TIME) {
       setShowCachedDataAlert(true);
     }
   }

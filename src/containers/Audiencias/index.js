@@ -47,7 +47,6 @@ function Audiencias(props) {
       main: '#DA7F0B',
       hover: '#C47209',
     },
-    // toolTipBackground: '#14D768',
   };
 
   const classes = useStyles();
@@ -91,7 +90,7 @@ function Audiencias(props) {
     diff /= 60;
     const diffRound = Math.abs(Math.round(diff)); // Return the difference in minutes
 
-    if (diffRound > 2) {
+    if (diffRound > APPLICATION_OPTIONS.SHOW_API_CACHE_ERROR_MESSAGE_LIMIT_TIME) {
       setShowCachedDataAlert(true);
     }
   }
