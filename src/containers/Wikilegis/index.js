@@ -45,11 +45,7 @@ function Wikilegis(props) {
   const TOOLNAME = APPLICATION_OPTIONS.WIKILEGIS_TOOL_NAME;
   const { defaultApisData, apiLastCacheMade, apiLastCacheMadeHour } = props;
   const headerColors = {
-    borderColor: '#00C354',
-    button: {
-      main: '#14D768',
-      hover: '#00612A',
-    },
+    borderColor: TEXTCONSTANTS.pageColor,
   };
 
   const classes = useStyles();
@@ -85,7 +81,7 @@ function Wikilegis(props) {
     wikilegisNewUsersAPIData: defaultApisData.wikilegisNewUsersAPIData,
   });
 
-  const totalAcumuladoUsuariosCadastrados = 'Total Acumulado de Usuários Cadastrados';
+  const totalAcumuladoUsuariosCadastrados = TEXTCONSTANTS.usersSectionTexts.subSectionAccumulatedRegisteredUsers.title;
 
   function computeTotalOfUsersByPeriod(values, period) {
     const computedArray = [];
@@ -146,9 +142,9 @@ function Wikilegis(props) {
     const cachedHour = new Date(apiLastCacheMadeHour);
     let diff = (currentDateAndHour.getTime() - cachedHour.getTime()) / 1000;
     diff /= 60;
-    const diffRound = Math.abs(Math.round(diff)); // Return the difference in hour
+    const diffRound = Math.abs(Math.round(diff)); // Return the difference in minutes
 
-    if (diffRound > 2) {
+    if (diffRound > APPLICATION_OPTIONS.SHOW_API_CACHE_ERROR_MESSAGE_LIMIT_TIME) {
       setShowCachedDataAlert(true);
     }
   }

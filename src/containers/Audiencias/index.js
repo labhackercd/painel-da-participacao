@@ -42,12 +42,7 @@ function Audiencias(props) {
     defaultApisData, apiLastCacheMade, apiLastCacheMadeHour,
   } = props;
   const headerColors = {
-    borderColor: '#DA7F0B',
-    button: {
-      main: '#DA7F0B',
-      hover: '#C47209',
-    },
-    // toolTipBackground: '#14D768',
+    borderColor: TEXTCONSTANTS.pageColor,
   };
 
   const classes = useStyles();
@@ -82,16 +77,16 @@ function Audiencias(props) {
     audiencesNewUsersAPIData: defaultApisData.audienceNewUsersAPIData,
     audiencesVotesAPIData: defaultApisData.audienceVotesAPIData,
   });
-  const totalAcumuladoUsuariosCadastradosString = 'Total Acumulado de Usuários Cadastrados';
+  const totalAcumuladoUsuariosCadastradosString = TEXTCONSTANTS.usersSectionTexts.subSectionAccumulatedRegisteredUsers.title;
 
   function checkIfCachedDataIsUpdated() {
     const currentDateAndHour = new Date();
     const cachedHour = new Date(apiLastCacheMadeHour);
     let diff = (currentDateAndHour.getTime() - cachedHour.getTime()) / 1000;
     diff /= 60;
-    const diffRound = Math.abs(Math.round(diff)); // Return the difference in hour
+    const diffRound = Math.abs(Math.round(diff)); // Return the difference in minutes
 
-    if (diffRound > 2) {
+    if (diffRound > APPLICATION_OPTIONS.SHOW_API_CACHE_ERROR_MESSAGE_LIMIT_TIME) {
       setShowCachedDataAlert(true);
     }
   }

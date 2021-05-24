@@ -16,3 +16,7 @@ export const DEFAULT_SELECTED_PERIOD_TYPE = 'yearly'; // Get all months of the y
 export const DEFAULT_MONTH_PERIOD = '0'; // All months option
 export const DEFAULT_YEAR_PERIOD = '0'; // All years options
 export const DEFAULT_SEARCH_QUERY = '?period=yearly&ordering=start_date'; // Query that get informations of all years
+
+// =================== API's ================
+export const REFRESH_API_CACHE_DATA_INTERVAL = 3600; // In seconds. (3600 seconds = 1 hour)
+export const SHOW_API_CACHE_ERROR_MESSAGE_LIMIT_TIME = 120; // In minutes (120 minutes = 2 hours)

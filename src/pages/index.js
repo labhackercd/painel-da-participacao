@@ -13,6 +13,8 @@ import Carousel from '../components/Carousel/index';
 import formatNumberWithDots from '../utils/format/numbers/formatNumbersWithDots/formatNumberWithDots';
 import logoParticipa from '../assets/images/logos/logo_participa.svg';
 
+import { REFRESH_API_CACHE_DATA_INTERVAL } from '../settings/applicationOptions/index';
+
 import { useStyles } from '../styles/pages/indexPageStyle';
 
 function Home({ usersTotal, apiLastCacheMade }) {
@@ -112,7 +114,7 @@ export async function getStaticProps() {
       usersTotal: usersTotal.sum_total_results,
       apiLastCacheMade: (usersTotal.results[0].modified).split(' ')[0],
     },
-    revalidate: 43200, // Update data every 12 hour(43200 seconds)
+    revalidate: REFRESH_API_CACHE_DATA_INTERVAL, // Default 3600 seconds
   };
 }
 
