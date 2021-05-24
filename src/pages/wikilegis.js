@@ -10,7 +10,7 @@ import {
 } from '@material-ui/core/';
 import { format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
-import { DEFAULT_SEARCH_QUERY } from '../settings/applicationOptions/index';
+import { DEFAULT_SEARCH_QUERY, REFRESH_API_CACHE_DATA_INTERVAL } from '../settings/applicationOptions/index';
 import Layout from '../layouts/index';
 import Wikilegis from '../containers/Wikilegis';
 import * as TEXTCONSTANTS from '../settings/texts/WikilegisPage';
@@ -122,7 +122,7 @@ export async function getStaticProps() {
       apiLastCacheMade: format(new Date(), ' dd/LL/yyyy, k:mm', { locale: ptBR }),
       apiLastCacheMadeHour: (new Date()).toString(),
     },
-    revalidate: 3600, // Update data every hour (3600 seconds)
+    revalidate: REFRESH_API_CACHE_DATA_INTERVAL, // Default 3600 seconds
   };
 }
 

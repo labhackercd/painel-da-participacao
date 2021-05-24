@@ -89,7 +89,7 @@ function Audiencias(props) {
     const cachedHour = new Date(apiLastCacheMadeHour);
     let diff = (currentDateAndHour.getTime() - cachedHour.getTime()) / 1000;
     diff /= 60;
-    const diffRound = Math.abs(Math.round(diff)); // Return the difference in hour
+    const diffRound = Math.abs(Math.round(diff)); // Return the difference in minutes
 
     if (diffRound > 2) {
       setShowCachedDataAlert(true);
