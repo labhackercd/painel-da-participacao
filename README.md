@@ -118,7 +118,10 @@ Caso deseje alterar a fonte dos dados que serão obtidos na plataforma é necess
 
 #### Parâmetros personalizáveis
 Outros parâmetros da aplicação podem ser personalizados, como textos, títulos de seções, padrões inicias para obtenção dos dados e etc...
+
 Essas personalizações podem ser feitas atualizando as constantes presentes na pasta **settings**, localizada dentro da pasta /src da aplicação.
 
-![settings](https://user-images.githubusercontent.com/20937190/119523077-db59de80-bd52-11eb-8497-99af15000083.png)
+<div align="center">
+    <img src="https://user-images.githubusercontent.com/20937190/119523077-db59de80-bd52-11eb-8497-99af15000083.png" alt="" />
+</div>
 
