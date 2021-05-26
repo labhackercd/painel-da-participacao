@@ -45,7 +45,7 @@ function ApiCard(props) {
   } = props;
   const githubIconHelpText = `Ir para página do Github do ${title} `;
   const apiIconHelpText = `Ir para página de API's do ${title}`;
-  const siteIconHelpText = `Ir para o repositório do ${title}`;
+  const siteIconHelpText = `Ir para o site do ${title}`;
 
   return (
     <Grid item md={4} sm={6} xs={12}>

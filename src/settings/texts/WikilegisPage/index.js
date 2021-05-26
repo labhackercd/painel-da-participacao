@@ -30,7 +30,7 @@ export const wikilegisTotalsSectionTexts = {
   },
   subSectionVotesTotals: {
     title: 'Votos nas Opiniões',
-    toolTip: '?',
+    toolTip: 'O total mostra a soma dos votos favoráveis, neutros e contrários.',
     toolTipAriaLabel: 'Informação sobre o termo votos',
   },
 };

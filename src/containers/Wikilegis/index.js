@@ -184,7 +184,7 @@ function Wikilegis(props) {
       const dataJson = {
         participants_total: formatNumberWithDots(apisDataObject.wikilegisParticipantAPIData.sum_total_results),
         legis_propo_total: formatNumberWithDots(apisDataObject.wikilegisLegislativeProposalsAPIData.sum_total_results),
-        opinions_total: formatNumberWithDots(apisDataObject.wikilegisLegislativeProposalsAPIData.sum_total_results),
+        opinions_total: formatNumberWithDots(apisDataObject.wikilegisOpinionsAPIData.sum_total_results),
         votes_total: formatNumberWithDots(apisDataObject.wikilegisVotesAPIData.sum_total_results),
       };
 
