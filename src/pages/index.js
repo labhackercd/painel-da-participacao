@@ -32,20 +32,13 @@ function Home({ usersTotal, apiLastCacheMade }) {
         <Box className={classes.boxContent}>
           <Box className={classes.bannerBox}>
             <Box className={classes.bannerBoxText}>
+              <Typography>
+                Logo
+              </Typography>
               <Typography className={`${classes.typography} ${classes.typograhyTitle}`}>
                 Painel da Participação
               </Typography>
             </Box>
-            <Hidden mdDown>
-              <Box className={classes.bannerBoxParticipaLogo}>
-                <Image
-                  src={logoParticipa}
-                  alt="Logotipo do LABHacker"
-                  width={700}
-                  height={700}
-                />
-              </Box>
-            </Hidden>
           </Box>
           <Box className={classes.boxGridContainer}>
             <Grid container>
