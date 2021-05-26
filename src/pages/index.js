@@ -1,11 +1,10 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-await-in-loop */
 import React from 'react';
-import Image from 'next/image';
 import Head from 'next/head';
 import axios from 'axios';
 import {
-  Grid, Typography, Hidden, Box,
+  Grid, Typography, Box,
 } from '@material-ui/core';
 import PageNavbar from '../layouts/navbar';
 import Footer from '../components/Footer/index';
@@ -31,21 +30,17 @@ function Home({ usersTotal, apiLastCacheMade }) {
         </Box>
         <Box className={classes.boxContent}>
           <Box className={classes.bannerBox}>
+            <Box className={classes.bannerBoxParticipaLogo}>
+              <img
+                src={logoParticipa}
+                alt="Logotipo do LABHacker"
+              />
+            </Box>
             <Box className={classes.bannerBoxText}>
               <Typography className={`${classes.typography} ${classes.typograhyTitle}`}>
                 Painel da Participação
               </Typography>
             </Box>
-            <Hidden mdDown>
-              <Box className={classes.bannerBoxParticipaLogo}>
-                <Image
-                  src={logoParticipa}
-                  alt="Logotipo do LABHacker"
-                  width={700}
-                  height={700}
-                />
-              </Box>
-            </Hidden>
           </Box>
           <Box className={classes.boxGridContainer}>
             <Grid container>

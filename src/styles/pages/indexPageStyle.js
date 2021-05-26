@@ -1,5 +1,9 @@
+/* eslint-disable max-len */
 /* eslint-disable import/prefer-default-export */
 import { makeStyles } from '@material-ui/core/styles';
+import bannerBackgroundImg from '../../assets/images/initialPage/bannerBlur.png';
+
+// const linearGradient = ' linear-gradient(90deg, rgba(228, 56, 180, 0.3) 0%, rgba(245, 157, 42, 0.3) 32.29%, rgba(17, 129, 233, 0.3) 63.54%, rgba(20, 215, 104, 0.3) 100%);';
 
 export const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,32 +34,39 @@ export const useStyles = makeStyles((theme) => ({
     width: '100%',
     display: 'flex',
     height: '250px',
+    backgroundImage: `url(${bannerBackgroundImg})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: '100% 100%',
     '@media (min-width: 2200px)': {
       height: '400px',
     },
     '@media (max-width: 600px)': {
       height: '200px',
+      flexDirection: 'column',
     },
-    background: ' linear-gradient(90deg, rgba(228, 56, 180, 0.3) 0%, rgba(245, 157, 42, 0.3) 32.29%, rgba(17, 129, 233, 0.3) 63.54%, rgba(20, 215, 104, 0.3) 100%);',
   },
   bannerBoxText: {
     height: '100%',
     display: 'flex',
     alignItems: 'center',
     flexGrow: 1,
-    paddingLeft: '2vh',
-    '@media (min-width: 1100px)': {
-      paddingLeft: '10vh',
+    '@media (max-width: 600px)': {
+      width: '100%',
+      justifyContent: 'center',
     },
   },
   bannerBoxParticipaLogo: {
-    width: '10%',
     height: '100%',
     display: 'flex',
     alignItems: 'center',
-    marginRight: '40vh',
-    '@media (max-width: 2200px)': {
-      marginRight: '20vh',
+    paddingLeft: '2vh',
+    marginRight: '2rem',
+    '@media (max-width: 600px)': {
+      width: '100%',
+      justifyContent: 'center',
+    },
+    '@media (min-width: 1100px)': {
+      paddingLeft: '10vh',
     },
   },
   typography: {
