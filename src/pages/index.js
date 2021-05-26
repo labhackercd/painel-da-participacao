@@ -31,10 +31,13 @@ function Home({ usersTotal, apiLastCacheMade }) {
         </Box>
         <Box className={classes.boxContent}>
           <Box className={classes.bannerBox}>
+          <Box className={classes.bannerBoxParticipaLogo}>
+                <img
+                  src={logoParticipa}
+                  alt="Logotipo do LABHacker"
+                />
+              </Box>
             <Box className={classes.bannerBoxText}>
-              <Typography>
-                Logo
-              </Typography>
               <Typography className={`${classes.typography} ${classes.typograhyTitle}`}>
                 Painel da Participação
               </Typography>
