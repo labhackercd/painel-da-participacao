@@ -4,6 +4,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import {
   Grid, Box, Typography,
 } from '@material-ui/core';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import Tooltips from '../../ToolTip/index';
 import { useStyles } from './style';
 
@@ -62,10 +63,16 @@ export default function TotalFrame(props) {
             </Typography>
           </Box>
           { subInformation !== '' && (
-            <Box>
-              <Typography align="center" variant="h5" style={{ color: '#FFF', alignSelf: 'center' }} noWrap>
-                {subInformation}
-              </Typography>
+            <Box width="100%" display="flex" alignItems="center" justifyContent="center">
+              <Box marginRight="10px">
+                <CheckCircleIcon fontSize="small" style={{ color: toolTipColor }} />
+              </Box>
+              <Box>
+                <Typography align="center" style={{ color: '#FFF', alignSelf: 'center', fontSize: '1rem' }} noWrap>
+                  {subInformation}
+                </Typography>
+              </Box>
+
             </Box>
           )}
 
