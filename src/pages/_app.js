@@ -48,6 +48,7 @@ export default function MyApp(props) {
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
+        <link rel="icon" type="image/svg+xml" href={`${process.env.NEXT_PUBLIC_APPLICATION_BASE_PATH_URL}/favicon.svg`} />
       </Head>
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
