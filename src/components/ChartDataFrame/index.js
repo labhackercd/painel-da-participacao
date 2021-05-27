@@ -88,7 +88,7 @@ export default function ChartDataFrame(props) {
             {`API ${tool}`}
           </a>
 
-          {`  Atualizado em: ${apiLastUpdate}`}
+          {`  Dados consolidados em: ${apiLastUpdate}`}
         </Typography>
       </Box>
     </Grid>

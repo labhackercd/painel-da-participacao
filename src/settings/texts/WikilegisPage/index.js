@@ -20,7 +20,7 @@ export const wikilegisTotalsSectionTexts = {
   },
   subSectionLegislativeProposalsTotals: {
     title: 'Propostas Legislativas',
-    toolTip: 'O número refere-se a audiências canceladas e realizadas, mas também inclui outros tipos de eventos - seminários, reuniões, etc.',
+    toolTip: 'Propostas legislativas, disponibilizadas para receber opiniões dos cidadãos, de todos os tipos, a exemplo de Projetos de Lei, Resoluções, Atos da Mesa, etc.',
     toolTipAriaLabel: 'Informação sobre o termo propostas legislativas.',
   },
   subSectionOpinionsTotals: {

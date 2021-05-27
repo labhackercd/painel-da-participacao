@@ -83,10 +83,11 @@ function WikilegisPage({
 
 export async function getStaticProps() {
   let wikilegisRankingData = [];
+  const formatedQueryDate = format(new Date(), 'yyyy-LL-dd', { locale: ptBR });
 
   async function getWikilegisRankingData() {
     const results = [];
-    let url = `${process.env.NEXT_PUBLIC_WIKILEGIS_DOCUMENTS_RANKING_URL}?limit=500`;
+    let url = `${process.env.NEXT_PUBLIC_WIKILEGIS_DOCUMENTS_RANKING_URL}?limit=500&closing_date__lt=${formatedQueryDate}`;
 
     try {
       do {
