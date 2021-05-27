@@ -6,7 +6,6 @@ import Head from 'next/head';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import Image from 'next/image';
 import PageNavbar from '../layouts/navbar';
 import Footer from '../components/Footer/index';
 
@@ -90,7 +89,7 @@ function Custom404() {
             </Typography>
           </Box>
           <Box>
-            <Image
+            <img
               src={error404Image}
               alt=""
               width="700px"
