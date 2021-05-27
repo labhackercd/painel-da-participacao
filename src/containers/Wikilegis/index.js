@@ -5,7 +5,7 @@
 import React, { useState, useEffect } from 'react';
 import { Grid, Box } from '@material-ui/core';
 import PropTypes from 'prop-types';
-import axios from 'axios';
+import { apiInstance } from '../../services/api/apiInstance';
 import {
   getWikilegisParticipationChartDataByDay,
   getWikilegisParticipationChartDataByMonth,
@@ -151,7 +151,7 @@ function Wikilegis(props) {
 
   async function fetchDataFromApi(apiUrl, query) {
     try {
-      const axiosResponse = await axios.get(`${apiUrl}${query}`);
+      const axiosResponse = await apiInstance.get(`${apiUrl}${query}`);
       return axiosResponse.data;
     } catch (e) {
       throw new Error(`Erro ao obter dados da api ${apiUrl}`);

@@ -2,10 +2,10 @@
 /* eslint-disable no-await-in-loop */
 import React from 'react';
 import Head from 'next/head';
-import axios from 'axios';
 import {
   Grid, Typography, Box,
 } from '@material-ui/core';
+import { apiInstance } from '../services/api/apiInstance';
 import PageNavbar from '../layouts/navbar';
 import Footer from '../components/Footer/index';
 import Carousel from '../components/Carousel/index';
@@ -94,7 +94,7 @@ export async function getStaticProps() {
     const url = `${process.env.NEXT_PUBLIC_EDEMOCRACIA_REPORT_RANKING_USERS_URL}?period=yearly`;
 
     try {
-      const resp = await axios.get(url);
+      const resp = await apiInstance.get(url);
       const respData = await resp.data;
       return respData;
     } catch (err) {

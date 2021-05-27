@@ -4,12 +4,12 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import Head from 'next/head';
-import axios from 'axios';
 import {
   makeStyles, Grid, Container, Box, Typography,
 } from '@material-ui/core/';
 import { format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
+import { apiInstance } from '../services/api/apiInstance';
 import Layout from '../layouts/index';
 import { DEFAULT_SEARCH_QUERY, REFRESH_API_CACHE_DATA_INTERVAL } from '../settings/applicationOptions/index';
 import * as TEXTCONSTANTS from '../settings/texts/AudienciasPage';
@@ -91,7 +91,7 @@ export async function getStaticProps() {
     let url = `${process.env.NEXT_PUBLIC_AUDIENCIAS_REPORT_RANKING_URL}?limit=500`;
     try {
       do {
-        const resp = await axios.get(url);
+        const resp = await apiInstance.get(url);
         const data = await resp.data;
         url = data.next;
         results.push(...data.results);
@@ -104,12 +104,12 @@ export async function getStaticProps() {
   }
 
   audienciasRankingData = await getAudienciasRankingData();
-  const participantsResponse = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_PARTICIPANT_USERS_URL}${DEFAULT_SEARCH_QUERY}`);
-  const roomsResponseData = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_ROOMS_RANKING_URL}${DEFAULT_SEARCH_QUERY}`);
-  const messagesResponseData = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_MESSAGES_RANKING_URL}${DEFAULT_SEARCH_QUERY}`);
-  const questionsResponseData = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_QUESTIONS_RANKING_URL}${DEFAULT_SEARCH_QUERY}`);
-  const newUsersResponseData = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_NEW_USERS_URL}${DEFAULT_SEARCH_QUERY}`);
-  const votesResponseData = await axios.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_VOTES_RANKING_URL}${DEFAULT_SEARCH_QUERY}`);
+  const participantsResponse = await apiInstance.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_PARTICIPANT_USERS_URL}${DEFAULT_SEARCH_QUERY}`);
+  const roomsResponseData = await apiInstance.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_ROOMS_RANKING_URL}${DEFAULT_SEARCH_QUERY}`);
+  const messagesResponseData = await apiInstance.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_MESSAGES_RANKING_URL}${DEFAULT_SEARCH_QUERY}`);
+  const questionsResponseData = await apiInstance.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_QUESTIONS_RANKING_URL}${DEFAULT_SEARCH_QUERY}`);
+  const newUsersResponseData = await apiInstance.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_NEW_USERS_URL}${DEFAULT_SEARCH_QUERY}`);
+  const votesResponseData = await apiInstance.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_VOTES_RANKING_URL}${DEFAULT_SEARCH_QUERY}`);
 
   return {
     props: {

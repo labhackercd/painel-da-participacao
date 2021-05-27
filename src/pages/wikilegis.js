@@ -4,12 +4,12 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import Head from 'next/head';
-import axios from 'axios';
 import {
   makeStyles, Grid, Container, Box, Typography,
 } from '@material-ui/core/';
 import { format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
+import { apiInstance } from '../services/api/apiInstance';
 import { DEFAULT_SEARCH_QUERY, REFRESH_API_CACHE_DATA_INTERVAL } from '../settings/applicationOptions/index';
 import Layout from '../layouts/index';
 import Wikilegis from '../containers/Wikilegis';
@@ -90,7 +90,7 @@ export async function getStaticProps() {
 
     try {
       do {
-        const resp = await axios.get(url);
+        const resp = await apiInstance.get(url);
         const data = await resp.data;
         url = data.next;
         results.push(...data.results);
@@ -103,11 +103,11 @@ export async function getStaticProps() {
   }
 
   wikilegisRankingData = await getWikilegisRankingData();
-  const participantsResponse = await axios.get(`${process.env.NEXT_PUBLIC_WIKILEGIS_PARTICIPANT_USERS_URL}${DEFAULT_SEARCH_QUERY}`);
-  const legislativeProposalsResponseData = await axios.get(`${process.env.NEXT_PUBLIC_WIKILEGIS_LEGISLATIVE_PROPOSALS_URL}${DEFAULT_SEARCH_QUERY}`);
-  const opinionsResponseData = await axios.get(`${process.env.NEXT_PUBLIC_WIKILEGIS_OPINIONS_URL}${DEFAULT_SEARCH_QUERY}`);
-  const votesResponseData = await axios.get(`${process.env.NEXT_PUBLIC_WIKILEGIS_VOTES_URL}${DEFAULT_SEARCH_QUERY}`);
-  const newUsersResponseData = await axios.get(`${process.env.NEXT_PUBLIC_WIKILEGIS_NEW_USERS_URL}${DEFAULT_SEARCH_QUERY}`);
+  const participantsResponse = await apiInstance.get(`${process.env.NEXT_PUBLIC_WIKILEGIS_PARTICIPANT_USERS_URL}${DEFAULT_SEARCH_QUERY}`);
+  const legislativeProposalsResponseData = await apiInstance.get(`${process.env.NEXT_PUBLIC_WIKILEGIS_LEGISLATIVE_PROPOSALS_URL}${DEFAULT_SEARCH_QUERY}`);
+  const opinionsResponseData = await apiInstance.get(`${process.env.NEXT_PUBLIC_WIKILEGIS_OPINIONS_URL}${DEFAULT_SEARCH_QUERY}`);
+  const votesResponseData = await apiInstance.get(`${process.env.NEXT_PUBLIC_WIKILEGIS_VOTES_URL}${DEFAULT_SEARCH_QUERY}`);
+  const newUsersResponseData = await apiInstance.get(`${process.env.NEXT_PUBLIC_WIKILEGIS_NEW_USERS_URL}${DEFAULT_SEARCH_QUERY}`);
 
   return {
     props: {
