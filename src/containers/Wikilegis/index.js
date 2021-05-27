@@ -246,29 +246,33 @@ function Wikilegis(props) {
     let arrayData = [];
     let collumPeriodTitle = [];
 
-    switch (period) {
-      case dailyKeyWord:
-        arrayData = values.map(
-          (value) => [value.start_date.match(/\d+/g)[2], value.new_users],
-        );
-        collumPeriodTitle = ['Dia', 'Novos Usuários'];
-        break;
-      case monthlyKeyWord:
-        arrayData = values.map(
-          (value) => [monthNamesList[(new Date(value.end_date)).getMonth()], value.new_users],
-        );
-        collumPeriodTitle = ['Mês', 'Novos Usuários'];
-        break;
-      default:
-        arrayData = values.map(
-          (value) => [new Date(value.end_date).getFullYear().toString(), value.new_users],
-        );
-        collumPeriodTitle = ['Ano', 'Novos Usuários'];
-        break;
+    try{
+      switch (period) {
+        case dailyKeyWord:
+          arrayData = values.map(
+            (value) => [value.start_date.match(/\d+/g)[2], value.new_users],
+          );
+          collumPeriodTitle = ['Dia', 'Novos Usuários'];
+          break;
+        case monthlyKeyWord:
+          arrayData = values.map(
+            (value) => [monthNamesList[(new Date(value.end_date)).getMonth()], value.new_users],
+          );
+          collumPeriodTitle = ['Mês', 'Novos Usuários'];
+          break;
+        default:
+          arrayData = values.map(
+            (value) => [new Date(value.end_date).getFullYear().toString(), value.new_users],
+          );
+          collumPeriodTitle = ['Ano', 'Novos Usuários'];
+          break;
+      }
+      setNewUsersChartDataLastUpdate(values[0].modified);
+    } catch (e) {
+      arrayData = [];
     }
 
     if (arrayData.length > 0) {
-      setNewUsersChartDataLastUpdate(values[0].modified);
       setNewUsersChartData([collumPeriodTitle].concat(arrayData));
     } else {
       setNewUsersChartData(arrayData);

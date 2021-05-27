@@ -269,6 +269,7 @@ function Audiencias(props) {
           collumPeriodTitle = ['Ano', 'Novos Usuários'];
           break;
       }
+      setNewUsersChartDataLastUpdate(values[0].modified);
     } catch (e) {
       arrayData = [];
     }
@@ -610,7 +611,7 @@ function Audiencias(props) {
                 data={totalUsersChartData}
                 chartType={audiencesChartsUsersSettings.chartType}
                 chartOptions={audiencesChartsUsersSettings.options}
-                apiLastUpdate={totalUsersChartDataLastUpdate}
+                apiLastUpdate={newUsersChartDataLastUpdate}
                 tool={TOOLNAME}
               />
             </div>
@@ -618,7 +619,7 @@ function Audiencias(props) {
             <NoDataForSelectedPeriod
               title={periodSubTitle}
               tool={TOOLNAME}
-              apiLastUpdate={totalUsersChartDataLastUpdate}
+              apiLastUpdate={newUsersChartDataLastUpdate}
               toolColor={headerColors.borderColor}
               apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
             />
