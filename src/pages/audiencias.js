@@ -97,7 +97,7 @@ export async function getStaticProps() {
         results.push(...data.results);
       } while (url);
 
-      return { data: results, lastUpdate: format(new Date(), ' dd/LL/yyyy, k:m', { locale: ptBR }) };
+      return { data: results, lastUpdate: format(new Date(), ' dd/LL/yyyy, kk:mm', { locale: ptBR }) };
     } catch (err) {
       return [];
     }
@@ -122,7 +122,7 @@ export async function getStaticProps() {
         audienceQuestionsAPIData: questionsResponseData.data,
         audienceVotesAPIData: votesResponseData.data,
       },
-      apiLastCacheMade: format(new Date(), ' dd/LL/yyyy, k:mm', { locale: ptBR }),
+      apiLastCacheMade: format(new Date(), ' dd/LL/yyyy, kk:mm', { locale: ptBR }),
       apiLastCacheMadeHour: (new Date()).toString(),
     },
     revalidate: REFRESH_API_CACHE_DATA_INTERVAL, // Default is 3600 seconds

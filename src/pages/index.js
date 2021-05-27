@@ -5,6 +5,8 @@ import Head from 'next/head';
 import {
   Grid, Typography, Box,
 } from '@material-ui/core';
+import { format, subDays } from 'date-fns';
+import ptBR from 'date-fns/locale/pt-BR';
 import { apiInstance } from '../services/api/apiInstance';
 import PageNavbar from '../layouts/navbar';
 import Footer from '../components/Footer/index';
@@ -62,7 +64,7 @@ function Home({ usersTotal, apiLastCacheMade }) {
                       ferramentas de participação pelos cidadãos.
                     </Typography>
                     <Typography className={`${classes.typography} ${classes.typographyCaption}`}>
-                      * Dados atualizados em
+                      * Dados consolidades até
                       {' '}
                       {apiLastCacheMade}
                     </Typography>
@@ -107,7 +109,7 @@ export async function getStaticProps() {
   return {
     props: {
       usersTotal: usersTotal.sum_total_results,
-      apiLastCacheMade: (usersTotal.results[0].modified).split(' ')[0],
+      apiLastCacheMade: format(subDays(new Date(), 1), ' dd/LL/yyyy', { locale: ptBR }),
     },
     revalidate: REFRESH_API_CACHE_DATA_INTERVAL, // Default 3600 seconds
   };
