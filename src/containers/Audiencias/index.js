@@ -5,7 +5,6 @@
 import React, { useState, useEffect } from 'react';
 import { Grid, Box } from '@material-ui/core';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import { apiInstance } from '../../services/api/apiInstance';
 import {
   AlertCachedData, ChartDataFrame, Header, RankingTable, TotalFrame, SectionHeader, SubSectionHeader,

@@ -3,8 +3,8 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
-import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
+import { apiInstance } from '../../../services/api/apiInstance';
 import MockTheme from '../../../mocks/theme/mockTheme';
 import Wikilegis from '../index';
 import * as apisMock from '../../../mocks/wikilegis';
@@ -60,7 +60,7 @@ test('Test if Wikilegis renders without crash whole lifecycle', async () => {
 });
 
 test('Default page lifecycle is getting default informations of period by month of year 2021 and getting all years information ', async () => {
-  const mockInstance = new MockAdapter(axios);
+  const mockInstance = new MockAdapter(apiInstance);
   mockInstance
     .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_PARTICIPANT_USERS_URL}${yearlySearchQuery}`)
     .reply(200, apisMock.participantsApiMock.MONTHLY)
@@ -140,7 +140,7 @@ test('Default page lifecycle is getting default informations of period by month 
 });
 
 test('Wikilegis page lifecycle is getting informations of days of specific month', async () => {
-  const mockInstance = new MockAdapter(axios);
+  const mockInstance = new MockAdapter(apiInstance);
   mockInstance
     .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_PARTICIPANT_USERS_URL}${monthlySearchQuery}`)
     .reply(200, apisMock.participantsApiMock.MONTHLY)
@@ -195,7 +195,7 @@ test('Wikilegis page lifecycle is getting informations of days of specific month
 });
 
 test('Wikilegis page lifecycle is getting informations with no values', async () => {
-  const mockInstance = new MockAdapter(axios);
+  const mockInstance = new MockAdapter(apiInstance);
   mockInstance
     .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_PARTICIPANT_USERS_URL}${defaultSearchQuery}`)
     .reply(200, [])
