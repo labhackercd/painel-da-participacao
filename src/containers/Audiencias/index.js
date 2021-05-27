@@ -5,7 +5,9 @@
 import React, { useState, useEffect } from 'react';
 import { Grid, Box } from '@material-ui/core';
 import PropTypes from 'prop-types';
-import axios from 'axios';
+import { format, subDays } from 'date-fns';
+import ptBR from 'date-fns/locale/pt-BR';
+import { apiInstance } from '../../services/api/apiInstance';
 import {
   AlertCachedData, ChartDataFrame, Header, RankingTable, TotalFrame, SectionHeader, SubSectionHeader,
   NoDataForSelectedPeriod, ChartAndReport,
@@ -58,12 +60,7 @@ function Audiencias(props) {
   const [totalsAreLoaded, setTotalsAreLoaded] = useState(false);
   const [newUsersChartDataLoaded, setNewUsersChartDataLoaded] = useState(false);
   const [totalUsersChartDataLoaded, setTotalUsersChartDataLoaded] = useState(false);
-  // Information states
-  const [periodSubTitle, setPeriodSubTitle] = useState(`${audienceInitialYear} a ${currentYear}`);
-  const [participantionChartDataLastUpdate, setParticipantionChartDataLastUpdate] = useState(apiLastCacheMade);
-  const roomsRankingDataLastUpdate = apiLastCacheMade;
-  const [totalUsersChartDataLastUpdate, setTotalUsersChartDataLastUpdate] = useState(apiLastCacheMade);
-  const [newUsersChartDataLastUpdate, setNewUsersChartDataLastUpdate] = useState(apiLastCacheMade);
+
   // Period Selected states
   const [selectedPeriod, setSelectedPeriod] = useState(defaultSelectedPeriodType);
   const [selectedYear, setSelectedYear] = useState(defaultYearPeriod);
@@ -77,6 +74,13 @@ function Audiencias(props) {
     audiencesNewUsersAPIData: defaultApisData.audienceNewUsersAPIData,
     audiencesVotesAPIData: defaultApisData.audienceVotesAPIData,
   });
+
+  // Information states
+  const [periodSubTitle, setPeriodSubTitle] = useState(`${audienceInitialYear} a ${currentYear}`);
+  const apiLastConsolidateOfDataDate = showCachedDataAlert
+    ? format(subDays(new Date(apiLastCacheMadeHour), 1), ' dd/LL/yyyy', { locale: ptBR }) // Show the data of last cache
+    : format(subDays(new Date(), 1), ' dd/LL/yyyy', { locale: ptBR });
+
   const totalAcumuladoUsuariosCadastradosString = TEXTCONSTANTS.usersSectionTexts.subSectionAccumulatedRegisteredUsers.title;
 
   function checkIfCachedDataIsUpdated() {
@@ -93,7 +97,7 @@ function Audiencias(props) {
 
   async function fetchDataFromApi(apiUrl, query) {
     try {
-      const axiosResponse = await axios.get(`${apiUrl}${query}`);
+      const axiosResponse = await apiInstance.get(`${apiUrl}${query}`);
       return axiosResponse.data;
     } catch (e) {
       throw new Error(`Erro ao obter dados da api ${apiUrl}`);
@@ -164,7 +168,6 @@ function Audiencias(props) {
             collumPeriodTitle = [['Ano', totalAcumuladoUsuariosCadastradosString]];
             break;
         }
-        setTotalUsersChartDataLastUpdate(values[0].modified);
       } else {
         collumPeriodTitle = [];
       }
@@ -174,22 +177,6 @@ function Audiencias(props) {
     }
     setTotalUsersChartData(collumPeriodTitle.concat(computedArray));
     setTotalUsersChartDataLoaded(true);
-  }
-
-  function getApiLastUpdateDateAndHour(messagesData, questionsData, questionsVoteData) {
-    let lastUpdate = '';
-
-    if (messagesData.length > 0) {
-      lastUpdate = messagesData[0].modified;
-    } else if (questionsData.length > 0) {
-      lastUpdate = questionsData[0].modified;
-    } else if (questionsVoteData.length > 0) {
-      lastUpdate = questionsVoteData[0].modified;
-    } else {
-      lastUpdate = '-';
-    }
-
-    return lastUpdate;
   }
 
   async function filterAndSetRoomsRankingData(period, month, year) {
@@ -274,7 +261,6 @@ function Audiencias(props) {
     }
 
     if (arrayData.length > 0) {
-      // setNewUsersChartDataLastUpdate(values[0].modified); TROCAR POR LAST CACHE MADE
       setNewUsersChartData([collumPeriodTitle].concat(arrayData));
     } else {
       setNewUsersChartData(arrayData); // TALVEZ TROCAR POR FALSE
@@ -344,9 +330,6 @@ function Audiencias(props) {
 
       if (arrayData.length > 0) {
         setParticipantionChartData([collumPeriodTitle].concat(arrayData));
-        setParticipantionChartDataLastUpdate(
-          getApiLastUpdateDateAndHour(messagesData, questionsData, questionsVoteData),
-        );
       } else {
         setParticipantionChartData(arrayData);
       }
@@ -504,7 +487,7 @@ function Audiencias(props) {
               data={participantionChartData}
               chartType={audiencesWithMoreParticipation.chartType}
               chartOptions={audiencesWithMoreParticipation.options}
-              apiLastUpdate={participantionChartDataLastUpdate}
+              apiLastUpdate={apiLastConsolidateOfDataDate}
               tool={TOOLNAME}
               isLoaded
             />
@@ -512,7 +495,7 @@ function Audiencias(props) {
             <NoDataForSelectedPeriod
               title={periodSubTitle}
               tool={TOOLNAME}
-              apiLastUpdate={totalUsersChartDataLastUpdate}
+              apiLastUpdate={apiLastConsolidateOfDataDate}
               toolColor={headerColors.borderColor}
               apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
             />
@@ -534,7 +517,7 @@ function Audiencias(props) {
               listView
               align="center"
               apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
-              apiLastUpdate={roomsRankingDataLastUpdate}
+              apiLastUpdate={apiLastConsolidateOfDataDate}
               tool={TOOLNAME}
               exportData={roomsRankingData}
               download
@@ -553,7 +536,7 @@ function Audiencias(props) {
             <NoDataForSelectedPeriod
               title={periodSubTitle}
               tool={TOOLNAME}
-              apiLastUpdate={totalUsersChartDataLastUpdate}
+              apiLastUpdate={apiLastConsolidateOfDataDate}
               toolColor={headerColors.borderColor}
               apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
             />
@@ -582,7 +565,7 @@ function Audiencias(props) {
                 chartOptions={audiencesChartsUsersSettings.options}
                 exportData={newUsersChartData}
                 download
-                apiLastUpdate={newUsersChartDataLastUpdate}
+                apiLastUpdate={apiLastConsolidateOfDataDate}
                 tool={TOOLNAME}
               />
             </div>
@@ -590,7 +573,7 @@ function Audiencias(props) {
             <NoDataForSelectedPeriod
               title={periodSubTitle}
               tool={TOOLNAME}
-              apiLastUpdate={totalUsersChartDataLastUpdate}
+              apiLastUpdate={apiLastConsolidateOfDataDate}
               toolColor={headerColors.borderColor}
               apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
             />
@@ -610,7 +593,7 @@ function Audiencias(props) {
                 data={totalUsersChartData}
                 chartType={audiencesChartsUsersSettings.chartType}
                 chartOptions={audiencesChartsUsersSettings.options}
-                apiLastUpdate={totalUsersChartDataLastUpdate}
+                apiLastUpdate={apiLastConsolidateOfDataDate}
                 tool={TOOLNAME}
               />
             </div>
@@ -618,7 +601,7 @@ function Audiencias(props) {
             <NoDataForSelectedPeriod
               title={periodSubTitle}
               tool={TOOLNAME}
-              apiLastUpdate={totalUsersChartDataLastUpdate}
+              apiLastUpdate={apiLastConsolidateOfDataDate}
               toolColor={headerColors.borderColor}
               apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
             />

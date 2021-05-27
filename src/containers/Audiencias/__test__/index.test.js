@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
-import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
+import { apiInstance } from '../../../services/api/apiInstance';
 import MockTheme from '../../../mocks/theme/mockTheme';
 import Audiencias from '../index';
 import * as apisMock from '../../../mocks/audiencias';
@@ -59,7 +59,7 @@ test('Test if Audiencias renders without crash whole lifecycle', () => {
 });
 
 test('Default page lifecycle is getting default informations of period by month of year 2021 and getting all years information ', async () => {
-  const mockInstance = new MockAdapter(axios);
+  const mockInstance = new MockAdapter(apiInstance);
   mockInstance
     .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_PARTICIPANT_USERS_URL}${yearlySearchQuery}`)
     .reply(200, apisMock.participantsApiMock.YEARLY)
@@ -142,7 +142,7 @@ test('Default page lifecycle is getting default informations of period by month 
 });
 
 test('Audiencia page lifecycle is getting informations of days of specific month', async () => {
-  const mockInstance = new MockAdapter(axios);
+  const mockInstance = new MockAdapter(apiInstance);
   mockInstance
 
     .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_PARTICIPANT_USERS_URL}${dailySearchQuery}`)
@@ -189,7 +189,7 @@ test('Audiencia page lifecycle is getting informations of days of specific month
 });
 
 test('Audiencia page lifecycle is getting informations with no values', async () => {
-  const mockInstance = new MockAdapter(axios);
+  const mockInstance = new MockAdapter(apiInstance);
   mockInstance
     .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_PARTICIPANT_USERS_URL}${yearlySearchQuery}`)
     .reply(200, [])
@@ -248,7 +248,7 @@ test('Audiencia page lifecycle is getting informations with no values', async ()
 });
 
 test('Audiencia page lifecycle returning error at totals', async () => {
-  const mockInstance = new MockAdapter(axios);
+  const mockInstance = new MockAdapter(apiInstance);
   mockInstance
     .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_PARTICIPANT_USERS_URL}${yearlySearchQuery}`)
     .reply(400, [])
@@ -276,7 +276,7 @@ test('Audiencia page lifecycle returning error at totals', async () => {
 });
 
 test('Audiencia page lifecycle test to get last update from questions', async () => {
-  const mockInstance = new MockAdapter(axios);
+  const mockInstance = new MockAdapter(apiInstance);
   mockInstance
     .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_PARTICIPANT_USERS_URL}${yearlySearchQuery}`)
     .reply(200, [])

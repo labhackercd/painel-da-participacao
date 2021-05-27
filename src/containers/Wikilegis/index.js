@@ -5,7 +5,9 @@
 import React, { useState, useEffect } from 'react';
 import { Grid, Box } from '@material-ui/core';
 import PropTypes from 'prop-types';
-import axios from 'axios';
+import { format, subDays } from 'date-fns';
+import ptBR from 'date-fns/locale/pt-BR';
+import { apiInstance } from '../../services/api/apiInstance';
 import {
   getWikilegisParticipationChartDataByDay,
   getWikilegisParticipationChartDataByMonth,
@@ -26,7 +28,6 @@ import * as APPLICATION_CONSTANTS from '../../utils/constants/index';
 import { audiencesChartsUsersSettings, audiencesWithMoreParticipation } from './settings/chartsSettings';
 import { rankingWikilegisColumns, rankingWikilegisHeaders } from './settings/rankingSettings';
 import { filterRankingWikilegis } from './auxFunctions/filterRanking';
-import { getApiLastUpdateDateAndHour } from './auxFunctions/getApiLastUpdateDateAndHour';
 import { useStyles } from './style';
 import customTheme from '../../styles/theme';
 
@@ -61,12 +62,6 @@ function Wikilegis(props) {
   const [totalsAreLoaded, setTotalsAreLoaded] = useState(false);
   const [newUsersChartDataLoaded, setNewUsersChartDataLoaded] = useState(false);
   const [totalUsersChartDataLoaded, setTotalUsersChartDataLoaded] = useState(false);
-  // Information states
-  const [periodSubTitle, setPeriodSubTitle] = useState(`${wikilegisInitialYear} a ${currentYear}`);
-  const [participantionChartDataLastUpdate, setParticipantionChartDataLastUpdate] = useState(apiLastCacheMade);
-  const roomsRankingDataLastUpdate = apiLastCacheMade;
-  // const [totalUsersChartDataLastUpdate, setTotalUsersChartDataLastUpdate] = useState(apiLastCacheMade);
-  const [newUsersChartDataLastUpdate, setNewUsersChartDataLastUpdate] = useState(apiLastCacheMade);
   // Period Selected states
   const [selectedPeriod, setSelectedPeriod] = useState(defaultSelectedPeriodType);
   const [selectedYear, setSelectedYear] = useState(defaultYearPeriod);
@@ -80,6 +75,12 @@ function Wikilegis(props) {
     wikilegisVotesAPIData: defaultApisData.wikilegisVotesAPIData,
     wikilegisNewUsersAPIData: defaultApisData.wikilegisNewUsersAPIData,
   });
+
+  // Information states
+  const [periodSubTitle, setPeriodSubTitle] = useState(`${wikilegisInitialYear} a ${currentYear}`);
+  const apiLastConsolidateOfDataDate = showCachedDataAlert
+    ? format(subDays(new Date(apiLastCacheMadeHour), 1), ' dd/LL/yyyy', { locale: ptBR }) // Show the data of last cache
+    : format(subDays(new Date(), 1), ' dd/LL/yyyy', { locale: ptBR });
 
   const totalAcumuladoUsuariosCadastrados = TEXTCONSTANTS.usersSectionTexts.subSectionAccumulatedRegisteredUsers.title;
 
@@ -151,7 +152,7 @@ function Wikilegis(props) {
 
   async function fetchDataFromApi(apiUrl, query) {
     try {
-      const axiosResponse = await axios.get(`${apiUrl}${query}`);
+      const axiosResponse = await apiInstance.get(`${apiUrl}${query}`);
       return axiosResponse.data;
     } catch (e) {
       throw new Error(`Erro ao obter dados da api ${apiUrl}`);
@@ -229,15 +230,11 @@ function Wikilegis(props) {
 
       if (arrayData.length > 0) {
         setParticipantionChartData([collumPeriodTitle].concat(arrayData));
-        setParticipantionChartDataLastUpdate(
-          getApiLastUpdateDateAndHour(opinionsData, voteData),
-        );
       } else {
         setParticipantionChartData(arrayData);
       }
     } catch (e) {
       setParticipantionChartData([]);
-      setParticipantionChartDataLastUpdate(apiLastCacheMade);
     }
   }
 
@@ -246,29 +243,32 @@ function Wikilegis(props) {
     let arrayData = [];
     let collumPeriodTitle = [];
 
-    switch (period) {
-      case dailyKeyWord:
-        arrayData = values.map(
-          (value) => [value.start_date.match(/\d+/g)[2], value.new_users],
-        );
-        collumPeriodTitle = ['Dia', 'Novos Usuários'];
-        break;
-      case monthlyKeyWord:
-        arrayData = values.map(
-          (value) => [monthNamesList[(new Date(value.end_date)).getMonth()], value.new_users],
-        );
-        collumPeriodTitle = ['Mês', 'Novos Usuários'];
-        break;
-      default:
-        arrayData = values.map(
-          (value) => [new Date(value.end_date).getFullYear().toString(), value.new_users],
-        );
-        collumPeriodTitle = ['Ano', 'Novos Usuários'];
-        break;
+    try {
+      switch (period) {
+        case dailyKeyWord:
+          arrayData = values.map(
+            (value) => [value.start_date.match(/\d+/g)[2], value.new_users],
+          );
+          collumPeriodTitle = ['Dia', 'Novos Usuários'];
+          break;
+        case monthlyKeyWord:
+          arrayData = values.map(
+            (value) => [monthNamesList[(new Date(value.end_date)).getMonth()], value.new_users],
+          );
+          collumPeriodTitle = ['Mês', 'Novos Usuários'];
+          break;
+        default:
+          arrayData = values.map(
+            (value) => [new Date(value.end_date).getFullYear().toString(), value.new_users],
+          );
+          collumPeriodTitle = ['Ano', 'Novos Usuários'];
+          break;
+      }
+    } catch (e) {
+      arrayData = [];
     }
 
     if (arrayData.length > 0) {
-      setNewUsersChartDataLastUpdate(values[0].modified);
       setNewUsersChartData([collumPeriodTitle].concat(arrayData));
     } else {
       setNewUsersChartData(arrayData);
@@ -512,7 +512,7 @@ function Wikilegis(props) {
             title={periodSubTitle}
             chartClasses={classes}
             chartSettings={audiencesWithMoreParticipation}
-            apiLastUpdate={participantionChartDataLastUpdate}
+            apiLastUpdate={apiLastConsolidateOfDataDate}
             toolName={TOOLNAME}
             color={headerColors.borderColor}
             apiUrl={process.env.NEXT_PUBLIC_WIKILEGIS_SWAGGER_URL}
@@ -534,7 +534,7 @@ function Wikilegis(props) {
               listView
               align="center"
               apiUrl={process.env.NEXT_PUBLIC_WIKILEGIS_SWAGGER_URL}
-              apiLastUpdate={roomsRankingDataLastUpdate}
+              apiLastUpdate={apiLastConsolidateOfDataDate}
               tool={TOOLNAME}
               section="Report"
               exportData={roomsRankingData}
@@ -553,7 +553,7 @@ function Wikilegis(props) {
             <NoDataForSelectedPeriod
               title={periodSubTitle}
               tool={TOOLNAME}
-              apiLastUpdate={roomsRankingDataLastUpdate}
+              apiLastUpdate={apiLastConsolidateOfDataDate}
               toolColor={headerColors.borderColor}
               apiUrl={process.env.NEXT_PUBLIC_WIKILEGIS_SWAGGER_URL}
             />
@@ -582,7 +582,7 @@ function Wikilegis(props) {
             title={periodSubTitle}
             chartClasses={classes}
             chartSettings={audiencesChartsUsersSettings}
-            apiLastUpdate={newUsersChartDataLastUpdate}
+            apiLastUpdate={apiLastConsolidateOfDataDate}
             toolName={TOOLNAME}
             color={headerColors.borderColor}
             apiUrl={process.env.NEXT_PUBLIC_WIKILEGIS_SWAGGER_URL}
@@ -602,7 +602,7 @@ function Wikilegis(props) {
             title={periodSubTitle}
             chartClasses={classes}
             chartSettings={audiencesChartsUsersSettings}
-            apiLastUpdate={newUsersChartDataLastUpdate}
+            apiLastUpdate={apiLastConsolidateOfDataDate}
             toolName={TOOLNAME}
             color={headerColors.borderColor}
             apiUrl={process.env.NEXT_PUBLIC_WIKILEGIS_SWAGGER_URL}
