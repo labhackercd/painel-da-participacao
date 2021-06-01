@@ -111,7 +111,7 @@ export async function getStaticProps() {
       usersTotal: usersTotal.sum_total_results,
       apiLastCacheMade: format(subDays(new Date(), 1), ' dd/LL/yyyy', { locale: ptBR }),
     },
-    revalidate: REFRESH_API_CACHE_DATA_INTERVAL, // Default 3600 seconds
+    revalidate: REFRESH_API_CACHE_DATA_INTERVAL,
   };
 }
 

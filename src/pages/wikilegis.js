@@ -123,7 +123,7 @@ export async function getStaticProps() {
       apiLastCacheMade: format(new Date(), ' dd/LL/yyyy, kk:mm', { locale: ptBR }),
       apiLastCacheMadeHour: (new Date()).toString(),
     },
-    revalidate: REFRESH_API_CACHE_DATA_INTERVAL, // Default 3600 seconds
+    revalidate: REFRESH_API_CACHE_DATA_INTERVAL,
   };
 }
 
