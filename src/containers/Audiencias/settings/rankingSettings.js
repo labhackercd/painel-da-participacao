@@ -27,11 +27,10 @@ export const rankingAudienciaColumns = [
   },
   {
     name: 'Status',
-    selector: (row) => (row.is_active ? 'Realizada' : 'Cancelada'),
+    selector: 'audience_status',
     sortable: true,
     maxWidth: '100px',
     center: true,
-    cell: (row) => (row.is_active ? 'Realizada' : 'Cancelada'),
   },
   {
     name: 'Data',
@@ -88,7 +87,7 @@ export const rankingAudienciaColumns = [
 export const rankingAudienciasHeaders = [
   { label: 'Título da Reunião', key: 'title_reunion' },
   { label: 'Tema da Reunião', key: 'reunion_theme' },
-  { label: 'Proposta Legislativa', key: 'legislative_body_initials' },
+  { label: 'Comissão', key: 'legislative_body_initials' },
   { label: 'Data', key: 'date' },
   { label: 'Número de Mensagens', key: 'messages_count' },
   { label: 'Número de Perguntas', key: 'questions_count' },
@@ -96,5 +95,5 @@ export const rankingAudienciasHeaders = [
   { label: 'Número de Participantes', key: 'participants_count' },
   { label: 'Número de Perguntas', key: 'questions_count' },
   { label: 'URL', key: 'get_absolute_url' },
-  { label: 'Audiência Aconteceu', key: 'is_active' },
+  { label: 'Status', key: 'audience_status' },
 ];
