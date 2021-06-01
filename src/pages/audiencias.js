@@ -86,6 +86,10 @@ function AudienciasPage({
 export async function getStaticProps() {
   let audienciasRankingData = [];
 
+  function removeCSVEscapeCharacters(text) {
+    return text.replace(/"/g, "'");
+  }
+
   async function getAudienciasRankingData() {
     const results = [];
     let url = `${process.env.NEXT_PUBLIC_AUDIENCIAS_REPORT_RANKING_URL}?limit=500`;
@@ -94,10 +98,17 @@ export async function getStaticProps() {
         const resp = await apiInstance.get(url);
         const data = await resp.data;
         url = data.next;
-        results.push(...data.results);
-      } while (url);
+        const dataToFormat = [...data.results];
+        const formatedData = await dataToFormat.map((item) => ({
+          ...item,
+          title_reunion: item.title_reunion ? removeCSVEscapeCharacters(item.title_reunion) : null,
+          reunion_theme: item.reunion_theme ? removeCSVEscapeCharacters(item.reunion_theme) : null,
+          audience_status: item.is_active ? 'Realizada' : 'Cancelada',
+        }));
 
-      return { data: results, lastUpdate: format(new Date(), ' dd/LL/yyyy, kk:mm', { locale: ptBR }) };
+        results.push(...formatedData);
+      } while (url);
+      return { data: results };
     } catch (err) {
       return [];
     }
