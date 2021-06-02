@@ -10,7 +10,7 @@ import ptBR from 'date-fns/locale/pt-BR';
 import { apiInstance } from '../../services/api/apiInstance';
 import {
   AlertCachedData, ChartDataFrame, Header, RankingTable, TotalFrame, SectionHeader, SubSectionHeader,
-  NoDataForSelectedPeriod, ChartAndReport,
+  NoDataForSelectedPeriod, ChartAndReport, AlertDataConsolidateInterval,
 } from '../../components';
 import { handleUpdatePeriodSearchQuery } from '../../services/functions/handlers/index';
 import formatNumberWithDots from '../../utils/format/numbers/formatNumbersWithDots/formatNumberWithDots';
@@ -417,6 +417,8 @@ function Audiencias(props) {
         { showCachedDataAlert && (
           <AlertCachedData apiLastCacheMade={apiLastCacheMade} />
         )}
+
+        <AlertDataConsolidateInterval />
 
         <Grid item xs={12}>
           <SectionHeader

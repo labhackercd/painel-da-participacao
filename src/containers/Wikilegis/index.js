@@ -18,7 +18,7 @@ import { handleUpdatePeriodSearchQuery } from '../../services/functions/handlers
 
 import {
   AlertCachedData, ChartDataFrame, Header, RankingTable, TotalFrame, SectionHeader, SubSectionHeader,
-  NoDataForSelectedPeriod, ChartAndReport,
+  NoDataForSelectedPeriod, ChartAndReport, AlertDataConsolidateInterval,
 } from '../../components';
 import formatNumberWithDots from '../../utils/format/numbers/formatNumbersWithDots/formatNumberWithDots';
 
@@ -444,6 +444,8 @@ function Wikilegis(props) {
         { showCachedDataAlert && (
           <AlertCachedData apiLastCacheMade={apiLastCacheMade} />
         )}
+
+        <AlertDataConsolidateInterval />
 
         <Grid item xs={12}>
           <SectionHeader

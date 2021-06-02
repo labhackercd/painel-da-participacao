@@ -11,9 +11,11 @@ import SubSectionHeader from './Headers/SubSectionHeader';
 import TableDarkTheme from './TableDarkTheme/index';
 import ToolTip from './ToolTip/index';
 import TotalFrame from './Frames/TotalFrame';
+import AlertDataConsolidateInterval from './AlertDataConsolidateInterval/index';
 
 export {
   AlertCachedData, ChartAndReport, ChartDataFrame, GoogleChart, Footer,
   Header, NoDataForSelectedPeriod, RankingTable, SectionHeader,
   SubSectionHeader, TableDarkTheme, ToolTip, TotalFrame,
+  AlertDataConsolidateInterval,
 };
