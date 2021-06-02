@@ -10,7 +10,7 @@ export const useStyles = makeStyles((theme) => ({
   paper: {
     display: 'flex',
     flexWrap: 'wrap',
-    background: '#9F8EF7',
+    background: theme.palette.alert.dataConsolidateBackground,
     color: 'black',
     '@media (max-width: 600px)': {
       width: '90%',

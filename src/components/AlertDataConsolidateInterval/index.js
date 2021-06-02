@@ -41,7 +41,8 @@ export default function AlertDataConsolidateInterval() {
               ATENÇÃO: Consolidação de dados em andamento. Durante o processamento pode haver divergência ou inconsistência em alguns resultados. Previsão de conclusão:
               {' '}
               {END_TIME_OF_DATA_CONSOLIDATION}
-              .
+              {' '}
+              no horário de Brasília.
             </Typography>
           </Box>
         </Paper>

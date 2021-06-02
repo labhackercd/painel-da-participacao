@@ -92,6 +92,7 @@ const theme = createMuiTheme(
       },
       alert: {
         background: '#F5632A',
+        dataConsolidateBackground: '#9F8EF7',
       },
     },
   },

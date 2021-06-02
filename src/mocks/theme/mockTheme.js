@@ -96,6 +96,7 @@ export default function MockTheme({ children }) {
         },
         alert: {
           background: '#F5632A',
+          dataConsolidateBackground: '#9F8EF7',
         },
       },
     },
