@@ -5,36 +5,17 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 import Head from 'next/head';
 import {
-  makeStyles, Grid, Container, Box, Typography,
+  Grid, Container, Box, Typography,
 } from '@material-ui/core/';
 import { format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
-import { apiInstance } from '../services/api/apiInstance';
-import { DEFAULT_SEARCH_QUERY, REFRESH_API_CACHE_DATA_INTERVAL } from '../settings/applicationOptions/index';
-import Layout from '../layouts/index';
-import Wikilegis from '../containers/Wikilegis';
-import * as TEXTCONSTANTS from '../settings/texts/WikilegisPage';
+import { apiInstance } from '../../services/api/apiInstance';
+import { DEFAULT_SEARCH_QUERY, REFRESH_API_CACHE_DATA_INTERVAL } from '../../settings/applicationOptions/index';
+import Layout from '../../layouts/index';
+import Wikilegis from '../../containers/Wikilegis';
+import * as TEXTCONSTANTS from '../../settings/texts/WikilegisPage';
 
-const useStyles = makeStyles((theme) => ({
-  body: {
-    backgroundColor: theme.palette.primary.main,
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  root: {
-    display: 'flex',
-  },
-  content: {
-    flexGrow: 1,
-    padding: '2.5rem 0 0 0',
-  },
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    height: '100%',
-    padding: '0 0 2rem 0',
-  },
-}));
+import { useStyles } from './style';
 
 function WikilegisPage({
   defaultApisData, apiLastCacheMade, apiLastCacheMadeHour,
