@@ -90,7 +90,7 @@ export async function getStaticProps() {
       } while (url);
       return { data: results };
     } catch (err) {
-      return [];
+      return { data: [] };
     }
   }
 
