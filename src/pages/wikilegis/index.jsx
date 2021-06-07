@@ -80,10 +80,9 @@ export async function getStaticProps() {
 
       return { data: results, lastUpdate: format(new Date(), ' dd/LL/yyyy, kk:mm', { locale: ptBR }) };
     } catch (err) {
-      return [];
+      return { data: [] };
     }
   }
-
   wikilegisRankingData = await getWikilegisRankingData();
   const participantsResponse = await apiInstance.get(`${process.env.NEXT_PUBLIC_WIKILEGIS_PARTICIPANT_USERS_URL}${DEFAULT_SEARCH_QUERY}`);
   const legislativeProposalsResponseData = await apiInstance.get(`${process.env.NEXT_PUBLIC_WIKILEGIS_LEGISLATIVE_PROPOSALS_URL}${DEFAULT_SEARCH_QUERY}`);
