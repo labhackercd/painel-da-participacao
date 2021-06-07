@@ -9,13 +9,13 @@ import {
 } from '@material-ui/core/';
 import { format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
-import { apiInstance } from '../../services/api/apiInstance';
-import { DEFAULT_SEARCH_QUERY, REFRESH_API_CACHE_DATA_INTERVAL } from '../../settings/applicationOptions/index';
-import Layout from '../../layouts/index';
-import Wikilegis from '../../containers/Wikilegis';
-import * as TEXTCONSTANTS from '../../settings/texts/WikilegisPage';
+import { apiInstance } from '../services/api/apiInstance';
+import { DEFAULT_SEARCH_QUERY, REFRESH_API_CACHE_DATA_INTERVAL } from '../settings/applicationOptions/index';
+import Layout from '../layouts/index';
+import Wikilegis from '../containers/Wikilegis';
+import * as TEXTCONSTANTS from '../settings/texts/WikilegisPage';
 
-import { useStyles } from './style';
+import { useStyles } from '../styles/pages/wikilegisPageStyle';
 
 function WikilegisPage({
   defaultApisData, apiLastCacheMade, apiLastCacheMadeHour,

@@ -5,11 +5,11 @@ import React from 'react';
 import Head from 'next/head';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import PageNavbar from '../../layouts/navbar';
-import Footer from '../../components/Footer/index';
+import PageNavbar from '../layouts/navbar';
+import Footer from '../components/Footer/index';
 
-import error500Image from '../../assets/images/informations/500_image.png';
-import { useStyles } from './style';
+import error500Image from '../assets/images/informations/500_image.png';
+import { useStyles } from '../styles/pages/500PageStyle';
 
 function Custom500() {
   const classes = useStyles();

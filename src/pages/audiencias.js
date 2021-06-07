@@ -9,12 +9,12 @@ import {
 } from '@material-ui/core/';
 import { format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
-import { apiInstance } from '../../services/api/apiInstance';
-import Layout from '../../layouts/index';
-import { DEFAULT_SEARCH_QUERY, REFRESH_API_CACHE_DATA_INTERVAL } from '../../settings/applicationOptions/index';
-import * as TEXTCONSTANTS from '../../settings/texts/AudienciasPage';
-import Audiencias from '../../containers/Audiencias';
-import { useStyles } from './style';
+import { apiInstance } from '../services/api/apiInstance';
+import Layout from '../layouts/index';
+import { DEFAULT_SEARCH_QUERY, REFRESH_API_CACHE_DATA_INTERVAL } from '../settings/applicationOptions/index';
+import * as TEXTCONSTANTS from '../settings/texts/AudienciasPage';
+import Audiencias from '../containers/Audiencias';
+import { useStyles } from '../styles/pages/audienciasPageStyle';
 
 function AudienciasPage({
   defaultApisData, apiLastCacheMade, apiLastCacheMadeHour,

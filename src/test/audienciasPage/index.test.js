@@ -7,10 +7,10 @@ import MockAdapter from 'axios-mock-adapter';
 import { screen, fireEvent } from '@testing-library/react';
 import { format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
-import { apiInstance } from '../../../services/api/apiInstance';
-import MockTheme from '../../../mocks/theme/mockTheme';
-import AudienciasPage, { getStaticProps } from '../index';
-import * as apisMock from '../../../mocks/audiencias';
+import { apiInstance } from '../../services/api/apiInstance';
+import MockTheme from '../../mocks/theme/mockTheme';
+import AudienciasPage, { getStaticProps } from '../../pages/audiencias/index';
+import * as apisMock from '../../mocks/audiencias';
 
 const yearlySearchQuery = '?period=yearly&ordering=start_date';
 const defaultPropsData = {

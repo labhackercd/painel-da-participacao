@@ -6,11 +6,11 @@ import Image from 'next/image';
 // import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { Typography, Hidden, Box } from '@material-ui/core';
-import PageNavbar from '../../layouts/navbar';
-import Footer from '../../components/Footer/index';
-import { useStyles } from './styles';
+import PageNavbar from '../layouts/navbar';
+import Footer from '../components/Footer/index';
+import { useStyles } from '../styles/pages/sobrePageStyle';
 
-import logoParticipa from '../../assets/images/logos/logo_participa.svg';
+import logoParticipa from '../assets/images/logos/logo_participa.svg';
 
 function SectionHeader(props) {
   const classes = useStyles();

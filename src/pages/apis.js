@@ -13,12 +13,12 @@ import {
   GitHub as GitHubIcon,
   Language as LanguageIcon,
 } from '@material-ui/icons';
-import PageNavbar from '../../layouts/navbar';
-import Footer from '../../components/Footer';
-import logoLABHacker from '../../assets/images/logos/logo_lab.svg';
+import PageNavbar from '../layouts/navbar';
+import Footer from '../components/Footer';
+import logoLABHacker from '../assets/images/logos/logo_lab.svg';
 
 // CSS in JS file
-import { useStyles } from './style';
+import { useStyles } from '../styles/pages/apisPageStyle';
 
 function IconLink(props) {
   const classes = useStyles();

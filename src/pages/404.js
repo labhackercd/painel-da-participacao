@@ -5,11 +5,11 @@ import React from 'react';
 import Head from 'next/head';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import PageNavbar from '../../layouts/navbar';
-import Footer from '../../components/Footer/index';
+import PageNavbar from '../layouts/navbar';
+import Footer from '../components/Footer/index';
 
-import { useStyles } from './style';
-import error404Image from '../../assets/images/informations/404_image.png';
+import { useStyles } from '../styles/pages/404PageStyle';
+import error404Image from '../assets/images/informations/404_image.png';
 
 function Custom404() {
   const classes = useStyles();
