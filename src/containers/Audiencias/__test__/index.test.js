@@ -13,7 +13,7 @@ const dailySearchQuery = '?period=daily&start_date__year=2021&start_date__month=
 
 const defaultPropsData = {
   defaultApisData: {
-    audienciasRankingData: apisMock.rankingApiMock,
+    audienciasRankingData: apisMock.rankingApiMock.data,
     audienceParticipantUsersAPIData: apisMock.participantsApiMock.YEARLY,
     audiencesRoomsAPIData: apisMock.roomsApiMock.YEARLY,
     audienceMessagesAPIData: apisMock.messagesApiMock.YEARLY,
