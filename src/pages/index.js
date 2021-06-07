@@ -98,17 +98,16 @@ export async function getStaticProps() {
     try {
       const resp = await apiInstance.get(url);
       const respData = await resp.data;
-      return respData;
+      return respData.sum_total_results;
     } catch (err) {
       return '-';
     }
   }
 
-  const usersTotal = await getData();
-
+  const usersTotalData = await getData();
   return {
     props: {
-      usersTotal: usersTotal.sum_total_results,
+      usersTotal: usersTotalData,
       apiLastCacheMade: format(subDays(new Date(), 1), ' dd/LL/yyyy', { locale: ptBR }),
     },
     revalidate: REFRESH_API_CACHE_DATA_INTERVAL,
