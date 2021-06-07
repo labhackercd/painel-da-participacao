@@ -66,8 +66,8 @@ const rankingApiMock = {
       is_active: false,
     },
     {
-      title_reunion: 'ESPORTE',
-      reunion_theme: null,
+      title_reunion: null,
+      reunion_theme: 'ESPORTE',
       reunion_type: 'Mesa Redonda',
       legislative_body_initials: 'CESPO',
       date: '2017-04-18',
@@ -93,7 +93,7 @@ const rankingApiMock = {
     },
     {
       title_reunion: 'ESPORTE',
-      reunion_theme: null,
+      reunion_theme: '',
       reunion_type: 'Audiência Pública',
       legislative_body_initials: 'CESPO',
       date: '2021-04-19',

@@ -4,8 +4,9 @@ import participantsApiMock from './participantsApiMock';
 import opinionsApiMock from './opinionsApiMock';
 import rankingApiMock from './rankingApiMock';
 import votesApiMock from './votesApiMock';
+import rankingApiResponseMock from './rankingApiResponseMock';
 
 export {
   legislativeProposalsMock, newUsersApiMock, participantsApiMock,
-  opinionsApiMock, rankingApiMock, votesApiMock,
+  opinionsApiMock, rankingApiMock, votesApiMock, rankingApiResponseMock,
 };

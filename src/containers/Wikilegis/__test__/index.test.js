@@ -16,7 +16,7 @@ const dailySearchQuery = '?period=daily&start_date__year=2021&start_date__month=
 
 const defaultPropsData = {
   defaultApisData: {
-    wikilegisRankingData: apisMock.rankingApiMock.YEARLY,
+    wikilegisRankingData: apisMock.rankingApiMock.data,
     wikilegisParticipantUsersAPIData: apisMock.participantsApiMock.YEARLY,
     wikilegisLegislativeProposalsAPIData: apisMock.legislativeProposalsMock.YEARLY,
     wikilegisOpinionsAPIData: apisMock.opinionsApiMock.YEARLY,

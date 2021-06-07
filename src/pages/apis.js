@@ -5,20 +5,20 @@ import React from 'react';
 import Image from 'next/image';
 // import PropTypes from 'prop-types';
 import Head from 'next/head';
-import Typography from '@material-ui/core/Typography';
-import Hidden from '@material-ui/core/Hidden';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import Paper from '@material-ui/core/Paper';
-import SettingsEthernetIcon from '@material-ui/icons/SettingsEthernet';
-import GitHubIcon from '@material-ui/icons/GitHub';
-import LanguageIcon from '@material-ui/icons/Language';
+import {
+  Typography, Hidden, Grid, Box, Paper,
+} from '@material-ui/core';
+import {
+  SettingsEthernet as SettingsEthernetIcon,
+  GitHub as GitHubIcon,
+  Language as LanguageIcon,
+} from '@material-ui/icons';
 import PageNavbar from '../layouts/navbar';
-import Footer from '../components/Footer/index';
+import Footer from '../components/Footer';
 import logoLABHacker from '../assets/images/logos/logo_lab.svg';
 
 // CSS in JS file
-import { useStyles } from '../styles/pages/apiPageStyle';
+import { useStyles } from '../styles/pages/apisPageStyle';
 
 function IconLink(props) {
   const classes = useStyles();

@@ -71,7 +71,9 @@
       "!*.mock.js",
       "!lib/googleAnalytics/gtag.js",
       "!src/pages/_app.js",
-      "!src/pages/_document.js"
+      "!src/pages/_document.js",
+      "!src/components/index.js",
+      "!src/mocks/**"
     ]
   }
 }

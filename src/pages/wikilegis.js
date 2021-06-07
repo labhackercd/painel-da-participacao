@@ -5,7 +5,7 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 import Head from 'next/head';
 import {
-  makeStyles, Grid, Container, Box, Typography,
+  Grid, Container, Box, Typography,
 } from '@material-ui/core/';
 import { format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
@@ -15,26 +15,7 @@ import Layout from '../layouts/index';
 import Wikilegis from '../containers/Wikilegis';
 import * as TEXTCONSTANTS from '../settings/texts/WikilegisPage';
 
-const useStyles = makeStyles((theme) => ({
-  body: {
-    backgroundColor: theme.palette.primary.main,
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  root: {
-    display: 'flex',
-  },
-  content: {
-    flexGrow: 1,
-    padding: '2.5rem 0 0 0',
-  },
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    height: '100%',
-    padding: '0 0 2rem 0',
-  },
-}));
+import { useStyles } from '../styles/pages/wikilegisPageStyle';
 
 function WikilegisPage({
   defaultApisData, apiLastCacheMade, apiLastCacheMadeHour,
@@ -99,10 +80,9 @@ export async function getStaticProps() {
 
       return { data: results, lastUpdate: format(new Date(), ' dd/LL/yyyy, kk:mm', { locale: ptBR }) };
     } catch (err) {
-      return [];
+      return { data: [] };
     }
   }
-
   wikilegisRankingData = await getWikilegisRankingData();
   const participantsResponse = await apiInstance.get(`${process.env.NEXT_PUBLIC_WIKILEGIS_PARTICIPANT_USERS_URL}${DEFAULT_SEARCH_QUERY}`);
   const legislativeProposalsResponseData = await apiInstance.get(`${process.env.NEXT_PUBLIC_WIKILEGIS_LEGISLATIVE_PROPOSALS_URL}${DEFAULT_SEARCH_QUERY}`);
