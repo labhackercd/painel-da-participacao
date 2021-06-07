@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import MockTheme from '../../mocks/theme/mockTheme';
-import Sobre from '../../pages/sobre/index';
+import Sobre from '../../pages/sobre';
 
 test('Snapshot Sobre page should not have changes', () => {
   const component = mount(<MockTheme><Sobre /></MockTheme>);

@@ -9,7 +9,7 @@ import { format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import { apiInstance } from '../../services/api/apiInstance';
 import MockTheme from '../../mocks/theme/mockTheme';
-import AudienciasPage, { getStaticProps } from '../../pages/audiencias/index';
+import AudienciasPage, { getStaticProps } from '../../pages/audiencias';
 import * as apisMock from '../../mocks/audiencias';
 
 const yearlySearchQuery = '?period=yearly&ordering=start_date';
