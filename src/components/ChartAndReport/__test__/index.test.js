@@ -29,7 +29,22 @@ const audiencesWithMoreParticipation = {
 const participantionChartDataLastUpdate = '11/03/2021 14:34';
 
 test('snapshot should not have changes', () => {
-  const component = shallow(<MockTheme><ChartAndReport /></MockTheme>);
+  const component = shallow(
+    <MockTheme>
+      <ChartAndReport
+        height="60vh"
+        download
+        exportData={participantionChartData}
+        title={periodSubTitle}
+        data={participantionChartData}
+        chartType={audiencesWithMoreParticipation.chartType}
+        chartOptions={audiencesWithMoreParticipation.options}
+        apiLastUpdate={participantionChartDataLastUpdate}
+        tool={TOOLNAME}
+        isLoaded
+      />
+    </MockTheme>,
+  );
   expect(component.exists()).toEqual(true);
   expect(component).toMatchSnapshot();
 });
