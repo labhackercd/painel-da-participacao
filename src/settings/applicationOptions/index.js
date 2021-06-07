@@ -22,5 +22,5 @@ export const REFRESH_API_CACHE_DATA_INTERVAL = 1800; // In seconds. (3600 second
 export const SHOW_API_CACHE_ERROR_MESSAGE_LIMIT_TIME = 120; // In minutes (120 minutes = 2 hours)
 
 // =============== HOUR SETTINGS ===============
-export const START_TIME_OF_DATA_CONSOLIDATION = '01:00'; // In 24h format, in the format hh:mm
-export const END_TIME_OF_DATA_CONSOLIDATION = '02:30'; // In 24h format, in the format hh:mm
+export const START_TIME_OF_DATA_CONSOLIDATION = '1:00'; // In 24h format, in the format h:mm
+export const END_TIME_OF_DATA_CONSOLIDATION = '2:30'; // In 24h format, in the format h:mm
