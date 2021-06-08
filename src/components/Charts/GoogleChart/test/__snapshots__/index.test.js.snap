@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test Bar Chart Snapshot of GoogleChart should not have changes 1`] = `ReactWrapper {}`;
