@@ -51,7 +51,6 @@ test('Test page render get data from getStaticProps', async () => {
   expect(response).not.toBe(null);
   expect(response).not.toBe(undefined);
   expect(response.props.usersTotal).toBe(83458);
-  expect(response.props.apiLastCacheMade).toBe(' 06/06/2021');
 });
 
 test('Test page render get data from getStaticProps with error in getDocumentsData', async () => {
@@ -65,5 +64,4 @@ test('Test page render get data from getStaticProps with error in getDocumentsDa
   expect(response).not.toBe(null);
   expect(response).not.toBe(undefined);
   expect(response.props.usersTotal).toBe('-');
-  expect(response.props.apiLastCacheMade).toBe(' 06/06/2021');
 });
