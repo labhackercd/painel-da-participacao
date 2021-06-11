@@ -44,12 +44,23 @@ export default function MyApp(props) {
     <>
       <Head>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+        <meta NAME="language" CONTENT="pt-br" />
+        <meta name="robots" content="noindex,nofollow" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
         <link rel="icon" type="image/svg+xml" href={`${process.env.NEXT_PUBLIC_APPLICATION_BASE_PATH_URL}/favicon.svg`} />
         <link rel="alternate icon" href={`${process.env.NEXT_PUBLIC_APPLICATION_BASE_PATH_URL}/favicon.ico`} />
+
+        <meta property="og:locale" content="pt_BR" />
+        <meta property="og:url" content="https://www.meusite.com.br/ola-mundo" />
+        <meta property="og:title" content="Página Inicial Painel da Participação" />
+        <meta property="og:site_name" content="Painel da Participação" />
+
+        <meta property="og:description" content="O painel da participação foi desenvolvido para mostrar o histórico de utilização de dois dos canais de participação da Câmara dos Deputados, que estão disponíveis na plataforma eDemocracia." />
+        <meta property="og:type" content="website" />
+
       </Head>
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}

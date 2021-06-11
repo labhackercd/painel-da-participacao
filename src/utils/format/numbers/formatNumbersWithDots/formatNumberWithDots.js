@@ -1,3 +1,3 @@
 export default function formatNumberWithDots(x) {
-  return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, '.');
+  return x.toLocaleString('pt-BR');
 }

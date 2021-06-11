@@ -34,9 +34,14 @@ export default function Footer() {
             </Typography>
           </Box>
           <Box className={classes.informationItem}>
-            <u>
+            <a
+              href={`${process.env.NEXT_PUBLIC_FALE_CONOSCO_URL}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: '#ffffff' }}
+            >
               <Typography style={{ fontWeight: 'bold' }} className={`${classes.typography} ${classes.informationItemTypographyText}`}>Fale Conosco</Typography>
-            </u>
+            </a>
             <Typography className={`${classes.typography} ${classes.informationItemTypographyText}`}>Disque-Câmara:</Typography>
             <Typography className={`${classes.typography} ${classes.informationItemTypographyText}`}>0800-0-619-619 de 8h às 20h</Typography>
           </Box>
