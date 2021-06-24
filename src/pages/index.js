@@ -64,7 +64,7 @@ function Home({ usersTotal, apiLastCacheMade }) {
                       ferramentas de participação pelos cidadãos.
                     </Typography>
                     <Typography className={`${classes.typography} ${classes.typographyCaption}`}>
-                      * Dados consolidades até
+                      * Dados consolidados até
                       {' '}
                       {apiLastCacheMade}
                     </Typography>
