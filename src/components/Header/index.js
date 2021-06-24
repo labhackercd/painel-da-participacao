@@ -38,7 +38,7 @@ export default function Header(props) {
   };
 
   // eslint-disable-next-line max-len
-  const rangeOfYears = (start, end) => Array(end - start + 1).fill(start).map((year2, index) => year2 + index);
+  const rangeOfYears = (start, end) => (Array(end - start + 1).fill(start).map((year2, index) => year2 + index)).reverse();
   const yearsRange = rangeOfYears(props.initialYear, APPLICATION_CONSTANTS.CURRENT_YEAR);
   return (
     <>
