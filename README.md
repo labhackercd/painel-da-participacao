@@ -10,7 +10,7 @@ O painel da participação foi desenvolvido para mostrar o histórico de utiliza
 ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/labhackercd/cpp-participacao-frontend/CI/dev?label=build-dev&style=flat-square)
 
 ## Demonstração
-  GIF COM PAGINAS DA APLICAÇÃO
+  ![Páginas da aplicação](https://user-images.githubusercontent.com/20937190/123280087-da95a300-d4de-11eb-86a0-34a93a51c52d.gif)
 
 ## Tabela de conteúdos
    * [Funcionalidades](#funcionalidades)
@@ -39,7 +39,7 @@ O painel da participação foi desenvolvido para mostrar o histórico de utiliza
 ### Protótipo da aplicação
 ![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
 
-As telas da aplicação foram protipadas na plataforma Figma, e podem ser visualizadas em:
+As telas da aplicação foram protipadas na plataforma Figma, e podem ser visualizadas em: <https://www.figma.com/file/gQaMtt8wXbXyWUhRfrb2VW/Participa?node-id=1727%3A3552>
 
 ### Tecnologias
 ![NextJs](https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=next-dot-js&logoColor=white)
