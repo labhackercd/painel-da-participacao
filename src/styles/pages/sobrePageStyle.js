@@ -73,6 +73,7 @@ export const useStyles = makeStyles((theme) => ({
   bannerBox: {
     width: '100%',
     display: 'flex',
+    justifyContent: 'space-evenly',
     height: '370px',
     '@media (max-width: 600px)': {
       height: '250px',
@@ -90,7 +91,7 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   bannerBoxParticipaLogo: {
-    width: '10%',
+    width: '7%',
     height: '100%',
     display: 'flex',
     alignItems: 'center',

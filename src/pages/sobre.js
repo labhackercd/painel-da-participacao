@@ -82,8 +82,8 @@ function Sobre() {
                 <Image
                   src={logoParticipa}
                   alt="Logotipo da aplicação participa"
-                  width={500}
-                  height={500}
+                  width={200}
+                  height={200}
                 />
               </Box>
             </Hidden>
