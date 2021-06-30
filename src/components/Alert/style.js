@@ -39,4 +39,12 @@ export const useStyles = makeStyles((theme) => ({
     fontSize: '0.813rem',
     fontWeight: 600,
   },
+  spinnerBox: {
+    height: '100%',
+    width: '10%',
+    flexGrow: 1,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 }));

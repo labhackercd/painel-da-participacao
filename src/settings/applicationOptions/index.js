@@ -18,8 +18,8 @@ export const DEFAULT_YEAR_PERIOD = '0'; // All years options
 export const DEFAULT_SEARCH_QUERY = '?period=yearly&ordering=start_date'; // Query that get informations of all years
 
 // =================== API's ================
-export const REFRESH_API_CACHE_DATA_INTERVAL = 900; // In seconds. (3600 seconds = 1 hour)
-export const SHOW_API_CACHE_ERROR_MESSAGE_LIMIT_TIME = 120; // In minutes (120 minutes = 2 hours)
+export const REFRESH_API_CACHE_DATA_INTERVAL = 900;// 900; // In seconds. (3600 seconds = 1 hour)
+export const SHOW_API_CACHE_ERROR_MESSAGE_LIMIT_TIME = 720; // In minutes (720 minutes = 12 hours)
 
 // =============== HOUR SETTINGS ===============
 export const START_TIME_OF_DATA_CONSOLIDATION = '1:00'; // In 24h format, in the format h:mm
