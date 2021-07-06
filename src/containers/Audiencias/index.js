@@ -492,6 +492,7 @@ function Audiencias(props) {
               apiLastUpdate={apiLastConsolidateOfDataDate}
               tool={TOOLNAME}
               isLoaded
+              apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
             />
           ) : (
             <NoDataForSelectedPeriod
@@ -569,6 +570,7 @@ function Audiencias(props) {
                 download
                 apiLastUpdate={apiLastConsolidateOfDataDate}
                 tool={TOOLNAME}
+                apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
               />
             </div>
           ) : (
@@ -597,6 +599,7 @@ function Audiencias(props) {
                 chartOptions={audiencesChartsUsersSettings.options}
                 apiLastUpdate={apiLastConsolidateOfDataDate}
                 tool={TOOLNAME}
+                apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
               />
             </div>
           ) : (

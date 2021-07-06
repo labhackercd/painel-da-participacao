@@ -57,7 +57,7 @@ function getColumns(data) {
 export default function ChartAndReport(props) {
   const {
     isLoaded, title, data, chartType, chartOptions, exportData,
-    apiLastUpdate, tool, height,
+    apiLastUpdate, tool, height, apiUrl,
   } = props;
   const [wayOfVisualizeData, setWayOfVisualizeData] = useState('chart');
   const convertDataToJson = convertArrayToJSON(data);
@@ -80,7 +80,7 @@ export default function ChartAndReport(props) {
       exportData={exportData}
       download
       align="center"
-      apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
+      apiUrl={apiUrl}
       apiLastUpdate={apiLastUpdate}
       tool={tool}
     >
@@ -143,6 +143,7 @@ ChartAndReport.propTypes = {
   apiLastUpdate: PropTypes.string,
   tool: PropTypes.string,
   height: PropTypes.string,
+  apiUrl: PropTypes.string,
 };
 
 ChartAndReport.defaultProps = {
@@ -155,4 +156,5 @@ ChartAndReport.defaultProps = {
   apiLastUpdate: 'Carregando',
   tool: '',
   height: '35vh',
+  apiUrl: process.env.NEXT_PUBLIC_EDEMOCRACIA_SWAGGER_URL,
 };
