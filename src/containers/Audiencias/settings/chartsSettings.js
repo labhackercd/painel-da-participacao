@@ -44,12 +44,14 @@ export const audiencesRoomsTotalsChart = {
     isStacked: 'true',
     colors: ['#744600', '#EBE23B', '#DA7F0B'],
     pointSize: 15,
-    hAxis: { textStyle: { color: 'white' }, titleTextStyle: { color: 'white' }, format: '#####',gridlines: { color: 'transparent' }, },
+    hAxis: {
+      textStyle: { color: 'white' }, titleTextStyle: { color: 'white' }, format: '#####', gridlines: { color: 'transparent' },
+    },
     vAxis: {
       minValue: 0,
       gridlines: { color: 'transparent' },
       textStyle: { color: '#FFFFFF' },
-      format: ' '
+      format: ' ',
     },
     backgroundColor: '#000000',
   },

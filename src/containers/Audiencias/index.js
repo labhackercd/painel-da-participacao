@@ -348,7 +348,7 @@ function Audiencias(props) {
       const roomsData = apisDataObject.audiencesRoomsAPIData.results;
 
       let arrayData = [];
-      const collumPeriodTitle = ['Data', 'Audiências Canceladas','Audiências Realizadas', 'Total de Audiências'];
+      const collumPeriodTitle = ['Data', 'Audiências Canceladas', 'Audiências Realizadas', 'Total de Audiências'];
 
       switch (period) {
         case dailyKeyWord:
@@ -360,11 +360,10 @@ function Audiencias(props) {
           arrayData = await getRoomTotalsChartDataByMonth(
             year, roomsData,
           );
-          //console.log(roomsData);
           break;
         default: // yearly -> Total period
           arrayData = await getRoomTotalsChartDataByYear(
-            roomsData
+            roomsData,
           );
           break;
       }
@@ -375,7 +374,7 @@ function Audiencias(props) {
         setTotalRoomsChartData(arrayData);
       }
     } catch (e) {
-      console.log(e)
+      console.log(e);
       setTotalRoomsChartData([]);
     }
   }
