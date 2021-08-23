@@ -360,15 +360,14 @@ function Audiencias(props) {
           arrayData = await getRoomTotalsChartDataByMonth(
             year, roomsData,
           );
+          //console.log(roomsData);
           break;
         default: // yearly -> Total period
           arrayData = await getRoomTotalsChartDataByYear(
             roomsData
           );
-
           break;
       }
-
 
       if (arrayData.length > 0) {
         setTotalRoomsChartData([collumPeriodTitle].concat(arrayData));

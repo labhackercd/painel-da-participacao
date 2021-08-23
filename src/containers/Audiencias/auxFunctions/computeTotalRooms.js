@@ -6,7 +6,7 @@ import padNumberWithZeroOnLeft from '../../../utils/format/numbers/padNumberWith
 export async function getRoomTotalsChartDataByDay(month, year, roomsData) {
   const totalOfDaysInMonth = await new Date(year, month, 0).getDate();
   const resultArray = [];
-
+    console.log(roomsData)
   try {
     for (let i = 1; i <= totalOfDaysInMonth; i += 1) {
 
@@ -17,36 +17,34 @@ export async function getRoomTotalsChartDataByDay(month, year, roomsData) {
       resultArray.push(
         [
           `${padNumberWithZeroOnLeft(i)}`,
-          (roomsFiltered.length > 0) ? finished_rooms[0].messages : 0,
-          (roomsFiltered.length > 0) ? canceled_rooms[0].questions : 0,
-          (roomsFiltered.length > 0) ? total_rooms[0].votes : 0,
+          (roomsFiltered.length > 0) ? roomsFiltered[0].finished_rooms : 0,
+          (roomsFiltered.length > 0) ? roomsFiltered[0].canceled_rooms : 0,
+          (roomsFiltered.length > 0) ? roomsFiltered[0].total_rooms : 0,
         ],
       );
     }
 
     return resultArray;
   } catch (e) {
+      console.log(e)
     return [];
   }
 }
 
 export async function getRoomTotalsChartDataByMonth(year, roomsData) {
   const resultArray = [];
-
   try {
     for (let i = 1; i <= 12; i += 1) {
-
         const roomsFiltered = roomsData.filter(
             (room) => room.start_date === `${year}-${padNumberWithZeroOnLeft(i)}-01`,
         );
 
-
         resultArray.push(
             [
                 `${MONTHS_ABBREVIATED_LIST[i - 1]}`,
-                (roomsFiltered.length > 0) ? finished_rooms[0].messages : 0,
-                (roomsFiltered.length > 0) ? canceled_rooms[0].questions : 0,
-                (roomsFiltered.length > 0) ? total_rooms[0].votes : 0,
+                (roomsFiltered.length > 0) ? roomsFiltered[0].canceled_rooms : 0,
+                (roomsFiltered.length > 0) ? roomsFiltered[0].finished_rooms : 0,
+                (roomsFiltered.length > 0) ? roomsFiltered[0].total_rooms : 0,
             ],
         );
     }
@@ -65,7 +63,7 @@ export async function getRoomTotalsChartDataByYear(roomsData) {
     for (var i = 0; i <= roomsData.length; i += 1) {
       resultArray.push(
         [
-          roomsData[i].year,
+          (roomsData[i].year).toString(),
           roomsData[i].canceled_rooms,
           roomsData[i].finished_rooms,
           roomsData[i].total_rooms,

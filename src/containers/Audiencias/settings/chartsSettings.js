@@ -46,10 +46,10 @@ export const audiencesRoomsTotalsChart = {
     pointSize: 15,
     hAxis: { textStyle: { color: 'white' }, titleTextStyle: { color: 'white' }, format: '#####',gridlines: { color: 'transparent' }, },
     vAxis: {
-      maxValue: 1000,
+      minValue: 0,
       gridlines: { color: 'transparent' },
       textStyle: { color: '#FFFFFF' },
-      format: ''
+      format: ' '
     },
     backgroundColor: '#000000',
   },
