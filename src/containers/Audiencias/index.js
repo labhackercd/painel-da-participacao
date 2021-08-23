@@ -21,8 +21,11 @@ import * as APPLICATION_CONSTANTS from '../../utils/constants/index';
 import {
   getParticipationChartDataByDay, getParticipationChartDataByMonth, getParticipationChartDataByYear,
 } from './auxFunctions/computeParticipation';
+import {
+  getRoomTotalsChartDataByDay, getRoomTotalsChartDataByMonth, getRoomTotalsChartDataByYear,
+} from './auxFunctions/computeTotalRooms';
 import filterRankingAudiencias from './auxFunctions/filterRanking';
-import { audiencesChartsUsersSettings, audiencesWithMoreParticipation } from './settings/chartsSettings';
+import { audiencesChartsUsersSettings, audiencesWithMoreParticipation, audiencesRoomsTotalsChart } from './settings/chartsSettings';
 import { rankingAudienciasHeaders, rankingAudienciaColumns } from './settings/rankingSettings';
 import { useStyles } from './style';
 import customTheme from '../../styles/theme';
@@ -54,12 +57,14 @@ function Audiencias(props) {
   const [totalUsersChartData, setTotalUsersChartData] = useState([]);
   const [roomsRankingData, setRoomsRankingData] = useState(defaultApisData.audienciasRankingData);
   const [participantionChartData, setParticipantionChartData] = useState([]);
+  const [totalRoomsChartData, setTotalRoomsChartData] = useState([]);
   // Error Status
   const [showCachedDataAlert, setShowCachedDataAlert] = useState(false);
   // Load Status
   const [totalsAreLoaded, setTotalsAreLoaded] = useState(false);
   const [newUsersChartDataLoaded, setNewUsersChartDataLoaded] = useState(false);
   const [totalUsersChartDataLoaded, setTotalUsersChartDataLoaded] = useState(false);
+  const [totalRoomsChartDataLoaded, setTotalRoomsChartDataLoaded] = useState(false);
 
   // Period Selected states
   const [selectedPeriod, setSelectedPeriod] = useState(defaultSelectedPeriodType);
@@ -338,11 +343,50 @@ function Audiencias(props) {
     }
   }
 
+  async function updateTotalRoomsChartData(period, month, year) {
+    try {
+      const roomsData = apisDataObject.audiencesRoomsAPIData.results;
+
+      let arrayData = [];
+      const collumPeriodTitle = ['Data', 'Audiências Canceladas','Audiências Realizadas', 'Total de Audiências'];
+
+      switch (period) {
+        case dailyKeyWord:
+          arrayData = await getRoomTotalsChartDataByDay(
+            month, year, roomsData,
+          );
+          break;
+        case monthlyKeyWord:
+          arrayData = await getRoomTotalsChartDataByMonth(
+            year, roomsData,
+          );
+          break;
+        default: // yearly -> Total period
+          arrayData = await getRoomTotalsChartDataByYear(
+            roomsData
+          );
+
+          break;
+      }
+
+
+      if (arrayData.length > 0) {
+        setTotalRoomsChartData([collumPeriodTitle].concat(arrayData));
+      } else {
+        setTotalRoomsChartData(arrayData);
+      }
+    } catch (e) {
+      console.log(e)
+      setTotalRoomsChartData([]);
+    }
+  }
+
   async function updateAllPageInformations(period, month, year) {
     try {
       await updateTotalsData();
       await filterAndSetRoomsRankingData(period, month, year);
       await updateParticipationChartData(period, month, year);
+      await updateTotalRoomsChartData(period, month, year);
       await updateNewUsersChartData(period);
     } catch (e) {
       console.log('Update all page informations');
@@ -535,6 +579,39 @@ function Audiencias(props) {
                 />
               </Box>
             </ChartDataFrame>
+          ) : (
+            <NoDataForSelectedPeriod
+              title={periodSubTitle}
+              tool={TOOLNAME}
+              apiLastUpdate={apiLastConsolidateOfDataDate}
+              toolColor={headerColors.borderColor}
+              apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
+            />
+          )}
+        </Grid>
+
+        <Grid item xs={12} className={classes.spacing}>
+          <SectionHeader
+            classes={classes}
+            title="Total de Audiências no Período"
+            toolTipText={TEXTCONSTANTS.distributionOfParticipationSectionTexts.toolTip}
+            toolTipAriaLabel={TEXTCONSTANTS.distributionOfParticipationSectionTexts.toolTipAriaLabel}
+          />
+          {(totalRoomsChartData !== undefined && totalRoomsChartData.length > 0) ? (
+            <ChartAndReport
+              height="60vh"
+              download
+              exportData={totalRoomsChartData}
+              title={periodSubTitle}
+              classes={classes}
+              data={totalRoomsChartData}
+              chartType={audiencesRoomsTotalsChart.chartType}
+              chartOptions={audiencesRoomsTotalsChart.options}
+              apiLastUpdate={apiLastConsolidateOfDataDate}
+              tool={TOOLNAME}
+              isLoaded
+              apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
+            />
           ) : (
             <NoDataForSelectedPeriod
               title={periodSubTitle}

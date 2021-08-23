@@ -36,3 +36,21 @@ export const audiencesWithMoreParticipation = {
     backgroundColor: '#000000',
   },
 };
+
+export const audiencesRoomsTotalsChart = {
+  chartType: 'AreaChart',
+  options: {
+    legend: { position: 'top', maxLines: 3, textStyle: { color: 'white' } },
+    isStacked: 'true',
+    colors: ['#744600', '#EBE23B', '#DA7F0B'],
+    pointSize: 15,
+    hAxis: { textStyle: { color: 'white' }, titleTextStyle: { color: 'white' }, format: '#####',gridlines: { color: 'transparent' }, },
+    vAxis: {
+      maxValue: 1000,
+      gridlines: { color: 'transparent' },
+      textStyle: { color: '#FFFFFF' },
+      format: ''
+    },
+    backgroundColor: '#000000',
+  },
+};
