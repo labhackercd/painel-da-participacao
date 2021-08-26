@@ -23,6 +23,7 @@ import {
 } from './auxFunctions/computeParticipation';
 import {
   getRoomTotalsChartDataByDay, getRoomTotalsChartDataByMonth, getRoomTotalsChartDataByYear,
+  filterDataOfTotalRoomsMatrix,
 } from './auxFunctions/computeTotalRooms';
 import filterRankingAudiencias from './auxFunctions/filterRanking';
 import { audiencesChartsUsersSettings, audiencesWithMoreParticipation, audiencesRoomsTotalsChart } from './settings/chartsSettings';
@@ -57,6 +58,7 @@ function Audiencias(props) {
   const [totalUsersChartData, setTotalUsersChartData] = useState([]);
   const [roomsRankingData, setRoomsRankingData] = useState(defaultApisData.audienciasRankingData);
   const [participantionChartData, setParticipantionChartData] = useState([]);
+  const [totalRoomsDefaultChartData, setTotalRoomsDefaultChartData] = useState([]);
   const [totalRoomsChartData, setTotalRoomsChartData] = useState([]);
   // Error Status
   const [showCachedDataAlert, setShowCachedDataAlert] = useState(false);
@@ -348,7 +350,7 @@ function Audiencias(props) {
       const roomsData = apisDataObject.audiencesRoomsAPIData.results;
 
       let arrayData = [];
-      const collumPeriodTitle = ['Data', 'Audiências Canceladas', 'Audiências Realizadas', 'Total de Audiências'];
+      const collumPeriodTitle = ['Data', 'Canceladas', 'Realizadas', 'Total'];
 
       switch (period) {
         case dailyKeyWord:
@@ -369,9 +371,13 @@ function Audiencias(props) {
       }
 
       if (arrayData.length > 0) {
+        setTotalRoomsDefaultChartData([collumPeriodTitle].concat(arrayData));
         setTotalRoomsChartData([collumPeriodTitle].concat(arrayData));
+        //const teste = await filterDataOfTotalRoomsMatrix([collumPeriodTitle].concat(arrayData), ['Canceladas']);
+        //console.log(teste)
       } else {
         setTotalRoomsChartData(arrayData);
+        setTotalRoomsDefaultChartData(arrayData);
       }
     } catch (e) {
       console.log(e);
@@ -517,6 +523,39 @@ function Audiencias(props) {
         <Grid item xs={12} className={classes.spacing}>
           <SectionHeader
             classes={classes}
+            title={TEXTCONSTANTS.totalRoomsSectionTexts.title}
+            toolTipText={TEXTCONSTANTS.distributionOfParticipationSectionTexts.toolTip}
+            toolTipAriaLabel={TEXTCONSTANTS.distributionOfParticipationSectionTexts.toolTipAriaLabel}
+          />
+          {(totalRoomsChartData !== undefined && totalRoomsChartData.length > 0) ? (
+            <ChartAndReport
+              height="60vh"
+              download
+              exportData={totalRoomsChartData}
+              title={periodSubTitle}
+              classes={classes}
+              data={totalRoomsChartData}
+              chartType={audiencesRoomsTotalsChart.chartType}
+              chartOptions={audiencesRoomsTotalsChart.options}
+              apiLastUpdate={apiLastConsolidateOfDataDate}
+              tool={TOOLNAME}
+              isLoaded
+              apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
+            />
+          ) : (
+            <NoDataForSelectedPeriod
+              title={periodSubTitle}
+              tool={TOOLNAME}
+              apiLastUpdate={apiLastConsolidateOfDataDate}
+              toolColor={headerColors.borderColor}
+              apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
+            />
+          )}
+        </Grid>
+
+        <Grid item xs={12} className={classes.spacing}>
+          <SectionHeader
+            classes={classes}
             title={TEXTCONSTANTS.distributionOfParticipationSectionTexts.title}
             toolTipText={TEXTCONSTANTS.distributionOfParticipationSectionTexts.toolTip}
             toolTipAriaLabel={TEXTCONSTANTS.distributionOfParticipationSectionTexts.toolTipAriaLabel}
@@ -577,39 +616,6 @@ function Audiencias(props) {
                 />
               </Box>
             </ChartDataFrame>
-          ) : (
-            <NoDataForSelectedPeriod
-              title={periodSubTitle}
-              tool={TOOLNAME}
-              apiLastUpdate={apiLastConsolidateOfDataDate}
-              toolColor={headerColors.borderColor}
-              apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
-            />
-          )}
-        </Grid>
-
-        <Grid item xs={12} className={classes.spacing}>
-          <SectionHeader
-            classes={classes}
-            title="Total de Audiências no Período"
-            toolTipText={TEXTCONSTANTS.distributionOfParticipationSectionTexts.toolTip}
-            toolTipAriaLabel={TEXTCONSTANTS.distributionOfParticipationSectionTexts.toolTipAriaLabel}
-          />
-          {(totalRoomsChartData !== undefined && totalRoomsChartData.length > 0) ? (
-            <ChartAndReport
-              height="60vh"
-              download
-              exportData={totalRoomsChartData}
-              title={periodSubTitle}
-              classes={classes}
-              data={totalRoomsChartData}
-              chartType={audiencesRoomsTotalsChart.chartType}
-              chartOptions={audiencesRoomsTotalsChart.options}
-              apiLastUpdate={apiLastConsolidateOfDataDate}
-              tool={TOOLNAME}
-              isLoaded
-              apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
-            />
           ) : (
             <NoDataForSelectedPeriod
               title={periodSubTitle}

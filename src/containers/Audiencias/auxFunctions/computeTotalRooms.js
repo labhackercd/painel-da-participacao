@@ -75,3 +75,38 @@ export async function getRoomTotalsChartDataByYear(roomsData) {
     return resultArray;
   }
 }
+
+async function removeColumnOfMatrix(matrix, indexToRemove) {
+  await matrix.forEach((column) => {
+    column.splice(indexToRemove, 1);
+  });
+
+  return matrix;
+}
+
+async function removeColumnsOfMatrix(matrix, column) {
+  const columnsTitle = matrix[0];
+  let i = 1; // Start in 1 because the 0 corresponds do the dates
+  let filteredMatrix = [];
+
+  while (i < columnsTitle.length) {
+    if (columnsTitle[i] === column) {
+      filteredMatrix = removeColumnOfMatrix(matrix, i);
+    }
+    i += 1;
+  }
+
+  return filteredMatrix;
+}
+
+export async function filterDataOfTotalRoomsMatrix(matrix, colsToRemove) {
+  let i = 0;
+  let filteredMatrix = matrix;
+
+  while (i < colsToRemove.length) {
+    // eslint-disable-next-line no-await-in-loop
+    filteredMatrix = await removeColumnsOfMatrix(filteredMatrix, colsToRemove[i]);
+    i += 1;
+  }
+  return filteredMatrix;
+}

@@ -42,6 +42,13 @@ export const distributionOfParticipationSectionTexts = {
   toolTipAriaLabel: null,
 };
 
+// ====  Distribution of participation in the period chart section ====
+export const totalRoomsSectionTexts = {
+  title: 'Total de audiências no período',
+  toolTip: null,
+  toolTipAriaLabel: null,
+};
+
 // ====  Ranking section ====
 export const rankingSectionTexts = {
   title: 'Ranking das audiências',

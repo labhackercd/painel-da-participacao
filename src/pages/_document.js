@@ -31,6 +31,7 @@ export default class MyDocument extends Document {
             }}
           />
           {/* END GOOGLE ANALYTICS SCRIPTS */}
+
         </Head>
         <body>
           <Main />

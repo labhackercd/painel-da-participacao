@@ -40,9 +40,10 @@ export const audiencesWithMoreParticipation = {
 export const audiencesRoomsTotalsChart = {
   chartType: 'AreaChart',
   options: {
+    isStacked: false,
+    aggregationTarget: 'category',
     legend: { position: 'top', maxLines: 3, textStyle: { color: 'white' } },
-    isStacked: 'true',
-    colors: ['#744600', '#EBE23B', '#DA7F0B'],
+    colors: ['#EBE23B', '#DA7F0B', '#744600'],
     pointSize: 15,
     hAxis: {
       textStyle: { color: 'white' }, titleTextStyle: { color: 'white' }, format: '#####', gridlines: { color: 'transparent' },
