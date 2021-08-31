@@ -24,13 +24,13 @@ function AudienciasPage({
   function AudienciasHeader() {
     return (
       <Box marginBottom={5} marginX={2}>
-        <Typography variant="h1">
+        <Typography variant="h1" component="div">
           <Box fontWeight="fontWeightBold">
             {TEXTCONSTANTS.pageTitle}
           </Box>
         </Typography>
         <div>
-          <Typography component="p" variant="h4">
+          <Typography component="div" variant="h4">
             <Box style={{ color: '#BFBFBF' }}>
               {TEXTCONSTANTS.pageSubTitle}
             </Box>

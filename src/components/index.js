@@ -1,6 +1,7 @@
 import { AlertCachedData } from './Alert/index';
 import ChartAndReport from './ChartAndReport/index';
 import ChartDataFrame from './ChartDataFrame/index';
+import ChartTotalRoomsWithFilter from './ChartTotalRoomsWithFilter/index';
 import GoogleChart from './Charts/GoogleChart';
 import Footer from './Footer/index';
 import Header from './Header/index';
@@ -17,5 +18,5 @@ export {
   AlertCachedData, ChartAndReport, ChartDataFrame, GoogleChart, Footer,
   Header, NoDataForSelectedPeriod, RankingTable, SectionHeader,
   SubSectionHeader, TableDarkTheme, ToolTip, TotalFrame,
-  AlertDataConsolidateInterval,
+  AlertDataConsolidateInterval, ChartTotalRoomsWithFilter,
 };
