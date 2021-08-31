@@ -1,24 +1,34 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable react/require-default-props */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Box from '@material-ui/core/Box';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
-import FormGroup from '@material-ui/core/FormGroup';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { makeStyles, Typography } from '@material-ui/core';
+
 import { withStyles } from '@material-ui/core/styles';
 import Checkbox from '@material-ui/core/Checkbox';
-import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
-import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import TableDarkTheme from '../TableDarkTheme/index';
 import ChartDataFrame from '../ChartDataFrame/index';
 import GoogleChart from '../Charts/GoogleChart';
 import convertArrayToJSON from '../../utils/format/convertArrayToJson/index';
 
 import { filterDataOfTotalRoomsMatrix } from './auxfunctions';
+
+const useStyles = makeStyles(() => ({
+  messageTypograph: {
+    fontFamily: 'Open Sans',
+    fontSize: '1.5rem',
+    fontWeight: 'bold',
+    paddingTop: '20px',
+    color: '#DA7F0B',
+  },
+}));
+
 const deepcopy = require('deepcopy');
 
 const CustomRadio = withStyles({
@@ -73,6 +83,7 @@ function getColumns(data) {
 }
 
 export default function ChartTotalRoomsWithFilter(props) {
+  const classes = useStyles();
   const {
     isLoaded, title, data, chartType, chartOptions, exportData,
     apiLastUpdate, tool, height, apiUrl,
@@ -82,24 +93,24 @@ export default function ChartTotalRoomsWithFilter(props) {
   const [wayOfVisualizeData, setWayOfVisualizeData] = useState('chart');
   const convertDataToJson = convertArrayToJSON(data);
   const [columnsToNotShow, setColumnsToNotShow] = useState([]);
-  const [updatingChart, setUpdatingChart] = useState(false);
   const [dataToShow, setDataToShow] = useState(data);
 
   async function handleShowColumsChange(event) {
     let columnsToNotBeShow = [];
-    // setUpdatingChart(true);
 
     if ((columnsToNotShow).includes(event.target.name)) { // Para passar a mostrar
       // eslint-disable-next-line max-len
       columnsToNotBeShow = columnsToNotBeShow.filter((column) => column === event.target.name);
       setColumnsToNotShow(columnsToNotBeShow);
-      const temp = await filterDataOfTotalRoomsMatrix(defaultData, columnsToNotBeShow);
-      setDataToShow(temp);
+      const tempDataToShow = await filterDataOfTotalRoomsMatrix(defaultData, columnsToNotBeShow);
+      setDataToShow(tempDataToShow);
     } else { // Para passar a não mostrar
       columnsToNotBeShow = ([...columnsToNotShow, event.target.name]);
       setColumnsToNotShow(columnsToNotBeShow);
-      const temp = await filterDataOfTotalRoomsMatrix(defaultData, columnsToNotBeShow);
-      setDataToShow(temp);
+      if (columnsToNotBeShow.length < 3) {
+        const tempDataToShow = await filterDataOfTotalRoomsMatrix(defaultData, columnsToNotBeShow);
+        setDataToShow(tempDataToShow);
+      }
     }
   }
 
@@ -136,8 +147,7 @@ export default function ChartTotalRoomsWithFilter(props) {
               {(wayOfVisualizeData === 'chart') ? (
                 <>
                   <Box height={height}>
-
-                    {(!updatingChart) ? (
+                    {(columnsToNotShow.length !== 3) ? (
                       <GoogleChart
                         chartType={chartType}
                         data={dataToShow}
@@ -145,7 +155,9 @@ export default function ChartTotalRoomsWithFilter(props) {
                       />
                     ) : (
                       <Box display="flex" alignItems="center" justifyContent="center" width="100%" height="100%">
-                        <CircularProgress color="secondary" />
+                        <Typography component="p" className={classes.messageTypograph}>
+                          Selecione um filtro para continuar
+                        </Typography>
                       </Box>
                     )}
 

@@ -11,7 +11,7 @@ async function removeColumnOfMatrix(matrix, indexToRemove) {
 
 async function removeColumnsOfMatrix(matrix, column) {
   const columnsTitle = matrix[0];
-  let i = 1; // Start in 1 because the 0 corresponds do the dates
+  let i = 1; // Start in 1 because the 0 corresponds to the dates matrix index
   let filteredMatrix = [];
 
   if (!columnsTitle) {
@@ -24,8 +24,6 @@ async function removeColumnsOfMatrix(matrix, column) {
     }
     i += 1;
   }
-  // console.log('filtered')
-  // console.log(filteredMatrix)
 
   return filteredMatrix;
 }
