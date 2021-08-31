@@ -2,21 +2,17 @@
 /* eslint-disable react/require-default-props */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Box from '@material-ui/core/Box';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import { makeStyles, Typography } from '@material-ui/core';
+
+import {
+  Box, Radio, RadioGroup, FormControlLabel, FormControl, CircularProgress,
+  makeStyles, Typography, Checkbox,
+} from '@material-ui/core';
 
 import { withStyles } from '@material-ui/core/styles';
-import Checkbox from '@material-ui/core/Checkbox';
 import TableDarkTheme from '../TableDarkTheme/index';
 import ChartDataFrame from '../ChartDataFrame/index';
 import GoogleChart from '../Charts/GoogleChart';
 import convertArrayToJSON from '../../utils/format/convertArrayToJson/index';
-
 import { filterDataOfTotalRoomsMatrix } from './auxfunctions';
 
 const useStyles = makeStyles(() => ({
@@ -28,8 +24,6 @@ const useStyles = makeStyles(() => ({
     color: '#DA7F0B',
   },
 }));
-
-const deepcopy = require('deepcopy');
 
 const CustomRadio = withStyles({
   root: {
@@ -88,7 +82,7 @@ export default function ChartTotalRoomsWithFilter(props) {
     isLoaded, title, data, chartType, chartOptions, exportData,
     apiLastUpdate, tool, height, apiUrl,
   } = props;
-  const defaultData = deepcopy(data);
+  const defaultData = data;
   const columns = getColumns(data);
   const [wayOfVisualizeData, setWayOfVisualizeData] = useState('chart');
   const convertDataToJson = convertArrayToJSON(data);

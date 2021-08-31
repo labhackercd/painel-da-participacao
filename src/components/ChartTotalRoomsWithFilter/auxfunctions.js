@@ -20,6 +20,7 @@ async function removeColumnsOfMatrix(matrix, column) {
 
   while (i < columnsTitle.length) {
     if (columnsTitle[i] === column) {
+      // eslint-disable-next-line no-await-in-loop
       filteredMatrix = await removeColumnOfMatrix(matrix.slice(), i);
     }
     i += 1;
@@ -29,7 +30,6 @@ async function removeColumnsOfMatrix(matrix, column) {
 }
 
 export async function filterDataOfTotalRoomsMatrix(matrix, colsToRemove) {
-
   let i = 0;
   let filteredMatrix = deepcopy(matrix);
 

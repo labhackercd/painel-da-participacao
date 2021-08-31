@@ -23,7 +23,6 @@ import {
 } from './auxFunctions/computeParticipation';
 import {
   getRoomTotalsChartDataByDay, getRoomTotalsChartDataByMonth, getRoomTotalsChartDataByYear,
-  filterDataOfTotalRoomsMatrix,
 } from './auxFunctions/computeTotalRooms';
 import filterRankingAudiencias from './auxFunctions/filterRanking';
 import { audiencesChartsUsersSettings, audiencesWithMoreParticipation, audiencesRoomsTotalsChart } from './settings/chartsSettings';
