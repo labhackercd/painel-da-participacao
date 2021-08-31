@@ -25,16 +25,18 @@ function WikilegisPage({
   function WikilegisHeader() {
     return (
       <Box marginBottom={5} marginX={2}>
-        <Typography variant="h1">
+        <Typography variant="h1" component="div">
           <Box fontWeight="fontWeightBold">
             {TEXTCONSTANTS.pageTitle}
           </Box>
         </Typography>
-        <Typography variant="h4">
-          <Box style={{ color: '#BFBFBF' }}>
-            {TEXTCONSTANTS.pageSubTitle}
-          </Box>
-        </Typography>
+        <div>
+          <Typography component="div" variant="h4">
+            <Box style={{ color: '#BFBFBF' }}>
+              {TEXTCONSTANTS.pageSubTitle}
+            </Box>
+          </Typography>
+        </div>
       </Box>
     );
   }
