@@ -10,7 +10,7 @@ import ptBR from 'date-fns/locale/pt-BR';
 import { apiInstance } from '../../services/api/apiInstance';
 import {
   AlertCachedData, ChartDataFrame, Header, RankingTable, TotalFrame, SectionHeader, SubSectionHeader,
-  NoDataForSelectedPeriod, ChartAndReport, AlertDataConsolidateInterval,
+  NoDataForSelectedPeriod, ChartAndReport, AlertDataConsolidateInterval, ChartTotalRoomsWithFilter,
 } from '../../components';
 import { handleUpdatePeriodSearchQuery } from '../../services/functions/handlers/index';
 import formatNumberWithDots from '../../utils/format/numbers/formatNumbersWithDots/formatNumberWithDots';
@@ -373,8 +373,6 @@ function Audiencias(props) {
       if (arrayData.length > 0) {
         setTotalRoomsDefaultChartData([collumPeriodTitle].concat(arrayData));
         setTotalRoomsChartData([collumPeriodTitle].concat(arrayData));
-        //const teste = await filterDataOfTotalRoomsMatrix([collumPeriodTitle].concat(arrayData), ['Canceladas']);
-        //console.log(teste)
       } else {
         setTotalRoomsChartData(arrayData);
         setTotalRoomsDefaultChartData(arrayData);
@@ -528,7 +526,7 @@ function Audiencias(props) {
             toolTipAriaLabel={TEXTCONSTANTS.distributionOfParticipationSectionTexts.toolTipAriaLabel}
           />
           {(totalRoomsChartData !== undefined && totalRoomsChartData.length > 0) ? (
-            <ChartAndReport
+            <ChartTotalRoomsWithFilter
               height="60vh"
               download
               exportData={totalRoomsChartData}
