@@ -150,7 +150,7 @@ export default function ChartTotalRoomsWithFilter(props) {
                     ) : (
                       <Box display="flex" alignItems="center" justifyContent="center" width="100%" height="100%">
                         <Typography component="p" className={classes.messageTypograph}>
-                          Selecione um filtro para continuar
+                          Selecione uma ou mais das opções abaixo para visualizar o gráfico.
                         </Typography>
                       </Box>
                     )}
