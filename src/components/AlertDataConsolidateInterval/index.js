@@ -1,3 +1,4 @@
+/* eslint-disable radix */
 /* eslint-disable max-len */
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable react/destructuring-assignment */
@@ -14,9 +15,14 @@ export default function AlertDataConsolidateInterval() {
   const [isInDataConsolidateInterval, setIsInDataConsolidateInterval] = useState(false);
 
   function checkIfHourIsInInterval() {
-    const currentTime = `${(new Date().getHours())}:${(new Date().getMinutes())}`;
+    const date = new Date();
+    const currentTime = `${(date.getHours())}:${(date.getMinutes())}:00`;
+    const regExp = /(\d{1,2}):(\d{1,2}):(\d{1,2})/;
 
-    if (currentTime >= START_TIME_OF_DATA_CONSOLIDATION && currentTime <= END_TIME_OF_DATA_CONSOLIDATION) {
+    const isHourAfterBegginingOfConsolidation = parseInt(currentTime.replace(regExp, '$1$2$3')) > parseInt(START_TIME_OF_DATA_CONSOLIDATION.replace(regExp, '$1$2$3'));
+    const isHourBeforeEndOfConsolidation = parseInt(END_TIME_OF_DATA_CONSOLIDATION.replace(regExp, '$1$2$3')) > parseInt(currentTime.replace(regExp, '$1$2$3'));
+
+    if (isHourAfterBegginingOfConsolidation && isHourBeforeEndOfConsolidation) {
       setIsInDataConsolidateInterval(true);
     } else {
       setIsInDataConsolidateInterval(false);
