@@ -1,6 +1,6 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable react/require-default-props */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import {
@@ -88,6 +88,15 @@ export default function ChartTotalRoomsWithFilter(props) {
   const convertDataToJson = convertArrayToJSON(data);
   const [columnsToNotShow, setColumnsToNotShow] = useState([]);
   const [dataToShow, setDataToShow] = useState(data);
+  const [isLoadingChart, setIsLoadingChart] = useState(false);
+
+  
+  useEffect(async () => {
+    setIsLoadingChart(true);
+    const tempDataToShow = await filterDataOfTotalRoomsMatrix(data, columnsToNotShow);
+    setDataToShow(tempDataToShow);
+    setIsLoadingChart(false);
+  },[data]);
 
   async function handleShowColumsChange(event) {
     let columnsToNotBeShow = [];
