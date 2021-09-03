@@ -88,15 +88,11 @@ export default function ChartTotalRoomsWithFilter(props) {
   const convertDataToJson = convertArrayToJSON(data);
   const [columnsToNotShow, setColumnsToNotShow] = useState([]);
   const [dataToShow, setDataToShow] = useState(data);
-  const [isLoadingChart, setIsLoadingChart] = useState(false);
 
-  
   useEffect(async () => {
-    setIsLoadingChart(true);
     const tempDataToShow = await filterDataOfTotalRoomsMatrix(data, columnsToNotShow);
     setDataToShow(tempDataToShow);
-    setIsLoadingChart(false);
-  },[data]);
+  }, [data]);
 
   async function handleShowColumsChange(event) {
     let columnsToNotBeShow = [];
