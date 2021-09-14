@@ -8,6 +8,8 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import * as gtag from '../../lib/googleAnalytics/gtag';
+import * as APPTEXTSCONSTANTS from '../settings/texts/App';
+import applicationLogo from '../assets/images/logos/logo.png';
 
 import theme from '../styles/theme';
 
@@ -53,13 +55,17 @@ export default function MyApp(props) {
         <link rel="icon" type="image/svg+xml" href={`${process.env.NEXT_PUBLIC_APPLICATION_BASE_PATH_URL}/favicon.svg`} />
         <link rel="alternate icon" href={`${process.env.NEXT_PUBLIC_APPLICATION_BASE_PATH_URL}/favicon.ico`} />
 
-        <meta property="og:locale" content="pt_BR" />
-        <meta property="og:url" content="https://www.meusite.com.br/ola-mundo" />
-        <meta property="og:title" content="Página Inicial Painel da Participação" />
-        <meta property="og:site_name" content="Painel da Participação" />
+        <meta name="description" content={`${APPTEXTSCONSTANTS.applicationMetaDescription}`} />
+        <meta name="robots" content="index, follow" />
+        <meta name="viewport" content="initial-scale=1" />
 
-        <meta property="og:description" content="O painel da participação foi desenvolvido para mostrar o histórico de utilização de dois dos canais de participação da Câmara dos Deputados, que estão disponíveis na plataforma eDemocracia." />
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content="government" />
+        <meta property="og:title" content={`${APPTEXTSCONSTANTS.applicationOGTitle}`} />
+        <meta property="og:description" content={`${APPTEXTSCONSTANTS.applicationOGDescription}`} />
+        <meta property="og:image" content={applicationLogo} />
+        <meta property="og:url" content={`${APPTEXTSCONSTANTS.applicationProductionUrl}`} />
+        <meta property="og:site_name" content={`${APPTEXTSCONSTANTS.applicationOGSiteName}`} />
+        <meta property="og:locale" content="pt_BR" />
 
       </Head>
       <ThemeProvider theme={theme}>

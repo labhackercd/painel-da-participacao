@@ -15,6 +15,7 @@ import formatNumberWithDots from '../utils/format/numbers/formatNumbersWithDots/
 import logoParticipa from '../assets/images/logos/logo_participa.svg';
 
 import { REFRESH_API_CACHE_DATA_INTERVAL } from '../settings/applicationOptions/index';
+import * as APPTEXTSCONSTANTS from '../settings/texts/App';
 
 import { useStyles } from '../styles/pages/indexPageStyle';
 
@@ -24,7 +25,10 @@ function Home({ usersTotal, apiLastCacheMade }) {
   return (
     <div className={classes.root}>
       <Head>
-        <title>Painel da Participação</title>
+        <title>{APPTEXTSCONSTANTS.applicationMetaTitle}</title>
+        <meta name="description" content={`${APPTEXTSCONSTANTS.applicationMetaDescription}`} />
+        <meta name="robots" content="index, follow" />
+        <meta name="viewport" content="initial-scale=1" />
       </Head>
       <Box className={classes.box}>
         <Box className={classes.boxHeader}>
