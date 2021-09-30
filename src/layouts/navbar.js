@@ -4,7 +4,7 @@ import {
 } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
 import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
@@ -13,7 +13,6 @@ import logoCamaraDosDeputados from '../assets/images/logos/logo_cd.svg';
 const useStyles = makeStyles((theme) => ({
   header: {
     backgroundColor: theme.palette.black.main,
-    paddingRight: '79px',
     paddingLeft: '10vh',
     '@media (max-width: 1100px)': {
       paddingLeft: 0,
@@ -29,13 +28,6 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 700,
     size: '18px',
     marginLeft: '38px',
-  },
-  toolbar: {
-    display: 'flex',
-    justifyContent: 'center',
-  },
-  mobileToolBar: {
-    background: 'green',
   },
   drawerContainer: {
     padding: '20px 60px',
@@ -60,6 +52,17 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: '2vh',
   },
   offset: theme.mixins.toolbar,
+  toolbarContentMobile: {
+    display: 'flex',
+    width: '100%',
+    justifyContent: 'space-between',
+    alignItens: 'center',
+  },
+  mobileLogo: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 }));
 
 function LinkTab(parans) {
@@ -83,6 +86,7 @@ function a11yProps(index) {
 export default function PageNavbar(props) {
   const {
     header, drawerContainer, drawerMobile, divider, tabs, offset,
+    toolbarContentMobile, mobileLogo,
   } = useStyles();
   const { value } = props;
 
@@ -111,7 +115,12 @@ export default function PageNavbar(props) {
     const { orientation } = options;
 
     return (
-      <Tabs value={value} className={tabs} TabIndicatorProps={{ style: { background: 'white' } }} orientation={orientation}>
+      <Tabs
+        value={value}
+        className={tabs}
+        TabIndicatorProps={{ style: { background: 'linear-gradient(90deg, rgba(20, 215, 104, 0.5) 0%, rgba(17, 129, 233, 0.5) 32.81%, rgba(245, 157, 42, 0.5) 69.79%, rgba(228, 56, 180, 0.5) 100%)' } }}
+        orientation={orientation}
+      >
         <LinkTab
           label="Painel da Participação"
           aria-label="Painel da Participação"
@@ -175,32 +184,33 @@ export default function PageNavbar(props) {
 
     return (
       <Toolbar>
-        <IconButton
-          {...{
-            edge: 'start',
-            color: 'inherit',
-            'aria-label': 'menu',
-            'aria-haspopup': 'true',
-            onClick: handleDrawerOpen,
-          }}
-        >
-          <MenuIcon />
-        </IconButton>
-
         <Drawer
-          anchor="left"
+          anchor="right"
           open={drawerOpen}
           onClose={handleDrawerClose}
           classes={{ paper: drawerMobile }}
         >
           <IconButton onClick={handleDrawerClose} style={{ color: 'white' }}>
-            <ChevronLeftIcon />
+            <ChevronRightIcon />
           </IconButton>
           <Divider className={divider} variant="middle" />
           <div className={drawerContainer}><NavTabs orientation="vertical" /></div>
         </Drawer>
+        <div className={toolbarContentMobile}>
+          <div className={mobileLogo}>{camaraDeputadosLogo}</div>
+          <IconButton
+            {...{
+              edge: 'end',
+              color: 'inherit',
+              'aria-label': 'menu',
+              'aria-haspopup': 'true',
+              onClick: handleDrawerOpen,
+            }}
+          >
+            <MenuIcon />
+          </IconButton>
+        </div>
 
-        <div>{camaraDeputadosLogo}</div>
       </Toolbar>
     );
   };
