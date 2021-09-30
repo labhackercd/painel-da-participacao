@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import {
-  AppBar, Toolbar, makeStyles, IconButton, Drawer, Box, Tab, Tabs,
+  Toolbar, IconButton, Drawer, Box, Tab, Tabs,
 } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -8,59 +8,10 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
-import logoCamaraDosDeputados from '../assets/images/logos/logo_cd.svg';
-import logoPainelDaParticipacao from '../assets/images/logos/logo_painel_vertical.png';
+import logoCamaraDosDeputados from '../../assets/images/logos/logo_cd.svg';
+import logoPainelDaParticipacao from '../../assets/images/logos/logo_painel_vertical.png';
 
-const useStyles = makeStyles((theme) => ({
-  header: {
-    backgroundColor: theme.palette.black.main,
-    width: '100%',
-    padding: '0 50px',
-    '@media (max-width: 1100px)': {
-      padding: '0 0',
-    },
-  },
-  drawerContainer: {
-    padding: '20px 60px',
-  },
-  drawerMobile: {
-    background: '#252525',
-    color: 'white',
-  },
-  divider: {
-    background: 'white',
-  },
-  tab: {
-    height: '92%',
-    textTransform: 'capitalize',
-    fontWeight: '600',
-    margin: '0rem 0 0 0rem',
-    fontSize: '1.2rem',
-  },
-
-  toolbarContentMobile: {
-    display: 'flex',
-    width: '100%',
-    justifyContent: 'space-between',
-    alignItens: 'center',
-  },
-  mobileLogo: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  desktopNavbarContent: {
-    width: '100%',
-    height: '10vh',
-    display: 'flex',
-  },
-  camaraBar: {
-    height: '6vh',
-    width: '100%',
-    backgroundColor: '#363636',
-    padding: '2vh',
-  },
-}));
+import useStyles from './style';
 
 function LinkTab(parans) {
   const classes = useStyles();
@@ -113,6 +64,14 @@ export default function PageNavbar(props) {
     <img src={logoPainelDaParticipacao} alt="Logo da Painel da Painel da Participação" />
   );
 
+  const painelParticipacaoLogoMobile = (
+    <img
+      src={logoPainelDaParticipacao}
+      alt="Logo da Painel da Painel da Participação"
+      width="106px"
+      height="32px"
+    />
+  );
 
   function NavTabs(options) {
     const { orientation } = options;
@@ -205,7 +164,9 @@ export default function PageNavbar(props) {
           <div className={drawerContainer}><NavTabs orientation="vertical" /></div>
         </Drawer>
         <div className={toolbarContentMobile}>
-          <div className={mobileLogo}>{camaraDeputadosLogo}</div>
+          <div className={mobileLogo}>
+            {painelParticipacaoLogoMobile}
+          </div>
           <IconButton
             {...{
               edge: 'end',

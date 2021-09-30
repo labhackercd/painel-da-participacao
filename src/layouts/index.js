@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Footer from '../components/Footer';
-import PageNavbar from './navbar';
+import PageNavbar from './Navbar/index';
 
 const useStyles = makeStyles((theme) => ({
   body: {

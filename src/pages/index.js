@@ -8,7 +8,7 @@ import {
 import { format, subDays } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import { apiInstance } from '../services/api/apiInstance';
-import PageNavbar from '../layouts/navbar';
+import PageNavbar from '../layouts/Navbar/index';
 import Footer from '../components/Footer/index';
 import Carousel from '../components/Carousel/index';
 import formatNumberWithDots from '../utils/format/numbers/formatNumbersWithDots/formatNumberWithDots';
