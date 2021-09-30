@@ -5,23 +5,9 @@ import Footer from '../components/Footer';
 import PageNavbar from './navbar';
 
 const useStyles = makeStyles((theme) => ({
-
-  tab: {
-    height: '92%',
-    textTransform: 'capitalize',
-    margin: '0.5rem 0 0 6rem',
-  },
-  menu: {
-    '& .MuiPaper-root-16': {
-      backgroundColor: theme.palette.mediumGrey.main,
-    },
-    '& div': {
-      width: '14%',
-    },
-  },
   body: {
     backgroundColor: theme.palette.primary.main,
-    height: 'auto',
+    minHeight: '100vh',
   },
 }));
 

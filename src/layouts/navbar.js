@@ -9,6 +9,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 import logoCamaraDosDeputados from '../assets/images/logos/logo_cd.svg';
+import logoPainelDaParticipacao from '../assets/images/logos/logo_painel_vertical.png';
 
 const useStyles = makeStyles((theme) => ({
   header: {
@@ -18,17 +19,6 @@ const useStyles = makeStyles((theme) => ({
     '@media (max-width: 1100px)': {
       padding: '0 0',
     },
-  },
-  logo: {
-    fontWeight: 600,
-    color: '#FFFEFE',
-    textAlign: 'left',
-  },
-  menuButton: {
-    fontFamily: 'Open Sans, sans-serif',
-    fontWeight: 700,
-    size: '18px',
-    marginLeft: '38px',
   },
   drawerContainer: {
     padding: '20px 60px',
@@ -40,17 +30,14 @@ const useStyles = makeStyles((theme) => ({
   divider: {
     background: 'white',
   },
-  icon: {
-    color: 'white',
-  },
   tab: {
-    width: 'auto',
     height: '92%',
     textTransform: 'capitalize',
     fontWeight: '600',
-    margin: '0rem 0 0 1rem',
+    margin: '0rem 0 0 0rem',
+    fontSize: '1.2rem',
   },
-  offset: theme.mixins.toolbar,
+
   toolbarContentMobile: {
     display: 'flex',
     width: '100%',
@@ -64,7 +51,14 @@ const useStyles = makeStyles((theme) => ({
   },
   desktopNavbarContent: {
     width: '100%',
+    height: '10vh',
     display: 'flex',
+  },
+  camaraBar: {
+    height: '6vh',
+    width: '100%',
+    backgroundColor: '#363636',
+    padding: '2vh',
   },
 }));
 
@@ -90,6 +84,7 @@ export default function PageNavbar(props) {
   const {
     header, drawerContainer, drawerMobile, divider, offset,
     toolbarContentMobile, mobileLogo, desktopNavbarContent,
+    camaraBar,
   } = useStyles();
   const { value } = props;
 
@@ -113,6 +108,11 @@ export default function PageNavbar(props) {
   const camaraDeputadosLogo = (
     <img src={logoCamaraDosDeputados} alt="Logo Câmara dos Deputados" />
   );
+
+  const painelParticipacaoLogo = (
+    <img src={logoPainelDaParticipacao} alt="Logo da Painel da Painel da Participação" />
+  );
+
 
   function NavTabs(options) {
     const { orientation } = options;
@@ -172,12 +172,18 @@ export default function PageNavbar(props) {
   }
 
   const displayDesktop = () => (
-    <Toolbar className={desktopNavbarContent}>
-      {camaraDeputadosLogo}
-      <Box width="100%" display="flex" justifyContent="flex-end">
-        <NavTabs orientation="horizontal" />
-      </Box>
-    </Toolbar>
+    <>
+      <div className={camaraBar}>
+        {camaraDeputadosLogo}
+        {' '}
+      </div>
+      <Toolbar className={desktopNavbarContent}>
+        {painelParticipacaoLogo}
+        <Box width="100%" display="flex" justifyContent="flex-end">
+          <NavTabs orientation="horizontal" />
+        </Box>
+      </Toolbar>
+    </>
   );
 
   const displayMobile = () => {
@@ -219,9 +225,7 @@ export default function PageNavbar(props) {
 
   return (
     <header>
-      <AppBar position="absolute" className={header}>
-        {mobileView ? displayMobile() : displayDesktop()}
-      </AppBar>
+      {mobileView ? displayMobile() : displayDesktop()}
       <div className={offset} />
     </header>
   );
