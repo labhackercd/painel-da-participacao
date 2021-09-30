@@ -13,9 +13,10 @@ import logoCamaraDosDeputados from '../assets/images/logos/logo_cd.svg';
 const useStyles = makeStyles((theme) => ({
   header: {
     backgroundColor: theme.palette.black.main,
-    paddingLeft: '10vh',
+    width: '100%',
+    padding: '0 50px',
     '@media (max-width: 1100px)': {
-      paddingLeft: 0,
+      padding: '0 0',
     },
   },
   logo: {
@@ -43,13 +44,11 @@ const useStyles = makeStyles((theme) => ({
     color: 'white',
   },
   tab: {
+    width: 'auto',
     height: '92%',
     textTransform: 'capitalize',
     fontWeight: '600',
-    margin: '0rem 0 0 3rem',
-  },
-  tabs: {
-    marginLeft: '2vh',
+    margin: '0rem 0 0 1rem',
   },
   offset: theme.mixins.toolbar,
   toolbarContentMobile: {
@@ -62,6 +61,10 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  desktopNavbarContent: {
+    width: '100%',
+    display: 'flex',
   },
 }));
 
@@ -85,8 +88,8 @@ function a11yProps(index) {
 
 export default function PageNavbar(props) {
   const {
-    header, drawerContainer, drawerMobile, divider, tabs, offset,
-    toolbarContentMobile, mobileLogo,
+    header, drawerContainer, drawerMobile, divider, offset,
+    toolbarContentMobile, mobileLogo, desktopNavbarContent,
   } = useStyles();
   const { value } = props;
 
@@ -117,13 +120,12 @@ export default function PageNavbar(props) {
     return (
       <Tabs
         value={value}
-        className={tabs}
         TabIndicatorProps={{ style: { background: 'linear-gradient(90deg, rgba(20, 215, 104, 0.5) 0%, rgba(17, 129, 233, 0.5) 32.81%, rgba(245, 157, 42, 0.5) 69.79%, rgba(228, 56, 180, 0.5) 100%)' } }}
         orientation={orientation}
       >
         <LinkTab
-          label="Painel da Participação"
-          aria-label="Painel da Participação"
+          label="Inicio"
+          aria-label="Inicio"
           aria-selected={false}
           url={`${process.env.NEXT_PUBLIC_INITIAL_PAGE_URL}`}
           index="0"
@@ -170,9 +172,9 @@ export default function PageNavbar(props) {
   }
 
   const displayDesktop = () => (
-    <Toolbar>
+    <Toolbar className={desktopNavbarContent}>
       {camaraDeputadosLogo}
-      <Box width="100%" display="flex" alignContent="space-between">
+      <Box width="100%" display="flex" justifyContent="flex-end">
         <NavTabs orientation="horizontal" />
       </Box>
     </Toolbar>
