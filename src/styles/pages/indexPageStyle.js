@@ -102,10 +102,7 @@ export const useStyles = makeStyles((theme) => ({
     paddingBottom: '20px',
   },
   caroulselInsideBox: {
-    width: '100%',
-    '@media (min-width: 1300px)': {
-      width: '80%',
-    },
+    width: '90%',
   },
   initialPageBannerImg: {
     '@media (min-width: 1100px)': {
