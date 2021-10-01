@@ -16,6 +16,7 @@
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.58",
     "@material-ui/pickers": "^3.2.10",
+    "@material-ui/system": "^4.12.1",
     "@svgr/webpack": "^5.5.0",
     "axios": "^0.21.1",
     "babel-plugin-styled-components": "^1.12.0",

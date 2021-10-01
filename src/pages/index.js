@@ -13,6 +13,7 @@ import Footer from '../components/Footer/index';
 import Carousel from '../components/Carousel/index';
 import formatNumberWithDots from '../utils/format/numbers/formatNumbersWithDots/formatNumberWithDots';
 import logoParticipa from '../assets/images/logos/logo_participa.svg';
+import bannerInitialPage from '../assets/images/initialPage/peopleInGroupImage.png';
 
 import { REFRESH_API_CACHE_DATA_INTERVAL } from '../settings/applicationOptions/index';
 
@@ -27,51 +28,46 @@ function Home({ usersTotal, apiLastCacheMade }) {
         <title>Painel da Participação</title>
       </Head>
       <Box className={classes.box}>
-        <Box className={classes.boxHeader}>
+        <Box>
           <PageNavbar value={0} />
         </Box>
         <Box className={classes.boxContent}>
-          <Box className={classes.bannerBox}>
-            <Box className={classes.bannerBoxParticipaLogo}>
-              <img
-                src={logoParticipa}
-                alt="Logotipo do LABHacker"
-              />
-            </Box>
-            <Box className={classes.bannerBoxText}>
-              <Typography className={`${classes.typography} ${classes.typograhyTitle}`}>
-                Painel da Participação
-              </Typography>
-            </Box>
-          </Box>
           <Box className={classes.boxGridContainer}>
             <Grid container>
-              <Grid item xs={12} md={5}>
+              <Grid item xs={12} sm={6} lg={6}>
                 <Box className={classes.textBox}>
-                  <Typography className={classes.typographyHighLightedText} display="inline">
-                    {formatNumberWithDots(usersTotal)}
-                  </Typography>
-                  <Typography gutterBottom className={classes.typographyBoxText} display="inline">
-                    {' '}
-                    cidadãos se cadastraram no portal e-Democracia da Câmara dos Deputados.*
-                  </Typography>
-                  <Box className={classes.typographyParagraphBox}>
-                    <Typography className={classes.typographyBoxText} display="inline">
-                      Conheça os números de utilização das
+                  <div>
+                    <Typography className={classes.typographyHighLightedText}>
+                      {formatNumberWithDots(usersTotal)}
                     </Typography>
-                    <Typography className={classes.typographyHighLightedText} display="inline">
+                    <Typography gutterBottom className={classes.typographyBoxText}>
                       {' '}
-                      ferramentas de participação pelos cidadãos.
+                      cidadãos se cadastraram no portal e-Democracia da Câmara dos Deputados.*
                     </Typography>
-                    <Typography className={`${classes.typography} ${classes.typographyCaption}`}>
-                      * Dados consolidados até
-                      {' '}
-                      {apiLastCacheMade}
-                    </Typography>
-                  </Box>
+                    <Box>
+                      <Typography className={classes.typographyBoxText}>
+                        Conheça os números de
+                      </Typography>
+                      <Typography className={classes.typographyHighLightedText}>
+                        {' '}
+                        participação pelos cidadãos.
+                      </Typography>
+                      <Typography className={`${classes.typography} ${classes.typographyCaption}`}>
+                        * Dados consolidados até
+                        {' '}
+                        {apiLastCacheMade}
+                      </Typography>
+                    </Box>
+                  </div>
                 </Box>
               </Grid>
-              <Grid item xs={12} md={7}>
+              <Grid item xs={12} sm={6} lg={6}>
+                <Box width="100%" height="100%" display="flex" justifyContent="center" alignItems="center">
+                  <img className={classes.initialPageBannerImg} src={bannerInitialPage} alt="" />
+                </Box>
+                <Box className={classes.lineDividerGradientColor} />
+              </Grid>
+              <Grid item xs={12}>
                 <Box className={classes.caroulselBox}>
                   <Box className={classes.caroulselInsideBox}>
                     <Carousel />

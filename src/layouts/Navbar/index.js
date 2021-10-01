@@ -79,7 +79,7 @@ export default function PageNavbar(props) {
     return (
       <Tabs
         value={value}
-        TabIndicatorProps={{ style: { background: 'linear-gradient(90deg, rgba(20, 215, 104, 0.5) 0%, rgba(17, 129, 233, 0.5) 32.81%, rgba(245, 157, 42, 0.5) 69.79%, rgba(228, 56, 180, 0.5) 100%)' } }}
+        TabIndicatorProps={{ style: { height: '5px', background: 'linear-gradient(90deg, rgba(20, 215, 104, 0.5) 0%, rgba(17, 129, 233, 0.5) 32.81%, rgba(245, 157, 42, 0.5) 69.79%, rgba(228, 56, 180, 0.5) 100%)' } }}
         orientation={orientation}
       >
         <LinkTab
