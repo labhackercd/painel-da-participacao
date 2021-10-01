@@ -12,7 +12,6 @@ import PageNavbar from '../layouts/Navbar/index';
 import Footer from '../components/Footer/index';
 import Carousel from '../components/Carousel/index';
 import formatNumberWithDots from '../utils/format/numbers/formatNumbersWithDots/formatNumberWithDots';
-import logoParticipa from '../assets/images/logos/logo_participa.svg';
 import bannerInitialPage from '../assets/images/initialPage/peopleInGroupImage.png';
 
 import { REFRESH_API_CACHE_DATA_INTERVAL } from '../settings/applicationOptions/index';
@@ -52,11 +51,6 @@ function Home({ usersTotal, apiLastCacheMade }) {
                         {' '}
                         participação pelos cidadãos.
                       </Typography>
-                      <Typography className={`${classes.typography} ${classes.typographyCaption}`}>
-                        * Dados consolidados até
-                        {' '}
-                        {apiLastCacheMade}
-                      </Typography>
                     </Box>
                   </div>
                 </Box>
@@ -65,7 +59,19 @@ function Home({ usersTotal, apiLastCacheMade }) {
                 <Box width="100%" height="100%" display="flex" justifyContent="center" alignItems="center">
                   <img className={classes.initialPageBannerImg} src={bannerInitialPage} alt="" />
                 </Box>
-                <Box className={classes.lineDividerGradientColor} />
+              </Grid>
+              <Grid item xs={12}>
+                <Box display="flex" alignItems="center">
+                  <Box width="35%" height="100%">
+                    <Typography className={`${classes.typography} ${classes.typographyCaption}`}>
+                      * Dados consolidados até
+                      {' '}
+                      {apiLastCacheMade}
+                    </Typography>
+                  </Box>
+                  <Box className={classes.lineDividerGradientColor} />
+                </Box>
+
               </Grid>
               <Grid item xs={12}>
                 <Box className={classes.caroulselBox}>

@@ -32,14 +32,12 @@ export const useStyles = makeStyles((theme) => ({
     letterSpacing: '0.05em',
   },
   typographyCaption: {
-    fontSize: '1rem',
+    fontSize: '0.375rem',
     fontWeight: 'regular',
-    paddingTop: '15px',
-    '@media (max-width: 400px)': {
-      fontSize: '0.4rem',
-    },
-    '@media (max-width: 1100px)': {
-      fontSize: '0.8rem',
+    paddingLeft: '20px',
+
+    '@media (min-width: 700px)': {
+      fontSize: '0.75rem',
     },
     '@media (min-width: 1100px)': {
       fontSize: '1rem',
@@ -124,7 +122,7 @@ export const useStyles = makeStyles((theme) => ({
   },
   lineDividerGradientColor: {
     marginTop: 0,
-    width: '100%',
+    width: '65%',
     height: '2px',
     background: 'linear-gradient(90deg, rgba(20, 215, 104, 0.4) 0%, rgba(17, 129, 233, 0.4) 34.9%, rgba(245, 157, 42, 0.4) 67.71%, rgba(228, 56, 180, 0.4) 100%)',
   },

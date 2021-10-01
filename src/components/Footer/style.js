@@ -12,9 +12,8 @@ export const useStyles = makeStyles(() => ({
   },
   bannerBox: {
     width: '100%',
-    display: 'flex',
-    height: '50px',
-    background: ' linear-gradient(90deg, rgba(228, 56, 180, 0.3) 0%, rgba(245, 157, 42, 0.3) 32.29%, rgba(17, 129, 233, 0.3) 63.54%, rgba(20, 215, 104, 0.3) 100%);',
+    height: '8px',
+    background: 'linear-gradient(90deg, rgba(20, 215, 104, 0.4) 0%, rgba(17, 129, 233, 0.4) 34.9%, rgba(245, 157, 42, 0.4) 67.71%, rgba(228, 56, 180, 0.4) 100%)',
   },
   bannerBoxParticipaLogo: {
     width: '10%',
