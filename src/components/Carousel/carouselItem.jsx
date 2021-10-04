@@ -41,9 +41,11 @@ const useStyles = makeStyles((theme) => ({
       width: '90%',
       height: '60px',
     },
-  },
-  buttonContainer: {
-    paddingTop: '15px',
+    transition: 'filter 0.2s',
+
+    '&:hover': {
+      filter: 'brightness(0.7)',
+    },
   },
 }));
 
@@ -52,11 +54,11 @@ export default function CarouselItem({ item }) {
 
   return (
     <Box paddingBottom="50px" width="100%" display="flex" justifyContent="center">
-      <Box width="70%" display="flex" justifyContent="center" alignItems="center">
-        <Box width="20%">
+      <Box width="70%" display="flex" justifyContent="space-around" alignItems="center">
+        <Box maxWidth="20%">
           <img src={item.img} alt="" width="150px" height="150px" />
         </Box>
-        <Box width="40%">
+        <Box maxWidth="40%">
           <Typography className={`${classes.typography} ${classes.typographyToolTitle}`} align="center">
             {item.toolName}
           </Typography>
@@ -64,7 +66,7 @@ export default function CarouselItem({ item }) {
             {item.description}
           </Typography>
         </Box>
-        <Box className={classes.buttonContainer}>
+        <Box>
           <Link
             href={item.toolPage}
             passHref

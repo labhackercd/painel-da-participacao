@@ -71,13 +71,13 @@ export const useStyles = makeStyles((theme) => ({
     fontWeight: 'bold',
     display: 'inline',
     '@media (max-width: 400px)': {
-      fontSize: '1.2rem',
+      fontSize: '1rem',
     },
     '@media (max-width: 1100px)': {
-      fontSize: '1.3rem',
+      fontSize: '1.2rem',
     },
     '@media (min-width: 1100px)': {
-      fontSize: '3rem',
+      fontSize: '2.8rem',
     },
   },
   boxGridContainer: {

@@ -31,21 +31,21 @@ export default function Caroulsel() {
   const carouselItens = [
     {
       id: 1,
-      toolName: 'Wikilegis',
-      description: 'Opiniões em textos de propostas legislativas',
-      color: '#14D768',
-      buttonText: 'Ver a participação no Wikilegis',
-      toolPage: `${process.env.NEXT_PUBLIC_WIKILEGIS_PAGE_URL}`,
-      img: wikilegisCaroulselImg,
-    },
-    {
-      id: 2,
       toolName: 'Audiências Interativas',
       description: 'Perguntas aos parlamentares',
       color: '#F59D2A',
-      buttonText: 'Ver a participação no Audiências',
+      buttonText: 'Ver a participação',
       toolPage: `${process.env.NEXT_PUBLIC_AUDIENCIAS_PAGE_URL}`,
       img: audienciasCaroulselImg,
+    },
+    {
+      id: 2,
+      toolName: 'Wikilegis',
+      description: 'Opiniões em textos de propostas legislativas',
+      color: '#14D768',
+      buttonText: 'Ver a participação',
+      toolPage: `${process.env.NEXT_PUBLIC_WIKILEGIS_PAGE_URL}`,
+      img: wikilegisCaroulselImg,
     },
     {
       id: 3,
@@ -71,7 +71,7 @@ export default function Caroulsel() {
     <Carousel
       additionalTransfrom={0}
       arrows
-      autoPlay={false}
+      autoPlay
       autoPlaySpeed={3000}
       centerMode={false}
       className=""
