@@ -5,7 +5,7 @@ import React from 'react';
 import Head from 'next/head';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import PageNavbar from '../layouts/navbar';
+import PageNavbar from '../layouts/Navbar/index';
 import Footer from '../components/Footer/index';
 
 import error500Image from '../assets/images/informations/500_image.png';

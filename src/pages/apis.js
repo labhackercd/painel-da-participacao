@@ -13,7 +13,7 @@ import {
   GitHub as GitHubIcon,
   Language as LanguageIcon,
 } from '@material-ui/icons';
-import PageNavbar from '../layouts/navbar';
+import PageNavbar from '../layouts/Navbar/index';
 import Footer from '../components/Footer';
 import logoLABHacker from '../assets/images/logos/logo_lab.svg';
 

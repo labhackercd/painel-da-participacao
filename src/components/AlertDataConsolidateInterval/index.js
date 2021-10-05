@@ -10,17 +10,31 @@ import Paper from '@material-ui/core/Paper';
 import { useStyles } from './style';
 import { START_TIME_OF_DATA_CONSOLIDATION, END_TIME_OF_DATA_CONSOLIDATION } from '../../settings/applicationOptions/index';
 
+function returnTimeStamp(currentYear, currentMonth, currentDay, hour, minute) {
+  return new Date(currentYear, currentMonth, currentDay, hour, minute).getTime();
+}
+
 export default function AlertDataConsolidateInterval() {
   const classes = useStyles();
   const [isInDataConsolidateInterval, setIsInDataConsolidateInterval] = useState(false);
 
   function checkIfHourIsInInterval() {
-    const date = new Date();
-    const currentTime = `${(date.getHours())}:${(date.getMinutes())}:00`;
-    const regExp = /(\d{1,2}):(\d{1,2}):(\d{1,2})/;
+    const startHour = START_TIME_OF_DATA_CONSOLIDATION.split(':');
+    const endHour = END_TIME_OF_DATA_CONSOLIDATION.split(':');
 
-    const isHourAfterBegginingOfConsolidation = parseInt(currentTime.replace(regExp, '$1$2$3')) > parseInt(START_TIME_OF_DATA_CONSOLIDATION.replace(regExp, '$1$2$3'));
-    const isHourBeforeEndOfConsolidation = parseInt(END_TIME_OF_DATA_CONSOLIDATION.replace(regExp, '$1$2$3')) > parseInt(currentTime.replace(regExp, '$1$2$3'));
+    const currentTime = new Date();
+    const currentTimestamp = returnTimeStamp(
+      currentTime.getYear(), currentTime.getMonth(), currentTime.getDay(), currentTime.getHours(), currentTime.getMinutes(),
+    );
+    const startOfConsolidateHourTimestamp = returnTimeStamp(
+      currentTime.getYear(), currentTime.getMonth(), currentTime.getDay(), startHour[0], startHour[1],
+    );
+    const endOfConsolidateHourTimestamp = returnTimeStamp(
+      currentTime.getYear(), currentTime.getMonth(), currentTime.getDay(), endHour[0], endHour[1],
+    );
+
+    const isHourAfterBegginingOfConsolidation = currentTimestamp > startOfConsolidateHourTimestamp;
+    const isHourBeforeEndOfConsolidation = currentTimestamp < endOfConsolidateHourTimestamp;
 
     if (isHourAfterBegginingOfConsolidation && isHourBeforeEndOfConsolidation) {
       setIsInDataConsolidateInterval(true);

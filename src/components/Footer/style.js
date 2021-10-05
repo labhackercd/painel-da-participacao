@@ -12,29 +12,46 @@ export const useStyles = makeStyles(() => ({
   },
   bannerBox: {
     width: '100%',
-    display: 'flex',
-    height: '50px',
-    background: ' linear-gradient(90deg, rgba(228, 56, 180, 0.3) 0%, rgba(245, 157, 42, 0.3) 32.29%, rgba(17, 129, 233, 0.3) 63.54%, rgba(20, 215, 104, 0.3) 100%);',
+    height: '8px',
+    background: 'linear-gradient(90deg, rgba(20, 215, 104, 0.4) 0%, rgba(17, 129, 233, 0.4) 34.9%, rgba(245, 157, 42, 0.4) 67.71%, rgba(228, 56, 180, 0.4) 100%)',
   },
-  bannerBoxParticipaLogo: {
-    width: '10%',
-    height: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    marginRight: '30vh',
+  bannerBoxLogos: {
+    '@media (max-width: 600px)': {
+      display: 'none',
+    },
   },
   informationsDiv: {
-    margin: '20px',
+    padding: '1rem 5rem 1rem 5rem',
     display: 'flex',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    '@media (max-width: 600px)': {
-      flexDirection: 'column',
+    '@media (max-width: 800px)': {
+      padding: '1rem 1rem 1rem 1rem',
+      alignItems: 'flex-start',
     },
   },
   informationItem: {
-    '@media (max-width: 900px)': {
-      margin: '15px',
+    width: '300px',
+    display: 'flex',
+    alignItems: 'flex-start',
+    flexDirection: 'column',
+    '@media (max-width: 400px)': {
+      width: '300px',
+    },
+  },
+  informationItemImg: {
+    width: '300px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  informationItemLab: {
+    width: '300px',
+    display: 'flex',
+    alignItems: 'flex-end',
+    flexDirection: 'column',
+    '@media (max-width: 400px)': {
+      width: '200px',
     },
   },
   typography: {
@@ -44,8 +61,9 @@ export const useStyles = makeStyles(() => ({
   informationItemTypographyText: {
     fontSize: '1rem',
     fontWeight: 'regular',
-    '@media (max-width: 600px)': {
+    '@media (max-width: 400px)': {
       textAlign: 'center',
+      fontSize: '0.5rem',
     },
   },
 }));

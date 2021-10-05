@@ -1,31 +1,3 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
 * {
   box-sizing: border-box;
-}
-
-#nprogress .bar {
-  background: #FFBB00 !important;
-  z-index: 1;
-  position: absolute;
-}
-
-#nprogress .peg {
-  box-shadow: 0 0 10px #FFBB00, 0 0 5px #FFBB00;
-}
-
-#nprogress .spinner-icon {
-  border-top-color: #FFBB00;
-  border-left-color: #FFBB00;
 }

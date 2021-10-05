@@ -6,7 +6,7 @@ import Image from 'next/image';
 // import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { Typography, Hidden, Box } from '@material-ui/core';
-import PageNavbar from '../layouts/navbar';
+import PageNavbar from '../layouts/Navbar/index';
 import Footer from '../components/Footer/index';
 import { useStyles } from '../styles/pages/sobrePageStyle';
 

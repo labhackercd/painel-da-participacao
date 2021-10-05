@@ -1,17 +1,15 @@
 /* eslint-disable max-len */
 /* eslint-disable import/prefer-default-export */
 import { makeStyles } from '@material-ui/core/styles';
-import bannerBackgroundImg from '../../assets/images/initialPage/bannerBlur.png';
 
-// const linearGradient = ' linear-gradient(90deg, rgba(228, 56, 180, 0.3) 0%, rgba(245, 157, 42, 0.3) 32.29%, rgba(17, 129, 233, 0.3) 63.54%, rgba(20, 215, 104, 0.3) 100%);';
+// const linearGradient = 'linear-gradient(90deg, rgba(228, 56, 180, 0.3) 0%, rgba(245, 157, 42, 0.3) 32.29%, rgba(17, 129, 233, 0.3) 63.54%, rgba(20, 215, 104, 0.3) 100%);';
 
 export const useStyles = makeStyles((theme) => ({
   root: {
-    height: '100%',
+    height: '100vh',
     // QHD/WQHD (2560×1440) QUADHD - 4K UHD (3840×2160) 4K ULTRA HD
-    '@media (min-width: 2300px)': {
-      height: '100vh',
-      width: '100vw',
+    '@media (min-width: 1000px)': {
+      height: '100%',
     },
     backgroundColor: theme.palette.primary.main,
   },
@@ -19,109 +17,67 @@ export const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexFlow: 'column',
     width: 'auto',
-    backgroundColor: theme.palette.primary.main,
     height: '100%',
-  },
-  boxHeader: {
-
+    alignItems: 'space-between',
   },
   boxContent: {
     flex: '1 ',
     display: 'flex',
     flexFlow: 'column',
-  },
-  bannerBox: {
-    width: '100%',
-    display: 'flex',
-    height: '250px',
-    backgroundImage: `url(${bannerBackgroundImg})`,
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: '100% 100%',
-    '@media (min-width: 2200px)': {
-      height: '400px',
-    },
-    '@media (max-width: 600px)': {
-      height: '200px',
-      flexDirection: 'column',
-    },
-  },
-  bannerBoxText: {
-    height: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    flexGrow: 1,
-    '@media (max-width: 600px)': {
-      width: '100%',
-      justifyContent: 'center',
-    },
-  },
-  bannerBoxParticipaLogo: {
-    height: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    paddingLeft: '2vh',
-    marginRight: '2rem',
-    '@media (max-width: 600px)': {
-      width: '100%',
-      justifyContent: 'center',
-    },
-    '@media (min-width: 1100px)': {
-      paddingLeft: '10vh',
-    },
+    marginRight: '5vw',
+    marginLeft: '5vw',
   },
   typography: {
     fontFamily: 'Open Sans',
     letterSpacing: '0.05em',
   },
-  typograhyTitle: {
-    fontSize: '2.938rem',
-    fontWeight: 'bold',
-    '@media (max-width: 600px)': {
-      fontSize: '2rem',
-    },
-  },
   typographyCaption: {
-    fontSize: '1.5rem',
+    fontSize: '0.375rem',
     fontWeight: 'regular',
-    paddingTop: '15px',
-    '@media (max-width: 600px)': {
+    paddingLeft: '20px',
+
+    '@media (min-width: 700px)': {
+      fontSize: '0.75rem',
+    },
+    '@media (min-width: 1000px)': {
       fontSize: '1rem',
     },
   },
   textBox: {
-    paddingLeft: '2vh',
-    paddingTop: '3vh',
-    '@media (min-width: 1100px)': {
-      paddingLeft: '10vh',
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: '1rem',
+    '@media (max-width: 400px)': {
+      padding: '0 1rem 0 1rem',
+      margin: 0,
     },
   },
   typographyBoxText: {
-    fontFamily: 'Open Sans',
-    fontSize: '2.4rem',
-    '@media (max-width: 600px)': {
-      fontSize: '1.1rem',
+    display: 'inline',
+    '@media (max-width: 400px)': {
+      fontSize: '1rem',
     },
-  },
-  typographyBoxTextTitle: {
-    fontFamily: 'Open Sans',
-    letterSpacing: '0.05em',
-    fontWeight: 'bold',
-    fontSize: '2.938rem',
-    '@media (max-width: 600px)': {
-      fontSize: '1.4rem',
+    '@media (max-width: 1100px)': {
+      fontSize: '1.2rem',
+    },
+    '@media (min-width: 1100px)': {
+      fontSize: '2.8rem',
     },
   },
   typographyHighLightedText: {
-    fontSize: '2.4rem',
     fontWeight: 'bold',
-    '@media (max-width: 600px)': {
-      fontSize: '1.1rem',
+    display: 'inline',
+    '@media (max-width: 400px)': {
+      fontSize: '1rem',
     },
-  },
-  typographyParagraphBox: {
-    paddingTop: '50px',
-    '@media (max-width: 960px)': {
-      paddingTop: '10px',
+    '@media (max-width: 1100px)': {
+      fontSize: '1.2rem',
+    },
+    '@media (min-width: 1100px)': {
+      fontSize: '2.8rem',
     },
   },
   boxGridContainer: {
@@ -130,7 +86,10 @@ export const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
     paddingTop: '5vh',
-    paddingBottom: '10vh',
+    paddingBottom: '5vh',
+    '@media (max-width: 400px)': {
+      paddingTop: '10vh',
+    },
   },
   gridContainer: {
     width: '100%',
@@ -142,18 +101,29 @@ export const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    '@media (max-width: 900px)': {
-      paddingTop: '30px',
-      paddingBottom: '20px',
-    },
+    paddingTop: '10vh',
+    paddingBottom: '20px',
   },
   caroulselInsideBox: {
-    width: '100%',
-    '@media (min-width: 1300px)': {
-      width: '70%',
+    width: '90%',
+  },
+  initialPageBannerImg: {
+    '@media (min-width: 1100px)': {
+      width: '500px',
+      height: '360px',
+    },
+    '@media (max-width: 1100px)': {
+      width: '250px',
+      height: '180px',
+    },
+    '@media (max-width: 500px)': {
+      display: 'none',
     },
   },
-  iconStyle: {
-    color: 'white',
+  lineDividerGradientColor: {
+    marginTop: 0,
+    width: '65%',
+    height: '2px',
+    background: 'linear-gradient(90deg, rgba(20, 215, 104, 0.4) 0%, rgba(17, 129, 233, 0.4) 34.9%, rgba(245, 157, 42, 0.4) 67.71%, rgba(228, 56, 180, 0.4) 100%)',
   },
 }));
