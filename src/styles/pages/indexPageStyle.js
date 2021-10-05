@@ -8,7 +8,7 @@ export const useStyles = makeStyles((theme) => ({
   root: {
     height: '100vh',
     // QHD/WQHD (2560×1440) QUADHD - 4K UHD (3840×2160) 4K ULTRA HD
-    '@media (min-width: 1200px)': {
+    '@media (min-width: 1000px)': {
       height: '100%',
     },
     backgroundColor: theme.palette.primary.main,
@@ -39,7 +39,7 @@ export const useStyles = makeStyles((theme) => ({
     '@media (min-width: 700px)': {
       fontSize: '0.75rem',
     },
-    '@media (min-width: 1100px)': {
+    '@media (min-width: 1000px)': {
       fontSize: '1rem',
     },
   },
