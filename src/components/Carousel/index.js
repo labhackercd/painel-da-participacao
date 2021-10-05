@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+import { isDesktop } from 'react-device-detect';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import CarouselItem from './carouselItem';
@@ -70,8 +71,8 @@ export default function Caroulsel() {
   return (
     <Carousel
       additionalTransfrom={0}
-      arrows
-      autoPlay
+      arrows={isDesktop}
+      autoPlay={false}
       autoPlaySpeed={3000}
       centerMode={false}
       className=""
