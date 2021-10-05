@@ -25,7 +25,7 @@ export const useStyles = makeStyles(() => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    '@media (max-width: 400px)': {
+    '@media (max-width: 800px)': {
       padding: '1rem 1rem 1rem 1rem',
       alignItems: 'flex-start',
     },
