@@ -86,7 +86,7 @@ export const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
     paddingTop: '5vh',
-    paddingBottom: '10vh',
+    paddingBottom: '5vh',
   },
   gridContainer: {
     width: '100%',
