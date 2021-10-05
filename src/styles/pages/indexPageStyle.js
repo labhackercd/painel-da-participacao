@@ -6,11 +6,10 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles((theme) => ({
   root: {
-    height: '100%',
+    height: '100vh',
     // QHD/WQHD (2560×1440) QUADHD - 4K UHD (3840×2160) 4K ULTRA HD
-    '@media (min-width: 2300px)': {
-      height: '100vh',
-      width: '100vw',
+    '@media (min-width: 1200px)': {
+      height: '100%',
     },
     backgroundColor: theme.palette.primary.main,
   },
@@ -19,6 +18,7 @@ export const useStyles = makeStyles((theme) => ({
     flexFlow: 'column',
     width: 'auto',
     height: '100%',
+    alignItems: 'space-between',
   },
   boxContent: {
     flex: '1 ',
@@ -87,6 +87,9 @@ export const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     paddingTop: '5vh',
     paddingBottom: '5vh',
+    '@media (max-width: 400px)': {
+      paddingTop: '10vh',
+    },
   },
   gridContainer: {
     width: '100%',
