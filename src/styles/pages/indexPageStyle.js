@@ -12,6 +12,11 @@ export const useStyles = makeStyles((theme) => ({
       height: '100%',
     },
     backgroundColor: theme.palette.primary.main,
+    /*
+    [theme.breakpoints.up('md')]: {
+      height: '40vh',
+    },
+    */
   },
   box: {
     display: 'flex',

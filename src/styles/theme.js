@@ -2,6 +2,16 @@ import { createMuiTheme } from '@material-ui/core/styles';
 
 const theme = createMuiTheme(
   {
+    // Up to the values, default values in css are for mobile
+    breakpoints: {
+      values: {
+        mobile: 0,
+        tablet: 600,
+        desktopMd: 960,
+        desktopLg: 1280,
+        desktopXl: 1920,
+      },
+    },
     typography: {
       h1: {
         fontSize: 47,
