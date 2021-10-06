@@ -13,11 +13,12 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   box: {
+    paddingTop: '5rem',
     display: 'flex',
     flexFlow: 'column',
     width: '100%',
-    alignItems: 'space-between',
-    minHeight: '100vh',
+    justifyContent: 'flex-start',
+    minHeight: '85vh',
   },
   typography: {
     fontFamily: 'Open Sans',
@@ -56,26 +57,20 @@ export const useStyles = makeStyles((theme) => ({
   },
   typographyBoxText: {
     display: 'inline',
-    '@media (max-width: 400px)': {
-      fontSize: '1rem',
+    '& span': {
+      fontWeight: 'bold',
     },
-    '@media (max-width: 1100px)': {
+    fontSize: '1rem',
+    [theme.breakpoints.only('sm')]: {
       fontSize: '1.2rem',
     },
-    '@media (min-width: 1100px)': {
-      fontSize: '2.8rem',
+    [theme.breakpoints.only('md')]: {
+      fontSize: '1.4rem',
     },
-  },
-  typographyHighLightedText: {
-    fontWeight: 'bold',
-    display: 'inline',
-    '@media (max-width: 400px)': {
-      fontSize: '1rem',
+    [theme.breakpoints.only('lg')]: {
+      fontSize: '2rem',
     },
-    '@media (max-width: 1100px)': {
-      fontSize: '1.2rem',
-    },
-    '@media (min-width: 1100px)': {
+    [theme.breakpoints.up('xl')]: {
       fontSize: '2.8rem',
     },
   },

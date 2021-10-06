@@ -47,7 +47,7 @@ export default function PageNavbar(props) {
   const { mobileView, drawerOpen } = state;
 
   useEffect(() => {
-    const setResponsiveness = () => (window.innerWidth < 1100
+    const setResponsiveness = () => (window.innerWidth < 1280
       ? setState((prevState) => ({ ...prevState, mobileView: true }))
       : setState((prevState) => ({ ...prevState, mobileView: false })));
 
@@ -61,7 +61,7 @@ export default function PageNavbar(props) {
   );
 
   const painelParticipacaoLogo = (
-    <img src={logoPainelDaParticipacao} alt="Logo da Painel da Painel da Participação" />
+    <img src={logoPainelDaParticipacao} alt="Logo da Painel da Painel da Participação" width="270px" height="80px" />
   );
 
   const painelParticipacaoLogoMobile = (

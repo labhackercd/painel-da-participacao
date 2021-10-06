@@ -4,8 +4,7 @@ const useStyles = makeStyles((theme) => ({
   header: {
     backgroundColor: theme.palette.black.main,
     width: '100%',
-    padding: '0 50px',
-    '@media (max-width: 1100px)': {
+    [theme.breakpoints.down('lg')]: {
       padding: '0 0',
     },
   },
@@ -23,8 +22,12 @@ const useStyles = makeStyles((theme) => ({
     height: '92%',
     textTransform: 'capitalize',
     fontWeight: '600',
-    margin: '0rem 0 0 1rem',
+    margin: '0rem 0 0 0rem',
     fontSize: '1.2rem',
+
+    [theme.breakpoints.only('lg')]: {
+      fontSize: '1rem',
+    },
   },
   toolbarContentMobile: {
     display: 'flex',

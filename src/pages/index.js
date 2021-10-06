@@ -27,56 +27,54 @@ function Home({ usersTotal, apiLastCacheMade }) {
         <title>Painel da Participação</title>
       </Head>
       <Layout value={0}>
-        <Box>
-          <Grid container>
-            <Grid item xs={12} md={6}>
-              <Box className={classes.textBox}>
-                <div>
-                  <Typography className={classes.typographyHighLightedText}>
-                    {formatNumberWithDots(usersTotal)}
-                  </Typography>
-                  <Typography gutterBottom className={classes.typographyBoxText}>
-                    {' '}
-                    cidadãos se cadastraram no portal e-Democracia da Câmara dos Deputados.*
-                  </Typography>
-                  <Box>
+        <Box className={classes.box}>
+          <Box>
+            <Grid container>
+              <Grid item xs={12} sm={6} md={6}>
+                <Box className={classes.textBox}>
+                  <div>
                     <Typography className={classes.typographyBoxText}>
-                      Conheça os números de
-                    </Typography>
-                    <Typography className={classes.typographyHighLightedText}>
+                      <span>{formatNumberWithDots(usersTotal)}</span>
                       {' '}
-                      participação pelos cidadãos.
+                      cidadãos se cadastraram no portal e-Democracia da Câmara dos Deputados.*
+                    </Typography>
+                    <Box>
+                      <Typography className={classes.typographyBoxText}>
+                        Conheça os números de
+                        {' '}
+                        <span>participação pelos cidadãos.</span>
+                      </Typography>
+                    </Box>
+                  </div>
+                </Box>
+              </Grid>
+              <Grid item xs={12} sm={6} md={6}>
+                <Box width="100%" height="100%" display="flex" justifyContent="center" alignItems="center">
+                  <img className={classes.initialPageBannerImg} src={bannerInitialPage} alt="" />
+                </Box>
+              </Grid>
+              <Grid item xs={12}>
+                <Box display="flex" alignItems="center">
+                  <Box width="35%" height="100%">
+                    <Typography className={`${classes.typography} ${classes.typographyCaption}`}>
+                      * Dados consolidados até
+                      {' '}
+                      {apiLastCacheMade}
                     </Typography>
                   </Box>
-                </div>
-              </Box>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <Box width="100%" height="100%" display="flex" justifyContent="center" alignItems="center">
-                <img className={classes.initialPageBannerImg} src={bannerInitialPage} alt="" />
-              </Box>
-            </Grid>
-            <Grid item xs={12}>
-              <Box display="flex" alignItems="center">
-                <Box width="35%" height="100%">
-                  <Typography className={`${classes.typography} ${classes.typographyCaption}`}>
-                    * Dados consolidados até
-                    {' '}
-                    {apiLastCacheMade}
-                  </Typography>
+                  <Box className={classes.lineDividerGradientColor} />
                 </Box>
-                <Box className={classes.lineDividerGradientColor} />
-              </Box>
 
-            </Grid>
-            <Grid item xs={12}>
-              <Box className={classes.caroulselBox}>
-                <Box className={classes.caroulselInsideBox}>
-                  <Carousel />
+              </Grid>
+              <Grid item xs={12}>
+                <Box className={classes.caroulselBox}>
+                  <Box className={classes.caroulselInsideBox}>
+                    <Carousel />
+                  </Box>
                 </Box>
-              </Box>
+              </Grid>
             </Grid>
-          </Grid>
+          </Box>
         </Box>
       </Layout>
     </div>
