@@ -27,17 +27,20 @@ export const useStyles = makeStyles((theme) => ({
   typographyCaption: {
     fontSize: '0.375rem',
     fontWeight: 'regular',
-    paddingLeft: '1rem',
+    paddingLeft: '8rem',
 
-    '@media (min-width: 700px)': {
+    [theme.breakpoints.only('sm')]: {
+      paddingLeft: '2rem',
+      fontSize: '0.5rem',
+    },
+    [theme.breakpoints.up('md')]: {
       fontSize: '0.75rem',
     },
-    '@media (min-width: 1000px)': {
+    [theme.breakpoints.only('lg')]: {
       fontSize: '1rem',
     },
-
-    [theme.breakpoints.up('md')]: {
-      paddingLeft: '8rem',
+    [theme.breakpoints.up('xl')]: {
+      fontSize: '1.2rem',
     },
   },
   textBox: {
@@ -47,7 +50,8 @@ export const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
     margin: '1rem',
-    '@media (max-width: 400px)': {
+    paddingLeft: '1rem',
+    [theme.breakpoints.only('xs')]: {
       padding: '0 1rem 0 1rem',
       margin: 0,
     },
