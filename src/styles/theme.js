@@ -5,11 +5,11 @@ const theme = createMuiTheme(
     // Up to the values, default values in css are for mobile
     breakpoints: {
       values: {
-        mobile: 0,
-        tablet: 600,
-        desktopMd: 960,
-        desktopLg: 1280,
-        desktopXl: 1920,
+        xs: 0,
+        sm: 600,
+        md: 960,
+        lg: 1280,
+        xl: 1920,
       },
     },
     typography: {

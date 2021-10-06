@@ -6,31 +6,18 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles((theme) => ({
   root: {
-    height: '100vh',
-    // QHD/WQHD (2560×1440) QUADHD - 4K UHD (3840×2160) 4K ULTRA HD
-    '@media (min-width: 1000px)': {
+    minHeight: '100vh',
+    backgroundColor: theme.palette.primary.main,
+    [theme.breakpoints.up('md')]: {
       height: '100%',
     },
-    backgroundColor: theme.palette.primary.main,
-    /*
-    [theme.breakpoints.up('md')]: {
-      height: '40vh',
-    },
-    */
   },
   box: {
     display: 'flex',
     flexFlow: 'column',
-    width: 'auto',
-    height: '100%',
+    width: '100%',
     alignItems: 'space-between',
-  },
-  boxContent: {
-    flex: '1 ',
-    display: 'flex',
-    flexFlow: 'column',
-    marginRight: '5vw',
-    marginLeft: '5vw',
+    minHeight: '100vh',
   },
   typography: {
     fontFamily: 'Open Sans',
@@ -39,13 +26,17 @@ export const useStyles = makeStyles((theme) => ({
   typographyCaption: {
     fontSize: '0.375rem',
     fontWeight: 'regular',
-    paddingLeft: '20px',
+    paddingLeft: '1rem',
 
     '@media (min-width: 700px)': {
       fontSize: '0.75rem',
     },
     '@media (min-width: 1000px)': {
       fontSize: '1rem',
+    },
+
+    [theme.breakpoints.up('md')]: {
+      paddingLeft: '8rem',
     },
   },
   textBox: {
@@ -58,6 +49,9 @@ export const useStyles = makeStyles((theme) => ({
     '@media (max-width: 400px)': {
       padding: '0 1rem 0 1rem',
       margin: 0,
+    },
+    [theme.breakpoints.up('md')]: {
+      paddingLeft: '7rem',
     },
   },
   typographyBoxText: {
@@ -107,7 +101,7 @@ export const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
     paddingTop: '10vh',
-    paddingBottom: '20px',
+    paddingBottom: '6rem',
   },
   caroulselInsideBox: {
     width: '90%',

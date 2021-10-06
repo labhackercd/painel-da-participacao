@@ -8,11 +8,11 @@ import {
 import { format, subDays } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import { apiInstance } from '../services/api/apiInstance';
-import PageNavbar from '../layouts/Navbar/index';
-import Footer from '../components/Footer/index';
 import Carousel from '../components/Carousel/index';
 import formatNumberWithDots from '../utils/format/numbers/formatNumbersWithDots/formatNumberWithDots';
 import bannerInitialPage from '../assets/images/initialPage/peopleInGroupImage.png';
+
+import Layout from '../layouts/index';
 
 import { REFRESH_API_CACHE_DATA_INTERVAL } from '../settings/applicationOptions/index';
 
@@ -26,69 +26,59 @@ function Home({ usersTotal, apiLastCacheMade }) {
       <Head>
         <title>Painel da Participação</title>
       </Head>
-      <Box className={classes.box}>
+      <Layout value={0}>
         <Box>
-          <PageNavbar value={0} />
-        </Box>
-        <Box className={classes.boxContent}>
-          <Box className={classes.boxGridContainer}>
-            <Grid container>
-              <Grid item xs={12} sm={6} lg={6}>
-                <Box className={classes.textBox}>
-                  <div>
+          <Grid container>
+            <Grid item xs={12} md={6}>
+              <Box className={classes.textBox}>
+                <div>
+                  <Typography className={classes.typographyHighLightedText}>
+                    {formatNumberWithDots(usersTotal)}
+                  </Typography>
+                  <Typography gutterBottom className={classes.typographyBoxText}>
+                    {' '}
+                    cidadãos se cadastraram no portal e-Democracia da Câmara dos Deputados.*
+                  </Typography>
+                  <Box>
+                    <Typography className={classes.typographyBoxText}>
+                      Conheça os números de
+                    </Typography>
                     <Typography className={classes.typographyHighLightedText}>
-                      {formatNumberWithDots(usersTotal)}
-                    </Typography>
-                    <Typography gutterBottom className={classes.typographyBoxText}>
                       {' '}
-                      cidadãos se cadastraram no portal e-Democracia da Câmara dos Deputados.*
-                    </Typography>
-                    <Box>
-                      <Typography className={classes.typographyBoxText}>
-                        Conheça os números de
-                      </Typography>
-                      <Typography className={classes.typographyHighLightedText}>
-                        {' '}
-                        participação pelos cidadãos.
-                      </Typography>
-                    </Box>
-                  </div>
-                </Box>
-              </Grid>
-              <Grid item xs={12} sm={6} lg={6}>
-                <Box width="100%" height="100%" display="flex" justifyContent="center" alignItems="center">
-                  <img className={classes.initialPageBannerImg} src={bannerInitialPage} alt="" />
-                </Box>
-              </Grid>
-              <Grid item xs={12}>
-                <Box display="flex" alignItems="center">
-                  <Box width="35%" height="100%">
-                    <Typography className={`${classes.typography} ${classes.typographyCaption}`}>
-                      * Dados consolidados até
-                      {' '}
-                      {apiLastCacheMade}
+                      participação pelos cidadãos.
                     </Typography>
                   </Box>
-                  <Box className={classes.lineDividerGradientColor} />
+                </div>
+              </Box>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <Box width="100%" height="100%" display="flex" justifyContent="center" alignItems="center">
+                <img className={classes.initialPageBannerImg} src={bannerInitialPage} alt="" />
+              </Box>
+            </Grid>
+            <Grid item xs={12}>
+              <Box display="flex" alignItems="center">
+                <Box width="35%" height="100%">
+                  <Typography className={`${classes.typography} ${classes.typographyCaption}`}>
+                    * Dados consolidados até
+                    {' '}
+                    {apiLastCacheMade}
+                  </Typography>
                 </Box>
-
-              </Grid>
-              <Grid item xs={12}>
-                <Box className={classes.caroulselBox}>
-                  <Box className={classes.caroulselInsideBox}>
-                    <Carousel />
-                  </Box>
-                </Box>
-              </Grid>
+                <Box className={classes.lineDividerGradientColor} />
+              </Box>
 
             </Grid>
-          </Box>
+            <Grid item xs={12}>
+              <Box className={classes.caroulselBox}>
+                <Box className={classes.caroulselInsideBox}>
+                  <Carousel />
+                </Box>
+              </Box>
+            </Grid>
+          </Grid>
         </Box>
-        <Box>
-          <Footer />
-        </Box>
-      </Box>
-
+      </Layout>
     </div>
   );
 }
