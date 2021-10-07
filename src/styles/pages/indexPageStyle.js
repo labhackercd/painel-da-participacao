@@ -29,7 +29,7 @@ export const useStyles = makeStyles((theme) => ({
     fontWeight: 'regular',
     paddingLeft: '8rem',
 
-    [theme.breakpoints.only('sm')]: {
+    [theme.breakpoints.down('sm')]: {
       paddingLeft: '2rem',
       fontSize: '0.5rem',
     },
