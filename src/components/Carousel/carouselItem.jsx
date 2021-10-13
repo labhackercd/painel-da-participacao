@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
     display: 'flex',
     justifyContent: 'space-around',
-    '@media (max-width: 1200px)': {
+    [theme.breakpoints.down('lg')]: {
       justifyContent: 'center',
       alignItems: 'center',
       gap: '2rem',
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   caroulselItem: {
     maxWidth: '150px',
     maxHeight: '150px',
-    '@media (max-width: 1200px)': {
+    [theme.breakpoints.down('lg')]: {
       maxWidth: '640px',
       maxHeight: '64px',
     },
@@ -49,21 +49,21 @@ const useStyles = makeStyles((theme) => ({
   typographyToolTitle: {
     fontSize: '2.438rem',
     fontWeight: 'bold',
-    '@media (max-width: 1100px)': {
+    [theme.breakpoints.down('lg')]: {
       fontSize: '1.2rem',
     },
   },
   typographyDescription: {
     fontSize: '1.625rem',
     fontWeight: 'regular',
-    '@media (max-width: 1100px)': {
+    [theme.breakpoints.down('lg')]: {
       fontSize: '0.8rem',
     },
   },
   typographyButton: {
     fontSize: '1.5rem',
     fontWeight: 600,
-    '@media (max-width: 1200px)': {
+    [theme.breakpoints.down('lg')]: {
       fontSize: '0.75rem',
     },
 
