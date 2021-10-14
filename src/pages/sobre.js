@@ -235,14 +235,8 @@ function Sobre() {
                 Fonte dos dados
               </Typography>
               <Typography component="p" className={`${classes.typography} ${classes.typographyParagraph}`}>
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ color: 'yellow' }}
-                  href={`${process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}`}
-                >
-                  API Audiências Interativas
-                </a>
+
+                <AnchorTag url={`${process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}`}>API Audiências Interativas</AnchorTag>
 
               </Typography>
 
@@ -351,14 +345,7 @@ function Sobre() {
                 Fonte dos dados
               </Typography>
               <Typography component="p" className={`${classes.typography} ${classes.typographyParagraph}`}>
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ color: 'green' }}
-                  href={`${process.env.NEXT_PUBLIC_WIKILEGIS_SWAGGER_URL}`}
-                >
-                  API Wikilegis
-                </a>
+                <AnchorTag url={`${process.env.NEXT_PUBLIC_WIKILEGIS_SWAGGER_URL}`}>API Wikilegis</AnchorTag>
               </Typography>
             </>
             { /* ====================================================================================== */}

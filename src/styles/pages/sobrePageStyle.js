@@ -104,19 +104,19 @@ export const useStyles = makeStyles((theme) => ({
   typograhyH3: {
     fontSize: '1.3rem',
     fontWeight: '600',
-    paddingTop: '5px',
-    paddingBottom: '10px',
+    paddingTop: '0px',
+    paddingBottom: '32px',
 
     [theme.breakpoints.up('sm')]: {
       fontSize: '1rem',
     },
 
     [theme.breakpoints.up('md')]: {
-      fontSize: '1.2rem',
+      fontSize: '1.4rem',
     },
 
     [theme.breakpoints.up('xl')]: {
-      fontSize: '1.7rem',
+      fontSize: '2.7rem',
     },
   },
   typographyParagraph: {
@@ -130,7 +130,7 @@ export const useStyles = makeStyles((theme) => ({
       fontSize: '1.261rem',
     },
     [theme.breakpoints.up('xl')]: {
-      fontSize: '1.5rem',
+      fontSize: '2rem',
     },
   },
   toolSectionHeader: {
