@@ -24,34 +24,35 @@ export const useStyles = makeStyles((theme) => ({
     flex: '1 1 auto',
   },
   textBoxMargin: {
-    margin: '5vh',
-    '@media (min-width: 1100px)': {
-      /* topo | direita | inferior | esquerda */
-      margin: '7vh 30vh 7vh 30vh',
-    },
-    '@media (max-width: 600px)': {
-      paddingBottom: '3vh',
-    },
+    margin: '1rem',
   },
   typography: {
     fontFamily: 'Open Sans',
     letterSpacing: '0.05em',
   },
   typograhyTitle: {
-    fontSize: '2.938rem',
+    width: '85%',
+    fontSize: '1.688rem',
     fontWeight: 'bold',
     '@media (max-width: 600px)': {
       fontSize: '2.2rem',
     },
   },
-  typograhyH2: {
-    fontSize: '2.5rem',
-    fontWeight: 'bold',
-    paddingTop: '15px',
+  typographyTitleCaption: {
+    fontSize: '0.563rem',
+    paddingTop: '10px',
     paddingBottom: '10px',
-    '@media (max-width: 600px)': {
-      fontSize: '1.9rem',
-    },
+    textAlign: 'justify',
+  },
+  typographyTitleText: {
+    fontSize: '1rem',
+    fontWeight: 'regular',
+  },
+  typograhyH2: {
+    fontSize: '1.5rem',
+    fontWeight: 'bold',
+    paddingTop: '10px',
+    paddingBottom: '10px',
   },
   typograhyH3: {
     fontSize: '2rem',
@@ -63,12 +64,10 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   typographyParagraph: {
-    fontSize: '1.1rem',
+    fontSize: '1rem',
+    paddingTop: '10px',
     paddingBottom: '10px',
     textAlign: 'justify',
-    '@media (max-width: 600px)': {
-      fontSize: '0.9rem',
-    },
   },
   bannerBox: {
     width: '100%',
@@ -109,5 +108,11 @@ export const useStyles = makeStyles((theme) => ({
     display: 'flex',
     marginTop: '5vh',
     marginBottom: '3vh',
+  },
+  lineDividerGradientColor: {
+    marginTop: '1rem',
+    width: '65%',
+    height: '2px',
+    background: 'linear-gradient(90deg, rgba(20, 215, 104, 0.4) 0%, rgba(17, 129, 233, 0.4) 34.9%, rgba(245, 157, 42, 0.4) 67.71%, rgba(228, 56, 180, 0.4) 100%)',
   },
 }));

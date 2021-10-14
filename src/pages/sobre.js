@@ -43,7 +43,7 @@ function Sobre() {
         href={url}
         target="_blank"
         rel="noopener noreferrer"
-        style={{ color: 'white' }}
+        style={{ color: '#F1EA67', textDecoration: 'none' }}
       >
         {children}
       </a>
@@ -62,32 +62,21 @@ function Sobre() {
         <Box className={classes.boxContent}>
           <Box className={classes.textBoxMargin}>
             <Typography variant="h1" className={`${classes.typography} ${classes.typograhyTitle}`}>
-              SOBRE O PAINEL DA PARTICIPAÇÃO
+              Sobre o painel da participação
             </Typography>
-            <Typography className={`${classes.typography} ${classes.typographyParagraph}`}>
+            <Typography className={`${classes.typography} ${classes.typographyTitleCaption}`}>
               Critérios e definições adotados para apresentação dos dados
             </Typography>
-          </Box>
-          <Box className={classes.bannerBox}>
-            <Box className={classes.bannerBoxText}>
-              <Typography className={`${classes.typography} ${classes.typograhyTitle}`}>
-                O que é e como funciona o
-                {' '}
-                <br />
-                Painel da Participação.
+            <Box width="60%">
+              <Typography className={`${classes.typography} ${classes.typographyTitleText}`}>
+                O que é e como funciona o Painel da Participação.
               </Typography>
             </Box>
-            <Hidden mdDown>
-              <Box className={classes.bannerBoxParticipaLogo}>
-                <Image
-                  src={logoParticipa}
-                  alt="Logotipo da aplicação participa"
-                  width={200}
-                  height={200}
-                />
-              </Box>
-            </Hidden>
           </Box>
+          <Box display="flex" flexDirection="row-reverse">
+            <div className={classes.lineDividerGradientColor} />
+          </Box>
+
           <Box className={classes.textBoxMargin}>
             <Typography variant="h2" className={`${classes.typography} ${classes.typograhyH2}`}>
               Objetivo
@@ -247,9 +236,15 @@ function Sobre() {
                 Fonte dos dados
               </Typography>
               <Typography component="p" className={`${classes.typography} ${classes.typographyParagraph}`}>
-                API Audiências Interativas -
-                {' '}
-                <AnchorTag url={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}>{process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}</AnchorTag>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: 'yellow' }}
+                  href={`${process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}`}
+                >
+                  API Audiências Interativas
+                </a>
+
               </Typography>
 
             </>
@@ -357,15 +352,13 @@ function Sobre() {
                 Fonte dos dados
               </Typography>
               <Typography component="p" className={`${classes.typography} ${classes.typographyParagraph}`}>
-                API Wikilegis -
-                {' '}
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{ color: 'white' }}
+                  style={{ color: 'green' }}
                   href={`${process.env.NEXT_PUBLIC_WIKILEGIS_SWAGGER_URL}`}
                 >
-                  {process.env.NEXT_PUBLIC_WIKILEGIS_SWAGGER_URL}
+                  API Wikilegis
                 </a>
               </Typography>
             </>
