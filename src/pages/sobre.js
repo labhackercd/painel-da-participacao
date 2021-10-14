@@ -2,15 +2,11 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-await-in-loop */
 import React from 'react';
-import Image from 'next/image';
-// import PropTypes from 'prop-types';
 import Head from 'next/head';
-import { Typography, Hidden, Box } from '@material-ui/core';
+import { Typography, Box } from '@material-ui/core';
 import PageNavbar from '../layouts/Navbar/index';
 import Footer from '../components/Footer/index';
 import { useStyles } from '../styles/pages/sobrePageStyle';
-
-import logoParticipa from '../assets/images/logos/logo_participa.svg';
 
 function SectionHeader(props) {
   const classes = useStyles();
@@ -67,7 +63,7 @@ function Sobre() {
             <Typography className={`${classes.typography} ${classes.typographyTitleCaption}`}>
               Critérios e definições adotados para apresentação dos dados
             </Typography>
-            <Box width="60%">
+            <Box>
               <Typography className={`${classes.typography} ${classes.typographyTitleText}`}>
                 O que é e como funciona o Painel da Participação.
               </Typography>

@@ -25,6 +25,7 @@ export const useStyles = makeStyles((theme) => ({
   },
   textBoxMargin: {
     margin: '1rem',
+    paddingRight: '2rem',
   },
   typography: {
     fontFamily: 'Open Sans',
@@ -34,8 +35,11 @@ export const useStyles = makeStyles((theme) => ({
     width: '85%',
     fontSize: '1.688rem',
     fontWeight: 'bold',
-    '@media (max-width: 600px)': {
-      fontSize: '2.2rem',
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '2.125rem',
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: '2.625rem',
     },
   },
   typographyTitleCaption: {
@@ -43,24 +47,52 @@ export const useStyles = makeStyles((theme) => ({
     paddingTop: '10px',
     paddingBottom: '10px',
     textAlign: 'justify',
+
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '0.688rem',
+      paddingBottom: '2rem',
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: '0.813rem',
+      paddingBottom: '2rem',
+    },
   },
   typographyTitleText: {
     fontSize: '1rem',
     fontWeight: 'regular',
+
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '1.25rem',
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: '1.5rem',
+    },
   },
   typograhyH2: {
     fontSize: '1.5rem',
     fontWeight: 'bold',
     paddingTop: '10px',
     paddingBottom: '10px',
+
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '1.169rem',
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: '1.576rem',
+    },
   },
   typograhyH3: {
-    fontSize: '2rem',
+    fontSize: '1.3rem',
     fontWeight: '600',
     paddingTop: '5px',
     paddingBottom: '10px',
-    '@media (max-width: 600px)': {
-      fontSize: '1.5rem',
+
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '1rem',
+    },
+
+    [theme.breakpoints.up('md')]: {
+      fontSize: '1.2rem',
     },
   },
   typographyParagraph: {
@@ -68,40 +100,12 @@ export const useStyles = makeStyles((theme) => ({
     paddingTop: '10px',
     paddingBottom: '10px',
     textAlign: 'justify',
-  },
-  bannerBox: {
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'space-evenly',
-    height: '370px',
-    '@media (max-width: 600px)': {
-      height: '250px',
+
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '0.935rem',
     },
-    background: ' linear-gradient(90deg, rgba(228, 56, 180, 0.3) 0%, rgba(245, 157, 42, 0.3) 32.29%, rgba(17, 129, 233, 0.3) 63.54%, rgba(20, 215, 104, 0.3) 100%);',
-  },
-  bannerBoxText: {
-    height: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    flexGrow: 1,
-    paddingLeft: '2vh',
-    '@media (min-width: 1100px)': {
-      paddingLeft: '30vh',
-    },
-  },
-  bannerBoxParticipaLogo: {
-    width: '7%',
-    height: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    marginRight: '30vh',
-  },
-  bannerBoxLogos: {
-    width: '200px',
-    height: '200px',
-    '@media (max-width: 600px)': {
-      width: '80px',
-      height: '80px',
+    [theme.breakpoints.up('md')]: {
+      fontSize: '1.261rem',
     },
   },
   toolSectionHeader: {
