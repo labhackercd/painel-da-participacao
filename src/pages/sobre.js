@@ -103,38 +103,41 @@ function Sobre() {
               Critérios Comuns
             </Typography>
 
-            <Typography variant="h3" className={`${classes.typography} ${classes.typograhyH3}`}>
-              Participação
-            </Typography>
-            <Typography component="p" className={`${classes.typography} ${classes.typographyParagraph}`}>
-              Considera-se participação - para efeito dos dados exibidos no painel -  toda ação de interação nas ferramentas, realizada apenas pelos usuários logados, tais como: envio de mensagens, perguntas, opiniões ou votos em perguntas ou opiniões de outros cidadãos.
-            </Typography>
+            <Box className={classes.criteriesSection}>
 
-            <Typography variant="h3" className={`${classes.typography} ${classes.typograhyH3}`}>
-              Usuários cadastrados
-            </Typography>
-            <Typography component="p" className={`${classes.typography} ${classes.typographyParagraph}`}>
-              Usuários são todos aqueles que realizaram cadastro para utilizar as ferramentas de participação. Não importa nessa definição se os usuários logados efetivamente participaram, se somente se cadastraram ou se apenas visualizaram os conteúdos.
-            </Typography>
+              <Typography variant="h3" className={`${classes.typography} ${classes.typograhyH3}`}>
+                Participação
+              </Typography>
+              <Typography component="p" className={`${classes.typography} ${classes.typographyParagraph}`}>
+                Considera-se participação - para efeito dos dados exibidos no painel -  toda ação de interação nas ferramentas, realizada apenas pelos usuários logados, tais como: envio de mensagens, perguntas, opiniões ou votos em perguntas ou opiniões de outros cidadãos.
+              </Typography>
 
-            <Typography variant="h3" className={`${classes.typography} ${classes.typograhyH3}`}>
-              Participantes
-            </Typography>
-            <Typography component="p" className={`${classes.typography} ${classes.typographyParagraph}`}>
-              Participantes são os usuários que realizaram uma ou mais interações efetivas , que são contabilizadas como participação - a exemplo de perguntar, enviar mensagens, opinar ou votar.  Um único participante pode realizar uma ou mais  ações, em distintos momentos, mas sua presença será contabilizada uma única vez dentro do período escolhido na busca.
-              {' '}
-            </Typography>
-            <Typography component="p" className={`${classes.typography} ${classes.typographyParagraph}`}>
-              Como cada participante é contabilizado uma única vez por período, o total de um ano não será a simples soma de todos os meses, de modo a evitar contagens repetidas do mesmo participante.  Se, por exemplo, um mesmo participante enviar mensagens em meses diferentes de 2019, será contabilizada sua participação distintamente em cada um desses meses, mas se a busca for referente ao ano inteiro (ou mesmo a todo o período disponível), o mesmo participante será contabilizado uma única vez.
-              {' '}
-            </Typography>
+              <Typography variant="h3" className={`${classes.typography} ${classes.typograhyH3}`}>
+                Usuários cadastrados
+              </Typography>
+              <Typography component="p" className={`${classes.typography} ${classes.typographyParagraph}`}>
+                Usuários são todos aqueles que realizaram cadastro para utilizar as ferramentas de participação. Não importa nessa definição se os usuários logados efetivamente participaram, se somente se cadastraram ou se apenas visualizaram os conteúdos.
+              </Typography>
 
-            <Typography variant="h3" className={`${classes.typography} ${classes.typograhyH3}`}>
-              Totais ou números acumulados
-            </Typography>
-            <Typography component="p" className={`${classes.typography} ${classes.typographyParagraph}`}>
-              Quando o painel mostrar totais ou números acumulados, estes se referem apenas ao período de tempo selecionado na busca.
-            </Typography>
+              <Typography variant="h3" className={`${classes.typography} ${classes.typograhyH3}`}>
+                Participantes
+              </Typography>
+              <Typography component="p" className={`${classes.typography} ${classes.typographyParagraph}`}>
+                Participantes são os usuários que realizaram uma ou mais interações efetivas , que são contabilizadas como participação - a exemplo de perguntar, enviar mensagens, opinar ou votar.  Um único participante pode realizar uma ou mais  ações, em distintos momentos, mas sua presença será contabilizada uma única vez dentro do período escolhido na busca.
+                {' '}
+              </Typography>
+              <Typography component="p" className={`${classes.typography} ${classes.typographyParagraph}`}>
+                Como cada participante é contabilizado uma única vez por período, o total de um ano não será a simples soma de todos os meses, de modo a evitar contagens repetidas do mesmo participante.  Se, por exemplo, um mesmo participante enviar mensagens em meses diferentes de 2019, será contabilizada sua participação distintamente em cada um desses meses, mas se a busca for referente ao ano inteiro (ou mesmo a todo o período disponível), o mesmo participante será contabilizado uma única vez.
+                {' '}
+              </Typography>
+
+              <Typography variant="h3" className={`${classes.typography} ${classes.typograhyH3}`}>
+                Totais ou números acumulados
+              </Typography>
+              <Typography component="p" className={`${classes.typography} ${classes.typographyParagraph}`}>
+                Quando o painel mostrar totais ou números acumulados, estes se referem apenas ao período de tempo selecionado na busca.
+              </Typography>
+            </Box>
 
             { /* ============================== AUDIENCIAS ============================================ */}
             <>

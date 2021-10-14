@@ -22,10 +22,18 @@ export const useStyles = makeStyles((theme) => ({
   },
   boxContent: {
     flex: '1 1 auto',
+    [theme.breakpoints.up('xl')]: {
+      paddingTop: '4rem',
+    },
   },
   textBoxMargin: {
     margin: '1rem',
     paddingRight: '2rem',
+
+    [theme.breakpoints.up('xl')]: {
+      paddingRight: '4rem',
+      paddingLeft: '4rem',
+    },
   },
   typography: {
     fontFamily: 'Open Sans',
@@ -40,6 +48,9 @@ export const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.up('md')]: {
       fontSize: '2.625rem',
+    },
+    [theme.breakpoints.up('xl')]: {
+      fontSize: '4rem',
     },
   },
   typographyTitleCaption: {
@@ -56,6 +67,10 @@ export const useStyles = makeStyles((theme) => ({
       fontSize: '0.813rem',
       paddingBottom: '2rem',
     },
+    [theme.breakpoints.up('xl')]: {
+      fontSize: '1.5rem',
+      paddingBottom: '2rem',
+    },
   },
   typographyTitleText: {
     fontSize: '1rem',
@@ -67,18 +82,23 @@ export const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('md')]: {
       fontSize: '1.5rem',
     },
+    [theme.breakpoints.up('xl')]: {
+      fontSize: '2.813rem',
+    },
   },
   typograhyH2: {
     fontSize: '1.5rem',
     fontWeight: 'bold',
-    paddingTop: '10px',
-    paddingBottom: '10px',
+    paddingBottom: '32px',
 
     [theme.breakpoints.up('sm')]: {
       fontSize: '1.169rem',
     },
     [theme.breakpoints.up('md')]: {
       fontSize: '1.576rem',
+    },
+    [theme.breakpoints.up('xl')]: {
+      fontSize: '2.1rem',
     },
   },
   typograhyH3: {
@@ -94,18 +114,23 @@ export const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('md')]: {
       fontSize: '1.2rem',
     },
+
+    [theme.breakpoints.up('xl')]: {
+      fontSize: '1.7rem',
+    },
   },
   typographyParagraph: {
     fontSize: '1rem',
-    paddingTop: '10px',
-    paddingBottom: '10px',
-    textAlign: 'justify',
+    paddingBottom: '24px',
 
     [theme.breakpoints.up('sm')]: {
       fontSize: '0.935rem',
     },
     [theme.breakpoints.up('md')]: {
       fontSize: '1.261rem',
+    },
+    [theme.breakpoints.up('xl')]: {
+      fontSize: '1.5rem',
     },
   },
   toolSectionHeader: {
@@ -118,5 +143,17 @@ export const useStyles = makeStyles((theme) => ({
     width: '65%',
     height: '2px',
     background: 'linear-gradient(90deg, rgba(20, 215, 104, 0.4) 0%, rgba(17, 129, 233, 0.4) 34.9%, rgba(245, 157, 42, 0.4) 67.71%, rgba(228, 56, 180, 0.4) 100%)',
+    [theme.breakpoints.up('xl')]: {
+      marginBottom: '2rem',
+    },
+  },
+  criteriesSection: {
+    paddingLeft: '2rem',
+    [theme.breakpoints.up('xl')]: {
+      '& p': {
+        paddingLeft: '2rem',
+      },
+    },
+
   },
 }));
