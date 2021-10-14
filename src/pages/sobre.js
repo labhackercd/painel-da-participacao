@@ -17,7 +17,7 @@ function SectionHeader(props) {
   return (
     <Box className={classes.toolSectionHeader} style={{ color: toolColor }}>
       <Typography component="div" variant="h2">
-        <Box className={`${classes.typography} ${classes.typograhyTitle}`}>
+        <Box className={`${classes.typography} ${classes.toolSectionTypograhyTitle}`}>
           {title}
         </Box>
       </Typography>

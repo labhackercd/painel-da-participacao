@@ -138,6 +138,20 @@ export const useStyles = makeStyles((theme) => ({
     marginTop: '5vh',
     marginBottom: '3vh',
   },
+  toolSectionTypograhyTitle: {
+    fontSize: '1.3rem',
+    fontWeight: 'bold',
+
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '1.5rem',
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: '2.5rem',
+    },
+    [theme.breakpoints.up('xl')]: {
+      fontSize: '3rem',
+    },
+  },
   lineDividerGradientColor: {
     marginTop: '1rem',
     width: '65%',
@@ -148,8 +162,9 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   criteriesSection: {
-    paddingLeft: '2rem',
-    [theme.breakpoints.up('xl')]: {
+    paddingLeft: '1rem',
+
+    [theme.breakpoints.up('sm')]: {
       '& p': {
         paddingLeft: '2rem',
       },
