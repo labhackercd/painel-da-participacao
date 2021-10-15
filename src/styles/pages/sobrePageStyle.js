@@ -55,8 +55,6 @@ export const useStyles = makeStyles((theme) => ({
   },
   typographyTitleCaption: {
     fontSize: '0.563rem',
-    paddingTop: '10px',
-    paddingBottom: '10px',
     textAlign: 'justify',
 
     [theme.breakpoints.up('sm')]: {
