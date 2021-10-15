@@ -2,11 +2,10 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-await-in-loop */
 import React from 'react';
-import Image from 'next/image';
 // import PropTypes from 'prop-types';
 import Head from 'next/head';
 import {
-  Typography, Hidden, Grid, Box, Paper,
+  Typography, Grid, Box, Paper,
 } from '@material-ui/core';
 import {
   SettingsEthernet as SettingsEthernetIcon,
@@ -15,9 +14,7 @@ import {
 } from '@material-ui/icons';
 import PageNavbar from '../layouts/Navbar/index';
 import Footer from '../components/Footer';
-import logoLABHacker from '../assets/images/logos/logo_lab.svg';
 import bannerImg from '../assets/images/apiPage/bannerImg.png';
-
 
 // CSS in JS file
 import { useStyles } from '../styles/pages/apisPageStyle';
