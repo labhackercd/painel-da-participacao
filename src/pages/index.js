@@ -8,11 +8,11 @@ import {
 import { format, subDays } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import { apiInstance } from '../services/api/apiInstance';
-import PageNavbar from '../layouts/Navbar/index';
-import Footer from '../components/Footer/index';
 import Carousel from '../components/Carousel/index';
 import formatNumberWithDots from '../utils/format/numbers/formatNumbersWithDots/formatNumberWithDots';
 import bannerInitialPage from '../assets/images/initialPage/peopleInGroupImage.png';
+
+import Layout from '../layouts/index';
 
 import { REFRESH_API_CACHE_DATA_INTERVAL } from '../settings/applicationOptions/index';
 
@@ -26,36 +26,29 @@ function Home({ usersTotal, apiLastCacheMade }) {
       <Head>
         <title>Painel da Participação</title>
       </Head>
-      <Box className={classes.box}>
-        <Box>
-          <PageNavbar value={0} />
-        </Box>
-        <Box className={classes.boxContent}>
-          <Box className={classes.boxGridContainer}>
+      <Layout value={0}>
+        <Box className={classes.box}>
+          <Box>
             <Grid container>
-              <Grid item xs={12} sm={6} lg={6}>
+              <Grid item xs={12} sm={6} md={6}>
                 <Box className={classes.textBox}>
                   <div>
-                    <Typography className={classes.typographyHighLightedText}>
-                      {formatNumberWithDots(usersTotal)}
-                    </Typography>
-                    <Typography gutterBottom className={classes.typographyBoxText}>
+                    <Typography className={classes.typographyBoxText}>
+                      <span>{formatNumberWithDots(usersTotal)}</span>
                       {' '}
                       cidadãos se cadastraram no portal e-Democracia da Câmara dos Deputados.*
                     </Typography>
                     <Box>
                       <Typography className={classes.typographyBoxText}>
                         Conheça os números de
-                      </Typography>
-                      <Typography className={classes.typographyHighLightedText}>
                         {' '}
-                        participação pelos cidadãos.
+                        <span>participação pelos cidadãos.</span>
                       </Typography>
                     </Box>
                   </div>
                 </Box>
               </Grid>
-              <Grid item xs={12} sm={6} lg={6}>
+              <Grid item xs={12} sm={6} md={6}>
                 <Box width="100%" height="100%" display="flex" justifyContent="center" alignItems="center">
                   <img className={classes.initialPageBannerImg} src={bannerInitialPage} alt="" />
                 </Box>
@@ -80,15 +73,10 @@ function Home({ usersTotal, apiLastCacheMade }) {
                   </Box>
                 </Box>
               </Grid>
-
             </Grid>
           </Box>
         </Box>
-        <Box>
-          <Footer />
-        </Box>
-      </Box>
-
+      </Layout>
     </div>
   );
 }

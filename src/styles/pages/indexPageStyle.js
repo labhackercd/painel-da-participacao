@@ -6,26 +6,19 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles((theme) => ({
   root: {
-    height: '100vh',
-    // QHD/WQHD (2560×1440) QUADHD - 4K UHD (3840×2160) 4K ULTRA HD
-    '@media (min-width: 1000px)': {
+    minHeight: '100vh',
+    backgroundColor: theme.palette.primary.main,
+    [theme.breakpoints.up('md')]: {
       height: '100%',
     },
-    backgroundColor: theme.palette.primary.main,
   },
   box: {
+    paddingTop: '5rem',
     display: 'flex',
     flexFlow: 'column',
-    width: 'auto',
-    height: '100%',
-    alignItems: 'space-between',
-  },
-  boxContent: {
-    flex: '1 ',
-    display: 'flex',
-    flexFlow: 'column',
-    marginRight: '5vw',
-    marginLeft: '5vw',
+    width: '100%',
+    justifyContent: 'flex-start',
+    minHeight: '85vh',
   },
   typography: {
     fontFamily: 'Open Sans',
@@ -34,13 +27,20 @@ export const useStyles = makeStyles((theme) => ({
   typographyCaption: {
     fontSize: '0.375rem',
     fontWeight: 'regular',
-    paddingLeft: '20px',
+    paddingLeft: '8rem',
 
-    '@media (min-width: 700px)': {
+    [theme.breakpoints.down('sm')]: {
+      paddingLeft: '2rem',
+      fontSize: '0.5rem',
+    },
+    [theme.breakpoints.up('md')]: {
       fontSize: '0.75rem',
     },
-    '@media (min-width: 1000px)': {
+    [theme.breakpoints.only('lg')]: {
       fontSize: '1rem',
+    },
+    [theme.breakpoints.up('xl')]: {
+      fontSize: '1.2rem',
     },
   },
   textBox: {
@@ -50,33 +50,31 @@ export const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
     margin: '1rem',
-    '@media (max-width: 400px)': {
+    paddingLeft: '1rem',
+    [theme.breakpoints.only('xs')]: {
       padding: '0 1rem 0 1rem',
       margin: 0,
+    },
+    [theme.breakpoints.up('md')]: {
+      paddingLeft: '7rem',
     },
   },
   typographyBoxText: {
     display: 'inline',
-    '@media (max-width: 400px)': {
-      fontSize: '1rem',
+    '& span': {
+      fontWeight: 'bold',
     },
-    '@media (max-width: 1100px)': {
+    fontSize: '1rem',
+    [theme.breakpoints.only('sm')]: {
       fontSize: '1.2rem',
     },
-    '@media (min-width: 1100px)': {
-      fontSize: '2.8rem',
+    [theme.breakpoints.only('md')]: {
+      fontSize: '1.4rem',
     },
-  },
-  typographyHighLightedText: {
-    fontWeight: 'bold',
-    display: 'inline',
-    '@media (max-width: 400px)': {
-      fontSize: '1rem',
+    [theme.breakpoints.only('lg')]: {
+      fontSize: '2rem',
     },
-    '@media (max-width: 1100px)': {
-      fontSize: '1.2rem',
-    },
-    '@media (min-width: 1100px)': {
+    [theme.breakpoints.up('xl')]: {
       fontSize: '2.8rem',
     },
   },
@@ -102,7 +100,7 @@ export const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
     paddingTop: '10vh',
-    paddingBottom: '20px',
+    paddingBottom: '6rem',
   },
   caroulselInsideBox: {
     width: '90%',

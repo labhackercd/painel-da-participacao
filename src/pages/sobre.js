@@ -2,15 +2,11 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-await-in-loop */
 import React from 'react';
-import Image from 'next/image';
-// import PropTypes from 'prop-types';
 import Head from 'next/head';
-import { Typography, Hidden, Box } from '@material-ui/core';
+import { Typography, Box } from '@material-ui/core';
 import PageNavbar from '../layouts/Navbar/index';
 import Footer from '../components/Footer/index';
 import { useStyles } from '../styles/pages/sobrePageStyle';
-
-import logoParticipa from '../assets/images/logos/logo_participa.svg';
 
 function SectionHeader(props) {
   const classes = useStyles();
@@ -21,7 +17,7 @@ function SectionHeader(props) {
   return (
     <Box className={classes.toolSectionHeader} style={{ color: toolColor }}>
       <Typography component="div" variant="h2">
-        <Box className={`${classes.typography} ${classes.typograhyTitle}`}>
+        <Box className={`${classes.typography} ${classes.toolSectionTypograhyTitle}`}>
           {title}
         </Box>
       </Typography>
@@ -43,7 +39,7 @@ function Sobre() {
         href={url}
         target="_blank"
         rel="noopener noreferrer"
-        style={{ color: 'white' }}
+        style={{ color: '#F1EA67', textDecoration: 'none' }}
       >
         {children}
       </a>
@@ -62,32 +58,21 @@ function Sobre() {
         <Box className={classes.boxContent}>
           <Box className={classes.textBoxMargin}>
             <Typography variant="h1" className={`${classes.typography} ${classes.typograhyTitle}`}>
-              SOBRE O PAINEL DA PARTICIPAÇÃO
+              Sobre o painel da participação
             </Typography>
-            <Typography className={`${classes.typography} ${classes.typographyParagraph}`}>
+            <Typography className={`${classes.typography} ${classes.typographyTitleCaption}`}>
               Critérios e definições adotados para apresentação dos dados
             </Typography>
-          </Box>
-          <Box className={classes.bannerBox}>
-            <Box className={classes.bannerBoxText}>
-              <Typography className={`${classes.typography} ${classes.typograhyTitle}`}>
-                O que é e como funciona o
-                {' '}
-                <br />
-                Painel da Participação.
+            <Box>
+              <Typography className={`${classes.typography} ${classes.typographyTitleText}`}>
+                O que é e como funciona o Painel da Participação.
               </Typography>
             </Box>
-            <Hidden mdDown>
-              <Box className={classes.bannerBoxParticipaLogo}>
-                <Image
-                  src={logoParticipa}
-                  alt="Logotipo da aplicação participa"
-                  width={200}
-                  height={200}
-                />
-              </Box>
-            </Hidden>
           </Box>
+          <Box display="flex" flexDirection="row-reverse">
+            <div className={classes.lineDividerGradientColor} />
+          </Box>
+
           <Box className={classes.textBoxMargin}>
             <Typography variant="h2" className={`${classes.typography} ${classes.typograhyH2}`}>
               Objetivo
@@ -118,38 +103,41 @@ function Sobre() {
               Critérios Comuns
             </Typography>
 
-            <Typography variant="h3" className={`${classes.typography} ${classes.typograhyH3}`}>
-              Participação
-            </Typography>
-            <Typography component="p" className={`${classes.typography} ${classes.typographyParagraph}`}>
-              Considera-se participação - para efeito dos dados exibidos no painel -  toda ação de interação nas ferramentas, realizada apenas pelos usuários logados, tais como: envio de mensagens, perguntas, opiniões ou votos em perguntas ou opiniões de outros cidadãos.
-            </Typography>
+            <Box className={classes.criteriesSection}>
 
-            <Typography variant="h3" className={`${classes.typography} ${classes.typograhyH3}`}>
-              Usuários cadastrados
-            </Typography>
-            <Typography component="p" className={`${classes.typography} ${classes.typographyParagraph}`}>
-              Usuários são todos aqueles que realizaram cadastro para utilizar as ferramentas de participação. Não importa nessa definição se os usuários logados efetivamente participaram, se somente se cadastraram ou se apenas visualizaram os conteúdos.
-            </Typography>
+              <Typography variant="h3" className={`${classes.typography} ${classes.typograhyH3}`}>
+                Participação
+              </Typography>
+              <Typography component="p" className={`${classes.typography} ${classes.typographyParagraph}`}>
+                Considera-se participação - para efeito dos dados exibidos no painel -  toda ação de interação nas ferramentas, realizada apenas pelos usuários logados, tais como: envio de mensagens, perguntas, opiniões ou votos em perguntas ou opiniões de outros cidadãos.
+              </Typography>
 
-            <Typography variant="h3" className={`${classes.typography} ${classes.typograhyH3}`}>
-              Participantes
-            </Typography>
-            <Typography component="p" className={`${classes.typography} ${classes.typographyParagraph}`}>
-              Participantes são os usuários que realizaram uma ou mais interações efetivas , que são contabilizadas como participação - a exemplo de perguntar, enviar mensagens, opinar ou votar.  Um único participante pode realizar uma ou mais  ações, em distintos momentos, mas sua presença será contabilizada uma única vez dentro do período escolhido na busca.
-              {' '}
-            </Typography>
-            <Typography component="p" className={`${classes.typography} ${classes.typographyParagraph}`}>
-              Como cada participante é contabilizado uma única vez por período, o total de um ano não será a simples soma de todos os meses, de modo a evitar contagens repetidas do mesmo participante.  Se, por exemplo, um mesmo participante enviar mensagens em meses diferentes de 2019, será contabilizada sua participação distintamente em cada um desses meses, mas se a busca for referente ao ano inteiro (ou mesmo a todo o período disponível), o mesmo participante será contabilizado uma única vez.
-              {' '}
-            </Typography>
+              <Typography variant="h3" className={`${classes.typography} ${classes.typograhyH3}`}>
+                Usuários cadastrados
+              </Typography>
+              <Typography component="p" className={`${classes.typography} ${classes.typographyParagraph}`}>
+                Usuários são todos aqueles que realizaram cadastro para utilizar as ferramentas de participação. Não importa nessa definição se os usuários logados efetivamente participaram, se somente se cadastraram ou se apenas visualizaram os conteúdos.
+              </Typography>
 
-            <Typography variant="h3" className={`${classes.typography} ${classes.typograhyH3}`}>
-              Totais ou números acumulados
-            </Typography>
-            <Typography component="p" className={`${classes.typography} ${classes.typographyParagraph}`}>
-              Quando o painel mostrar totais ou números acumulados, estes se referem apenas ao período de tempo selecionado na busca.
-            </Typography>
+              <Typography variant="h3" className={`${classes.typography} ${classes.typograhyH3}`}>
+                Participantes
+              </Typography>
+              <Typography component="p" className={`${classes.typography} ${classes.typographyParagraph}`}>
+                Participantes são os usuários que realizaram uma ou mais interações efetivas , que são contabilizadas como participação - a exemplo de perguntar, enviar mensagens, opinar ou votar.  Um único participante pode realizar uma ou mais  ações, em distintos momentos, mas sua presença será contabilizada uma única vez dentro do período escolhido na busca.
+                {' '}
+              </Typography>
+              <Typography component="p" className={`${classes.typography} ${classes.typographyParagraph}`}>
+                Como cada participante é contabilizado uma única vez por período, o total de um ano não será a simples soma de todos os meses, de modo a evitar contagens repetidas do mesmo participante.  Se, por exemplo, um mesmo participante enviar mensagens em meses diferentes de 2019, será contabilizada sua participação distintamente em cada um desses meses, mas se a busca for referente ao ano inteiro (ou mesmo a todo o período disponível), o mesmo participante será contabilizado uma única vez.
+                {' '}
+              </Typography>
+
+              <Typography variant="h3" className={`${classes.typography} ${classes.typograhyH3}`}>
+                Totais ou números acumulados
+              </Typography>
+              <Typography component="p" className={`${classes.typography} ${classes.typographyParagraph}`}>
+                Quando o painel mostrar totais ou números acumulados, estes se referem apenas ao período de tempo selecionado na busca.
+              </Typography>
+            </Box>
 
             { /* ============================== AUDIENCIAS ============================================ */}
             <>
@@ -247,9 +235,9 @@ function Sobre() {
                 Fonte dos dados
               </Typography>
               <Typography component="p" className={`${classes.typography} ${classes.typographyParagraph}`}>
-                API Audiências Interativas -
-                {' '}
-                <AnchorTag url={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}>{process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}</AnchorTag>
+
+                <AnchorTag url={`${process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}`}>API Audiências Interativas</AnchorTag>
+
               </Typography>
 
             </>
@@ -357,16 +345,7 @@ function Sobre() {
                 Fonte dos dados
               </Typography>
               <Typography component="p" className={`${classes.typography} ${classes.typographyParagraph}`}>
-                API Wikilegis -
-                {' '}
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ color: 'white' }}
-                  href={`${process.env.NEXT_PUBLIC_WIKILEGIS_SWAGGER_URL}`}
-                >
-                  {process.env.NEXT_PUBLIC_WIKILEGIS_SWAGGER_URL}
-                </a>
+                <AnchorTag url={`${process.env.NEXT_PUBLIC_WIKILEGIS_SWAGGER_URL}`}>API Wikilegis</AnchorTag>
               </Typography>
             </>
             { /* ====================================================================================== */}

@@ -2,11 +2,10 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-await-in-loop */
 import React from 'react';
-import Image from 'next/image';
 // import PropTypes from 'prop-types';
 import Head from 'next/head';
 import {
-  Typography, Hidden, Grid, Box, Paper,
+  Typography, Grid, Box, Paper,
 } from '@material-ui/core';
 import {
   SettingsEthernet as SettingsEthernetIcon,
@@ -15,7 +14,7 @@ import {
 } from '@material-ui/icons';
 import PageNavbar from '../layouts/Navbar/index';
 import Footer from '../components/Footer';
-import logoLABHacker from '../assets/images/logos/logo_lab.svg';
+import bannerImg from '../assets/images/apiPage/bannerImg.png';
 
 // CSS in JS file
 import { useStyles } from '../styles/pages/apisPageStyle';
@@ -149,37 +148,25 @@ function Api() {
           <PageNavbar value={4} />
         </Box>
         <Box className={classes.boxContent}>
-          <Box className={classes.textBoxMargin}>
-            <Typography variant="h1" className={`${classes.typography} ${classes.typograhyTitle}`}>
-              {'<eDEVVocracia/>'}
-            </Typography>
-            <Typography className={`${classes.typography} ${classes.typographyParagraph}`}>
-              e-Democracia para desenvolvedores
-            </Typography>
-          </Box>
-          <Box className={classes.bannerBox}>
-            <Box className={classes.bannerBoxText}>
-              <Typography className={`${classes.typography} ${classes.typograhyTitle}`}>
-                Participe da comunidade de
-                {' '}
-                <br />
-                desenvolvedores e
-                {' '}
-                <br />
-                {' '}
+          <Box className={`${classes.headerContent}`}>
+            <Box className={classes.headerText}>
+              <Typography variant="h1" className={`${classes.typography} ${classes.typograhyTitle}`}>
+                {'<eDEVVocracia/>'}
+              </Typography>
+              <Typography className={`${classes.typography} ${classes.typographyTitleCaption}`}>
+                e-Democracia para desenvolvedores
+              </Typography>
+              <Typography className={`${classes.typography} ${classes.typographyTitleText}`}>
+                Faça parte da comunidade de desenvolvedores
                 e hackers cívicos.
               </Typography>
             </Box>
-            <Hidden mdDown>
-              <Box className={classes.bannerBoxParticipaLogo}>
-                <Image
-                  src={logoLABHacker}
-                  alt="Logotipo do LABHacker"
-                  width={700}
-                  height={700}
-                />
-              </Box>
-            </Hidden>
+            <Box className={classes.headerImg}>
+              <img src={bannerImg} alt="Imagem representativa banner" className={classes.imgClass} />
+            </Box>
+          </Box>
+          <Box display="flex" flexDirection="row-reverse">
+            <div className={classes.lineDividerGradientColor} />
           </Box>
           <Box className={classes.textBoxMargin}>
             <Typography variant="h2" className={`${classes.typography} ${classes.typograhyH2}`}>
