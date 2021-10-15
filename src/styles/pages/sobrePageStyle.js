@@ -96,7 +96,7 @@ export const useStyles = makeStyles((theme) => ({
       fontSize: '1.576rem',
     },
     [theme.breakpoints.up('xl')]: {
-      fontSize: '2.1rem',
+      fontSize: '2.7rem',
     },
   },
   typograhyH3: {
@@ -114,7 +114,7 @@ export const useStyles = makeStyles((theme) => ({
     },
 
     [theme.breakpoints.up('xl')]: {
-      fontSize: '2.7rem',
+      fontSize: '2.1rem',
     },
   },
   typographyParagraph: {

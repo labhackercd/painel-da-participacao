@@ -1,6 +1,5 @@
 /* eslint-disable import/prefer-default-export */
 import { makeStyles } from '@material-ui/core/styles';
-import bannerLinear from '../../assets/banner_background.svg';
 
 export const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,13 +19,9 @@ export const useStyles = makeStyles((theme) => ({
     flex: '1 1 auto',
   },
   textBoxMargin: {
-    margin: '5vh',
-    '@media (min-width: 1100px)': {
-      /* topo | direita | inferior | esquerda */
-      margin: '7vh 30vh 7vh 30vh',
-    },
-    '@media (max-width: 600px)': {
-      paddingBottom: '3vh',
+    margin: '1rem',
+    [theme.breakpoints.up('xl')]: {
+      margin: '2rem 4rem 2rem 4rem',
     },
   },
   typography: {
@@ -34,63 +29,80 @@ export const useStyles = makeStyles((theme) => ({
     letterSpacing: '0.05em',
   },
   typograhyTitle: {
-    fontSize: '2.938rem',
+    fontSize: '1.688rem',
     fontWeight: 'bold',
-    '@media (max-width: 600px)': {
-      fontSize: '2rem',
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '2.125rem',
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: '2.625rem',
+    },
+    [theme.breakpoints.up('xl')]: {
+      fontSize: '4.761rem',
+    },
+  },
+  typographyTitleCaption: {
+    fontSize: '0.563rem',
+    textAlign: 'justify',
+
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '0.688rem',
+      paddingBottom: '2rem',
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: '0.813rem',
+      paddingBottom: '2rem',
+    },
+    [theme.breakpoints.up('xl')]: {
+      fontSize: '1.5rem',
+      paddingBottom: '2rem',
+    },
+  },
+  typographyTitleText: {
+    fontSize: '1rem',
+    fontWeight: 'regular',
+    letterSpacing: '10%',
+
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '1.25rem',
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: '1.5rem',
+    },
+    [theme.breakpoints.up('xl')]: {
+      fontSize: '2.813rem',
     },
   },
   typograhyH2: {
     fontSize: '2.438rem',
     fontWeight: 'bold',
-    paddingTop: '15px',
-    paddingBottom: '10px',
-    '@media (max-width: 600px)': {
-      fontSize: '1.9rem',
+
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '1.25rem',
     },
-  },
-  typograhyH3: {
-    fontSize: '2rem',
-    fontWeight: '600',
-    paddingTop: '5px',
-    paddingBottom: '10px',
-    '@media (max-width: 600px)': {
+    [theme.breakpoints.up('md')]: {
       fontSize: '1.5rem',
+    },
+    [theme.breakpoints.up('xl')]: {
+      fontSize: '2.813rem',
+      paddingBottom: '32px',
     },
   },
   typographyParagraph: {
     fontSize: '1.1rem',
-    paddingBottom: '10px',
     textAlign: 'justify',
-    '@media (max-width: 600px)': {
-      fontSize: '0.9rem',
+    fontWeight: 'regular',
+
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '1.25rem',
     },
-  },
-  bannerBox: {
-    width: '100%',
-    display: 'flex',
-    height: '370px',
-    '@media (max-width: 600px)': {
-      height: '250px',
+    [theme.breakpoints.up('md')]: {
+      fontSize: '1.5rem',
     },
-    backgroundImage: `url(${bannerLinear})`,
-  },
-  bannerBoxText: {
-    height: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    flexGrow: 1,
-    paddingLeft: '2vh',
-    '@media (min-width: 1100px)': {
-      paddingLeft: '30vh',
+    [theme.breakpoints.up('xl')]: {
+      fontSize: '2.25rem',
+      paddingBottom: '72px',
     },
-  },
-  bannerBoxParticipaLogo: {
-    width: '10%',
-    height: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    marginRight: '30vh',
   },
   apiCard: {
     height: '329px',
@@ -144,5 +156,54 @@ export const useStyles = makeStyles((theme) => ({
   anchorLink: {
     marginLeft: '10px',
     marginRight: '10px',
+  },
+  headerContent: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'space-between',
+    [theme.breakpoints.up('sm')]: {
+      paddingLeft: '2rem',
+      paddingRight: '2rem',
+    },
+    [theme.breakpoints.up('md')]: {
+      paddingLeft: '2rem',
+      paddingRight: '2rem',
+    },
+    [theme.breakpoints.up('xl')]: {
+      paddingLeft: '4rem',
+      paddingRight: '4rem',
+    },
+  },
+  headerText: {
+  },
+  headerImg: {
+    display: 'flex',
+    [theme.breakpoints.only('xs')]: {
+      display: 'none',
+    },
+  },
+  lineDividerGradientColor: {
+    marginTop: '0',
+    paddingTop: '0',
+    width: '65%',
+    height: '2px',
+    background: 'linear-gradient(90deg, rgba(20, 215, 104, 0.4) 0%, rgba(17, 129, 233, 0.4) 34.9%, rgba(245, 157, 42, 0.4) 67.71%, rgba(228, 56, 180, 0.4) 100%)',
+    [theme.breakpoints.up('xl')]: {
+      marginBottom: '2rem',
+    },
+  },
+  imgClass: {
+    [theme.breakpoints.up('sm')]: {
+      width: '245px',
+      height: '239px',
+    },
+    [theme.breakpoints.up('md')]: {
+      width: '390px',
+      height: '378px',
+    },
+    [theme.breakpoints.up('xl')]: {
+      width: '490px',
+      height: '478px',
+    },
   },
 }));
