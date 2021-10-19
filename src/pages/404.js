@@ -8,7 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Layout from '../layouts/index';
 
-import { useStyles } from '../styles/pages/404PageStyle';
+import { useStyles } from '../styles/pages/errorsPageStyle';
 import error404Image from '../assets/images/404Page/banner.svg';
 
 function Custom404() {
