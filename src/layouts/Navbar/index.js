@@ -5,6 +5,7 @@ import {
 import Divider from '@material-ui/core/Divider';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import CloseIcon from '@material-ui/icons/Close';
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
@@ -35,7 +36,7 @@ export default function PageNavbar(props) {
   const {
     header, drawerContainer, drawerMobile, divider, offset,
     toolbarContentMobile, mobileLogo, desktopNavbarContent,
-    camaraBar,
+    camaraBar, mobileTabs,
   } = useStyles();
   const { value } = props;
 
@@ -79,8 +80,9 @@ export default function PageNavbar(props) {
     return (
       <Tabs
         value={value}
-        TabIndicatorProps={{ style: { height: '5px', background: 'linear-gradient(90deg, rgba(20, 215, 104, 0.5) 0%, rgba(17, 129, 233, 0.5) 32.81%, rgba(245, 157, 42, 0.5) 69.79%, rgba(228, 56, 180, 0.5) 100%)' } }}
+        TabIndicatorProps={{ style: { top: '96px', background: 'linear-gradient(90deg, rgba(20, 215, 104, 0.5) 0%, rgba(17, 129, 233, 0.5) 32.81%, rgba(245, 157, 42, 0.5) 69.79%, rgba(228, 56, 180, 0.5) 100%)' } }}
         orientation={orientation}
+        className={mobileTabs}
       >
         <LinkTab
           label="Inicio"
@@ -157,10 +159,17 @@ export default function PageNavbar(props) {
           onClose={handleDrawerClose}
           classes={{ paper: drawerMobile }}
         >
-          <IconButton onClick={handleDrawerClose} style={{ color: 'white' }}>
-            <ChevronRightIcon />
-          </IconButton>
-          <Divider className={divider} variant="middle" />
+          <Box height="50px" width="100%" display="flex" justifyContent="space-between" alignItems="center" padding="30px" paddingX="10px">
+            <Box>
+              <img src={logoPainelDaParticipacao} alt="Logo Painel da participação" width="106px" height="32px" />
+            </Box>
+            <Box>
+              <IconButton onClick={handleDrawerClose} style={{ color: 'white' }}>
+                <CloseIcon />
+              </IconButton>
+            </Box>
+          </Box>
+
           <div className={drawerContainer}><NavTabs orientation="vertical" /></div>
         </Drawer>
         <div className={toolbarContentMobile}>
@@ -179,7 +188,6 @@ export default function PageNavbar(props) {
             <MenuIcon />
           </IconButton>
         </div>
-
       </Toolbar>
     );
   };
