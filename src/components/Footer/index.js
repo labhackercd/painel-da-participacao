@@ -15,6 +15,24 @@ export default function Footer() {
       <Box className={classes.footerContainer}>
         <Box className={classes.bannerBox} />
         <Box className={classes.informationsDiv}>
+
+          <Box className={classes.informationItemLab}>
+            <Typography className={`${classes.typography} ${classes.informationItemTypographyText}`}>
+              Versão 1.0 - 2021
+            </Typography>
+            <Typography className={`${classes.typography} ${classes.informationItemTypographyText}`}>
+              LABHacker
+            </Typography>
+          </Box>
+
+          <Box className={classes.informationItemImg}>
+            <img
+              src={logoCamaraDosDeputados}
+              alt="Logotipo Câmara dos Deputados"
+              className={classes.bannerBoxLogos}
+            />
+          </Box>
+
           <Box className={classes.informationItem}>
             <a
               href={`${process.env.NEXT_PUBLIC_FALE_CONOSCO_URL}`}
@@ -28,22 +46,6 @@ export default function Footer() {
             <Typography className={`${classes.typography} ${classes.informationItemTypographyText}`}>0800-0-619-619 de 8h às 20h</Typography>
           </Box>
 
-          <Box className={classes.informationItemImg}>
-            <img
-              src={logoCamaraDosDeputados}
-              alt="Logotipo Câmara dos Deputados"
-              className={classes.bannerBoxLogos}
-            />
-          </Box>
-
-          <Box className={classes.informationItemLab}>
-            <Typography className={`${classes.typography} ${classes.informationItemTypographyText}`}>
-              Versão 1.0 - 2021
-            </Typography>
-            <Typography className={`${classes.typography} ${classes.informationItemTypographyText}`}>
-              LABHacker
-            </Typography>
-          </Box>
         </Box>
       </Box>
 
