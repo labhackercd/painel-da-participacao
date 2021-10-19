@@ -21,35 +21,78 @@ export const useStyles = makeStyles((theme) => ({
   },
   boxContent: {
     flex: '1 1 auto',
-    height: '100%',
-    width: '100%',
+    minHeight: '70vh',
+    minWidth: '100%',
     backgroundColor: theme.palette.primary.main,
     display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'space-around',
     paddingTop: '10vh',
   },
   textBox: {
-    paddingBottom: '20px',
+    paddingLeft: '16px',
+    [theme.breakpoints.up('md')]: {
+      paddingLeft: '15%',
+    },
   },
-  typographyTitle: {
+  typography: {
     fontFamily: 'Open Sans',
-    fontSize: '3rem',
+    fontSize: '1rem',
+    paddingBottom: '32px',
     letterSpacing: '0.05em',
-    fontWeight: 'bold',
+    '& span': {
+      fontWeight: 'bold',
+    },
+
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '1.5rem',
+    },
+    [theme.breakpoints.only('md')]: {
+      fontSize: '1.75rem',
+    },
+    [theme.breakpoints.up('lg')]: {
+      fontSize: '2rem',
+    },
+    [theme.breakpoints.up('xl')]: {
+      paddingLeft: '1rem',
+      fontSize: '3rem',
+    },
   },
-  typographySubTitle: {
-    fontFamily: 'Open Sans',
-    fontSize: '2rem',
-    letterSpacing: '0.05em',
-    fontWeight: 'bold',
-    margin: '10px',
+  imgBox: {
+    display: 'flex',
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
   },
-  typographyInfoText: {
-    fontFamily: 'Open Sans',
-    fontSize: '1.4rem',
-    letterSpacing: '0.05em',
-    color: '#E6E6E6',
+  bannerImg: {
+    width: '80%',
+    height: '230px',
+
+    [theme.breakpoints.up('sm')]: {
+      width: '450px',
+      height: '350px',
+    },
+    [theme.breakpoints.only('md')]: {
+      width: '450px',
+      height: '350px',
+    },
+    [theme.breakpoints.only('lg')]: {
+      width: '500px',
+      height: '400px',
+    },
+    [theme.breakpoints.up('xl')]: {
+      width: '600px',
+      height: '472px',
+    },
+  },
+  lineDividerGradientColor: {
+    marginTop: '0',
+    paddingTop: '0',
+    width: '80%',
+    height: '4px',
+    marginBottom: '2rem',
+    background: 'linear-gradient(90deg, rgba(20, 215, 104, 0.4) 0%, rgba(17, 129, 233, 0.4) 34.9%, rgba(245, 157, 42, 0.4) 67.71%, rgba(228, 56, 180, 0.4) 100%)',
+    [theme.breakpoints.up('xl')]: {
+      marginBottom: '2rem',
+    },
   },
 }));
