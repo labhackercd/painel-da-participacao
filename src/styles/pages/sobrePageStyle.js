@@ -160,12 +160,13 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   criteriesSection: {
-    paddingLeft: '1rem',
+    paddingLeft: '2rem',
 
-    [theme.breakpoints.up('sm')]: {
-      '& p': {
-        paddingLeft: '2rem',
-      },
+    [theme.breakpoints.up('md')]: {
+      paddingLeft: '4rem',
+    },
+    [theme.breakpoints.up('lg')]: {
+      paddingLeft: '6rem',
     },
 
   },
