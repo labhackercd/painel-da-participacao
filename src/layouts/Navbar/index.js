@@ -2,9 +2,7 @@
 import {
   Toolbar, IconButton, Drawer, Box, Tab, Tabs,
 } from '@material-ui/core';
-import Divider from '@material-ui/core/Divider';
 import MenuIcon from '@material-ui/icons/Menu';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import CloseIcon from '@material-ui/icons/Close';
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
@@ -28,15 +26,15 @@ function LinkTab(parans) {
 
 function a11yProps(index) {
   return {
-    id: `simple-tab-${index}`,
+    id: `tab-pagina-${index}`,
   };
 }
 
 export default function PageNavbar(props) {
   const {
-    header, drawerContainer, drawerMobile, divider, offset,
+    header, drawerContainer, drawerMobile, offset,
     toolbarContentMobile, mobileLogo, desktopNavbarContent,
-    camaraBar, mobileTabs,
+    camaraBar, mobileTabs, indicatorClass,
   } = useStyles();
   const { value } = props;
 
@@ -80,9 +78,11 @@ export default function PageNavbar(props) {
     return (
       <Tabs
         value={value}
-        TabIndicatorProps={{ style: { top: '96px', background: 'linear-gradient(90deg, rgba(20, 215, 104, 0.5) 0%, rgba(17, 129, 233, 0.5) 32.81%, rgba(245, 157, 42, 0.5) 69.79%, rgba(228, 56, 180, 0.5) 100%)' } }}
         orientation={orientation}
         className={mobileTabs}
+        classes={{
+          indicator: indicatorClass,
+        }}
       >
         <LinkTab
           label="Inicio"
