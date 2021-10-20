@@ -9,14 +9,11 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   drawerContainer: {
-    padding: '20px 60px',
   },
   drawerMobile: {
-    background: '#252525',
+    background: 'black',
     color: 'white',
-  },
-  divider: {
-    background: 'white',
+    width: '100%',
   },
   tab: {
     height: '92%',
@@ -54,6 +51,31 @@ const useStyles = makeStyles((theme) => ({
     padding: '0 0 0 5rem',
     display: 'flex',
     alignItems: 'center',
+    paddingTop: '5px',
+    paddingBottom: '5px',
+  },
+  mobileTabs: {
+    [theme.breakpoints.down('md')]: {
+      alignItems: 'baseline',
+
+      '& .MuiTabs-flexContainer': {
+        alignItems: 'baseline',
+      },
+      '& .MuiTabs-indicator': {
+        left: '0px',
+        width: '60%',
+        maxHeight: '5px',
+        top: '120px',
+      },
+    },
+  },
+  indicatorClass: {
+    background: 'linear-gradient(90deg, rgba(20, 215, 104, 0.5) 0%, rgba(17, 129, 233, 0.5) 32.81%, rgba(245, 157, 42, 0.5) 69.79%, rgba(228, 56, 180, 0.5) 100%)',
+    height: '5px',
+    [theme.breakpoints.down('md')]: {
+      top: '300px',
+      marginTop: '48px',
+    },
   },
 }));
 

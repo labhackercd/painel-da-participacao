@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import { makeStyles } from '@material-ui/core/styles';
 
-export const useStyles = makeStyles(() => ({
+export const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
     bottom: 0,
@@ -16,7 +16,7 @@ export const useStyles = makeStyles(() => ({
     background: 'linear-gradient(90deg, rgba(20, 215, 104, 0.4) 0%, rgba(17, 129, 233, 0.4) 34.9%, rgba(245, 157, 42, 0.4) 67.71%, rgba(228, 56, 180, 0.4) 100%)',
   },
   bannerBoxLogos: {
-    '@media (max-width: 600px)': {
+    [theme.breakpoints.up('md')]: {
       display: 'none',
     },
   },
@@ -33,7 +33,7 @@ export const useStyles = makeStyles(() => ({
   informationItem: {
     width: '300px',
     display: 'flex',
-    alignItems: 'flex-start',
+    alignItems: 'flex-end',
     flexDirection: 'column',
     '@media (max-width: 400px)': {
       width: '300px',
@@ -48,7 +48,7 @@ export const useStyles = makeStyles(() => ({
   informationItemLab: {
     width: '300px',
     display: 'flex',
-    alignItems: 'flex-end',
+    alignItems: 'flex-start',
     flexDirection: 'column',
     '@media (max-width: 400px)': {
       width: '200px',
