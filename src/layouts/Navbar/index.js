@@ -56,7 +56,14 @@ export default function PageNavbar(props) {
   }, []);
 
   const camaraDeputadosLogo = (
-    <img src={logoCamaraDosDeputados} alt="Logo Câmara dos Deputados" />
+    <a
+      href={process.env.NEXT_PUBLIC_CAMARA_SITE}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <img src={logoCamaraDosDeputados} alt="Logo Câmara dos Deputados" />
+    </a>
+
   );
 
   const painelParticipacaoLogo = (
