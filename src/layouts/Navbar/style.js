@@ -51,6 +51,8 @@ const useStyles = makeStyles((theme) => ({
     padding: '0 0 0 5rem',
     display: 'flex',
     alignItems: 'center',
+    paddingTop: '5px',
+    paddingBottom: '5px',
   },
   mobileTabs: {
     [theme.breakpoints.down('md')]: {
