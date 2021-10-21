@@ -85,34 +85,32 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   typograhyH2: {
-    fontSize: '2.438rem',
+    fontSize: '1.5rem',
     fontWeight: 'bold',
+    paddingBottom: '32px',
 
     [theme.breakpoints.up('sm')]: {
-      fontSize: '1.25rem',
+      fontSize: '1.169rem',
     },
     [theme.breakpoints.up('md')]: {
-      fontSize: '1.5rem',
+      fontSize: '1.576rem',
     },
     [theme.breakpoints.up('xl')]: {
-      fontSize: '2.813rem',
-      paddingBottom: '32px',
+      fontSize: '2.7rem',
     },
   },
   typographyParagraph: {
-    fontSize: '1.1rem',
-    textAlign: 'justify',
-    fontWeight: 'regular',
+    fontSize: '1rem',
+    paddingBottom: '24px',
 
     [theme.breakpoints.up('sm')]: {
-      fontSize: '1.25rem',
+      fontSize: '0.935rem',
     },
     [theme.breakpoints.up('md')]: {
-      fontSize: '1.5rem',
+      fontSize: '1.261rem',
     },
     [theme.breakpoints.up('xl')]: {
-      fontSize: '2.25rem',
-      paddingBottom: '72px',
+      fontSize: '2rem',
     },
   },
   apiCard: {
