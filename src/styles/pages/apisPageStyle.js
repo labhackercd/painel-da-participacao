@@ -56,6 +56,7 @@ export const useStyles = makeStyles((theme) => ({
   typographyTitleCaption: {
     fontSize: '0.563rem',
     textAlign: 'justify',
+    paddingBottom: '1rem',
 
     [theme.breakpoints.up('sm')]: {
       fontSize: '0.688rem',
@@ -147,7 +148,7 @@ export const useStyles = makeStyles((theme) => ({
     paddingTop: '10px',
     color: '#BFBFBF',
     '@media (max-width: 1100px)': {
-      fontSize: '1rem',
+      fontSize: '0.8rem',
     },
   },
   apiCardText: {
