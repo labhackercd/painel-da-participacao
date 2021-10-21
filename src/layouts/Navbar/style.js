@@ -77,6 +77,23 @@ const useStyles = makeStyles((theme) => ({
       marginTop: '48px',
     },
   },
+  logoPainelClass: {
+    width: '106px',
+    height: '32px',
+
+    [theme.breakpoints.up('md')]: {
+      width: '210px',
+      height: '60px',
+    },
+    [theme.breakpoints.up('lg')]: {
+      width: '240px',
+      height: '70px',
+    },
+    [theme.breakpoints.up('xl')]: {
+      width: '270px',
+      height: '80px',
+    },
+  },
 }));
 
 export default useStyles;

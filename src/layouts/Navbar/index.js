@@ -34,7 +34,7 @@ export default function PageNavbar(props) {
   const {
     header, drawerContainer, drawerMobile, offset,
     toolbarContentMobile, mobileLogo, desktopNavbarContent,
-    camaraBar, mobileTabs, indicatorClass,
+    camaraBar, mobileTabs, indicatorClass, logoPainelClass,
   } = useStyles();
   const { value } = props;
 
@@ -67,7 +67,7 @@ export default function PageNavbar(props) {
   );
 
   const painelParticipacaoLogo = (
-    <img src={logoPainelDaParticipacao} alt="Logo da Painel da Painel da Participação" width="270px" height="80px" />
+    <img src={logoPainelDaParticipacao} alt="Logo da Painel da Painel da Participação" className={logoPainelClass} />
   );
 
   const painelParticipacaoLogoMobile = (
@@ -168,7 +168,7 @@ export default function PageNavbar(props) {
         >
           <Box height="50px" width="100%" display="flex" justifyContent="space-between" alignItems="center" padding="30px" paddingX="10px">
             <Box>
-              <img src={logoPainelDaParticipacao} alt="Logo Painel da participação" width="106px" height="32px" />
+              <img src={logoPainelDaParticipacao} alt="Logo Painel da participação" className={logoPainelClass} />
             </Box>
             <Box>
               <IconButton onClick={handleDrawerClose} style={{ color: 'white' }}>

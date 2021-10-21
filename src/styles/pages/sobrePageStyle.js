@@ -30,6 +30,10 @@ export const useStyles = makeStyles((theme) => ({
     margin: '1rem',
     paddingRight: '2rem',
 
+    [theme.breakpoints.up('md')]: {
+      paddingRight: '4rem',
+      paddingLeft: '4rem',
+    },
     [theme.breakpoints.up('xl')]: {
       paddingRight: '4rem',
       paddingLeft: '4rem',
