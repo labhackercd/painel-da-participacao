@@ -95,7 +95,7 @@ function Sobre() {
               Atualização
             </Typography>
             <Typography component="p" className={`${classes.typography} ${classes.typographyParagraph}`}>
-              O processo de consolidação dos dados acontece após as 23h59 (horário de Brasíla). Portanto, o resultado da pesquisa estará limitado ao dia anterior. A data da última atualização está disponível abaixo dos gráficos ou tabelas.
+              O processo de consolidação dos dados acontece após as 23h59 (horário de Brasília). Portanto, o resultado da pesquisa estará limitado ao dia anterior. A data da última atualização está disponível abaixo dos gráficos ou tabelas.
               {' '}
             </Typography>
 
