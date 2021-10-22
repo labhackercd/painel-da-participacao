@@ -7,39 +7,40 @@ import Link from 'next/link';
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    width: '80%',
-    display: 'flex',
-    justifyContent: 'space-around',
+    width: '90%',
+    flexDirection: 'column',
+    justifyContent: 'center',
     alignItems: 'center',
-    '@media (max-width: 800px)': {
-      width: '95%',
-    },
-    '@media (max-width: 400px)': {
+
+    [theme.breakpoints.up('md')]: {
       width: '100%',
-      flexDirection: 'column',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      gap: '2rem',
+      display: 'flex',
+      justifyContent: 'center',
+    },
+    [theme.breakpoints.up('lg')]: {
+      width: '100%',
+      display: 'flex',
+      justifyContent: 'center',
+    },
+    [theme.breakpoints.up('xl')]: {
+      width: '100%',
+      display: 'flex',
+      justifyContent: 'center',
     },
   },
   firstContainer: {
-    width: '100%',
     height: '100%',
     display: 'flex',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     [theme.breakpoints.down('lg')]: {
       justifyContent: 'center',
       alignItems: 'center',
-      gap: '2rem',
+      gap: '1rem',
     },
   },
-  caroulselItem: {
-    maxWidth: '150px',
-    maxHeight: '150px',
-    [theme.breakpoints.down('lg')]: {
-      maxWidth: '640px',
-      maxHeight: '64px',
-    },
+  caroulselItemImg: {
+    width: '64px',
+    height: '64px',
   },
   typography: {
     fontFamily: 'Open Sans',
@@ -47,42 +48,69 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'left',
   },
   typographyToolTitle: {
-    fontSize: '2.438rem',
+    fontSize: '1.25rem',
     fontWeight: 'bold',
-    [theme.breakpoints.down('lg')]: {
-      fontSize: '1.2rem',
+
+    [theme.breakpoints.up('md')]: {
+      width: '210px',
+      height: '60px',
+    },
+    [theme.breakpoints.up('lg')]: {
+      width: '240px',
+      height: '70px',
+    },
+    [theme.breakpoints.up('xl')]: {
+      width: '270px',
+      height: '80px',
     },
   },
   typographyDescription: {
-    fontSize: '1.625rem',
+    fontSize: '0.875rem',
     fontWeight: 'regular',
-    [theme.breakpoints.down('lg')]: {
-      fontSize: '0.8rem',
+
+    [theme.breakpoints.up('md')]: {
+      width: '210px',
+      height: '60px',
+    },
+    [theme.breakpoints.up('lg')]: {
+      width: '240px',
+      height: '70px',
+    },
+    [theme.breakpoints.up('xl')]: {
+      width: '270px',
+      height: '80px',
     },
   },
   typographyButton: {
     fontSize: '1.5rem',
     fontWeight: 600,
     [theme.breakpoints.down('lg')]: {
-      fontSize: '0.75rem',
+      fontSize: '12px',
     },
 
   },
   buttonStyle: {
-    width: '340px',
+    height: '33px',
+    width: '143px',
     color: theme.palette.black.main,
     textTransform: 'none',
     fontWeight: 700,
-    '@media (max-width: 1200px)': {
-      maxWidth: '200px',
-      height: '40px',
-    },
-    '@media (max-width: 400px)': {
-      width: '100%',
-      height: '40px',
-    },
-    transition: 'filter 0.2s',
+    padding: 0,
 
+    [theme.breakpoints.up('md')]: {
+      width: '210px',
+      height: '60px',
+    },
+    [theme.breakpoints.up('lg')]: {
+      width: '240px',
+      height: '70px',
+    },
+    [theme.breakpoints.up('xl')]: {
+      width: '270px',
+      height: '80px',
+    },
+
+    transition: 'filter 0.2s',
     '&:hover': {
       filter: 'brightness(0.7)',
     },
@@ -96,10 +124,10 @@ export default function CarouselItem({ item }) {
     <Box paddingBottom="50px" width="100%" display="flex" justifyContent="center">
       <Box className={classes.container}>
         <Box className={classes.firstContainer}>
-          <Box maxWidth="20%">
-            <img src={item.img} alt="" className={classes.caroulselItem} />
+          <Box>
+            <img src={item.img} alt="" className={classes.caroulselItemImg} />
           </Box>
-          <Box maxWidth="50%">
+          <Box>
             <Typography className={`${classes.typography} ${classes.typographyToolTitle}`} align="center">
               {item.toolName}
             </Typography>
@@ -108,7 +136,7 @@ export default function CarouselItem({ item }) {
             </Typography>
           </Box>
         </Box>
-        <Box>
+        <Box width="100%" display="flex" justifyContent="center">
           <Link
             href={item.toolPage}
             passHref
