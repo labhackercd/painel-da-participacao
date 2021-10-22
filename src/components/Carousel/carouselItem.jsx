@@ -12,10 +12,17 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
 
-    [theme.breakpoints.up('md')]: {
-      width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      width: '90%',
+      flexDirection: 'row',
       display: 'flex',
-      justifyContent: 'center',
+      gap: '50px',
+    },
+    [theme.breakpoints.up('md')]: {
+      width: '90%',
+      flexDirection: 'row',
+      display: 'flex',
+      gap: '50px',
     },
     [theme.breakpoints.up('lg')]: {
       width: '100%',
@@ -32,15 +39,39 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
     display: 'flex',
     justifyContent: 'center',
-    [theme.breakpoints.down('lg')]: {
-      justifyContent: 'center',
-      alignItems: 'center',
-      gap: '1rem',
+
+    [theme.breakpoints.up('sm')]: {
+      gap: '58px',
     },
+    [theme.breakpoints.up('md')]: {
+      gap: '58px',
+    },
+    [theme.breakpoints.up('lg')]: {
+
+    },
+    [theme.breakpoints.up('xl')]: {
+
+    },
+
   },
   caroulselItemImg: {
     width: '64px',
     height: '64px',
+
+    [theme.breakpoints.up('sm')]: {
+      width: '70px',
+      height: '70px',
+    },
+    [theme.breakpoints.up('md')]: {
+      width: '70px',
+      height: '70px',
+    },
+    [theme.breakpoints.up('lg')]: {
+
+    },
+    [theme.breakpoints.up('xl')]: {
+
+    },
   },
   typography: {
     fontFamily: 'Open Sans',
@@ -51,26 +82,48 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '1.25rem',
     fontWeight: 'bold',
 
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '1.75rem',
+    },
     [theme.breakpoints.up('md')]: {
-      width: '210px',
-      height: '60px',
+      fontSize: '1.75rem',
     },
     [theme.breakpoints.up('lg')]: {
-      width: '240px',
-      height: '70px',
+
+
     },
     [theme.breakpoints.up('xl')]: {
-      width: '270px',
-      height: '80px',
+ 
     },
   },
   typographyDescription: {
     fontSize: '0.875rem',
     fontWeight: 'regular',
 
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '1rem',
+    },
     [theme.breakpoints.up('md')]: {
-      width: '210px',
-      height: '60px',
+      fontSize: '1rem',
+    },
+    [theme.breakpoints.up('lg')]: {
+
+    },
+    [theme.breakpoints.up('xl')]: {
+
+    },
+  },
+  typographyButton: {
+    fontSize: '0.75rem',
+    fontWeight: 'bold',
+    color: 'black',
+    textAlign: 'center',
+
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '0.9rem',
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: '0.9rem',
     },
     [theme.breakpoints.up('lg')]: {
       width: '240px',
@@ -80,14 +133,6 @@ const useStyles = makeStyles((theme) => ({
       width: '270px',
       height: '80px',
     },
-  },
-  typographyButton: {
-    fontSize: '1.5rem',
-    fontWeight: 600,
-    [theme.breakpoints.down('lg')]: {
-      fontSize: '12px',
-    },
-
   },
   buttonStyle: {
     height: '33px',
@@ -97,9 +142,15 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 700,
     padding: 0,
 
+    [theme.breakpoints.up('sm')]: {
+      height: 'auto',
+      width: '153px',
+      padding: '5px 8px 5px 8px',
+    },
     [theme.breakpoints.up('md')]: {
-      width: '210px',
-      height: '60px',
+      height: 'auto',
+      width: '153px',
+      padding: '5px 8px 5px 8px',
     },
     [theme.breakpoints.up('lg')]: {
       width: '240px',
@@ -113,6 +164,13 @@ const useStyles = makeStyles((theme) => ({
     transition: 'filter 0.2s',
     '&:hover': {
       filter: 'brightness(0.7)',
+    },
+  },
+  buttonContainer: {
+    [theme.breakpoints.only('xs')]: {
+      width: '100%',
+      display: 'flex',
+      justifyContent: 'center',
     },
   },
 }));
@@ -136,7 +194,7 @@ export default function CarouselItem({ item }) {
             </Typography>
           </Box>
         </Box>
-        <Box width="100%" display="flex" justifyContent="center">
+        <Box className={classes.buttonContainer}>
           <Link
             href={item.toolPage}
             passHref
