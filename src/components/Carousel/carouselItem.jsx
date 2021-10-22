@@ -25,14 +25,16 @@ const useStyles = makeStyles((theme) => ({
       gap: '50px',
     },
     [theme.breakpoints.up('lg')]: {
-      width: '100%',
+      width: '90%',
+      flexDirection: 'row',
       display: 'flex',
-      justifyContent: 'center',
+      gap: '50px',
     },
     [theme.breakpoints.up('xl')]: {
-      width: '100%',
+      width: '90%',
+      flexDirection: 'row',
       display: 'flex',
-      justifyContent: 'center',
+      gap: '50px',
     },
   },
   firstContainer: {
@@ -47,10 +49,10 @@ const useStyles = makeStyles((theme) => ({
       gap: '58px',
     },
     [theme.breakpoints.up('lg')]: {
-
+      gap: '58px',
     },
     [theme.breakpoints.up('xl')]: {
-
+      gap: '58px',
     },
 
   },
@@ -67,10 +69,12 @@ const useStyles = makeStyles((theme) => ({
       height: '70px',
     },
     [theme.breakpoints.up('lg')]: {
-
+      width: '100px',
+      height: '100px',
     },
     [theme.breakpoints.up('xl')]: {
-
+      width: '157px',
+      height: '157px',
     },
   },
   typography: {
@@ -89,11 +93,10 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '1.75rem',
     },
     [theme.breakpoints.up('lg')]: {
-
-
+      fontSize: '2.3rem',
     },
     [theme.breakpoints.up('xl')]: {
- 
+      fontSize: '3.5rem',
     },
   },
   typographyDescription: {
@@ -104,13 +107,13 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '1rem',
     },
     [theme.breakpoints.up('md')]: {
-      fontSize: '1rem',
+      fontSize: '1.4rem',
     },
     [theme.breakpoints.up('lg')]: {
-
+      fontSize: '1.8rem',
     },
     [theme.breakpoints.up('xl')]: {
-
+      fontSize: '2.25rem',
     },
   },
   typographyButton: {
@@ -126,12 +129,10 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '0.9rem',
     },
     [theme.breakpoints.up('lg')]: {
-      width: '240px',
-      height: '70px',
+      fontSize: '1.4rem',
     },
     [theme.breakpoints.up('xl')]: {
-      width: '270px',
-      height: '80px',
+      fontSize: '1.875rem',
     },
   },
   buttonStyle: {
@@ -153,12 +154,14 @@ const useStyles = makeStyles((theme) => ({
       padding: '5px 8px 5px 8px',
     },
     [theme.breakpoints.up('lg')]: {
-      width: '240px',
-      height: '70px',
+      height: 'auto',
+      width: '200px',
+      padding: '5px 8px 5px 8px',
     },
     [theme.breakpoints.up('xl')]: {
-      width: '270px',
-      height: '80px',
+      height: 'auto',
+      width: '341px',
+      padding: '5px 8px 5px 8px',
     },
 
     transition: 'filter 0.2s',
