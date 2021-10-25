@@ -72,7 +72,7 @@ export default function Caroulsel() {
     <Carousel
       additionalTransfrom={0}
       arrows={isDesktop}
-      autoPlay={false}
+      autoPlay
       autoPlaySpeed={3000}
       centerMode={false}
       className=""
