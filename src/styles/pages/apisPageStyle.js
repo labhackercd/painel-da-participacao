@@ -17,11 +17,21 @@ export const useStyles = makeStyles((theme) => ({
   },
   boxContent: {
     flex: '1 1 auto',
+    [theme.breakpoints.up('xl')]: {
+      paddingTop: '4rem',
+    },
   },
   textBoxMargin: {
     margin: '1rem',
+    paddingRight: '2rem',
+
+    [theme.breakpoints.up('md')]: {
+      paddingRight: '4rem',
+      paddingLeft: '4rem',
+    },
     [theme.breakpoints.up('xl')]: {
-      margin: '2rem 4rem 2rem 4rem',
+      paddingRight: '4rem',
+      paddingLeft: '4rem',
     },
   },
   typography: {
@@ -29,8 +39,10 @@ export const useStyles = makeStyles((theme) => ({
     letterSpacing: '0.05em',
   },
   typograhyTitle: {
+    width: '85%',
     fontSize: '1.688rem',
     fontWeight: 'bold',
+    paddingBottom: '10px',
     [theme.breakpoints.up('sm')]: {
       fontSize: '2.125rem',
     },
@@ -38,19 +50,20 @@ export const useStyles = makeStyles((theme) => ({
       fontSize: '2.625rem',
     },
     [theme.breakpoints.up('xl')]: {
-      fontSize: '4.761rem',
+      fontSize: '4rem',
     },
   },
   typographyTitleCaption: {
     fontSize: '0.563rem',
     textAlign: 'justify',
+    paddingBottom: '1rem',
 
     [theme.breakpoints.up('sm')]: {
       fontSize: '0.688rem',
       paddingBottom: '2rem',
     },
     [theme.breakpoints.up('md')]: {
-      fontSize: '0.813rem',
+      fontSize: '1rem',
       paddingBottom: '2rem',
     },
     [theme.breakpoints.up('xl')]: {
@@ -61,7 +74,6 @@ export const useStyles = makeStyles((theme) => ({
   typographyTitleText: {
     fontSize: '1rem',
     fontWeight: 'regular',
-    letterSpacing: '10%',
 
     [theme.breakpoints.up('sm')]: {
       fontSize: '1.25rem',
@@ -74,34 +86,32 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   typograhyH2: {
-    fontSize: '2.438rem',
+    fontSize: '1.5rem',
     fontWeight: 'bold',
+    paddingBottom: '32px',
 
     [theme.breakpoints.up('sm')]: {
-      fontSize: '1.25rem',
+      fontSize: '1.169rem',
     },
     [theme.breakpoints.up('md')]: {
-      fontSize: '1.5rem',
+      fontSize: '1.576rem',
     },
     [theme.breakpoints.up('xl')]: {
-      fontSize: '2.813rem',
-      paddingBottom: '32px',
+      fontSize: '2.7rem',
     },
   },
   typographyParagraph: {
-    fontSize: '1.1rem',
-    textAlign: 'justify',
-    fontWeight: 'regular',
+    fontSize: '1rem',
+    paddingBottom: '24px',
 
     [theme.breakpoints.up('sm')]: {
-      fontSize: '1.25rem',
+      fontSize: '0.935rem',
     },
     [theme.breakpoints.up('md')]: {
-      fontSize: '1.5rem',
+      fontSize: '1.261rem',
     },
     [theme.breakpoints.up('xl')]: {
-      fontSize: '2.25rem',
-      paddingBottom: '72px',
+      fontSize: '2rem',
     },
   },
   apiCard: {
@@ -138,7 +148,7 @@ export const useStyles = makeStyles((theme) => ({
     paddingTop: '10px',
     color: '#BFBFBF',
     '@media (max-width: 1100px)': {
-      fontSize: '1rem',
+      fontSize: '0.8rem',
     },
   },
   apiCardText: {
@@ -166,8 +176,8 @@ export const useStyles = makeStyles((theme) => ({
       paddingRight: '2rem',
     },
     [theme.breakpoints.up('md')]: {
-      paddingLeft: '2rem',
-      paddingRight: '2rem',
+      paddingLeft: '4rem',
+      paddingRight: '4rem',
     },
     [theme.breakpoints.up('xl')]: {
       paddingLeft: '4rem',

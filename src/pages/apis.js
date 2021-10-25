@@ -148,7 +148,7 @@ function Api() {
           <PageNavbar value={4} />
         </Box>
         <Box className={classes.boxContent}>
-          <Box className={`${classes.headerContent}`}>
+          <Box className={`${classes.textBoxMargin}`}>
             <Box className={classes.headerText}>
               <Typography variant="h1" className={`${classes.typography} ${classes.typograhyTitle}`}>
                 {'<eDEVVocracia/>'}

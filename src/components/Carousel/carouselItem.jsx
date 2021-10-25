@@ -7,38 +7,74 @@ import Link from 'next/link';
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    width: '80%',
-    display: 'flex',
-    justifyContent: 'space-around',
+    width: '90%',
+    flexDirection: 'column',
+    justifyContent: 'center',
     alignItems: 'center',
-    '@media (max-width: 800px)': {
-      width: '95%',
+
+    [theme.breakpoints.up('sm')]: {
+      width: '90%',
+      flexDirection: 'row',
+      display: 'flex',
+      gap: '50px',
     },
-    '@media (max-width: 400px)': {
-      width: '100%',
-      flexDirection: 'column',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      gap: '2rem',
+    [theme.breakpoints.up('md')]: {
+      width: '90%',
+      flexDirection: 'row',
+      display: 'flex',
+      gap: '50px',
+    },
+    [theme.breakpoints.up('lg')]: {
+      width: '90%',
+      flexDirection: 'row',
+      display: 'flex',
+      gap: '50px',
+    },
+    [theme.breakpoints.up('xl')]: {
+      width: '90%',
+      flexDirection: 'row',
+      display: 'flex',
+      gap: '50px',
     },
   },
   firstContainer: {
-    width: '100%',
     height: '100%',
     display: 'flex',
-    justifyContent: 'space-around',
-    [theme.breakpoints.down('lg')]: {
-      justifyContent: 'center',
-      alignItems: 'center',
-      gap: '2rem',
+    justifyContent: 'center',
+
+    [theme.breakpoints.up('sm')]: {
+      gap: '58px',
     },
+    [theme.breakpoints.up('md')]: {
+      gap: '58px',
+    },
+    [theme.breakpoints.up('lg')]: {
+      gap: '58px',
+    },
+    [theme.breakpoints.up('xl')]: {
+      gap: '58px',
+    },
+
   },
-  caroulselItem: {
-    maxWidth: '150px',
-    maxHeight: '150px',
-    [theme.breakpoints.down('lg')]: {
-      maxWidth: '640px',
-      maxHeight: '64px',
+  caroulselItemImg: {
+    width: '64px',
+    height: '64px',
+
+    [theme.breakpoints.up('sm')]: {
+      width: '70px',
+      height: '70px',
+    },
+    [theme.breakpoints.up('md')]: {
+      width: '70px',
+      height: '70px',
+    },
+    [theme.breakpoints.up('lg')]: {
+      width: '100px',
+      height: '100px',
+    },
+    [theme.breakpoints.up('xl')]: {
+      width: '157px',
+      height: '157px',
     },
   },
   typography: {
@@ -47,44 +83,97 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'left',
   },
   typographyToolTitle: {
-    fontSize: '2.438rem',
+    fontSize: '1.25rem',
     fontWeight: 'bold',
-    [theme.breakpoints.down('lg')]: {
-      fontSize: '1.2rem',
+
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '1.75rem',
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: '1.75rem',
+    },
+    [theme.breakpoints.up('lg')]: {
+      fontSize: '2.3rem',
+    },
+    [theme.breakpoints.up('xl')]: {
+      fontSize: '3.5rem',
     },
   },
   typographyDescription: {
-    fontSize: '1.625rem',
+    fontSize: '0.875rem',
     fontWeight: 'regular',
-    [theme.breakpoints.down('lg')]: {
-      fontSize: '0.8rem',
+
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '1rem',
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: '1.4rem',
+    },
+    [theme.breakpoints.up('lg')]: {
+      fontSize: '1.8rem',
+    },
+    [theme.breakpoints.up('xl')]: {
+      fontSize: '2.25rem',
     },
   },
   typographyButton: {
-    fontSize: '1.5rem',
-    fontWeight: 600,
-    [theme.breakpoints.down('lg')]: {
-      fontSize: '0.75rem',
-    },
+    fontSize: '0.75rem',
+    fontWeight: 'bold',
+    color: 'black',
+    textAlign: 'center',
 
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '0.9rem',
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: '0.9rem',
+    },
+    [theme.breakpoints.up('lg')]: {
+      fontSize: '1.4rem',
+    },
+    [theme.breakpoints.up('xl')]: {
+      fontSize: '1.875rem',
+    },
   },
   buttonStyle: {
-    width: '340px',
+    height: '33px',
+    width: '143px',
     color: theme.palette.black.main,
     textTransform: 'none',
     fontWeight: 700,
-    '@media (max-width: 1200px)': {
-      maxWidth: '200px',
-      height: '40px',
-    },
-    '@media (max-width: 400px)': {
-      width: '100%',
-      height: '40px',
-    },
-    transition: 'filter 0.2s',
+    padding: 0,
 
+    [theme.breakpoints.up('sm')]: {
+      height: 'auto',
+      width: '153px',
+      padding: '5px 8px 5px 8px',
+    },
+    [theme.breakpoints.up('md')]: {
+      height: 'auto',
+      width: '153px',
+      padding: '5px 8px 5px 8px',
+    },
+    [theme.breakpoints.up('lg')]: {
+      height: 'auto',
+      width: '200px',
+      padding: '5px 8px 5px 8px',
+    },
+    [theme.breakpoints.up('xl')]: {
+      height: 'auto',
+      width: '341px',
+      padding: '5px 8px 5px 8px',
+    },
+
+    transition: 'filter 0.2s',
     '&:hover': {
       filter: 'brightness(0.7)',
+    },
+  },
+  buttonContainer: {
+    [theme.breakpoints.only('xs')]: {
+      width: '100%',
+      display: 'flex',
+      justifyContent: 'center',
     },
   },
 }));
@@ -96,10 +185,10 @@ export default function CarouselItem({ item }) {
     <Box paddingBottom="50px" width="100%" display="flex" justifyContent="center">
       <Box className={classes.container}>
         <Box className={classes.firstContainer}>
-          <Box maxWidth="20%">
-            <img src={item.img} alt="" className={classes.caroulselItem} />
+          <Box>
+            <img src={item.img} alt="" className={classes.caroulselItemImg} />
           </Box>
-          <Box maxWidth="50%">
+          <Box>
             <Typography className={`${classes.typography} ${classes.typographyToolTitle}`} align="center">
               {item.toolName}
             </Typography>
@@ -108,7 +197,7 @@ export default function CarouselItem({ item }) {
             </Typography>
           </Box>
         </Box>
-        <Box>
+        <Box className={classes.buttonContainer}>
           <Link
             href={item.toolPage}
             passHref

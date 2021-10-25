@@ -30,6 +30,10 @@ export const useStyles = makeStyles((theme) => ({
     margin: '1rem',
     paddingRight: '2rem',
 
+    [theme.breakpoints.up('md')]: {
+      paddingRight: '4rem',
+      paddingLeft: '4rem',
+    },
     [theme.breakpoints.up('xl')]: {
       paddingRight: '4rem',
       paddingLeft: '4rem',
@@ -43,6 +47,7 @@ export const useStyles = makeStyles((theme) => ({
     width: '85%',
     fontSize: '1.688rem',
     fontWeight: 'bold',
+    paddingBottom: '10px',
     [theme.breakpoints.up('sm')]: {
       fontSize: '2.125rem',
     },
@@ -62,7 +67,7 @@ export const useStyles = makeStyles((theme) => ({
       paddingBottom: '2rem',
     },
     [theme.breakpoints.up('md')]: {
-      fontSize: '0.813rem',
+      fontSize: '1rem',
       paddingBottom: '2rem',
     },
     [theme.breakpoints.up('xl')]: {
@@ -153,7 +158,7 @@ export const useStyles = makeStyles((theme) => ({
   lineDividerGradientColor: {
     marginTop: '1rem',
     width: '65%',
-    height: '2px',
+    height: '4px',
     background: 'linear-gradient(90deg, rgba(20, 215, 104, 0.4) 0%, rgba(17, 129, 233, 0.4) 34.9%, rgba(245, 157, 42, 0.4) 67.71%, rgba(228, 56, 180, 0.4) 100%)',
     [theme.breakpoints.up('xl')]: {
       marginBottom: '2rem',

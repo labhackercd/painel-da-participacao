@@ -35,7 +35,7 @@ export default function Caroulsel() {
       toolName: 'Audiências Interativas',
       description: 'Perguntas aos parlamentares',
       color: '#F59D2A',
-      buttonText: 'Ver a participação',
+      buttonText: 'Veja a participação',
       toolPage: `${process.env.NEXT_PUBLIC_AUDIENCIAS_PAGE_URL}`,
       img: audienciasCaroulselImg,
     },
@@ -44,7 +44,7 @@ export default function Caroulsel() {
       toolName: 'Wikilegis',
       description: 'Opiniões em textos de propostas legislativas',
       color: '#14D768',
-      buttonText: 'Ver a participação',
+      buttonText: 'Veja a participação',
       toolPage: `${process.env.NEXT_PUBLIC_WIKILEGIS_PAGE_URL}`,
       img: wikilegisCaroulselImg,
     },
@@ -72,7 +72,7 @@ export default function Caroulsel() {
     <Carousel
       additionalTransfrom={0}
       arrows={isDesktop}
-      autoPlay={false}
+      autoPlay
       autoPlaySpeed={3000}
       centerMode={false}
       className=""
