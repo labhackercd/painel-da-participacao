@@ -120,8 +120,8 @@ export const useStyles = makeStyles((theme) => ({
   },
   lineDividerGradientColor: {
     marginTop: 0,
-    width: '65%',
-    height: '2px',
+    width: '100%',
+    height: '4px',
     background: 'linear-gradient(90deg, rgba(20, 215, 104, 0.4) 0%, rgba(17, 129, 233, 0.4) 34.9%, rgba(245, 157, 42, 0.4) 67.71%, rgba(228, 56, 180, 0.4) 100%)',
   },
 }));

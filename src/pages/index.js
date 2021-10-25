@@ -54,7 +54,7 @@ function Home({ usersTotal, apiLastCacheMade }) {
                 </Box>
               </Grid>
               <Grid item xs={12}>
-                <Box display="flex" alignItems="center">
+                <Box display="flex" alignItems="center" height="100%">
                   <Box width="35%" height="100%">
                     <Typography className={`${classes.typography} ${classes.typographyCaption}`}>
                       * Dados consolidados até
@@ -62,7 +62,9 @@ function Home({ usersTotal, apiLastCacheMade }) {
                       {apiLastCacheMade}
                     </Typography>
                   </Box>
-                  <Box className={classes.lineDividerGradientColor} />
+                  <Box height="100%" width="65%" display="flex" align="flex-start" flexDirection="row-reverse">
+                    <Box className={classes.lineDividerGradientColor} />
+                  </Box>
                 </Box>
 
               </Grid>
