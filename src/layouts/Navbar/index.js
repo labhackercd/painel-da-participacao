@@ -8,7 +8,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 import logoCamaraDosDeputados from '../../assets/images/logos/logo_cd.svg';
-import logoPainelDaParticipacao from '../../assets/images/logos/logo_painel_vertical.png';
+import logoPainelDaParticipacao from '../../assets/images/logos/logo_participa.png';
 
 import useStyles from './style';
 
