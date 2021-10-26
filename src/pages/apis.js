@@ -149,24 +149,26 @@ function Api() {
         </Box>
         <Box className={classes.boxContent}>
           <Box className={`${classes.textBoxMargin}`}>
-            <Box className={classes.headerText}>
-              <Typography variant="h1" className={`${classes.typography} ${classes.typograhyTitle}`}>
-                {'<eDEVVocracia/>'}
-              </Typography>
-              <Typography className={`${classes.typography} ${classes.typographyTitleCaption}`}>
-                e-Democracia para desenvolvedores
-              </Typography>
-              <Typography className={`${classes.typography} ${classes.typographyTitleText}`}>
-                Faça parte da comunidade de desenvolvedores
-                e hackers cívicos.
-              </Typography>
+            <Box display="flex">
+              <Box className={classes.headerText}>
+                <Typography variant="h1" className={`${classes.typography} ${classes.typograhyTitle}`}>
+                  {'<eDEVVocracia/>'}
+                </Typography>
+                <Typography className={`${classes.typography} ${classes.typographyTitleCaption}`}>
+                  e-Democracia para desenvolvedores
+                </Typography>
+                <Typography className={`${classes.typography} ${classes.typographyTitleText}`}>
+                  Faça parte da comunidade de desenvolvedores
+                  e hackers cívicos.
+                </Typography>
+              </Box>
+              <Box className={classes.headerImg}>
+                <img src={bannerImg} alt="Imagem representativa banner" className={classes.imgClass} />
+              </Box>
             </Box>
-            <Box className={classes.headerImg}>
-              <img src={bannerImg} alt="Imagem representativa banner" className={classes.imgClass} />
+            <Box display="flex" flexDirection="row-reverse">
+              <div className={classes.lineDividerGradientColor} />
             </Box>
-          </Box>
-          <Box display="flex" flexDirection="row-reverse">
-            <div className={classes.lineDividerGradientColor} />
           </Box>
           <Box className={classes.textBoxMargin}>
             <Typography variant="h2" className={`${classes.typography} ${classes.typograhyH2}`}>
