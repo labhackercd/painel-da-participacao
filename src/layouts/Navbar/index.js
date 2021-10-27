@@ -8,7 +8,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 import logoCamaraDosDeputados from '../../assets/images/logos/logo_cd.svg';
-import logoPainelDaParticipacao from '../../assets/images/logos/logo_painel_vertical.png';
+import logoPainelDaParticipacao from '../../assets/images/logos/logo_participa.png';
 
 import useStyles from './style';
 
@@ -18,7 +18,7 @@ function LinkTab(parans) {
   return (
 
     <Link href={{ pathname: url }}>
-      <Tab className={classes.tab} {...props} />
+      <Tab className={classes.tab} disableRipple {...props} />
     </Link>
 
   );
@@ -34,7 +34,7 @@ export default function PageNavbar(props) {
   const {
     header, drawerContainer, drawerMobile, offset,
     toolbarContentMobile, mobileLogo, desktopNavbarContent,
-    camaraBar, mobileTabs, indicatorClass, logoPainelClass,
+    camaraBar, tabsClass, indicatorClass, logoPainelClass,
   } = useStyles();
   const { value } = props;
 
@@ -86,7 +86,7 @@ export default function PageNavbar(props) {
       <Tabs
         value={value}
         orientation={orientation}
-        className={mobileTabs}
+        className={tabsClass}
         classes={{
           indicator: indicatorClass,
         }}
