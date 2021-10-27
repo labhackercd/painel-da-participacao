@@ -18,7 +18,7 @@ function LinkTab(parans) {
   return (
 
     <Link href={{ pathname: url }}>
-      <Tab className={classes.tab} {...props} />
+      <Tab className={classes.tab} disableRipple {...props} />
     </Link>
 
   );
@@ -34,7 +34,7 @@ export default function PageNavbar(props) {
   const {
     header, drawerContainer, drawerMobile, offset,
     toolbarContentMobile, mobileLogo, desktopNavbarContent,
-    camaraBar, mobileTabs, indicatorClass, logoPainelClass,
+    camaraBar, tabsClass, indicatorClass, logoPainelClass,
   } = useStyles();
   const { value } = props;
 
@@ -86,7 +86,7 @@ export default function PageNavbar(props) {
       <Tabs
         value={value}
         orientation={orientation}
-        className={mobileTabs}
+        className={tabsClass}
         classes={{
           indicator: indicatorClass,
         }}
