@@ -26,6 +26,16 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '1rem',
     },
   },
+  tabSelected: {
+    '& span': {
+      width: 'auto',
+      background: 'linear-gradient(90deg, rgba(20, 215, 104, 0.5) 0%, rgba(17, 129, 233, 0.5) 32.81%, rgba(245, 157, 42, 0.5) 69.79%, rgba(228, 56, 180, 0.5) 100%)',
+      paddingBottom: '5px',
+      backgroundSize: '100% 5px',
+      backgroundPosition: 'bottom 0 left 0,bottom 5px left 0',
+      backgroundRepeat: 'no-repeat',
+    },
+  },
   toolbarContentMobile: {
     display: 'flex',
     width: '100%',
@@ -62,17 +72,12 @@ const useStyles = makeStyles((theme) => ({
       '& .MuiTabs-flexContainer': {
         alignItems: 'baseline',
       },
-      '& .MuiTabs-indicator': {
-        left: '0px',
-        width: '60%',
-        maxHeight: '5px',
-        top: '120px',
-      },
+
     },
   },
   indicatorClass: {
-    background: 'linear-gradient(90deg, rgba(20, 215, 104, 0.5) 0%, rgba(17, 129, 233, 0.5) 32.81%, rgba(245, 157, 42, 0.5) 69.79%, rgba(228, 56, 180, 0.5) 100%)',
-    height: '5px',
+    color: 'transparent',
+    height: '0px',
     [theme.breakpoints.down('md')]: {
       top: '300px',
       marginTop: '48px',
