@@ -18,6 +18,5 @@ export const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     height: '100%',
-    padding: '0 0 2rem 0',
   },
 }));
