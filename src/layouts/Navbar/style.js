@@ -61,6 +61,10 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     paddingTop: '5px',
     paddingBottom: '5px',
+
+    [theme.breakpoints.only('lg')]: {
+      height: '6vh',
+    },
   },
   tabsClass: {
     [theme.breakpoints.down('md')]: {
@@ -90,6 +94,21 @@ const useStyles = makeStyles((theme) => ({
   logoPainelClass: {
     width: '106px',
     height: '32px',
+
+    [theme.breakpoints.up('md')]: {
+      width: '170px',
+      height: '50px',
+    },
+    [theme.breakpoints.up('lg')]: {
+      width: '240px',
+      height: '70px',
+    },
+    [theme.breakpoints.up('xl')]: {
+      width: '270px',
+      height: '80px',
+    },
+  },
+  logoCamaraDosDeputados: {
 
     [theme.breakpoints.up('md')]: {
       width: '170px',
