@@ -92,8 +92,8 @@ const useStyles = makeStyles((theme) => ({
     height: '32px',
 
     [theme.breakpoints.up('md')]: {
-      width: '210px',
-      height: '60px',
+      width: '170px',
+      height: '50px',
     },
     [theme.breakpoints.up('lg')]: {
       width: '240px',
