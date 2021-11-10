@@ -75,7 +75,6 @@ export default function PageNavbar(props) {
     >
       <img src={logoCamaraDosDeputados} alt="Logo Câmara dos Deputados" />
     </a>
-
   );
 
   const painelParticipacaoLogo = (

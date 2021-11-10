@@ -8,8 +8,6 @@ const useStyles = makeStyles((theme) => ({
       padding: '0 0',
     },
   },
-  drawerContainer: {
-  },
   drawerMobile: {
     background: 'black',
     color: 'white',
@@ -65,12 +63,18 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: '5px',
   },
   tabsClass: {
-
     [theme.breakpoints.down('md')]: {
       alignItems: 'baseline',
-
       '& .MuiTabs-flexContainer': {
         alignItems: 'baseline',
+      },
+
+      '& button': {
+        display: 'flex',
+        justifyContent: 'flex-start',
+      },
+      '& span': {
+        width: 'auto',
       },
 
     },
