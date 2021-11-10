@@ -17,7 +17,11 @@ function LinkTab(parans) {
   const {
     url, currentSelectedValue, index, ...props
   } = parans;
-  const isTabSelected = (index.toString()) === (currentSelectedValue.toString());
+  let isTabSelected = false;
+
+  if (index !== undefined && currentSelectedValue !== undefined) {
+    isTabSelected = (index.toString()) === (currentSelectedValue.toString());
+  }
 
   return (
 
