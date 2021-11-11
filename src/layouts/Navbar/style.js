@@ -8,8 +8,6 @@ const useStyles = makeStyles((theme) => ({
       padding: '0 0',
     },
   },
-  drawerContainer: {
-  },
   drawerMobile: {
     background: 'black',
     color: 'white',
@@ -24,6 +22,16 @@ const useStyles = makeStyles((theme) => ({
 
     [theme.breakpoints.only('lg')]: {
       fontSize: '1rem',
+    },
+  },
+  tabSelected: {
+    '& span': {
+      width: 'auto',
+      background: 'linear-gradient(90deg, rgba(20, 215, 104, 0.5) 0%, rgba(17, 129, 233, 0.5) 32.81%, rgba(245, 157, 42, 0.5) 69.79%, rgba(228, 56, 180, 0.5) 100%)',
+      paddingBottom: '5px',
+      backgroundSize: '100% 5px',
+      backgroundPosition: 'bottom 0 left 0,bottom 5px left 0',
+      backgroundRepeat: 'no-repeat',
     },
   },
   toolbarContentMobile: {
@@ -53,26 +61,31 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     paddingTop: '5px',
     paddingBottom: '5px',
+
+    [theme.breakpoints.only('lg')]: {
+      height: '6vh',
+    },
   },
   tabsClass: {
-
     [theme.breakpoints.down('md')]: {
       alignItems: 'baseline',
-
       '& .MuiTabs-flexContainer': {
         alignItems: 'baseline',
       },
-      '& .MuiTabs-indicator': {
-        left: '0px',
-        width: '60%',
-        maxHeight: '5px',
-        top: '120px',
+
+      '& button': {
+        display: 'flex',
+        justifyContent: 'flex-start',
       },
+      '& span': {
+        width: 'auto',
+      },
+
     },
   },
   indicatorClass: {
-    background: 'linear-gradient(90deg, rgba(20, 215, 104, 0.5) 0%, rgba(17, 129, 233, 0.5) 32.81%, rgba(245, 157, 42, 0.5) 69.79%, rgba(228, 56, 180, 0.5) 100%)',
-    height: '5px',
+    color: 'transparent',
+    height: '0px',
     [theme.breakpoints.down('md')]: {
       top: '300px',
       marginTop: '48px',
@@ -83,8 +96,23 @@ const useStyles = makeStyles((theme) => ({
     height: '32px',
 
     [theme.breakpoints.up('md')]: {
-      width: '210px',
-      height: '60px',
+      width: '170px',
+      height: '50px',
+    },
+    [theme.breakpoints.up('lg')]: {
+      width: '240px',
+      height: '70px',
+    },
+    [theme.breakpoints.up('xl')]: {
+      width: '270px',
+      height: '80px',
+    },
+  },
+  logoCamaraDosDeputados: {
+
+    [theme.breakpoints.up('md')]: {
+      width: '170px',
+      height: '50px',
     },
     [theme.breakpoints.up('lg')]: {
       width: '240px',

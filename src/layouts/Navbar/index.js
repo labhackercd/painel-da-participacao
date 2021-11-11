@@ -14,11 +14,23 @@ import useStyles from './style';
 
 function LinkTab(parans) {
   const classes = useStyles();
-  const { url, ...props } = parans;
+  const {
+    url, currentSelectedValue, index, ...props
+  } = parans;
+  let isTabSelected = false;
+
+  if (index !== undefined && currentSelectedValue !== undefined) {
+    isTabSelected = (index.toString()) === (currentSelectedValue.toString());
+  }
+
   return (
 
     <Link href={{ pathname: url }}>
-      <Tab className={classes.tab} disableRipple {...props} />
+      <Tab
+        className={isTabSelected ? `${classes.tab} ${classes.tabSelected}` : classes.tab}
+        disableRipple
+        {...props}
+      />
     </Link>
 
   );
@@ -63,7 +75,6 @@ export default function PageNavbar(props) {
     >
       <img src={logoCamaraDosDeputados} alt="Logo Câmara dos Deputados" />
     </a>
-
   );
 
   const painelParticipacaoLogo = (
@@ -97,6 +108,7 @@ export default function PageNavbar(props) {
           aria-selected={false}
           url={`${process.env.NEXT_PUBLIC_INITIAL_PAGE_URL}`}
           index="0"
+          currentSelectedValue={value}
           {...a11yProps(0)}
         />
         <LinkTab
@@ -106,6 +118,7 @@ export default function PageNavbar(props) {
           aria-selected
           url={`${process.env.NEXT_PUBLIC_AUDIENCIAS_PAGE_URL}`}
           index="1"
+          currentSelectedValue={value}
           {...a11yProps(1)}
         />
         <LinkTab
@@ -115,6 +128,7 @@ export default function PageNavbar(props) {
           aria-selected={false}
           url={`${process.env.NEXT_PUBLIC_WIKILEGIS_PAGE_URL}`}
           index="2"
+          currentSelectedValue={value}
           {...a11yProps(2)}
         />
         <LinkTab
@@ -124,6 +138,7 @@ export default function PageNavbar(props) {
           aria-selected={false}
           url={process.env.NEXT_PUBLIC_SOBRE_PAGE_URL}
           index="3"
+          currentSelectedValue={value}
           {...a11yProps(3)}
         />
         <LinkTab
@@ -133,6 +148,7 @@ export default function PageNavbar(props) {
           aria-selected={false}
           url={process.env.NEXT_PUBLIC_API_PAGE_URL}
           index="4"
+          currentSelectedValue={value}
           {...a11yProps(4)}
         />
       </Tabs>
