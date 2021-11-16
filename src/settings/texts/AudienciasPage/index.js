@@ -1,8 +1,9 @@
 /* eslint-disable import/prefer-default-export */
+import { APPLICATION_NAME } from '../../applicationOptions/index';
 
 // Page Texts
 export const pageToolTitle = 'Audiências Interativas';
-export const pageHTMLTitle = 'Audiências Interativas | Painel da Participação';
+export const pageHTMLTitle = `Audiências Interativas | ${APPLICATION_NAME}`;
 export const pageTitle = 'A Participação em Audiências Interativas';
 export const pageSubTitle = 'Painel de estatísticas de participação dos cidadãos em audiências públicas e eventos interativos da Câmara dos Deputados.';
 export const pageColor = '#DA7F0B';

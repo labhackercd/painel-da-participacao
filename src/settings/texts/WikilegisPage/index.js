@@ -1,8 +1,9 @@
 /* eslint-disable import/prefer-default-export */
+import { APPLICATION_NAME } from '../../applicationOptions/index';
 
 // Page Texts
 export const pageToolTitle = 'Wikilegis';
-export const pageHTMLTitle = 'Wikilegis | Painel da Participação ';
+export const pageHTMLTitle = `Wikilegis | ${APPLICATION_NAME}`;
 export const pageTitle = 'Participação na Wikilegis';
 export const pageSubTitle = 'Painel de estatísticas da participação dos cidadãos nas propostas legislativas da Câmara dos Deputados.';
 export const pageColor = '#00C354';
