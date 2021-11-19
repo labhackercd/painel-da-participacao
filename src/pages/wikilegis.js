@@ -5,7 +5,7 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 import Head from 'next/head';
 import {
-  Grid, Container, Box, Typography,
+  Grid, Box, Typography,
 } from '@material-ui/core/';
 import { format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
@@ -48,7 +48,7 @@ function WikilegisPage({
       </Head>
       <Layout value={2}>
         <Grid container className={classes.root}>
-          <Container className={classes.container}>
+          <div className={classes.container}>
             <main className={classes.content}>
               <WikilegisHeader />
               <Wikilegis
@@ -57,7 +57,7 @@ function WikilegisPage({
                 apiLastCacheMadeHour={apiLastCacheMadeHour}
               />
             </main>
-          </Container>
+          </div>
         </Grid>
       </Layout>
     </>
