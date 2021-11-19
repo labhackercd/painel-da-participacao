@@ -8,6 +8,8 @@ import PageNavbar from '../layouts/Navbar/index';
 import Footer from '../components/Footer/index';
 import { useStyles } from '../styles/pages/sobrePageStyle';
 
+import { APPLICATION_NAME } from '../settings/applicationOptions/index';
+
 function SectionHeader(props) {
   const classes = useStyles();
   const {
@@ -49,7 +51,7 @@ function Sobre() {
   return (
     <div className={classes.root}>
       <Head>
-        <title>Sobre</title>
+        <title>{`Sobre | ${APPLICATION_NAME}`}</title>
       </Head>
       <Box className={classes.box}>
         <Box className={classes.boxHeader}>

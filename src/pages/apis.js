@@ -15,6 +15,7 @@ import {
 import PageNavbar from '../layouts/Navbar/index';
 import Footer from '../components/Footer';
 import bannerImg from '../assets/images/apiPage/bannerImg.png';
+import { APPLICATION_NAME } from '../settings/applicationOptions/index';
 
 import { apiCardsInfo, moreCardsInfo } from '../settings/texts/ApisPage/index';
 
@@ -77,7 +78,7 @@ function Api() {
   return (
     <div className={classes.root}>
       <Head>
-        <title>Participacao Api&apos;s</title>
+        <title>{`API's | ${APPLICATION_NAME}`}</title>
       </Head>
       <Box className={classes.box}>
         <Box className={classes.boxHeader}>
