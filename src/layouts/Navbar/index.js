@@ -9,8 +9,6 @@ import Link from 'next/link';
 import ApplicationLogo from '../../components/ApplicationLogo/index';
 
 import logoCamaraDosDeputados from '../../assets/images/logos/logo_cd.svg';
-import logoPainelDaParticipacao from '../../assets/images/logos/logo_participa.png';
-
 import useStyles from './style';
 
 function LinkTab(parans) {
@@ -47,7 +45,7 @@ export default function PageNavbar(props) {
   const {
     header, drawerContainer, drawerMobile, offset,
     toolbarContentMobile, mobileLogo, desktopNavbarContent,
-    camaraBar, tabsClass, indicatorClass, logoPainelClass,
+    camaraBar, tabsClass, indicatorClass,
   } = useStyles();
   const { value } = props;
 
@@ -76,15 +74,6 @@ export default function PageNavbar(props) {
     >
       <img src={logoCamaraDosDeputados} alt="Logo Câmara dos Deputados" />
     </a>
-  );
-
-  const painelParticipacaoLogoMobile = (
-    <img
-      src={logoPainelDaParticipacao}
-      alt="Logo da Painel da Painel da Participação"
-      width="106px"
-      height="32px"
-    />
   );
 
   function NavTabs(options) {
