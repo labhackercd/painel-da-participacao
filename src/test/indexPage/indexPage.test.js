@@ -13,6 +13,8 @@ import MockTheme from '../../mocks/theme/mockTheme';
 import HomePage, { getStaticProps } from '../../pages/index';
 import rankingUsersMock from '../../mocks/edemocracia/rankingUsersMock';
 
+import { DEFAULT_SEARCH_QUERY } from '../../settings/applicationOptions/index';
+
 const yearlySearchQuery = '?period=yearly&ordering=start_date';
 
 let dateNowSpy;
@@ -44,7 +46,7 @@ test('Test page render get data from getStaticProps', async () => {
   const mockInstance = new MockAdapter(apiInstance);
 
   mockInstance
-    .onGet(`${process.env.NEXT_PUBLIC_EDEMOCRACIA_REPORT_RANKING_USERS_URL}?period=yearly`)
+    .onGet(`${process.env.NEXT_PUBLIC_EDEMOCRACIA_REPORT_RANKING_USERS_URL}${DEFAULT_SEARCH_QUERY}`)
     .reply(200, rankingUsersMock);
 
   const response = await getStaticProps();

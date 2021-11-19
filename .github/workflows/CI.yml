@@ -31,18 +31,3 @@ jobs:
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v1
-
-
-  PROD:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Up docker containers
-        run: docker-compose up -d prod
-      - name: List containers is running
-        run: docker-compose ps
-      - name: List images is running
-        run: docker images -a
