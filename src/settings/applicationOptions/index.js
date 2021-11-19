@@ -1,4 +1,4 @@
-// ================ TITLES ================
+// ================ APPLICATION OPTIONS ================
 export const ORGANIZATION_NAME = 'Câmara dos Deputados';
 export const APPLICATION_NAME = 'Painel da Participação';
 

@@ -1,11 +1,12 @@
 /* eslint-disable react/prop-types */
+import React, { useState, useEffect } from 'react';
 import {
   Toolbar, IconButton, Drawer, Box, Tab, Tabs,
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/Close';
-import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import ApplicationLogo from '../../components/ApplicationLogo/index';
 
 import logoCamaraDosDeputados from '../../assets/images/logos/logo_cd.svg';
 import logoPainelDaParticipacao from '../../assets/images/logos/logo_participa.png';
@@ -75,10 +76,6 @@ export default function PageNavbar(props) {
     >
       <img src={logoCamaraDosDeputados} alt="Logo Câmara dos Deputados" />
     </a>
-  );
-
-  const painelParticipacaoLogo = (
-    <img src={logoPainelDaParticipacao} alt="Logo da Painel da Painel da Participação" className={logoPainelClass} />
   );
 
   const painelParticipacaoLogoMobile = (
@@ -162,7 +159,7 @@ export default function PageNavbar(props) {
         {' '}
       </div>
       <Toolbar className={desktopNavbarContent}>
-        {painelParticipacaoLogo}
+        <ApplicationLogo />
         <Box width="100%" display="flex" justifyContent="flex-end">
           <NavTabs orientation="horizontal" />
         </Box>
@@ -184,7 +181,7 @@ export default function PageNavbar(props) {
         >
           <Box height="50px" width="100%" display="flex" justifyContent="space-between" alignItems="center" padding="30px" paddingX="10px">
             <Box>
-              <img src={logoPainelDaParticipacao} alt="Logo Painel da participação" className={logoPainelClass} />
+              <ApplicationLogo />
             </Box>
             <Box>
               <IconButton onClick={handleDrawerClose} style={{ color: 'white' }}>
@@ -197,7 +194,7 @@ export default function PageNavbar(props) {
         </Drawer>
         <div className={toolbarContentMobile}>
           <div className={mobileLogo}>
-            {painelParticipacaoLogoMobile}
+            <ApplicationLogo />
           </div>
           <IconButton
             {...{
