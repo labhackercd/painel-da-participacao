@@ -17,8 +17,24 @@ const useStyles = makeStyles((theme) => ({
     height: '92%',
     textTransform: 'capitalize',
     fontWeight: '600',
-    margin: '0rem 0 0 0rem',
+    marginLeft: '80px',
+    minWidth: '0',
+    padding: '0px',
     fontSize: '1.2rem',
+    opacity: '1',
+
+    '& button': {
+      padding: '0px',
+      paddingTop: '8px',
+    },
+    '.MuiTab-root': {
+      minWidth: '0px',
+    },
+
+    '& span': {
+      color: 'white',
+      paddingTop: '8px',
+    },
 
     [theme.breakpoints.only('lg')]: {
       fontSize: '1rem',
@@ -28,7 +44,8 @@ const useStyles = makeStyles((theme) => ({
     '& span': {
       width: 'auto',
       background: 'linear-gradient(90deg, rgba(20, 215, 104, 0.5) 0%, rgba(17, 129, 233, 0.5) 32.81%, rgba(245, 157, 42, 0.5) 69.79%, rgba(228, 56, 180, 0.5) 100%)',
-      paddingBottom: '5px',
+      paddingBottom: '8px',
+      paddingTop: '8px',
       backgroundSize: '100% 5px',
       backgroundPosition: 'bottom 0 left 0,bottom 5px left 0',
       backgroundRepeat: 'no-repeat',

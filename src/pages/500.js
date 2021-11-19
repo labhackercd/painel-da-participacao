@@ -11,13 +11,15 @@ import Layout from '../layouts/index';
 import error500Image from '../assets/images/500Page/bannerImage.svg';
 import { useStyles } from '../styles/pages/errorsPageStyle';
 
+import { APPLICATION_NAME } from '../settings/applicationOptions/index';
+
 function Custom500() {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <Head>
-        <title>Painel da Participação Erro 404</title>
+        <title>{ `Erro 404 | ${APPLICATION_NAME}`}</title>
       </Head>
       <Layout>
         <Box className={classes.boxContent}>

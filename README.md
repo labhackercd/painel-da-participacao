@@ -3,7 +3,7 @@
 ## Descrição do Projeto
 O painel da participação foi desenvolvido para mostrar o histórico de utilização de dois dos canais de participação da Câmara dos Deputados, que estão disponíveis na plataforma eDemocracia.
 
-![Website](https://img.shields.io/website?down_color=red&down_message=offline&style=flat-square&up_color=green&up_message=online&url=https%3A%2F%2Ftes.edemocracia.camara.leg.br%2Fparticipacao%2Faudiencias)
+![Website](https://img.shields.io/website?down_color=red&down_message=online&style=flat-square&up_color=green&up_message=online&url=https%3A%2F%2Fedemocracia.camara.leg.br%2Femonitor)
 ![Licença GitHub](https://img.shields.io/github/license/labhackercd/cpp-participacao-frontend?style=flat-square)
 ![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/labhackercd/cpp-participacao-frontend?style=flat-square)
 ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/labhackercd/cpp-participacao-frontend/CI/dev?label=build-dev&style=flat-square)
@@ -124,3 +124,14 @@ Essas personalizações podem ser feitas atualizando as constantes presentes na 
     <img src="https://user-images.githubusercontent.com/20937190/119523077-db59de80-bd52-11eb-8497-99af15000083.png" alt="" />
 </div>
 
+1. Como trocar o logo da aplicação?
+
+- Para alterar o logo da aplicação substitua a imagem importada no componente ApplicationLogo pela imagem desejada, onde recomendamos que a mesma seja posicionada em src/assets/images/logos
+
+2. Como alterar o nome da aplicação?
+
+- Para alterar o nome da aplicação altere a variável APPLICATION_NAME localizada no arquivo src/settings/applicationOptions/index.js .
+
+3. Como adicionar ou remover um item do carrossel da página inicial?
+
+- Altere o objeto da variável 'carouselItens' localizada em src/settings/texts/InitialPage/index.js.

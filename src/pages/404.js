@@ -11,13 +11,15 @@ import Layout from '../layouts/index';
 import { useStyles } from '../styles/pages/errorsPageStyle';
 import error404Image from '../assets/images/404Page/banner.svg';
 
+import { APPLICATION_NAME } from '../settings/applicationOptions/index';
+
 function Custom404() {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <Head>
-        <title>Painel da Participação Erro 404</title>
+        <title>{ `Erro 404 | ${APPLICATION_NAME}`}</title>
       </Head>
       <Layout>
         <Box className={classes.boxContent}>
@@ -41,7 +43,7 @@ function Custom404() {
             </Grid>
             <Grid item xs={12} md={5}>
               <Box className={classes.imgBox}>
-                <img src={error404Image} alt="Imagem Representativa" className={classes.bannerImg} />
+                <img src={error404Image} alt="Imagem Representativa de erro" className={classes.bannerImg} />
               </Box>
             </Grid>
           </Grid>

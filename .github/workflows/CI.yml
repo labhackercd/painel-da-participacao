@@ -32,17 +32,25 @@ jobs:
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v1
 
+  DEV:
 
-  PROD:
     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    strategy:
+      matrix:
+        node-version: [12.x]
 
-      - name: Up docker containers
-        run: docker-compose up -d prod
-      - name: List containers is running
-        run: docker-compose ps
-      - name: List images is running
-        run: docker images -a
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Check eslint
+      run: npm run build
