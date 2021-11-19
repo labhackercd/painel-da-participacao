@@ -124,3 +124,14 @@ Essas personalizações podem ser feitas atualizando as constantes presentes na 
     <img src="https://user-images.githubusercontent.com/20937190/119523077-db59de80-bd52-11eb-8497-99af15000083.png" alt="" />
 </div>
 
+1. Como trocar o logo da aplicação?
+
+- Para alterar o logo da aplicação substitua a imagem importada no componente ApplicationLogo pela imagem desejada, onde recomendamos que a mesma seja posicionada em src/assets/images/logos
+
+2. Como alterar o nome da aplicação?
+
+- Para alterar o nome da aplicação altere a variável APPLICATION_NAME localizada no arquivo src/settings/applicationOptions/index.js .
+
+3. Como adicionar ou remover um item do carrossel da página inicial?
+
+- Altere o objeto da variável 'carouselItens' localizada em src/settings/texts/InitialPage/index.js.
