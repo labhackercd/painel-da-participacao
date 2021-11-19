@@ -14,7 +14,9 @@ import bannerInitialPage from '../assets/images/initialPage/peopleInGroupImage.p
 
 import Layout from '../layouts/index';
 
-import { REFRESH_API_CACHE_DATA_INTERVAL } from '../settings/applicationOptions/index';
+import {
+  APPLICATION_NAME, REFRESH_API_CACHE_DATA_INTERVAL, DEFAULT_SEARCH_QUERY,
+} from '../settings/applicationOptions/index';
 
 import { useStyles } from '../styles/pages/indexPageStyle';
 
@@ -24,7 +26,7 @@ function Home({ usersTotal, apiLastCacheMade }) {
   return (
     <div className={classes.root}>
       <Head>
-        <title>Painel da Participação</title>
+        <title>{APPLICATION_NAME}</title>
       </Head>
       <Layout value={0}>
         <Box className={classes.box}>
@@ -85,7 +87,7 @@ function Home({ usersTotal, apiLastCacheMade }) {
 
 export async function getStaticProps() {
   async function getData() {
-    const url = `${process.env.NEXT_PUBLIC_EDEMOCRACIA_REPORT_RANKING_USERS_URL}?period=yearly`;
+    const url = `${process.env.NEXT_PUBLIC_EDEMOCRACIA_REPORT_RANKING_USERS_URL}${DEFAULT_SEARCH_QUERY}`;
 
     try {
       const resp = await apiInstance.get(url);
