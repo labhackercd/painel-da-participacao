@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
     minWidth: '0',
     padding: '0px',
     fontSize: '1.2rem',
+    opacity: '1',
 
     '& button': {
       padding: '0px',
