@@ -56,19 +56,22 @@ export const useStyles = makeStyles((theme) => ({
   typographyTitleCaption: {
     fontSize: '0.563rem',
     textAlign: 'justify',
-    paddingBottom: '1rem',
+    paddingBottom: '25px',
 
     [theme.breakpoints.up('sm')]: {
       fontSize: '0.688rem',
       paddingBottom: '2rem',
+      paddingTop: '8px',
     },
     [theme.breakpoints.up('md')]: {
       fontSize: '1rem',
       paddingBottom: '2rem',
+      paddingTop: '8px',
     },
     [theme.breakpoints.up('xl')]: {
       fontSize: '1.5rem',
       paddingBottom: '2rem',
+      paddingTop: '16px',
     },
   },
   typographyTitleText: {
@@ -184,8 +187,7 @@ export const useStyles = makeStyles((theme) => ({
       paddingRight: '4rem',
     },
   },
-  headerText: {
-  },
+  headerText: {},
   headerImg: {
     display: 'flex',
     [theme.breakpoints.only('xs')]: {
@@ -197,7 +199,8 @@ export const useStyles = makeStyles((theme) => ({
     paddingTop: '0',
     width: '65%',
     height: '2px',
-    background: 'linear-gradient(90deg, rgba(20, 215, 104, 0.4) 0%, rgba(17, 129, 233, 0.4) 34.9%, rgba(245, 157, 42, 0.4) 67.71%, rgba(228, 56, 180, 0.4) 100%)',
+    background:
+      'linear-gradient(90deg, rgba(20, 215, 104, 0.4) 0%, rgba(17, 129, 233, 0.4) 34.9%, rgba(245, 157, 42, 0.4) 67.71%, rgba(228, 56, 180, 0.4) 100%)',
     [theme.breakpoints.up('xl')]: {
       marginBottom: '2rem',
     },
