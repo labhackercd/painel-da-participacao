@@ -5,7 +5,20 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import CarouselItem from './carouselItem';
 
+import { useStyles } from './style';
 import { carouselItens } from '../../settings/texts/InitialPage/index';
+
+const CustomDot = ({ onClick, active }) => {
+  const classes = useStyles();
+  return (
+    <li
+      className={`${classes.dot} ${
+        active ? classes.dotActive : classes.dotInactive
+      }`}
+      onClick={() => onClick()}
+    ></li>
+  );
+};
 
 export default function Caroulsel() {
   const responsive = {
@@ -26,6 +39,7 @@ export default function Caroulsel() {
       items: 1,
     },
   };
+
   return (
     <Carousel
       additionalTransfrom={0}
@@ -49,6 +63,7 @@ export default function Caroulsel() {
       sliderClass=""
       slidesToSlide={1}
       swipeable
+      customDot={<CustomDot />}
     >
       {carouselItens.map((item) => (
         <CarouselItem item={item} key={item.toolName} />
