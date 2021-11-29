@@ -4,20 +4,23 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import Head from 'next/head';
-import {
-  Grid, Box, Typography,
-} from '@material-ui/core/';
+import { Grid, Box, Typography } from '@material-ui/core/';
 import { format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import { apiInstance } from '../services/api/apiInstance';
 import Layout from '../layouts/index';
-import { DEFAULT_SEARCH_QUERY, REFRESH_API_CACHE_DATA_INTERVAL } from '../settings/applicationOptions/index';
+import {
+  DEFAULT_SEARCH_QUERY,
+  REFRESH_API_CACHE_DATA_INTERVAL,
+} from '../settings/applicationOptions/index';
 import * as TEXTCONSTANTS from '../settings/texts/AudienciasPage';
 import Audiencias from '../containers/Audiencias';
 import { useStyles } from '../styles/pages/audienciasPageStyle';
 
 function AudienciasPage({
-  defaultApisData, apiLastCacheMade, apiLastCacheMadeHour,
+  defaultApisData,
+  apiLastCacheMade,
+  apiLastCacheMadeHour,
 }) {
   const classes = useStyles();
 
@@ -25,13 +28,11 @@ function AudienciasPage({
     return (
       <Box marginBottom={5} marginX={2}>
         <Typography variant="h1" component="div">
-          <Box fontWeight="fontWeightBold">
-            {TEXTCONSTANTS.pageTitle}
-          </Box>
+          <Box fontWeight="fontWeightBold">{TEXTCONSTANTS.pageTitle}</Box>
         </Typography>
         <div>
           <Typography component="div" variant="h4">
-            <Box style={{ color: '#BFBFBF' }}>
+            <Box style={{ color: '#BFBFBF', paddingTop: '16px' }}>
               {TEXTCONSTANTS.pageSubTitle}
             </Box>
           </Typography>
@@ -81,8 +82,12 @@ export async function getStaticProps() {
         const dataToFormat = [...data.results];
         const formatedData = await dataToFormat.map((item) => ({
           ...item,
-          title_reunion: item.title_reunion ? removeCSVEscapeCharacters(item.title_reunion) : null,
-          reunion_theme: item.reunion_theme ? removeCSVEscapeCharacters(item.reunion_theme) : null,
+          title_reunion: item.title_reunion
+            ? removeCSVEscapeCharacters(item.title_reunion)
+            : null,
+          reunion_theme: item.reunion_theme
+            ? removeCSVEscapeCharacters(item.reunion_theme)
+            : null,
           audience_status: item.is_active ? 'Realizada' : 'Cancelada',
         }));
 
@@ -95,12 +100,24 @@ export async function getStaticProps() {
   }
 
   audienciasRankingData = await getAudienciasRankingData();
-  const participantsResponse = await apiInstance.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_PARTICIPANT_USERS_URL}${DEFAULT_SEARCH_QUERY}`);
-  const roomsResponseData = await apiInstance.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_ROOMS_RANKING_URL}${DEFAULT_SEARCH_QUERY}`);
-  const messagesResponseData = await apiInstance.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_MESSAGES_RANKING_URL}${DEFAULT_SEARCH_QUERY}`);
-  const questionsResponseData = await apiInstance.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_QUESTIONS_RANKING_URL}${DEFAULT_SEARCH_QUERY}`);
-  const newUsersResponseData = await apiInstance.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_NEW_USERS_URL}${DEFAULT_SEARCH_QUERY}`);
-  const votesResponseData = await apiInstance.get(`${process.env.NEXT_PUBLIC_AUDIENCIAS_VOTES_RANKING_URL}${DEFAULT_SEARCH_QUERY}`);
+  const participantsResponse = await apiInstance.get(
+    `${process.env.NEXT_PUBLIC_AUDIENCIAS_PARTICIPANT_USERS_URL}${DEFAULT_SEARCH_QUERY}`
+  );
+  const roomsResponseData = await apiInstance.get(
+    `${process.env.NEXT_PUBLIC_AUDIENCIAS_ROOMS_RANKING_URL}${DEFAULT_SEARCH_QUERY}`
+  );
+  const messagesResponseData = await apiInstance.get(
+    `${process.env.NEXT_PUBLIC_AUDIENCIAS_MESSAGES_RANKING_URL}${DEFAULT_SEARCH_QUERY}`
+  );
+  const questionsResponseData = await apiInstance.get(
+    `${process.env.NEXT_PUBLIC_AUDIENCIAS_QUESTIONS_RANKING_URL}${DEFAULT_SEARCH_QUERY}`
+  );
+  const newUsersResponseData = await apiInstance.get(
+    `${process.env.NEXT_PUBLIC_AUDIENCIAS_NEW_USERS_URL}${DEFAULT_SEARCH_QUERY}`
+  );
+  const votesResponseData = await apiInstance.get(
+    `${process.env.NEXT_PUBLIC_AUDIENCIAS_VOTES_RANKING_URL}${DEFAULT_SEARCH_QUERY}`
+  );
 
   return {
     props: {
@@ -113,8 +130,10 @@ export async function getStaticProps() {
         audienceQuestionsAPIData: questionsResponseData.data,
         audienceVotesAPIData: votesResponseData.data,
       },
-      apiLastCacheMade: format(new Date(), ' dd/LL/yyyy, kk:mm', { locale: ptBR }),
-      apiLastCacheMadeHour: (new Date()).toString(),
+      apiLastCacheMade: format(new Date(), ' dd/LL/yyyy, kk:mm', {
+        locale: ptBR,
+      }),
+      apiLastCacheMadeHour: new Date().toString(),
     },
     revalidate: REFRESH_API_CACHE_DATA_INTERVAL,
   };

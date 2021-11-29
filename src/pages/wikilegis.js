@@ -4,13 +4,14 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import Head from 'next/head';
-import {
-  Grid, Box, Typography,
-} from '@material-ui/core/';
+import { Grid, Box, Typography } from '@material-ui/core/';
 import { format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import { apiInstance } from '../services/api/apiInstance';
-import { DEFAULT_SEARCH_QUERY, REFRESH_API_CACHE_DATA_INTERVAL } from '../settings/applicationOptions/index';
+import {
+  DEFAULT_SEARCH_QUERY,
+  REFRESH_API_CACHE_DATA_INTERVAL,
+} from '../settings/applicationOptions/index';
 import Layout from '../layouts/index';
 import Wikilegis from '../containers/Wikilegis';
 import * as TEXTCONSTANTS from '../settings/texts/WikilegisPage';
@@ -18,7 +19,9 @@ import * as TEXTCONSTANTS from '../settings/texts/WikilegisPage';
 import { useStyles } from '../styles/pages/wikilegisPageStyle';
 
 function WikilegisPage({
-  defaultApisData, apiLastCacheMade, apiLastCacheMadeHour,
+  defaultApisData,
+  apiLastCacheMade,
+  apiLastCacheMadeHour,
 }) {
   const classes = useStyles();
 
@@ -26,13 +29,11 @@ function WikilegisPage({
     return (
       <Box marginBottom={5} marginX={2}>
         <Typography variant="h1" component="div">
-          <Box fontWeight="fontWeightBold">
-            {TEXTCONSTANTS.pageTitle}
-          </Box>
+          <Box fontWeight="fontWeightBold">{TEXTCONSTANTS.pageTitle}</Box>
         </Typography>
         <div>
           <Typography component="div" variant="h4">
-            <Box style={{ color: '#BFBFBF' }}>
+            <Box style={{ color: '#BFBFBF', paddingTop: '16px' }}>
               {TEXTCONSTANTS.pageSubTitle}
             </Box>
           </Typography>
@@ -80,30 +81,46 @@ export async function getStaticProps() {
         results.push(...data.results);
       } while (url);
 
-      return { data: results, lastUpdate: format(new Date(), ' dd/LL/yyyy, kk:mm', { locale: ptBR }) };
+      return {
+        data: results,
+        lastUpdate: format(new Date(), ' dd/LL/yyyy, kk:mm', { locale: ptBR }),
+      };
     } catch (err) {
       return { data: [] };
     }
   }
   wikilegisRankingData = await getWikilegisRankingData();
-  const participantsResponse = await apiInstance.get(`${process.env.NEXT_PUBLIC_WIKILEGIS_PARTICIPANT_USERS_URL}${DEFAULT_SEARCH_QUERY}`);
-  const legislativeProposalsResponseData = await apiInstance.get(`${process.env.NEXT_PUBLIC_WIKILEGIS_LEGISLATIVE_PROPOSALS_URL}${DEFAULT_SEARCH_QUERY}`);
-  const opinionsResponseData = await apiInstance.get(`${process.env.NEXT_PUBLIC_WIKILEGIS_OPINIONS_URL}${DEFAULT_SEARCH_QUERY}`);
-  const votesResponseData = await apiInstance.get(`${process.env.NEXT_PUBLIC_WIKILEGIS_VOTES_URL}${DEFAULT_SEARCH_QUERY}`);
-  const newUsersResponseData = await apiInstance.get(`${process.env.NEXT_PUBLIC_WIKILEGIS_NEW_USERS_URL}${DEFAULT_SEARCH_QUERY}`);
+  const participantsResponse = await apiInstance.get(
+    `${process.env.NEXT_PUBLIC_WIKILEGIS_PARTICIPANT_USERS_URL}${DEFAULT_SEARCH_QUERY}`
+  );
+  const legislativeProposalsResponseData = await apiInstance.get(
+    `${process.env.NEXT_PUBLIC_WIKILEGIS_LEGISLATIVE_PROPOSALS_URL}${DEFAULT_SEARCH_QUERY}`
+  );
+  const opinionsResponseData = await apiInstance.get(
+    `${process.env.NEXT_PUBLIC_WIKILEGIS_OPINIONS_URL}${DEFAULT_SEARCH_QUERY}`
+  );
+  const votesResponseData = await apiInstance.get(
+    `${process.env.NEXT_PUBLIC_WIKILEGIS_VOTES_URL}${DEFAULT_SEARCH_QUERY}`
+  );
+  const newUsersResponseData = await apiInstance.get(
+    `${process.env.NEXT_PUBLIC_WIKILEGIS_NEW_USERS_URL}${DEFAULT_SEARCH_QUERY}`
+  );
 
   return {
     props: {
       defaultApisData: {
         wikilegisRankingData: wikilegisRankingData.data,
         wikilegisParticipantUsersAPIData: participantsResponse.data,
-        wikilegisLegislativeProposalsAPIData: legislativeProposalsResponseData.data,
+        wikilegisLegislativeProposalsAPIData:
+          legislativeProposalsResponseData.data,
         wikilegisOpinionsAPIData: opinionsResponseData.data,
         wikilegisVotesAPIData: votesResponseData.data,
         wikilegisNewUsersAPIData: newUsersResponseData.data,
       },
-      apiLastCacheMade: format(new Date(), ' dd/LL/yyyy, kk:mm', { locale: ptBR }),
-      apiLastCacheMadeHour: (new Date()).toString(),
+      apiLastCacheMade: format(new Date(), ' dd/LL/yyyy, kk:mm', {
+        locale: ptBR,
+      }),
+      apiLastCacheMadeHour: new Date().toString(),
     },
     revalidate: REFRESH_API_CACHE_DATA_INTERVAL,
   };
