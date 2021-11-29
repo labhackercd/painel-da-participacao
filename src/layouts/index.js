@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
   footerBox: {
     flexShrink: '0',
+    paddingTop: '140px',
   },
 }));
 

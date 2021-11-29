@@ -129,7 +129,7 @@ function Api() {
             </Grid>
           </Box>
         </Box>
-        <Box>
+        <Box className={classes.footerBox}>
           <Footer />
         </Box>
       </Box>

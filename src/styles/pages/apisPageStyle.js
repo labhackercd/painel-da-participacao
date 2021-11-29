@@ -216,4 +216,7 @@ export const useStyles = makeStyles((theme) => ({
       height: '478px',
     },
   },
+  footerBox: {
+    paddingTop: '140px',
+  },
 }));

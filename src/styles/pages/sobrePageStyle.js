@@ -173,6 +173,8 @@ export const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('lg')]: {
       paddingLeft: '6rem',
     },
-
+  },
+  footerBox: {
+    paddingTop: '140px',
   },
 }));

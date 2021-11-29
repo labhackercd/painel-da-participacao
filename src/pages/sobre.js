@@ -353,7 +353,7 @@ function Sobre() {
             { /* ====================================================================================== */}
           </Box>
         </Box>
-        <Box>
+        <Box className={classes.footerBox}>
           <Footer />
         </Box>
       </Box>
