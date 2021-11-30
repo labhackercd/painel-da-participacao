@@ -194,6 +194,13 @@ export const useStyles = makeStyles((theme) => ({
       display: 'none',
     },
   },
+  lineBox: {
+    marginBottom: '43px',
+
+    [theme.breakpoints.up('md')]: {
+      marginBottom: '80px',
+    },
+  },
   lineDividerGradientColor: {
     marginTop: '0',
     paddingTop: '0',
