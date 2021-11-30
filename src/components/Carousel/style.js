@@ -26,4 +26,24 @@ export const useStyles = makeStyles((theme) => ({
   dotInactive: {
     background: '#363636',
   },
+  arrow: {
+    position: 'absolute',
+    top: '0px',
+    bottom: '50px',
+    zIndex: 1000,
+    border: 0,
+    background: 'none',
+    opacity: 1,
+    cursor: 'pointer',
+
+    [theme.breakpoints.down('sm')]: {
+      position: 'relative',
+    },
+  },
+  arrowLeft: {
+    left: 0,
+  },
+  arrowRight: {
+    right: 0,
+  },
 }));
