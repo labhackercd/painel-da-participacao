@@ -20,9 +20,23 @@ export const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-start',
     minHeight: '85vh',
   },
+  lineBox: {
+    [theme.breakpoints.only('xs')]: {
+      marginTop: '24px',
+    },
+  },
   typography: {
     fontFamily: 'Open Sans',
     letterSpacing: '0.05em',
+  },
+  typographyBox: {
+    marginBottom: '2%',
+    width: '35%',
+
+    [theme.breakpoints.down('sm')]: {
+      marginBottom: '2%',
+      width: '78%',
+    },
   },
   typographyCaption: {
     fontSize: '0.375rem',
@@ -106,6 +120,9 @@ export const useStyles = makeStyles((theme) => ({
     width: '90%',
   },
   initialPageBannerImg: {
+    [theme.breakpoints.up('sm')]: {
+      marginTop: '24px',
+    },
     '@media (min-width: 1100px)': {
       width: '500px',
       height: '360px',
@@ -122,6 +139,7 @@ export const useStyles = makeStyles((theme) => ({
     marginTop: 0,
     width: '100%',
     height: '4px',
-    background: 'linear-gradient(90deg, rgba(20, 215, 104, 0.4) 0%, rgba(17, 129, 233, 0.4) 34.9%, rgba(245, 157, 42, 0.4) 67.71%, rgba(228, 56, 180, 0.4) 100%)',
+    background:
+      'linear-gradient(90deg, rgba(20, 215, 104, 0.4) 0%, rgba(17, 129, 233, 0.4) 34.9%, rgba(245, 157, 42, 0.4) 67.71%, rgba(228, 56, 180, 0.4) 100%)',
   },
 }));

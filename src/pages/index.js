@@ -2,9 +2,7 @@
 /* eslint-disable no-await-in-loop */
 import React from 'react';
 import Head from 'next/head';
-import {
-  Grid, Typography, Box,
-} from '@material-ui/core';
+import { Grid, Typography, Box } from '@material-ui/core';
 import { format, subDays } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import { apiInstance } from '../services/api/apiInstance';
@@ -15,7 +13,9 @@ import bannerInitialPage from '../assets/images/initialPage/peopleInGroupImage.p
 import Layout from '../layouts/index';
 
 import {
-  APPLICATION_NAME, REFRESH_API_CACHE_DATA_INTERVAL, DEFAULT_SEARCH_QUERY,
+  APPLICATION_NAME,
+  REFRESH_API_CACHE_DATA_INTERVAL,
+  DEFAULT_SEARCH_QUERY,
 } from '../settings/applicationOptions/index';
 
 import { useStyles } from '../styles/pages/indexPageStyle';
@@ -36,14 +36,13 @@ function Home({ usersTotal, apiLastCacheMade }) {
                 <Box className={classes.textBox}>
                   <div>
                     <Typography className={classes.typographyBoxText}>
-                      <span>{formatNumberWithDots(usersTotal)}</span>
-                      {' '}
-                      cidadãos se cadastraram no portal e-Democracia da Câmara dos Deputados.*
+                      <span>{formatNumberWithDots(usersTotal)}</span> cidadãos
+                      se cadastraram no portal e-Democracia da Câmara dos
+                      Deputados.*
                     </Typography>
                     <Box>
                       <Typography className={classes.typographyBoxText}>
-                        Conheça os números de
-                        {' '}
+                        Conheça os números de{' '}
                         <span>participação pelos cidadãos.</span>
                       </Typography>
                     </Box>
@@ -51,24 +50,44 @@ function Home({ usersTotal, apiLastCacheMade }) {
                 </Box>
               </Grid>
               <Grid item xs={12} sm={6} md={6}>
-                <Box width="100%" height="100%" display="flex" justifyContent="center" alignItems="center">
-                  <img className={classes.initialPageBannerImg} src={bannerInitialPage} alt="" />
+                <Box
+                  width="100%"
+                  height="100%"
+                  display="flex"
+                  justifyContent="center"
+                  alignItems="center"
+                >
+                  <img
+                    className={classes.initialPageBannerImg}
+                    src={bannerInitialPage}
+                    alt=""
+                  />
                 </Box>
               </Grid>
               <Grid item xs={12}>
-                <Box display="flex" alignItems="center" height="100%">
-                  <Box width="35%" height="100%">
-                    <Typography className={`${classes.typography} ${classes.typographyCaption}`}>
-                      * Dados consolidados até
-                      {' '}
-                      {apiLastCacheMade}
+                <Box
+                  className={classes.lineBox}
+                  display="flex"
+                  alignItems="center"
+                  height="100%"
+                >
+                  <Box className={classes.typographyBox} height="100%">
+                    <Typography
+                      className={`${classes.typography} ${classes.typographyCaption}`}
+                    >
+                      * Dados consolidados até {apiLastCacheMade}
                     </Typography>
                   </Box>
-                  <Box height="100%" width="65%" display="flex" align="flex-start" flexDirection="row-reverse">
+                  <Box
+                    height="100%"
+                    width="65%"
+                    display="flex"
+                    align="flex-start"
+                    flexDirection="row-reverse"
+                  >
                     <Box className={classes.lineDividerGradientColor} />
                   </Box>
                 </Box>
-
               </Grid>
               <Grid item xs={12}>
                 <Box className={classes.caroulselBox}>
@@ -102,7 +121,9 @@ export async function getStaticProps() {
   return {
     props: {
       usersTotal: usersTotalData,
-      apiLastCacheMade: format(subDays(new Date(), 1), ' dd/LL/yyyy', { locale: ptBR }),
+      apiLastCacheMade: format(subDays(new Date(), 1), ' dd/LL/yyyy', {
+        locale: ptBR,
+      }),
     },
     revalidate: REFRESH_API_CACHE_DATA_INTERVAL,
   };
