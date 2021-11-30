@@ -121,7 +121,7 @@ export const useStyles = makeStyles((theme) => ({
   },
   initialPageBannerImg: {
     [theme.breakpoints.up('sm')]: {
-      marginTop: '24px',
+      marginTop: '10%',
     },
     '@media (min-width: 1100px)': {
       width: '500px',
