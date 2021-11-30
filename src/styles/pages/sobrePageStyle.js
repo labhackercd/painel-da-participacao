@@ -159,6 +159,15 @@ export const useStyles = makeStyles((theme) => ({
       fontSize: '3rem',
     },
   },
+  lineBox: {
+    marginTop: '27px',
+    marginBottom: '43px',
+
+    [theme.breakpoints.up('md')]: {
+      marginTop: '74px',
+      marginBottom: '80px',
+    },
+  },
   lineDividerGradientColor: {
     marginTop: '1rem',
     width: '65%',
