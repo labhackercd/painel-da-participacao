@@ -69,7 +69,7 @@ function Sobre() {
               variant="h1"
               className={`${classes.typography} ${classes.typograhyTitle}`}
             >
-              Sobre o painel da participação
+              Sobre o e-monitor
             </Typography>
             <Typography
               className={`${classes.typography} ${classes.typographyTitleCaption}`}
@@ -80,7 +80,7 @@ function Sobre() {
               <Typography
                 className={`${classes.typography} ${classes.typographyTitleText}`}
               >
-                O que é e como funciona o Painel da Participação.
+                O que é e como funciona o e-monitor.
               </Typography>
             </Box>
           </Box>
@@ -103,8 +103,8 @@ function Sobre() {
               component="p"
               className={`${classes.typography} ${classes.typographyParagraph}`}
             >
-              O <b>painel da participação</b> foi desenvolvido para mostrar o
-              histórico de utilização de dois dos{' '}
+              O <b>e-monitor</b> foi desenvolvido para mostrar o histórico de
+              utilização de dois dos{' '}
               <AnchorTag url="https://www2.camara.leg.br/participacao/saiba-como-participar">
                 canais de participação
               </AnchorTag>{' '}
@@ -234,9 +234,9 @@ function Sobre() {
                 component="p"
                 className={`${classes.typography} ${classes.typographyParagraph}`}
               >
-                O painel da participação exibe os dados de participação
-                referentes à ferramenta Audiências Interativas somente a partir
-                de novembro de 2016.{' '}
+                O e-monitor exibe os dados de participação referentes à
+                ferramenta Audiências Interativas somente a partir de novembro
+                de 2016.{' '}
               </Typography>
               <Typography
                 component="p"
@@ -427,8 +427,8 @@ function Sobre() {
                 component="p"
                 className={`${classes.typography} ${classes.typographyParagraph}`}
               >
-                O <b>painel da participação</b> limita-se a exibir os dados de
-                participação da ferramenta Wikilegis a partir de 2019.
+                O <b>e-monitor</b> limita-se a exibir os dados de participação
+                da ferramenta Wikilegis a partir de 2019.
               </Typography>
               <Typography
                 component="p"
@@ -451,8 +451,8 @@ function Sobre() {
                 component="p"
                 className={`${classes.typography} ${classes.typographyParagraph}`}
               >
-                O painel da participação exibe os dados da versão mais atual da
-                Wikilegis, que passou a funcionar a partir de setembro de 2019.
+                O e-monitor exibe os dados da versão mais atual da Wikilegis,
+                que passou a funcionar a partir de setembro de 2019.
               </Typography>
 
               <Typography
