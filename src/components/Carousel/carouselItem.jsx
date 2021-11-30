@@ -6,7 +6,7 @@ import Link from 'next/link';
 const useStyles = makeStyles((theme) => ({
   box: {
     paddingBottom: '50px',
-    marginTop: '140px',
+    marginTop: '100px',
 
     [theme.breakpoints.only('xs')]: {
       paddingBottom: '70px',
