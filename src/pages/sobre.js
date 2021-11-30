@@ -24,8 +24,14 @@ function SectionHeader(props) {
         </Box>
       </Typography>
 
-      <Box p={1} flexGrow={1} alignSelf="center">
-        <hr style={{ borderColor: toolColor }} />
+      <Box p={1} marginLeft="10%" flexGrow={1} alignSelf="center">
+        <hr
+          style={{
+            borderColor: toolColor,
+            background: toolColor,
+            height: '4px',
+          }}
+        />
       </Box>
     </Box>
   );

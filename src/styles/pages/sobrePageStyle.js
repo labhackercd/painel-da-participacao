@@ -143,7 +143,7 @@ export const useStyles = makeStyles((theme) => ({
   toolSectionHeader: {
     display: 'flex',
     marginTop: '5vh',
-    marginBottom: '3vh',
+    marginBottom: '50px',
   },
   toolSectionTypograhyTitle: {
     fontSize: '1.3rem',
