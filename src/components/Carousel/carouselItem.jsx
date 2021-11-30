@@ -7,10 +7,11 @@ import Link from 'next/link';
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    width: '90%',
+    width: '80%',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    gap: '25px',
 
     [theme.breakpoints.up('sm')]: {
       width: '90%',
@@ -41,9 +42,11 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
     display: 'flex',
     justifyContent: 'center',
+    alignItems: 'center',
+    gap: '16px',
 
     [theme.breakpoints.up('sm')]: {
-      gap: '58px',
+      gap: '56px',
     },
     [theme.breakpoints.up('md')]: {
       gap: '58px',
@@ -182,7 +185,7 @@ export default function CarouselItem({ item }) {
   const classes = useStyles();
 
   return (
-    <Box paddingBottom="50px" width="100%" display="flex" justifyContent="center">
+    <Box paddingBottom="60px" width="100%" display="flex" justifyContent="center">
       <Box className={classes.container}>
         <Box className={classes.firstContainer}>
           <Box>
