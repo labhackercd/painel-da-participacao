@@ -1,8 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
-import {
-  Toolbar, IconButton, Drawer, Box, Tab, Tabs,
-} from '@material-ui/core';
+import { Toolbar, IconButton, Drawer, Box, Tab, Tabs } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/Close';
 import Link from 'next/link';
@@ -13,25 +11,23 @@ import useStyles from './style';
 
 function LinkTab(parans) {
   const classes = useStyles();
-  const {
-    url, currentSelectedValue, index, ...props
-  } = parans;
+  const { url, currentSelectedValue, index, ...props } = parans;
   let isTabSelected = false;
 
   if (index !== undefined && currentSelectedValue !== undefined) {
-    isTabSelected = (index.toString()) === (currentSelectedValue.toString());
+    isTabSelected = index.toString() === currentSelectedValue.toString();
   }
 
   return (
-
     <Link href={{ pathname: url }}>
       <Tab
-        className={isTabSelected ? `${classes.tab} ${classes.tabSelected}` : classes.tab}
+        className={
+          isTabSelected ? `${classes.tab} ${classes.tabSelected}` : classes.tab
+        }
         disableRipple
         {...props}
       />
     </Link>
-
   );
 }
 
@@ -43,9 +39,16 @@ function a11yProps(index) {
 
 export default function PageNavbar(props) {
   const {
-    header, drawerContainer, drawerMobile, offset,
-    toolbarContentMobile, mobileLogo, desktopNavbarContent,
-    camaraBar, tabsClass, indicatorClass,
+    header,
+    drawerContainer,
+    drawerMobile,
+    offset,
+    toolbarContentMobile,
+    mobileLogo,
+    desktopNavbarContent,
+    camaraBar,
+    tabsClass,
+    indicatorClass,
   } = useStyles();
   const { value } = props;
 
@@ -57,9 +60,10 @@ export default function PageNavbar(props) {
   const { mobileView, drawerOpen } = state;
 
   useEffect(() => {
-    const setResponsiveness = () => (window.innerWidth < 1280
-      ? setState((prevState) => ({ ...prevState, mobileView: true }))
-      : setState((prevState) => ({ ...prevState, mobileView: false })));
+    const setResponsiveness = () =>
+      window.innerWidth < 1280
+        ? setState((prevState) => ({ ...prevState, mobileView: true }))
+        : setState((prevState) => ({ ...prevState, mobileView: false }));
 
     setResponsiveness();
 
@@ -71,6 +75,7 @@ export default function PageNavbar(props) {
       href={process.env.NEXT_PUBLIC_CAMARA_SITE}
       target="_blank"
       rel="noopener noreferrer"
+      style={{ lineHeight: 0 }}
     >
       <img src={logoCamaraDosDeputados} alt="Logo Câmara dos Deputados" />
     </a>
@@ -89,8 +94,8 @@ export default function PageNavbar(props) {
         }}
       >
         <LinkTab
-          label="Inicio"
-          aria-label="Inicio"
+          label="Início"
+          aria-label="Início"
           aria-selected={false}
           url={`${process.env.NEXT_PUBLIC_INITIAL_PAGE_URL}`}
           index="0"
@@ -143,10 +148,7 @@ export default function PageNavbar(props) {
 
   const displayDesktop = () => (
     <>
-      <div className={camaraBar}>
-        {camaraDeputadosLogo}
-        {' '}
-      </div>
+      <div className={camaraBar}>{camaraDeputadosLogo} </div>
       <Toolbar className={desktopNavbarContent}>
         <ApplicationLogo />
         <Box width="100%" display="flex" justifyContent="flex-end">
@@ -157,8 +159,10 @@ export default function PageNavbar(props) {
   );
 
   const displayMobile = () => {
-    const handleDrawerOpen = () => setState((prevState) => ({ ...prevState, drawerOpen: true }));
-    const handleDrawerClose = () => setState((prevState) => ({ ...prevState, drawerOpen: false }));
+    const handleDrawerOpen = () =>
+      setState((prevState) => ({ ...prevState, drawerOpen: true }));
+    const handleDrawerClose = () =>
+      setState((prevState) => ({ ...prevState, drawerOpen: false }));
 
     return (
       <Toolbar>
@@ -168,18 +172,31 @@ export default function PageNavbar(props) {
           onClose={handleDrawerClose}
           classes={{ paper: drawerMobile }}
         >
-          <Box height="50px" width="100%" display="flex" justifyContent="space-between" alignItems="center" padding="30px" paddingX="10px">
+          <Box
+            height="50px"
+            width="100%"
+            display="flex"
+            justifyContent="space-between"
+            alignItems="center"
+            padding="30px"
+            paddingX="10px"
+          >
             <Box>
               <ApplicationLogo />
             </Box>
             <Box>
-              <IconButton onClick={handleDrawerClose} style={{ color: 'white' }}>
+              <IconButton
+                onClick={handleDrawerClose}
+                style={{ color: 'white' }}
+              >
                 <CloseIcon />
               </IconButton>
             </Box>
           </Box>
 
-          <div className={drawerContainer}><NavTabs orientation="vertical" /></div>
+          <div className={drawerContainer}>
+            <NavTabs orientation="vertical" />
+          </div>
         </Drawer>
         <div className={toolbarContentMobile}>
           <div className={mobileLogo}>
