@@ -6,9 +6,11 @@ import Link from 'next/link';
 const useStyles = makeStyles((theme) => ({
   box: {
     paddingBottom: '50px',
+    marginTop: '140px',
 
     [theme.breakpoints.only('xs')]: {
       paddingBottom: '70px',
+      marginTop: '51px',
     },
   },
   container: {
@@ -178,6 +180,7 @@ export default function CarouselItem({ item }) {
       className={classes.box}
       width="100%"
       display="flex"
+      padding="0"
       justifyContent="center"
     >
       <Box className={classes.container}>

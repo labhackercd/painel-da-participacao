@@ -28,8 +28,7 @@ export const useStyles = makeStyles((theme) => ({
   },
   arrow: {
     position: 'absolute',
-    top: '0px',
-    bottom: '50px',
+    top: '175px',
     zIndex: 1000,
     border: 0,
     background: 'none',
