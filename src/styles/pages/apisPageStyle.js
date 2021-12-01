@@ -47,7 +47,7 @@ export const useStyles = makeStyles((theme) => ({
       fontSize: '2.125rem',
     },
     [theme.breakpoints.up('md')]: {
-      fontSize: '2.625rem',
+      fontSize: '3rem',
     },
     [theme.breakpoints.up('xl')]: {
       fontSize: '4rem',
@@ -61,12 +61,12 @@ export const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('sm')]: {
       fontSize: '0.688rem',
       paddingBottom: '2rem',
-      paddingTop: '8px',
+      paddingTop: '6px',
     },
     [theme.breakpoints.up('md')]: {
       fontSize: '1rem',
       paddingBottom: '2rem',
-      paddingTop: '8px',
+      paddingTop: '6px',
     },
     [theme.breakpoints.up('xl')]: {
       fontSize: '1.5rem',
@@ -82,7 +82,7 @@ export const useStyles = makeStyles((theme) => ({
       fontSize: '1.25rem',
     },
     [theme.breakpoints.up('md')]: {
-      fontSize: '1.5rem',
+      fontSize: '1.6rem',
     },
     [theme.breakpoints.up('xl')]: {
       fontSize: '2.813rem',
@@ -187,7 +187,22 @@ export const useStyles = makeStyles((theme) => ({
       paddingRight: '4rem',
     },
   },
-  headerText: {},
+  headerText: {
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+
+    margin: '1rem',
+    paddingLeft: '1rem',
+    [theme.breakpoints.only('xs')]: {
+      padding: '0 1rem 0 1rem',
+      margin: 0,
+    },
+    [theme.breakpoints.up('md')]: {
+      paddingLeft: '7rem',
+    },
+  },
   headerImg: {
     display: 'flex',
     [theme.breakpoints.only('xs')]: {
@@ -195,10 +210,12 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   lineBox: {
-    marginBottom: '43px',
+    marginBottom: '20px',
+    marginTop: '25px',
 
     [theme.breakpoints.up('md')]: {
       marginBottom: '80px',
+      marginTop: '-3px',
     },
   },
   lineDividerGradientColor: {
@@ -212,18 +229,20 @@ export const useStyles = makeStyles((theme) => ({
       marginBottom: '2rem',
     },
   },
-  imgClass: {
+  initialPageBannerImg: {
     [theme.breakpoints.up('sm')]: {
-      width: '245px',
-      height: '239px',
+      marginTop: '10%',
     },
-    [theme.breakpoints.up('md')]: {
+    '@media (min-width: 1100px)': {
+      width: '490px',
+      height: '478px',
+    },
+    '@media (max-width: 1100px)': {
       width: '390px',
       height: '378px',
     },
-    [theme.breakpoints.up('xl')]: {
-      width: '490px',
-      height: '478px',
+    '@media (max-width: 600px)': {
+      display: 'none',
     },
   },
   footerBox: {

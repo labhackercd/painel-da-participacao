@@ -102,35 +102,43 @@ function Api() {
         <Box className={classes.boxHeader}>
           <PageNavbar value={4} />
         </Box>
-        <Box className={classes.boxContent}>
-          <Box className={`${classes.textBoxMargin}`}>
-            <Box display="flex">
-              <Box className={classes.headerText}>
-                <Typography
-                  variant="h1"
-                  className={`${classes.typography} ${classes.typograhyTitle}`}
-                >
-                  {'<eDEVVocracia/>'}
-                </Typography>
-                <Typography
-                  className={`${classes.typography} ${classes.typographyTitleCaption}`}
-                >
-                  e-Democracia para desenvolvedores
-                </Typography>
-                <Typography
-                  className={`${classes.typography} ${classes.typographyTitleText}`}
-                >
-                  Faça parte da comunidade de desenvolvedores e hackers cívicos.
-                </Typography>
-              </Box>
-              <Box className={classes.headerImg}>
-                <img
-                  src={bannerImg}
-                  alt="Imagem representativa banner"
-                  className={classes.imgClass}
-                />
-              </Box>
+        <Grid container>
+          <Grid item xs={12} sm={6} md={6}>
+            <Box className={classes.headerText}>
+              <Typography
+                variant="h1"
+                className={`${classes.typography} ${classes.typograhyTitle}`}
+              >
+                {'<eDEVVocracia/>'}
+              </Typography>
+              <Typography
+                className={`${classes.typography} ${classes.typographyTitleCaption}`}
+              >
+                e-Democracia para desenvolvedores
+              </Typography>
+              <Typography
+                className={`${classes.typography} ${classes.typographyTitleText}`}
+              >
+                Faça parte da comunidade de desenvolvedores e hackers cívicos.
+              </Typography>
             </Box>
+          </Grid>
+          <Grid item xs={12} sm={6} md={6}>
+            <Box
+              width="100%"
+              height="100%"
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+            >
+              <img
+                className={classes.initialPageBannerImg}
+                src={bannerImg}
+                alt="Imagem representativa banner"
+              />
+            </Box>
+          </Grid>
+          <Grid item xs={12}>
             <Box
               display="flex"
               className={classes.lineBox}
@@ -138,56 +146,58 @@ function Api() {
             >
               <div className={classes.lineDividerGradientColor} />
             </Box>
-          </Box>
-          <Box className={classes.textBoxMargin}>
-            <Typography
-              variant="h2"
-              className={`${classes.typography} ${classes.typograhyH2}`}
-            >
-              Ferramentas para desenvolvedores
-            </Typography>
-            <Typography
-              component="p"
-              className={`${classes.typography} ${classes.typographyParagraph}`}
-            >
-              Consuma os dados abertos e crie suas aplicações e análises de
-              dados. Baixe e utilize o código fonte das ferramentas e contribua
-              com a comunidade de desenvolvedores e hackers cívicos
-            </Typography>
-            <Grid
-              container
-              style={{ paddingTop: '20px', paddingBottom: '20px' }}
-              spacing={2}
-            >
-              {apiCardsInfo.map((tool) => (
-                <ApiCard
-                  key={tool.title}
-                  title={tool.title}
-                  infoText={tool.infoText}
-                  toolColor={tool.toolColor}
-                  urls={tool.urls}
-                />
-              ))}
-            </Grid>
-            <Typography
-              variant="h2"
-              className={`${classes.typography} ${classes.typograhyH2}`}
-            >
-              Veja também
-            </Typography>
-            <Grid container className={classes.cardsContainer} spacing={2}>
-              {moreCardsInfo.map((tool) => (
-                <ApiCard
-                  key={tool.title}
-                  title={tool.title}
-                  infoText={tool.infoText}
-                  toolColor={tool.toolColor}
-                  urls={tool.urls}
-                />
-              ))}
-            </Grid>
-          </Box>
-        </Box>
+          </Grid>
+          <Grid item xs={12}>
+            <Box className={classes.textBoxMargin}>
+              <Typography
+                variant="h2"
+                className={`${classes.typography} ${classes.typograhyH2}`}
+              >
+                Ferramentas para desenvolvedores
+              </Typography>
+              <Typography
+                component="p"
+                className={`${classes.typography} ${classes.typographyParagraph}`}
+              >
+                Consuma os dados abertos e crie suas aplicações e análises de
+                dados. Baixe e utilize o código fonte das ferramentas e
+                contribua com a comunidade de desenvolvedores e hackers cívicos
+              </Typography>
+              <Grid
+                container
+                style={{ paddingTop: '20px', paddingBottom: '20px' }}
+                spacing={2}
+              >
+                {apiCardsInfo.map((tool) => (
+                  <ApiCard
+                    key={tool.title}
+                    title={tool.title}
+                    infoText={tool.infoText}
+                    toolColor={tool.toolColor}
+                    urls={tool.urls}
+                  />
+                ))}
+              </Grid>
+              <Typography
+                variant="h2"
+                className={`${classes.typography} ${classes.typograhyH2}`}
+              >
+                Veja também
+              </Typography>
+              <Grid container className={classes.cardsContainer} spacing={2}>
+                {moreCardsInfo.map((tool) => (
+                  <ApiCard
+                    key={tool.title}
+                    title={tool.title}
+                    infoText={tool.infoText}
+                    toolColor={tool.toolColor}
+                    urls={tool.urls}
+                  />
+                ))}
+              </Grid>
+            </Box>
+          </Grid>
+        </Grid>
         <Box className={classes.footerBox}>
           <Footer />
         </Box>
