@@ -56,10 +56,10 @@ export default function MyApp(props) {
 
         <meta property="og:locale" content="pt_BR" />
         <meta property="og:url" content="https://www.meusite.com.br/ola-mundo" />
-        <meta property="og:title" content="Página Inicial Painel da Participação" />
-        <meta property="og:site_name" content="Painel da Participação" />
+        <meta property="og:title" content="Página Inicial E-Monitor" />
+        <meta property="og:site_name" content="E-Monitor" />
 
-        <meta property="og:description" content="O painel da participação foi desenvolvido para mostrar o histórico de utilização de dois dos canais de participação da Câmara dos Deputados, que estão disponíveis na plataforma eDemocracia." />
+        <meta property="og:description" content="O eMonitor foi desenvolvido para mostrar o histórico de utilização de dois dos canais de participação da Câmara dos Deputados, que estão disponíveis na plataforma eDemocracia." />
         <meta property="og:type" content="website" />
 
       </Head>

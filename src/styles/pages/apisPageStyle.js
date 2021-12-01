@@ -47,7 +47,7 @@ export const useStyles = makeStyles((theme) => ({
       fontSize: '2.125rem',
     },
     [theme.breakpoints.up('md')]: {
-      fontSize: '2.625rem',
+      fontSize: '3rem',
     },
     [theme.breakpoints.up('xl')]: {
       fontSize: '4rem',
@@ -56,19 +56,22 @@ export const useStyles = makeStyles((theme) => ({
   typographyTitleCaption: {
     fontSize: '0.563rem',
     textAlign: 'justify',
-    paddingBottom: '1rem',
+    paddingBottom: '25px',
 
     [theme.breakpoints.up('sm')]: {
       fontSize: '0.688rem',
       paddingBottom: '2rem',
+      paddingTop: '6px',
     },
     [theme.breakpoints.up('md')]: {
       fontSize: '1rem',
       paddingBottom: '2rem',
+      paddingTop: '6px',
     },
     [theme.breakpoints.up('xl')]: {
       fontSize: '1.5rem',
       paddingBottom: '2rem',
+      paddingTop: '16px',
     },
   },
   typographyTitleText: {
@@ -79,7 +82,7 @@ export const useStyles = makeStyles((theme) => ({
       fontSize: '1.25rem',
     },
     [theme.breakpoints.up('md')]: {
-      fontSize: '1.5rem',
+      fontSize: '1.6rem',
     },
     [theme.breakpoints.up('xl')]: {
       fontSize: '2.813rem',
@@ -185,6 +188,20 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   headerText: {
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+
+    marginTop: '64px',
+    paddingLeft: '1rem',
+    [theme.breakpoints.only('xs')]: {
+      padding: '0 1rem 0 1rem',
+      margin: 0,
+    },
+    [theme.breakpoints.up('md')]: {
+      paddingLeft: '7rem',
+    },
   },
   headerImg: {
     display: 'flex',
@@ -192,28 +209,47 @@ export const useStyles = makeStyles((theme) => ({
       display: 'none',
     },
   },
+  lineBox: {
+    marginBottom: '20px',
+    marginTop: '25px',
+
+    [theme.breakpoints.up('md')]: {
+      marginBottom: '80px',
+      marginTop: '-3px',
+    },
+  },
   lineDividerGradientColor: {
     marginTop: '0',
     paddingTop: '0',
     width: '65%',
-    height: '2px',
-    background: 'linear-gradient(90deg, rgba(20, 215, 104, 0.4) 0%, rgba(17, 129, 233, 0.4) 34.9%, rgba(245, 157, 42, 0.4) 67.71%, rgba(228, 56, 180, 0.4) 100%)',
+    height: '4px',
+    background:
+      'linear-gradient(90deg, rgba(20, 215, 104, 0.4) 0%, rgba(17, 129, 233, 0.4) 34.9%, rgba(245, 157, 42, 0.4) 67.71%, rgba(228, 56, 180, 0.4) 100%)',
     [theme.breakpoints.up('xl')]: {
       marginBottom: '2rem',
     },
   },
-  imgClass: {
+  initialPageBannerImg: {
     [theme.breakpoints.up('sm')]: {
-      width: '245px',
-      height: '239px',
+      marginTop: '10%',
     },
-    [theme.breakpoints.up('md')]: {
+    '@media (min-width: 1100px)': {
+      width: '490px',
+      height: '478px',
+    },
+    '@media (max-width: 1100px)': {
       width: '390px',
       height: '378px',
     },
-    [theme.breakpoints.up('xl')]: {
-      width: '490px',
-      height: '478px',
+    '@media (max-width: 600px)': {
+      display: 'none',
+    },
+  },
+  footerBox: {
+    paddingTop: '90px',
+
+    [theme.breakpoints.up('md')]: {
+      paddingTop: '120px',
     },
   },
 }));

@@ -33,7 +33,6 @@ const useStyles = makeStyles((theme) => ({
 
     '& span': {
       color: 'white',
-      paddingTop: '8px',
     },
 
     [theme.breakpoints.only('lg')]: {
@@ -43,11 +42,11 @@ const useStyles = makeStyles((theme) => ({
   tabSelected: {
     '& span': {
       width: 'auto',
-      background: 'linear-gradient(90deg, rgba(20, 215, 104, 0.5) 0%, rgba(17, 129, 233, 0.5) 32.81%, rgba(245, 157, 42, 0.5) 69.79%, rgba(228, 56, 180, 0.5) 100%)',
-      paddingBottom: '8px',
-      paddingTop: '8px',
+      background:
+        'linear-gradient(90deg, rgba(20, 215, 104, 0.5) 0%, rgba(17, 129, 233, 0.5) 32.81%, rgba(245, 157, 42, 0.5) 69.79%, rgba(228, 56, 180, 0.5) 100%)',
+      padding: '8px 0px',
       backgroundSize: '100% 5px',
-      backgroundPosition: 'bottom 0 left 0,bottom 5px left 0',
+      backgroundPosition: 'bottom 0 left 0,bottom 0 left 0',
       backgroundRepeat: 'no-repeat',
     },
   },
@@ -97,7 +96,6 @@ const useStyles = makeStyles((theme) => ({
       '& span': {
         width: 'auto',
       },
-
     },
   },
   indicatorClass: {
@@ -126,7 +124,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   logoCamaraDosDeputados: {
-
     [theme.breakpoints.up('md')]: {
       width: '170px',
       height: '50px',

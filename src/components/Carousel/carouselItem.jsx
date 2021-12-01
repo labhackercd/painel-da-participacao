@@ -1,16 +1,24 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import {
-  Box, Typography, Button, makeStyles,
-} from '@material-ui/core';
+import { Box, Typography, Button, makeStyles } from '@material-ui/core';
 import Link from 'next/link';
 
 const useStyles = makeStyles((theme) => ({
+  box: {
+    paddingBottom: '50px',
+    marginTop: '100px',
+
+    [theme.breakpoints.only('xs')]: {
+      paddingBottom: '70px',
+      marginTop: '51px',
+    },
+  },
   container: {
-    width: '90%',
+    width: '80%',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    gap: '25px',
 
     [theme.breakpoints.up('sm')]: {
       width: '90%',
@@ -41,9 +49,11 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
     display: 'flex',
     justifyContent: 'center',
+    alignItems: 'center',
+    gap: '16px',
 
     [theme.breakpoints.up('sm')]: {
-      gap: '58px',
+      gap: '56px',
     },
     [theme.breakpoints.up('md')]: {
       gap: '58px',
@@ -54,7 +64,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('xl')]: {
       gap: '58px',
     },
-
   },
   caroulselItemImg: {
     width: '64px',
@@ -136,31 +145,16 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   buttonStyle: {
-    height: '33px',
-    width: '143px',
+    height: '100%',
+    width: '100%',
     color: theme.palette.black.main,
     textTransform: 'none',
     fontWeight: 700,
-    padding: 0,
+    padding: '8px 14px 8px 14px',
 
-    [theme.breakpoints.up('sm')]: {
-      height: 'auto',
-      width: '153px',
-      padding: '5px 8px 5px 8px',
-    },
-    [theme.breakpoints.up('md')]: {
-      height: 'auto',
-      width: '153px',
-      padding: '5px 8px 5px 8px',
-    },
-    [theme.breakpoints.up('lg')]: {
-      height: 'auto',
-      width: '200px',
-      padding: '5px 8px 5px 8px',
-    },
-    [theme.breakpoints.up('xl')]: {
-      height: 'auto',
-      width: '341px',
+    [theme.breakpoints.only('xs')]: {
+      width: '60%',
+      height: '50%',
       padding: '5px 8px 5px 8px',
     },
 
@@ -182,33 +176,45 @@ export default function CarouselItem({ item }) {
   const classes = useStyles();
 
   return (
-    <Box paddingBottom="50px" width="100%" display="flex" justifyContent="center">
+    <Box
+      className={classes.box}
+      width="100%"
+      display="flex"
+      padding="0"
+      justifyContent="center"
+    >
       <Box className={classes.container}>
         <Box className={classes.firstContainer}>
           <Box>
             <img src={item.img} alt="" className={classes.caroulselItemImg} />
           </Box>
           <Box>
-            <Typography className={`${classes.typography} ${classes.typographyToolTitle}`} align="center">
+            <Typography
+              className={`${classes.typography} ${classes.typographyToolTitle}`}
+              align="center"
+            >
               {item.toolName}
             </Typography>
-            <Typography className={`${classes.typography} ${classes.typographyDescription}`} align="center">
+            <Typography
+              className={`${classes.typography} ${classes.typographyDescription}`}
+              align="center"
+            >
               {item.description}
             </Typography>
           </Box>
         </Box>
         <Box className={classes.buttonContainer}>
-          <Link
-            href={item.toolPage}
-            passHref
-          >
+          <Link href={item.toolPage} passHref>
             <Button
               style={{ backgroundColor: item.color }}
               className={classes.buttonStyle}
               variant="contained"
               color="primary"
             >
-              <Typography className={`${classes.typography} ${classes.typographyButton}`} align="center">
+              <Typography
+                className={`${classes.typography} ${classes.typographyButton}`}
+                align="center"
+              >
                 {item.buttonText}
               </Typography>
             </Button>

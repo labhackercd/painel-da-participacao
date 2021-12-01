@@ -59,6 +59,7 @@ export const useStyles = makeStyles((theme) => ({
     color: '#B9B9B9',
   },
   anchorTag: {
-    color: theme.palette.blue.cyan,
+    color: '#F1EA67',
+    textDecoration: 'none',
   },
 }));
