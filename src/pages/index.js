@@ -4,13 +4,13 @@ import React from 'react';
 import Head from 'next/head';
 import { Grid, Typography, Box } from '@material-ui/core';
 import { format, subDays } from 'date-fns';
+import Footer from '../components/Footer/index';
 import ptBR from 'date-fns/locale/pt-BR';
 import { apiInstance } from '../services/api/apiInstance';
 import Carousel from '../components/Carousel/index';
+import PageNavbar from '../layouts/Navbar/index';
 import formatNumberWithDots from '../utils/format/numbers/formatNumbersWithDots/formatNumberWithDots';
 import bannerInitialPage from '../assets/images/initialPage/peopleInGroupImage.png';
-
-import Layout from '../layouts/index';
 
 import {
   APPLICATION_NAME,
@@ -28,78 +28,79 @@ function Home({ usersTotal, apiLastCacheMade }) {
       <Head>
         <title>{APPLICATION_NAME}</title>
       </Head>
-      <Layout value={0}>
-        <Box className={classes.box}>
-          <Box>
-            <Grid container>
-              <Grid item xs={12} sm={6} md={6}>
-                <Box className={classes.textBox}>
-                  <div>
+      <PageNavbar value={0} />
+      <Box className={classes.box}>
+        <Box>
+          <Grid container>
+            <Grid item xs={12} sm={6} md={6}>
+              <Box className={classes.textBox}>
+                <div>
+                  <Typography className={classes.typographyBoxText}>
+                    <span>{formatNumberWithDots(usersTotal)}</span> cidadãos se
+                    cadastraram no portal e-Democracia da Câmara dos Deputados.*
+                  </Typography>
+                  <Box>
                     <Typography className={classes.typographyBoxText}>
-                      <span>{formatNumberWithDots(usersTotal)}</span> cidadãos
-                      se cadastraram no portal e-Democracia da Câmara dos
-                      Deputados.*
-                    </Typography>
-                    <Box>
-                      <Typography className={classes.typographyBoxText}>
-                        Conheça os números de{' '}
-                        <span>participação pelos cidadãos.</span>
-                      </Typography>
-                    </Box>
-                  </div>
-                </Box>
-              </Grid>
-              <Grid item xs={12} sm={6} md={6}>
-                <Box
-                  width="100%"
-                  height="100%"
-                  display="flex"
-                  justifyContent="center"
-                  alignItems="center"
-                >
-                  <img
-                    className={classes.initialPageBannerImg}
-                    src={bannerInitialPage}
-                    alt=""
-                  />
-                </Box>
-              </Grid>
-              <Grid item xs={12}>
-                <Box
-                  className={classes.lineBox}
-                  display="flex"
-                  alignItems="center"
-                  height="100%"
-                >
-                  <Box className={classes.typographyBox} height="100%">
-                    <Typography
-                      className={`${classes.typography} ${classes.typographyCaption}`}
-                    >
-                      * Dados consolidados até {apiLastCacheMade}
+                      Conheça os números de{' '}
+                      <span>participação pelos cidadãos.</span>
                     </Typography>
                   </Box>
-                  <Box
-                    height="100%"
-                    width="65%"
-                    display="flex"
-                    align="flex-start"
-                    flexDirection="row-reverse"
-                  >
-                    <Box className={classes.lineDividerGradientColor} />
-                  </Box>
-                </Box>
-              </Grid>
-              <Grid item xs={12}>
-                <Box className={classes.caroulselBox}>
-                  <Box className={classes.caroulselInsideBox}>
-                    <Carousel />
-                  </Box>
-                </Box>
-              </Grid>
+                </div>
+              </Box>
             </Grid>
-          </Box>
+            <Grid item xs={12} sm={6} md={6}>
+              <Box
+                width="100%"
+                height="100%"
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+              >
+                <img
+                  className={classes.initialPageBannerImg}
+                  src={bannerInitialPage}
+                  alt=""
+                />
+              </Box>
+            </Grid>
+            <Grid item xs={12}>
+              <Box
+                className={classes.lineBox}
+                display="flex"
+                alignItems="center"
+                height="100%"
+              >
+                <Box className={classes.typographyBox} height="100%">
+                  <Typography
+                    className={`${classes.typography} ${classes.typographyCaption}`}
+                  >
+                    * Dados consolidados até {apiLastCacheMade}
+                  </Typography>
+                </Box>
+                <Box
+                  height="100%"
+                  width="65%"
+                  display="flex"
+                  align="flex-start"
+                  flexDirection="row-reverse"
+                >
+                  <Box className={classes.lineDividerGradientColor} />
+                </Box>
+              </Box>
+            </Grid>
+            <Grid item xs={12}>
+              <Box className={classes.caroulselBox}>
+                <Box className={classes.caroulselInsideBox}>
+                  <Carousel />
+                </Box>
+              </Box>
+            </Grid>
+          </Grid>
         </Box>
-      </Layout>
+      </Box>
+      <Box className={classes.footerBox}>
+        <Footer />
+      </Box>
     </div>
   );
 }
