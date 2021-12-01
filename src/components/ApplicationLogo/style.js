@@ -6,12 +6,8 @@ const useStyles = makeStyles((theme) => ({
     height: '35px',
 
     [theme.breakpoints.up('md')]: {
-      width: '190px',
-      height: '40px',
-    },
-    [theme.breakpoints.up('lg')]: {
       width: '250px',
-      height: '60px',
+      height: '55px',
     },
     [theme.breakpoints.up('xl')]: {
       width: '300px',
