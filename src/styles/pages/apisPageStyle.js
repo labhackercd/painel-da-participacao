@@ -246,6 +246,10 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   footerBox: {
-    paddingTop: '140px',
+    paddingTop: '90px',
+
+    [theme.breakpoints.up('md')]: {
+      paddingTop: '120px',
+    },
   },
 }));

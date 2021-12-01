@@ -24,7 +24,11 @@ const useStyles = makeStyles((theme) => ({
   },
   footerBox: {
     flexShrink: '0',
-    paddingTop: '140px',
+    paddingTop: '90px',
+
+    [theme.breakpoints.up('md')]: {
+      paddingTop: '120px',
+    },
   },
 }));
 
@@ -37,9 +41,7 @@ export default function Layout(props) {
       <Box className={classes.headerBox}>
         <PageNavbar value={value} />
       </Box>
-      <Box className={classes.pageContentBox}>
-        {children}
-      </Box>
+      <Box className={classes.pageContentBox}>{children}</Box>
       <Box className={classes.footerBox}>
         <Footer />
       </Box>
