@@ -193,7 +193,7 @@ export const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
 
-    margin: '1rem',
+    marginTop: '64px',
     paddingLeft: '1rem',
     [theme.breakpoints.only('xs')]: {
       padding: '0 1rem 0 1rem',
