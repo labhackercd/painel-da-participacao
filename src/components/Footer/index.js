@@ -51,12 +51,12 @@ export default function Footer() {
             <Typography
               className={`${classes.typography} ${classes.informationItemTypographyText}`}
             >
-              Disque-Câmara:
+              0800-0-619-619
             </Typography>
             <Typography
               className={`${classes.typography} ${classes.informationItemTypographyText}`}
             >
-              0800-0-619-619 de 8h às 20h
+              de 8h às 20h
             </Typography>
           </Box>
         </Box>

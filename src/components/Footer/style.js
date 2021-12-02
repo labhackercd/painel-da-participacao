@@ -41,6 +41,7 @@ export const useStyles = makeStyles((theme) => ({
   },
   informationItem: {
     width: '300px',
+    flex: 1,
     display: 'flex',
     alignItems: 'flex-end',
     flexDirection: 'column',
@@ -50,12 +51,14 @@ export const useStyles = makeStyles((theme) => ({
   },
   informationItemImg: {
     width: '300px',
+    flex: 1,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
   },
   informationItemLab: {
     width: '300px',
+    flex: 1,
     display: 'flex',
     alignItems: 'flex-start',
     flexDirection: 'column',
