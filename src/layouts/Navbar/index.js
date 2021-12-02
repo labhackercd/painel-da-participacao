@@ -45,6 +45,7 @@ export default function PageNavbar(props) {
     offset,
     toolbarContentMobile,
     mobileLogo,
+    logoCamaraBar,
     desktopNavbarContent,
     camaraBar,
     tabsClass,
@@ -148,7 +149,9 @@ export default function PageNavbar(props) {
 
   const displayDesktop = () => (
     <>
-      <div className={camaraBar}>{camaraDeputadosLogo} </div>
+      <div className={camaraBar}>
+        <div className={logoCamaraBar}>{camaraDeputadosLogo}</div>
+      </div>
       <Toolbar className={desktopNavbarContent}>
         <ApplicationLogo />
         <Box width="100%" display="flex" justifyContent="flex-end">
