@@ -13,13 +13,14 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   box: {
-    paddingTop: '5rem',
     display: 'flex',
     flexFlow: 'column',
     width: '100%',
     justifyContent: 'flex-start',
     minHeight: '85vh',
-
+    [theme.breakpoints.down('sm')]: {
+      paddingTop: '3.5rem',
+    },
     [theme.breakpoints.up('xl')]: {
       maxWidth: '1900px',
       marginLeft: 'auto',
@@ -48,19 +49,21 @@ export const useStyles = makeStyles((theme) => ({
     fontSize: '0.375rem',
     fontWeight: 'regular',
     paddingLeft: '8rem',
+    marginLeft: '1rem',
 
+    [theme.breakpoints.only('xs')]: {
+      margin: 0,
+    },
     [theme.breakpoints.down('sm')]: {
-      paddingLeft: '2rem',
+      paddingLeft: '1rem',
       fontSize: '0.5rem',
     },
     [theme.breakpoints.up('md')]: {
+      paddingLeft: '7rem',
       fontSize: '0.75rem',
     },
-    [theme.breakpoints.only('lg')]: {
+    [theme.breakpoints.up('lg')]: {
       fontSize: '1rem',
-    },
-    [theme.breakpoints.up('xl')]: {
-      fontSize: '1.2rem',
     },
   },
   textBox: {
@@ -85,17 +88,14 @@ export const useStyles = makeStyles((theme) => ({
       fontWeight: 'bold',
     },
     fontSize: '1rem',
-    [theme.breakpoints.only('sm')]: {
+    [theme.breakpoints.up('sm')]: {
       fontSize: '1.2rem',
     },
-    [theme.breakpoints.only('md')]: {
+    [theme.breakpoints.up('md')]: {
       fontSize: '1.4rem',
     },
-    [theme.breakpoints.only('lg')]: {
-      fontSize: '2rem',
-    },
-    [theme.breakpoints.up('xl')]: {
-      fontSize: '2.8rem',
+    [theme.breakpoints.up('lg')]: {
+      fontSize: '2.1rem',
     },
   },
   boxGridContainer: {
@@ -130,6 +130,9 @@ export const useStyles = makeStyles((theme) => ({
   },
   initialPageBannerImg: {
     [theme.breakpoints.up('sm')]: {
+      marginTop: '20%',
+    },
+    [theme.breakpoints.up('lg')]: {
       marginTop: '10%',
     },
     '@media (min-width: 1100px)': {
