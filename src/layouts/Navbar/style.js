@@ -65,6 +65,9 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     height: '10vh',
     padding: '5rem',
+    maxWidth: '1900px',
+    marginLeft: 'auto',
+    marginRight: 'auto',
     display: 'flex',
     justifyContent: 'space-around',
   },
@@ -78,9 +81,15 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: '5px',
     paddingBottom: '5px',
 
-    [theme.breakpoints.only('lg')]: {
+    [theme.breakpoints.up('lg')]: {
       height: '6vh',
     },
+  },
+  logoCamaraBar: {
+    width: '100%',
+    maxWidth: '1900px',
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
   tabsClass: {
     [theme.breakpoints.down('md')]: {

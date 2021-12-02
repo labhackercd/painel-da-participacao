@@ -9,6 +9,9 @@ export const useStyles = makeStyles((theme) => ({
   },
   root: {
     display: 'flex',
+    maxWidth: '1900px',
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
   content: {
     flexGrow: 1,

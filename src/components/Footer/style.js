@@ -13,7 +13,8 @@ export const useStyles = makeStyles((theme) => ({
   bannerBox: {
     width: '100%',
     height: '8px',
-    background: 'linear-gradient(90deg, rgba(20, 215, 104, 0.4) 0%, rgba(17, 129, 233, 0.4) 34.9%, rgba(245, 157, 42, 0.4) 67.71%, rgba(228, 56, 180, 0.4) 100%)',
+    background:
+      'linear-gradient(90deg, rgba(20, 215, 104, 0.4) 0%, rgba(17, 129, 233, 0.4) 34.9%, rgba(245, 157, 42, 0.4) 67.71%, rgba(228, 56, 180, 0.4) 100%)',
   },
   bannerBoxLogos: {
     [theme.breakpoints.up('md')]: {
@@ -25,9 +26,17 @@ export const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
+
     '@media (max-width: 800px)': {
       padding: '1rem 1rem 1rem 1rem',
       alignItems: 'flex-start',
+    },
+
+    [theme.breakpoints.up('xl')]: {
+      gap: '400px',
+      maxWidth: '1900px',
+      marginLeft: 'auto',
+      marginRight: 'auto',
     },
   },
   informationItem: {

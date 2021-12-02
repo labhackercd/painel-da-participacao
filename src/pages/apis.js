@@ -102,7 +102,7 @@ function Api() {
         <Box className={classes.boxHeader}>
           <PageNavbar value={4} />
         </Box>
-        <Grid container>
+        <Grid className={classes.container} container>
           <Grid item xs={12} sm={6} md={6}>
             <Box className={classes.headerText}>
               <Typography
