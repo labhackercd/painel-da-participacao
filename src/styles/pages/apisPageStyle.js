@@ -21,6 +21,11 @@ export const useStyles = makeStyles((theme) => ({
       paddingTop: '4rem',
     },
   },
+  container: {
+    maxWidth: '1900px',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  },
   textBoxMargin: {
     margin: '1rem',
     paddingRight: '2rem',
