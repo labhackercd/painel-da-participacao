@@ -19,6 +19,12 @@ export const useStyles = makeStyles((theme) => ({
     width: '100%',
     justifyContent: 'flex-start',
     minHeight: '85vh',
+
+    [theme.breakpoints.up('xl')]: {
+      maxWidth: '1900px',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+    },
   },
   lineBox: {
     [theme.breakpoints.only('xs')]: {
@@ -144,6 +150,10 @@ export const useStyles = makeStyles((theme) => ({
     height: '4px',
     background:
       'linear-gradient(90deg, rgba(20, 215, 104, 0.4) 0%, rgba(17, 129, 233, 0.4) 34.9%, rgba(245, 157, 42, 0.4) 67.71%, rgba(228, 56, 180, 0.4) 100%)',
+
+    [theme.breakpoints.up('lg')]: {
+      width: '80%',
+    },
   },
   footerBox: {
     paddingTop: '0px',
