@@ -104,9 +104,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('lg')]: {
       fontSize: '2.3rem',
     },
-    [theme.breakpoints.up('xl')]: {
-      fontSize: '3.5rem',
-    },
   },
   typographyDescription: {
     fontSize: '0.875rem',
@@ -120,9 +117,6 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.up('lg')]: {
       fontSize: '1.8rem',
-    },
-    [theme.breakpoints.up('xl')]: {
-      fontSize: '2.25rem',
     },
   },
   typographyButton: {
@@ -139,9 +133,6 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.up('lg')]: {
       fontSize: '1.4rem',
-    },
-    [theme.breakpoints.up('xl')]: {
-      fontSize: '1.875rem',
     },
   },
   buttonStyle: {
