@@ -22,7 +22,7 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   container: {
-    maxWidth: '1900px',
+    maxWidth: '1530px',
     marginLeft: 'auto',
     marginRight: 'auto',
   },
