@@ -18,13 +18,12 @@ export const useStyles = makeStyles((theme) => ({
     width: '100%',
     justifyContent: 'flex-start',
     minHeight: '85vh',
+    maxWidth: '1900px',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+
     [theme.breakpoints.down('sm')]: {
       paddingTop: '3.5rem',
-    },
-    [theme.breakpoints.up('xl')]: {
-      maxWidth: '1900px',
-      marginLeft: 'auto',
-      marginRight: 'auto',
     },
   },
   lineBox: {
