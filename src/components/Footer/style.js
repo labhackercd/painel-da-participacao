@@ -33,7 +33,7 @@ export const useStyles = makeStyles((theme) => ({
     },
 
     [theme.breakpoints.up('xl')]: {
-      gap: '400px',
+      gap: '320px',
       maxWidth: '1530px',
       marginLeft: 'auto',
       marginRight: 'auto',
@@ -62,8 +62,27 @@ export const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'flex-start',
     flexDirection: 'column',
+
     '@media (max-width: 400px)': {
       width: '200px',
+    },
+
+    [theme.breakpoints.up('lg')]: {
+      flex: 5,
+    },
+  },
+  informationLabSm: {
+    display: 'block',
+
+    [theme.breakpoints.up('lg')]: {
+      display: 'none',
+    },
+  },
+  informationLabLg: {
+    display: 'none',
+
+    [theme.breakpoints.up('lg')]: {
+      display: 'block',
     },
   },
   typography: {
@@ -71,7 +90,6 @@ export const useStyles = makeStyles((theme) => ({
     letterSpacing: '0.05em',
   },
   informationItemTypographyText: {
-    fontSize: '1rem',
     fontWeight: 'regular',
     '@media (max-width: 400px)': {
       textAlign: 'center',
