@@ -34,6 +34,7 @@ export const useStyles = makeStyles((theme) => ({
       paddingRight: '4rem',
       paddingLeft: '4rem',
     },
+
     [theme.breakpoints.up('xl')]: {
       paddingRight: '4rem',
       paddingLeft: '4rem',
@@ -54,9 +55,9 @@ export const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('md')]: {
       fontSize: '3rem',
     },
-    [theme.breakpoints.up('xl')]: {
-      fontSize: '4rem',
-    },
+    // [theme.breakpoints.up('xl')]: {
+    //   fontSize: '4rem',
+    // },
   },
   typographyTitleCaption: {
     fontSize: '0.563rem',
@@ -73,11 +74,11 @@ export const useStyles = makeStyles((theme) => ({
       paddingBottom: '2rem',
       paddingTop: '6px',
     },
-    [theme.breakpoints.up('xl')]: {
-      fontSize: '1.5rem',
-      paddingBottom: '2rem',
-      paddingTop: '16px',
-    },
+    // [theme.breakpoints.up('xl')]: {
+    //   fontSize: '1.5rem',
+    //   paddingBottom: '2rem',
+    //   paddingTop: '16px',
+    // },
   },
   typographyTitleText: {
     fontSize: '1rem',
@@ -89,9 +90,9 @@ export const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('md')]: {
       fontSize: '1.6rem',
     },
-    [theme.breakpoints.up('xl')]: {
-      fontSize: '2.813rem',
-    },
+    // [theme.breakpoints.up('xl')]: {
+    //   fontSize: '2.813rem',
+    // },
   },
   typograhyH2: {
     fontSize: '1.5rem',
@@ -104,9 +105,9 @@ export const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('md')]: {
       fontSize: '1.576rem',
     },
-    [theme.breakpoints.up('xl')]: {
-      fontSize: '2.7rem',
-    },
+    // [theme.breakpoints.up('xl')]: {
+    //   fontSize: '2.7rem',
+    // },
   },
   typographyParagraph: {
     fontSize: '1rem',
@@ -118,9 +119,9 @@ export const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('md')]: {
       fontSize: '1.261rem',
     },
-    [theme.breakpoints.up('xl')]: {
-      fontSize: '2rem',
-    },
+    // [theme.breakpoints.up('xl')]: {
+    //   fontSize: '2rem',
+    // },
   },
   apiCard: {
     height: '329px',
@@ -197,15 +198,18 @@ export const useStyles = makeStyles((theme) => ({
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
+    justifyContent: 'center',
+    margin: '1rem',
+    paddingRight: '2rem',
 
-    marginTop: '64px',
-    paddingLeft: '1rem',
-    [theme.breakpoints.only('xs')]: {
-      padding: '0 1rem 0 1rem',
-      margin: 0,
+    [theme.breakpoints.only('sm')]: {
+      paddingLeft: '2rem',
     },
+
     [theme.breakpoints.up('md')]: {
+      paddingRight: '4rem',
       paddingLeft: '7rem',
+      margin: 0,
     },
   },
   headerImg: {
