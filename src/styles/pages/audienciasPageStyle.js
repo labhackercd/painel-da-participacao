@@ -9,7 +9,7 @@ export const useStyles = makeStyles((theme) => ({
   },
   root: {
     display: 'flex',
-    maxWidth: '1900px',
+    maxWidth: '1530px',
     marginLeft: 'auto',
     marginRight: 'auto',
   },
