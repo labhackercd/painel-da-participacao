@@ -64,8 +64,9 @@ const useStyles = makeStyles((theme) => ({
   desktopNavbarContent: {
     width: '100%',
     height: '10vh',
-    padding: '5rem',
-    maxWidth: '1900px',
+    paddingTop: '5rem',
+    paddingBottom: '5rem',
+    maxWidth: '1280px',
     marginLeft: 'auto',
     marginRight: 'auto',
     display: 'flex',
@@ -75,19 +76,22 @@ const useStyles = makeStyles((theme) => ({
     height: '5vh',
     width: '100%',
     backgroundColor: '#363636',
-    padding: '0 0 0 5rem',
     display: 'flex',
     alignItems: 'center',
+    padding: '0 0 0 1.5rem',
     paddingTop: '5px',
     paddingBottom: '5px',
 
     [theme.breakpoints.up('lg')]: {
       height: '6vh',
     },
+    [theme.breakpoints.up('xl')]: {
+      padding: '0 0 0 2.9rem',
+    },
   },
   logoCamaraBar: {
     width: '100%',
-    maxWidth: '1900px',
+    maxWidth: '1280px',
     marginLeft: 'auto',
     marginRight: 'auto',
   },
