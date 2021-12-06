@@ -22,11 +22,13 @@ export const useStyles = makeStyles((theme) => ({
   boxContent: {
     flex: '1 1 auto',
     minHeight: '70vh',
-    minWidth: '100%',
     backgroundColor: theme.palette.primary.main,
     display: 'flex',
     justifyContent: 'space-around',
     paddingTop: '10vh',
+    maxWidth: '1530px',
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
   textBox: {
     paddingLeft: '16px',
@@ -52,10 +54,10 @@ export const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('lg')]: {
       fontSize: '2rem',
     },
-    [theme.breakpoints.up('xl')]: {
-      paddingLeft: '1rem',
-      fontSize: '3rem',
-    },
+    // [theme.breakpoints.up('xl')]: {
+    //   paddingLeft: '1rem',
+    //   fontSize: '3rem',
+    // },
   },
   imgBox: {
     display: 'flex',
@@ -79,10 +81,10 @@ export const useStyles = makeStyles((theme) => ({
       width: '500px',
       height: '400px',
     },
-    [theme.breakpoints.up('xl')]: {
-      width: '600px',
-      height: '472px',
-    },
+    // [theme.breakpoints.up('xl')]: {
+    //   width: '600px',
+    //   height: '472px',
+    // },
   },
   lineDividerGradientColor: {
     marginTop: '0',
@@ -90,7 +92,8 @@ export const useStyles = makeStyles((theme) => ({
     width: '80%',
     height: '4px',
     marginBottom: '2rem',
-    background: 'linear-gradient(90deg, rgba(20, 215, 104, 0.4) 0%, rgba(17, 129, 233, 0.4) 34.9%, rgba(245, 157, 42, 0.4) 67.71%, rgba(228, 56, 180, 0.4) 100%)',
+    background:
+      'linear-gradient(90deg, rgba(20, 215, 104, 0.4) 0%, rgba(17, 129, 233, 0.4) 34.9%, rgba(245, 157, 42, 0.4) 67.71%, rgba(228, 56, 180, 0.4) 100%)',
     [theme.breakpoints.up('xl')]: {
       marginBottom: '2rem',
     },
