@@ -242,10 +242,6 @@ export const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('sm')]: {
       marginTop: '10%',
     },
-    '@media (min-width: 1100px)': {
-      width: '490px',
-      height: '478px',
-    },
     '@media (max-width: 1100px)': {
       width: '390px',
       height: '378px',
