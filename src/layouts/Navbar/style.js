@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
     height: '10vh',
     paddingTop: '5rem',
     paddingBottom: '5rem',
-    maxWidth: '1530px',
+    maxWidth: '1280px',
     marginLeft: 'auto',
     marginRight: 'auto',
     display: 'flex',
@@ -91,7 +91,7 @@ const useStyles = makeStyles((theme) => ({
   },
   logoCamaraBar: {
     width: '100%',
-    maxWidth: '1530px',
+    maxWidth: '1280px',
     marginLeft: 'auto',
     marginRight: 'auto',
   },

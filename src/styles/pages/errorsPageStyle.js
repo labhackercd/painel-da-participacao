@@ -26,7 +26,7 @@ export const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-around',
     paddingTop: '10vh',
-    maxWidth: '1530px',
+    maxWidth: '1280px',
     marginLeft: 'auto',
     marginRight: 'auto',
   },

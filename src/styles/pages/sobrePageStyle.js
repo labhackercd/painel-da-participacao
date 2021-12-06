@@ -22,7 +22,7 @@ export const useStyles = makeStyles((theme) => ({
   },
   boxContent: {
     flex: '1 1 auto',
-    maxWidth: '1530px',
+    maxWidth: '1280px',
     marginLeft: 'auto',
     marginRight: 'auto',
     [theme.breakpoints.up('xl')]: {
