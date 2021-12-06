@@ -33,8 +33,8 @@ export const useStyles = makeStyles((theme) => ({
     },
 
     [theme.breakpoints.up('xl')]: {
-      gap: '400px',
-      maxWidth: '1900px',
+      gap: '200px',
+      maxWidth: '1280px',
       marginLeft: 'auto',
       marginRight: 'auto',
     },
