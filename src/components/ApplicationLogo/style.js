@@ -2,6 +2,7 @@ import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   logoClass: {
+    cursor: 'pointer',
     width: '140px',
     height: '35px',
 

@@ -39,7 +39,7 @@ function Home({ usersTotal, apiLastCacheMade }) {
                     <span>{formatNumberWithDots(usersTotal)}</span> cidadãos se
                     cadastraram no portal e-Democracia da Câmara dos Deputados.*
                   </Typography>
-                  <Box>
+                  <Box style={{ marginTop: '20px' }}>
                     <Typography className={classes.typographyBoxText}>
                       Conheça os números de{' '}
                       <span>participação pelos cidadãos.</span>

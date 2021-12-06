@@ -13,16 +13,22 @@ export default function Footer() {
       <Box className={classes.footerContainer}>
         <Box className={classes.bannerBox} />
         <Box className={classes.informationsDiv}>
-          <Box className={classes.informationItemLab}>
+          <Box className={`${classes.informationItemLab}`}>
             <Typography
-              className={`${classes.typography} ${classes.informationItemTypographyText}`}
+              className={`${classes.typography} ${classes.informationItemTypographyText} ${classes.informationLabSm}`}
             >
               Versão 1.0 - 2021
             </Typography>
             <Typography
-              className={`${classes.typography} ${classes.informationItemTypographyText}`}
+              className={`${classes.typography} ${classes.informationItemTypographyText} ${classes.informationLabSm}`}
             >
               LABHacker
+            </Typography>
+            <Typography
+              className={`${classes.typography} ${classes.informationItemTypographyText} ${classes.informationLabLg}`}
+            >
+              Versão 1.0 desenvolvida em 2021 pelo LABHacker da Câmara dos
+              Deputados
             </Typography>
           </Box>
 
@@ -49,14 +55,19 @@ export default function Footer() {
               </Typography>
             </a>
             <Typography
-              className={`${classes.typography} ${classes.informationItemTypographyText}`}
+              className={`${classes.typography} ${classes.informationItemTypographyText} ${classes.informationLabLg}`}
             >
               Disque-Câmara:
             </Typography>
             <Typography
               className={`${classes.typography} ${classes.informationItemTypographyText}`}
             >
-              0800-0-619-619 de 8h às 20h
+              0800-0-619-619
+            </Typography>
+            <Typography
+              className={`${classes.typography} ${classes.informationItemTypographyText}`}
+            >
+              de 8h às 20h
             </Typography>
           </Box>
         </Box>
