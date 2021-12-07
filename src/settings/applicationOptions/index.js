@@ -16,9 +16,10 @@ export const DEFAULT_SELECTED_PERIOD_TYPE = 'yearly'; // Get all months of the y
 export const DEFAULT_MONTH_PERIOD = '0'; // All months option
 export const DEFAULT_YEAR_PERIOD = '0'; // All years options
 export const DEFAULT_SEARCH_QUERY = '?period=yearly&ordering=start_date'; // Query that get informations of all years
+export const PARTICIPANTS_SEARCH_QUERY = '?period=all&ordering=start_date';
 
 // =================== API's ================
-export const REFRESH_API_CACHE_DATA_INTERVAL = 900;// 900; // In seconds. (3600 seconds = 1 hour)
+export const REFRESH_API_CACHE_DATA_INTERVAL = 900; // 900; // In seconds. (3600 seconds = 1 hour)
 export const SHOW_API_CACHE_ERROR_MESSAGE_LIMIT_TIME = 720; // In minutes (720 minutes = 12 hours)
 
 // =============== HOUR SETTINGS ===============

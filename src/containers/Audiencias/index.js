@@ -9,24 +9,47 @@ import { format, subDays } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import { apiInstance } from '../../services/api/apiInstance';
 import {
-  AlertCachedData, ChartDataFrame, Header, RankingTable, TotalFrame, SectionHeader, SubSectionHeader,
-  NoDataForSelectedPeriod, ChartAndReport, AlertDataConsolidateInterval, ChartTotalRoomsWithFilter,
+  AlertCachedData,
+  ChartDataFrame,
+  Header,
+  RankingTable,
+  TotalFrame,
+  SectionHeader,
+  SubSectionHeader,
+  NoDataForSelectedPeriod,
+  ChartAndReport,
+  AlertDataConsolidateInterval,
+  ChartTotalRoomsWithFilter,
 } from '../../components';
-import { handleUpdatePeriodSearchQuery } from '../../services/functions/handlers/index';
+import {
+  handleUpdatePeriodSearchQuery,
+  handleUpdatePeriodSearchQueryParticipants,
+} from '../../services/functions/handlers/index';
 import formatNumberWithDots from '../../utils/format/numbers/formatNumbersWithDots/formatNumberWithDots';
 
 import * as APPLICATION_OPTIONS from '../../settings/applicationOptions/index';
 import * as APPLICATION_CONSTANTS from '../../utils/constants/index';
 
 import {
-  getParticipationChartDataByDay, getParticipationChartDataByMonth, getParticipationChartDataByYear,
+  getParticipationChartDataByDay,
+  getParticipationChartDataByMonth,
+  getParticipationChartDataByYear,
 } from './auxFunctions/computeParticipation';
 import {
-  getRoomTotalsChartDataByDay, getRoomTotalsChartDataByMonth, getRoomTotalsChartDataByYear,
+  getRoomTotalsChartDataByDay,
+  getRoomTotalsChartDataByMonth,
+  getRoomTotalsChartDataByYear,
 } from './auxFunctions/computeTotalRooms';
 import filterRankingAudiencias from './auxFunctions/filterRanking';
-import { audiencesChartsUsersSettings, audiencesWithMoreParticipation, audiencesRoomsTotalsChart } from './settings/chartsSettings';
-import { rankingAudienciasHeaders, rankingAudienciaColumns } from './settings/rankingSettings';
+import {
+  audiencesChartsUsersSettings,
+  audiencesWithMoreParticipation,
+  audiencesRoomsTotalsChart,
+} from './settings/chartsSettings';
+import {
+  rankingAudienciasHeaders,
+  rankingAudienciaColumns,
+} from './settings/rankingSettings';
 import { useStyles } from './style';
 import customTheme from '../../styles/theme';
 
@@ -43,9 +66,7 @@ const currentYear = APPLICATION_CONSTANTS.CURRENT_YEAR;
 
 function Audiencias(props) {
   const TOOLNAME = APPLICATION_OPTIONS.AUDIENCIAS_TOOL_NAME;
-  const {
-    defaultApisData, apiLastCacheMade, apiLastCacheMadeHour,
-  } = props;
+  const { defaultApisData, apiLastCacheMade, apiLastCacheMadeHour } = props;
   const headerColors = {
     borderColor: TEXTCONSTANTS.pageColor,
   };
@@ -55,9 +76,13 @@ function Audiencias(props) {
   const [audienciasTotalsData, setAudienciasTotalsData] = useState('');
   const [newUsersChartData, setNewUsersChartData] = useState([]);
   const [totalUsersChartData, setTotalUsersChartData] = useState([]);
-  const [roomsRankingData, setRoomsRankingData] = useState(defaultApisData.audienciasRankingData);
+  const [roomsRankingData, setRoomsRankingData] = useState(
+    defaultApisData.audienciasRankingData,
+  );
   const [participantionChartData, setParticipantionChartData] = useState([]);
-  const [totalRoomsDefaultChartData, setTotalRoomsDefaultChartData] = useState([]);
+  const [totalRoomsDefaultChartData, setTotalRoomsDefaultChartData] = useState(
+    [],
+  );
   const [totalRoomsChartData, setTotalRoomsChartData] = useState([]);
   // Error Status
   const [showCachedDataAlert, setShowCachedDataAlert] = useState(false);
@@ -68,12 +93,15 @@ function Audiencias(props) {
   const [totalRoomsChartDataLoaded, setTotalRoomsChartDataLoaded] = useState(false);
 
   // Period Selected states
-  const [selectedPeriod, setSelectedPeriod] = useState(defaultSelectedPeriodType);
+  const [selectedPeriod, setSelectedPeriod] = useState(
+    defaultSelectedPeriodType,
+  );
   const [selectedYear, setSelectedYear] = useState(defaultYearPeriod);
   const [selectedMonth, setSelectedMonth] = useState(defaultMonthPeriod);
   // Api's default data
   const [apisDataObject, setApisDataObject] = useState({
-    audiencesParticipantAPIData: defaultApisData.audienceParticipantUsersAPIData,
+    audiencesParticipantAPIData:
+      defaultApisData.audienceParticipantUsersAPIData,
     audiencesRoomsAPIData: defaultApisData.audiencesRoomsAPIData,
     audiencesMessagesAPIData: defaultApisData.audienceMessagesAPIData,
     audiencesQuestionsAPIData: defaultApisData.audienceQuestionsAPIData,
@@ -82,9 +110,13 @@ function Audiencias(props) {
   });
 
   // Information states
-  const [periodSubTitle, setPeriodSubTitle] = useState(`${audienceInitialYear} a ${currentYear}`);
+  const [periodSubTitle, setPeriodSubTitle] = useState(
+    `${audienceInitialYear} a ${currentYear}`,
+  );
   const apiLastConsolidateOfDataDate = showCachedDataAlert
-    ? format(subDays(new Date(apiLastCacheMadeHour), 1), ' dd/LL/yyyy', { locale: ptBR }) // Show the data of last cache
+    ? format(subDays(new Date(apiLastCacheMadeHour), 1), ' dd/LL/yyyy', {
+      locale: ptBR,
+    }) // Show the data of last cache
     : format(subDays(new Date(), 1), ' dd/LL/yyyy', { locale: ptBR });
 
   const totalAcumuladoUsuariosCadastradosString = TEXTCONSTANTS.usersSectionTexts.subSectionAccumulatedRegisteredUsers.title;
@@ -96,7 +128,9 @@ function Audiencias(props) {
     diff /= 60;
     const diffRound = Math.abs(Math.round(diff)); // Return the difference in minutes
 
-    if (diffRound > APPLICATION_OPTIONS.SHOW_API_CACHE_ERROR_MESSAGE_LIMIT_TIME) {
+    if (
+      diffRound > APPLICATION_OPTIONS.SHOW_API_CACHE_ERROR_MESSAGE_LIMIT_TIME
+    ) {
       setShowCachedDataAlert(true);
     }
   }
@@ -110,14 +144,32 @@ function Audiencias(props) {
     }
   }
 
-  async function fetchAndUpdateApisData(query) {
+  async function fetchAndUpdateApisData(query, queryParticipants) {
     try {
-      const participants = await fetchDataFromApi(process.env.NEXT_PUBLIC_AUDIENCIAS_PARTICIPANT_USERS_URL, query);
-      const rooms = await fetchDataFromApi(process.env.NEXT_PUBLIC_AUDIENCIAS_ROOMS_RANKING_URL, query);
-      const messages = await fetchDataFromApi(process.env.NEXT_PUBLIC_AUDIENCIAS_MESSAGES_RANKING_URL, query);
-      const questions = await fetchDataFromApi(process.env.NEXT_PUBLIC_AUDIENCIAS_QUESTIONS_RANKING_URL, query);
-      const newUsers = await fetchDataFromApi(process.env.NEXT_PUBLIC_AUDIENCIAS_NEW_USERS_URL, query);
-      const votes = await fetchDataFromApi(process.env.NEXT_PUBLIC_AUDIENCIAS_VOTES_RANKING_URL, query);
+      const participants = await fetchDataFromApi(
+        process.env.NEXT_PUBLIC_AUDIENCIAS_PARTICIPANT_USERS_URL,
+        queryParticipants,
+      );
+      const rooms = await fetchDataFromApi(
+        process.env.NEXT_PUBLIC_AUDIENCIAS_ROOMS_RANKING_URL,
+        query,
+      );
+      const messages = await fetchDataFromApi(
+        process.env.NEXT_PUBLIC_AUDIENCIAS_MESSAGES_RANKING_URL,
+        query,
+      );
+      const questions = await fetchDataFromApi(
+        process.env.NEXT_PUBLIC_AUDIENCIAS_QUESTIONS_RANKING_URL,
+        query,
+      );
+      const newUsers = await fetchDataFromApi(
+        process.env.NEXT_PUBLIC_AUDIENCIAS_NEW_USERS_URL,
+        query,
+      );
+      const votes = await fetchDataFromApi(
+        process.env.NEXT_PUBLIC_AUDIENCIAS_VOTES_RANKING_URL,
+        query,
+      );
       setApisDataObject({
         audiencesParticipantAPIData: participants,
         audiencesRoomsAPIData: rooms,
@@ -140,38 +192,49 @@ function Audiencias(props) {
       if (values !== null) {
         switch (period) {
           case dailyKeyWord:
-            computedArray.push([values[0].start_date.match(/\d+/g)[2], values[0].new_users]);
+            computedArray.push([
+              values[0].start_date.match(/\d+/g)[2],
+              values[0].new_users,
+            ]);
             for (let i = 1; i < values.length; i += 1) {
-              computedArray.push(
-                [values[i].start_date.match(/\d+/g)[2],
-                  values[i].new_users + computedArray[i - 1][1]],
-              );
+              computedArray.push([
+                values[i].start_date.match(/\d+/g)[2],
+                values[i].new_users + computedArray[i - 1][1],
+              ]);
             }
-            collumPeriodTitle = [['Dia', totalAcumuladoUsuariosCadastradosString]];
+            collumPeriodTitle = [
+              ['Dia', totalAcumuladoUsuariosCadastradosString],
+            ];
             break;
           case monthlyKeyWord:
-            computedArray.push(
-              [monthNamesList[(new Date(values[0].end_date)).getMonth()], values[0].new_users],
-            );
+            computedArray.push([
+              monthNamesList[new Date(values[0].end_date).getMonth()],
+              values[0].new_users,
+            ]);
             for (let i = 1; i < values.length; i += 1) {
-              computedArray.push(
-                [monthNamesList[(new Date(values[i].end_date)).getMonth()],
-                  values[i].new_users + computedArray[i - 1][1]],
-              );
+              computedArray.push([
+                monthNamesList[new Date(values[i].end_date).getMonth()],
+                values[i].new_users + computedArray[i - 1][1],
+              ]);
             }
-            collumPeriodTitle = [['Mês', totalAcumuladoUsuariosCadastradosString]];
+            collumPeriodTitle = [
+              ['Mês', totalAcumuladoUsuariosCadastradosString],
+            ];
             break;
           default:
-            computedArray.push(
-              [new Date(values[0].end_date).getFullYear().toString(), values[0].new_users],
-            );
+            computedArray.push([
+              new Date(values[0].end_date).getFullYear().toString(),
+              values[0].new_users,
+            ]);
             for (let i = 1; i < values.length; i += 1) {
-              computedArray.push(
-                [new Date(values[i].end_date).getFullYear().toString(),
-                  values[i].new_users + computedArray[i - 1][1]],
-              );
+              computedArray.push([
+                new Date(values[i].end_date).getFullYear().toString(),
+                values[i].new_users + computedArray[i - 1][1],
+              ]);
             }
-            collumPeriodTitle = [['Ano', totalAcumuladoUsuariosCadastradosString]];
+            collumPeriodTitle = [
+              ['Ano', totalAcumuladoUsuariosCadastradosString],
+            ];
             break;
         }
       } else {
@@ -194,18 +257,18 @@ function Audiencias(props) {
           resultArray = await allRooms.filter((value) => {
             const [valueYear, valueMonth] = value.date.split('-'); // Or, var month = e.date.split('-')[1];
             return (
-              (parseInt(month, 10) === parseInt(valueMonth, 10))
-              && (parseInt(year, 10) === parseInt(valueYear, 10))
+              parseInt(month, 10) === parseInt(valueMonth, 10) && parseInt(year, 10) === parseInt(valueYear, 10)
             );
           });
           break;
         case monthlyKeyWord:
           resultArray = await allRooms.filter((value) => {
             const [valueYear] = value.date.split('-'); // Or, var month = e.date.split('-')[1];
-            return (parseInt(year, 10) === parseInt(valueYear, 10));
+            return parseInt(year, 10) === parseInt(valueYear, 10);
           });
           break;
-        default: // yearly -> Total period
+        default:
+          // yearly -> Total period
           resultArray = allRooms;
           break;
       }
@@ -220,15 +283,16 @@ function Audiencias(props) {
     try {
       switch (period) {
         case dailyKeyWord:
-          setPeriodSubTitle(`${APPLICATION_CONSTANTS.MONTHS_LIST[month - 1]}/${year}`);
+          setPeriodSubTitle(
+            `${APPLICATION_CONSTANTS.MONTHS_LIST[month - 1]}/${year}`,
+          );
           break;
         case monthlyKeyWord:
           setPeriodSubTitle(`${year}`);
           break;
-        default: // yearly -> Total period
-          setPeriodSubTitle(
-            `${audienceInitialYear} a ${currentYear}`,
-          );
+        default:
+          // yearly -> Total period
+          setPeriodSubTitle(`${audienceInitialYear} a ${currentYear}`);
           break;
       }
     } catch (e) {
@@ -244,21 +308,24 @@ function Audiencias(props) {
     try {
       switch (period) {
         case dailyKeyWord:
-          arrayData = values.map(
-            (value) => [value.start_date.match(/\d+/g)[2], value.new_users],
-          );
+          arrayData = values.map((value) => [
+            value.start_date.match(/\d+/g)[2],
+            value.new_users,
+          ]);
           collumPeriodTitle = ['Dia', 'Novos Usuários'];
           break;
         case monthlyKeyWord:
-          arrayData = values.map(
-            (value) => [monthNamesList[(new Date(value.end_date)).getMonth()], value.new_users],
-          );
+          arrayData = values.map((value) => [
+            monthNamesList[new Date(value.end_date).getMonth()],
+            value.new_users,
+          ]);
           collumPeriodTitle = ['Mês', 'Novos Usuários'];
           break;
         default:
-          arrayData = values.map(
-            (value) => [new Date(value.end_date).getFullYear().toString(), value.new_users],
-          );
+          arrayData = values.map((value) => [
+            new Date(value.end_date).getFullYear().toString(),
+            value.new_users,
+          ]);
           collumPeriodTitle = ['Ano', 'Novos Usuários'];
           break;
       }
@@ -284,11 +351,21 @@ function Audiencias(props) {
   async function updateTotalsData() {
     try {
       const dataJson = {
-        users_total: formatNumberWithDots(apisDataObject.audiencesParticipantAPIData.sum_total_results),
-        audiencias_total: formatNumberWithDots(apisDataObject.audiencesRoomsAPIData.sum_total_results),
-        audiencias_total_finished: formatNumberWithDots(apisDataObject.audiencesRoomsAPIData.sum_finished),
-        messages_total: formatNumberWithDots(apisDataObject.audiencesMessagesAPIData.sum_total_results),
-        questions_total: formatNumberWithDots(apisDataObject.audiencesQuestionsAPIData.sum_total_results),
+        users_total: formatNumberWithDots(
+          apisDataObject.audiencesParticipantAPIData.sum_total_results,
+        ),
+        audiencias_total: formatNumberWithDots(
+          apisDataObject.audiencesRoomsAPIData.sum_total_results,
+        ),
+        audiencias_total_finished: formatNumberWithDots(
+          apisDataObject.audiencesRoomsAPIData.sum_finished,
+        ),
+        messages_total: formatNumberWithDots(
+          apisDataObject.audiencesMessagesAPIData.sum_total_results,
+        ),
+        questions_total: formatNumberWithDots(
+          apisDataObject.audiencesQuestionsAPIData.sum_total_results,
+        ),
       };
 
       await setAudienciasTotalsData(dataJson);
@@ -314,22 +391,39 @@ function Audiencias(props) {
       const questionsVoteData = apisDataObject.audiencesVotesAPIData.results;
 
       let arrayData = [];
-      const collumPeriodTitle = ['Data', 'Mensagens do chat', 'Perguntas', 'Votos nas Perguntas'];
+      const collumPeriodTitle = [
+        'Data',
+        'Mensagens do chat',
+        'Perguntas',
+        'Votos nas Perguntas',
+      ];
 
       switch (period) {
         case dailyKeyWord:
           arrayData = await getParticipationChartDataByDay(
-            month, year, messagesData, questionsData, questionsVoteData,
+            month,
+            year,
+            messagesData,
+            questionsData,
+            questionsVoteData,
           );
           break;
         case monthlyKeyWord:
           arrayData = await getParticipationChartDataByMonth(
-            month, year, messagesData, questionsData, questionsVoteData,
+            month,
+            year,
+            messagesData,
+            questionsData,
+            questionsVoteData,
           );
           break;
-        default: // yearly -> Total period
+        default:
+          // yearly -> Total period
           arrayData = await getParticipationChartDataByYear(
-            messagesData, questionsData, questionsVoteData, audienceInitialYear,
+            messagesData,
+            questionsData,
+            questionsVoteData,
+            audienceInitialYear,
           );
           break;
       }
@@ -353,19 +447,14 @@ function Audiencias(props) {
 
       switch (period) {
         case dailyKeyWord:
-          arrayData = await getRoomTotalsChartDataByDay(
-            month, year, roomsData,
-          );
+          arrayData = await getRoomTotalsChartDataByDay(month, year, roomsData);
           break;
         case monthlyKeyWord:
-          arrayData = await getRoomTotalsChartDataByMonth(
-            year, roomsData,
-          );
+          arrayData = await getRoomTotalsChartDataByMonth(year, roomsData);
           break;
-        default: // yearly -> Total period
-          arrayData = await getRoomTotalsChartDataByYear(
-            roomsData,
-          );
+        default:
+          // yearly -> Total period
+          arrayData = await getRoomTotalsChartDataByYear(roomsData);
           break;
       }
 
@@ -403,7 +492,8 @@ function Audiencias(props) {
 
   async function setAllApiDataToDefaultCache() {
     setApisDataObject({
-      audiencesParticipantAPIData: defaultApisData.audienceParticipantUsersAPIData,
+      audiencesParticipantAPIData:
+        defaultApisData.audienceParticipantUsersAPIData,
       audiencesRoomsAPIData: defaultApisData.audiencesRoomsAPIData,
       audiencesMessagesAPIData: defaultApisData.audienceMessagesAPIData,
       audiencesQuestionsAPIData: defaultApisData.audienceQuestionsAPIData,
@@ -412,11 +502,11 @@ function Audiencias(props) {
     });
   }
 
-  async function newLoadData(query, period, month, year) {
+  async function newLoadData(query, queryParticipants, period, month, year) {
     try {
       await resetPageComponentsLoadedStatusToFalse();
       await updateChartsAndTableSubTitle(period, month, year);
-      await fetchAndUpdateApisData(query);
+      await fetchAndUpdateApisData(query, queryParticipants);
     } catch (e) {
       console.error('Erro ao obter dados e atualizar página');
       setAllApiDataToDefaultCache();
@@ -432,9 +522,17 @@ function Audiencias(props) {
 
   async function handlePeriodChange(month, year) {
     try {
-      const { query, period } = await handleUpdatePeriodSearchQuery(month, year);
+      const { query, period } = await handleUpdatePeriodSearchQuery(
+        month,
+        year,
+      );
+      const { queryParticipants } = await handleUpdatePeriodSearchQueryParticipants(
+        month,
+        year,
+      );
+
       await updateSelectedPeriodInterval(period, month, year);
-      await newLoadData(query, period, month, year);
+      await newLoadData(query, queryParticipants, period, month, year);
     } catch (e) {
       console.error('Erro ao tentar modificar período selecionado');
     }
@@ -459,7 +557,7 @@ function Audiencias(props) {
         initialYear={audienceInitialYear}
       />
       <Grid container spacing={1} className={classes.spacingContainer}>
-        { showCachedDataAlert && (
+        {showCachedDataAlert && (
           <AlertCachedData apiLastCacheMade={apiLastCacheMade} />
         )}
 
@@ -477,9 +575,18 @@ function Audiencias(props) {
           <TotalFrame
             isLoaded={totalsAreLoaded}
             info={`${audienciasTotalsData.users_total}`}
-            title={TEXTCONSTANTS.audiencesTotalsTexts.subSectionParticipantsTotals.title}
-            toolTipText={TEXTCONSTANTS.audiencesTotalsTexts.subSectionParticipantsTotals.toolTip}
-            toolTipAriaLabel={TEXTCONSTANTS.audiencesTotalsTexts.subSectionParticipantsTotals.toolTipAriaLabel}
+            title={
+              TEXTCONSTANTS.audiencesTotalsTexts.subSectionParticipantsTotals
+                .title
+            }
+            toolTipText={
+              TEXTCONSTANTS.audiencesTotalsTexts.subSectionParticipantsTotals
+                .toolTip
+            }
+            toolTipAriaLabel={
+              TEXTCONSTANTS.audiencesTotalsTexts.subSectionParticipantsTotals
+                .toolTipAriaLabel
+            }
             toolTipColor={customTheme.palette.audiencias.seabuckthorn}
           />
         </Grid>
@@ -488,9 +595,17 @@ function Audiencias(props) {
           <TotalFrame
             isLoaded={totalsAreLoaded}
             info={`${audienciasTotalsData.audiencias_total}`}
-            title={TEXTCONSTANTS.audiencesTotalsTexts.subSectionAudiencesTotals.title}
-            toolTipText={TEXTCONSTANTS.audiencesTotalsTexts.subSectionAudiencesTotals.toolTip}
-            toolTipAriaLabel={TEXTCONSTANTS.audiencesTotalsTexts.subSectionAudiencesTotals.toolTipAriaLabel}
+            title={
+              TEXTCONSTANTS.audiencesTotalsTexts.subSectionAudiencesTotals.title
+            }
+            toolTipText={
+              TEXTCONSTANTS.audiencesTotalsTexts.subSectionAudiencesTotals
+                .toolTip
+            }
+            toolTipAriaLabel={
+              TEXTCONSTANTS.audiencesTotalsTexts.subSectionAudiencesTotals
+                .toolTipAriaLabel
+            }
             toolTipColor={customTheme.palette.audiencias.seabuckthorn}
             subInformation={`${audienciasTotalsData.audiencias_total_finished} realizadas`}
           />
@@ -500,9 +615,17 @@ function Audiencias(props) {
           <TotalFrame
             isLoaded={totalsAreLoaded}
             info={`${audienciasTotalsData.messages_total}`}
-            title={TEXTCONSTANTS.audiencesTotalsTexts.subSectionMessagesTotals.title}
-            toolTipText={TEXTCONSTANTS.audiencesTotalsTexts.subSectionMessagesTotals.toolTip}
-            toolTipAriaLabel={TEXTCONSTANTS.audiencesTotalsTexts.subSectionMessagesTotals.toolTipAriaLabel}
+            title={
+              TEXTCONSTANTS.audiencesTotalsTexts.subSectionMessagesTotals.title
+            }
+            toolTipText={
+              TEXTCONSTANTS.audiencesTotalsTexts.subSectionMessagesTotals
+                .toolTip
+            }
+            toolTipAriaLabel={
+              TEXTCONSTANTS.audiencesTotalsTexts.subSectionMessagesTotals
+                .toolTipAriaLabel
+            }
             toolTipColor={customTheme.palette.audiencias.seabuckthorn}
           />
         </Grid>
@@ -511,9 +634,17 @@ function Audiencias(props) {
           <TotalFrame
             isLoaded={totalsAreLoaded}
             info={audienciasTotalsData.questions_total}
-            title={TEXTCONSTANTS.audiencesTotalsTexts.subSectionQuestionsTotals.title}
-            toolTipText={TEXTCONSTANTS.audiencesTotalsTexts.subSectionQuestionsTotals.toolTip}
-            toolTipAriaLabel={TEXTCONSTANTS.audiencesTotalsTexts.subSectionQuestionsTotals.toolTipAriaLabel}
+            title={
+              TEXTCONSTANTS.audiencesTotalsTexts.subSectionQuestionsTotals.title
+            }
+            toolTipText={
+              TEXTCONSTANTS.audiencesTotalsTexts.subSectionQuestionsTotals
+                .toolTip
+            }
+            toolTipAriaLabel={
+              TEXTCONSTANTS.audiencesTotalsTexts.subSectionQuestionsTotals
+                .toolTipAriaLabel
+            }
           />
         </Grid>
 
@@ -521,66 +652,78 @@ function Audiencias(props) {
           <SectionHeader
             classes={classes}
             title={TEXTCONSTANTS.totalRoomsSectionTexts.title}
-            toolTipText={TEXTCONSTANTS.distributionOfParticipationSectionTexts.toolTip}
-            toolTipAriaLabel={TEXTCONSTANTS.distributionOfParticipationSectionTexts.toolTipAriaLabel}
+            toolTipText={
+              TEXTCONSTANTS.distributionOfParticipationSectionTexts.toolTip
+            }
+            toolTipAriaLabel={
+              TEXTCONSTANTS.distributionOfParticipationSectionTexts
+                .toolTipAriaLabel
+            }
           />
-          {(totalRoomsChartData !== undefined && totalRoomsChartData.length > 0) ? (
-            <ChartTotalRoomsWithFilter
-              height="60vh"
-              download
-              exportData={totalRoomsChartData}
-              title={periodSubTitle}
-              classes={classes}
-              data={totalRoomsChartData}
-              chartType={audiencesRoomsTotalsChart.chartType}
-              chartOptions={audiencesRoomsTotalsChart.options}
-              apiLastUpdate={apiLastConsolidateOfDataDate}
-              tool={TOOLNAME}
-              isLoaded
-              apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
-            />
-          ) : (
-            <NoDataForSelectedPeriod
-              title={periodSubTitle}
-              tool={TOOLNAME}
-              apiLastUpdate={apiLastConsolidateOfDataDate}
-              toolColor={headerColors.borderColor}
-              apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
-            />
-          )}
+          {totalRoomsChartData !== undefined
+            && totalRoomsChartData.length > 0 ? (
+              <ChartTotalRoomsWithFilter
+                height="60vh"
+                download
+                exportData={totalRoomsChartData}
+                title={periodSubTitle}
+                classes={classes}
+                data={totalRoomsChartData}
+                chartType={audiencesRoomsTotalsChart.chartType}
+                chartOptions={audiencesRoomsTotalsChart.options}
+                apiLastUpdate={apiLastConsolidateOfDataDate}
+                tool={TOOLNAME}
+                isLoaded
+                apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
+              />
+            ) : (
+              <NoDataForSelectedPeriod
+                title={periodSubTitle}
+                tool={TOOLNAME}
+                apiLastUpdate={apiLastConsolidateOfDataDate}
+                toolColor={headerColors.borderColor}
+                apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
+              />
+            )}
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
           <SectionHeader
             classes={classes}
             title={TEXTCONSTANTS.distributionOfParticipationSectionTexts.title}
-            toolTipText={TEXTCONSTANTS.distributionOfParticipationSectionTexts.toolTip}
-            toolTipAriaLabel={TEXTCONSTANTS.distributionOfParticipationSectionTexts.toolTipAriaLabel}
+            toolTipText={
+              TEXTCONSTANTS.distributionOfParticipationSectionTexts.toolTip
+            }
+            toolTipAriaLabel={
+              TEXTCONSTANTS.distributionOfParticipationSectionTexts
+                .toolTipAriaLabel
+            }
           />
-          {(participantionChartData !== undefined && participantionChartData.length > 0) ? (
-            <ChartAndReport
-              height="60vh"
-              download
-              exportData={participantionChartData}
-              title={periodSubTitle}
-              classes={classes}
-              data={participantionChartData}
-              chartType={audiencesWithMoreParticipation.chartType}
-              chartOptions={audiencesWithMoreParticipation.options}
-              apiLastUpdate={apiLastConsolidateOfDataDate}
-              tool={TOOLNAME}
-              isLoaded
-              apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
-            />
-          ) : (
-            <NoDataForSelectedPeriod
-              title={periodSubTitle}
-              tool={TOOLNAME}
-              apiLastUpdate={apiLastConsolidateOfDataDate}
-              toolColor={headerColors.borderColor}
-              apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
-            />
-          )}
+          {participantionChartData !== undefined
+            && participantionChartData.length > 0 ? (
+              <ChartAndReport
+                height="60vh"
+                download
+                exportData={participantionChartData}
+                title={periodSubTitle}
+                classes={classes}
+                data={participantionChartData}
+                chartType={audiencesWithMoreParticipation.chartType}
+                chartOptions={audiencesWithMoreParticipation.options}
+                apiLastUpdate={apiLastConsolidateOfDataDate}
+                tool={TOOLNAME}
+                isLoaded
+                apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
+              />
+            ) : (
+              <NoDataForSelectedPeriod
+                title={periodSubTitle}
+                tool={TOOLNAME}
+                apiLastUpdate={apiLastConsolidateOfDataDate}
+                toolColor={headerColors.borderColor}
+                apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
+              />
+            )}
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
@@ -589,9 +732,11 @@ function Audiencias(props) {
             toolTipColor={customTheme.palette.audiencias.seabuckthorn}
             title={TEXTCONSTANTS.rankingSectionTexts.title}
             toolTipText={TEXTCONSTANTS.rankingSectionTexts.toolTip}
-            toolTipAriaLabel={TEXTCONSTANTS.rankingSectionTexts.toolTipAriaLabel}
+            toolTipAriaLabel={
+              TEXTCONSTANTS.rankingSectionTexts.toolTipAriaLabel
+            }
           />
-          {(roomsRankingData !== undefined && roomsRankingData.length > 0) ? (
+          {roomsRankingData !== undefined && roomsRankingData.length > 0 ? (
             <ChartDataFrame
               height="30vh"
               title={periodSubTitle}
@@ -634,8 +779,10 @@ function Audiencias(props) {
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <SubSectionHeader title={TEXTCONSTANTS.usersSectionTexts.subSectionNewUsers.title} />
-          {(newUsersChartData !== undefined && newUsersChartData.length > 0) ? (
+          <SubSectionHeader
+            title={TEXTCONSTANTS.usersSectionTexts.subSectionNewUsers.title}
+          />
+          {newUsersChartData !== undefined && newUsersChartData.length > 0 ? (
             <div className={classes.contentBox}>
               <ChartAndReport
                 isLoaded={newUsersChartDataLoaded}
@@ -663,32 +810,38 @@ function Audiencias(props) {
         </Grid>
 
         <Grid item xs={12} className={classes.spacing}>
-          <SubSectionHeader title={TEXTCONSTANTS.usersSectionTexts.subSectionAccumulatedRegisteredUsers.title} />
-          {(totalUsersChartData !== undefined && totalUsersChartData.length > 0) ? (
-            <div className={classes.contentBox}>
-              <ChartAndReport
-                download={false}
-                exportData={totalUsersChartData}
-                isLoaded={totalUsersChartDataLoaded}
+          <SubSectionHeader
+            title={
+              TEXTCONSTANTS.usersSectionTexts
+                .subSectionAccumulatedRegisteredUsers.title
+            }
+          />
+          {totalUsersChartData !== undefined
+            && totalUsersChartData.length > 0 ? (
+              <div className={classes.contentBox}>
+                <ChartAndReport
+                  download={false}
+                  exportData={totalUsersChartData}
+                  isLoaded={totalUsersChartDataLoaded}
+                  title={periodSubTitle}
+                  classes={classes}
+                  data={totalUsersChartData}
+                  chartType={audiencesChartsUsersSettings.chartType}
+                  chartOptions={audiencesChartsUsersSettings.options}
+                  apiLastUpdate={apiLastConsolidateOfDataDate}
+                  tool={TOOLNAME}
+                  apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
+                />
+              </div>
+            ) : (
+              <NoDataForSelectedPeriod
                 title={periodSubTitle}
-                classes={classes}
-                data={totalUsersChartData}
-                chartType={audiencesChartsUsersSettings.chartType}
-                chartOptions={audiencesChartsUsersSettings.options}
-                apiLastUpdate={apiLastConsolidateOfDataDate}
                 tool={TOOLNAME}
+                apiLastUpdate={apiLastConsolidateOfDataDate}
+                toolColor={headerColors.borderColor}
                 apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
               />
-            </div>
-          ) : (
-            <NoDataForSelectedPeriod
-              title={periodSubTitle}
-              tool={TOOLNAME}
-              apiLastUpdate={apiLastConsolidateOfDataDate}
-              toolColor={headerColors.borderColor}
-              apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
-            />
-          )}
+            )}
         </Grid>
       </Grid>
     </div>
