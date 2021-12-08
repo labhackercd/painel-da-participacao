@@ -17,10 +17,10 @@ const useStyles = makeStyles((theme) => ({
     height: '92%',
     textTransform: 'capitalize',
     fontWeight: '600',
-    marginLeft: '80px',
     minWidth: '0',
     padding: '0px',
-    fontSize: '1.2rem',
+    marginLeft: '16px',
+    fontSize: '16px',
     opacity: '1',
 
     '& button': {
@@ -35,8 +35,13 @@ const useStyles = makeStyles((theme) => ({
       color: 'white',
     },
 
-    [theme.breakpoints.only('lg')]: {
-      fontSize: '1rem',
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: '34px',
+    },
+
+    [theme.breakpoints.up('lg')]: {
+      marginLeft: '56px',
+      fontSize: '20px',
     },
   },
   tabSelected: {
@@ -55,11 +60,33 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     justifyContent: 'space-between',
     alignItens: 'center',
+
+  },
+
+  toolbarContentMobileClose: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: '16px 4px 0px 16px',
+
+    [theme.breakpoints.up('sm')]: {
+      padding: '32px 23px 0px 35px',
+    },
   },
   mobileLogo: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  iconMenu: {
+    width: '32px',
+    height: '32px',
+
+    [theme.breakpoints.up('sm')]: {
+      width: '48px',
+      height: '48px',
+    },
   },
   desktopNavbarContent: {
     width: '100%',
@@ -96,6 +123,8 @@ const useStyles = makeStyles((theme) => ({
     marginRight: 'auto',
   },
   tabsClass: {
+    marginTop: '36px',
+
     [theme.breakpoints.down('md')]: {
       alignItems: 'baseline',
       '& .MuiTabs-flexContainer': {
@@ -109,6 +138,12 @@ const useStyles = makeStyles((theme) => ({
       '& span': {
         width: 'auto',
       },
+    },
+    [theme.breakpoints.up('sm')]: {
+      marginTop: '60px',
+    },
+    [theme.breakpoints.up('lg')]: {
+      marginTop: '0px',
     },
   },
   indicatorClass: {

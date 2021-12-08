@@ -56,10 +56,12 @@ export default function PageNavbar(props) {
     drawerMobile,
     offset,
     toolbarContentMobile,
+    toolbarContentMobileClose,
     mobileLogo,
     logoCamaraBar,
     desktopNavbarContent,
     camaraBar,
+    iconMenu,
     tabsClass,
     indicatorClass,
   } = useStyles();
@@ -185,27 +187,18 @@ export default function PageNavbar(props) {
           onClose={handleDrawerClose}
           classes={{ paper: drawerMobile }}
         >
-          <Box
-            height="50px"
-            width="100%"
-            display="flex"
-            justifyContent="space-between"
-            alignItems="center"
-            padding="30px"
-            paddingX="10px"
-          >
-            <Box>
+          <div className={toolbarContentMobileClose}>
+            <div className={mobileLogo}>
               <ApplicationLogo />
-            </Box>
-            <Box>
-              <IconButton
-                onClick={handleDrawerClose}
-                style={{ color: 'white' }}
-              >
-                <CloseIcon />
-              </IconButton>
-            </Box>
-          </Box>
+            </div>
+
+            <IconButton
+              onClick={handleDrawerClose}
+              style={{ color: 'white' }}
+            >
+              <CloseIcon className={iconMenu} />
+            </IconButton>
+          </div>
 
           <div className={drawerContainer}>
             <NavTabs orientation="vertical" />
@@ -224,7 +217,7 @@ export default function PageNavbar(props) {
               onClick: handleDrawerOpen,
             }}
           >
-            <MenuIcon />
+            <MenuIcon className={iconMenu} />
           </IconButton>
         </div>
       </Toolbar>
