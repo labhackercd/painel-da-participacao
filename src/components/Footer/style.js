@@ -73,8 +73,8 @@ export const useStyles = makeStyles((theme) => ({
       width: '200px',
     },
 
-    [theme.breakpoints.up('lg')]: {
-      flex: 5,
+    '@media (min-width: 1024px)': {
+      flex: 4,
     },
   },
   informationLabSm: {

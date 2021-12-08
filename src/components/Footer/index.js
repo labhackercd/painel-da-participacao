@@ -60,14 +60,19 @@ export default function Footer() {
               Disque-Câmara:
             </Typography>
             <Typography
-              className={`${classes.typography} ${classes.informationItemTypographyText}`}
+              className={`${classes.typography} ${classes.informationItemTypographyText} ${classes.informationLabSm}`}
             >
               0800-0-619-619
             </Typography>
             <Typography
-              className={`${classes.typography} ${classes.informationItemTypographyText}`}
+              className={`${classes.typography} ${classes.informationItemTypographyText} ${classes.informationLabSm}`}
             >
               de 8h às 20h
+            </Typography>
+            <Typography
+              className={`${classes.typography} ${classes.informationItemTypographyText} ${classes.informationLabLg}`}
+            >
+              0800-0-619-619 de 8h às 20h
             </Typography>
           </Box>
         </Box>
