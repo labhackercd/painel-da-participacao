@@ -92,7 +92,7 @@ export default function PageNavbar(props) {
       rel="noopener noreferrer"
       style={{ lineHeight: 0 }}
     >
-      <img src={logoCamaraDosDeputados} alt="Logo Câmara dos Deputados" />
+      <img style={{ width: '173px', height: '46px' }} src={logoCamaraDosDeputados} alt="Logo Câmara dos Deputados" />
     </a>
   );
 

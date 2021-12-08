@@ -56,10 +56,16 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   toolbarContentMobile: {
-    display: 'flex',
     width: '100%',
+    display: 'flex',
     justifyContent: 'space-between',
-    alignItens: 'center',
+    alignItems: 'center',
+    marginTop: '16px',
+
+    [theme.breakpoints.up('sm')]: {
+      padding: '32px 0px 0px 11px',
+      marginTop: '0px',
+    },
 
   },
 
@@ -91,29 +97,27 @@ const useStyles = makeStyles((theme) => ({
   desktopNavbarContent: {
     width: '100%',
     height: '10vh',
-    paddingTop: '5rem',
-    paddingBottom: '5rem',
+    padding: '48px 0px 0px 0px',
     maxWidth: '1280px',
     marginLeft: 'auto',
     marginRight: 'auto',
     display: 'flex',
     justifyContent: 'space-around',
+
+    [theme.breakpoints.only('lg')]: {
+      padding: '48px 70px 0px 70px',
+    },
   },
   camaraBar: {
-    height: '5vh',
     width: '100%',
     backgroundColor: '#363636',
     display: 'flex',
     alignItems: 'center',
-    padding: '0 0 0 1.5rem',
     paddingTop: '5px',
     paddingBottom: '5px',
 
     [theme.breakpoints.up('lg')]: {
-      height: '6vh',
-    },
-    [theme.breakpoints.up('xl')]: {
-      padding: '0 0 0 2.9rem',
+      height: '96px',
     },
   },
   logoCamaraBar: {
@@ -121,6 +125,10 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: '1280px',
     marginLeft: 'auto',
     marginRight: 'auto',
+
+    [theme.breakpoints.only('lg')]: {
+      padding: '0px 70px',
+    },
   },
   tabsClass: {
     marginTop: '36px',
@@ -154,36 +162,9 @@ const useStyles = makeStyles((theme) => ({
       marginTop: '48px',
     },
   },
-  logoPainelClass: {
-    width: '106px',
-    height: '32px',
-
-    [theme.breakpoints.up('md')]: {
-      width: '170px',
-      height: '50px',
-    },
-    [theme.breakpoints.up('lg')]: {
-      width: '240px',
-      height: '70px',
-    },
-    [theme.breakpoints.up('xl')]: {
-      width: '270px',
-      height: '80px',
-    },
-  },
   logoCamaraDosDeputados: {
-    [theme.breakpoints.up('md')]: {
-      width: '170px',
-      height: '50px',
-    },
-    [theme.breakpoints.up('lg')]: {
-      width: '240px',
-      height: '70px',
-    },
-    [theme.breakpoints.up('xl')]: {
-      width: '270px',
-      height: '80px',
-    },
+    width: '173px',
+    height: '47px',
   },
 }));
 
