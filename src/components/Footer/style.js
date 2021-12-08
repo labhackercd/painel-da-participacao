@@ -24,7 +24,7 @@ export const useStyles = makeStyles((theme) => ({
       width: '160px',
       height: '43px',
     },
-    [theme.breakpoints.up('md')]: {
+    '@media (min-width: 1024px)': {
       display: 'none',
     },
   },

@@ -76,7 +76,7 @@ export default function PageNavbar(props) {
 
   useEffect(() => {
     const setResponsiveness = () =>
-      window.innerWidth < 1280
+      window.innerWidth < 1024
         ? setState((prevState) => ({ ...prevState, mobileView: true }))
         : setState((prevState) => ({ ...prevState, mobileView: false }));
 

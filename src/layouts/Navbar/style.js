@@ -98,13 +98,13 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     height: '10vh',
     padding: '48px 0px 0px 0px',
+    display: 'flex',
     maxWidth: '1280px',
     marginLeft: 'auto',
     marginRight: 'auto',
-    display: 'flex',
     justifyContent: 'space-around',
 
-    [theme.breakpoints.only('lg')]: {
+    [theme.breakpoints.up('md')]: {
       padding: '48px 70px 0px 70px',
     },
   },
@@ -126,14 +126,13 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 'auto',
     marginRight: 'auto',
 
-    [theme.breakpoints.only('lg')]: {
+    [theme.breakpoints.up('md')]: {
       padding: '0px 70px',
     },
   },
   tabsClass: {
-    marginTop: '36px',
-
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('sm')]: {
+      marginTop: '36px',
       alignItems: 'baseline',
       '& .MuiTabs-flexContainer': {
         alignItems: 'baseline',
@@ -146,9 +145,6 @@ const useStyles = makeStyles((theme) => ({
       '& span': {
         width: 'auto',
       },
-    },
-    [theme.breakpoints.up('sm')]: {
-      marginTop: '60px',
     },
     [theme.breakpoints.up('lg')]: {
       marginTop: '0px',
