@@ -11,6 +11,7 @@ import { apiInstance } from '../services/api/apiInstance';
 import Layout from '../layouts/index';
 import {
   DEFAULT_SEARCH_QUERY,
+  PARTICIPANTS_SEARCH_QUERY,
   REFRESH_API_CACHE_DATA_INTERVAL,
 } from '../settings/applicationOptions/index';
 import * as TEXTCONSTANTS from '../settings/texts/AudienciasPage';
@@ -101,22 +102,22 @@ export async function getStaticProps() {
 
   audienciasRankingData = await getAudienciasRankingData();
   const participantsResponse = await apiInstance.get(
-    `${process.env.NEXT_PUBLIC_AUDIENCIAS_PARTICIPANT_USERS_URL}${DEFAULT_SEARCH_QUERY}`
+    `${process.env.NEXT_PUBLIC_AUDIENCIAS_PARTICIPANT_USERS_URL}${PARTICIPANTS_SEARCH_QUERY}`,
   );
   const roomsResponseData = await apiInstance.get(
-    `${process.env.NEXT_PUBLIC_AUDIENCIAS_ROOMS_RANKING_URL}${DEFAULT_SEARCH_QUERY}`
+    `${process.env.NEXT_PUBLIC_AUDIENCIAS_ROOMS_RANKING_URL}${DEFAULT_SEARCH_QUERY}`,
   );
   const messagesResponseData = await apiInstance.get(
-    `${process.env.NEXT_PUBLIC_AUDIENCIAS_MESSAGES_RANKING_URL}${DEFAULT_SEARCH_QUERY}`
+    `${process.env.NEXT_PUBLIC_AUDIENCIAS_MESSAGES_RANKING_URL}${DEFAULT_SEARCH_QUERY}`,
   );
   const questionsResponseData = await apiInstance.get(
-    `${process.env.NEXT_PUBLIC_AUDIENCIAS_QUESTIONS_RANKING_URL}${DEFAULT_SEARCH_QUERY}`
+    `${process.env.NEXT_PUBLIC_AUDIENCIAS_QUESTIONS_RANKING_URL}${DEFAULT_SEARCH_QUERY}`,
   );
   const newUsersResponseData = await apiInstance.get(
-    `${process.env.NEXT_PUBLIC_AUDIENCIAS_NEW_USERS_URL}${DEFAULT_SEARCH_QUERY}`
+    `${process.env.NEXT_PUBLIC_AUDIENCIAS_NEW_USERS_URL}${DEFAULT_SEARCH_QUERY}`,
   );
   const votesResponseData = await apiInstance.get(
-    `${process.env.NEXT_PUBLIC_AUDIENCIAS_VOTES_RANKING_URL}${DEFAULT_SEARCH_QUERY}`
+    `${process.env.NEXT_PUBLIC_AUDIENCIAS_VOTES_RANKING_URL}${DEFAULT_SEARCH_QUERY}`,
   );
 
   return {
