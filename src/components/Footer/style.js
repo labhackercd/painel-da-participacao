@@ -17,26 +17,34 @@ export const useStyles = makeStyles((theme) => ({
       'linear-gradient(90deg, rgba(20, 215, 104, 0.4) 0%, rgba(17, 129, 233, 0.4) 34.9%, rgba(245, 157, 42, 0.4) 67.71%, rgba(228, 56, 180, 0.4) 100%)',
   },
   bannerBoxLogos: {
-    [theme.breakpoints.up('md')]: {
+    width: '91px',
+    height: '24px',
+
+    [theme.breakpoints.up('sm')]: {
+      width: '160px',
+      height: '43px',
+    },
+    '@media (min-width: 1024px)': {
       display: 'none',
     },
   },
   informationsDiv: {
-    padding: '1rem 5rem 1rem 5rem',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
+    width: '100%',
+    maxWidth: '1280px',
+    marginLeft: 'auto',
+    marginRight: 'auto',
 
-    '@media (max-width: 800px)': {
-      padding: '1rem 1rem 1rem 1rem',
-      alignItems: 'flex-start',
+    padding: '16px 20px',
+
+    [theme.breakpoints.up('sm')]: {
+      padding: '32px 35px',
     },
 
-    [theme.breakpoints.up('xl')]: {
-      gap: '200px',
-      maxWidth: '1280px',
-      marginLeft: 'auto',
-      marginRight: 'auto',
+    [theme.breakpoints.up('md')]: {
+      padding: '20px 70px',
     },
   },
   informationItem: {
@@ -47,6 +55,9 @@ export const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     '@media (max-width: 400px)': {
       width: '300px',
+    },
+    '@media (min-width: 1024px)': {
+      flex: 8,
     },
   },
   informationItemImg: {
@@ -67,8 +78,8 @@ export const useStyles = makeStyles((theme) => ({
       width: '200px',
     },
 
-    [theme.breakpoints.up('lg')]: {
-      flex: 5,
+    '@media (min-width: 1024px)': {
+      flex: 20,
     },
   },
   informationLabSm: {
@@ -91,9 +102,13 @@ export const useStyles = makeStyles((theme) => ({
   },
   informationItemTypographyText: {
     fontWeight: 'regular',
-    '@media (max-width: 400px)': {
-      textAlign: 'center',
-      fontSize: '0.5rem',
+    fontSize: '8px',
+
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '10px',
+    },
+    [theme.breakpoints.up('lg')]: {
+      fontSize: '13px',
     },
   },
 }));

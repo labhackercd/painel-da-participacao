@@ -17,10 +17,10 @@ const useStyles = makeStyles((theme) => ({
     height: '92%',
     textTransform: 'capitalize',
     fontWeight: '600',
-    marginLeft: '80px',
     minWidth: '0',
     padding: '0px',
-    fontSize: '1.2rem',
+    marginLeft: '16px',
+    fontSize: '16px',
     opacity: '1',
 
     '& button': {
@@ -35,8 +35,13 @@ const useStyles = makeStyles((theme) => ({
       color: 'white',
     },
 
-    [theme.breakpoints.only('lg')]: {
-      fontSize: '1rem',
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: '34px',
+    },
+
+    [theme.breakpoints.up('lg')]: {
+      marginLeft: '56px',
+      fontSize: '20px',
     },
   },
   tabSelected: {
@@ -51,42 +56,68 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   toolbarContentMobile: {
-    display: 'flex',
     width: '100%',
+    display: 'flex',
     justifyContent: 'space-between',
-    alignItens: 'center',
+    alignItems: 'center',
+    marginTop: '16px',
+
+    [theme.breakpoints.up('sm')]: {
+      padding: '32px 0px 0px 11px',
+      marginTop: '0px',
+    },
+
+  },
+
+  toolbarContentMobileClose: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: '16px 4px 0px 16px',
+
+    [theme.breakpoints.up('sm')]: {
+      padding: '32px 23px 0px 35px',
+    },
   },
   mobileLogo: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
   },
+  iconMenu: {
+    width: '32px',
+    height: '32px',
+
+    [theme.breakpoints.up('sm')]: {
+      width: '48px',
+      height: '48px',
+    },
+  },
   desktopNavbarContent: {
     width: '100%',
     height: '10vh',
-    paddingTop: '5rem',
-    paddingBottom: '5rem',
+    padding: '48px 0px 0px 0px',
+    display: 'flex',
     maxWidth: '1280px',
     marginLeft: 'auto',
     marginRight: 'auto',
-    display: 'flex',
     justifyContent: 'space-around',
+
+    [theme.breakpoints.up('md')]: {
+      padding: '48px 70px 0px 70px',
+    },
   },
   camaraBar: {
-    height: '5vh',
     width: '100%',
     backgroundColor: '#363636',
     display: 'flex',
     alignItems: 'center',
-    padding: '0 0 0 1.5rem',
     paddingTop: '5px',
     paddingBottom: '5px',
 
     [theme.breakpoints.up('lg')]: {
-      height: '6vh',
-    },
-    [theme.breakpoints.up('xl')]: {
-      padding: '0 0 0 2.9rem',
+      height: '96px',
     },
   },
   logoCamaraBar: {
@@ -94,9 +125,14 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: '1280px',
     marginLeft: 'auto',
     marginRight: 'auto',
+
+    [theme.breakpoints.up('md')]: {
+      padding: '0px 70px',
+    },
   },
   tabsClass: {
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('sm')]: {
+      marginTop: '36px',
       alignItems: 'baseline',
       '& .MuiTabs-flexContainer': {
         alignItems: 'baseline',
@@ -110,6 +146,9 @@ const useStyles = makeStyles((theme) => ({
         width: 'auto',
       },
     },
+    [theme.breakpoints.up('lg')]: {
+      marginTop: '0px',
+    },
   },
   indicatorClass: {
     color: 'transparent',
@@ -119,36 +158,9 @@ const useStyles = makeStyles((theme) => ({
       marginTop: '48px',
     },
   },
-  logoPainelClass: {
-    width: '106px',
-    height: '32px',
-
-    [theme.breakpoints.up('md')]: {
-      width: '170px',
-      height: '50px',
-    },
-    [theme.breakpoints.up('lg')]: {
-      width: '240px',
-      height: '70px',
-    },
-    [theme.breakpoints.up('xl')]: {
-      width: '270px',
-      height: '80px',
-    },
-  },
   logoCamaraDosDeputados: {
-    [theme.breakpoints.up('md')]: {
-      width: '170px',
-      height: '50px',
-    },
-    [theme.breakpoints.up('lg')]: {
-      width: '240px',
-      height: '70px',
-    },
-    [theme.breakpoints.up('xl')]: {
-      width: '270px',
-      height: '80px',
-    },
+    width: '173px',
+    height: '47px',
   },
 }));
 

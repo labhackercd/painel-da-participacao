@@ -1,6 +1,13 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
-import { Toolbar, IconButton, Drawer, Box, Tab, Tabs } from '@material-ui/core';
+import {
+  Toolbar,
+  IconButton,
+  Drawer,
+  Box,
+  Tab,
+  Tabs,
+} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/Close';
 import Link from 'next/link';
@@ -11,7 +18,12 @@ import useStyles from './style';
 
 function LinkTab(parans) {
   const classes = useStyles();
-  const { url, currentSelectedValue, index, ...props } = parans;
+  const {
+    url,
+    currentSelectedValue,
+    index,
+    ...props
+  } = parans;
   let isTabSelected = false;
 
   if (index !== undefined && currentSelectedValue !== undefined) {
@@ -44,10 +56,12 @@ export default function PageNavbar(props) {
     drawerMobile,
     offset,
     toolbarContentMobile,
+    toolbarContentMobileClose,
     mobileLogo,
     logoCamaraBar,
     desktopNavbarContent,
     camaraBar,
+    iconMenu,
     tabsClass,
     indicatorClass,
   } = useStyles();
@@ -62,7 +76,7 @@ export default function PageNavbar(props) {
 
   useEffect(() => {
     const setResponsiveness = () =>
-      window.innerWidth < 1280
+      window.innerWidth < 1024
         ? setState((prevState) => ({ ...prevState, mobileView: true }))
         : setState((prevState) => ({ ...prevState, mobileView: false }));
 
@@ -78,7 +92,7 @@ export default function PageNavbar(props) {
       rel="noopener noreferrer"
       style={{ lineHeight: 0 }}
     >
-      <img src={logoCamaraDosDeputados} alt="Logo Câmara dos Deputados" />
+      <img style={{ width: '173px', height: '46px' }} src={logoCamaraDosDeputados} alt="Logo Câmara dos Deputados" />
     </a>
   );
 
@@ -162,40 +176,29 @@ export default function PageNavbar(props) {
   );
 
   const displayMobile = () => {
-    const handleDrawerOpen = () =>
-      setState((prevState) => ({ ...prevState, drawerOpen: true }));
-    const handleDrawerClose = () =>
-      setState((prevState) => ({ ...prevState, drawerOpen: false }));
+    const handleDrawerOpen = () => setState((prevState) => ({ ...prevState, drawerOpen: true }));
+    const handleDrawerClose = () => setState((prevState) => ({ ...prevState, drawerOpen: false }));
 
     return (
       <Toolbar>
         <Drawer
-          anchor="right"
+          anchor="up"
           open={drawerOpen}
           onClose={handleDrawerClose}
           classes={{ paper: drawerMobile }}
         >
-          <Box
-            height="50px"
-            width="100%"
-            display="flex"
-            justifyContent="space-between"
-            alignItems="center"
-            padding="30px"
-            paddingX="10px"
-          >
-            <Box>
+          <div className={toolbarContentMobileClose}>
+            <div className={mobileLogo}>
               <ApplicationLogo />
-            </Box>
-            <Box>
-              <IconButton
-                onClick={handleDrawerClose}
-                style={{ color: 'white' }}
-              >
-                <CloseIcon />
-              </IconButton>
-            </Box>
-          </Box>
+            </div>
+
+            <IconButton
+              onClick={handleDrawerClose}
+              style={{ color: 'white' }}
+            >
+              <CloseIcon className={iconMenu} />
+            </IconButton>
+          </div>
 
           <div className={drawerContainer}>
             <NavTabs orientation="vertical" />
@@ -214,7 +217,7 @@ export default function PageNavbar(props) {
               onClick: handleDrawerOpen,
             }}
           >
-            <MenuIcon />
+            <MenuIcon className={iconMenu} />
           </IconButton>
         </div>
       </Toolbar>
