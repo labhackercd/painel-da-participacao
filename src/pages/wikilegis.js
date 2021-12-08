@@ -10,6 +10,7 @@ import ptBR from 'date-fns/locale/pt-BR';
 import { apiInstance } from '../services/api/apiInstance';
 import {
   DEFAULT_SEARCH_QUERY,
+  PARTICIPANTS_SEARCH_QUERY,
   REFRESH_API_CACHE_DATA_INTERVAL,
 } from '../settings/applicationOptions/index';
 import Layout from '../layouts/index';
@@ -91,19 +92,19 @@ export async function getStaticProps() {
   }
   wikilegisRankingData = await getWikilegisRankingData();
   const participantsResponse = await apiInstance.get(
-    `${process.env.NEXT_PUBLIC_WIKILEGIS_PARTICIPANT_USERS_URL}${DEFAULT_SEARCH_QUERY}`
+    `${process.env.NEXT_PUBLIC_WIKILEGIS_PARTICIPANT_USERS_URL}${PARTICIPANTS_SEARCH_QUERY}`,
   );
   const legislativeProposalsResponseData = await apiInstance.get(
-    `${process.env.NEXT_PUBLIC_WIKILEGIS_LEGISLATIVE_PROPOSALS_URL}${DEFAULT_SEARCH_QUERY}`
+    `${process.env.NEXT_PUBLIC_WIKILEGIS_LEGISLATIVE_PROPOSALS_URL}${DEFAULT_SEARCH_QUERY}`,
   );
   const opinionsResponseData = await apiInstance.get(
-    `${process.env.NEXT_PUBLIC_WIKILEGIS_OPINIONS_URL}${DEFAULT_SEARCH_QUERY}`
+    `${process.env.NEXT_PUBLIC_WIKILEGIS_OPINIONS_URL}${DEFAULT_SEARCH_QUERY}`,
   );
   const votesResponseData = await apiInstance.get(
-    `${process.env.NEXT_PUBLIC_WIKILEGIS_VOTES_URL}${DEFAULT_SEARCH_QUERY}`
+    `${process.env.NEXT_PUBLIC_WIKILEGIS_VOTES_URL}${DEFAULT_SEARCH_QUERY}`,
   );
   const newUsersResponseData = await apiInstance.get(
-    `${process.env.NEXT_PUBLIC_WIKILEGIS_NEW_USERS_URL}${DEFAULT_SEARCH_QUERY}`
+    `${process.env.NEXT_PUBLIC_WIKILEGIS_NEW_USERS_URL}${DEFAULT_SEARCH_QUERY}`,
   );
 
   return {

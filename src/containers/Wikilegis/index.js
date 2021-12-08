@@ -14,7 +14,7 @@ import {
   getWikilegisParticipationChartDataByYear,
 } from './auxFunctions/computeParticipation';
 
-import { handleUpdatePeriodSearchQuery } from '../../services/functions/handlers/index';
+import { handleUpdatePeriodSearchQuery, handleUpdatePeriodSearchQueryParticipants } from '../../services/functions/handlers/index';
 
 import {
   AlertCachedData, ChartDataFrame, Header, RankingTable, TotalFrame, SectionHeader, SubSectionHeader,
@@ -159,9 +159,9 @@ function Wikilegis(props) {
     }
   }
 
-  async function fetchAndUpdateApisData(query) {
+  async function fetchAndUpdateApisData(query, queryParticipants) {
     try {
-      const participants = await fetchDataFromApi(process.env.NEXT_PUBLIC_WIKILEGIS_PARTICIPANT_USERS_URL, query);
+      const participants = await fetchDataFromApi(process.env.NEXT_PUBLIC_WIKILEGIS_PARTICIPANT_USERS_URL, queryParticipants);
       const legislativeProposals = await fetchDataFromApi(process.env.NEXT_PUBLIC_WIKILEGIS_LEGISLATIVE_PROPOSALS_URL, query);
       const opinions = await fetchDataFromApi(process.env.NEXT_PUBLIC_WIKILEGIS_OPINIONS_URL, query);
       const votes = await fetchDataFromApi(process.env.NEXT_PUBLIC_WIKILEGIS_VOTES_URL, query);
@@ -356,11 +356,11 @@ function Wikilegis(props) {
     });
   }
 
-  async function newLoadData(query, period, month, year) {
+  async function newLoadData(query, queryParticipants, period, month, year) {
     try {
       await resetPageComponentsLoadedStatusToFalse();
       await updateChartsAndTableSubTitle(period, month, year);
-      await fetchAndUpdateApisData(query);
+      await fetchAndUpdateApisData(query, queryParticipants);
     } catch (e) {
       console.error('Erro ao obter dados e atualizar página');
       setAllApiDataToDefaultCache();
@@ -377,8 +377,12 @@ function Wikilegis(props) {
   async function handlePeriodChange(month, year) {
     try {
       const { query, period } = await handleUpdatePeriodSearchQuery(month, year);
+      const { queryParticipants } = await handleUpdatePeriodSearchQueryParticipants(
+        month,
+        year,
+      );
       await updateSelectedPeriodInterval(period, month, year);
-      await newLoadData(query, period, month, year);
+      await newLoadData(query, queryParticipants, period, month, year);
     } catch (e) {
       console.error('Erro ao tentar modificar período selecionado');
     }
