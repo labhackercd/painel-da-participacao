@@ -29,20 +29,22 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   informationsDiv: {
-    padding: '1rem 5rem 1rem 5rem',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
+    width: '100%',
+    maxWidth: '1280px',
+    marginLeft: 'auto',
+    marginRight: 'auto',
 
-    '@media (max-width: 800px)': {
-      padding: '1rem 1rem 1rem 1rem',
+    padding: '16px 20px',
+
+    [theme.breakpoints.up('sm')]: {
+      padding: '32px 35px',
     },
 
-    [theme.breakpoints.up('xl')]: {
-      gap: '200px',
-      maxWidth: '1280px',
-      marginLeft: 'auto',
-      marginRight: 'auto',
+    [theme.breakpoints.up('md')]: {
+      padding: '20px 70px',
     },
   },
   informationItem: {
@@ -53,6 +55,9 @@ export const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     '@media (max-width: 400px)': {
       width: '300px',
+    },
+    '@media (min-width: 1024px)': {
+      flex: 8,
     },
   },
   informationItemImg: {
@@ -74,7 +79,7 @@ export const useStyles = makeStyles((theme) => ({
     },
 
     '@media (min-width: 1024px)': {
-      flex: 4,
+      flex: 20,
     },
   },
   informationLabSm: {
@@ -97,9 +102,13 @@ export const useStyles = makeStyles((theme) => ({
   },
   informationItemTypographyText: {
     fontWeight: 'regular',
-    '@media (max-width: 400px)': {
-      textAlign: 'center',
-      fontSize: '0.5rem',
+    fontSize: '8px',
+
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '10px',
+    },
+    [theme.breakpoints.up('lg')]: {
+      fontSize: '13px',
     },
   },
 }));
