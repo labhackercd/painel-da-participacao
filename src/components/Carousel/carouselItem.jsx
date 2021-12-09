@@ -1,139 +1,122 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { Box, Typography, Button, makeStyles } from '@material-ui/core';
+import {
+  Box,
+  Typography,
+  Button,
+  makeStyles,
+} from '@material-ui/core';
 import Link from 'next/link';
 
 const useStyles = makeStyles((theme) => ({
   box: {
-    paddingBottom: '50px',
-    marginTop: '100px',
+    marginTop: '80px',
+    padding: '0px 50px 40px 60px',
 
     [theme.breakpoints.only('xs')]: {
-      paddingBottom: '70px',
+      padding: '0px 0px 73px 0px',
       marginTop: '51px',
     },
   },
   container: {
-    width: '80%',
+    width: '100%',
     flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: '25px',
-
-    [theme.breakpoints.up('sm')]: {
-      width: '90%',
-      flexDirection: 'row',
-      display: 'flex',
-      gap: '50px',
-    },
-    [theme.breakpoints.up('md')]: {
-      width: '90%',
-      flexDirection: 'row',
-      display: 'flex',
-      gap: '50px',
-    },
-    [theme.breakpoints.up('lg')]: {
-      width: '90%',
-      flexDirection: 'row',
-      display: 'flex',
-      gap: '50px',
-    },
-    [theme.breakpoints.up('xl')]: {
-      width: '90%',
-      flexDirection: 'row',
-      display: 'flex',
-      gap: '50px',
-    },
-  },
-  firstContainer: {
-    height: '100%',
-    display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     gap: '16px',
 
     [theme.breakpoints.up('sm')]: {
-      gap: '56px',
+      width: '100%',
+      flexDirection: 'row',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
     },
-    [theme.breakpoints.up('md')]: {
-      gap: '58px',
+  },
+  firstContainer: {
+    height: '100%',
+    display: 'flex',
+    gap: '16px',
+    flexDirection: 'column',
+
+    [theme.breakpoints.only('xs')]: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginLeft: 'auto',
+      marginRight: 'auto',
     },
-    [theme.breakpoints.up('lg')]: {
-      gap: '58px',
+
+    [theme.breakpoints.up('sm')]: {
+      flex: 2,
+      gap: '24px',
+      flexDirection: 'row',
     },
-    [theme.breakpoints.up('xl')]: {
-      gap: '58px',
+
+    '@media (min-width: 1025px)': {
+      gap: '80px',
     },
   },
   caroulselItemImg: {
-    width: '64px',
-    height: '64px',
+    width: '72px',
+    height: '72px',
 
     [theme.breakpoints.up('sm')]: {
-      width: '70px',
-      height: '70px',
+      width: '80px',
+      height: '80px',
     },
-    [theme.breakpoints.up('md')]: {
-      width: '70px',
-      height: '70px',
+    '@media (min-width: 1025px)': {
+      width: '96px',
+      height: '96px',
     },
-    [theme.breakpoints.up('lg')]: {
-      width: '100px',
-      height: '100px',
+  },
+  typographyBox: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyItems: 'center',
+    alignItems: 'center',
+
+    [theme.breakpoints.up('sm')]: {
+      justifyItems: 'start',
+      alignItems: 'start',
     },
-    [theme.breakpoints.up('xl')]: {
-      width: '157px',
-      height: '157px',
-    },
+
   },
   typography: {
     fontFamily: 'Open Sans',
     letterSpacing: '0.05em',
-    textAlign: 'left',
+    [theme.breakpoints.up('sm')]: {
+      textAlign: 'left',
+    },
   },
   typographyToolTitle: {
     fontSize: '1.25rem',
     fontWeight: 'bold',
 
     [theme.breakpoints.up('sm')]: {
-      fontSize: '1.75rem',
+      fontSize: '25px',
     },
-    [theme.breakpoints.up('md')]: {
-      fontSize: '1.75rem',
-    },
-    [theme.breakpoints.up('lg')]: {
-      fontSize: '2.3rem',
+    '@media (min-width: 1025px)': {
+      fontSize: '39px',
     },
   },
   typographyDescription: {
-    fontSize: '0.875rem',
+    fontSize: '16px',
     fontWeight: 'regular',
+    width: '80%',
 
     [theme.breakpoints.up('sm')]: {
       fontSize: '1rem',
+      width: '100%',
     },
-    [theme.breakpoints.up('md')]: {
-      fontSize: '1.4rem',
-    },
-    [theme.breakpoints.up('lg')]: {
-      fontSize: '1.8rem',
+    '@media (min-width: 1025px)': {
+      fontSize: '25px',
     },
   },
   typographyButton: {
-    fontSize: '0.75rem',
+    fontSize: '13px',
     fontWeight: 'bold',
-    color: 'black',
+    color: '#121212',
     textAlign: 'center',
-
-    [theme.breakpoints.up('sm')]: {
-      fontSize: '0.9rem',
-    },
-    [theme.breakpoints.up('md')]: {
-      fontSize: '0.9rem',
-    },
-    [theme.breakpoints.up('lg')]: {
-      fontSize: '1.4rem',
-    },
   },
   buttonStyle: {
     height: '100%',
@@ -142,23 +125,30 @@ const useStyles = makeStyles((theme) => ({
     textTransform: 'none',
     fontWeight: 700,
     padding: '8px 14px 8px 14px',
-
-    [theme.breakpoints.only('xs')]: {
-      width: '60%',
-      height: '50%',
-      padding: '5px 8px 5px 8px',
-    },
-
+    borderRadius: '4px',
     transition: 'filter 0.2s',
     '&:hover': {
       filter: 'brightness(0.7)',
     },
+
+    [theme.breakpoints.only('xs')]: {
+      width: '60%',
+      height: '50%',
+      padding: '16px',
+    },
+
+    [theme.breakpoints.up('sm')]: {
+      width: '70%',
+    },
+
   },
   buttonContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    display: 'flex',
+
     [theme.breakpoints.only('xs')]: {
       width: '100%',
-      display: 'flex',
-      justifyContent: 'center',
     },
   },
 }));
@@ -179,8 +169,9 @@ export default function CarouselItem({ item }) {
           <Box>
             <img src={item.img} alt="" className={classes.caroulselItemImg} />
           </Box>
-          <Box>
+          <Box className={classes.typographyBox}>
             <Typography
+              width="100%"
               className={`${classes.typography} ${classes.typographyToolTitle}`}
               align="center"
             >

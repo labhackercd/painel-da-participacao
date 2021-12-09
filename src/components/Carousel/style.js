@@ -4,21 +4,22 @@ import { makeStyles } from '@material-ui/core/styles';
 export const useStyles = makeStyles((theme) => ({
   dot: {
     display: 'inline-block',
-    width: '12px',
-    height: '12px',
+    width: '4px',
+    height: '4px',
     borderRadius: '50%',
     opacity: 1,
-    padding: '5px 5px 5px 5px',
     webkitBoxShadow: 'none',
     boxShadow: 'none',
-    webkitTransition: 'background .5s',
-    mozTransition: 'background .5s',
-    transition: 'background .5s',
     padding: 0,
     margin: 0,
     marginRight: '12px',
     outline: 0,
     cursor: 'pointer',
+
+    [theme.breakpoints.up('sm')]: {
+      width: '8px',
+      height: '8px',
+    },
   },
   dotActive: {
     background: '#FFFFFF',
@@ -28,21 +29,21 @@ export const useStyles = makeStyles((theme) => ({
   },
   arrow: {
     position: 'absolute',
-    top: '175px',
+    top: '115px',
     zIndex: 1000,
     border: 0,
     background: 'none',
     opacity: 1,
     cursor: 'pointer',
 
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.only('xs')]: {
       position: 'relative',
     },
   },
   arrowLeft: {
-    left: 0,
+    left: -16,
   },
   arrowRight: {
-    right: 0,
+    right: -16,
   },
 }));
