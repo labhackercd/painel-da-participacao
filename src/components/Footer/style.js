@@ -42,10 +42,6 @@ export const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('sm')]: {
       padding: '32px 35px',
     },
-
-    [theme.breakpoints.up('md')]: {
-      padding: '20px 70px',
-    },
   },
   informationItem: {
     width: '300px',

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { isDesktop } from 'react-device-detect';
+import { isDesktop, isTablet } from 'react-device-detect';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
@@ -31,9 +31,9 @@ const CustomLeft = ({ onClick }) => {
       <svg
         xmlns="http://www.w3.org/2000/svg"
         enableBackground="new 0 0 24 24"
-        height="26"
+        height="40"
         viewBox="0 0 24 24"
-        width="26"
+        width="40"
       >
         <rect fill="none" height="24" width="24" />
         <g>
@@ -57,9 +57,9 @@ const CustomRight = ({ onClick }) => {
       <svg
         xmlns="http://www.w3.org/2000/svg"
         enableBackground="new 0 0 24 24"
-        height="26"
+        height="40"
         viewBox="0 0 24 24"
-        width="26"
+        width="40"
       >
         <g>
           <path d="M0,0h24v24H0V0z" fill="none" />
@@ -86,11 +86,11 @@ export default function Caroulsel() {
       items: 1,
     },
     tablet: {
-      breakpoint: { max: 1024, min: 464 },
+      breakpoint: { max: 1024, min: 600 },
       items: 1,
     },
     mobile: {
-      breakpoint: { max: 464, min: 0 },
+      breakpoint: { max: 600, min: 0 },
       items: 1,
     },
   };
@@ -98,7 +98,7 @@ export default function Caroulsel() {
   return (
     <Carousel
       additionalTransfrom={0}
-      arrows={isDesktop}
+      arrows={isDesktop || isTablet}
       autoPlay
       autoPlaySpeed={3000}
       centerMode={false}
