@@ -18,8 +18,8 @@ const useStyles = makeStyles((theme) => ({
     },
 
     [theme.breakpoints.only('xs')]: {
-      padding: '0px 0px 73px 0px',
-      marginTop: '51px',
+      padding: '0px 0px 80px 0px',
+      marginTop: '0px',
     },
   },
   container: {
@@ -106,7 +106,7 @@ const useStyles = makeStyles((theme) => ({
   typographyDescription: {
     fontSize: '16px',
     fontWeight: 'regular',
-    width: '80%',
+    width: '60%',
 
     [theme.breakpoints.up('sm')]: {
       fontSize: '1rem',
@@ -128,7 +128,6 @@ const useStyles = makeStyles((theme) => ({
   },
   buttonStyle: {
     height: '100%',
-    width: '100%',
     color: theme.palette.black.main,
     textTransform: 'none',
     fontWeight: 700,
@@ -140,13 +139,13 @@ const useStyles = makeStyles((theme) => ({
     },
 
     [theme.breakpoints.only('xs')]: {
-      width: '60%',
       height: '50%',
       padding: '16px',
     },
 
-    [theme.breakpoints.up('sm')]: {
-      width: '70%',
+    '@media (min-width: 1025px)': {
+      fontSize: '16px',
+      padding: '23px 17px 23px 17px',
     },
 
   },

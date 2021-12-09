@@ -151,7 +151,7 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   footerBox: {
-    paddingTop: '0px',
+    paddingTop: '10px',
 
     '@media (min-width: 1025px)': {
       paddingTop: '120px',
