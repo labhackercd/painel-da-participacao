@@ -121,6 +121,10 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 'bold',
     color: '#121212',
     textAlign: 'center',
+
+    '@media (min-width: 1025px)': {
+      fontSize: '16px',
+    },
   },
   buttonStyle: {
     height: '100%',
