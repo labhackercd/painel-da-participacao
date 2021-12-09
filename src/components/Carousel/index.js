@@ -99,8 +99,8 @@ export default function Caroulsel() {
     <Carousel
       additionalTransfrom={0}
       arrows={isDesktop || isTablet}
-      // autoPlay
-      // autoPlaySpeed={3000}
+      autoPlay
+      autoPlaySpeed={3000}
       centerMode={false}
       className=""
       containerClass="container-with-dots"
