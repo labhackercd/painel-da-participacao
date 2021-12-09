@@ -36,12 +36,14 @@ function Home({ usersTotal, apiLastCacheMade }) {
               <Box className={classes.textBox}>
                 <div>
                   <Typography className={classes.typographyBoxText}>
-                    <span>{formatNumberWithDots(usersTotal)}</span> cidadãos se
-                    cadastraram no portal e-Democracia da Câmara dos Deputados.*
+                    <span>{formatNumberWithDots(usersTotal)}</span>
+                    {' '}
+                    cidadãos se cadastraram no portal e-Democracia da Câmara dos Deputados.*
                   </Typography>
                   <Box style={{ marginTop: '20px' }}>
                     <Typography className={classes.typographyBoxText}>
-                      Conheça os números de{' '}
+                      Conheça os números de
+                      {' '}
                       <span>participação pelos cidadãos.</span>
                     </Typography>
                   </Box>
@@ -70,17 +72,19 @@ function Home({ usersTotal, apiLastCacheMade }) {
                 alignItems="center"
                 height="100%"
               >
-                <Box className={classes.typographyBox} height="100%">
+                <Box className={classes.typographyBox} width="100%" flex="1" height="100%">
                   <Typography
                     className={`${classes.typography} ${classes.typographyCaption}`}
                   >
-                    * Dados consolidados até {apiLastCacheMade}
+                    * Dados consolidados até
+                    {apiLastCacheMade}
                   </Typography>
                 </Box>
                 <Box
                   height="100%"
                   width="65%"
                   display="flex"
+                  flex="1"
                   align="flex-start"
                   flexDirection="row-reverse"
                 >

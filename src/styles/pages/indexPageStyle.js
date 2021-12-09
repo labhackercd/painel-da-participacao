@@ -2,11 +2,8 @@
 /* eslint-disable import/prefer-default-export */
 import { makeStyles } from '@material-ui/core/styles';
 
-// const linearGradient = 'linear-gradient(90deg, rgba(228, 56, 180, 0.3) 0%, rgba(245, 157, 42, 0.3) 32.29%, rgba(17, 129, 233, 0.3) 63.54%, rgba(20, 215, 104, 0.3) 100%);';
-
 export const useStyles = makeStyles((theme) => ({
   root: {
-    minHeight: '100vh',
     backgroundColor: theme.palette.primary.main,
     [theme.breakpoints.up('md')]: {
       height: '100%',
@@ -17,13 +14,19 @@ export const useStyles = makeStyles((theme) => ({
     flexFlow: 'column',
     width: '100%',
     justifyContent: 'flex-start',
-    minHeight: '85vh',
     maxWidth: '1280px',
     marginLeft: 'auto',
     marginRight: 'auto',
+    marginTop: '40px',
 
-    [theme.breakpoints.down('sm')]: {
-      paddingTop: '3.5rem',
+    [theme.breakpoints.up('sm')]: {
+      marginTop: '48px',
+    },
+    '@media (max-width: 1025px)': {
+      minHeight: '85vh',
+    },
+    '@media (min-width: 1025px)': {
+      marginTop: '80px',
     },
   },
   lineBox: {
@@ -45,24 +48,20 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   typographyCaption: {
-    fontSize: '0.375rem',
+    fontSize: '8px',
     fontWeight: 'regular',
-    paddingLeft: '8rem',
-    marginLeft: '1rem',
+    paddingLeft: '35px',
 
     [theme.breakpoints.only('xs')]: {
       margin: 0,
-    },
-    [theme.breakpoints.down('sm')]: {
-      paddingLeft: '1rem',
+      padding: '0 1rem 0 1rem',
       fontSize: '0.5rem',
     },
     [theme.breakpoints.up('md')]: {
       paddingLeft: '7rem',
-      fontSize: '0.75rem',
     },
-    [theme.breakpoints.up('lg')]: {
-      fontSize: '1rem',
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '10px',
     },
   },
   textBox: {
@@ -71,8 +70,8 @@ export const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    margin: '1rem',
-    paddingLeft: '1rem',
+    paddingLeft: '35px',
+
     [theme.breakpoints.only('xs')]: {
       padding: '0 1rem 0 1rem',
       margin: 0,
@@ -86,15 +85,13 @@ export const useStyles = makeStyles((theme) => ({
     '& span': {
       fontWeight: 'bold',
     },
-    fontSize: '1rem',
+    fontSize: '16px',
+
     [theme.breakpoints.up('sm')]: {
-      fontSize: '1.2rem',
+      fontSize: '20px',
     },
-    [theme.breakpoints.up('md')]: {
-      fontSize: '1.4rem',
-    },
-    [theme.breakpoints.up('lg')]: {
-      fontSize: '2.1rem',
+    '@media (min-width: 1025px)': {
+      fontSize: '25px',
     },
   },
   boxGridContainer: {
@@ -118,31 +115,22 @@ export const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingBottom: '6rem',
-
-    [theme.breakpoints.up('md')]: {
-      paddingTop: '10vh',
-    },
   },
   caroulselInsideBox: {
     width: '90%',
   },
   initialPageBannerImg: {
     [theme.breakpoints.up('sm')]: {
-      marginTop: '20%',
-    },
-    [theme.breakpoints.up('lg')]: {
-      marginTop: '10%',
-    },
-    '@media (min-width: 1100px)': {
-      width: '500px',
-      height: '360px',
-    },
-    '@media (max-width: 1100px)': {
+      marginTop: '15%',
       width: '250px',
       height: '180px',
     },
-    '@media (max-width: 500px)': {
+    '@media (min-width: 1025px)': {
+      width: '327px',
+      height: '237px',
+      marginTop: '5%',
+    },
+    [theme.breakpoints.only('xs')]: {
       display: 'none',
     },
   },
@@ -156,14 +144,11 @@ export const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('sm')]: {
       height: '4px',
     },
-    [theme.breakpoints.up('lg')]: {
-      width: '80%',
-    },
   },
   footerBox: {
     paddingTop: '0px',
 
-    [theme.breakpoints.up('md')]: {
+    '@media (min-width: 1025px)': {
       paddingTop: '120px',
     },
   },
