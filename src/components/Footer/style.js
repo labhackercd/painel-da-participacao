@@ -43,7 +43,7 @@ export const useStyles = makeStyles((theme) => ({
       padding: '32px 35px',
     },
 
-    [theme.breakpoints.up('md')]: {
+    '@media (max-width: 1280px)': {
       padding: '20px 70px',
     },
   },

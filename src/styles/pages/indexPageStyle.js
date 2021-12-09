@@ -113,11 +113,16 @@ export const useStyles = makeStyles((theme) => ({
     width: '100%',
     minHeight: '100%',
     display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    [theme.breakpoints.down('md')]: {
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
   },
   caroulselInsideBox: {
-    width: '90%',
+    width: '100%',
+    [theme.breakpoints.down('md')]: {
+      width: '90%',
+    },
   },
   initialPageBannerImg: {
     [theme.breakpoints.up('sm')]: {
