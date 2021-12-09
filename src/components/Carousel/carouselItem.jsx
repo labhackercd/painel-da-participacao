@@ -11,7 +11,11 @@ import Link from 'next/link';
 const useStyles = makeStyles((theme) => ({
   box: {
     marginTop: '80px',
-    padding: '0px 50px 40px 80px',
+    padding: '0px 50px 40px 70px',
+
+    '@media (min-width: 1280px)': {
+      padding: '0px 50px 40px 112px',
+    },
 
     [theme.breakpoints.only('xs')]: {
       padding: '0px 0px 73px 0px',
