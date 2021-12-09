@@ -17,28 +17,44 @@ export const useStyles = makeStyles((theme) => ({
   },
   boxContent: {
     flex: '1 1 auto',
-    [theme.breakpoints.up('xl')]: {
-      paddingTop: '4rem',
-    },
   },
   container: {
     maxWidth: '1280px',
     marginLeft: 'auto',
     marginRight: 'auto',
+    marginTop: '40px',
+    padding: '0px 0px 0px 16px',
+
+    [theme.breakpoints.up('sm')]: {
+      padding: '0px 35px',
+    },
+    [theme.breakpoints.up('md')]: {
+      padding: '0px 70px',
+    },
+    '@media (min-width: 1280px)': {
+      padding: 0,
+    },
+
+    [theme.breakpoints.up('sm')]: {
+      marginTop: '48px',
+    },
+    '@media (min-width: 1025px)': {
+      marginTop: '80px',
+    },
   },
   textBoxMargin: {
     margin: '1rem',
-    paddingRight: '2rem',
+    // paddingRight: '2rem',
 
-    [theme.breakpoints.up('md')]: {
-      paddingRight: '4rem',
-      paddingLeft: '4rem',
-    },
+    // [theme.breakpoints.up('md')]: {
+    //   paddingRight: '4rem',
+    //   paddingLeft: '4rem',
+    // },
 
-    [theme.breakpoints.up('xl')]: {
-      paddingRight: '4rem',
-      paddingLeft: '4rem',
-    },
+    // [theme.breakpoints.up('xl')]: {
+    //   paddingRight: '4rem',
+    //   paddingLeft: '4rem',
+    // },
   },
   typography: {
     fontFamily: 'Open Sans',
@@ -46,53 +62,42 @@ export const useStyles = makeStyles((theme) => ({
   },
   typograhyTitle: {
     width: '85%',
-    fontSize: '1.688rem',
+    fontSize: '20px',
     fontWeight: 'bold',
     paddingBottom: '10px',
     [theme.breakpoints.up('sm')]: {
-      fontSize: '2.125rem',
+      fontSize: '25px',
     },
-    [theme.breakpoints.up('md')]: {
-      fontSize: '3rem',
+    '@media (min-width: 1025px)': {
+      fontSize: '39px',
     },
     // [theme.breakpoints.up('xl')]: {
     //   fontSize: '4rem',
     // },
   },
   typographyTitleCaption: {
-    fontSize: '0.563rem',
+    fontSize: '13px',
     textAlign: 'justify',
-    paddingBottom: '25px',
+    paddingBottom: '32px',
+    paddingTop: '8px',
 
     [theme.breakpoints.up('sm')]: {
-      fontSize: '0.688rem',
-      paddingBottom: '2rem',
-      paddingTop: '6px',
+      ffontSize: '16px',
     },
-    [theme.breakpoints.up('md')]: {
-      fontSize: '1rem',
-      paddingBottom: '2rem',
-      paddingTop: '6px',
+    '@media (min-width: 1025px)': {
+      fontSize: '20px',
     },
-    // [theme.breakpoints.up('xl')]: {
-    //   fontSize: '1.5rem',
-    //   paddingBottom: '2rem',
-    //   paddingTop: '16px',
-    // },
   },
   typographyTitleText: {
-    fontSize: '1rem',
+    fontSize: '16px',
     fontWeight: 'regular',
 
     [theme.breakpoints.up('sm')]: {
-      fontSize: '1.25rem',
+      fontSize: '20px',
     },
-    [theme.breakpoints.up('md')]: {
-      fontSize: '1.6rem',
+    '@media (min-width: 1025px)': {
+      fontSize: '25px',
     },
-    // [theme.breakpoints.up('xl')]: {
-    //   fontSize: '2.813rem',
-    // },
   },
   typograhyH2: {
     fontSize: '1.5rem',
@@ -194,23 +199,21 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   headerText: {
-    width: '100%',
-    height: '100%',
+    // width: '100%',
+    // height: '100%',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
-    margin: '1rem',
-    paddingRight: '2rem',
+    // padding: '0px 16px',
 
-    [theme.breakpoints.only('sm')]: {
-      paddingLeft: '2rem',
-    },
-
-    [theme.breakpoints.up('md')]: {
-      paddingRight: '4rem',
-      paddingLeft: '7rem',
-      margin: 0,
-    },
+    // [theme.breakpoints.up('sm')]: {
+    //   padding: '0px 35px',
+    // },
+    // [theme.breakpoints.up('md')]: {
+    //   padding: '0px 70px',
+    // },
+    // '@media (min-width: 1280px)': {
+    //   padding: 0,
+    // },
   },
   headerImg: {
     display: 'flex',
@@ -220,7 +223,11 @@ export const useStyles = makeStyles((theme) => ({
   },
   lineBox: {
     marginBottom: '20px',
-    marginTop: '25px',
+    marginTop: '-1px',
+
+    [theme.breakpoints.only('xs')]: {
+      marginTop: '24px',
+    },
 
     [theme.breakpoints.up('md')]: {
       marginBottom: '80px',
@@ -231,22 +238,27 @@ export const useStyles = makeStyles((theme) => ({
     marginTop: '0',
     paddingTop: '0',
     width: '65%',
-    height: '4px',
+    height: '2px',
     background:
       'linear-gradient(90deg, rgba(20, 215, 104, 0.4) 0%, rgba(17, 129, 233, 0.4) 34.9%, rgba(245, 157, 42, 0.4) 67.71%, rgba(228, 56, 180, 0.4) 100%)',
-    [theme.breakpoints.up('xl')]: {
-      marginBottom: '2rem',
+    [theme.breakpoints.up('sm')]: {
+      height: '4px',
     },
   },
   initialPageBannerImg: {
     [theme.breakpoints.up('sm')]: {
+      marginRight: '22px',
       marginTop: '10%',
+      width: '207px',
+      height: '180px',
     },
-    '@media (max-width: 1100px)': {
-      width: '390px',
-      height: '378px',
+    '@media (min-width: 1025px)': {
+      width: '242px',
+      height: '240px',
+      marginTop: '0%',
+      marginRight: '0px',
     },
-    '@media (max-width: 600px)': {
+    [theme.breakpoints.only('xs')]: {
       display: 'none',
     },
   },
