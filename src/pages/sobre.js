@@ -103,12 +103,19 @@ function Sobre() {
               component="p"
               className={`${classes.typography} ${classes.typographyParagraph}`}
             >
-              O <b>e-monitor</b> foi desenvolvido para mostrar o histórico de
-              utilização de dois dos{' '}
+              O
+              {' '}
+              <b>e-monitor</b>
+              {' '}
+              foi desenvolvido para mostrar o histórico de
+              utilização de dois dos
+              {' '}
               <AnchorTag url="https://www2.camara.leg.br/participacao/saiba-como-participar">
                 canais de participação
-              </AnchorTag>{' '}
-              da Câmara dos Deputados, que estão disponíveis na{' '}
+              </AnchorTag>
+              {' '}
+              da Câmara dos Deputados, que estão disponíveis na
+              {' '}
               <AnchorTag url="https://edemocracia.camara.leg.br/sobre/">
                 plataforma eDemocracia
               </AnchorTag>
@@ -127,7 +134,8 @@ function Sobre() {
               O processo de consolidação dos dados acontece após as 23h59
               (horário de Brasília). Portanto, o resultado da pesquisa estará
               limitado ao dia anterior. A data da última atualização está
-              disponível abaixo dos gráficos ou tabelas.{' '}
+              disponível abaixo dos gráficos ou tabelas.
+              {' '}
             </Typography>
 
             <Typography
@@ -186,7 +194,8 @@ function Sobre() {
                 a exemplo de perguntar, enviar mensagens, opinar ou votar. Um
                 único participante pode realizar uma ou mais ações, em distintos
                 momentos, mas sua presença será contabilizada uma única vez
-                dentro do período escolhido na busca.{' '}
+                dentro do período escolhido na busca.
+                {' '}
               </Typography>
               <Typography
                 component="p"
@@ -200,7 +209,8 @@ function Sobre() {
                 participação distintamente em cada um desses meses, mas se a
                 busca for referente ao ano inteiro (ou mesmo a todo o período
                 disponível), o mesmo participante será contabilizado uma única
-                vez.{' '}
+                vez.
+                {' '}
               </Typography>
 
               <Typography
@@ -226,7 +236,7 @@ function Sobre() {
               />
               <Typography
                 variant="h3"
-                className={`${classes.typography} ${classes.typograhyH3}`}
+                className={`${classes.typography} ${classes.typograhyH2}`}
               >
                 Limitação do período
               </Typography>
@@ -236,7 +246,8 @@ function Sobre() {
               >
                 O e-monitor exibe os dados de participação referentes à
                 ferramenta Audiências Interativas somente a partir de novembro
-                de 2016.{' '}
+                de 2016.
+                {' '}
               </Typography>
               <Typography
                 component="p"
@@ -244,9 +255,11 @@ function Sobre() {
               >
                 No período de 2009 a 2016, as ferramentas de participação do
                 painel tiveram diferentes versões, cujo conteúdo está disponível
-                para consulta na{' '}
+                para consulta na
+                {' '}
                 <AnchorTag url="http://arquivo.edemocracia.camara.leg.br/">
-                  página de arquivo do antigo portal e-Democracia.{' '}
+                  página de arquivo do antigo portal e-Democracia.
+                  {' '}
                 </AnchorTag>
               </Typography>
               <Typography
@@ -254,16 +267,19 @@ function Sobre() {
                 className={`${classes.typography} ${classes.typographyParagraph}`}
               >
                 Os dados disponíveis no painel são relativos à presente versão
-                da ferramenta{' '}
+                da ferramenta
+                {' '}
                 <AnchorTag url="https://edemocracia.camara.leg.br/audiencias/">
                   Audiências Interativas
-                </AnchorTag>{' '}
-                , em funcionamento a partir de novembro de 2016.{' '}
+                </AnchorTag>
+                {' '}
+                , em funcionamento a partir de novembro de 2016.
+                {' '}
               </Typography>
 
               <Typography
                 variant="h3"
-                className={`${classes.typography} ${classes.typograhyH3}`}
+                className={`${classes.typography} ${classes.typograhyH2}`}
               >
                 Totais
               </Typography>
@@ -273,7 +289,8 @@ function Sobre() {
               >
                 Os totais referem-se ao somatório dos dados referentes ao
                 período selecionado na busca - que pode ser um mês, um ano ou
-                todo o período.{' '}
+                todo o período.
+                {' '}
               </Typography>
               <Typography
                 component="p"
@@ -283,15 +300,25 @@ function Sobre() {
                 mensagens ou perguntas; ou votaram em perguntas de outros
                 participantes. Cada participante é contabilizado uma única vez,
                 mesmo realizando uma ou mais ações no período escolhido na
-                busca.{' '}
+                busca.
+                {' '}
               </Typography>
               <Typography
                 component="p"
                 className={`${classes.typography} ${classes.typographyParagraph}`}
               >
-                O <b>total das audiências</b> considera tanto os eventos
-                realizados quanto os cancelados. A soma de{' '}
-                <b>eventos realizados</b> fica disponibilizada na linha abaixo.{' '}
+                O
+                {' '}
+                <b>total das audiências</b>
+                {' '}
+                considera tanto os eventos
+                {' '}
+                realizados quanto os cancelados. A soma de
+                {' '}
+                <b>eventos realizados</b>
+                {' '}
+                fica disponibilizada na linha abaixo.
+                {' '}
               </Typography>
               <Typography
                 component="p"
@@ -300,12 +327,13 @@ function Sobre() {
                 Toda ação - perguntar, enviar mensagem no chat ou votar em
                 perguntas de outros cidadãos - é considerada nos totais,
                 gráficos e tabelas, independentemente se em uma audiência
-                realizada ou cancelada.{' '}
+                realizada ou cancelada.
+                {' '}
               </Typography>
 
               <Typography
                 variant="h3"
-                className={`${classes.typography} ${classes.typograhyH3}`}
+                className={`${classes.typography} ${classes.typograhyH2}`}
               >
                 Distribuição da participação
               </Typography>
@@ -334,7 +362,7 @@ function Sobre() {
 
               <Typography
                 variant="h3"
-                className={`${classes.typography} ${classes.typograhyH3}`}
+                className={`${classes.typography} ${classes.typograhyH2}`}
               >
                 Ranking das audiências
               </Typography>
@@ -362,7 +390,7 @@ function Sobre() {
 
               <Typography
                 variant="h3"
-                className={`${classes.typography} ${classes.typograhyH3}`}
+                className={`${classes.typography} ${classes.typograhyH2}`}
               >
                 Usuários
               </Typography>
@@ -370,7 +398,9 @@ function Sobre() {
                 component="p"
                 className={`${classes.typography} ${classes.typographyParagraph}`}
               >
-                <b>Novos cadastros</b> mostram números contabilizados em função
+                <b>Novos cadastros</b>
+                {' '}
+                mostram números contabilizados em função
                 da data em que ocorreram - primeiramente associando-se ao dia,
                 depois ao mês e por último ao ano - a depender do período
                 definido na busca.
@@ -379,8 +409,11 @@ function Sobre() {
                 component="p"
                 className={`${classes.typography} ${classes.typographyParagraph}`}
               >
-                O <b>total de usuários cadastrados</b> refere-se ao acúmulo dos
-                novos cadastros durante o período selecionado.
+                O
+                {' '}
+                <b>total de usuários cadastrados</b>
+                {' '}
+                refere-se ao acúmulo dos novos cadastros durante o período selecionado.
               </Typography>
               <Typography
                 component="p"
@@ -394,12 +427,13 @@ function Sobre() {
                 e-Democracia passou a funcionar - para incorporar novas
                 ferramentas de participação que viessem a ser desenvolvidas no
                 LABHacker - , buscou-se a base de usuários do antigo
-                e-Democracia.{' '}
+                e-Democracia.
+                {' '}
               </Typography>
 
               <Typography
                 variant="h3"
-                className={`${classes.typography} ${classes.typograhyH3}`}
+                className={`${classes.typography} ${classes.typograhyH2}`}
               >
                 Fonte dos dados
               </Typography>
@@ -419,7 +453,7 @@ function Sobre() {
               <SectionHeader title="Wikilegis" toolColor="#14D768" />
               <Typography
                 variant="h3"
-                className={`${classes.typography} ${classes.typograhyH3}`}
+                className={`${classes.typography} ${classes.typograhyH2}`}
               >
                 Limitação do período
               </Typography>
@@ -427,8 +461,11 @@ function Sobre() {
                 component="p"
                 className={`${classes.typography} ${classes.typographyParagraph}`}
               >
-                O <b>e-monitor</b> limita-se a exibir os dados de participação
-                da ferramenta Wikilegis a partir de 2019.
+                O
+                {' '}
+                <b>e-monitor</b>
+                {' '}
+                limita-se a exibir os dados de participação da ferramenta Wikilegis a partir de 2019.
               </Typography>
               <Typography
                 component="p"
@@ -436,16 +473,19 @@ function Sobre() {
               >
                 No período de 2009 a 2016, as ferramentas de participação do
                 painel tiveram diferentes versões, cujo conteúdo está disponível
-                para consulta na{' '}
+                para consulta na
+                {' '}
                 <AnchorTag url="http://arquivo.edemocracia.camara.leg.br/">
                   página de arquivo da antiga plataforma e-Democracia
                 </AnchorTag>
                 . O conteúdo da segunda versão da Wikilegis, entre 2016 e 2019,
-                também está{' '}
+                também está
+                {' '}
                 <AnchorTag url="https://edemocracia.camara.leg.br/wikilegis-arquivo/">
                   disponível para consulta em modo de arquivo
                 </AnchorTag>
-                .{' '}
+                .
+                {' '}
               </Typography>
               <Typography
                 component="p"
@@ -457,7 +497,7 @@ function Sobre() {
 
               <Typography
                 variant="h3"
-                className={`${classes.typography} ${classes.typograhyH3}`}
+                className={`${classes.typography} ${classes.typograhyH2}`}
               >
                 Totais
               </Typography>
@@ -472,7 +512,11 @@ function Sobre() {
                 component="p"
                 className={`${classes.typography} ${classes.typographyParagraph}`}
               >
-                O total de <b>participantes</b> inclui usuários que opinaram no
+                O total de
+                {' '}
+                <b>participantes</b>
+                {' '}
+                inclui usuários que opinaram no
                 texto das propostas legislativas ou votaram em opiniões de
                 outros participantes dentro do período filtrado no painel. É
                 considerado participante um usuário que realizou uma ou mais
@@ -492,14 +536,18 @@ function Sobre() {
                 component="p"
                 className={`${classes.typography} ${classes.typographyParagraph}`}
               >
-                O total de <b>votos</b> dos participantes inclui todos: os
+                O total de
+                {' '}
+                <b>votos</b>
+                {' '}
+                dos participantes inclui todos: os
                 favoráveis (concordo), desfavoráveis (discordo) e neutros em
                 relação à opinião emitida por outro participante.
               </Typography>
 
               <Typography
                 variant="h3"
-                className={`${classes.typography} ${classes.typograhyH3}`}
+                className={`${classes.typography} ${classes.typograhyH2}`}
               >
                 Distribuição da participação
               </Typography>
@@ -507,8 +555,11 @@ function Sobre() {
                 component="p"
                 className={`${classes.typography} ${classes.typographyParagraph}`}
               >
-                No gráfico <b>Distribuição da participação no período</b> são
-                mostrados os totais referentes às ações dos participantes:
+                No gráfico
+                {' '}
+                <b>Distribuição da participação no período</b>
+                {' '}
+                são mostrados os totais referentes às ações dos participantes:
                 opiniões ou votos (nas opiniões de outros participantes). A
                 distribuição é feita de acordo com a data da ação -
                 associando-se ao dia, ao mês ou ao ano - a depender do período
@@ -527,7 +578,7 @@ function Sobre() {
 
               <Typography
                 variant="h3"
-                className={`${classes.typography} ${classes.typograhyH3}`}
+                className={`${classes.typography} ${classes.typograhyH2}`}
               >
                 Ranking das propostas legislativas
               </Typography>
@@ -535,8 +586,11 @@ function Sobre() {
                 component="p"
                 className={`${classes.typography} ${classes.typographyParagraph}`}
               >
-                A tabela <b>Ranking das propostas legislativas</b> detalha
-                quantitativos de participação, no período filtrado. A tabela é
+                A tabela
+                {' '}
+                <b>Ranking das propostas legislativas</b>
+                {' '}
+                detalha quantitativos de participação, no período filtrado. A tabela é
                 pré-ordenada pelo maior número de participantes, mas pode ser
                 ordenada pelas diferentes colunas.
               </Typography>
@@ -548,12 +602,13 @@ function Sobre() {
                 são contabilizados após a data de encerramento da consulta
                 pública da proposta legislativa. Em outras palavras, os totais
                 são calculados após o encerramento da participação naquela
-                proposta legislativa.{' '}
+                proposta legislativa.
+                {' '}
               </Typography>
 
               <Typography
                 variant="h3"
-                className={`${classes.typography} ${classes.typograhyH3}`}
+                className={`${classes.typography} ${classes.typograhyH2}`}
               >
                 Usuários
               </Typography>
@@ -561,7 +616,9 @@ function Sobre() {
                 component="p"
                 className={`${classes.typography} ${classes.typographyParagraph}`}
               >
-                <b>Novos cadastros</b> mostram números contabilizados em função
+                <b>Novos cadastros</b>
+                {' '}
+                mostram números contabilizados em função
                 da data em que ocorreram - primeiramente associando-se ao dia,
                 depois ao mês e por último ao ano - a depender do período
                 definido na busca.
@@ -570,7 +627,11 @@ function Sobre() {
                 component="p"
                 className={`${classes.typography} ${classes.typographyParagraph}`}
               >
-                O <b>total de usuários cadastrados</b> refere-se ao acúmulo dos
+                O
+                {' '}
+                <b>total de usuários cadastrados</b>
+                {' '}
+                refere-se ao acúmulo dos
                 novos cadastros durante o período selecionado.
               </Typography>
               <Typography
@@ -591,7 +652,7 @@ function Sobre() {
 
               <Typography
                 variant="h3"
-                className={`${classes.typography} ${classes.typograhyH3}`}
+                className={`${classes.typography} ${classes.typograhyH2}`}
               >
                 Fonte dos dados
               </Typography>
