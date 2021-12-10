@@ -3,42 +3,46 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles((theme) => ({
   root: {
-    height: '100%',
-    // QHD/WQHD (2560×1440) QUADHD - 4K UHD (3840×2160) 4K ULTRA HD:
-    '@media (min-width: 2300px)': {
-      height: '100vh',
-      width: '100vw',
-    },
     backgroundColor: theme.palette.primary.main,
-  },
-  box: {
-    display: 'flex',
-    flexFlow: 'column',
-    height: '100%',
   },
   boxHeader: {
     flex: '0 1 auto',
   },
   boxContent: {
     flex: '1 1 auto',
-    minHeight: '70vh',
     backgroundColor: theme.palette.primary.main,
     display: 'flex',
+    flexDirection: 'row',
     justifyContent: 'space-around',
     paddingTop: '10vh',
     maxWidth: '1280px',
     marginLeft: 'auto',
     marginRight: 'auto',
+    padding: '0px 16px 0px 0px',
+
+    [theme.breakpoints.up('sm')]: {
+      padding: '0px 35px 0px 0px',
+      marginTop: '48px',
+    },
+    [theme.breakpoints.up('md')]: {
+      padding: '0px 70px',
+    },
+    '@media (min-width: 1025px)': {
+      marginTop: '80px',
+    },
   },
   textBox: {
     paddingLeft: '16px',
-    [theme.breakpoints.up('md')]: {
-      paddingLeft: '15%',
+    [theme.breakpoints.up('sm')]: {
+      paddingLeft: '35px',
+    },
+    '@media (min-width: 1025px)': {
+      paddingLeft: '75px',
     },
   },
   typography: {
     fontFamily: 'Open Sans',
-    fontSize: '1rem',
+    fontSize: '16px',
     paddingBottom: '32px',
     letterSpacing: '0.05em',
     '& span': {
@@ -46,18 +50,11 @@ export const useStyles = makeStyles((theme) => ({
     },
 
     [theme.breakpoints.up('sm')]: {
-      fontSize: '1.5rem',
+      fontSize: '20px',
     },
-    [theme.breakpoints.only('md')]: {
-      fontSize: '1.75rem',
+    '@media (min-width: 1025px)': {
+      fontSize: '25px',
     },
-    [theme.breakpoints.up('lg')]: {
-      fontSize: '2rem',
-    },
-    // [theme.breakpoints.up('xl')]: {
-    //   paddingLeft: '1rem',
-    //   fontSize: '3rem',
-    // },
   },
   imgBox: {
     display: 'flex',
@@ -66,25 +63,14 @@ export const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
   },
   bannerImg: {
-    width: '80%',
-    height: '230px',
+    width: '265px',
+    height: '180px',
 
-    [theme.breakpoints.up('sm')]: {
-      width: '450px',
-      height: '350px',
+    '@media (min-width: 1025px)': {
+      width: '350px',
+      height: '236px',
+      marginTop: '32px',
     },
-    [theme.breakpoints.only('md')]: {
-      width: '450px',
-      height: '350px',
-    },
-    [theme.breakpoints.only('lg')]: {
-      width: '500px',
-      height: '400px',
-    },
-    // [theme.breakpoints.up('xl')]: {
-    //   width: '600px',
-    //   height: '472px',
-    // },
   },
   lineDividerGradientColor: {
     marginTop: '0',

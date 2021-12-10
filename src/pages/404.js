@@ -24,7 +24,7 @@ function Custom404() {
       <Layout>
         <Box className={classes.boxContent}>
           <Grid container>
-            <Grid item xs={12} md={7}>
+            <Grid item xs={12} sm={7} md={7}>
               <Box width="100%" display="flex" flexDirection="column">
                 <Box width="90%" className={classes.textBox}>
                   <Typography variant="h1" className={classes.typography}>
@@ -34,14 +34,14 @@ function Custom404() {
                 </Box>
                 <div className={classes.lineDividerGradientColor} />
                 <Box width="100%" className={classes.textBox}>
-                  <Typography variant="h2" className={classes.typography}>
+                  <Typography variant="h2" className={classes.typography} style={{ width: '91%' }}>
                     O URL buscado não foi encontrado
                     nesse servidor.
                   </Typography>
                 </Box>
               </Box>
             </Grid>
-            <Grid item xs={12} md={5}>
+            <Grid item xs={12} sm={5} md={5}>
               <Box className={classes.imgBox}>
                 <img src={error404Image} alt="Imagem Representativa de erro" className={classes.bannerImg} />
               </Box>
