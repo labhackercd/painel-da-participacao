@@ -3,7 +3,7 @@
 export const apiCardsInfo = [
   {
     title: 'e-Democracia',
-    infoText: 'A plataforma e-Democracia é um portal que reúne ferramentas de participação online no processo legislativo da Câmara dos Deputados.Acesse os dados e contribua para o código-fonte.',
+    infoText: 'A plataforma e-Democracia é um portal que reúne ferramentas de participação online no processo legislativo da Câmara dos Deputados. Acesse os dados e contribua para o código-fonte.',
     toolColor: '#1181E9',
     urls: {
       github: `${process.env.NEXT_PUBLIC_EDEMOCRACIA_GITHUB_URL}`,

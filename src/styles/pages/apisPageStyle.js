@@ -17,137 +17,124 @@ export const useStyles = makeStyles((theme) => ({
   },
   boxContent: {
     flex: '1 1 auto',
-    [theme.breakpoints.up('xl')]: {
-      paddingTop: '4rem',
-    },
   },
   container: {
     maxWidth: '1280px',
     marginLeft: 'auto',
     marginRight: 'auto',
-  },
-  textBoxMargin: {
-    margin: '1rem',
-    paddingRight: '2rem',
+    marginTop: '40px',
+    padding: '0px 0px 0px 16px',
 
+    [theme.breakpoints.up('sm')]: {
+      padding: '0px 0px 0px 35px',
+      marginTop: '48px',
+    },
     [theme.breakpoints.up('md')]: {
-      paddingRight: '4rem',
-      paddingLeft: '4rem',
+      padding: '0px 70px',
     },
-
-    [theme.breakpoints.up('xl')]: {
-      paddingRight: '4rem',
-      paddingLeft: '4rem',
+    '@media (min-width: 1025px)': {
+      marginTop: '80px',
     },
   },
+  textBoxMargin: {},
   typography: {
     fontFamily: 'Open Sans',
     letterSpacing: '0.05em',
   },
   typograhyTitle: {
     width: '85%',
-    fontSize: '1.688rem',
+    fontSize: '20px',
     fontWeight: 'bold',
     paddingBottom: '10px',
     [theme.breakpoints.up('sm')]: {
-      fontSize: '2.125rem',
+      fontSize: '25px',
     },
-    [theme.breakpoints.up('md')]: {
-      fontSize: '3rem',
+    '@media (min-width: 1025px)': {
+      fontSize: '39px',
     },
-    // [theme.breakpoints.up('xl')]: {
-    //   fontSize: '4rem',
-    // },
   },
   typographyTitleCaption: {
-    fontSize: '0.563rem',
+    fontSize: '13px',
     textAlign: 'justify',
-    paddingBottom: '25px',
+    paddingBottom: '32px',
+    paddingTop: '8px',
 
     [theme.breakpoints.up('sm')]: {
-      fontSize: '0.688rem',
-      paddingBottom: '2rem',
-      paddingTop: '6px',
+      ffontSize: '16px',
     },
-    [theme.breakpoints.up('md')]: {
-      fontSize: '1rem',
-      paddingBottom: '2rem',
-      paddingTop: '6px',
+    '@media (min-width: 1025px)': {
+      fontSize: '20px',
     },
-    // [theme.breakpoints.up('xl')]: {
-    //   fontSize: '1.5rem',
-    //   paddingBottom: '2rem',
-    //   paddingTop: '16px',
-    // },
   },
   typographyTitleText: {
-    fontSize: '1rem',
+    fontSize: '16px',
     fontWeight: 'regular',
 
     [theme.breakpoints.up('sm')]: {
-      fontSize: '1.25rem',
+      fontSize: '20px',
     },
-    [theme.breakpoints.up('md')]: {
-      fontSize: '1.6rem',
+    '@media (min-width: 1025px)': {
+      fontSize: '25px',
     },
-    // [theme.breakpoints.up('xl')]: {
-    //   fontSize: '2.813rem',
-    // },
   },
   typograhyH2: {
-    fontSize: '1.5rem',
+    fontSize: '16px',
     fontWeight: 'bold',
+    paddingBottom: '32px',
+    paddingTop: '32px',
+
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '20px',
+      paddingBottom: '48px',
+      paddingTop: '48px',
+    },
+    '@media (min-width: 1025px)': {
+      fontSize: '25px',
+    },
+  },
+  typographyParagraph: {
+    fontSize: '16px',
     paddingBottom: '32px',
 
     [theme.breakpoints.up('sm')]: {
-      fontSize: '1.169rem',
+      padding: '0px 0px 48px 0px',
     },
-    [theme.breakpoints.up('md')]: {
-      fontSize: '1.576rem',
-    },
-    // [theme.breakpoints.up('xl')]: {
-    //   fontSize: '2.7rem',
-    // },
   },
-  typographyParagraph: {
-    fontSize: '1rem',
-    paddingBottom: '24px',
-
-    [theme.breakpoints.up('sm')]: {
-      fontSize: '0.935rem',
+  apisCards: {
+    '@media (max-width: 1023px)': {
+      padding: '0px 35px 0px 0px',
     },
-    [theme.breakpoints.up('md')]: {
-      fontSize: '1.261rem',
+    [theme.breakpoints.only('xs')]: {
+      padding: '0px 16px 0px 0px',
     },
-    // [theme.breakpoints.up('xl')]: {
-    //   fontSize: '2rem',
-    // },
   },
   apiCard: {
-    height: '329px',
+    height: '367px',
     width: '100%',
-    backgroundColor: '#0D0D0D',
-    borderRadius: '15px',
+    backgroundColor: '#363636',
+    borderRadius: '8px',
+    position: 'relative',
   },
   apiCardHead: {
     height: '25px',
     /* topo | direita | inferior | esquerda */
-    borderRadius: '15px 15px 0 0',
+    borderRadius: '8px 8px 0 0',
   },
   apiCardBody: {
     height: '100%',
-    marginLeft: '10px',
-    marginRight: '10px',
+    marginLeft: '24px',
+    marginRight: '24px',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'space-evenly',
+    paddingTop: '24px',
   },
   apiCardBodyTypographyTitle: {
     fontFamily: 'Open Sans',
-    fontSize: '1.563rem',
+    fontSize: '16px',
+    fontWeight: 'bold',
     letterSpacing: '0.05rem',
-    '@media (max-width: 1100px)': {
-      fontSize: '1.2rem',
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '20px',
     },
   },
   apiCardBodyTypographyParagraph: {
@@ -166,11 +153,18 @@ export const useStyles = makeStyles((theme) => ({
   apiCardButtons: {
     display: 'flex',
     flexDirection: 'row-reverse',
-    paddingBottom: '15px',
+    paddingBottom: '24px',
+    position: 'absolute',
+    bottom: 0,
+    right: '24px',
   },
   cardsContainer: {
-    paddingTop: '20px',
-    paddingBottom: '20px',
+    '@media (max-width: 1023px)': {
+      padding: '0px 35px 0px 0px',
+    },
+    [theme.breakpoints.only('xs')]: {
+      padding: '0px 16px 0px 0px',
+    },
   },
   anchorLink: {
     marginLeft: '10px',
@@ -194,23 +188,8 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   headerText: {
-    width: '100%',
-    height: '100%',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
-    margin: '1rem',
-    paddingRight: '2rem',
-
-    [theme.breakpoints.only('sm')]: {
-      paddingLeft: '2rem',
-    },
-
-    [theme.breakpoints.up('md')]: {
-      paddingRight: '4rem',
-      paddingLeft: '7rem',
-      margin: 0,
-    },
   },
   headerImg: {
     display: 'flex',
@@ -220,7 +199,11 @@ export const useStyles = makeStyles((theme) => ({
   },
   lineBox: {
     marginBottom: '20px',
-    marginTop: '25px',
+    marginTop: '-1px',
+
+    [theme.breakpoints.only('xs')]: {
+      marginTop: '24px',
+    },
 
     [theme.breakpoints.up('md')]: {
       marginBottom: '80px',
@@ -231,30 +214,38 @@ export const useStyles = makeStyles((theme) => ({
     marginTop: '0',
     paddingTop: '0',
     width: '65%',
-    height: '4px',
+    height: '2px',
     background:
       'linear-gradient(90deg, rgba(20, 215, 104, 0.4) 0%, rgba(17, 129, 233, 0.4) 34.9%, rgba(245, 157, 42, 0.4) 67.71%, rgba(228, 56, 180, 0.4) 100%)',
-    [theme.breakpoints.up('xl')]: {
-      marginBottom: '2rem',
+    [theme.breakpoints.up('sm')]: {
+      height: '4px',
     },
   },
   initialPageBannerImg: {
     [theme.breakpoints.up('sm')]: {
+      marginRight: '35px',
       marginTop: '10%',
+      width: '207px',
+      height: '180px',
     },
-    '@media (max-width: 1100px)': {
-      width: '390px',
-      height: '378px',
+    '@media (min-width: 1025px)': {
+      width: '242px',
+      height: '240px',
+      marginTop: '0%',
+      marginRight: '0px',
     },
-    '@media (max-width: 600px)': {
+    [theme.breakpoints.only('xs')]: {
       display: 'none',
     },
   },
   footerBox: {
-    paddingTop: '90px',
+    paddingTop: '32px',
 
-    [theme.breakpoints.up('md')]: {
-      paddingTop: '120px',
+    [theme.breakpoints.up('sm')]: {
+      paddingTop: '48px',
+    },
+    '@media (min-width: 1025px)': {
+      paddingTop: '80px',
     },
   },
 }));

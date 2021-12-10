@@ -104,7 +104,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: 'auto',
     justifyContent: 'space-around',
 
-    '@media (max-width: 1280px)': {
+    [theme.breakpoints.up('sm')]: {
       padding: '48px 70px 0px 70px',
     },
   },
@@ -126,7 +126,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 'auto',
     marginRight: 'auto',
 
-    '@media (max-width: 1280px)': {
+    [theme.breakpoints.up('md')]: {
       padding: '0px 70px',
     },
   },

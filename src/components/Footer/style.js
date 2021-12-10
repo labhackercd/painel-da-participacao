@@ -37,10 +37,14 @@ export const useStyles = makeStyles((theme) => ({
     marginLeft: 'auto',
     marginRight: 'auto',
 
-    padding: '16px 20px',
+    padding: '16px 16px',
 
     [theme.breakpoints.up('sm')]: {
       padding: '32px 35px',
+    },
+
+    [theme.breakpoints.up('lg')]: {
+      padding: '32px 70px',
     },
   },
   informationItem: {

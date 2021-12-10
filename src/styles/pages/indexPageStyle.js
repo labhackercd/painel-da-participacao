@@ -9,6 +9,11 @@ export const useStyles = makeStyles((theme) => ({
       height: '100%',
     },
   },
+  container: {
+    [theme.breakpoints.up('md')]: {
+      padding: '0px 70px',
+    },
+  },
   box: {
     display: 'flex',
     flexFlow: 'column',

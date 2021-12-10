@@ -42,9 +42,6 @@ export const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('md')]: {
       padding: '0px 70px',
     },
-    '@media (min-width: 1280px)': {
-      padding: 0,
-    },
   },
   typography: {
     fontFamily: 'Open Sans',

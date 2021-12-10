@@ -4,7 +4,12 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import Head from 'next/head';
-import { Typography, Grid, Box, Paper } from '@material-ui/core';
+import {
+  Typography,
+  Grid,
+  Box,
+  Paper,
+} from '@material-ui/core';
 import {
   SettingsEthernet as SettingsEthernetIcon,
   GitHub as GitHubIcon,
@@ -40,7 +45,12 @@ function IconLink(props) {
 
 function ApiCard(props) {
   const classes = useStyles();
-  const { title, infoText, toolColor, urls } = props;
+  const {
+    title,
+    infoText,
+    toolColor,
+    urls,
+  } = props;
   const githubIconHelpText = `Ir para página do Github do ${title} `;
   const apiIconHelpText = `Ir para página de API's do ${title}`;
   const siteIconHelpText = `Ir para o site do ${title}`;
@@ -128,7 +138,7 @@ function Api() {
               width="100%"
               height="100%"
               display="flex"
-              justifyContent="center"
+              justifyContent="flex-end"
               alignItems="center"
             >
               <img
@@ -152,6 +162,7 @@ function Api() {
               <Typography
                 variant="h2"
                 className={`${classes.typography} ${classes.typograhyH2}`}
+                style={{ paddingTop: '0px', paddingBottom: '16px' }}
               >
                 Ferramentas para desenvolvedores
               </Typography>
@@ -165,7 +176,7 @@ function Api() {
               </Typography>
               <Grid
                 container
-                style={{ paddingTop: '20px', paddingBottom: '20px' }}
+                className={classes.apisCards}
                 spacing={2}
               >
                 {apiCardsInfo.map((tool) => (

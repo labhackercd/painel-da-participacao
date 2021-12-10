@@ -31,7 +31,7 @@ function Home({ usersTotal, apiLastCacheMade }) {
       <PageNavbar value={0} />
       <Box className={classes.box}>
         <Box>
-          <Grid container>
+          <Grid className={classes.container} container>
             <Grid item xs={12} sm={6} md={6}>
               <Box className={classes.textBox}>
                 <div>
