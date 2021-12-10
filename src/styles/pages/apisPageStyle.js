@@ -32,10 +32,6 @@ export const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('md')]: {
       padding: '0px 70px',
     },
-
-    '@media (min-width: 1280px)': {
-      padding: 0,
-    },
     '@media (min-width: 1025px)': {
       marginTop: '80px',
     },
@@ -101,14 +97,15 @@ export const useStyles = makeStyles((theme) => ({
     paddingBottom: '32px',
 
     [theme.breakpoints.up('sm')]: {
-      padding: '0px 35px 48px 0px',
+      padding: '0px 0px 48px 0px',
     },
   },
   apisCards: {
-    padding: '0px 16px 0px 0px',
-
-    [theme.breakpoints.up('sm')]: {
+    '@media (max-width: 1023px)': {
       padding: '0px 35px 0px 0px',
+    },
+    [theme.breakpoints.only('xs')]: {
+      padding: '0px 16px 0px 0px',
     },
   },
   apiCard: {
@@ -162,10 +159,11 @@ export const useStyles = makeStyles((theme) => ({
     right: '24px',
   },
   cardsContainer: {
-    padding: '16px 16px 32px 0px',
-
-    [theme.breakpoints.up('sm')]: {
+    '@media (max-width: 1023px)': {
       padding: '0px 35px 0px 0px',
+    },
+    [theme.breakpoints.only('xs')]: {
+      padding: '0px 16px 0px 0px',
     },
   },
   anchorLink: {
