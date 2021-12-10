@@ -162,6 +162,7 @@ function Api() {
               <Typography
                 variant="h2"
                 className={`${classes.typography} ${classes.typograhyH2}`}
+                style={{ paddingTop: '0px', paddingBottom: '16px' }}
               >
                 Ferramentas para desenvolvedores
               </Typography>
@@ -175,7 +176,7 @@ function Api() {
               </Typography>
               <Grid
                 container
-                style={{ paddingTop: '20px', paddingBottom: '20px' }}
+                className={classes.apisCards}
                 spacing={2}
               >
                 {apiCardsInfo.map((tool) => (

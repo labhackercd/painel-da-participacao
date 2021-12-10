@@ -26,36 +26,21 @@ export const useStyles = makeStyles((theme) => ({
     padding: '0px 0px 0px 16px',
 
     [theme.breakpoints.up('sm')]: {
-      padding: '0px 35px',
+      padding: '0px 0px 0px 35px',
+      marginTop: '48px',
     },
     [theme.breakpoints.up('md')]: {
       padding: '0px 70px',
     },
+
     '@media (min-width: 1280px)': {
       padding: 0,
-    },
-
-    [theme.breakpoints.up('sm')]: {
-      marginTop: '48px',
     },
     '@media (min-width: 1025px)': {
       marginTop: '80px',
     },
   },
-  textBoxMargin: {
-    margin: '1rem',
-    // paddingRight: '2rem',
-
-    // [theme.breakpoints.up('md')]: {
-    //   paddingRight: '4rem',
-    //   paddingLeft: '4rem',
-    // },
-
-    // [theme.breakpoints.up('xl')]: {
-    //   paddingRight: '4rem',
-    //   paddingLeft: '4rem',
-    // },
-  },
+  textBoxMargin: {},
   typography: {
     fontFamily: 'Open Sans',
     letterSpacing: '0.05em',
@@ -71,9 +56,6 @@ export const useStyles = makeStyles((theme) => ({
     '@media (min-width: 1025px)': {
       fontSize: '39px',
     },
-    // [theme.breakpoints.up('xl')]: {
-    //   fontSize: '4rem',
-    // },
   },
   typographyTitleCaption: {
     fontSize: '13px',
@@ -100,59 +82,62 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   typograhyH2: {
-    fontSize: '1.5rem',
+    fontSize: '16px',
     fontWeight: 'bold',
+    paddingBottom: '32px',
+    paddingTop: '32px',
+
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '20px',
+      paddingBottom: '48px',
+      paddingTop: '48px',
+    },
+    '@media (min-width: 1025px)': {
+      fontSize: '25px',
+    },
+  },
+  typographyParagraph: {
+    fontSize: '16px',
     paddingBottom: '32px',
 
     [theme.breakpoints.up('sm')]: {
-      fontSize: '1.169rem',
+      padding: '0px 35px 48px 0px',
     },
-    [theme.breakpoints.up('md')]: {
-      fontSize: '1.576rem',
-    },
-    // [theme.breakpoints.up('xl')]: {
-    //   fontSize: '2.7rem',
-    // },
   },
-  typographyParagraph: {
-    fontSize: '1rem',
-    paddingBottom: '24px',
+  apisCards: {
+    padding: '0px 16px 0px 0px',
 
     [theme.breakpoints.up('sm')]: {
-      fontSize: '0.935rem',
+      padding: '0px 35px 0px 0px',
     },
-    [theme.breakpoints.up('md')]: {
-      fontSize: '1.261rem',
-    },
-    // [theme.breakpoints.up('xl')]: {
-    //   fontSize: '2rem',
-    // },
   },
   apiCard: {
-    height: '329px',
+    height: '367px',
     width: '100%',
-    backgroundColor: '#0D0D0D',
-    borderRadius: '15px',
+    backgroundColor: '#363636',
+    borderRadius: '8px',
+    position: 'relative',
   },
   apiCardHead: {
     height: '25px',
     /* topo | direita | inferior | esquerda */
-    borderRadius: '15px 15px 0 0',
+    borderRadius: '8px 8px 0 0',
   },
   apiCardBody: {
     height: '100%',
-    marginLeft: '10px',
-    marginRight: '10px',
+    marginLeft: '24px',
+    marginRight: '24px',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'space-evenly',
+    paddingTop: '24px',
   },
   apiCardBodyTypographyTitle: {
     fontFamily: 'Open Sans',
-    fontSize: '1.563rem',
+    fontSize: '16px',
+    fontWeight: 'bold',
     letterSpacing: '0.05rem',
-    '@media (max-width: 1100px)': {
-      fontSize: '1.2rem',
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '20px',
     },
   },
   apiCardBodyTypographyParagraph: {
@@ -171,11 +156,17 @@ export const useStyles = makeStyles((theme) => ({
   apiCardButtons: {
     display: 'flex',
     flexDirection: 'row-reverse',
-    paddingBottom: '15px',
+    paddingBottom: '24px',
+    position: 'absolute',
+    bottom: 0,
+    right: '24px',
   },
   cardsContainer: {
-    paddingTop: '20px',
-    paddingBottom: '20px',
+    padding: '16px 16px 32px 0px',
+
+    [theme.breakpoints.up('sm')]: {
+      padding: '0px 35px 0px 0px',
+    },
   },
   anchorLink: {
     marginLeft: '10px',
@@ -199,21 +190,8 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   headerText: {
-    // width: '100%',
-    // height: '100%',
     display: 'flex',
     flexDirection: 'column',
-    // padding: '0px 16px',
-
-    // [theme.breakpoints.up('sm')]: {
-    //   padding: '0px 35px',
-    // },
-    // [theme.breakpoints.up('md')]: {
-    //   padding: '0px 70px',
-    // },
-    // '@media (min-width: 1280px)': {
-    //   padding: 0,
-    // },
   },
   headerImg: {
     display: 'flex',
@@ -247,7 +225,7 @@ export const useStyles = makeStyles((theme) => ({
   },
   initialPageBannerImg: {
     [theme.breakpoints.up('sm')]: {
-      marginRight: '22px',
+      marginRight: '35px',
       marginTop: '10%',
       width: '207px',
       height: '180px',
@@ -263,10 +241,13 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   footerBox: {
-    paddingTop: '90px',
+    paddingTop: '32px',
 
-    [theme.breakpoints.up('md')]: {
-      paddingTop: '120px',
+    [theme.breakpoints.up('sm')]: {
+      paddingTop: '48px',
+    },
+    '@media (min-width: 1025px)': {
+      paddingTop: '80px',
     },
   },
 }));
