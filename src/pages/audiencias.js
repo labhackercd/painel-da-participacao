@@ -27,15 +27,13 @@ function AudienciasPage({
 
   function AudienciasHeader() {
     return (
-      <Box marginBottom={5} marginX={2}>
-        <Typography variant="h1" component="div">
-          <Box fontWeight="fontWeightBold">{TEXTCONSTANTS.pageTitle}</Box>
+      <Box className={classes.boxTitle}>
+        <Typography className={classes.typographyTitle} variant="h1" component="div">
+          {TEXTCONSTANTS.pageTitle}
         </Typography>
         <div>
-          <Typography component="div" variant="h4">
-            <Box style={{ color: '#BFBFBF', paddingTop: '16px' }}>
-              {TEXTCONSTANTS.pageSubTitle}
-            </Box>
+          <Typography className={classes.typographyDescription} component="div" variant="h4">
+            {TEXTCONSTANTS.pageSubTitle}
           </Typography>
         </div>
       </Box>
@@ -50,8 +48,15 @@ function AudienciasPage({
       <Layout value={1}>
         <Grid container className={classes.root}>
           <div className={classes.container}>
-            <main className={classes.content}>
+            <main>
               <AudienciasHeader />
+              <Box
+                display="flex"
+                className={classes.lineBox}
+                flexDirection="row-reverse"
+              >
+                <div className={classes.lineDividerGradientColor} />
+              </Box>
               <Audiencias
                 defaultApisData={defaultApisData}
                 apiLastCacheMade={apiLastCacheMade}
