@@ -571,7 +571,7 @@ function Audiencias(props) {
           />
         </Grid>
 
-        <Grid item xs={12} sm={6} md={3} className={classes.spacing}>
+        <Grid item xs={12} sm={6} md={3} className={classes.spacing} style={{ padding: 0 }}>
           <TotalFrame
             isLoaded={totalsAreLoaded}
             info={`${audienciasTotalsData.users_total}`}
@@ -591,7 +591,7 @@ function Audiencias(props) {
           />
         </Grid>
 
-        <Grid item xs={12} sm={6} md={3} className={classes.spacing}>
+        <Grid item xs={12} sm={6} md={3} className={classes.spacing} style={{ padding: 0 }}>
           <TotalFrame
             isLoaded={totalsAreLoaded}
             info={`${audienciasTotalsData.audiencias_total}`}
@@ -611,7 +611,7 @@ function Audiencias(props) {
           />
         </Grid>
 
-        <Grid item xs={12} sm={6} md={3} className={classes.spacing}>
+        <Grid item xs={12} sm={6} md={3} className={classes.spacing} style={{ padding: 0 }}>
           <TotalFrame
             isLoaded={totalsAreLoaded}
             info={`${audienciasTotalsData.messages_total}`}
@@ -630,7 +630,7 @@ function Audiencias(props) {
           />
         </Grid>
 
-        <Grid item xs={12} sm={6} md={3} className={classes.spacing}>
+        <Grid item xs={12} sm={6} md={3} className={classes.spacing} style={{ padding: 0 }}>
           <TotalFrame
             isLoaded={totalsAreLoaded}
             info={audienciasTotalsData.questions_total}
@@ -648,7 +648,7 @@ function Audiencias(props) {
           />
         </Grid>
 
-        <Grid item xs={12} className={classes.spacing}>
+        <Grid item xs={12} className={classes.spacing} style={{ padding: 0 }}>
           <SectionHeader
             classes={classes}
             title={TEXTCONSTANTS.totalRoomsSectionTexts.title}
@@ -780,6 +780,7 @@ function Audiencias(props) {
 
         <Grid item xs={12} className={classes.spacing}>
           <SubSectionHeader
+            style={{ marginTop: '0px' }}
             title={TEXTCONSTANTS.usersSectionTexts.subSectionNewUsers.title}
           />
           {newUsersChartData !== undefined && newUsersChartData.length > 0 ? (

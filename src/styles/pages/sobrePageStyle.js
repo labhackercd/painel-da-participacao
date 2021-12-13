@@ -157,13 +157,13 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   footerBox: {
-    paddingTop: '16px',
+    paddingTop: '32px',
 
     [theme.breakpoints.up('sm')]: {
-      paddingTop: '32px',
+      paddingTop: '48px',
     },
     '@media (min-width: 1025px)': {
-      paddingTop: '64px',
+      paddingTop: '80px',
     },
   },
 }));

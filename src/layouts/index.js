@@ -24,10 +24,13 @@ const useStyles = makeStyles((theme) => ({
   },
   footerBox: {
     flexShrink: '0',
-    paddingTop: '90px',
+    paddingTop: '32px',
 
-    [theme.breakpoints.up('md')]: {
-      paddingTop: '120px',
+    [theme.breakpoints.up('sm')]: {
+      paddingTop: '48px',
+    },
+    '@media (min-width: 1025px)': {
+      paddingTop: '80px',
     },
   },
 }));

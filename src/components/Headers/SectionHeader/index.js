@@ -11,19 +11,19 @@ export default function SectionHeader(props) {
   } = props;
 
   return (
-    <Box display="flex" marginBottom={1}>
-      <Box p={1}>
-        <Typography component="div" variant="h2">
-          <Box fontWeight="fontWeightBold" fontSize={39}>
+    <Box display="flex" flexFlow="wrap" justifyContent="space-between" alignItems="center">
+      <Box display="flex">
+        <Typography className={classes.typographyHeaderSection} component="div" variant="h2">
+          <Box fontWeight="fontWeightBold">
             {title}
           </Box>
         </Typography>
+        <Box alignSelf="center">
+          {(toolTipText !== null && toolTipText !== undefined)
+            && <Tooltip toolTipText={toolTipText} toolTipColor={toolTipColor} />}
+        </Box>
       </Box>
-      <Box alignSelf="center">
-        {(toolTipText !== null && toolTipText !== undefined)
-          && <Tooltip toolTipText={toolTipText} toolTipColor={toolTipColor} />}
-      </Box>
-      <Box p={1} flexGrow={1} alignSelf="center">
+      <Box>
         <hr className={classes.divider} />
       </Box>
     </Box>

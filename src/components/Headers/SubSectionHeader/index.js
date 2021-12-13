@@ -2,12 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Typography } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
+import { useStyles } from './style';
 
 export default function SubSectionHeader(props) {
-  const { title } = props;
+  const classes = useStyles();
+  const { title, style } = props;
+
   return (
     <Typography component="div" variant="h3">
-      <Box fontWeight="fontWeightBold" fontSize={25} marginLeft={1} marginBottom={1}>
+      <Box style={style} className={classes.typography}>
         {title}
       </Box>
     </Typography>
@@ -16,8 +19,10 @@ export default function SubSectionHeader(props) {
 
 SubSectionHeader.propTypes = {
   title: PropTypes.string,
+  style: PropTypes.any,
 };
 
 SubSectionHeader.defaultProps = {
   title: 'Titulo',
+  style: {},
 };
