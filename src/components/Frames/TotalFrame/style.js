@@ -5,13 +5,13 @@ export const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     width: '100%',
-    padding: '0px 16px 0px 0px',
+    padding: '16px 16px 0px 0px',
 
     [theme.breakpoints.up('sm')]: {
-      padding: '0px 35px 0px 0px',
+      padding: '35px 35px 0px 0px',
     },
     [theme.breakpoints.up('md')]: {
-      padding: '0px 0px',
+      padding: '0px 20px 0px 0px',
     },
   },
   box: {

@@ -573,6 +573,7 @@ function Audiencias(props) {
 
         <Grid item xs={12} sm={6} md={3} className={classes.spacing} style={{ padding: 0 }}>
           <TotalFrame
+            className={classes.totalFrame}
             isLoaded={totalsAreLoaded}
             info={`${audienciasTotalsData.users_total}`}
             title={
@@ -593,6 +594,7 @@ function Audiencias(props) {
 
         <Grid item xs={12} sm={6} md={3} className={classes.spacing} style={{ padding: 0 }}>
           <TotalFrame
+            className={classes.totalFrame}
             isLoaded={totalsAreLoaded}
             info={`${audienciasTotalsData.audiencias_total}`}
             title={
@@ -632,6 +634,7 @@ function Audiencias(props) {
 
         <Grid item xs={12} sm={6} md={3} className={classes.spacing} style={{ padding: 0 }}>
           <TotalFrame
+            className={classes.totalFrameDesktop}
             isLoaded={totalsAreLoaded}
             info={audienciasTotalsData.questions_total}
             title={
