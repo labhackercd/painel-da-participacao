@@ -460,7 +460,7 @@ function Wikilegis(props) {
           />
         </Grid>
 
-        <Grid item xs={12} sm={6} md={3} className={classes.spacing}>
+        <Grid item xs={12} sm={6} md={3} className={classes.spacing} style={{ padding: 0 }}>
           <TotalFrame
             isLoaded={totalsAreLoaded}
             info={`${wikilegisTotalsData.participants_total}`}
@@ -471,7 +471,7 @@ function Wikilegis(props) {
           />
         </Grid>
 
-        <Grid item xs={12} sm={6} md={3} className={classes.spacing}>
+        <Grid item xs={12} sm={6} md={3} className={classes.spacing} style={{ padding: 0 }}>
           <TotalFrame
             isLoaded={totalsAreLoaded}
             info={`${wikilegisTotalsData.legis_propo_total}`}
@@ -482,7 +482,7 @@ function Wikilegis(props) {
           />
         </Grid>
 
-        <Grid item xs={12} sm={6} md={3} className={classes.spacing}>
+        <Grid item xs={12} sm={6} md={3} className={classes.spacing} style={{ padding: 0 }}>
           <TotalFrame
             isLoaded={totalsAreLoaded}
             info={`${wikilegisTotalsData.opinions_total}`}
@@ -493,7 +493,7 @@ function Wikilegis(props) {
           />
         </Grid>
 
-        <Grid item xs={12} sm={6} md={3} className={classes.spacing}>
+        <Grid item xs={12} sm={6} md={3} className={classes.spacing} style={{ padding: 0 }}>
           <TotalFrame
             isLoaded={totalsAreLoaded}
             info={wikilegisTotalsData.votes_total}
@@ -504,7 +504,7 @@ function Wikilegis(props) {
           />
         </Grid>
 
-        <Grid item xs={12} className={classes.spacing}>
+        <Grid item xs={12} className={classes.spacing} style={{ padding: 0 }}>
           <SectionHeader
             classes={classes}
             title={TEXTCONSTANTS.distributionOfParticipationSectionTexts.title}
@@ -525,7 +525,7 @@ function Wikilegis(props) {
           />
         </Grid>
 
-        <Grid item xs={12} className={classes.spacing}>
+        <Grid item xs={12} className={classes.spacing} style={{ padding: 0 }}>
           <SectionHeader
             classes={classes}
             title={TEXTCONSTANTS.rankingSectionTexts.title}
@@ -566,7 +566,7 @@ function Wikilegis(props) {
           )}
         </Grid>
 
-        <Grid item xs={12} className={classes.spacing}>
+        <Grid item xs={12} className={classes.spacing} style={{ padding: 0 }}>
           <SectionHeader
             classes={classes}
             title={TEXTCONSTANTS.usersSectionTexts.title}
@@ -595,7 +595,7 @@ function Wikilegis(props) {
           />
         </Grid>
 
-        <Grid item xs={12} className={classes.spacing}>
+        <Grid item xs={12} className={classes.spacing} style={{ padding: 0 }}>
           <SubSectionHeader
             title={TEXTCONSTANTS.usersSectionTexts.subSectionAccumulatedRegisteredUsers.title}
             toolTipText={TEXTCONSTANTS.usersSectionTexts.subSectionAccumulatedRegisteredUsers.toolTip}
