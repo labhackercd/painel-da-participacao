@@ -147,13 +147,13 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   criteriesSection: {
-    paddingLeft: '2rem',
+    paddingLeft: '0px',
 
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('sm')]: {
       paddingLeft: '4rem',
     },
-    [theme.breakpoints.up('lg')]: {
-      paddingLeft: '6rem',
+    '@media (min-width: 1025px)': {
+      paddingLeft: '3rem',
     },
   },
   footerBox: {
