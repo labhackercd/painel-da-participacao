@@ -9,25 +9,48 @@ export const useStyles = makeStyles((theme) => ({
   content: {
     overflow: 'auto',
     flexGrow: 1,
-    padding: '2.5rem 0 0 0',
   },
   contentBox: {
     display: 'flex',
     justifyContent: 'center',
     width: '100%',
   },
-  spacing: {
-    marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1),
-  },
+  spacing: {},
   spacingContainer: {
     marginTop: theme.spacing(3),
   },
   divider: {
+    height: '2px',
     borderColor: theme.palette.audiencias.divider,
+    background: theme.palette.audiencias.divider,
+    width: '87px',
+
+    [theme.breakpoints.up('sm')]: {
+      height: '4px',
+      width: '105px',
+    },
+    '@media (min-width: 1025px)': {
+      width: '367px',
+    },
   },
   appBarSpacer: theme.mixins.toolbar,
   toolTipIcon: {
     color: theme.palette.audiencias.toolTip,
+  },
+  typographyHeaderSection: {
+    fontSize: '16px',
+    paddingBottom: '16px',
+    paddingTop: '16px',
+
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '25px',
+      paddingTop: '24px',
+      paddingBottom: '24px',
+    },
+    '@media (min-width: 1025px)': {
+      fontSize: '31px',
+      paddingBottom: '48px',
+      paddingTop: '48px',
+    },
   },
 }));
