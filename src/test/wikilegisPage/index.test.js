@@ -59,7 +59,7 @@ test('Test page render get data from getStaticProps', async () => {
   mockInstance
     .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_DOCUMENTS_RANKING_URL}?limit=500&closing_date__lt=${formatedQueryDate}`)
     .reply(200, apisMock.rankingApiResponseMock)
-    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_PARTICIPANT_USERS_URL}${yearlySearchQuery}`)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_PARTICIPANT_USERS_URL}?period=all&ordering=start_date`)
     .reply(200, apisMock.participantsApiMock.YEARLY)
     .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_LEGISLATIVE_PROPOSALS_URL}${yearlySearchQuery}`)
     .reply(200, apisMock.legislativeProposalsMock.YEARLY)
@@ -84,7 +84,7 @@ test('Test page render get data from getStaticProps with error in getDocumentsDa
   mockInstance
     .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_DOCUMENTS_RANKING_URL}?limit=500&closing_date__lt=${formatedQueryDate}`)
     .reply(400, apisMock.rankingApiResponseMock)
-    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_PARTICIPANT_USERS_URL}${yearlySearchQuery}`)
+    .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_PARTICIPANT_USERS_URL}?period=all&ordering=start_date`)
     .reply(200, apisMock.participantsApiMock.YEARLY)
     .onGet(`${process.env.NEXT_PUBLIC_WIKILEGIS_LEGISLATIVE_PROPOSALS_URL}${yearlySearchQuery}`)
     .reply(200, apisMock.legislativeProposalsMock.YEARLY)

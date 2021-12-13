@@ -59,7 +59,7 @@ test('Test page render get data from getStaticProps', async () => {
   mockInstance
     .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_REPORT_RANKING_URL}?limit=500`)
     .reply(200, apisMock.rankingApiResponseMock)
-    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_PARTICIPANT_USERS_URL}${yearlySearchQuery}`)
+    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_PARTICIPANT_USERS_URL}?period=all&ordering=start_date`)
     .reply(200, apisMock.participantsApiMock.YEARLY)
     .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_ROOMS_RANKING_URL}${yearlySearchQuery}`)
     .reply(200, apisMock.roomsApiMock.YEARLY)
@@ -85,7 +85,7 @@ test('Test page render get data from getStaticProps with error in getRoomsData',
   mockInstance
     .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_REPORT_RANKING_URL}?limit=500`)
     .reply(400, apisMock.rankingApiResponseMock)
-    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_PARTICIPANT_USERS_URL}${yearlySearchQuery}`)
+    .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_PARTICIPANT_USERS_URL}?period=all&ordering=start_date`)
     .reply(200, apisMock.participantsApiMock.YEARLY)
     .onGet(`${process.env.NEXT_PUBLIC_AUDIENCIAS_ROOMS_RANKING_URL}${yearlySearchQuery}`)
     .reply(200, apisMock.roomsApiMock.YEARLY)
