@@ -6,35 +6,51 @@ export const useStyles = makeStyles((theme) => ({
     width: '100%',
     height: '100%',
   },
-  headerBox: {
-    backgroundColor: theme.palette.primary.main,
-  },
-  footer: {
-    marginTop: 'auto',
-    backgroundColor: theme.palette.primary.main,
-  },
   content: {
     overflow: 'auto',
     flexGrow: 1,
-    padding: '2.5rem 0 0 0',
   },
   contentBox: {
     display: 'flex',
     justifyContent: 'center',
     width: '100%',
   },
-  spacing: {
-    marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1),
-  },
+  spacing: {},
   spacingContainer: {
     marginTop: theme.spacing(3),
   },
-  positionStats: {
-    display: 'flex',
-  },
   divider: {
+    height: '2px',
     borderColor: theme.palette.wikilegis.jade,
+    background: theme.palette.wikilegis.jade,
+    width: '87px',
+
+    [theme.breakpoints.up('sm')]: {
+      height: '4px',
+      width: '105px',
+    },
+    '@media (min-width: 1025px)': {
+      width: '367px',
+    },
   },
   appBarSpacer: theme.mixins.toolbar,
+  toolTipIcon: {
+    color: theme.palette.wikilegis.jade,
+  },
+  typographyHeaderSection: {
+    fontSize: '16px',
+    paddingBottom: '16px',
+    paddingTop: '16px',
+
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '25px',
+      paddingTop: '24px',
+      paddingBottom: '24px',
+    },
+    '@media (min-width: 1025px)': {
+      fontSize: '31px',
+      paddingBottom: '48px',
+      paddingTop: '48px',
+    },
+  },
 }));
