@@ -13,11 +13,11 @@ function TotalsDataFrame(props) {
 
   const {
     // eslint-disable-next-line react/prop-types
-    height, children, title, toolTipText, toolTipColor, toolTipAriaLabel,
+    height, children, title, toolTipText, toolTipColor, toolTipAriaLabel, className,
   } = props;
 
   return (
-    <Grid container className={classes.root}>
+    <Grid container className={`${classes.root} ${className}`}>
       <Box className={classes.box}>
         <Box className={classes.header}>
           <Box marginLeft={2}>
@@ -49,12 +49,12 @@ function TotalsDataFrame(props) {
 export default function TotalFrame(props) {
   const {
     isLoaded, info, title, toolTipText, toolTipColor, toolTipAriaLabel,
-    subInformation,
+    subInformation, className,
   } = props;
   const hasSubInformation = (subInformation !== '');
 
   return (
-    <TotalsDataFrame height="15vh" paddingLeft="0.5rem" title={title} download={false} align="left" toolTipAriaLabel={toolTipAriaLabel} toolTipText={toolTipText} toolTipColor={toolTipColor}>
+    <TotalsDataFrame className={className} height="15vh" paddingLeft="0.5rem" title={title} download={false} align="left" toolTipAriaLabel={toolTipAriaLabel} toolTipText={toolTipText} toolTipColor={toolTipColor}>
       {isLoaded ? (
         <Box style={{ width: '100%', height: '100%' }} display="flex" alignItems="center" justifyContent="center" width="100%" flexDirection="column">
           <Box paddingTop={hasSubInformation ? '1vh' : ''}>
@@ -94,6 +94,7 @@ TotalFrame.propTypes = {
   toolTipColor: PropTypes.string,
   toolTipAriaLabel: PropTypes.string,
   subInformation: PropTypes.string,
+  className: PropTypes.object,
 };
 
 TotalFrame.defaultProps = {
@@ -104,4 +105,5 @@ TotalFrame.defaultProps = {
   toolTipColor: '',
   toolTipAriaLabel: '',
   subInformation: '',
+  className: {},
 };

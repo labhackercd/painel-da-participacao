@@ -53,4 +53,19 @@ export const useStyles = makeStyles((theme) => ({
       paddingTop: '48px',
     },
   },
+  totalFrame: {
+    padding: '0px 16px 0px 0px',
+
+    [theme.breakpoints.up('sm')]: {
+      padding: '0px 35px 0px 0px',
+    },
+    [theme.breakpoints.up('md')]: {
+      padding: '0px 20px 0px 0px',
+    },
+  },
+  totalFrameDesktop: {
+    [theme.breakpoints.up('md')]: {
+      padding: '0px 0px',
+    },
+  },
 }));
