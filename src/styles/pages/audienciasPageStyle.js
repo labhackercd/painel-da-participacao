@@ -42,6 +42,10 @@ export const useStyles = makeStyles((theme) => ({
     height: '100%',
     maxWidth: '100%',
   },
+  typography: {
+    fontFamily: 'Open Sans',
+    letterSpacing: '0.05em',
+  },
   typographyTitle: {
     fontSize: '20px',
     fontWeight: 'bold',

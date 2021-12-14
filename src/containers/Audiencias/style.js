@@ -37,6 +37,10 @@ export const useStyles = makeStyles((theme) => ({
   toolTipIcon: {
     color: theme.palette.audiencias.toolTip,
   },
+  typography: {
+    fontFamily: 'Open Sans',
+    letterSpacing: '0.05em',
+  },
   typographyHeaderSection: {
     fontSize: '16px',
     paddingBottom: '16px',
