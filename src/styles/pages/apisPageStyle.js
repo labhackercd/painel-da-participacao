@@ -142,7 +142,7 @@ export const useStyles = makeStyles((theme) => ({
     fontSize: '1rem',
     letterSpacing: '0.1rem',
     paddingTop: '10px',
-    color: '#BFBFBF',
+    color: '#FFFF',
     '@media (max-width: 1100px)': {
       fontSize: '0.8rem',
     },

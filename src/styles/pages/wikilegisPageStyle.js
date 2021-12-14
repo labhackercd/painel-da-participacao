@@ -68,10 +68,11 @@ export const useStyles = makeStyles((theme) => ({
     fontSize: '20px',
     fontWeight: 'bold',
     color: '#FFFFFF',
-    marginBottom: '8px',
+    marginBottom: '16px',
 
     [theme.breakpoints.up('sm')]: {
       fontSize: '25px',
+      marginBottom: '24px',
     },
     '@media (min-width: 1025px)': {
       fontSize: '39px',
