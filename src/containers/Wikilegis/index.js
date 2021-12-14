@@ -578,8 +578,9 @@ function Wikilegis(props) {
           />
         </Grid>
 
-        <Grid item xs={12} className={classes.spacing}>
+        <Grid item xs={12} className={classes.spacing} style={{ padding: 0 }}>
           <SubSectionHeader
+            style={{ marginTop: '0px' }}
             title={TEXTCONSTANTS.usersSectionTexts.subSectionNewUsers.title}
             toolTipText={TEXTCONSTANTS.usersSectionTexts.subSectionNewUsers.toolTip}
             toolTipAriaLabel={TEXTCONSTANTS.usersSectionTexts.subSectionNewUsers.toolTipAriaLabel}

@@ -13,7 +13,7 @@ export default function SectionHeader(props) {
   return (
     <Box display="flex" flexFlow="wrap" justifyContent="space-between" alignItems="center">
       <Box display="flex">
-        <Typography className={classes.typographyHeaderSection} component="div" variant="h2">
+        <Typography className={`${classes.typographyHeaderSection} ${classes.typography}`} component="div" variant="h2">
           <Box fontWeight="fontWeightBold">
             {title}
           </Box>

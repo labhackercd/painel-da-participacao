@@ -10,13 +10,14 @@ export const rankingWikilegisColumns = [
     name: 'Proposta Legilastiva',
     selector: 'document.title',
     sortable: true,
-    minWidth: '550px',
+    maxWidth: '500px',
+    fixedHeader: true,
     cell: (row) => (
       <a
         href={`${process.env.NEXT_PUBLIC_EDEMOCRACIA_BASE_URL}${row.get_absolute_url}`}
         target="_blank"
         rel="noopener noreferrer"
-        style={{ color: '#ffffff', textDecoration: 'none' }}
+        style={{ color: '#ffffff' }}
       >
         {row.document.title}
       </a>
@@ -24,6 +25,7 @@ export const rankingWikilegisColumns = [
   },
   {
     name: 'Data de Abertura',
+    maxWidth: '80px',
     selector: 'openning_date',
     sortable: true,
     cell: (row) => formatDate(row.openning_date),
@@ -31,29 +33,34 @@ export const rankingWikilegisColumns = [
   {
     name: 'Data de Encerramento',
     selector: 'closing_date',
+    maxWidth: '80px',
     sortable: true,
     cell: (row) => formatDate(row.closing_date),
   },
   {
     name: 'Participantes',
     selector: 'participants_count',
+    maxWidth: '50px',
     sortable: true,
     center: true,
   },
   {
     name: 'Opiniões',
     selector: 'suggestions_count',
+    maxWidth: '50px',
     sortable: true,
     center: true,
   },
   {
     name: 'Votos',
     selector: 'vote_count',
+    maxWidth: '50px',
     sortable: true,
     center: true,
   },
   {
     name: 'Parlamentar Responsável',
+    maxWidth: '150px',
     selector: 'document.responsible.name',
     sortable: true,
     center: true,

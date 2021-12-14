@@ -690,7 +690,7 @@ function Audiencias(props) {
             )}
         </Grid>
 
-        <Grid item xs={12} className={classes.spacing}>
+        <Grid item xs={12} className={classes.spacing} style={{ padding: 0 }}>
           <SectionHeader
             classes={classes}
             title={TEXTCONSTANTS.distributionOfParticipationSectionTexts.title}
@@ -729,7 +729,7 @@ function Audiencias(props) {
             )}
         </Grid>
 
-        <Grid item xs={12} className={classes.spacing}>
+        <Grid item xs={12} className={classes.spacing} style={{ padding: 0 }}>
           <SectionHeader
             classes={classes}
             toolTipColor={customTheme.palette.audiencias.seabuckthorn}
@@ -781,7 +781,7 @@ function Audiencias(props) {
           />
         </Grid>
 
-        <Grid item xs={12} className={classes.spacing}>
+        <Grid item xs={12} className={classes.spacing} style={{ padding: 0 }}>
           <SubSectionHeader
             style={{ marginTop: '0px' }}
             title={TEXTCONSTANTS.usersSectionTexts.subSectionNewUsers.title}
@@ -813,7 +813,7 @@ function Audiencias(props) {
           )}
         </Grid>
 
-        <Grid item xs={12} className={classes.spacing}>
+        <Grid item xs={12} className={classes.spacing} style={{ padding: 0 }}>
           <SubSectionHeader
             title={
               TEXTCONSTANTS.usersSectionTexts

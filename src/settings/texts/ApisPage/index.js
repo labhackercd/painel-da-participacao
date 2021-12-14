@@ -32,7 +32,7 @@ export const apiCardsInfo = [
     },
   },
   {
-    title: 'Painel da Participação',
+    title: 'E-Monitor',
     infoText: 'Mostra o histórico de utilização de ferramentas na plataforma e-Democracia por meio de gráficos, totais e tabelas.',
     toolColor: '#E438B4',
     urls: {

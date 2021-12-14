@@ -28,11 +28,11 @@ function AudienciasPage({
   function AudienciasHeader() {
     return (
       <Box className={classes.boxTitle}>
-        <Typography className={classes.typographyTitle} variant="h1" component="div">
+        <Typography className={`${classes.typography} ${classes.typographyTitle}`} variant="h1" component="div">
           {TEXTCONSTANTS.pageTitle}
         </Typography>
         <div>
-          <Typography className={classes.typographyDescription} component="div" variant="h4">
+          <Typography className={`${classes.typography} ${classes.typographyDescription}`} component="div" variant="h4">
             {TEXTCONSTANTS.pageSubTitle}
           </Typography>
         </div>
