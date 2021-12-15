@@ -17,7 +17,7 @@ function TotalsDataFrame(props) {
   } = props;
 
   return (
-    <Grid container className={`${classes.root} ${className}`}>
+    <Grid container className={`${classes.root} ${className}`} style={{ height: 'auto', minHeight: '130px' }}>
       <Box className={classes.box}>
         <Box className={classes.header}>
           <Box marginLeft={2}>
@@ -27,7 +27,7 @@ function TotalsDataFrame(props) {
               </Box>
             </Typography>
           </Box>
-          <Box flexGrow={1} display="flex" alignItems="center" marginTop={1}>
+          <Box display="flex" alignItems="center">
             {(toolTipText !== null && toolTipText !== undefined)
               && (
               <Tooltips
