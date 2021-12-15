@@ -57,17 +57,40 @@ export const useStyles = makeStyles((theme) => ({
       paddingTop: '48px',
     },
   },
-  totalFrame: {
-    [theme.breakpoints.up('sm')]: {
-      padding: '0px 35px 0px 0px',
-    },
-    [theme.breakpoints.up('md')]: {
-      padding: '0px 20px 0px 0px',
-    },
-  },
   totalFrameDesktop: {
     [theme.breakpoints.up('md')]: {
       padding: '0px 0px',
     },
+  },
+  desktop: {
+    display: 'none',
+
+    '@media (min-width: 1025px)': {
+      display: 'block',
+    },
+  },
+  mobile: {
+    display: 'block',
+
+    '@media (min-width: 1025px)': {
+      display: 'none',
+    },
+  },
+  caroulselBox: {
+    width: '100%',
+    minHeight: '100%',
+    display: 'flex',
+    padding: '2px 0px 16px 0px',
+
+    [theme.breakpoints.up('sm')]: {
+      padding: '0px 0px 19px 0px',
+    },
+    [theme.breakpoints.down('md')]: {
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+  },
+  caroulselInsideBox: {
+    width: '100%',
   },
 }));

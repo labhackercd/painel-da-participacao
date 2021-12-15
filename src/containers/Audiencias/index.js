@@ -36,6 +36,7 @@ import {
   getParticipationChartDataByMonth,
   getParticipationChartDataByYear,
 } from './auxFunctions/computeParticipation';
+import TotalsGrid from '../../components/TotalsGrid';
 import {
   getRoomTotalsChartDataByDay,
   getRoomTotalsChartDataByMonth,
@@ -73,8 +74,10 @@ function Audiencias(props) {
   };
 
   const classes = useStyles();
+  const { totalFrame, totalFrameDesktop } = useStyles();
   // Charts and report Data
   const [audienciasTotalsData, setAudienciasTotalsData] = useState('');
+  const [audienciasData, setAudienciasData] = useState([]);
   const [newUsersChartData, setNewUsersChartData] = useState([]);
   const [totalUsersChartData, setTotalUsersChartData] = useState([]);
   const [roomsRankingData, setRoomsRankingData] = useState(
@@ -349,6 +352,45 @@ function Audiencias(props) {
     }
   }
 
+  async function updateAudiencesData() {
+    await setAudienciasData(
+      [
+        {
+          isLoaded: totalsAreLoaded,
+          info: audienciasTotalsData.users_total,
+          title: TEXTCONSTANTS.audiencesTotalsTexts.subSectionParticipantsTotals.title,
+          toolTipText: TEXTCONSTANTS.audiencesTotalsTexts.subSectionParticipantsTotals.toolTip,
+          toolTipAriaLabel: TEXTCONSTANTS.audiencesTotalsTexts.subSectionParticipantsTotals.toolTipAriaLabel,
+          toolTipColor: customTheme.palette.audiencias.seabuckthorn,
+        },
+        {
+          isLoaded: totalsAreLoaded,
+          info: audienciasTotalsData.audiencias_total,
+          title: TEXTCONSTANTS.audiencesTotalsTexts.subSectionAudiencesTotals.title,
+          toolTipText: TEXTCONSTANTS.audiencesTotalsTexts.subSectionAudiencesTotals.toolTip,
+          toolTipAriaLabel: TEXTCONSTANTS.audiencesTotalsTexts.subSectionAudiencesTotals.toolTipAriaLabel,
+          toolTipColor: customTheme.palette.audiencias.seabuckthorn,
+          subInformation: `${audienciasTotalsData.audiencias_total_finished} realizadas`,
+        },
+        {
+          isLoaded: totalsAreLoaded,
+          info: audienciasTotalsData.messages_total,
+          title: TEXTCONSTANTS.audiencesTotalsTexts.subSectionMessagesTotals.title,
+          toolTipText: TEXTCONSTANTS.audiencesTotalsTexts.subSectionMessagesTotals.toolTip,
+          toolTipAriaLabel: TEXTCONSTANTS.audiencesTotalsTexts.subSectionMessagesTotals.toolTipAriaLabel,
+          toolTipColor: customTheme.palette.audiencias.seabuckthorn,
+        },
+        {
+          isLoaded: totalsAreLoaded,
+          info: audienciasTotalsData.questions_total,
+          title: TEXTCONSTANTS.audiencesTotalsTexts.subSectionQuestionsTotals.title,
+          toolTipText: TEXTCONSTANTS.audiencesTotalsTexts.subSectionQuestionsTotals.toolTip,
+          toolTipAriaLabel: TEXTCONSTANTS.audiencesTotalsTexts.subSectionQuestionsTotals.toolTipAriaLabel,
+        },
+      ],
+    );
+  }
+
   async function updateTotalsData() {
     try {
       const dataJson = {
@@ -544,6 +586,10 @@ function Audiencias(props) {
   }, [apisDataObject]);
 
   useEffect(() => {
+    updateAudiencesData();
+  }, [audienciasTotalsData, totalsAreLoaded]);
+
+  useEffect(() => {
     checkIfCachedDataIsUpdated();
   }, []);
 
@@ -572,84 +618,29 @@ function Audiencias(props) {
           />
         </Grid>
 
-        <Grid item xs={12} sm={6} md={3} className={classes.spacing} style={{ padding: 0 }}>
-          <TotalFrame
-            className={classes.totalFrame}
-            isLoaded={totalsAreLoaded}
-            info={`${audienciasTotalsData.users_total}`}
-            title={
-              TEXTCONSTANTS.audiencesTotalsTexts.subSectionParticipantsTotals
-                .title
-            }
-            toolTipText={
-              TEXTCONSTANTS.audiencesTotalsTexts.subSectionParticipantsTotals
-                .toolTip
-            }
-            toolTipAriaLabel={
-              TEXTCONSTANTS.audiencesTotalsTexts.subSectionParticipantsTotals
-                .toolTipAriaLabel
-            }
-            toolTipColor={customTheme.palette.audiencias.seabuckthorn}
-          />
-        </Grid>
-
-        <Grid item xs={12} sm={6} md={3} className={classes.spacing} style={{ padding: 0 }}>
-          <TotalFrame
-            className={classes.totalFrame}
-            isLoaded={totalsAreLoaded}
-            info={`${audienciasTotalsData.audiencias_total}`}
-            title={
-              TEXTCONSTANTS.audiencesTotalsTexts.subSectionAudiencesTotals.title
-            }
-            toolTipText={
-              TEXTCONSTANTS.audiencesTotalsTexts.subSectionAudiencesTotals
-                .toolTip
-            }
-            toolTipAriaLabel={
-              TEXTCONSTANTS.audiencesTotalsTexts.subSectionAudiencesTotals
-                .toolTipAriaLabel
-            }
-            toolTipColor={customTheme.palette.audiencias.seabuckthorn}
-            subInformation={`${audienciasTotalsData.audiencias_total_finished} realizadas`}
-          />
-        </Grid>
-
-        <Grid item xs={12} sm={6} md={3} className={classes.spacing} style={{ padding: 0 }}>
-          <TotalFrame
-            isLoaded={totalsAreLoaded}
-            info={`${audienciasTotalsData.messages_total}`}
-            title={
-              TEXTCONSTANTS.audiencesTotalsTexts.subSectionMessagesTotals.title
-            }
-            toolTipText={
-              TEXTCONSTANTS.audiencesTotalsTexts.subSectionMessagesTotals
-                .toolTip
-            }
-            toolTipAriaLabel={
-              TEXTCONSTANTS.audiencesTotalsTexts.subSectionMessagesTotals
-                .toolTipAriaLabel
-            }
-            toolTipColor={customTheme.palette.audiencias.seabuckthorn}
-          />
-        </Grid>
-
-        <Grid item xs={12} sm={6} md={3} className={classes.spacing} style={{ padding: 0 }}>
-          <TotalFrame
-            className={classes.totalFrameDesktop}
-            isLoaded={totalsAreLoaded}
-            info={audienciasTotalsData.questions_total}
-            title={
-              TEXTCONSTANTS.audiencesTotalsTexts.subSectionQuestionsTotals.title
-            }
-            toolTipText={
-              TEXTCONSTANTS.audiencesTotalsTexts.subSectionQuestionsTotals
-                .toolTip
-            }
-            toolTipAriaLabel={
-              TEXTCONSTANTS.audiencesTotalsTexts.subSectionQuestionsTotals
-                .toolTipAriaLabel
-            }
-          />
+        {
+          audienciasData.map((audiencia, index) => (
+            <Grid key={audiencia.title} item md={3} className={`${classes.spacing} ${classes.desktop}`} style={{ padding: 0 }}>
+              <TotalFrame
+                // className={`${index + 1 === audienciasData.length && classes.totalFrameDesktop}`}
+                isLoaded={audiencia.isLoaded}
+                info={audiencia.info}
+                title={audiencia.title}
+                toolTipText={audiencia.toolTipText}
+                toolTipAriaLabel={audiencia.toolTipAriaLabel}
+                toolTipColor={audiencia.toolTipColor}
+                subInformation={audiencia.subInformation}
+              />
+            </Grid>
+          ))
+        }
+        <Grid className={classes.mobile} item xs={12}>
+          <Box className={classes.caroulselBox}>
+            <Box className={classes.caroulselInsideBox}>
+              <TotalsGrid itens={audienciasData} />
+              {/* <CaroulselCards carouselItens={audienciasData} classes={classes} /> */}
+            </Box>
+          </Box>
         </Grid>
 
         <Grid item xs={12} className={classes.spacing} style={{ padding: 0 }}>
