@@ -15,6 +15,9 @@ export const useStyles = makeStyles((theme) => ({
     padding: '0px 0px 0px 16px',
     marginTop: '40px',
 
+    '@media (max-width: 1025px)': {
+      overflowX: 'hidden !important',
+    },
     [theme.breakpoints.up('sm')]: {
       padding: '0px 0px 0px 35px',
       marginTop: '48px',
