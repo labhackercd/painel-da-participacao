@@ -181,7 +181,7 @@ export default function PageNavbar(props) {
     return (
       <Toolbar>
         <Drawer
-          anchor="up"
+          anchor="top"
           open={drawerOpen}
           onClose={handleDrawerClose}
           classes={{ paper: drawerMobile }}
