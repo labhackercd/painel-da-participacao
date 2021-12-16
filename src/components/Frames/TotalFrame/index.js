@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {
@@ -6,6 +6,7 @@ import {
 } from '@material-ui/core';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import Tooltips from '../../ToolTip/index';
+import InfoModal from '../../InfoModal';
 import { useStyles } from './style';
 
 function TotalsDataFrame(props) {
@@ -15,6 +16,22 @@ function TotalsDataFrame(props) {
     // eslint-disable-next-line react/prop-types
     height, children, title, toolTipText, toolTipColor, toolTipAriaLabel, isLast,
   } = props;
+
+  const [open, setOpen] = useState(false);
+  const [mobileView, setMobileView] = useState(false);
+  const handleOpen = () => mobileView && setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  useEffect(() => {
+    const setResponsiveness = () =>
+      window.innerWidth < 1024
+        ? setMobileView(true)
+        : setMobileView(false);
+
+    setResponsiveness();
+
+    window.addEventListener('resize', () => setResponsiveness());
+  }, []);
 
   return (
     <Grid container className={`${isLast ? classes.rootLast : classes.root}`} style={{ height: 'auto', minHeight: '130px' }}>
@@ -27,7 +44,7 @@ function TotalsDataFrame(props) {
               </Box>
             </Typography>
           </Box>
-          <Box display="flex" alignItems="center">
+          <Box onClick={handleOpen} display="flex" alignItems="center">
             {(toolTipText !== null && toolTipText !== undefined)
               && (
               <Tooltips
@@ -37,6 +54,13 @@ function TotalsDataFrame(props) {
               />
               )}
           </Box>
+          <InfoModal
+            open={open}
+            handleClose={handleClose}
+            title={title}
+            toolTipText={toolTipText}
+            toolTipColor={toolTipColor}
+          />
         </Box>
       </Box>
       <div className={classes.container} style={{ height: 'auto', minHeight: height }}>
