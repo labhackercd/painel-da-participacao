@@ -42,7 +42,7 @@ export default function Header(props) {
   const yearsRange = rangeOfYears(props.initialYear, APPLICATION_CONSTANTS.CURRENT_YEAR);
   return (
     <>
-      <AppBar position="sticky" elevation={0}>
+      <AppBar className={classes.bar} position="sticky" elevation={0}>
         <Toolbar>
           <Box width="100%" className={classes.inputOptions}>
             <FormControl id="form-control-year" className={classes.formControl}>
