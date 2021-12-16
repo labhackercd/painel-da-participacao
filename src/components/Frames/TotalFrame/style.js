@@ -11,6 +11,11 @@ export const useStyles = makeStyles((theme) => ({
       padding: '0px 20px 0px 0px',
     },
   },
+  rootLast: {
+    display: 'flex',
+    width: '100%',
+    padding: '0px 0px',
+  },
   box: {
     height: 'auto',
     borderRadius: '15px 15px 0 0',

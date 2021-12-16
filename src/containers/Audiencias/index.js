@@ -73,7 +73,6 @@ function Audiencias(props) {
   };
 
   const classes = useStyles();
-  const { totalFrame, totalFrameDesktop } = useStyles();
   // Charts and report Data
   const [audienciasTotalsData, setAudienciasTotalsData] = useState('');
   const [audienciasData, setAudienciasData] = useState([]);
@@ -381,6 +380,7 @@ function Audiencias(props) {
         },
         {
           isLoaded: totalsAreLoaded,
+          isLast: true,
           info: audienciasTotalsData.questions_total,
           title: TEXTCONSTANTS.audiencesTotalsTexts.subSectionQuestionsTotals.title,
           toolTipText: TEXTCONSTANTS.audiencesTotalsTexts.subSectionQuestionsTotals.toolTip,
@@ -621,7 +621,7 @@ function Audiencias(props) {
           audienciasData.map((audiencia, index) => (
             <Grid key={audiencia.title} item md={3} className={`${classes.spacing} ${classes.desktop}`} style={{ padding: 0 }}>
               <TotalFrame
-                // className={`${index + 1 === audienciasData.length && classes.totalFrameDesktop}`}
+                isLast={audiencia.isLast}
                 isLoaded={audiencia.isLoaded}
                 info={audiencia.info}
                 title={audiencia.title}

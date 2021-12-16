@@ -13,11 +13,11 @@ function TotalsDataFrame(props) {
 
   const {
     // eslint-disable-next-line react/prop-types
-    height, children, title, toolTipText, toolTipColor, toolTipAriaLabel, className,
+    height, children, title, toolTipText, toolTipColor, toolTipAriaLabel, isLast,
   } = props;
 
   return (
-    <Grid container className={`${classes.root} ${className}`} style={{ height: 'auto', minHeight: '130px' }}>
+    <Grid container className={`${isLast ? classes.rootLast : classes.root}`} style={{ height: 'auto', minHeight: '130px' }}>
       <Box className={classes.box}>
         <Box className={classes.header}>
           <Box marginLeft={2}>
@@ -49,12 +49,12 @@ function TotalsDataFrame(props) {
 export default function TotalFrame(props) {
   const {
     isLoaded, info, title, toolTipText, toolTipColor, toolTipAriaLabel,
-    subInformation, className,
+    subInformation, isLast,
   } = props;
   const hasSubInformation = (subInformation !== '');
 
   return (
-    <TotalsDataFrame className={className} height="15vh" paddingLeft="0.5rem" title={title} download={false} align="left" toolTipAriaLabel={toolTipAriaLabel} toolTipText={toolTipText} toolTipColor={toolTipColor}>
+    <TotalsDataFrame isLast={isLast} height="15vh" paddingLeft="0.5rem" title={title} download={false} align="left" toolTipAriaLabel={toolTipAriaLabel} toolTipText={toolTipText} toolTipColor={toolTipColor}>
       {isLoaded ? (
         <Box style={{ width: '100%', height: '100%' }} display="flex" alignItems="center" justifyContent="center" width="100%" flexDirection="column">
           <Box paddingTop={hasSubInformation ? '1vh' : ''}>
@@ -88,22 +88,22 @@ export default function TotalFrame(props) {
 
 TotalFrame.propTypes = {
   isLoaded: PropTypes.bool,
+  isLast: PropTypes.bool,
   info: PropTypes.node,
   title: PropTypes.string,
   toolTipText: PropTypes.string,
   toolTipColor: PropTypes.string,
   toolTipAriaLabel: PropTypes.string,
   subInformation: PropTypes.string,
-  className: PropTypes.object,
 };
 
 TotalFrame.defaultProps = {
   isLoaded: false,
+  isLast: false,
   info: 'info',
   title: 'Title',
   toolTipText: null,
   toolTipColor: '',
   toolTipAriaLabel: '',
   subInformation: '',
-  className: {},
 };
