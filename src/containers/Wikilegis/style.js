@@ -61,13 +61,43 @@ export const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('sm')]: {
       padding: '0px 35px 0px 0px',
     },
-    [theme.breakpoints.up('md')]: {
-      padding: '0px 20px 0px 0px',
+  },
+  desktop: {
+    display: 'none',
+
+    '@media (min-width: 600px)': {
+      display: 'block',
     },
   },
-  totalFrameDesktop: {
-    [theme.breakpoints.up('md')]: {
-      padding: '0px 0px',
+  mobile: {
+    display: 'block',
+
+    '@media (min-width: 600px)': {
+      display: 'none',
+    },
+  },
+  totalsGridBox: {
+    width: '100%',
+    minHeight: '100%',
+    display: 'flex',
+    padding: '2px 0px 0px 0px',
+
+    [theme.breakpoints.up('sm')]: {
+      padding: '0px 0px 19px 0px',
+    },
+    [theme.breakpoints.down('md')]: {
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+  },
+  totalsGridInsideBox: {
+    width: '100%',
+  },
+  sectionHeader: {
+    padding: '0px 0px 0px 16px',
+
+    [theme.breakpoints.up('sm')]: {
+      padding: '0px',
     },
   },
 }));

@@ -33,6 +33,7 @@ import { useStyles } from './style';
 import customTheme from '../../styles/theme';
 
 import * as TEXTCONSTANTS from '../../settings/texts/WikilegisPage';
+import TotalsGrid from '../../components/TotalsGrid';
 
 const defaultSelectedPeriodType = APPLICATION_OPTIONS.DEFAULT_SELECTED_PERIOD_TYPE; // Get all months of the year
 const defaultMonthPeriod = APPLICATION_OPTIONS.DEFAULT_MONTH_PERIOD; // All months
@@ -53,6 +54,7 @@ function Wikilegis(props) {
   const classes = useStyles();
   // Charts and report Data
   const [wikilegisTotalsData, setWikilegisTotalsData] = useState('');
+  const [wikilegisData, setWikilegisData] = useState([]);
   const [newUsersChartData, setNewUsersChartData] = useState([]);
   const [totalUsersChartData, setTotalUsersChartData] = useState([]);
   const [roomsRankingData, setRoomsRankingData] = useState(defaultApisData.wikilegisRankingData);
@@ -179,6 +181,46 @@ function Wikilegis(props) {
       // If an error occurred, throw error and set default cachedData to whole page;
       throw new Error('Erro ao obter dados das APIS');
     }
+  }
+
+  async function updateWikilegisData() {
+    await setWikilegisData(
+      [
+        {
+          isLoaded: totalsAreLoaded,
+          info: wikilegisTotalsData.participants_total,
+          title: TEXTCONSTANTS.wikilegisTotalsSectionTexts.subSectionParticipantsTotals.title,
+          toolTipText: TEXTCONSTANTS.wikilegisTotalsSectionTexts.subSectionParticipantsTotals.toolTip,
+          toolTipAriaLabel: TEXTCONSTANTS.wikilegisTotalsSectionTexts.subSectionParticipantsTotals.toolTipAriaLabel,
+          toolTipColor: customTheme.palette.wikilegis.jade,
+        },
+        {
+          isLoaded: totalsAreLoaded,
+          info: wikilegisTotalsData.legis_propo_total,
+          title: TEXTCONSTANTS.wikilegisTotalsSectionTexts.subSectionLegislativeProposalsTotals.title,
+          toolTipText: TEXTCONSTANTS.wikilegisTotalsSectionTexts.subSectionLegislativeProposalsTotals.toolTip,
+          toolTipAriaLabel: TEXTCONSTANTS.wikilegisTotalsSectionTexts.subSectionLegislativeProposalsTotals.toolTipAriaLabel,
+          toolTipColor: customTheme.palette.wikilegis.jade,
+        },
+        {
+          isLoaded: totalsAreLoaded,
+          info: wikilegisTotalsData.opinions_total,
+          title: TEXTCONSTANTS.wikilegisTotalsSectionTexts.subSectionOpinionsTotals.title,
+          toolTipText: TEXTCONSTANTS.wikilegisTotalsSectionTexts.subSectionOpinionsTotals.toolTip,
+          toolTipAriaLabel: TEXTCONSTANTS.wikilegisTotalsSectionTexts.subSectionOpinionsTotals.toolTipAriaLabel,
+          toolTipColor: customTheme.palette.wikilegis.jade,
+        },
+        {
+          isLoaded: totalsAreLoaded,
+          isLast: true,
+          info: wikilegisTotalsData.votes_total,
+          title: TEXTCONSTANTS.wikilegisTotalsSectionTexts.subSectionVotesTotals.title,
+          toolTipText: TEXTCONSTANTS.wikilegisTotalsSectionTexts.subSectionVotesTotals.toolTip,
+          toolTipAriaLabel: TEXTCONSTANTS.wikilegisTotalsSectionTexts.subSectionVotesTotals.toolTipAriaLabel,
+          toolTipColor: customTheme.palette.wikilegis.jade,
+        },
+      ],
+    );
   }
 
   async function updateTotalsData() {
@@ -394,6 +436,10 @@ function Wikilegis(props) {
   }, [apisDataObject]);
 
   useEffect(() => {
+    updateWikilegisData();
+  }, [wikilegisTotalsData, totalsAreLoaded]);
+
+  useEffect(() => {
     checkIfCachedDataIsUpdated();
   }, []);
 
@@ -461,51 +507,28 @@ function Wikilegis(props) {
           />
         </Grid>
 
-        <Grid item xs={12} sm={6} md={3} className={classes.spacing} style={{ padding: 0 }}>
-          <TotalFrame
-            className={classes.totalFrame}
-            isLoaded={totalsAreLoaded}
-            info={`${wikilegisTotalsData.participants_total}`}
-            title={TEXTCONSTANTS.wikilegisTotalsSectionTexts.subSectionParticipantsTotals.title}
-            toolTipText={TEXTCONSTANTS.wikilegisTotalsSectionTexts.subSectionParticipantsTotals.toolTip}
-            toolTipAriaLabel={TEXTCONSTANTS.wikilegisTotalsSectionTexts.subSectionParticipantsTotals.toolTipAriaLabel}
-            toolTipColor={customTheme.palette.wikilegis.jade}
-          />
-        </Grid>
-
-        <Grid item xs={12} sm={6} md={3} className={classes.spacing} style={{ padding: 0 }}>
-          <TotalFrame
-            className={classes.totalFrame}
-            isLoaded={totalsAreLoaded}
-            info={`${wikilegisTotalsData.legis_propo_total}`}
-            title={TEXTCONSTANTS.wikilegisTotalsSectionTexts.subSectionLegislativeProposalsTotals.title}
-            toolTipText={TEXTCONSTANTS.wikilegisTotalsSectionTexts.subSectionLegislativeProposalsTotals.toolTip}
-            toolTipAriaLabel={TEXTCONSTANTS.wikilegisTotalsSectionTexts.subSectionLegislativeProposalsTotals.toolTipAriaLabel}
-            toolTipColor={customTheme.palette.wikilegis.jade}
-          />
-        </Grid>
-
-        <Grid item xs={12} sm={6} md={3} className={classes.spacing} style={{ padding: 0 }}>
-          <TotalFrame
-            isLoaded={totalsAreLoaded}
-            info={`${wikilegisTotalsData.opinions_total}`}
-            title={TEXTCONSTANTS.wikilegisTotalsSectionTexts.subSectionOpinionsTotals.title}
-            toolTipText={TEXTCONSTANTS.wikilegisTotalsSectionTexts.subSectionOpinionsTotals.toolTip}
-            toolTipAriaLabel={TEXTCONSTANTS.wikilegisTotalsSectionTexts.subSectionOpinionsTotals.toolTipAriaLabel}
-            toolTipColor={customTheme.palette.wikilegis.jade}
-          />
-        </Grid>
-
-        <Grid item xs={12} sm={6} md={3} className={classes.spacing} style={{ padding: 0 }}>
-          <TotalFrame
-            className={classes.totalFrameDesktop}
-            isLoaded={totalsAreLoaded}
-            info={wikilegisTotalsData.votes_total}
-            title={TEXTCONSTANTS.wikilegisTotalsSectionTexts.subSectionVotesTotals.title}
-            toolTipText={TEXTCONSTANTS.wikilegisTotalsSectionTexts.subSectionVotesTotals.toolTip}
-            toolTipAriaLabel={TEXTCONSTANTS.wikilegisTotalsSectionTexts.subSectionVotesTotals.toolTipAriaLabel}
-            toolTipColor={customTheme.palette.wikilegis.jade}
-          />
+        {
+          wikilegisData.map((item) => (
+            <Grid key={item.title} item md={3} className={`${classes.spacing} ${classes.desktop}`} style={{ padding: 0 }}>
+              <TotalFrame
+                isLast={item.isLast}
+                isLoaded={item.isLoaded}
+                info={item.info}
+                title={item.title}
+                toolTipText={item.toolTipText}
+                toolTipAriaLabel={item.toolTipAriaLabel}
+                toolTipColor={item.toolTipColor}
+                subInformation={item.subInformation}
+              />
+            </Grid>
+          ))
+        }
+        <Grid className={classes.mobile} item xs={12}>
+          <Box className={classes.totalsGridBox}>
+            <Box className={classes.totalsGridInsideBox}>
+              <TotalsGrid itens={wikilegisData} />
+            </Box>
+          </Box>
         </Grid>
 
         <Grid item xs={12} className={classes.spacing} style={{ padding: 0 }}>
