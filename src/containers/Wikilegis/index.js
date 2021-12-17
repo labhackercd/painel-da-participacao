@@ -483,7 +483,7 @@ function Wikilegis(props) {
     <div className={classes.root}>
       <Header
         title={TEXTCONSTANTS.pageToolTitle}
-        handlePeriodChange={handlePeriodChange}
+        handlePeriodChange={() => handlePeriodChange()}
         year={defaultYearPeriod}
         monthPeriod={defaultMonthPeriod}
         headerColors={headerColors}

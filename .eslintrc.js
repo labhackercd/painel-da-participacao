@@ -18,6 +18,7 @@ module.exports = {
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     'react/jsx-props-no-spreading': 'off',
     'react/forbid-prop-types': 'off',
+    'jsx-a11y/click-events-have-key-events': 'off', 
     'import/no-extraneous-dependencies': ["error", {"devDependencies": ["**/*.js","**/*.test.js", "**/*.spec.js"]}]
   },
 };

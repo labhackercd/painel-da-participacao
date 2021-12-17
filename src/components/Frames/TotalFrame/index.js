@@ -1,3 +1,5 @@
+/* eslint-disable no-confusing-arrow */
+
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -23,10 +25,9 @@ function TotalsDataFrame(props) {
   const handleClose = () => setOpen(false);
 
   useEffect(() => {
-    const setResponsiveness = () =>
-      window.innerWidth < 1024
-        ? setMobileView(true)
-        : setMobileView(false);
+    const setResponsiveness = () => window.innerWidth < 1024
+      ? setMobileView(true)
+      : setMobileView(false);
 
     setResponsiveness();
 
