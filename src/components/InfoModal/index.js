@@ -12,7 +12,6 @@ export default function InfoModal(props) {
   const classes = useStyles();
 
   const {
-    // eslint-disable-next-line react/prop-types
     open, handleClose, title, toolTipText, toolTipColor,
   } = props;
 

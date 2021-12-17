@@ -1,4 +1,7 @@
-import React from 'react';
+/* eslint-disable react/prop-types */
+/* eslint-disable no-confusing-arrow */
+
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {
@@ -6,10 +9,25 @@ import {
 } from '@material-ui/core';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import Tooltips from '../../ToolTip/index';
+import InfoModal from '../../InfoModal';
 import { useStyles } from './style';
 
 function TotalsDataFrame(props) {
   const classes = useStyles();
+  const [open, setOpen] = useState(false);
+  const [mobileView, setMobileView] = useState(false);
+  const handleOpen = () => mobileView && setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  useEffect(() => {
+    const setResponsiveness = () => window.innerWidth < 1024
+      ? setMobileView(true)
+      : setMobileView(false);
+
+    setResponsiveness();
+
+    window.addEventListener('resize', () => setResponsiveness());
+  }, []);
 
   const {
     // eslint-disable-next-line react/prop-types
@@ -27,7 +45,7 @@ function TotalsDataFrame(props) {
               </Box>
             </Typography>
           </Box>
-          <Box flexGrow={1} display="flex" alignItems="center" marginTop={1}>
+          <Box onClick={handleOpen} flexGrow={1} display="flex" alignItems="center" marginTop={1}>
             {(toolTipText !== null && toolTipText !== undefined)
               && (
               <Tooltips
@@ -37,6 +55,13 @@ function TotalsDataFrame(props) {
               />
               )}
           </Box>
+          <InfoModal
+            open={open}
+            handleClose={handleClose}
+            title={title}
+            toolTipText={toolTipText}
+            toolTipColor={toolTipColor}
+          />
         </Box>
       </Box>
       <div className={classes.container} style={{ height: 'auto', minHeight: height }}>
