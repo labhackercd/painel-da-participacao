@@ -26,6 +26,7 @@ export default function InfoModal(props) {
       <Box className={classes.container}>
         <Box className={classes.modal}>
           <IconButton
+            data-testid="close-icon"
             onClick={handleClose}
             className={classes.close}
           >
