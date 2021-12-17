@@ -3,14 +3,21 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles((theme) => ({
   container: {
-    margin: '50% 16px 0px 16px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignContent: 'center',
+
+    [theme.breakpoints.only('xs')]: {
+      margin: '50% 16px 0px 16px',
+    },
 
     [theme.breakpoints.up('sm')]: {
-      margin: '50% 35px 0px 35px',
+      margin: '50% 0px 0px 0px',
     },
   },
   modal: {
-    width: '100%',
+    minWidth: '100%',
+    maxWidth: '425px',
     position: 'relative',
     fontSize: '12px',
     padding: '20px',
@@ -19,6 +26,10 @@ export const useStyles = makeStyles((theme) => ({
     borderRadius: '16px',
     display: 'flex',
     flexDirection: 'column',
+
+    [theme.breakpoints.up('sm')]: {
+      minWidth: '343px',
+    },
   },
   titleModal: {
     color: theme.palette.white.main,
@@ -26,6 +37,10 @@ export const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
     paddingBottom: '24px',
+
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '25px',
+    },
   },
   descriptionModal: {
     color: theme.palette.white.main,
@@ -35,6 +50,10 @@ export const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
     paddingBottom: '24px',
+
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '16px',
+    },
   },
   iconClose: {
     width: '20px',
