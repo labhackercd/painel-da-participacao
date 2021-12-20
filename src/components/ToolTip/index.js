@@ -6,6 +6,7 @@ import InfoIcon from '@material-ui/icons/Info';
 
 const HtmlTooltip = withStyles((theme) => ({
   tooltip: {
+    margin: 0,
     backgroundColor: (props) => props.backgroundcolor,
     color: 'black',
     maxWidth: 220,
