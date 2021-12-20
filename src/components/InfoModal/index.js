@@ -21,6 +21,7 @@ export default function InfoModal(props) {
       onClose={handleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
+      style={{ outline: 'none' }}
     >
       <Box className={classes.container}>
         <Box className={classes.modal}>
