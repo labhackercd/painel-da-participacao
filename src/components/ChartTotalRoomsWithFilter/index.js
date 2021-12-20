@@ -138,7 +138,7 @@ export default function ChartTotalRoomsWithFilter(props) {
           <>
             <Box display="flex" flexDirection="row-reverse">
               <FormControlRadioOptions
-                handleChange={() => handleWayOfVisualizeDataChange()}
+                handleChange={(event) => handleWayOfVisualizeDataChange(event)}
                 value={wayOfVisualizeData}
               />
             </Box>
@@ -163,15 +163,15 @@ export default function ChartTotalRoomsWithFilter(props) {
                   </Box>
                   <Box width="100%" display="flex" justifyContent="center">
                     <FormControlLabel
-                      control={<WhiteCheckbox checked={!(columnsToNotShow).includes('Canceladas')} onChange={() => handleShowColumsChange()} name="Canceladas" />}
+                      control={<WhiteCheckbox checked={!(columnsToNotShow).includes('Canceladas')} onChange={(event) => handleShowColumsChange(event)} name="Canceladas" />}
                       label="Canceladas"
                     />
                     <FormControlLabel
-                      control={<WhiteCheckbox checked={!(columnsToNotShow).includes('Realizadas')} onChange={() => handleShowColumsChange()} name="Realizadas" />}
+                      control={<WhiteCheckbox checked={!(columnsToNotShow).includes('Realizadas')} onChange={(event) => handleShowColumsChange(event)} name="Realizadas" />}
                       label="Realizadas"
                     />
                     <FormControlLabel
-                      control={<WhiteCheckbox checked={!(columnsToNotShow).includes('Total')} onChange={() => handleShowColumsChange} name="Total" />}
+                      control={<WhiteCheckbox checked={!(columnsToNotShow).includes('Total')} onChange={(event) => handleShowColumsChange(event)} name="Total" />}
                       label="Total"
                     />
                   </Box>

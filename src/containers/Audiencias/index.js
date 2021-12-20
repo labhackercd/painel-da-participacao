@@ -2,6 +2,7 @@
 /* eslint-disable max-len */
 /* eslint-disable spaced-comment */
 /* eslint-disable no-console */
+/* eslint-disable react/jsx-no-bind */
 import React, { useState, useEffect } from 'react';
 import { Grid, Box } from '@material-ui/core';
 import PropTypes from 'prop-types';
@@ -550,7 +551,7 @@ function Audiencias(props) {
     <div className={classes.root}>
       <Header
         title={TEXTCONSTANTS.pageToolTitle}
-        handlePeriodChange={() => handlePeriodChange()}
+        handlePeriodChange={handlePeriodChange}
         year={defaultYearPeriod}
         monthPeriod={defaultMonthPeriod}
         headerColors={headerColors}
