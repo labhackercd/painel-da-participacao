@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-confusing-arrow */
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {
@@ -11,23 +11,14 @@ import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import Tooltips from '../../ToolTip/index';
 import InfoModal from '../../InfoModal';
 import { useStyles } from './style';
+import useMobile from '../../../hooks/useMobile';
 
 function TotalsDataFrame(props) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const [mobileView, setMobileView] = useState(false);
+  const { mobileView } = useMobile();
   const handleOpen = () => mobileView && setOpen(true);
   const handleClose = () => setOpen(false);
-
-  useEffect(() => {
-    const setResponsiveness = () => window.innerWidth < 1024
-      ? setMobileView(true)
-      : setMobileView(false);
-
-    setResponsiveness();
-
-    window.addEventListener('resize', () => setResponsiveness());
-  }, []);
 
   const {
     // eslint-disable-next-line react/prop-types
