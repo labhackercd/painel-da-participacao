@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
+import useMobile from '../../hooks/useMobile';
 
 const HtmlTooltip = withStyles((theme) => ({
   tooltip: {
@@ -20,6 +21,10 @@ export default function Tooltips(props) {
     // eslint-disable-next-line react/prop-types
     toolTipText, toolTipColor, toolTipAriaLabel,
   } = props;
+  const [open, setOpen] = useState(false);
+  const { mobileView } = useMobile();
+  const handleOpen = () => !mobileView && setOpen(true);
+  const handleClose = () => setOpen(false);
 
   function toolTipHtmlTitle(title) {
     return (
@@ -31,7 +36,13 @@ export default function Tooltips(props) {
 
   return (
     <div>
-      <HtmlTooltip title={toolTipHtmlTitle(toolTipText)} backgroundcolor={toolTipColor}>
+      <HtmlTooltip
+        title={toolTipHtmlTitle(toolTipText)}
+        backgroundcolor={toolTipColor}
+        open={open}
+        onClose={handleClose}
+        onOpen={handleOpen}
+      >
         <IconButton aria-label={toolTipAriaLabel} style={{ padding: 0, margin: 0 }}>
           <InfoIcon aria-label={toolTipAriaLabel} style={{ color: toolTipColor }} />
         </IconButton>
