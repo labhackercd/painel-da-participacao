@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
     background: 'black',
     color: 'white',
     width: '100%',
+    height: '-webkit-fill-available',
   },
   tab: {
     height: '92%',
@@ -57,6 +58,7 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbarContentMobile: {
     width: '100%',
+    height: '100%',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',

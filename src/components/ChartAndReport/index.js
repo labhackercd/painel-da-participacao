@@ -89,7 +89,7 @@ export default function ChartAndReport(props) {
           <>
             <Box display="flex" flexDirection="row-reverse">
               <FormControlRadioOptions
-                handleChange={handleWayOfVisualizeDataChange}
+                handleChange={() => handleWayOfVisualizeDataChange()}
                 value={wayOfVisualizeData}
               />
             </Box>

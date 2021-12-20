@@ -1,4 +1,7 @@
-import React from 'react';
+/* eslint-disable react/prop-types */
+/* eslint-disable no-confusing-arrow */
+
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {
@@ -6,10 +9,16 @@ import {
 } from '@material-ui/core';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import Tooltips from '../../ToolTip/index';
+import InfoModal from '../../InfoModal';
 import { useStyles } from './style';
+import useMobile from '../../../hooks/useMobile';
 
 function TotalsDataFrame(props) {
   const classes = useStyles();
+  const [open, setOpen] = useState(false);
+  const { mobileView } = useMobile();
+  const handleOpen = () => mobileView && setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const {
     // eslint-disable-next-line react/prop-types
@@ -17,7 +26,7 @@ function TotalsDataFrame(props) {
   } = props;
 
   return (
-    <Grid container className={`${classes.root} ${className}`}>
+    <Grid container className={`${classes.root} ${className}`} style={{ height: 'auto', minHeight: '130px' }}>
       <Box className={classes.box}>
         <Box className={classes.header}>
           <Box marginLeft={2}>
@@ -27,7 +36,7 @@ function TotalsDataFrame(props) {
               </Box>
             </Typography>
           </Box>
-          <Box flexGrow={1} display="flex" alignItems="center" marginTop={1}>
+          <Box onClick={handleOpen} flexGrow={1} display="flex" alignItems="center" style={{ margin: 0 }}>
             {(toolTipText !== null && toolTipText !== undefined)
               && (
               <Tooltips
@@ -37,6 +46,13 @@ function TotalsDataFrame(props) {
               />
               )}
           </Box>
+          <InfoModal
+            open={open}
+            handleClose={handleClose}
+            title={title}
+            toolTipText={toolTipText}
+            toolTipColor={toolTipColor}
+          />
         </Box>
       </Box>
       <div className={classes.container} style={{ height: 'auto', minHeight: height }}>

@@ -1,14 +1,21 @@
-import React from 'react';
+/* eslint-disable no-confusing-arrow */
+
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Typography } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import Tooltip from '../../ToolTip/index';
+import InfoModal from '../../InfoModal';
+import useMobile from '../../../hooks/useMobile';
 
 export default function SectionHeader(props) {
-  // const classes = useStyles();
   const {
     title, toolTipText, classes, toolTipColor,
   } = props;
+  const [open, setOpen] = useState(false);
+  const { mobileView } = useMobile();
+  const handleOpen = () => mobileView && setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
     <Box display="flex" flexFlow="wrap" justifyContent="space-between" alignItems="center">
@@ -18,10 +25,17 @@ export default function SectionHeader(props) {
             {title}
           </Box>
         </Typography>
-        <Box alignSelf="center">
+        <Box onClick={handleOpen} alignSelf="center" marginLeft={1}>
           {(toolTipText !== null && toolTipText !== undefined)
             && <Tooltip toolTipText={toolTipText} toolTipColor={toolTipColor} />}
         </Box>
+        <InfoModal
+          open={open}
+          handleClose={handleClose}
+          title={title}
+          toolTipText={toolTipText}
+          toolTipColor={toolTipColor}
+        />
       </Box>
       <Box>
         <hr className={classes.divider} />

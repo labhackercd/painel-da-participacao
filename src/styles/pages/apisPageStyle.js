@@ -4,6 +4,9 @@ import { makeStyles } from '@material-ui/core/styles';
 export const useStyles = makeStyles((theme) => ({
   root: {
     height: 'auto',
+    '@media (max-width: 1025px)': {
+      overflowX: 'hidden !important',
+    },
   },
   box: {
     display: 'flex',

@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+/* eslint-disable no-confusing-arrow */
 import React, { useState, useEffect } from 'react';
 import {
   Toolbar,
@@ -51,7 +52,6 @@ function a11yProps(index) {
 
 export default function PageNavbar(props) {
   const {
-    header,
     drawerContainer,
     drawerMobile,
     offset,
@@ -75,10 +75,9 @@ export default function PageNavbar(props) {
   const { mobileView, drawerOpen } = state;
 
   useEffect(() => {
-    const setResponsiveness = () =>
-      window.innerWidth < 1024
-        ? setState((prevState) => ({ ...prevState, mobileView: true }))
-        : setState((prevState) => ({ ...prevState, mobileView: false }));
+    const setResponsiveness = () => window.innerWidth < 1024
+      ? setState((prevState) => ({ ...prevState, mobileView: true }))
+      : setState((prevState) => ({ ...prevState, mobileView: false }));
 
     setResponsiveness();
 
@@ -182,7 +181,7 @@ export default function PageNavbar(props) {
     return (
       <Toolbar>
         <Drawer
-          anchor="up"
+          anchor="top"
           open={drawerOpen}
           onClose={handleDrawerClose}
           classes={{ paper: drawerMobile }}

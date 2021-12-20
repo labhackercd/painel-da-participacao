@@ -1,4 +1,6 @@
 /* eslint-disable react/prop-types */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+
 import React from 'react';
 import { isDesktop, isTablet } from 'react-device-detect';
 import Carousel from 'react-multi-carousel';
@@ -16,8 +18,8 @@ const CustomDot = ({ onClick, active }) => {
       className={`${classes.dot} ${
         active ? classes.dotActive : classes.dotInactive
       }`}
-      onClick={() => onClick()}
-    ></li>
+      onClick={onClick}
+    />
   );
 };
 
@@ -25,6 +27,7 @@ const CustomLeft = ({ onClick }) => {
   const classes = useStyles();
   return (
     <button
+      type="button"
       className={`${classes.arrow} ${classes.arrowLeft}`}
       onClick={onClick}
     >
@@ -51,6 +54,7 @@ const CustomRight = ({ onClick }) => {
   const classes = useStyles();
   return (
     <button
+      type="button"
       className={`${classes.arrow} ${classes.arrowRight}`}
       onClick={onClick}
     >

@@ -6,6 +6,7 @@ import InfoIcon from '@material-ui/icons/Info';
 
 const HtmlTooltip = withStyles((theme) => ({
   tooltip: {
+    margin: 0,
     backgroundColor: (props) => props.backgroundcolor,
     color: 'black',
     maxWidth: 220,
@@ -31,7 +32,7 @@ export default function Tooltips(props) {
   return (
     <div>
       <HtmlTooltip title={toolTipHtmlTitle(toolTipText)} backgroundcolor={toolTipColor}>
-        <IconButton aria-label={toolTipAriaLabel}>
+        <IconButton aria-label={toolTipAriaLabel} style={{ padding: 0, margin: 0 }}>
           <InfoIcon aria-label={toolTipAriaLabel} style={{ color: toolTipColor }} />
         </IconButton>
       </HtmlTooltip>
