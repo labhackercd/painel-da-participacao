@@ -3,9 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { lighten } from 'polished';
 
 export const useStyles = makeStyles((theme) => ({
-  bar: {
-    zIndex: 0,
-  },
   root: {
     flexGrow: 1,
   },
