@@ -58,8 +58,6 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   totalFrame: {
-    padding: '0px 16px 0px 0px',
-
     [theme.breakpoints.up('sm')]: {
       padding: '0px 35px 0px 0px',
     },

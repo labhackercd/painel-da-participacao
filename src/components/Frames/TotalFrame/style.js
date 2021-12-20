@@ -15,7 +15,7 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   box: {
-    height: '4vh',
+    height: 'auto',
     borderRadius: '15px 15px 0 0',
     width: '100%',
     backgroundColor: theme.palette.black.secondary,
@@ -27,10 +27,12 @@ export const useStyles = makeStyles((theme) => ({
   },
   text: {
     color: theme.palette.white.main,
-    marginTop: '1vh',
+    alignItems: 'center',
+    padding: '9px',
   },
   header: {
-    height: '3vh',
+    alignItems: 'center',
+    flexDirection: 'row',
     display: 'flex',
     width: '100%',
   },

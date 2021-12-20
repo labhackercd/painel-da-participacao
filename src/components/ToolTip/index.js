@@ -31,7 +31,7 @@ export default function Tooltips(props) {
   return (
     <div>
       <HtmlTooltip title={toolTipHtmlTitle(toolTipText)} backgroundcolor={toolTipColor}>
-        <IconButton aria-label={toolTipAriaLabel}>
+        <IconButton aria-label={toolTipAriaLabel} style={{ padding: 0, margin: 0 }}>
           <InfoIcon aria-label={toolTipAriaLabel} style={{ color: toolTipColor }} />
         </IconButton>
       </HtmlTooltip>
