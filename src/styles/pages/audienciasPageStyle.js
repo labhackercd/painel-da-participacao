@@ -69,10 +69,11 @@ export const useStyles = makeStyles((theme) => ({
 
     [theme.breakpoints.up('sm')]: {
       fontSize: '16px',
+      width: '80%',
     },
     '@media (min-width: 1025px)': {
       fontSize: '20px',
-      width: '55%',
+      width: '65%',
     },
   },
   lineBox: {
