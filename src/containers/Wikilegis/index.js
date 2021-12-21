@@ -556,6 +556,10 @@ function Wikilegis(props) {
                   data={roomsRankingData}
                   columns={rankingWikilegisColumns}
                   filterRanking={filterRankingWikilegis}
+                  period={selectedPeriod}
+                  month={selectedMonth}
+                  year={selectedYear}
+                  tool="wikilegis"
                 />
               </Box>
             </ChartDataFrame>
