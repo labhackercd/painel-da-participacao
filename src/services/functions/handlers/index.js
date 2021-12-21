@@ -1,4 +1,14 @@
 /* eslint-disable import/prefer-default-export */
+/* eslint-disable  no-restricted-globals */
+import * as APPLICATION_CONSTANTS from '../../../utils/constants/index';
+import * as APPLICATION_OPTIONS from '../../../settings/applicationOptions/index';
+
+const dailyKeyWord = APPLICATION_CONSTANTS.DAILY_KEY_WORD;
+const monthlyKeyWord = APPLICATION_CONSTANTS.MONTHLY_KEY_WORD;
+const audienceInitialYear = APPLICATION_OPTIONS.AUDIENCIAS_INITIAL_YEAR;
+const wikilegisInitialYear = APPLICATION_OPTIONS.WIKILEGIS_INITIAL_YEAR;
+const currentYear = APPLICATION_CONSTANTS.CURRENT_YEAR;
+
 export async function handleUpdatePeriodSearchQuery(month, year) {
   let query = '';
   let period = '';
@@ -44,5 +54,34 @@ export async function handleUpdatePeriodSearchQueryParticipants(month, year) {
     return { queryParticipants };
   } catch (e) {
     return { queryParticipants };
+  }
+}
+
+export const verifyIsDate = (date) => (new Date(date) !== 'Invalid Date') && !isNaN(new Date(date));
+
+export function isDateInPeriod(date, period, month, year, tool) {
+  switch (period) {
+    case dailyKeyWord:
+      if (parseInt(month, 10) === date.getMonth() + 1
+        && date.getFullYear() === parseInt(year, 10)) {
+        return true;
+      }
+      return false;
+    case monthlyKeyWord:
+      if (date.getFullYear() === parseInt(year, 10)) {
+        return true;
+      }
+      return false;
+    default:
+      // yearly -> Total period
+      if (tool === 'audiences' && date.getFullYear() >= parseInt(audienceInitialYear, 10)
+        && date.getFullYear() <= parseInt(currentYear, 10)) {
+        return true;
+      }
+      if (tool === 'wikilegis' && date.getFullYear() >= parseInt(wikilegisInitialYear, 10)
+      && date.getFullYear() <= parseInt(currentYear, 10)) {
+        return true;
+      }
+      return false;
   }
 }
