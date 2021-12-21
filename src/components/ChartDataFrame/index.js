@@ -17,10 +17,10 @@ export default function ChartDataFrame(props) {
     // eslint-disable-next-line react/prop-types
     height, children, title, download, exportData,
     align, apiUrl, apiLastUpdate, tool, downloadHeaders,
-    section,
+    section, observation, observationAnchor, observationAnchorString,
+    observationCondition,
   } = props;
   let formatedData = exportData;
-
   // The CSVLink can't handle null objects so the function convert it
   if (tool === 'Wikilegis' && section === 'Report') {
     formatedData = exportData.map((data) => {
@@ -76,6 +76,23 @@ export default function ChartDataFrame(props) {
       <div className={classes.container} style={{ minHeight: height, width: '100%' }}>
         {children}
       </div>
+      { observationCondition && (
+        <Box className={classes.updateLegend} paddingLeft={1} paddingBottom={1}>
+          <Typography className={classes.updateLegendText}>
+            {observation}
+            { observationAnchor && observationAnchor && (
+              <a
+                href={observationAnchor}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={classes.anchorTag}
+              >
+                {observationAnchorString}
+              </a>
+            )}
+          </Typography>
+        </Box>
+      )}
       <Box className={classes.updateLegend} paddingLeft={1} paddingBottom={1}>
         <Typography className={classes.updateLegendText}>
           {'Fonte: '}
@@ -107,6 +124,10 @@ ChartDataFrame.propTypes = {
   tool: PropTypes.string,
   downloadHeaders: PropTypes.array,
   section: PropTypes.string,
+  observation: PropTypes.string,
+  observationAnchor: PropTypes.string,
+  observationAnchorString: PropTypes.string,
+  observationCondition: PropTypes.any,
 };
 
 ChartDataFrame.defaultProps = {
@@ -121,4 +142,8 @@ ChartDataFrame.defaultProps = {
   tool: PropTypes.string,
   downloadHeaders: [],
   section: '',
+  observation: '',
+  observationAnchor: '',
+  observationAnchorString: '',
+  observationCondition: '',
 };

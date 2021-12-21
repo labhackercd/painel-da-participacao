@@ -57,7 +57,9 @@ function getColumns(data) {
 export default function ChartAndReport(props) {
   const {
     isLoaded, title, data, chartType, chartOptions, exportData,
-    apiLastUpdate, tool, height, apiUrl,
+    apiLastUpdate, tool, height, apiUrl, observation,
+    observationAnchor, observationAnchorString,
+    observationCondition,
   } = props;
   const [wayOfVisualizeData, setWayOfVisualizeData] = useState('chart');
   const convertDataToJson = convertArrayToJSON(data);
@@ -83,6 +85,10 @@ export default function ChartAndReport(props) {
       apiUrl={apiUrl}
       apiLastUpdate={apiLastUpdate}
       tool={tool}
+      observation={observation}
+      observationAnchor={observationAnchor}
+      observationCondition={observationCondition}
+      observationAnchorString={observationAnchorString}
     >
       <div style={{ width: '100%' }}>
         {isLoaded ? (
@@ -144,6 +150,10 @@ ChartAndReport.propTypes = {
   tool: PropTypes.string,
   height: PropTypes.string,
   apiUrl: PropTypes.string,
+  observation: PropTypes.string,
+  observationCondition: PropTypes.any,
+  observationAnchor: PropTypes.string,
+  observationAnchorString: PropTypes.string,
 };
 
 ChartAndReport.defaultProps = {
@@ -157,4 +167,8 @@ ChartAndReport.defaultProps = {
   tool: '',
   height: '35vh',
   apiUrl: process.env.NEXT_PUBLIC_EDEMOCRACIA_SWAGGER_URL,
+  observation: '',
+  observationCondition: '',
+  observationAnchor: '',
+  observationAnchorString: '',
 };
