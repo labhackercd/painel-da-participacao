@@ -121,6 +121,7 @@ export default function RankingTable(props) {
 
       <DataTable
         columns={columns}
+        style={{ fontSize: '13px', fontFamily: 'Open Sans' }}
         data={filteredData}
         theme="darkLAB"
         highlightOnHover
