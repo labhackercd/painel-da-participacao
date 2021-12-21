@@ -69,7 +69,7 @@ export const usersSectionTexts = {
     toolTip: null,
     toolTipAriaLabel: null,
     observation: '* Em 2017 houve migração do cadastro de usuários da versão antiga para a atual. ',
-    observationAnchor: `${process.env.NEXT_PUBLIC_EDEMOCRACIA_BASE_URL}/emonitor/sobre`,
+    observationAnchor: `${process.env.NEXT_PUBLIC_EDEMOCRACIA_BASE_URL}/emonitor/sobre#newUsers`,
     observationAnchorString: 'Mais detalhes.',
   },
 
