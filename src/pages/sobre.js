@@ -389,6 +389,7 @@ function Sobre() {
               </Typography>
 
               <Typography
+                id="newUsers"
                 variant="h3"
                 className={`${classes.typography} ${classes.typograhyH2}`}
               >
