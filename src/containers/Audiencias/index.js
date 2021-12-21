@@ -801,6 +801,10 @@ function Audiencias(props) {
                 apiLastUpdate={apiLastConsolidateOfDataDate}
                 tool={TOOLNAME}
                 apiUrl={process.env.NEXT_PUBLIC_AUDIENCIAS_SWAGGER_URL}
+                observation={TEXTCONSTANTS.usersSectionTexts.subSectionNewUsers.observation}
+                observationAnchor={TEXTCONSTANTS.usersSectionTexts.subSectionNewUsers.observationAnchor}
+                observationAnchorString={TEXTCONSTANTS.usersSectionTexts.subSectionNewUsers.observationAnchorString}
+                observationCondition={(selectedYear === '0') || (selectedYear === '2017' && selectedMonth === '0')}
               />
             </div>
           ) : (
