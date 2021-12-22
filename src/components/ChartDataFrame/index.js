@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+/* eslint-disable no-nested-ternary */
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -7,11 +8,12 @@ import {
 import { CSVLink } from 'react-csv';
 import { useStyles } from './style';
 
-import downloadReportCSVIcon from '../../assets/icons/download_report_csv.svg';
-import downloadChartAndReportCSVIcon from '../../assets/icons/download_report_chart_csv.svg';
+import downloadReport from '../../assets/icons/download_report.svg';
+import useMobile from '../../hooks/useMobile';
 
 export default function ChartDataFrame(props) {
   const classes = useStyles();
+  const { mobileView } = useMobile();
 
   const {
     // eslint-disable-next-line react/prop-types
@@ -35,17 +37,17 @@ export default function ChartDataFrame(props) {
   return (
     <Grid container className={classes.root}>
       <Box className={classes.box}>
-        <Box className={classes.header}>
-          <Box marginLeft={2} flexGrow={1}>
+        <Box className={classes.header} position="relative">
+          <Box flexShrink={0} flexBasis="100%">
             <Typography variant="h4" className={classes.text}>
               <Box fontWeight="fontWeightBold" display="flex" justifyContent={align}>
                 {title}
               </Box>
             </Typography>
           </Box>
-          <Box marginRight={2} alignSelf="center" marginTop={1}>
+          <Box marginRight={2} alignSelf="center" position="absolute" right={0}>
             {download && (exportData !== undefined && exportData !== null)
-              ? (
+              && (
                 <CSVLink
                   headers={downloadHeaders}
                   data={formatedData}
@@ -55,21 +57,21 @@ export default function ChartDataFrame(props) {
                   style={{ textDecoration: 'none' }}
                 >
                   <Box display="flex" alignItems="center">
-                    <Icon style={{ width: '100%' }}>
+                    <Typography className={classes.text}>
+                      { section === 'Report' && !mobileView ? 'Baixar CSV da tabela'
+                        : section !== 'Report' && !mobileView ? 'Baixar CSV do gráfico/tabela'
+                          : 'baixar csv'}
+                    </Typography>
+                    <Icon style={{ marginLeft: '10px' }}>
                       <img
-                        src={
-                          (section === 'Report')
-                            ? downloadReportCSVIcon
-                            : downloadChartAndReportCSVIcon
-                        }
+                        src={downloadReport}
                         alt=""
                         aria-hidden="true"
                       />
                     </Icon>
                   </Box>
                 </CSVLink>
-              )
-              : ''}
+              )}
           </Box>
         </Box>
       </Box>
