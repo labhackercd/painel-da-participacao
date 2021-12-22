@@ -36,7 +36,7 @@ export default function ChartDataFrame(props) {
 
   return (
     <Grid container className={classes.root}>
-      <Box className={classes.box}>
+      <Box className={classes.box} style={{ height: 'auto', minHeight: '48px' }}>
         <Box className={classes.header} position="relative">
           <Box flexShrink={0} flexBasis="100%">
             <Typography variant="h4" className={classes.text}>
@@ -56,13 +56,13 @@ export default function ChartDataFrame(props) {
                   title="Baixar dados em um arquivo CSV"
                   style={{ textDecoration: 'none' }}
                 >
-                  <Box display="flex" alignItems="center">
-                    <Typography className={classes.text}>
+                  <Box display="flex" flexDirection={mobileView ? 'column-reverse' : 'row'} alignSelf="center">
+                    <Typography className={classes.downloadCSV}>
                       { section === 'Report' && !mobileView ? 'Baixar CSV da tabela'
                         : section !== 'Report' && !mobileView ? 'Baixar CSV do gráfico/tabela'
                           : 'baixar csv'}
                     </Typography>
-                    <Icon style={{ marginLeft: '10px' }}>
+                    <Icon className={classes.downloadIcon}>
                       <img
                         src={downloadReport}
                         alt=""
