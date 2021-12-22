@@ -3,16 +3,24 @@ import { useEffect, useState } from 'react';
 
 export default function useMobile() {
   const [mobileView, setMobileView] = useState(false);
+  const [tabletView, setTabletView] = useState(false);
 
   useEffect(() => {
-    const setResponsiveness = () => window.innerWidth < 1024
+    const setResponsivenessMobile = () => window.innerWidth <= 600
       ? setMobileView(true)
       : setMobileView(false);
 
-    setResponsiveness();
+    const setResponsivenessTablet = () => window.innerWidth > 601 && window.innerWidth <= 1024
+      ? setTabletView(true)
+      : setTabletView(false);
 
-    window.addEventListener('resize', () => setResponsiveness());
+    setResponsivenessMobile();
+
+    window.addEventListener('resize', () => {
+      setResponsivenessMobile();
+      setResponsivenessTablet();
+    });
   }, []);
 
-  return { mobileView };
+  return { mobileView, tabletView };
 }
