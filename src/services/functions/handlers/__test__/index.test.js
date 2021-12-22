@@ -1,4 +1,4 @@
-import { handleUpdatePeriodSearchQuery } from '../index';
+import { handleUpdatePeriodSearchQuery, isDateInPeriod } from '../index';
 
 describe('Test handleUpdatePeriodSearchQuery function', () => {
   test('handleUpdatePeriodSearchQuery returns daily as result of period', async () => {
@@ -35,5 +35,89 @@ describe('Test handleUpdatePeriodSearchQuery function', () => {
 
     expect(period).toBe('');
     expect(query).toBe('');
+  });
+
+  test('isDateInPeriod should return true when the period is daily', () => {
+    const dateBR = new Date('02/10/20').toLocaleString('pt-BR', { timeZone: 'UTC' });
+    const date = new Date(dateBR);
+    const period = 'daily';
+    const month = '10';
+    const year = '2020';
+    const tool = 'audiences';
+    const result = isDateInPeriod(date, period, month, year, tool);
+
+    expect(result).toBe(true);
+  });
+
+  test('isDateInPeriod should return false when the period is daily', () => {
+    const dateBR = new Date('02/11/20').toLocaleString('pt-BR', { timeZone: 'UTC' });
+    const date = new Date(dateBR);
+    const period = 'daily';
+    const month = '10';
+    const year = '2020';
+    const tool = 'audiences';
+    const result = isDateInPeriod(date, period, month, year, tool);
+
+    expect(result).toBe(false);
+  });
+
+  test('isDateInPeriod should return true when the period is monthly', () => {
+    const dateBR = new Date('02/10/20').toLocaleString('pt-BR', { timeZone: 'UTC' });
+    const date = new Date(dateBR);
+    const period = 'monthly';
+    const month = '0';
+    const year = '2020';
+    const tool = 'audiences';
+    const result = isDateInPeriod(date, period, month, year, tool);
+
+    expect(result).toBe(true);
+  });
+
+  test('isDateInPeriod should return false when the period is monthly', () => {
+    const dateBR = new Date('02/11/21').toLocaleString('pt-BR', { timeZone: 'UTC' });
+    const date = new Date(dateBR);
+    const period = 'monthly';
+    const month = '0';
+    const year = '2020';
+    const tool = 'audiences';
+    const result = isDateInPeriod(date, period, month, year, tool);
+
+    expect(result).toBe(false);
+  });
+
+  test('isDateInPeriod should return true when the period is yearly and tool is audiences', () => {
+    const dateBR = new Date('02/10/20').toLocaleString('pt-BR', { timeZone: 'UTC' });
+    const date = new Date(dateBR);
+    const period = 'yearly';
+    const month = '0';
+    const year = '0';
+    const tool = 'audiences';
+    const result = isDateInPeriod(date, period, month, year, tool);
+
+    expect(result).toBe(true);
+  });
+
+  test('isDateInPeriod should return true when the period is yearly and tool is wikilegis', () => {
+    const dateBR = new Date('02/10/20').toLocaleString('pt-BR', { timeZone: 'UTC' });
+    const date = new Date(dateBR);
+    const period = 'yearly';
+    const month = '0';
+    const year = '0';
+    const tool = 'wikilegis';
+    const result = isDateInPeriod(date, period, month, year, tool);
+
+    expect(result).toBe(true);
+  });
+
+  test('isDateInPeriod should return false when the period is yearly', () => {
+    const dateBR = new Date('02/10/10').toLocaleString('pt-BR', { timeZone: 'UTC' });
+    const date = new Date(dateBR);
+    const period = 'yearly';
+    const month = '0';
+    const year = '0';
+    const tool = 'wikilegis';
+    const result = isDateInPeriod(date, period, month, year, tool);
+
+    expect(result).toBe(false);
   });
 });
