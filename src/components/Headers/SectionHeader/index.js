@@ -13,8 +13,8 @@ export default function SectionHeader(props) {
     title, toolTipText, classes, toolTipColor,
   } = props;
   const [open, setOpen] = useState(false);
-  const { mobileView } = useMobile();
-  const handleOpen = () => mobileView && setOpen(true);
+  const { mobileView, tabletView } = useMobile();
+  const handleOpen = () => (mobileView || tabletView) && setOpen(true);
   const handleClose = () => setOpen(false);
 
   return (
