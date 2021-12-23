@@ -81,6 +81,8 @@ export default function RankingTable(props) {
       } else {
         setMessageResults('A data buscada deve estar dentro do período definido');
       }
+    } else {
+      setMessageResults('Não há registros com este termo no período definido');
     }
   };
 
