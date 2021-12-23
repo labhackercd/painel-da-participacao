@@ -9,7 +9,8 @@ import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';
 import { useStyles } from './style';
-import { formatYear, isDateInPeriod } from '../../services/functions/handlers';
+import { isDateInPeriod } from '../../services/functions/handlers';
+import formatYear from '../../utils/format/year';
 
 createTheme('darkLAB', {
   text: {
