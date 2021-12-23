@@ -49,3 +49,55 @@ test('Audiencia page lifecycle is getting informations of days of specific month
     await wrapper.update();
   });
 });
+
+test('message of not finding results should be that it was not found within the period', async () => {
+  const wrapper = mount(
+    <MockTheme>
+      <RankingTable
+        data={dataMock}
+        columns={rankingAudienciaColumns}
+        filterRanking={filterRankingAudiencias}
+        period="daily"
+        month="10"
+        year="2020"
+        tool="audiences"
+      />
+    </MockTheme>,
+  );
+
+  const searchField = wrapper.find('input').at(0);
+  searchField.instance().value = '03/10/2020';
+  searchField.simulate('change');
+  wrapper.update();
+
+  const button = wrapper.find('#rankingSearchButton').at(0);
+  button.simulate('click');
+
+  expect(wrapper.text()).toBe('BuscarNão há registros com este termo no período definido');
+});
+
+test('message of not finding results should be that it was not found outside the period', async () => {
+  const wrapper = mount(
+    <MockTheme>
+      <RankingTable
+        data={dataMock}
+        columns={rankingAudienciaColumns}
+        filterRanking={filterRankingAudiencias}
+        period="daily"
+        month="10"
+        year="2020"
+        tool="audiences"
+      />
+    </MockTheme>,
+  );
+
+  const searchField = wrapper.find('input').at(0);
+  searchField.instance().value = '03/11/2020';
+  searchField.simulate('change');
+  wrapper.update();
+
+  const button = wrapper.find('#rankingSearchButton').at(0);
+  button.simulate('click');
+
+  expect(wrapper.text()).toBe('BuscarA data buscada deve estar dentro do período definido');
+});
