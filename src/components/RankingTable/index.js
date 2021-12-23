@@ -75,7 +75,8 @@ export default function RankingTable(props) {
   };
 
   const handleMessageResults = () => {
-    if (moment(searchedText, 'DD/MM/YYYY', true).isValid()) {
+    if (moment(searchedText, 'DD/MM/YYYY', true).isValid()
+        || moment(searchedText, 'DD/MM/YY', true).isValid()) {
       const date = new Date(moment(searchedText, 'D_M_YYYY').locale('pt-br'));
       if (isDateInPeriod(date, period, month, year, tool)) {
         setMessageResults('Não há registros com este termo no período definido');
