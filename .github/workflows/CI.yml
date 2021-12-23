@@ -26,6 +26,12 @@ jobs:
     - name: Check eslint
       run: npm run lint
 
+    - name: Set up Timezone
+      uses: szenius/set-timezone@v1.0
+      with:
+        timezoneLinux: America/Sao_Paulo
+        timezoneWindows: America/Sao_Paulo
+
     - name: Run the tests with coverage
       run: npm run test -- --coverage --watchAll=false
 
