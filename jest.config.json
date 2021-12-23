@@ -12,5 +12,8 @@
      "statements": 0
      }
     },
+    "globals": {
+        "TZ": "utc"
+    },
     "moduleDirectories": ["node_modules", "src"]
    }

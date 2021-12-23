@@ -759,6 +759,10 @@ function Audiencias(props) {
                   data={roomsRankingData}
                   columns={rankingAudienciaColumns}
                   filterRanking={filterRankingAudiencias}
+                  period={selectedPeriod}
+                  month={selectedMonth}
+                  year={selectedYear}
+                  tool="audiences"
                 />
               </Box>
             </ChartDataFrame>

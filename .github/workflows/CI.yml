@@ -26,8 +26,13 @@ jobs:
     - name: Check eslint
       run: npm run lint
 
+    - name: Set up Timezone
+      uses: zcong1993/setup-timezone@master
+      with:
+        timezone: America/Sao_Paulo 
+
     - name: Run the tests with coverage
-      run: npm run test -- --coverage --watchAll=false
+      run:  npm run test -- --coverage --watchAll=false --TZ=UTC
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v1

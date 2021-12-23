@@ -15,7 +15,8 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   box: {
-    height: '4vh',
+    display: 'flex',
+    alignItems: 'center',
     borderRadius: '15px 15px 0 0',
     width: '100%',
     backgroundColor: '#252525',
@@ -29,10 +30,24 @@ export const useStyles = makeStyles((theme) => ({
   },
   text: {
     color: theme.palette.white.main,
-    marginTop: '1vh',
+  },
+  downloadCSV: {
+    color: theme.palette.white.main,
+    alignSelf: 'center',
+    [theme.breakpoints.only('xs')]: {
+      fontSize: '8px',
+    },
+  },
+  downloadIcon: {
+    marginLeft: '10px',
+    color: theme.palette.white.main,
+    alignSelf: 'center',
+
+    [theme.breakpoints.only('xs')]: {
+      marginLeft: '0px',
+    },
   },
   header: {
-    height: '3vh',
     display: 'flex',
     width: '100%',
   },
@@ -42,10 +57,6 @@ export const useStyles = makeStyles((theme) => ({
   },
   listViewIcon: {
     opacity: '0.5',
-  },
-  downloadIcon: {
-    opacity: '0.5',
-    color: '#FFF',
   },
   iconContainer: {
     display: 'flex',

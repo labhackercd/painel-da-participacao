@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import DataTable, { createTheme } from 'react-data-table-component';
+import moment from 'moment';
 import PropTypes from 'prop-types';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
@@ -8,6 +9,8 @@ import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';
 import { useStyles } from './style';
+import { isDateInPeriod } from '../../services/functions/handlers';
+import formatYear from '../../utils/format/year';
 
 createTheme('darkLAB', {
   text: {
@@ -50,10 +53,14 @@ createTheme('darkLAB', {
 });
 
 export default function RankingTable(props) {
-  const { data, columns, filterRanking } = props;
+  const {
+    data, columns, filterRanking, period,
+    month, year, tool,
+  } = props;
   const classes = useStyles();
   const [filteredData, setFilteredData] = useState(data);
   const [searchedText, setSearchedText] = useState('');
+  const [messageResults, setMessageResults] = useState('Não há registros com este termo no período definido');
 
   useEffect(() => {
     setFilteredData(data);
@@ -67,8 +74,29 @@ export default function RankingTable(props) {
     setSearchedText(e.target.value);
   };
 
+  const handleMessageResults = () => {
+    if (moment(searchedText, 'DD/MM/YYYY', true).isValid()) {
+      const date = new Date(moment(searchedText, 'D_M_YYYY').locale('pt-br'));
+      if (isDateInPeriod(date, period, month, year, tool)) {
+        setMessageResults('Não há registros com este termo no período definido');
+      } else {
+        setMessageResults('A data buscada deve estar dentro do período definido');
+      }
+    } else {
+      setMessageResults('Não há registros com este termo no período definido');
+    }
+  };
+
   const handlefilterRanking = () => {
-    const filter = filterRanking(data, searchedText);
+    let filter = {};
+
+    if (moment(searchedText, 'DD/MM/YYYY', true).isValid()) {
+      filter = filterRanking(data, formatYear(moment(searchedText, 'D_M_YYYY').locale('pt-br')));
+    } else {
+      filter = filterRanking(data, searchedText);
+    }
+
+    handleMessageResults();
     setFilteredData(filter);
   };
 
@@ -102,6 +130,7 @@ export default function RankingTable(props) {
 
       <DataTable
         columns={columns}
+        style={{ fontSize: '13px', fontFamily: 'Open Sans' }}
         data={filteredData}
         theme="darkLAB"
         highlightOnHover
@@ -112,6 +141,7 @@ export default function RankingTable(props) {
         defaultSortField="participants_count"
         defaultSortAsc={false}
         paginationComponentOptions={{ rowsPerPageText: 'Linhas por página:', rangeSeparatorText: 'de' }}
+        noDataComponent={messageResults}
       />
     </>
   );
@@ -121,10 +151,18 @@ RankingTable.propTypes = {
   data: PropTypes.array,
   columns: PropTypes.array,
   filterRanking: PropTypes.func,
+  period: PropTypes.string,
+  month: PropTypes.string,
+  year: PropTypes.string,
+  tool: PropTypes.string,
 };
 
 RankingTable.defaultProps = {
   data: {},
   columns: [],
   filterRanking: {},
+  period: '',
+  month: '',
+  year: '',
+  tool: '',
 };
