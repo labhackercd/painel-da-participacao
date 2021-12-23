@@ -38,8 +38,7 @@ describe('Test handleUpdatePeriodSearchQuery function', () => {
   });
 
   test('isDateInPeriod should return true when the period is daily', () => {
-    const dateBR = new Date('02/10/20').toLocaleString('pt-BR', { timeZone: 'UTC' });
-    const date = new Date(dateBR);
+    const date = new Date('10/02/2020');
     const period = 'daily';
     const month = '10';
     const year = '2020';
