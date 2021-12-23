@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import DataTable, { createTheme } from 'react-data-table-component';
+import moment from 'moment';
 import PropTypes from 'prop-types';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
@@ -8,7 +9,7 @@ import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';
 import { useStyles } from './style';
-import { isDateInPeriod, verifyIsDate } from '../../services/functions/handlers';
+import { formatYear, isDateInPeriod } from '../../services/functions/handlers';
 
 createTheme('darkLAB', {
   text: {
@@ -73,10 +74,8 @@ export default function RankingTable(props) {
   };
 
   const handleMessageResults = () => {
-    const isDate = verifyIsDate(searchedText);
-    if (isDate) {
-      const dateBR = new Date(searchedText).toLocaleString('pt-BR', { timeZone: 'UTC' });
-      const date = new Date(dateBR);
+    if (moment(searchedText, 'DD/MM/YYYY', true).isValid()) {
+      const date = new Date(moment(searchedText, 'D_M_YYYY').locale('pt-br'));
       if (isDateInPeriod(date, period, month, year, tool)) {
         setMessageResults('Não há registros com este termo no período definido');
       } else {
@@ -86,7 +85,14 @@ export default function RankingTable(props) {
   };
 
   const handlefilterRanking = () => {
-    const filter = filterRanking(data, searchedText);
+    let filter = {};
+
+    if (moment(searchedText, 'DD/MM/YYYY', true).isValid()) {
+      filter = filterRanking(data, formatYear(moment(searchedText, 'D_M_YYYY').locale('pt-br')));
+    } else {
+      filter = filterRanking(data, searchedText);
+    }
+
     handleMessageResults();
     setFilteredData(filter);
   };
