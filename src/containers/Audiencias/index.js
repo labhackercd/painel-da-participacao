@@ -808,7 +808,10 @@ function Audiencias(props) {
                 observation={TEXTCONSTANTS.usersSectionTexts.subSectionNewUsers.observation}
                 observationAnchor={TEXTCONSTANTS.usersSectionTexts.subSectionNewUsers.observationAnchor}
                 observationAnchorString={TEXTCONSTANTS.usersSectionTexts.subSectionNewUsers.observationAnchorString}
-                observationCondition={(selectedYear === '0') || (selectedYear === '2017' && selectedMonth === '0')}
+                observationCondition={(selectedYear === '0')
+                  || (selectedYear === '2017' && selectedMonth === '0')
+                  || (selectedYear === '2017' && selectedMonth === '9')
+                  || (selectedYear === '2017' && selectedMonth === '11')}
               />
             </div>
           ) : (
