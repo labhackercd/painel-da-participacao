@@ -13,7 +13,7 @@ import InfoModal from '../InfoModal';
 import { useStyles } from './style';
 import useMobile from '../../hooks/useMobile';
 
-function ToolTip(props) {
+export function ToolTip(props) {
   const {
     // eslint-disable-next-line react/prop-types
     itens, index,
@@ -25,7 +25,7 @@ function ToolTip(props) {
 
   return (
     <>
-      {(itens[index].toolTipText !== null && itens[index].toolTipText !== undefined)
+      {(itens[index] && itens[index].toolTipText !== null && itens[index].toolTipText !== undefined)
       && (
         <>
           <Box onClick={handleOpen} flexGrow={1} display="flex" alignItems="center" style={{ margin: 0 }}>
