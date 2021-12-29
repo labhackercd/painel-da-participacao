@@ -620,7 +620,7 @@ function Audiencias(props) {
 
         {
           audienciasData.map((audiencia, index) => (
-            <Grid key={audiencia.title} item md={3} className={`${classes.spacing} ${classes.desktop}`} style={{ padding: 0 }}>
+            <Grid key={audiencia.title} item xs={12} sm={6} md={3} className={`${classes.spacing} ${classes.desktop}`} style={{ padding: 0 }}>
               <TotalFrame
                 // className={`${index + 1 === audienciasData.length && classes.totalFrameDesktop}`}
                 isLoaded={audiencia.isLoaded}

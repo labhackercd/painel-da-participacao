@@ -509,7 +509,7 @@ function Wikilegis(props) {
 
         {
           wikilegisData.map((item) => (
-            <Grid key={item.title} item md={3} className={`${classes.spacing} ${classes.desktop}`} style={{ padding: 0 }}>
+            <Grid key={item.title} item xs={12} sm={6} md={3} className={`${classes.spacing} ${classes.desktop}`} style={{ padding: 0 }}>
               <TotalFrame
                 isLast={item.isLast}
                 isLoaded={item.isLoaded}
