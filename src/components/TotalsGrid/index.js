@@ -61,7 +61,7 @@ export default function TotalsGrid(props) {
           {item.isLoaded ? (
             <>
               <Box key={item.title} display="flex" flexDirection="column" flex={1} flexBasis="45%">
-                <Box display="flex">
+                <Box display="flex" paddingTop="16px">
                   <Typography variant="h5" className={classes.text}>
                     <Box display="flex">
                       {item.title}
