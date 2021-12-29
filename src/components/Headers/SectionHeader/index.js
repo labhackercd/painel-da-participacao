@@ -25,7 +25,7 @@ export default function SectionHeader(props) {
             {title}
           </Box>
         </Typography>
-        <Box onClick={handleOpen} alignSelf="center" marginLeft={1}>
+        <Box onClick={handleOpen} alignSelf="center" marginLeft={1} marginRight="10px">
           {(toolTipText !== null && toolTipText !== undefined)
             && <Tooltip toolTipText={toolTipText} toolTipColor={toolTipColor} />}
         </Box>
