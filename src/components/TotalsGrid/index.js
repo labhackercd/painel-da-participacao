@@ -73,7 +73,7 @@ export default function TotalsGrid(props) {
                   <Typography className={classes.info} noWrap>
                     {item.info}
                   </Typography>
-                  { item.subInformation && item.subInformation.length !== 0 && (
+                  {item.subInformation && item.subInformation.length !== 0 && (
                     <Box width="100%" display="flex" alignItems="center" paddingLeft="16px" paddingTop="8px" paddingBottom="8px">
                       <Box marginRight="10px">
                         <CheckCircleIcon fontSize="small" style={{ color: item.toolTipColor }} />

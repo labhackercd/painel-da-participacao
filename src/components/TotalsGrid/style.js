@@ -15,7 +15,7 @@ export const useStyles = makeStyles((theme) => ({
   text: {
     color: theme.palette.white.main,
     alignItems: 'center',
-    padding: '4px 16px 0px 16px',
+    padding: '4px 8px 0px 16px',
   },
   info: {
     color: '#FFF',
