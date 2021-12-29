@@ -18,7 +18,7 @@ export default function SectionHeader(props) {
   const handleClose = () => setOpen(false);
 
   return (
-    <Box display="flex" flexFlow="wrap" justifyContent="space-between" alignItems="center">
+    <Box className={classes.sectionHeader} display="flex" flexFlow="wrap" justifyContent="space-between" alignItems="center">
       <Box display="flex">
         <Typography className={`${classes.typographyHeaderSection} ${classes.typography}`} component="div" variant="h2">
           <Box fontWeight="fontWeightBold">

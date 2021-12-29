@@ -603,14 +603,14 @@ function Audiencias(props) {
         headerColors={headerColors}
         initialYear={audienceInitialYear}
       />
-      <Grid container spacing={1} className={classes.spacingContainer}>
+      <Grid container spacing={1} className={classes.spacingContainer} style={{ padding: 0 }}>
         {showCachedDataAlert && (
           <AlertCachedData apiLastCacheMade={apiLastCacheMade} />
         )}
 
         <AlertDataConsolidateInterval />
 
-        <Grid item xs={12}>
+        <Grid item xs={12} style={{ padding: 0 }}>
           <SectionHeader
             classes={classes}
             toolTipText={TEXTCONSTANTS.audiencesTotalsTexts.toolTip}
@@ -634,11 +634,10 @@ function Audiencias(props) {
             </Grid>
           ))
         }
-        <Grid className={classes.mobile} item xs={12}>
-          <Box className={classes.caroulselBox}>
-            <Box className={classes.caroulselInsideBox}>
+        <Grid className={classes.mobile} item xs={12} style={{ padding: 0 }}>
+          <Box className={classes.totalsGridBox}>
+            <Box className={classes.totalsGridInsideBox}>
               <TotalsGrid itens={audienciasData} />
-              {/* <CaroulselCards carouselItens={audienciasData} classes={classes} /> */}
             </Box>
           </Box>
         </Grid>
@@ -768,7 +767,7 @@ function Audiencias(props) {
           )}
         </Grid>
 
-        <Grid item xs={12} className={classes.spacing}>
+        <Grid item xs={12} className={classes.spacing} style={{ padding: 0 }}>
           <SectionHeader
             classes={classes}
             title={TEXTCONSTANTS.usersSectionTexts.title}
@@ -779,7 +778,7 @@ function Audiencias(props) {
 
         <Grid item xs={12} className={classes.spacing} style={{ padding: 0 }}>
           <SubSectionHeader
-            style={{ marginTop: '0px' }}
+            style={{ marginTop: '0px', padding: 0 }}
             title={TEXTCONSTANTS.usersSectionTexts.subSectionNewUsers.title}
           />
           {newUsersChartData !== undefined && newUsersChartData.length > 0 ? (

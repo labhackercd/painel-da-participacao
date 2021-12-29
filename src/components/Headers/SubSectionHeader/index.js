@@ -9,7 +9,7 @@ export default function SubSectionHeader(props) {
   const { title, style } = props;
 
   return (
-    <Typography component="div" variant="h3">
+    <Typography className={classes.subSectionHeader} component="div" variant="h3">
       <Box style={style} className={classes.typography}>
         {title}
       </Box>

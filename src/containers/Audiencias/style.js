@@ -76,11 +76,11 @@ export const useStyles = makeStyles((theme) => ({
       display: 'none',
     },
   },
-  caroulselBox: {
+  totalsGridBox: {
     width: '100%',
     minHeight: '100%',
     display: 'flex',
-    padding: '2px 0px 16px 0px',
+    padding: '2px 0px 0px 0px',
 
     [theme.breakpoints.up('sm')]: {
       padding: '0px 0px 19px 0px',
@@ -90,7 +90,14 @@ export const useStyles = makeStyles((theme) => ({
       justifyContent: 'center',
     },
   },
-  caroulselInsideBox: {
+  totalsGridInsideBox: {
     width: '100%',
+  },
+  sectionHeader: {
+    padding: '0px 0px 0px 16px',
+
+    [theme.breakpoints.up('sm')]: {
+      padding: '0px',
+    },
   },
 }));
