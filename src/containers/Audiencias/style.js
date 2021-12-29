@@ -65,14 +65,14 @@ export const useStyles = makeStyles((theme) => ({
   desktop: {
     display: 'none',
 
-    '@media (min-width: 1025px)': {
+    '@media (min-width: 600px)': {
       display: 'block',
     },
   },
   mobile: {
     display: 'block',
 
-    '@media (min-width: 1025px)': {
+    '@media (min-width: 600px)': {
       display: 'none',
     },
   },
