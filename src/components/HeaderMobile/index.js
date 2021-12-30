@@ -1,10 +1,12 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
 import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
-// import ReactDOM from "react-dom";
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import Slide from '@material-ui/core/Slide';
-import { Box } from '@material-ui/core';
+import { Box, Typography } from '@material-ui/core';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import { useStyles } from './style';
 
 const Picker = dynamic(() => import('react-mobile-picker'), {
@@ -18,8 +20,10 @@ const Transition = React.forwardRef(
   },
 );
 
-export default function HeaderMobile() {
-  const classes = useStyles();
+export default function HeaderMobile(props) {
+  const colors = props.headerColors;
+
+  const classes = useStyles({ colors });
   const [open, setOpen] = useState(false);
   const [valueGroups, setValueGroups] = useState({
     period: 'Todo o Período',
@@ -40,7 +44,47 @@ export default function HeaderMobile() {
 
   return (
     <div>
-      <Button onClick={handleOpen}>Open dialog</Button>
+      <Box display="flex">
+        <button
+          onClick={handleOpen}
+          type="button"
+          variant="contained"
+          style={{ marginRight: '19px', display: 'flex', alignContent: 'center' }}
+          className={`${classes.selectMobile} ${classes.selectMobileEnabled}`}
+        >
+          <Typography alignSelf="center" alig>
+            Todo o Período
+          </Typography>
+          <ArrowDropDownIcon
+            style={{
+              color: '#FFFFFF',
+              width: '24px',
+              height: '24px',
+              padding: 0,
+              paddingBottom: '4px',
+            }}
+          />
+        </button>
+        <button
+          type="button"
+          style={{ display: 'flex', alignContent: 'center' }}
+          variant="contained"
+          className={`${classes.selectMobile} ${classes.selectMobileDisabled}`}
+        >
+          <Typography alignSelf="center" alig>
+            Todos os meses
+          </Typography>
+          <ArrowDropDownIcon
+            style={{
+              color: '#FFFFFF',
+              width: '24px',
+              height: '24px',
+              padding: 0,
+              paddingBottom: '4px',
+            }}
+          />
+        </button>
+      </Box>
       <Dialog
         TransitionComponent={Transition}
         onClose={handleClose}

@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import { makeStyles } from '@material-ui/core/styles';
 
-export const useStyles = makeStyles(() => ({
+export const useStyles = makeStyles((theme) => ({
   root: {
     alignItems: 'flex-end',
   },
@@ -38,5 +38,22 @@ export const useStyles = makeStyles(() => ({
     fontFamily: 'Open Sans',
     padding: '13px',
     fontSize: '11px',
+  },
+  selectMobile: {
+    fontWeight: 700,
+    padding: '10px',
+    border: '2px solid',
+    borderRadius: '5px',
+    cursor: 'pointer',
+  },
+  selectMobileEnabled: {
+    backgroundColor: 'transparent',
+    color: '#FFFFFF',
+    borderColor: (props) => props.colors.borderColor,
+  },
+  selectMobileDisabled: {
+    backgroundColor: theme.palette.gray.tundora,
+    color: 'gray',
+    borderColor: 'gray',
   },
 }));
