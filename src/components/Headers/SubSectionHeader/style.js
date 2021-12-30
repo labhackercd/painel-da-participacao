@@ -2,6 +2,13 @@
 import { makeStyles } from '@material-ui/core';
 
 export const useStyles = makeStyles((theme) => ({
+  subSectionHeader: {
+    padding: '0px 0px 0px 16px',
+
+    [theme.breakpoints.up('sm')]: {
+      padding: '0px',
+    },
+  },
   typography: {
     fontWeight: 'bold',
     fontSize: '16px',
