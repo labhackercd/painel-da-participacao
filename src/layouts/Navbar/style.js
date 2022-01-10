@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     background: 'black',
     color: 'white',
     width: '100%',
-    height: '-webkit-fill-available',
+    height: '100%',
   },
   tab: {
     height: '92%',

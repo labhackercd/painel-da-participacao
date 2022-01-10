@@ -34,7 +34,6 @@ export const useStyles = makeStyles((theme) => ({
     maxWidth: '1280px',
     marginLeft: 'auto',
     marginRight: 'auto',
-    padding: '0px 0px 0px 16px',
     marginTop: '40px',
 
     // '@media (max-width: 1025px)': {
@@ -52,7 +51,7 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   boxTitle: {
-    padding: '0px 16px 0px 0px',
+    padding: '0px 16px 0px 16px',
 
     [theme.breakpoints.up('sm')]: {
       padding: '0px 35px 0px 0px',

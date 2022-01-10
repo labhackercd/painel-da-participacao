@@ -5,7 +5,7 @@ export const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     width: '100%',
-    padding: '0px 16px 0px 0px',
+    padding: '0px 16px 0px 16px',
 
     [theme.breakpoints.up('sm')]: {
       padding: '0px 35px 0px 0px',
