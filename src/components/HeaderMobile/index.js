@@ -9,6 +9,8 @@ import { Box, Typography } from '@material-ui/core';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import { useStyles } from './style';
 
+import * as APPLICATION_CONSTANTS from '../../utils/constants/index';
+
 const Picker = dynamic(() => import('react-mobile-picker'), {
   ssr: false,
 });
@@ -25,19 +27,62 @@ export default function HeaderMobile(props) {
 
   const classes = useStyles({ colors });
   const [open, setOpen] = useState(false);
-  const [valueGroups, setValueGroups] = useState({
-    period: 'Todo o Período',
-  });
-  // eslint-disable-next-line no-unused-vars
+  const [selectedYear, setSelectedYear] = useState('Todo Período');
+  const [month, setMonth] = useState('Todos os meses');
+  const [selectMonthDisabled, setSelectMonthDisabled] = useState(true);
+  const [buttonType, setButtonType] = useState('period');
+  const [valueGroups, setValueGroups] = useState({});
+  // eslint-disable-next-line max-len
+  const rangeOfYears = (start, end) => (Array(end - start + 1).fill(start).map((year2, index) => year2 + index)).reverse();
+  const yearsRange = rangeOfYears(props.initialYear, APPLICATION_CONSTANTS.CURRENT_YEAR);
   const [optionGroups, setOptionGroups] = useState({
-    title: ['Todo o Período', '2020', '2021', '2022'],
+    title: [],
   });
-  const handleOpen = () => setOpen(true);
+  const handleOpen = (type) => {
+    setButtonType(type);
+    if (type === 'period') {
+      const array = ['Todo Período', ...yearsRange];
+      setOptionGroups({
+        title: array,
+      });
+    } else if (type === 'months') {
+      const array = ['Todos os Meses', ...APPLICATION_CONSTANTS.MONTHS_LIST.map((monthItem) => monthItem)];
+      setOptionGroups({
+        title: array,
+      });
+    }
+    setOpen(true);
+  };
   const handleClose = () => setOpen(false);
 
+  const handleChangeYear = () => {
+    setSelectedYear(valueGroups.title);
+    if (valueGroups.title === 'Todo Período') {
+      props.handlePeriodChange('0', '0');
+      setSelectMonthDisabled(true);
+    } else {
+      setSelectMonthDisabled(false);
+      props.handlePeriodChange('0', valueGroups.title);
+    }
+  };
+
+  const handleChangeMonth = () => {
+    setMonth(valueGroups.title);
+    props.handlePeriodChange(optionGroups.title.indexOf(valueGroups.title, 0), selectedYear);
+  };
+
+  const selectedFunction = () => {
+    if (buttonType === 'period') {
+      setMonth('Todos os meses');
+      handleChangeYear();
+    } else if (buttonType === 'months') {
+      handleChangeMonth();
+    }
+    setOpen(false);
+  };
+
   const handleChange = (name, value) => {
-    setValueGroups((valueGroupsItems) => ({
-      ...valueGroupsItems,
+    setValueGroups(() => ({
       [name]: value,
     }));
   };
@@ -46,14 +91,14 @@ export default function HeaderMobile(props) {
     <div>
       <Box display="flex">
         <button
-          onClick={handleOpen}
+          onClick={() => handleOpen('period')}
           type="button"
           variant="contained"
           style={{ marginRight: '19px', display: 'flex', alignContent: 'center' }}
           className={`${classes.selectMobile} ${classes.selectMobileEnabled}`}
         >
           <Typography alignSelf="center" alig>
-            Todo o Período
+            {selectedYear}
           </Typography>
           <ArrowDropDownIcon
             style={{
@@ -66,13 +111,14 @@ export default function HeaderMobile(props) {
           />
         </button>
         <button
+          onClick={() => handleOpen('months')}
           type="button"
           style={{ display: 'flex', alignContent: 'center' }}
           variant="contained"
-          className={`${classes.selectMobile} ${classes.selectMobileDisabled}`}
+          className={`${classes.selectMobile} ${selectMonthDisabled ? classes.selectMobileDisabled : classes.selectMobileEnabled}`}
         >
           <Typography alignSelf="center" alig>
-            Todos os meses
+            {month}
           </Typography>
           <ArrowDropDownIcon
             style={{
@@ -93,7 +139,9 @@ export default function HeaderMobile(props) {
       >
         <Box className={classes.box}>
           <Button onClick={handleClose} className={classes.typhography}>Cancelar</Button>
-          <Button className={classes.typhography}>Confirmar</Button>
+          <Button onClick={() => selectedFunction()} className={classes.typhography}>
+            Confirmar
+          </Button>
         </Box>
         <Picker
           optionGroups={optionGroups}

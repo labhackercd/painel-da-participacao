@@ -102,6 +102,8 @@ export default function Header(props) {
             ) : (
               <HeaderMobile
                 headerColors={colors}
+                handlePeriodChange={props.handlePeriodChange}
+                initialYear={props.initialYear}
               />
             )}
           </Box>
