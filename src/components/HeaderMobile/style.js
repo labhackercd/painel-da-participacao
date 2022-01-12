@@ -14,7 +14,7 @@ export const useStyles = makeStyles((theme) => ({
     width: '100%',
     '& .picker-container .picker-column .picker-item.picker-item-selected': {
       fontFamily: 'Open Sans',
-      color: '#14D768',
+      color: (props) => props.colors.borderColor,
       fontWeight: 700,
       fontSize: '14px',
     },
@@ -25,7 +25,7 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   box: {
-    background: '#14D768',
+    background: (props) => props.colors.borderColor,
     borderRadius: '15px 15px 0 0',
     color: '#121212',
     height: '44px',
@@ -34,8 +34,9 @@ export const useStyles = makeStyles((theme) => ({
   },
   typhography: {
     color: '#121212',
-    fontWeight: 700,
+    fontWeight: 'bold',
     fontFamily: 'Open Sans',
+    textTransform: 'capitalize',
     padding: '13px',
     fontSize: '11px',
   },
