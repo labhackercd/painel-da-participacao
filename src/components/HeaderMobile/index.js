@@ -27,7 +27,7 @@ export default function HeaderMobile(props) {
 
   const classes = useStyles({ colors });
   const [open, setOpen] = useState(false);
-  const [selectedYear, setSelectedYear] = useState('Todo Período');
+  const [selectedYear, setSelectedYear] = useState('Todo o período');
   const [month, setMonth] = useState('Todos os meses');
   const [selectMonthDisabled, setSelectMonthDisabled] = useState(true);
   const [buttonType, setButtonType] = useState('period');
@@ -41,12 +41,12 @@ export default function HeaderMobile(props) {
   const handleOpen = (type) => {
     setButtonType(type);
     if (type === 'period') {
-      const array = ['Todo Período', ...yearsRange];
+      const array = ['Todo o período', ...yearsRange];
       setOptionGroups({
         title: array,
       });
     } else if (type === 'months') {
-      const array = ['Todos os Meses', ...APPLICATION_CONSTANTS.MONTHS_LIST.map((monthItem) => monthItem)];
+      const array = ['Todos os meses', ...APPLICATION_CONSTANTS.MONTHS_LIST.map((monthItem) => monthItem)];
       setOptionGroups({
         title: array,
       });
@@ -57,7 +57,7 @@ export default function HeaderMobile(props) {
 
   const handleChangeYear = () => {
     setSelectedYear(valueGroups.title);
-    if (valueGroups.title === 'Todo Período') {
+    if (valueGroups.title === 'Todo o período') {
       props.handlePeriodChange('0', '0');
       setSelectMonthDisabled(true);
     } else {
@@ -106,7 +106,7 @@ export default function HeaderMobile(props) {
               width: '24px',
               height: '24px',
               padding: 0,
-              paddingBottom: '4px',
+              right: 0,
             }}
           />
         </button>
@@ -144,6 +144,7 @@ export default function HeaderMobile(props) {
           </Button>
         </Box>
         <Picker
+          data-testid="picker"
           optionGroups={optionGroups}
           valueGroups={valueGroups}
           onChange={handleChange}

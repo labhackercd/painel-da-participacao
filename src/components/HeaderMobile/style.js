@@ -35,6 +35,8 @@ export const useStyles = makeStyles((theme) => ({
   typhography: {
     color: '#121212',
     fontWeight: 'bold',
+    lineHeight: '18px',
+    fontStyle: 'normal',
     fontFamily: 'Open Sans',
     textTransform: 'capitalize',
     padding: '13px',
@@ -42,6 +44,11 @@ export const useStyles = makeStyles((theme) => ({
   },
   selectMobile: {
     fontWeight: 700,
+    width: '162px',
+    height: '50px',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     padding: '10px',
     border: '2px solid',
     borderRadius: '5px',
