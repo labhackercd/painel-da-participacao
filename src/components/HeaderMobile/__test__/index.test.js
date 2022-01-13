@@ -79,3 +79,51 @@ test('test months button', () => {
 
   expect(screen.getAllByText(text)).toBeVisible;
 });
+
+test('test dialog', () => {
+  const text = 'Todo Período';
+  const cancelText = 'Cancelar';
+
+  render(
+    <MockTheme>
+      <HeaderMobile
+        initialYear="2021"
+        headerColors={headerColors}
+      />
+    </MockTheme>,
+  );
+
+  const button = screen.getByText(text);
+
+  fireEvent.click(button);
+
+  const cancelButton = screen.getByText(cancelText);
+
+  fireEvent.click(cancelButton);
+
+  expect(screen.getAllByRole('dialog')).not.toBeVisible;
+});
+
+test('test dialog', () => {
+  const text = 'Todo Período';
+  const cancelText = 'Cancelar';
+
+  render(
+    <MockTheme>
+      <HeaderMobile
+        initialYear="2021"
+        headerColors={headerColors}
+      />
+    </MockTheme>,
+  );
+
+  const button = screen.getByText(text);
+
+  fireEvent.click(button);
+
+  const cancelButton = screen.getByText(cancelText);
+
+  fireEvent.click(cancelButton);
+
+  expect(screen.getAllByRole('dialog')).not.toBeVisible;
+});
