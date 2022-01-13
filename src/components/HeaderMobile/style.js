@@ -62,6 +62,7 @@ export const useStyles = makeStyles((theme) => ({
   selectMobileDisabled: {
     backgroundColor: theme.palette.gray.tundora,
     color: 'gray',
+    cursor: 'auto',
     borderColor: 'gray',
   },
 }));

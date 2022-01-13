@@ -111,7 +111,7 @@ export default function HeaderMobile(props) {
           />
         </button>
         <button
-          onClick={() => handleOpen('months')}
+          onClick={() => selectedYear !== 'Todo o período' && handleOpen('months')}
           type="button"
           style={{ display: 'flex', alignContent: 'center' }}
           variant="contained"
