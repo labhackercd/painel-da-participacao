@@ -59,48 +59,46 @@ export default function TotalsGrid(props) {
       {itens.map((item, index) => (
         <>
           {item.isLoaded ? (
-            <>
-              <Box key={item.title} display="flex" flexDirection="column" flex={1} flexBasis="45%">
-                <Box display="flex" paddingTop="16px">
-                  <Typography variant="h5" className={classes.text}>
-                    <Box display="flex">
-                      {item.title}
-                    </Box>
-                  </Typography>
-                  <ToolTip itens={itens} index={index} />
-                </Box>
-                <Box paddingBottom={(index === 2 || index === 3) ? '16px' : '8px'}>
-                  <Typography
-                    className={classes.info}
-                    noWrap
-                  >
-                    {item.info}
-                  </Typography>
-                  {item.subInformation && item.subInformation.length !== 0 && (
-                    <Box width="100%" display="flex" alignItems="center" paddingLeft="16px" paddingTop="8px">
-                      <Box marginRight="10px">
-                        <CheckCircleIcon fontSize="small" style={{ color: item.toolTipColor }} />
-                      </Box>
-                      <Box display="flex" alignItems="center" marginBottom="4px">
-                        <Typography style={{ color: '#FFF', fontSize: '13px' }} noWrap>
-                          {item.subInformation}
-                        </Typography>
-                      </Box>
-                    </Box>
-                  )}
-                </Box>
+            <Box key={item.title} display="flex" flexDirection="column" flex={1} flexBasis="45%">
+              <Box display="flex" paddingTop="16px">
+                <Typography variant="h5" className={classes.text}>
+                  <Box display="flex">
+                    {item.title}
+                  </Box>
+                </Typography>
+                <ToolTip itens={itens} index={index} />
               </Box>
-              { index % 2 === 0 && (
-                <hr flexBasis="10%" flexShrink={0} color="#363636" />
-              )}
-              { index === 1 && (
-                <hr flexBasis="100%" flexShrink={0} color="#363636" width="100%" height="1px" />
-              )}
-            </>
+              <Box paddingBottom={(index === 2 || index === 3) ? '16px' : '8px'}>
+                <Typography
+                  className={classes.info}
+                  noWrap
+                >
+                  {item.info}
+                </Typography>
+                {item.subInformation && item.subInformation.length !== 0 && (
+                  <Box width="100%" display="flex" alignItems="center" paddingLeft="16px" paddingTop="8px">
+                    <Box marginRight="10px">
+                      <CheckCircleIcon fontSize="small" style={{ color: item.toolTipColor }} />
+                    </Box>
+                    <Box display="flex" alignItems="center" marginBottom="4px">
+                      <Typography style={{ color: '#FFF', fontSize: '13px' }} noWrap>
+                        {item.subInformation}
+                      </Typography>
+                    </Box>
+                  </Box>
+                )}
+              </Box>
+            </Box>
           ) : (
-            <Box display="flex" alignItems="center" justifyContent="center" width="100%" height="100%">
+            <Box display="flex" flexDirection="column" flex={1} flexBasis="45%" padding="16px" alignItems="center">
               <CircularProgress />
             </Box>
+          )}
+          { index % 2 === 0 && (
+            <hr flexBasis="10%" flexShrink={0} color="#363636" />
+          )}
+          { index === 1 && (
+            <hr flexBasis="100%" flexShrink={0} color="#363636" width="100%" height="1px" />
           )}
         </>
       ))}

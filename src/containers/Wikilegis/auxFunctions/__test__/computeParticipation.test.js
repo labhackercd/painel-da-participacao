@@ -43,7 +43,7 @@ describe('Test getWikilegisParticipationChartDataByMonth function', () => {
 });
 
 describe('Test getWikilegisParticipationChartDataByYear function', () => {
-  test('getWikilegisParticipationChartDataByYear return data with 6 years', async () => {
+  test('getWikilegisParticipationChartDataByYear return data with 7 years', async () => {
     const resultArray = await getWikilegisParticipationChartDataByYear(
       apiMock.opinionsApiMock.YEARLY.results, apiMock.votesApiMock.YEARLY.results,
       2016,
@@ -51,7 +51,7 @@ describe('Test getWikilegisParticipationChartDataByYear function', () => {
     expect(resultArray).not.toBe(null);
     expect(resultArray.length).not.toBe(1);
     expect(resultArray[0][0]).toBe('2016');
-    expect(resultArray.length).toBe(6);
+    expect(resultArray.length).toBe(7);
   });
 
   test('getWikilegisParticipationChartDataByYear catch with undefined values', async () => {
