@@ -45,7 +45,7 @@ test('Test if Header Mobile renders without crash', () => {
 });
 
 test('test period button', () => {
-  const text = 'Todo Período';
+  const text = 'Todo o período';
   render(
     <MockTheme>
       <HeaderMobile
@@ -81,7 +81,7 @@ test('test months button', () => {
 });
 
 test('test dialog', () => {
-  const text = 'Todo Período';
+  const text = 'Todo o período';
   const cancelText = 'Cancelar';
 
   render(
@@ -105,7 +105,7 @@ test('test dialog', () => {
 });
 
 test('test dialog', () => {
-  const text = 'Todo Período';
+  const text = 'Todo o período';
   const cancelText = 'Cancelar';
 
   render(
