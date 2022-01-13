@@ -126,7 +126,7 @@ export default function HeaderMobile(props) {
               width: '24px',
               height: '24px',
               padding: 0,
-              paddingBottom: '4px',
+              right: 0,
             }}
           />
         </button>
