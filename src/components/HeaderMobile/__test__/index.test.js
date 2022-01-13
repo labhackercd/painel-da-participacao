@@ -17,7 +17,6 @@ const headerColors = {
   },
   toolTipBackground: '14D768',
 };
-
 it('snapshot should not have changes', () => {
   const component = shallow(
     <MockTheme>
@@ -124,6 +123,88 @@ test('test dialog', () => {
   const cancelButton = screen.getByText(cancelText);
 
   fireEvent.click(cancelButton);
+
+  expect(screen.getAllByRole('dialog')).not.toBeVisible;
+});
+
+test('test slide', () => {
+  const text = 'Todo o período';
+  render(
+    <MockTheme>
+      <HeaderMobile
+        initialYear="2021"
+        headerColors={headerColors}
+      />
+    </MockTheme>,
+  );
+
+  const button = screen.getByText(text);
+
+  fireEvent.click(button);
+
+  expect(screen.getAllByTestId('slide')).toBeVisible;
+});
+
+test('test dialog months', () => {
+  const textPeriod = 'Todo o período';
+  const textMonth = 'Todos os meses';
+  const confirmText = 'Confirmar';
+  const handlePeriodChange = jest.fn();
+
+  render(
+    <MockTheme>
+      <HeaderMobile
+        initialYear="2021"
+        headerColors={headerColors}
+        handlePeriodChange={handlePeriodChange}
+      />
+    </MockTheme>,
+  );
+
+  const buttonPeriod = screen.getByText(textPeriod);
+
+  fireEvent.click(buttonPeriod);
+
+  const confirmButton = screen.getByText(confirmText);
+
+  fireEvent.click(confirmButton);
+
+  const buttonMonth = screen.getByText(textMonth);
+
+  fireEvent.click(buttonMonth);
+
+  expect(screen.getAllByRole('dialog')).toBeVisible;
+});
+
+test('test picker months', () => {
+  const textPeriod = 'Todo o período';
+  const textMonth = 'Todos os meses';
+  const confirmText = 'Confirmar';
+  const handlePeriodChange = jest.fn();
+
+  render(
+    <MockTheme>
+      <HeaderMobile
+        initialYear="2021"
+        headerColors={headerColors}
+        handlePeriodChange={handlePeriodChange}
+      />
+    </MockTheme>,
+  );
+
+  const buttonPeriod = screen.getByText(textPeriod);
+
+  fireEvent.click(buttonPeriod);
+
+  const confirmButton = screen.getByText(confirmText);
+
+  fireEvent.click(confirmButton);
+
+  const buttonMonth = screen.getByText(textMonth);
+
+  fireEvent.click(buttonMonth);
+
+  fireEvent.click(confirmButton);
 
   expect(screen.getAllByRole('dialog')).not.toBeVisible;
 });

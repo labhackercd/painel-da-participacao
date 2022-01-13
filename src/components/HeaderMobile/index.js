@@ -18,7 +18,7 @@ const Picker = dynamic(() => import('react-mobile-picker'), {
 const Transition = React.forwardRef(
   // eslint-disable-next-line prefer-arrow-callback
   function Transition(props, ref) {
-    return <Slide direction="up" ref={ref} {...props} />;
+    return <Slide data-testid="slide" direction="up" ref={ref} {...props} />;
   },
 );
 
@@ -71,7 +71,7 @@ export default function HeaderMobile(props) {
     props.handlePeriodChange(optionGroups.title.indexOf(valueGroups.title, 0), selectedYear);
   };
 
-  const selectedFunction = () => {
+  const selectFunction = () => {
     if (buttonType === 'period') {
       setMonth('Todos os meses');
       handleChangeYear();
@@ -139,12 +139,11 @@ export default function HeaderMobile(props) {
       >
         <Box className={classes.box}>
           <Button onClick={handleClose} className={classes.typhography}>Cancelar</Button>
-          <Button onClick={() => selectedFunction()} className={classes.typhography}>
+          <Button onClick={() => selectFunction()} className={classes.typhography}>
             Confirmar
           </Button>
         </Box>
         <Picker
-          data-testid="picker"
           optionGroups={optionGroups}
           valueGroups={valueGroups}
           onChange={handleChange}
