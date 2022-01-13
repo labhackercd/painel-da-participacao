@@ -52,7 +52,7 @@ describe('Test getParticipationChartDataByMonth function', () => {
 });
 
 describe('Test getParticipationChartDataByYear function', () => {
-  test('getParticipationChartDataByYear return data with 6 years', async () => {
+  test('getParticipationChartDataByYear return data with 7 years', async () => {
     const resultArray = await getParticipationChartDataByYear(
       apisMock.messagesApiMock.YEARLY.results, apisMock.questionsApiMock.YEARLY.results,
       apisMock.votesApiMock.YEARLY.results,
@@ -61,7 +61,7 @@ describe('Test getParticipationChartDataByYear function', () => {
     expect(resultArray).not.toBe(null);
     expect(resultArray.length).not.toBe(1);
     expect(resultArray[0][0]).toBe('2016');
-    expect(resultArray.length).toBe(6);
+    expect(resultArray.length).toBe(7);
   });
 
   test('getParticipationChartDataByYear catch with undefined values', async () => {
