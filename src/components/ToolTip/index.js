@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Tooltip from '@material-ui/core/Tooltip';
-import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 import InfoIcon from '@material-ui/icons/Info';
 import useMobile from '../../hooks/useMobile';
 
@@ -43,9 +43,13 @@ export default function Tooltips(props) {
         onClose={handleClose}
         onOpen={handleOpen}
       >
-        <IconButton aria-label={toolTipAriaLabel} style={{ padding: 0, margin: 0 }}>
+        <Button
+          onClick={() => setOpen(!open)}
+          aria-label={toolTipAriaLabel}
+          style={{ padding: 0, margin: 0 }}
+        >
           <InfoIcon aria-label={toolTipAriaLabel} style={{ color: toolTipColor }} />
-        </IconButton>
+        </Button>
       </HtmlTooltip>
     </div>
   );
