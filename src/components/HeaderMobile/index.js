@@ -89,7 +89,7 @@ export default function HeaderMobile(props) {
 
   return (
     <div>
-      <Box display="flex">
+      <Box display="flex" zIndex={10}>
         <button
           onClick={() => handleOpen('period')}
           type="button"
