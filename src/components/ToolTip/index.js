@@ -44,7 +44,7 @@ export default function Tooltips(props) {
         onOpen={handleOpen}
       >
         <Button
-          onClick={() => setOpen(!open)}
+          onClick={() => (!mobileView) && setOpen(!open)}
           aria-label={toolTipAriaLabel}
           style={{ padding: 0, margin: 0 }}
         >
