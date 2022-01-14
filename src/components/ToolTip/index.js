@@ -22,8 +22,8 @@ export default function Tooltips(props) {
     toolTipText, toolTipColor, toolTipAriaLabel,
   } = props;
   const [open, setOpen] = useState(false);
-  const { mobileView, tabletView } = useMobile();
-  const handleOpen = () => (!mobileView && !tabletView) && setOpen(true);
+  const { mobileView } = useMobile();
+  const handleOpen = () => (!mobileView) && setOpen(true);
   const handleClose = () => setOpen(false);
 
   function toolTipHtmlTitle(title) {

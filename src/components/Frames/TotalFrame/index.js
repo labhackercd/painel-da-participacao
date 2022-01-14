@@ -37,7 +37,7 @@ function TotalsDataFrame(props) {
             </Typography>
           </Box>
           <Box onClick={handleOpen} flexGrow={1} display="flex" alignItems="center" style={{ margin: 0 }}>
-            {(toolTipText !== null && toolTipText !== undefined)
+            {(toolTipText !== null && toolTipText !== undefined && !mobileView)
               && (
               <Tooltips
                 toolTipText={toolTipText}
