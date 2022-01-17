@@ -1,19 +1,14 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/destructuring-assignment */
 import React, { useState } from 'react';
-import dynamic from 'next/dynamic';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import Slide from '@material-ui/core/Slide';
 import { Box, Typography } from '@material-ui/core';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import Picker from 'react-mobile-picker-scroll';
 import { useStyles } from './style';
-
 import * as APPLICATION_CONSTANTS from '../../utils/constants/index';
-
-const Picker = dynamic(() => import('react-mobile-picker'), {
-  ssr: false,
-});
 
 const Transition = React.forwardRef(
   // eslint-disable-next-line prefer-arrow-callback
